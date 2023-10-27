@@ -1,5 +1,5 @@
 # To generate the client:
-# npx @openapitools/openapi-generator-cli generate -c openapi-dotnet.yaml -i api-yaml/firefly-iii-2.0.4-v1.yaml -i api-yaml/firefly-iii-2.0.4-v2.yaml
+# npx @openapitools/openapi-generator-cli generate -c openapi-dotnet.yaml -i api-yaml/firefly-iii-2.0.5-v1.yaml -i api-yaml/firefly-iii-2.0.5-v2.yaml
 
 # To build & pack for Nuget
 # (TODO Move this into a github action - preferably along with generation)
@@ -8,5 +8,5 @@
 generatorName: csharp
 outputDir: generated/
 packageName: FireflyIIINet
-packageVersion: 2.0.4
+packageVersion: 2.0.5
 targetFramework: net6.0

@@ -5,12 +5,12 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-07-30T13:08:11+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-08-06T04:35:40+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v2.0.4
-  version: 2.0.4
+  title: Firefly III API v2.0.5
+  version: 2.0.5
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/api
@@ -38,7 +38,7 @@ paths:
   /v2/chart/account/dashboard:
     get:
       description: |
-        This endpoint returns the data required to generate a chart with basic asset account balance information.
+        This endpoint returns the data required to generate a chart with basic asset account balance information. By default it contains the users frontpage accounts OR all the user's asset accounts if this preference is empty.
       operationId: getChartAccountOverview
       parameters:
       - description: Unique identifier associated with this request.
@@ -100,9 +100,99 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChartLineV2'
-          description: Line chart oriented chart information. Check out the model
-            for more details. Each entry is a line (or bar) in the chart.
+          description: Chart information. Check out the model for more details. Each
+            main entry is a set of data.
       summary: Dashboard chart with asset account balance information.
+      tags:
+      - charts
+  /v2/chart/balance/balance:
+    get:
+      description: |
+        The chart contains spent/earned amounts for the given date range, grouped by the given period, and collected for the given accounts.
+      operationId: getBalanceChart
+      parameters:
+      - description: Unique identifier associated with this request.
+        explode: false
+        in: header
+        name: X-Trace-Id
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: |
+          A date formatted YYYY-MM-DD.
+        explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: |
+          A date formatted YYYY-MM-DD.
+        explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: |
+          An array of accounts that should be included. Example: accounts[]=1&accounts[]=2
+        explode: true
+        in: query
+        name: "accounts[]"
+        required: true
+        schema:
+          items:
+            format: int32
+            type: integer
+          type: array
+        style: form
+      - description: The period by which the results must be grouped.
+        explode: true
+        in: query
+        name: period
+        required: true
+        schema:
+          $ref: '#/components/schemas/PeriodProperty'
+        style: form
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthenticated'
+          description: Unauthenticated
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+          description: Page not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+          description: Bad request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalException'
+          description: Internal exception
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChartLineV2'
+          description: Chart information. Check out the model for more details. Each
+            main entry is a set of data.
+      summary: A chart that contains spent/earned amounts
       tags:
       - charts
   /v2/accounts/{id}/transactions:
@@ -1369,19 +1459,23 @@ components:
       properties:
         key:
           description: "The key is the label of the value, so for example: '2018-01-01'\
-            \ => 13 or 'Groceries' => -123."
+            \ => 13 or 'Groceries' => -123. For date-related charts, this is always\
+            \ a Atom date."
           example: value
           format: string
           type: string
       type: object
     ChartDataSetV2:
       example:
-        end_date: 2018-09-17T12:46:47+01:00
+        period: 1M
+        native_entries:
+        - key: value
+        - key: value
         native_id: "5"
         currency_symbol: $
         native_symbol: $
-        label: Checking account
-        type: line
+        start: 2018-09-17T12:46:47+01:00
+        label: earned-EUR
         native_code: EUR
         currency_code: EUR
         currency_decimal_places: 2
@@ -1389,15 +1483,13 @@ components:
         entries:
         - key: value
         - key: value
-        converted: true
-        yAxisID: 0
+        end: 2018-09-17T12:46:47+01:00
         currency_id: "5"
-        start_date: 2018-09-17T12:46:47+01:00
       properties:
         label:
-          description: "This is the title of the current set. It can refer to an account,\
-            \ a budget or another object (by name)."
-          example: Checking account
+          description: "This is the label of the current data-set. It can refer to\
+            \ an object by name, or a collected set of data."
+          example: earned-EUR
           format: string
           type: string
         currency_id:
@@ -1421,54 +1513,52 @@ components:
           format: int32
           type: integer
         native_id:
-          description: The currency ID of the user's native currency.
+          description: The currency ID of the user's native (default) currency.
           example: "5"
           format: string
           type: string
         native_code:
-          description: The currency code of the user's native currency.
+          description: The currency code of the user's native (default) currency.
           example: EUR
           format: string
           type: string
         native_symbol:
-          description: The currency symbol of the user's native currency.
+          description: The currency symbol of the user's native (default) currency.
           example: $
           format: string
           type: string
         native_decimal_places:
-          description: Number of decimals for the native currency of the user.
+          description: Number of decimals for the native (default) currency of the
+            user.
           example: 2
           format: int32
           type: integer
-        converted:
-          description: This variable holds whether or not the values in the 'entries'-array
-            are converted to the user's native currency.
-          example: true
-          format: boolean
-          type: boolean
-        start_date:
+        start:
+          description: "Holds the date and time of start of the range of data collected.\
+            \ It could be there was no data for this point in time, but this is the\
+            \ start of the requested range."
           example: 2018-09-17T12:46:47+01:00
           format: date-time
           type: string
-        end_date:
+        end:
+          description: "Holds the date and time of END of the range of data collected.\
+            \ It could be there was no data for this point in time, but this is the\
+            \ end of the requested range."
           example: 2018-09-17T12:46:47+01:00
           format: date-time
           type: string
-        type:
-          description: Indicated the type of chart that is expected to be rendered.
-            You can safely ignore this if you want.
-          example: line
-          format: string
-          type: string
-        yAxisID:
-          description: Used to indicate the Y axis for this data set. Is usually between
-            0 and 1 (left and right side of the chart).
-          example: 0
-          format: int32
-          type: integer
+        period:
+          $ref: '#/components/schemas/ChartV2PeriodProperty'
         entries:
           description: The actual entries for this data set. They 'key' value is the
             label for the data point. The value is the actual (numerical) value.
+          items:
+            $ref: '#/components/schemas/ChartDataPointV2'
+          type: array
+        native_entries:
+          description: The entries for this data set converted to the user's native
+            (default) currency. They 'key' value is the label for the data point.
+            The value is the actual (numerical) value.
           items:
             $ref: '#/components/schemas/ChartDataPointV2'
           type: array
@@ -1477,6 +1567,21 @@ components:
       items:
         $ref: '#/components/schemas/ChartDataSetV2'
       type: array
+    ChartV2PeriodProperty:
+      description: "This field denotes the period in which the chart data is split\
+        \ up. If the period is not relevant, because the chart is not time-based,\
+        \ it will be NULL."
+      enum:
+      - 1D
+      - 1W
+      - 1M
+      - 3M
+      - 6M
+      - 1Y
+      example: 1M
+      format: string
+      nullable: true
+      type: string
     Preference:
       example:
         updated_at: 2018-09-17T12:46:47+01:00
@@ -1546,6 +1651,15 @@ components:
       required:
       - data
       type: object
+    PeriodProperty:
+      enum:
+      - 1D
+      - 1W
+      - 1M
+      - 3M
+      - 6M
+      - 1Y
+      type: string
     PolymorphicProperty:
       oneOf:
       - type: boolean

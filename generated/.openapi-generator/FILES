@@ -17,6 +17,7 @@ docs/BudgetV2Read.md
 docs/BudgetsApi.md
 docs/ChartDataPointV2.md
 docs/ChartDataSetV2.md
+docs/ChartV2PeriodProperty.md
 docs/ChartsApi.md
 docs/CreditCardType.md
 docs/InterestPeriod.md
@@ -30,6 +31,7 @@ docs/NotFound.md
 docs/ObjectLink.md
 docs/ObjectLink0.md
 docs/PageLink.md
+docs/PeriodProperty.md
 docs/PolymorphicProperty.md
 docs/Preference.md
 docs/PreferenceRead.md
@@ -48,18 +50,9 @@ docs/Unauthenticated.md
 docs/ValidationError.md
 docs/ValidationErrorErrors.md
 git_push.sh
-src/FireflyIIINet.Test/Api/NetWorthApiTests.cs
-src/FireflyIIINet.Test/Api/TransactionsSumApiTests.cs
 src/FireflyIIINet.Test/FireflyIIINet.Test.csproj
-src/FireflyIIINet.Test/Model/BudgetLimitReadV2Tests.cs
-src/FireflyIIINet.Test/Model/BudgetLimitV2ArrayTests.cs
-src/FireflyIIINet.Test/Model/BudgetLimitV2Tests.cs
-src/FireflyIIINet.Test/Model/BudgetV2ArrayTests.cs
-src/FireflyIIINet.Test/Model/BudgetV2ReadTests.cs
-src/FireflyIIINet.Test/Model/BudgetV2Tests.cs
-src/FireflyIIINet.Test/Model/ChartDataPointV2Tests.cs
-src/FireflyIIINet.Test/Model/ChartDataSetV2Tests.cs
-src/FireflyIIINet.Test/Model/TransactionSumTests.cs
+src/FireflyIIINet.Test/Model/ChartV2PeriodPropertyTests.cs
+src/FireflyIIINet.Test/Model/PeriodPropertyTests.cs
 src/FireflyIIINet/Api/AccountsApi.cs
 src/FireflyIIINet/Api/BudgetsApi.cs
 src/FireflyIIINet/Api/ChartsApi.cs
@@ -99,6 +92,7 @@ src/FireflyIIINet/Model/BudgetV2Array.cs
 src/FireflyIIINet/Model/BudgetV2Read.cs
 src/FireflyIIINet/Model/ChartDataPointV2.cs
 src/FireflyIIINet/Model/ChartDataSetV2.cs
+src/FireflyIIINet/Model/ChartV2PeriodProperty.cs
 src/FireflyIIINet/Model/CreditCardType.cs
 src/FireflyIIINet/Model/InterestPeriod.cs
 src/FireflyIIINet/Model/InternalException.cs
@@ -110,6 +104,7 @@ src/FireflyIIINet/Model/NotFound.cs
 src/FireflyIIINet/Model/ObjectLink.cs
 src/FireflyIIINet/Model/ObjectLink0.cs
 src/FireflyIIINet/Model/PageLink.cs
+src/FireflyIIINet/Model/PeriodProperty.cs
 src/FireflyIIINet/Model/PolymorphicProperty.cs
 src/FireflyIIINet/Model/Preference.cs
 src/FireflyIIINet/Model/PreferenceRead.cs
