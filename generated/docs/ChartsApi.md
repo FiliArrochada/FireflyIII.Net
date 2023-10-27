@@ -4,11 +4,11 @@ All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetChartAccountOverview**](ChartsApi.md#getchartaccountoverview) | **GET** /v1/chart/account/overview | Dashboard chart with asset account balance information. |
+| [**GetChartAccountOverview**](ChartsApi.md#getchartaccountoverview) | **GET** /v2/chart/account/dashboard | Dashboard chart with asset account balance information. |
 
 <a id="getchartaccountoverview"></a>
 # **GetChartAccountOverview**
-> List&lt;ChartDataSet&gt; GetChartAccountOverview (DateTime start, DateTime end, Guid? xTraceId = null)
+> List&lt;ChartDataSetV2&gt; GetChartAccountOverview (DateTime start, DateTime end, Guid? xTraceId = null)
 
 Dashboard chart with asset account balance information.
 
@@ -41,7 +41,7 @@ namespace Example
             try
             {
                 // Dashboard chart with asset account balance information.
-                List<ChartDataSet> result = apiInstance.GetChartAccountOverview(start, end, xTraceId);
+                List<ChartDataSetV2> result = apiInstance.GetChartAccountOverview(start, end, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -62,7 +62,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Dashboard chart with asset account balance information.
-    ApiResponse<List<ChartDataSet>> response = apiInstance.GetChartAccountOverviewWithHttpInfo(start, end, xTraceId);
+    ApiResponse<List<ChartDataSetV2>> response = apiInstance.GetChartAccountOverviewWithHttpInfo(start, end, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -85,7 +85,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**List&lt;ChartDataSet&gt;**](ChartDataSet.md)
+[**List&lt;ChartDataSetV2&gt;**](ChartDataSetV2.md)
 
 ### Authorization
 
