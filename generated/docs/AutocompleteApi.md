@@ -23,7 +23,7 @@ All URIs are relative to *https://demo.firefly-iii.org/api*
 
 <a id="getaccountsac"></a>
 # **GetAccountsAC**
-> List&lt;AutocompleteAccount&gt; GetAccountsAC (Guid? xTraceId = null, string? query = null, int? limit = null, string? date = null, AccountTypeFilter? type = null)
+> List&lt;AutocompleteAccount&gt; GetAccountsAC (Guid? xTraceId = null, string? query = null, int? limit = null, string? date = null, List<AccountTypeFilter>? types = null)
 
 Returns all accounts of the user returned in a basic auto-complete array.
 
@@ -51,12 +51,12 @@ namespace Example
             var query = string;  // string? | The autocomplete search query. (optional) 
             var limit = 10;  // int? | The number of items returned. (optional) 
             var date = 2020-09-17;  // string? | If the account is an asset account or a liability, the autocomplete will also return the balance of the account on this date. (optional) 
-            var type = new AccountTypeFilter?(); // AccountTypeFilter? | Optional filter on the account type(s) used in the autocomplete. (optional) 
+            var types = new List<AccountTypeFilter>?(); // List<AccountTypeFilter>? | Optional filter on the account type(s) used in the autocomplete. (optional) 
 
             try
             {
                 // Returns all accounts of the user returned in a basic auto-complete array.
-                List<AutocompleteAccount> result = apiInstance.GetAccountsAC(xTraceId, query, limit, date, type);
+                List<AutocompleteAccount> result = apiInstance.GetAccountsAC(xTraceId, query, limit, date, types);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -77,7 +77,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Returns all accounts of the user returned in a basic auto-complete array.
-    ApiResponse<List<AutocompleteAccount>> response = apiInstance.GetAccountsACWithHttpInfo(xTraceId, query, limit, date, type);
+    ApiResponse<List<AutocompleteAccount>> response = apiInstance.GetAccountsACWithHttpInfo(xTraceId, query, limit, date, types);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -98,7 +98,7 @@ catch (ApiException e)
 | **query** | **string?** | The autocomplete search query. | [optional]  |
 | **limit** | **int?** | The number of items returned. | [optional]  |
 | **date** | **string?** | If the account is an asset account or a liability, the autocomplete will also return the balance of the account on this date. | [optional]  |
-| **type** | [**AccountTypeFilter?**](AccountTypeFilter?.md) | Optional filter on the account type(s) used in the autocomplete. | [optional]  |
+| **types** | [**List&lt;AccountTypeFilter&gt;?**](AccountTypeFilter.md) | Optional filter on the account type(s) used in the autocomplete. | [optional]  |
 
 ### Return type
 

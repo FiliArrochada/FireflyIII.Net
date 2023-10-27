@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **CurrencySymbol** | **string** |  | [optional] [readonly] 
 **CurrencyDecimalPlaces** | **int** |  | [optional] [readonly] 
 **CurrentBalance** | **string** |  | [optional] [readonly] 
-**CurrentBalanceDate** | **DateTime** |  | [optional] [readonly] 
+**CurrentBalanceDate** | **DateTime** | The timestamp for this date is always 23:59:59, to indicate it&#39;s the balance at the very END of that particular day. | [optional] [readonly] 
 **Iban** | **string** |  | [optional] 
 **Bic** | **string** |  | [optional] 
 **AccountNumber** | **string** |  | [optional] 

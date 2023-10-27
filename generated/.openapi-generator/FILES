@@ -246,10 +246,6 @@ docs/WebhookUpdate.md
 docs/WebhooksApi.md
 git_push.sh
 src/FireflyIIINet.Test/FireflyIIINet.Test.csproj
-src/FireflyIIINet.Test/Model/BadRequestTests.cs
-src/FireflyIIINet.Test/Model/InternalExceptionTests.cs
-src/FireflyIIINet.Test/Model/NotFoundTests.cs
-src/FireflyIIINet.Test/Model/UnauthenticatedTests.cs
 src/FireflyIIINet/Api/AboutApi.cs
 src/FireflyIIINet/Api/AccountsApi.cs
 src/FireflyIIINet/Api/AttachmentsApi.cs

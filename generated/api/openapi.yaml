@@ -5,12 +5,12 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-03-05T14:16:31+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-05-17T04:54:43+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v2.0.0
-  version: 2.0.0
+  title: Firefly III API v2.0.2
+  version: 2.0.2
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/api
@@ -145,12 +145,14 @@ paths:
           type: string
         style: form
       - description: Optional filter on the account type(s) used in the autocomplete.
-        explode: true
+        explode: false
         in: query
-        name: type
+        name: types
         required: false
         schema:
-          $ref: '#/components/schemas/AccountTypeFilter'
+          items:
+            $ref: '#/components/schemas/AccountTypeFilter'
+          type: array
         style: form
       responses:
         "401":
@@ -11648,7 +11650,8 @@ paths:
         name: code
         required: true
         schema:
-          type: integer
+          example: GBP
+          type: string
         style: simple
       responses:
         "204":
@@ -15291,7 +15294,7 @@ components:
         - attributes:
             target_amount: "123.45"
             notes: Some notes
-            target_date: 2018-09-17T12:46:47+01:00
+            target_date: 2018-09-17T00:00:00.000+00:00
             currency_symbol: $
             left_to_save: "700.00"
             created_at: 2018-09-17T12:46:47+01:00
@@ -15308,7 +15311,7 @@ components:
             name: New digital camera
             currency_id: "5"
             save_per_month: "12.45"
-            start_date: 2018-09-17T12:46:47+01:00
+            start_date: 2018-09-17T00:00:00.000+00:00
             order: 5
             object_group_title: Example Group
           links:
@@ -15321,7 +15324,7 @@ components:
         - attributes:
             target_amount: "123.45"
             notes: Some notes
-            target_date: 2018-09-17T12:46:47+01:00
+            target_date: 2018-09-17T00:00:00.000+00:00
             currency_symbol: $
             left_to_save: "700.00"
             created_at: 2018-09-17T12:46:47+01:00
@@ -15338,7 +15341,7 @@ components:
             name: New digital camera
             currency_id: "5"
             save_per_month: "12.45"
-            start_date: 2018-09-17T12:46:47+01:00
+            start_date: 2018-09-17T00:00:00.000+00:00
             order: 5
             object_group_title: Example Group
           links:
@@ -15484,7 +15487,7 @@ components:
             apply_rules: true
             nr_of_repetitions: 5
             notes: Some notes
-            repeat_until: 2018-09-17T12:46:47+01:00
+            repeat_until: 2018-09-17T00:00:00.000+00:00
             created_at: 2018-09-17T12:46:47+01:00
             description: Recurring transaction for the monthly rent
             active: true
@@ -15571,8 +15574,8 @@ components:
               type: weekly
               moment: "3"
             updated_at: 2018-09-17T12:46:47+01:00
-            latest_date: 2018-09-17T12:46:47+01:00
-            first_date: 2018-09-17T12:46:47+01:00
+            latest_date: 2018-09-17T00:00:00.000+00:00
+            first_date: 2018-09-17T00:00:00.000+00:00
           links:
             "0":
               rel: self
@@ -15584,7 +15587,7 @@ components:
             apply_rules: true
             nr_of_repetitions: 5
             notes: Some notes
-            repeat_until: 2018-09-17T12:46:47+01:00
+            repeat_until: 2018-09-17T00:00:00.000+00:00
             created_at: 2018-09-17T12:46:47+01:00
             description: Recurring transaction for the monthly rent
             active: true
@@ -15671,8 +15674,8 @@ components:
               type: weekly
               moment: "3"
             updated_at: 2018-09-17T12:46:47+01:00
-            latest_date: 2018-09-17T12:46:47+01:00
-            first_date: 2018-09-17T12:46:47+01:00
+            latest_date: 2018-09-17T00:00:00.000+00:00
+            first_date: 2018-09-17T00:00:00.000+00:00
           links:
             "0":
               rel: self
@@ -15899,7 +15902,7 @@ components:
       example:
         data:
         - attributes:
-            date: 2018-09-17T12:46:47+01:00
+            date: 2018-09-17T00:00:00.000+00:00
             updated_at: 2018-09-17T12:46:47+01:00
             latitude: 51.983333
             created_at: 2018-09-17T12:46:47+01:00
@@ -15915,7 +15918,7 @@ components:
           id: "2"
           type: tags
         - attributes:
-            date: 2018-09-17T12:46:47+01:00
+            date: 2018-09-17T00:00:00.000+00:00
             updated_at: 2018-09-17T12:46:47+01:00
             latitude: 51.983333
             created_at: 2018-09-17T12:46:47+01:00
@@ -16832,6 +16835,7 @@ components:
       type: array
     DataDestroyObject:
       enum:
+      - not_assets_liabilities
       - budgets
       - bills
       - piggy_banks
@@ -17837,7 +17841,7 @@ components:
         attributes:
           target_amount: "123.45"
           notes: Some notes
-          target_date: 2018-09-17T12:46:47+01:00
+          target_date: 2018-09-17T00:00:00.000+00:00
           currency_symbol: $
           left_to_save: "700.00"
           created_at: 2018-09-17T12:46:47+01:00
@@ -17854,7 +17858,7 @@ components:
           name: New digital camera
           currency_id: "5"
           save_per_month: "12.45"
-          start_date: 2018-09-17T12:46:47+01:00
+          start_date: 2018-09-17T00:00:00.000+00:00
           order: 5
           object_group_title: Example Group
         links:
@@ -17890,7 +17894,7 @@ components:
           attributes:
             target_amount: "123.45"
             notes: Some notes
-            target_date: 2018-09-17T12:46:47+01:00
+            target_date: 2018-09-17T00:00:00.000+00:00
             currency_symbol: $
             left_to_save: "700.00"
             created_at: 2018-09-17T12:46:47+01:00
@@ -17907,7 +17911,7 @@ components:
             name: New digital camera
             currency_id: "5"
             save_per_month: "12.45"
-            start_date: 2018-09-17T12:46:47+01:00
+            start_date: 2018-09-17T00:00:00.000+00:00
             order: 5
             object_group_title: Example Group
           links:
@@ -17971,7 +17975,7 @@ components:
           apply_rules: true
           nr_of_repetitions: 5
           notes: Some notes
-          repeat_until: 2018-09-17T12:46:47+01:00
+          repeat_until: 2018-09-17T00:00:00.000+00:00
           created_at: 2018-09-17T12:46:47+01:00
           description: Recurring transaction for the monthly rent
           active: true
@@ -18058,8 +18062,8 @@ components:
             type: weekly
             moment: "3"
           updated_at: 2018-09-17T12:46:47+01:00
-          latest_date: 2018-09-17T12:46:47+01:00
-          first_date: 2018-09-17T12:46:47+01:00
+          latest_date: 2018-09-17T00:00:00.000+00:00
+          first_date: 2018-09-17T00:00:00.000+00:00
         links:
           "0":
             rel: self
@@ -18094,7 +18098,7 @@ components:
             apply_rules: true
             nr_of_repetitions: 5
             notes: Some notes
-            repeat_until: 2018-09-17T12:46:47+01:00
+            repeat_until: 2018-09-17T00:00:00.000+00:00
             created_at: 2018-09-17T12:46:47+01:00
             description: Recurring transaction for the monthly rent
             active: true
@@ -18181,8 +18185,8 @@ components:
               type: weekly
               moment: "3"
             updated_at: 2018-09-17T12:46:47+01:00
-            latest_date: 2018-09-17T12:46:47+01:00
-            first_date: 2018-09-17T12:46:47+01:00
+            latest_date: 2018-09-17T00:00:00.000+00:00
+            first_date: 2018-09-17T00:00:00.000+00:00
           links:
             "0":
               rel: self
@@ -18395,7 +18399,7 @@ components:
     TagRead:
       example:
         attributes:
-          date: 2018-09-17T12:46:47+01:00
+          date: 2018-09-17T00:00:00.000+00:00
           updated_at: 2018-09-17T12:46:47+01:00
           latitude: 51.983333
           created_at: 2018-09-17T12:46:47+01:00
@@ -18434,7 +18438,7 @@ components:
       example:
         data:
           attributes:
-            date: 2018-09-17T12:46:47+01:00
+            date: 2018-09-17T00:00:00.000+00:00
             updated_at: 2018-09-17T12:46:47+01:00
             latitude: 51.983333
             created_at: 2018-09-17T12:46:47+01:00
@@ -18951,6 +18955,8 @@ components:
           readOnly: true
           type: string
         current_balance_date:
+          description: "The timestamp for this date is always 23:59:59, to indicate\
+            \ it's the balance at the very END of that particular day."
           example: 2018-09-17T12:46:47+01:00
           format: date-time
           readOnly: true
@@ -19054,12 +19060,12 @@ components:
       example:
         include_net_worth: true
         account_number: "7009312345678"
-        opening_balance_date: 2018-09-17T00:00:00.000+00:00
+        opening_balance_date: 2018-09-17T12:46:47+01:00
         notes: Some example notes
         account_role: defaultAsset
         latitude: 51.983333
         active: false
-        monthly_payment_date: 2018-09-17T00:00:00.000+00:00
+        monthly_payment_date: 2018-09-17T12:46:47+01:00
         virtual_balance: "123.45"
         zoom_level: 6
         type: asset
@@ -19106,8 +19112,8 @@ components:
           type: string
         opening_balance_date:
           description: Represents the date of the opening balance.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         virtual_balance:
@@ -19150,8 +19156,8 @@ components:
         monthly_payment_date:
           description: Mandatory when the account_role is ccAsset. Moment at which
             CC payment installments are asked for by the bank.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         liability_type:
@@ -19202,12 +19208,12 @@ components:
       example:
         include_net_worth: true
         account_number: "7009312345678"
-        opening_balance_date: 2018-09-17T00:00:00.000+00:00
+        opening_balance_date: 2018-09-17T12:46:47+01:00
         notes: Some example notes
         account_role: defaultAsset
         latitude: 51.983333
         active: false
-        monthly_payment_date: 2018-09-17T00:00:00.000+00:00
+        monthly_payment_date: 2018-09-17T12:46:47+01:00
         virtual_balance: "123.45"
         zoom_level: 6
         currency_code: EUR
@@ -19247,8 +19253,8 @@ components:
           format: amount
           type: string
         opening_balance_date:
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         virtual_balance:
@@ -19291,8 +19297,8 @@ components:
         monthly_payment_date:
           description: Mandatory when the account_role is ccAsset. Moment at which
             CC payment installments are asked for by the bank.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         liability_type:
@@ -20536,7 +20542,7 @@ components:
       example:
         target_amount: "123.45"
         notes: Some notes
-        target_date: 2018-09-17T12:46:47+01:00
+        target_date: 2018-09-17T00:00:00.000+00:00
         currency_symbol: $
         left_to_save: "700.00"
         created_at: 2018-09-17T12:46:47+01:00
@@ -20553,7 +20559,7 @@ components:
         name: New digital camera
         currency_id: "5"
         save_per_month: "12.45"
-        start_date: 2018-09-17T12:46:47+01:00
+        start_date: 2018-09-17T00:00:00.000+00:00
         order: 5
         object_group_title: Example Group
       properties:
@@ -20633,13 +20639,13 @@ components:
           type: string
         start_date:
           description: The date you started with this piggy bank.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
+          example: 2018-09-17
+          format: date
           type: string
         target_date:
           description: The date you intend to finish saving money.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
+          example: 2018-09-17
+          format: date
           nullable: true
           type: string
         order:
@@ -20687,7 +20693,7 @@ components:
         account_id: "13"
         target_amount: "123.45"
         notes: Some notes
-        target_date: 2020-09-17T00:00:00.000+00:00
+        target_date: 2018-09-17T00:00:00.000+00:00
         object_group_id: "5"
         name: New digital camera
         active: true
@@ -20720,7 +20726,7 @@ components:
           type: string
         target_date:
           description: The date you intend to finish saving money.
-          example: 2020-09-17
+          example: 2018-09-17
           format: date
           nullable: true
           type: string
@@ -20760,7 +20766,7 @@ components:
       example:
         target_amount: "123.45"
         notes: Some notes
-        target_date: 2020-09-17T00:00:00.000+00:00
+        target_date: 2018-09-17T00:00:00.000+00:00
         active: true
         currency_code: USD
         current_amount: "123.45"
@@ -20807,7 +20813,7 @@ components:
           type: string
         target_date:
           description: The date you intend to finish saving money.
-          example: 2020-09-17
+          example: 2018-09-17
           format: date
           nullable: true
           type: string
@@ -20931,7 +20937,7 @@ components:
         apply_rules: true
         nr_of_repetitions: 5
         notes: Some notes
-        repeat_until: 2018-09-17T12:46:47+01:00
+        repeat_until: 2018-09-17T00:00:00.000+00:00
         created_at: 2018-09-17T12:46:47+01:00
         description: Recurring transaction for the monthly rent
         active: true
@@ -21018,8 +21024,8 @@ components:
           type: weekly
           moment: "3"
         updated_at: 2018-09-17T12:46:47+01:00
-        latest_date: 2018-09-17T12:46:47+01:00
-        first_date: 2018-09-17T12:46:47+01:00
+        latest_date: 2018-09-17T00:00:00.000+00:00
+        first_date: 2018-09-17T00:00:00.000+00:00
       properties:
         created_at:
           example: 2018-09-17T12:46:47+01:00
@@ -21046,21 +21052,21 @@ components:
         first_date:
           description: First time the recurring transaction will fire. Must be after
             today.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
+          example: 2018-09-17
+          format: date
           type: string
         latest_date:
           description: Last time the recurring transaction has fired.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
+          example: 2018-09-17
+          format: date
           nullable: true
           readOnly: true
           type: string
         repeat_until:
           description: Date until the recurring transaction can fire. Use either this
             field or repetitions.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
+          example: 2018-09-17
+          format: date
           nullable: true
           type: string
         nr_of_repetitions:
@@ -21135,7 +21141,7 @@ components:
           source_id: "913"
           currency_id: "3"
           foreign_currency_id: "17"
-        first_date: 2017-09-17T00:00:00.000+00:00
+        first_date: 2018-09-17T00:00:00.000+00:00
         repetitions:
         - weekend: 1
           skip: 0
@@ -21161,7 +21167,7 @@ components:
         first_date:
           description: First time the recurring transaction will fire. Must be after
             today.
-          example: 2017-09-17
+          example: 2018-09-17
           format: date
           type: string
         repeat_until:
@@ -21247,7 +21253,7 @@ components:
           tags:
           - Barbecue preparation
           - Barbecue preparation
-        first_date: 2017-09-17T00:00:00.000+00:00
+        first_date: 2018-09-17T00:00:00.000+00:00
         repetitions:
         - weekend: 1
           skip: 0
@@ -21270,7 +21276,7 @@ components:
           type: string
         first_date:
           description: First time the recurring transaction will fire.
-          example: 2017-09-17
+          example: 2018-09-17
           format: date
           type: string
         repeat_until:
@@ -22476,7 +22482,7 @@ components:
       type: object
     TagModel:
       example:
-        date: 2018-09-17T12:46:47+01:00
+        date: 2018-09-17T00:00:00.000+00:00
         updated_at: 2018-09-17T12:46:47+01:00
         latitude: 51.983333
         created_at: 2018-09-17T12:46:47+01:00
@@ -22502,8 +22508,8 @@ components:
           type: string
         date:
           description: The date to which the tag is applicable.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
+          example: 2018-09-17
+          format: date
           nullable: true
           type: string
         description:
