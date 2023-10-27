@@ -51,8 +51,6 @@ docs/ValidationError.md
 docs/ValidationErrorErrors.md
 git_push.sh
 src/FireflyIIINet.Test/FireflyIIINet.Test.csproj
-src/FireflyIIINet.Test/Model/ChartV2PeriodPropertyTests.cs
-src/FireflyIIINet.Test/Model/PeriodPropertyTests.cs
 src/FireflyIIINet/Api/AccountsApi.cs
 src/FireflyIIINet/Api/BudgetsApi.cs
 src/FireflyIIINet/Api/ChartsApi.cs
