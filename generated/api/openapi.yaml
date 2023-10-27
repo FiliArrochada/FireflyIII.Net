@@ -5,12 +5,12 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2021-04-01T18:51:42+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2021-04-04T11:50:40+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v1.5.0
-  version: 1.5.0
+  title: Firefly III API v1.5.1
+  version: 1.5.1
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org
@@ -1944,7 +1944,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InsightGroup'
+                $ref: '#/components/schemas/InsightTransfer'
           description: A list of asset accounts and transfer details. Each asset account
             has one row per currency.
       summary: "Insight into transfers, grouped by account."
@@ -9018,9 +9018,9 @@ components:
           currency_symbol: $
           budget_id: "23"
           spent: "-1012.12"
-          start: 2017-09-17T00:00:00.000+00:00
+          start: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
-          end: 2017-09-17T00:00:00.000+00:00
+          end: 2018-09-17T12:46:47+01:00
           currency_id: "5"
           currency_code: EUR
           currency_decimal_places: 2
@@ -9279,28 +9279,28 @@ components:
       example:
         data:
           attributes:
-            date: 2018-09-17T00:00:00.000+00:00
+            date: 2018-09-17T12:46:47+01:00
             notes: Some example notes
             currency_symbol: $
             created_at: 2018-09-17T12:46:47+01:00
             active: true
             amount_max: "123.45"
             skip: 0
-            next_expected_match: 2018-09-17T00:00:00.000+00:00
+            next_expected_match: 2018-09-17T12:46:47+01:00
             object_group_order: 5
             repeat_freq: monthly
             currency_code: EUR
             currency_decimal_places: 2
             pay_dates:
-            - 2000-01-23
-            - 2000-01-23
+            - 2018-09-17T12:46:47+01:00
+            - 2018-09-17T12:46:47+01:00
             updated_at: 2018-09-17T12:46:47+01:00
             object_group_id: "5"
             paid_dates:
-            - date: 2000-01-23
+            - date: 2018-09-17T12:46:47+01:00
               transaction_group_id: "123"
               transaction_journal_id: "123"
-            - date: 2000-01-23
+            - date: 2018-09-17T12:46:47+01:00
               transaction_group_id: "123"
               transaction_journal_id: "123"
             name: Rent
@@ -9322,7 +9322,7 @@ components:
             apply_rules: true
             nr_of_repetitions: 5
             notes: Some notes
-            repeat_until: 2018-09-17T00:00:00.000+00:00
+            repeat_until: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             description: Recurring transaction for the monthly rent
             active: true
@@ -9387,8 +9387,8 @@ components:
               currency_id: "3"
             repetitions:
             - occurrences:
-              - 2000-01-23
-              - 2000-01-23
+              - 2018-09-17T12:46:47+01:00
+              - 2018-09-17T12:46:47+01:00
               updated_at: 2018-09-17T12:46:47+01:00
               weekend: 1
               created_at: 2018-09-17T12:46:47+01:00
@@ -9398,8 +9398,8 @@ components:
               type: weekly
               moment: "3"
             - occurrences:
-              - 2000-01-23
-              - 2000-01-23
+              - 2018-09-17T12:46:47+01:00
+              - 2018-09-17T12:46:47+01:00
               updated_at: 2018-09-17T12:46:47+01:00
               weekend: 1
               created_at: 2018-09-17T12:46:47+01:00
@@ -9409,8 +9409,8 @@ components:
               type: weekly
               moment: "3"
             updated_at: 2018-09-17T12:46:47+01:00
-            latest_date: 2018-09-17T00:00:00.000+00:00
-            first_date: 2017-09-17T00:00:00.000+00:00
+            latest_date: 2018-09-17T12:46:47+01:00
+            first_date: 2018-09-17T12:46:47+01:00
           links:
             "0":
               rel: self
@@ -9448,7 +9448,7 @@ components:
     TagRead:
       example:
         attributes:
-          date: 2018-09-17T00:00:00.000+00:00
+          date: 2018-09-17T12:46:47+01:00
           updated_at: 2018-09-17T12:46:47+01:00
           latitude: 51.983333
           created_at: 2018-09-17T12:46:47+01:00
@@ -9548,9 +9548,9 @@ components:
               currency_code: USD
               currency_decimal_places: 2
             currency_symbol: $
-            start: 2017-09-17T00:00:00.000+00:00
+            start: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
-            end: 2017-09-17T00:00:00.000+00:00
+            end: 2018-09-17T12:46:47+01:00
             currency_id: "5"
             currency_code: EUR
             currency_decimal_places: 2
@@ -9575,7 +9575,7 @@ components:
           currency_code: EUR
           currency_decimal_places: 2
           updated_at: 2018-09-17T12:46:47+01:00
-          current_balance_date: 2018-09-17T00:00:00.000+00:00
+          current_balance_date: 2018-09-17T12:46:47+01:00
           interest: "5.3"
           current_balance: "123.45"
           opening_balance: "-1012.12"
@@ -9583,10 +9583,10 @@ components:
           order: 1
           longitude: 5.916667
           include_net_worth: true
-          opening_balance_date: 2018-09-17T00:00:00.000+00:00
+          opening_balance_date: 2018-09-17T12:46:47+01:00
           currency_symbol: $
           active: false
-          monthly_payment_date: 2018-09-17T00:00:00.000+00:00
+          monthly_payment_date: 2018-09-17T12:46:47+01:00
           virtual_balance: "123.45"
           liability_type: loan
           credit_card_type: monthlyFull
@@ -9690,7 +9690,7 @@ components:
         attributes:
           target_amount: "123.45"
           notes: Some notes
-          target_date: 2020-09-17T00:00:00.000+00:00
+          target_date: 2018-09-17T12:46:47+01:00
           currency_symbol: $
           left_to_save: "700.00"
           created_at: 2018-09-17T12:46:47+01:00
@@ -9707,7 +9707,7 @@ components:
           name: New digital camera
           currency_id: "5"
           save_per_month: "12.45"
-          start_date: 2018-09-17T00:00:00.000+00:00
+          start_date: 2018-09-17T12:46:47+01:00
           order: 5
           object_group_title: Example Group
         links:
@@ -9849,7 +9849,7 @@ components:
             currency_code: EUR
             currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
-            current_balance_date: 2018-09-17T00:00:00.000+00:00
+            current_balance_date: 2018-09-17T12:46:47+01:00
             interest: "5.3"
             current_balance: "123.45"
             opening_balance: "-1012.12"
@@ -9857,10 +9857,10 @@ components:
             order: 1
             longitude: 5.916667
             include_net_worth: true
-            opening_balance_date: 2018-09-17T00:00:00.000+00:00
+            opening_balance_date: 2018-09-17T12:46:47+01:00
             currency_symbol: $
             active: false
-            monthly_payment_date: 2018-09-17T00:00:00.000+00:00
+            monthly_payment_date: 2018-09-17T12:46:47+01:00
             virtual_balance: "123.45"
             liability_type: loan
             credit_card_type: monthlyFull
@@ -9880,7 +9880,7 @@ components:
       example:
         data:
           attributes:
-            date: 2018-09-17T00:00:00.000+00:00
+            date: 2018-09-17T12:46:47+01:00
             updated_at: 2018-09-17T12:46:47+01:00
             latitude: 51.983333
             created_at: 2018-09-17T12:46:47+01:00
@@ -9904,28 +9904,28 @@ components:
     BillRead:
       example:
         attributes:
-          date: 2018-09-17T00:00:00.000+00:00
+          date: 2018-09-17T12:46:47+01:00
           notes: Some example notes
           currency_symbol: $
           created_at: 2018-09-17T12:46:47+01:00
           active: true
           amount_max: "123.45"
           skip: 0
-          next_expected_match: 2018-09-17T00:00:00.000+00:00
+          next_expected_match: 2018-09-17T12:46:47+01:00
           object_group_order: 5
           repeat_freq: monthly
           currency_code: EUR
           currency_decimal_places: 2
           pay_dates:
-          - 2000-01-23
-          - 2000-01-23
+          - 2018-09-17T12:46:47+01:00
+          - 2018-09-17T12:46:47+01:00
           updated_at: 2018-09-17T12:46:47+01:00
           object_group_id: "5"
           paid_dates:
-          - date: 2000-01-23
+          - date: 2018-09-17T12:46:47+01:00
             transaction_group_id: "123"
             transaction_journal_id: "123"
-          - date: 2000-01-23
+          - date: 2018-09-17T12:46:47+01:00
             transaction_group_id: "123"
             transaction_journal_id: "123"
           name: Rent
@@ -10092,9 +10092,9 @@ components:
             currency_symbol: $
             budget_id: "23"
             spent: "-1012.12"
-            start: 2017-09-17T00:00:00.000+00:00
+            start: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
-            end: 2017-09-17T00:00:00.000+00:00
+            end: 2018-09-17T12:46:47+01:00
             currency_id: "5"
             currency_code: EUR
             currency_decimal_places: 2
@@ -10167,9 +10167,9 @@ components:
             currency_code: USD
             currency_decimal_places: 2
           currency_symbol: $
-          start: 2017-09-17T00:00:00.000+00:00
+          start: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
-          end: 2017-09-17T00:00:00.000+00:00
+          end: 2018-09-17T12:46:47+01:00
           currency_id: "5"
           currency_code: EUR
           currency_decimal_places: 2
@@ -10198,7 +10198,7 @@ components:
           attributes:
             target_amount: "123.45"
             notes: Some notes
-            target_date: 2020-09-17T00:00:00.000+00:00
+            target_date: 2018-09-17T12:46:47+01:00
             currency_symbol: $
             left_to_save: "700.00"
             created_at: 2018-09-17T12:46:47+01:00
@@ -10215,7 +10215,7 @@ components:
             name: New digital camera
             currency_id: "5"
             save_per_month: "12.45"
-            start_date: 2018-09-17T00:00:00.000+00:00
+            start_date: 2018-09-17T12:46:47+01:00
             order: 5
             object_group_title: Example Group
           links:
@@ -10473,7 +10473,7 @@ components:
           apply_rules: true
           nr_of_repetitions: 5
           notes: Some notes
-          repeat_until: 2018-09-17T00:00:00.000+00:00
+          repeat_until: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
           description: Recurring transaction for the monthly rent
           active: true
@@ -10538,8 +10538,8 @@ components:
             currency_id: "3"
           repetitions:
           - occurrences:
-            - 2000-01-23
-            - 2000-01-23
+            - 2018-09-17T12:46:47+01:00
+            - 2018-09-17T12:46:47+01:00
             updated_at: 2018-09-17T12:46:47+01:00
             weekend: 1
             created_at: 2018-09-17T12:46:47+01:00
@@ -10549,8 +10549,8 @@ components:
             type: weekly
             moment: "3"
           - occurrences:
-            - 2000-01-23
-            - 2000-01-23
+            - 2018-09-17T12:46:47+01:00
+            - 2018-09-17T12:46:47+01:00
             updated_at: 2018-09-17T12:46:47+01:00
             weekend: 1
             created_at: 2018-09-17T12:46:47+01:00
@@ -10560,8 +10560,8 @@ components:
             type: weekly
             moment: "3"
           updated_at: 2018-09-17T12:46:47+01:00
-          latest_date: 2018-09-17T00:00:00.000+00:00
-          first_date: 2017-09-17T00:00:00.000+00:00
+          latest_date: 2018-09-17T12:46:47+01:00
+          first_date: 2018-09-17T12:46:47+01:00
         links:
           "0":
             rel: self
@@ -11201,6 +11201,78 @@ components:
       - deposits
       - transfers
       type: string
+    InsightTransferEntry:
+      example:
+        in: "123.45"
+        in_float: 123.45
+        name: Land lord
+        difference: "-123.45"
+        id: "123"
+        difference_float: -123.45
+        out_float: 123.45
+        currency_id: "5"
+        currency_code: EUR
+        out: "123.45"
+      properties:
+        id:
+          description: This ID is a reference to the original object.
+          example: "123"
+          format: string
+          type: string
+        name:
+          description: This is the name of the object.
+          example: Land lord
+          format: string
+          type: string
+        difference:
+          description: "The total amount transferred between start date and end date,\
+            \ a number defined as a string, for this asset account."
+          example: "-123.45"
+          format: string
+          type: string
+        difference_float:
+          description: "The total amount transferred between start date and end date,\
+            \ a number as a float, for this asset account. May have rounding errors."
+          example: -123.45
+          format: double
+          type: number
+        in:
+          description: "The total amount transferred TO this account between start\
+            \ date and end date, a number defined as a string, for this asset account."
+          example: "123.45"
+          format: string
+          type: string
+        in_float:
+          description: "The total amount transferred FROM this account between start\
+            \ date and end date, a number as a float, for this asset account. May\
+            \ have rounding errors."
+          example: 123.45
+          format: double
+          type: number
+        out:
+          description: "The total amount transferred FROM this account between start\
+            \ date and end date, a number defined as a string, for this asset account."
+          example: "123.45"
+          format: string
+          type: string
+        out_float:
+          description: "The total amount transferred TO this account between start\
+            \ date and end date, a number as a float, for this asset account. May\
+            \ have rounding errors."
+          example: 123.45
+          format: double
+          type: number
+        currency_id:
+          description: The currency ID of the expenses listed for this account.
+          example: "5"
+          format: string
+          type: string
+        currency_code:
+          description: The currency code of the expenses listed for this account.
+          example: EUR
+          format: string
+          type: string
+      type: object
     InsightGroupEntry:
       example:
         name: Land lord
@@ -11221,25 +11293,25 @@ components:
           format: string
           type: string
         difference:
-          description: "The amount spent between start date and end date, a negative\
-            \ number defined as a string, for this object and all asset accounts."
+          description: "The amount spent or earned between start date and end date,\
+            \ a number defined as a string, for this object and all asset accounts."
           example: "-123.45"
           format: string
           type: string
         difference_float:
-          description: "The amount spent between start date and end date, a negative\
-            \ number as a float, for this object and all asset accounts. May have\
+          description: "The amount spent or earned between start date and end date,\
+            \ a number as a float, for this object and all asset accounts. May have\
             \ rounding errors."
           example: -123.45
           format: double
           type: number
         currency_id:
-          description: The currency ID of the expenses listed for this expense account.
+          description: The currency ID of the expenses listed for this account.
           example: "5"
           format: string
           type: string
         currency_code:
-          description: The currency code of the expenses listed for this expense account.
+          description: The currency code of the expenses listed for this account.
           example: EUR
           format: string
           type: string
@@ -11282,6 +11354,10 @@ components:
     InsightGroup:
       items:
         $ref: '#/components/schemas/InsightGroupEntry'
+      type: array
+    InsightTransfer:
+      items:
+        $ref: '#/components/schemas/InsightTransferEntry'
       type: array
     BasicSummaryEntry:
       properties:
@@ -11931,7 +12007,7 @@ components:
         apply_rules: true
         nr_of_repetitions: 5
         notes: Some notes
-        repeat_until: 2018-09-17T00:00:00.000+00:00
+        repeat_until: 2018-09-17T12:46:47+01:00
         created_at: 2018-09-17T12:46:47+01:00
         description: Recurring transaction for the monthly rent
         active: true
@@ -11996,8 +12072,8 @@ components:
           currency_id: "3"
         repetitions:
         - occurrences:
-          - 2000-01-23
-          - 2000-01-23
+          - 2018-09-17T12:46:47+01:00
+          - 2018-09-17T12:46:47+01:00
           updated_at: 2018-09-17T12:46:47+01:00
           weekend: 1
           created_at: 2018-09-17T12:46:47+01:00
@@ -12007,8 +12083,8 @@ components:
           type: weekly
           moment: "3"
         - occurrences:
-          - 2000-01-23
-          - 2000-01-23
+          - 2018-09-17T12:46:47+01:00
+          - 2018-09-17T12:46:47+01:00
           updated_at: 2018-09-17T12:46:47+01:00
           weekend: 1
           created_at: 2018-09-17T12:46:47+01:00
@@ -12018,8 +12094,8 @@ components:
           type: weekly
           moment: "3"
         updated_at: 2018-09-17T12:46:47+01:00
-        latest_date: 2018-09-17T00:00:00.000+00:00
-        first_date: 2017-09-17T00:00:00.000+00:00
+        latest_date: 2018-09-17T12:46:47+01:00
+        first_date: 2018-09-17T12:46:47+01:00
       properties:
         created_at:
           example: 2018-09-17T12:46:47+01:00
@@ -12052,21 +12128,21 @@ components:
         first_date:
           description: First time the recurring transaction will fire. Must be after
             today.
-          example: 2017-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         latest_date:
           description: Last time the recurring transaction has fired.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           readOnly: true
           type: string
         repeat_until:
           description: Date until the recurring transaction can fire. Use either this
             field or repetitions.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         nr_of_repetitions:
@@ -12369,8 +12445,8 @@ components:
     RecurrenceRepetition:
       example:
         occurrences:
-        - 2000-01-23
-        - 2000-01-23
+        - 2018-09-17T12:46:47+01:00
+        - 2018-09-17T12:46:47+01:00
         updated_at: 2018-09-17T12:46:47+01:00
         weekend: 1
         created_at: 2018-09-17T12:46:47+01:00
@@ -12444,7 +12520,8 @@ components:
           description: Array of future dates when the repetition will apply to. Auto
             generated.
           items:
-            format: date
+            example: 2018-09-17T12:46:47+01:00
+            format: date-time
             type: string
           readOnly: true
           type: array
@@ -12454,28 +12531,28 @@ components:
       type: object
     Bill:
       example:
-        date: 2018-09-17T00:00:00.000+00:00
+        date: 2018-09-17T12:46:47+01:00
         notes: Some example notes
         currency_symbol: $
         created_at: 2018-09-17T12:46:47+01:00
         active: true
         amount_max: "123.45"
         skip: 0
-        next_expected_match: 2018-09-17T00:00:00.000+00:00
+        next_expected_match: 2018-09-17T12:46:47+01:00
         object_group_order: 5
         repeat_freq: monthly
         currency_code: EUR
         currency_decimal_places: 2
         pay_dates:
-        - 2000-01-23
-        - 2000-01-23
+        - 2018-09-17T12:46:47+01:00
+        - 2018-09-17T12:46:47+01:00
         updated_at: 2018-09-17T12:46:47+01:00
         object_group_id: "5"
         paid_dates:
-        - date: 2000-01-23
+        - date: 2018-09-17T12:46:47+01:00
           transaction_group_id: "123"
           transaction_journal_id: "123"
-        - date: 2000-01-23
+        - date: 2018-09-17T12:46:47+01:00
           transaction_group_id: "123"
           transaction_journal_id: "123"
         name: Rent
@@ -12526,8 +12603,8 @@ components:
           format: amount
           type: string
         date:
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         repeat_freq:
           description: How often the bill must be paid.
@@ -12557,8 +12634,8 @@ components:
           type: string
         next_expected_match:
           description: When the bill is expected to be due.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           readOnly: true
           type: string
@@ -12586,7 +12663,8 @@ components:
           description: Array of future dates when the bill is expected to be paid.
             Autogenerated.
           items:
-            format: date
+            example: 2018-09-17T12:46:47+01:00
+            format: date-time
             readOnly: true
             type: string
           readOnly: true
@@ -13262,9 +13340,9 @@ components:
         currency_symbol: $
         budget_id: "23"
         spent: "-1012.12"
-        start: 2017-09-17T00:00:00.000+00:00
+        start: 2018-09-17T12:46:47+01:00
         created_at: 2018-09-17T12:46:47+01:00
-        end: 2017-09-17T00:00:00.000+00:00
+        end: 2018-09-17T12:46:47+01:00
         currency_id: "5"
         currency_code: EUR
         currency_decimal_places: 2
@@ -13309,8 +13387,8 @@ components:
           type: string
         start:
           description: Start date of the budget limit.
-          example: 2017-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         period:
           description: Period of the budget limit. Only used when auto-generated by
@@ -13322,8 +13400,8 @@ components:
           type: string
         end:
           description: End date of the budget limit.
-          example: 2017-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         amount:
           example: "123.45"
@@ -14165,7 +14243,7 @@ components:
       example:
         target_amount: "123.45"
         notes: Some notes
-        target_date: 2020-09-17T00:00:00.000+00:00
+        target_date: 2018-09-17T12:46:47+01:00
         currency_symbol: $
         left_to_save: "700.00"
         created_at: 2018-09-17T12:46:47+01:00
@@ -14182,7 +14260,7 @@ components:
         name: New digital camera
         currency_id: "5"
         save_per_month: "12.45"
-        start_date: 2018-09-17T00:00:00.000+00:00
+        start_date: 2018-09-17T12:46:47+01:00
         order: 5
         object_group_title: Example Group
       properties:
@@ -14258,13 +14336,13 @@ components:
           type: string
         start_date:
           description: The date you started with this piggy bank.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         target_date:
           description: The date you intend to finish saving money.
-          example: 2020-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         order:
@@ -15765,7 +15843,7 @@ components:
         currency_code: EUR
         currency_decimal_places: 2
         updated_at: 2018-09-17T12:46:47+01:00
-        current_balance_date: 2018-09-17T00:00:00.000+00:00
+        current_balance_date: 2018-09-17T12:46:47+01:00
         interest: "5.3"
         current_balance: "123.45"
         opening_balance: "-1012.12"
@@ -15773,10 +15851,10 @@ components:
         order: 1
         longitude: 5.916667
         include_net_worth: true
-        opening_balance_date: 2018-09-17T00:00:00.000+00:00
+        opening_balance_date: 2018-09-17T12:46:47+01:00
         currency_symbol: $
         active: false
-        monthly_payment_date: 2018-09-17T00:00:00.000+00:00
+        monthly_payment_date: 2018-09-17T12:46:47+01:00
         virtual_balance: "123.45"
         liability_type: loan
         credit_card_type: monthlyFull
@@ -15838,8 +15916,8 @@ components:
           type: string
         opening_balance_date:
           description: Represents the date of the opening balance.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         virtual_balance:
@@ -15852,8 +15930,8 @@ components:
           readOnly: true
           type: string
         current_balance_date:
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           readOnly: true
           type: string
         currency_id:
@@ -15920,8 +15998,8 @@ components:
         monthly_payment_date:
           description: Mandatory when the account_role is ccAsset. Moment at which
             CC payment installments are asked for by the bank.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         liability_type:
@@ -16204,9 +16282,9 @@ components:
           currency_code: USD
           currency_decimal_places: 2
         currency_symbol: $
-        start: 2017-09-17T00:00:00.000+00:00
+        start: 2018-09-17T12:46:47+01:00
         created_at: 2018-09-17T12:46:47+01:00
-        end: 2017-09-17T00:00:00.000+00:00
+        end: 2018-09-17T12:46:47+01:00
         currency_id: "5"
         currency_code: EUR
         currency_decimal_places: 2
@@ -16247,13 +16325,13 @@ components:
           type: string
         start:
           description: Start date of the available budget.
-          example: 2017-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         end:
           description: End date of the available budget.
-          example: 2017-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         spent_in_budgets:
           items:
@@ -16350,7 +16428,7 @@ components:
       type: object
     TagModel:
       example:
-        date: 2018-09-17T00:00:00.000+00:00
+        date: 2018-09-17T12:46:47+01:00
         updated_at: 2018-09-17T12:46:47+01:00
         latitude: 51.983333
         created_at: 2018-09-17T12:46:47+01:00
@@ -16376,8 +16454,8 @@ components:
           type: string
         date:
           description: The date to which the tag is applicable.
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           nullable: true
           type: string
         description:
@@ -17869,7 +17947,7 @@ components:
       type: object
     Bill_paid_dates_inner:
       example:
-        date: 2000-01-23
+        date: 2018-09-17T12:46:47+01:00
         transaction_group_id: "123"
         transaction_journal_id: "123"
       properties:
@@ -17887,7 +17965,8 @@ components:
           type: string
         date:
           description: Date the bill was paid.
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           readOnly: true
           type: string
       readOnly: true

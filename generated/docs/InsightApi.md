@@ -2347,7 +2347,7 @@ catch (ApiException e)
 
 <a id="insighttransfers"></a>
 # **InsightTransfers**
-> List&lt;InsightGroupEntry&gt; InsightTransfers (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTransferEntry&gt; InsightTransfers (DateTime start, DateTime end, List<long> accounts = null)
 
 Insight into transfers, grouped by account.
 
@@ -2382,7 +2382,7 @@ namespace Example
             try
             {
                 // Insight into transfers, grouped by account.
-                List<InsightGroupEntry> result = apiInstance.InsightTransfers(start, end, accounts);
+                List<InsightTransferEntry> result = apiInstance.InsightTransfers(start, end, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2403,7 +2403,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into transfers, grouped by account.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightTransfersWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTransferEntry>> response = apiInstance.InsightTransfersWithHttpInfo(start, end, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2426,7 +2426,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**List&lt;InsightGroupEntry&gt;**](InsightGroupEntry.md)
+[**List&lt;InsightTransferEntry&gt;**](InsightTransferEntry.md)
 
 ### Authorization
 
