@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** |  | [optional] [readonly] 
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
-**Name** | **string** |  | 
 **AccountId** | **string** | The ID of the asset account this piggy bank is connected to. | 
 **AccountName** | **string** | The name of the asset account this piggy bank is connected to. | [optional] [readonly] 
+**Name** | **string** |  | 
 **CurrencyId** | **string** |  | [optional] [readonly] 
 **CurrencyCode** | **string** |  | [optional] [readonly] 
 **CurrencySymbol** | **string** |  | [optional] [readonly] 

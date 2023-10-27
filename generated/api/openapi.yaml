@@ -5,12 +5,12 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2021-05-14T15:49:56+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2021-09-19T08:24:18+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v1.5.2
-  version: 1.5.2
+  title: Firefly III API v1.5.3
+  version: 1.5.3
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org
@@ -339,9 +339,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AutocompleteTransactionIDArray'
-          description: A list of transactions with very basic information.
+          description: A list of transactions with very basic information. This endpoint
+            is DEPRECATED and I suggest you DO NOT use it.
       summary: "Returns all transactions, complemented with their ID, of the user\
-        \ returned in a basic auto-complete array."
+        \ returned in a basic auto-complete array. This endpoint is DEPRECATED and\
+        \ I suggest you DO NOT use it."
       tags:
       - autocomplete
   /api/v1/autocomplete/budgets:
@@ -514,9 +516,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/AutocompleteCurrencyCodeArray'
           description: A list of currencies with very basic information and the currency
-            code between brackets.
+            code between brackets. This endpoint is DEPRECATED and I suggest you DO
+            NOT use it.
       summary: Returns all currencies of the user returned in a basic auto-complete
-        array.
+        array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
       tags:
       - autocomplete
   /api/v1/autocomplete/accounts:
@@ -976,7 +979,8 @@ paths:
         The demo user is incapable of using this endpoint.
       operationId: destroyData
       parameters:
-      - description: The type of data that you wish to destroy.
+      - description: The type of data that you wish to destroy. You can only use one
+          at a time.
         explode: true
         in: query
         name: objects
@@ -992,27 +996,28 @@ paths:
       summary: Endpoint to destroy user data
       tags:
       - data
-  /api/v1/data/bulk/accounts/transactions:
+  /api/v1/data/bulk/transactions:
     post:
       description: |
-        Allows you to move all from one account to another. Requires two of the exact same accounts to work. Will not migrate deleted transactions. Both accounts must be of the exact same type (asset accounts for example).
-      operationId: bulkAccountMoveTransactions
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BulkAccountTransactionObject'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/BulkAccountTransactionObject'
-        description: JSON array with the necessary information to facilitate the move.
+        Allows you to update transactions in bulk.
+      operationId: bulkUpdateTransactions
+      parameters:
+      - description: The JSON query.
+        explode: true
+        in: query
+        name: query
         required: true
+        schema:
+          format: json
+          type: string
+        style: form
       responses:
         "204":
-          description: Empty response when the move was successful.
+          description: Empty response when the update was successful. A future improvement
+            is to include the changed transactions.
         "500":
           description: Internal error.
-      summary: Bulk move transactions from one account to another.
+      summary: "Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials"
       tags:
       - data
   /api/v1/insight/expense/bill:
@@ -8170,9 +8175,7 @@ components:
         data:
         - attributes:
             group_title: Split transaction title.
-            apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
-            error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
             - date: 2018-09-17T12:46:47+01:00
@@ -8180,11 +8183,13 @@ components:
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
               destination_id: "2"
+              zoom_level: 6
               type: withdrawal
               destination_type: Asset account
-              transaction_journal_id: 10421
+              transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
+              longitude: 5.916667
               bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
@@ -8192,7 +8197,6 @@ components:
               source_type: Asset account
               foreign_currency_decimal_places: 2
               bill_name: Monthly rent
-              piggy_bank_id: 0
               original_source: original_source
               sepa_ct_id: sepa_ct_id
               tags:
@@ -8206,6 +8210,7 @@ components:
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
               budget_id: "4"
+              latitude: 51.983333
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8215,8 +8220,7 @@ components:
               invoice_date: 2000-01-23T04:56:07.000+00:00
               category_id: "43"
               foreign_currency_symbol: $
-              recurrence_id: 6
-              piggy_bank_name: piggy_bank_name
+              recurrence_id: 0
               foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
@@ -8240,11 +8244,13 @@ components:
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
               destination_id: "2"
+              zoom_level: 6
               type: withdrawal
               destination_type: Asset account
-              transaction_journal_id: 10421
+              transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
+              longitude: 5.916667
               bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
@@ -8252,7 +8258,6 @@ components:
               source_type: Asset account
               foreign_currency_decimal_places: 2
               bill_name: Monthly rent
-              piggy_bank_id: 0
               original_source: original_source
               sepa_ct_id: sepa_ct_id
               tags:
@@ -8266,6 +8271,7 @@ components:
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
               budget_id: "4"
+              latitude: 51.983333
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8275,8 +8281,7 @@ components:
               invoice_date: 2000-01-23T04:56:07.000+00:00
               category_id: "43"
               foreign_currency_symbol: $
-              recurrence_id: 6
-              piggy_bank_name: piggy_bank_name
+              recurrence_id: 0
               foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
@@ -8305,9 +8310,7 @@ components:
           type: transactions
         - attributes:
             group_title: Split transaction title.
-            apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
-            error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
             - date: 2018-09-17T12:46:47+01:00
@@ -8315,11 +8318,13 @@ components:
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
               destination_id: "2"
+              zoom_level: 6
               type: withdrawal
               destination_type: Asset account
-              transaction_journal_id: 10421
+              transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
+              longitude: 5.916667
               bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
@@ -8327,7 +8332,6 @@ components:
               source_type: Asset account
               foreign_currency_decimal_places: 2
               bill_name: Monthly rent
-              piggy_bank_id: 0
               original_source: original_source
               sepa_ct_id: sepa_ct_id
               tags:
@@ -8341,6 +8345,7 @@ components:
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
               budget_id: "4"
+              latitude: 51.983333
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8350,8 +8355,7 @@ components:
               invoice_date: 2000-01-23T04:56:07.000+00:00
               category_id: "43"
               foreign_currency_symbol: $
-              recurrence_id: 6
-              piggy_bank_name: piggy_bank_name
+              recurrence_id: 0
               foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
@@ -8375,11 +8379,13 @@ components:
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
               destination_id: "2"
+              zoom_level: 6
               type: withdrawal
               destination_type: Asset account
-              transaction_journal_id: 10421
+              transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
+              longitude: 5.916667
               bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
@@ -8387,7 +8393,6 @@ components:
               source_type: Asset account
               foreign_currency_decimal_places: 2
               bill_name: Monthly rent
-              piggy_bank_id: 0
               original_source: original_source
               sepa_ct_id: sepa_ct_id
               tags:
@@ -8401,6 +8406,7 @@ components:
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
               budget_id: "4"
+              latitude: 51.983333
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8410,8 +8416,7 @@ components:
               invoice_date: 2000-01-23T04:56:07.000+00:00
               category_id: "43"
               foreign_currency_symbol: $
-              recurrence_id: 6
-              piggy_bank_name: piggy_bank_name
+              recurrence_id: 0
               foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
@@ -8909,11 +8914,11 @@ components:
           notes: Some notes
           updated_at: 2018-09-17T12:46:47+01:00
           size: 48211
-          download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-          upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
           mime: application/pdf
           attachable_id: "134"
+          download_url: https://demo.firefly-iii.org/api/v1/attachments/191/download
           created_at: 2018-09-17T12:46:47+01:00
+          upload_url: https://demo.firefly-iii.org/api/v1/attachments/191/download
           title: Some PDF file
           attachable_type: Bill
           md5: 0c3f95f34370baa88f9fd9a671fea305
@@ -9042,16 +9047,17 @@ components:
         attributes:
           period: monthly
           amount: "123.45"
-          updated_at: 2018-09-17T12:46:47+01:00
+          currency_name: Euro
           currency_symbol: $
           budget_id: "23"
           spent: "-1012.12"
           start: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
-          end: 2018-09-17T12:46:47+01:00
-          currency_id: "5"
           currency_code: EUR
           currency_decimal_places: 2
+          updated_at: 2018-09-17T12:46:47+01:00
+          end: 2018-09-17T12:46:47+01:00
+          currency_id: "5"
         id: "2"
         type: budget_limits
       properties:
@@ -9093,9 +9099,7 @@ components:
       example:
         attributes:
           group_title: Split transaction title.
-          apply_rules: false
           updated_at: 2018-09-17T12:46:47+01:00
-          error_if_duplicate_hash: false
           created_at: 2018-09-17T12:46:47+01:00
           transactions:
           - date: 2018-09-17T12:46:47+01:00
@@ -9103,11 +9107,13 @@ components:
             notes: Some example notes
             sepa_batch_id: sepa_batch_id
             destination_id: "2"
+            zoom_level: 6
             type: withdrawal
             destination_type: Asset account
-            transaction_journal_id: 10421
+            transaction_journal_id: "10421"
             payment_date: 2000-01-23T04:56:07.000+00:00
             order: 0
+            longitude: 5.916667
             bill_id: "111"
             foreign_currency_code: USD
             reconciled: false
@@ -9115,7 +9121,6 @@ components:
             source_type: Asset account
             foreign_currency_decimal_places: 2
             bill_name: Monthly rent
-            piggy_bank_id: 0
             original_source: original_source
             sepa_ct_id: sepa_ct_id
             tags:
@@ -9129,6 +9134,7 @@ components:
             destination_iban: NL02ABNA0123456789
             source_iban: NL02ABNA0123456789
             budget_id: "4"
+            latitude: 51.983333
             description: Vegetables
             destination_name: Buy and Large
             external_id: external_id
@@ -9138,8 +9144,7 @@ components:
             invoice_date: 2000-01-23T04:56:07.000+00:00
             category_id: "43"
             foreign_currency_symbol: $
-            recurrence_id: 6
-            piggy_bank_name: piggy_bank_name
+            recurrence_id: 0
             foreign_currency_id: "17"
             source_name: Checking account
             amount: "123.45"
@@ -9163,11 +9168,13 @@ components:
             notes: Some example notes
             sepa_batch_id: sepa_batch_id
             destination_id: "2"
+            zoom_level: 6
             type: withdrawal
             destination_type: Asset account
-            transaction_journal_id: 10421
+            transaction_journal_id: "10421"
             payment_date: 2000-01-23T04:56:07.000+00:00
             order: 0
+            longitude: 5.916667
             bill_id: "111"
             foreign_currency_code: USD
             reconciled: false
@@ -9175,7 +9182,6 @@ components:
             source_type: Asset account
             foreign_currency_decimal_places: 2
             bill_name: Monthly rent
-            piggy_bank_id: 0
             original_source: original_source
             sepa_ct_id: sepa_ct_id
             tags:
@@ -9189,6 +9195,7 @@ components:
             destination_iban: NL02ABNA0123456789
             source_iban: NL02ABNA0123456789
             budget_id: "4"
+            latitude: 51.983333
             description: Vegetables
             destination_name: Buy and Large
             external_id: external_id
@@ -9198,8 +9205,7 @@ components:
             invoice_date: 2000-01-23T04:56:07.000+00:00
             category_id: "43"
             foreign_currency_symbol: $
-            recurrence_id: 6
-            piggy_bank_name: piggy_bank_name
+            recurrence_id: 0
             foreign_currency_id: "17"
             source_name: Checking account
             amount: "123.45"
@@ -9308,6 +9314,7 @@ components:
         data:
           attributes:
             date: 2018-09-17T12:46:47+01:00
+            end_date: 2018-09-17T12:46:47+01:00
             notes: Some example notes
             currency_symbol: $
             created_at: 2018-09-17T12:46:47+01:00
@@ -9316,9 +9323,11 @@ components:
             skip: 0
             next_expected_match: 2018-09-17T12:46:47+01:00
             object_group_order: 5
+            next_expected_match_diff: today
             repeat_freq: monthly
             currency_code: EUR
             currency_decimal_places: 2
+            extension_date: 2018-09-17T12:46:47+01:00
             pay_dates:
             - 2018-09-17T12:46:47+01:00
             - 2018-09-17T12:46:47+01:00
@@ -9334,6 +9343,7 @@ components:
             name: Rent
             amount_min: "123.45"
             currency_id: "5"
+            order: 1
             object_group_title: Example Group
           id: "2"
           type: bills
@@ -9609,6 +9619,7 @@ components:
           opening_balance: "-1012.12"
           interest_period: monthly
           order: 1
+          current_debt: "1012.12"
           longitude: 5.916667
           include_net_worth: true
           opening_balance_date: 2018-09-17T12:46:47+01:00
@@ -9621,6 +9632,7 @@ components:
           iban: GB98MIDL07009312345678
           name: My checking account
           bic: BOFAUS3N
+          liability_direction: credit
           currency_id: "12"
         id: "2"
         type: accounts
@@ -9883,6 +9895,7 @@ components:
             opening_balance: "-1012.12"
             interest_period: monthly
             order: 1
+            current_debt: "1012.12"
             longitude: 5.916667
             include_net_worth: true
             opening_balance_date: 2018-09-17T12:46:47+01:00
@@ -9895,6 +9908,7 @@ components:
             iban: GB98MIDL07009312345678
             name: My checking account
             bic: BOFAUS3N
+            liability_direction: credit
             currency_id: "12"
           id: "2"
           type: accounts
@@ -9933,6 +9947,7 @@ components:
       example:
         attributes:
           date: 2018-09-17T12:46:47+01:00
+          end_date: 2018-09-17T12:46:47+01:00
           notes: Some example notes
           currency_symbol: $
           created_at: 2018-09-17T12:46:47+01:00
@@ -9941,9 +9956,11 @@ components:
           skip: 0
           next_expected_match: 2018-09-17T12:46:47+01:00
           object_group_order: 5
+          next_expected_match_diff: today
           repeat_freq: monthly
           currency_code: EUR
           currency_decimal_places: 2
+          extension_date: 2018-09-17T12:46:47+01:00
           pay_dates:
           - 2018-09-17T12:46:47+01:00
           - 2018-09-17T12:46:47+01:00
@@ -9959,6 +9976,7 @@ components:
           name: Rent
           amount_min: "123.45"
           currency_id: "5"
+          order: 1
           object_group_title: Example Group
         id: "2"
         type: bills
@@ -10005,11 +10023,11 @@ components:
             notes: Some notes
             updated_at: 2018-09-17T12:46:47+01:00
             size: 48211
-            download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-            upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
             mime: application/pdf
             attachable_id: "134"
+            download_url: https://demo.firefly-iii.org/api/v1/attachments/191/download
             created_at: 2018-09-17T12:46:47+01:00
+            upload_url: https://demo.firefly-iii.org/api/v1/attachments/191/download
             title: Some PDF file
             attachable_type: Bill
             md5: 0c3f95f34370baa88f9fd9a671fea305
@@ -10116,16 +10134,17 @@ components:
           attributes:
             period: monthly
             amount: "123.45"
-            updated_at: 2018-09-17T12:46:47+01:00
+            currency_name: Euro
             currency_symbol: $
             budget_id: "23"
             spent: "-1012.12"
             start: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
-            end: 2018-09-17T12:46:47+01:00
-            currency_id: "5"
             currency_code: EUR
             currency_decimal_places: 2
+            updated_at: 2018-09-17T12:46:47+01:00
+            end: 2018-09-17T12:46:47+01:00
+            currency_id: "5"
           id: "2"
           type: budget_limits
       properties:
@@ -10356,9 +10375,7 @@ components:
         data:
           attributes:
             group_title: Split transaction title.
-            apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
-            error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
             - date: 2018-09-17T12:46:47+01:00
@@ -10366,11 +10383,13 @@ components:
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
               destination_id: "2"
+              zoom_level: 6
               type: withdrawal
               destination_type: Asset account
-              transaction_journal_id: 10421
+              transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
+              longitude: 5.916667
               bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
@@ -10378,7 +10397,6 @@ components:
               source_type: Asset account
               foreign_currency_decimal_places: 2
               bill_name: Monthly rent
-              piggy_bank_id: 0
               original_source: original_source
               sepa_ct_id: sepa_ct_id
               tags:
@@ -10392,6 +10410,7 @@ components:
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
               budget_id: "4"
+              latitude: 51.983333
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -10401,8 +10420,7 @@ components:
               invoice_date: 2000-01-23T04:56:07.000+00:00
               category_id: "43"
               foreign_currency_symbol: $
-              recurrence_id: 6
-              piggy_bank_name: piggy_bank_name
+              recurrence_id: 0
               foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
@@ -10426,11 +10444,13 @@ components:
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
               destination_id: "2"
+              zoom_level: 6
               type: withdrawal
               destination_type: Asset account
-              transaction_journal_id: 10421
+              transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
+              longitude: 5.916667
               bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
@@ -10438,7 +10458,6 @@ components:
               source_type: Asset account
               foreign_currency_decimal_places: 2
               bill_name: Monthly rent
-              piggy_bank_id: 0
               original_source: original_source
               sepa_ct_id: sepa_ct_id
               tags:
@@ -10452,6 +10471,7 @@ components:
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
               budget_id: "4"
+              latitude: 51.983333
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -10461,8 +10481,7 @@ components:
               invoice_date: 2000-01-23T04:56:07.000+00:00
               category_id: "43"
               foreign_currency_symbol: $
-              recurrence_id: 6
-              piggy_bank_name: piggy_bank_name
+              recurrence_id: 0
               foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
@@ -10692,6 +10711,7 @@ components:
       type: object
     AutocompletePiggy:
       example:
+        currency_name: Euro
         currency_symbol: $
         object_group_id: "5"
         name: New couch
@@ -10722,6 +10742,11 @@ components:
           type: string
         currency_symbol:
           example: $
+          format: string
+          type: string
+        currency_name:
+          description: Currency name for the currency used by this account.
+          example: Euro
           format: string
           type: string
         currency_decimal_places:
@@ -10834,11 +10859,18 @@ components:
       type: object
     AutocompleteTransaction:
       example:
+        transaction_group_id: "2"
         name: Transaction
         description: Transaction
         id: "2"
       properties:
         id:
+          description: The ID of a transaction journal (basically a single split).
+          example: "2"
+          format: string
+          type: string
+        transaction_group_id:
+          description: The ID of the underlying transaction group.
           example: "2"
           format: string
           type: string
@@ -10945,11 +10977,18 @@ components:
       type: object
     AutocompleteTransactionID:
       example:
+        transaction_group_id: "2"
         name: "#12: Transaction"
         description: "#12: Transaction"
         id: "2"
       properties:
         id:
+          description: The ID of a transaction journal (basically a single split).
+          example: "2"
+          format: string
+          type: string
+        transaction_group_id:
+          description: The ID of the underlying transaction group.
           example: "2"
           format: string
           type: string
@@ -10970,6 +11009,7 @@ components:
       type: object
     AutocompleteAccount:
       example:
+        currency_name: Euro
         currency_symbol: $
         name: Checking Account
         id: "2"
@@ -11000,20 +11040,27 @@ components:
           format: string
           type: string
         currency_id:
-          description: Currency ID for this account.
+          description: ID for the currency used by this account.
           example: "12"
           format: string
           type: string
+        currency_name:
+          description: Currency name for the currency used by this account.
+          example: Euro
+          format: string
+          type: string
         currency_code:
-          description: Currency code for this account.
+          description: Currency code for the currency used by this account.
           example: EUR
           format: string
           type: string
         currency_symbol:
+          description: Currency symbol for the currency used by this account.
           example: $
           format: string
           type: string
         currency_decimal_places:
+          description: Number of decimal places for the currency used by this account.
           example: 2
           format: int32
           type: integer
@@ -11021,6 +11068,7 @@ components:
       - currency_code
       - currency_decimal_places
       - currency_id
+      - currency_name
       - currency_symbol
       - id
       - name
@@ -11142,6 +11190,7 @@ components:
       type: array
     ChartDataSet:
       example:
+        end_date: 2018-09-17T12:46:47+01:00
         entries:
         - key: value
         - key: value
@@ -11152,6 +11201,7 @@ components:
         currency_id: "5"
         currency_code: EUR
         currency_decimal_places: 2
+        start_date: 2018-09-17T12:46:47+01:00
       properties:
         label:
           description: "This is the title of the current set. It can refer to an account,\
@@ -11179,6 +11229,14 @@ components:
           example: 2
           format: int32
           type: integer
+        start_date:
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
+        end_date:
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
         type:
           description: Indicated the type of chart that is expected to be rendered.
             You can safely ignore this if you want.
@@ -11229,27 +11287,6 @@ components:
       - deposits
       - transfers
       type: string
-    BulkAccountTransactionObject:
-      example:
-        original_account: 2
-        destination_account: 17
-      properties:
-        original_account:
-          description: "The original account, where you wish to transactions away\
-            \ from."
-          example: 2
-          format: integer
-          type: number
-        destination_account:
-          description: "The destination account, where the transactions will be moved\
-            \ to."
-          example: 17
-          format: integer
-          type: number
-      required:
-      - destination_account
-      - original_account
-      type: object
     InsightTransferEntry:
       example:
         in: "123.45"
@@ -12581,6 +12618,7 @@ components:
     Bill:
       example:
         date: 2018-09-17T12:46:47+01:00
+        end_date: 2018-09-17T12:46:47+01:00
         notes: Some example notes
         currency_symbol: $
         created_at: 2018-09-17T12:46:47+01:00
@@ -12589,9 +12627,11 @@ components:
         skip: 0
         next_expected_match: 2018-09-17T12:46:47+01:00
         object_group_order: 5
+        next_expected_match_diff: today
         repeat_freq: monthly
         currency_code: EUR
         currency_decimal_places: 2
+        extension_date: 2018-09-17T12:46:47+01:00
         pay_dates:
         - 2018-09-17T12:46:47+01:00
         - 2018-09-17T12:46:47+01:00
@@ -12607,6 +12647,7 @@ components:
         name: Rent
         amount_min: "123.45"
         currency_id: "5"
+        order: 1
         object_group_title: Example Group
       properties:
         created_at:
@@ -12655,6 +12696,16 @@ components:
           example: 2018-09-17T12:46:47+01:00
           format: date-time
           type: string
+        end_date:
+          description: The date after which this bill is no longer valid or applicable
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
+        extension_date:
+          description: The date before which the bill must be renewed (or cancelled)
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
         repeat_freq:
           description: How often the bill must be paid.
           enum:
@@ -12676,6 +12727,11 @@ components:
           example: true
           format: boolean
           type: boolean
+        order:
+          description: Order of the bill.
+          example: 1
+          format: int32
+          type: integer
         notes:
           example: Some example notes
           format: string
@@ -12685,6 +12741,13 @@ components:
           description: When the bill is expected to be due.
           example: 2018-09-17T12:46:47+01:00
           format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        next_expected_match_diff:
+          description: Formatted (locally) when the bill is due.
+          example: today
+          format: string
           nullable: true
           readOnly: true
           type: string
@@ -12733,17 +12796,19 @@ components:
       type: object
     BillStore:
       example:
-        date: 2018-09-17T00:00:00.000+00:00
+        date: 2018-09-17T12:46:47+01:00
+        end_date: 2018-09-17T12:46:47+01:00
         notes: Some example notes
-        object_group_id: "5"
-        name: Rent
         active: true
         amount_max: "123.45"
         skip: 0
-        amount_min: "123.45"
         repeat_freq: monthly
-        currency_id: "5"
         currency_code: EUR
+        extension_date: 2018-09-17T12:46:47+01:00
+        object_group_id: "5"
+        name: Rent
+        amount_min: "123.45"
+        currency_id: "5"
         object_group_title: Example Group
       properties:
         currency_id:
@@ -12769,8 +12834,18 @@ components:
           format: amount
           type: string
         date:
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
+        end_date:
+          description: The date after which this bill is no longer valid or applicable
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
+        extension_date:
+          description: The date before which the bill must be renewed (or cancelled)
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         repeat_freq:
           description: How often the bill must be paid.
@@ -12820,17 +12895,19 @@ components:
       type: object
     BillUpdate:
       example:
-        date: 2018-09-17T00:00:00.000+00:00
+        date: 2018-09-17T12:46:47+01:00
+        end_date: 2018-09-17T12:46:47+01:00
         notes: Some example notes
-        object_group_id: "5"
-        name: Rent
         active: true
         amount_max: "123.45"
         skip: 0
-        amount_min: "123.45"
         repeat_freq: monthly
-        currency_id: "5"
         currency_code: EUR
+        extension_date: 2018-09-17T12:46:47+01:00
+        object_group_id: "5"
+        name: Rent
+        amount_min: "123.45"
+        currency_id: "5"
         object_group_title: Example Group
       properties:
         currency_id:
@@ -12856,8 +12933,18 @@ components:
           format: amount
           type: string
         date:
-          example: 2018-09-17
-          format: date
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
+        end_date:
+          description: The date after which this bill is no longer valid or applicable
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
+        extension_date:
+          description: The date before which the bill must be renewed (or cancelled)
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         repeat_freq:
           description: How often the bill must be paid.
@@ -13083,11 +13170,11 @@ components:
         notes: Some notes
         updated_at: 2018-09-17T12:46:47+01:00
         size: 48211
-        download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-        upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
         mime: application/pdf
         attachable_id: "134"
+        download_url: https://demo.firefly-iii.org/api/v1/attachments/191/download
         created_at: 2018-09-17T12:46:47+01:00
+        upload_url: https://demo.firefly-iii.org/api/v1/attachments/191/download
         title: Some PDF file
         attachable_type: Bill
         md5: 0c3f95f34370baa88f9fd9a671fea305
@@ -13101,10 +13188,6 @@ components:
           example: 2018-09-17T12:46:47+01:00
           format: date-time
           readOnly: true
-          type: string
-        filename:
-          example: file.pdf
-          format: string
           type: string
         attachable_type:
           description: The object class to which the attachment must be linked.
@@ -13128,11 +13211,15 @@ components:
           example: 0c3f95f34370baa88f9fd9a671fea305
           format: string
           type: string
-        download_uri:
+        filename:
+          example: file.pdf
+          format: string
+          type: string
+        download_url:
           example: https://demo.firefly-iii.org/api/v1/attachments/191/download
           format: string
           type: string
-        upload_uri:
+        upload_url:
           example: https://demo.firefly-iii.org/api/v1/attachments/191/download
           format: string
           type: string
@@ -13385,16 +13472,17 @@ components:
       example:
         period: monthly
         amount: "123.45"
-        updated_at: 2018-09-17T12:46:47+01:00
+        currency_name: Euro
         currency_symbol: $
         budget_id: "23"
         spent: "-1012.12"
         start: 2018-09-17T12:46:47+01:00
         created_at: 2018-09-17T12:46:47+01:00
-        end: 2018-09-17T12:46:47+01:00
-        currency_id: "5"
         currency_code: EUR
         currency_decimal_places: 2
+        updated_at: 2018-09-17T12:46:47+01:00
+        end: 2018-09-17T12:46:47+01:00
+        currency_id: "5"
       properties:
         created_at:
           example: 2018-09-17T12:46:47+01:00
@@ -13405,6 +13493,16 @@ components:
           example: 2018-09-17T12:46:47+01:00
           format: date-time
           readOnly: true
+          type: string
+        start:
+          description: Start date of the budget limit.
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          type: string
+        end:
+          description: End date of the budget limit.
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
           type: string
         currency_id:
           description: Use either currency_id or currency_code. Defaults to the user's
@@ -13417,6 +13515,11 @@ components:
             default currency.
           example: EUR
           format: string
+          type: string
+        currency_name:
+          example: Euro
+          format: string
+          readOnly: true
           type: string
         currency_symbol:
           example: $
@@ -13434,11 +13537,6 @@ components:
           format: string
           readOnly: true
           type: string
-        start:
-          description: Start date of the budget limit.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
-          type: string
         period:
           description: Period of the budget limit. Only used when auto-generated by
             auto-budget.
@@ -13446,11 +13544,6 @@ components:
           format: string
           nullable: true
           readOnly: true
-          type: string
-        end:
-          description: End date of the budget limit.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
           type: string
         amount:
           example: "123.45"
@@ -14323,10 +14416,6 @@ components:
           format: date-time
           readOnly: true
           type: string
-        name:
-          example: New digital camera
-          format: string
-          type: string
         account_id:
           description: The ID of the asset account this piggy bank is connected to.
           example: "13"
@@ -14338,6 +14427,10 @@ components:
           example: Savings account
           format: string
           readOnly: true
+          type: string
+        name:
+          example: New digital camera
+          format: string
           type: string
         currency_id:
           example: "5"
@@ -14594,6 +14687,7 @@ components:
         group_title: Split transaction title.
         apply_rules: false
         error_if_duplicate_hash: false
+        fire_webhooks: true
         transactions:
         - date: 2018-09-17T12:46:47+01:00
           sepa_cc: sepa_cc
@@ -14694,6 +14788,13 @@ components:
           example: false
           format: boolean
           type: boolean
+        fire_webhooks:
+          default: true
+          description: Whether or not to fire the webhooks that are related to this
+            event.
+          example: true
+          format: boolean
+          type: boolean
         group_title:
           description: Title of the transaction if it has been split in more than
             one piece. Empty otherwise.
@@ -14711,9 +14812,7 @@ components:
     Transaction:
       example:
         group_title: Split transaction title.
-        apply_rules: false
         updated_at: 2018-09-17T12:46:47+01:00
-        error_if_duplicate_hash: false
         created_at: 2018-09-17T12:46:47+01:00
         transactions:
         - date: 2018-09-17T12:46:47+01:00
@@ -14721,11 +14820,13 @@ components:
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
           destination_id: "2"
+          zoom_level: 6
           type: withdrawal
           destination_type: Asset account
-          transaction_journal_id: 10421
+          transaction_journal_id: "10421"
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
+          longitude: 5.916667
           bill_id: "111"
           foreign_currency_code: USD
           reconciled: false
@@ -14733,7 +14834,6 @@ components:
           source_type: Asset account
           foreign_currency_decimal_places: 2
           bill_name: Monthly rent
-          piggy_bank_id: 0
           original_source: original_source
           sepa_ct_id: sepa_ct_id
           tags:
@@ -14747,6 +14847,7 @@ components:
           destination_iban: NL02ABNA0123456789
           source_iban: NL02ABNA0123456789
           budget_id: "4"
+          latitude: 51.983333
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
@@ -14756,8 +14857,7 @@ components:
           invoice_date: 2000-01-23T04:56:07.000+00:00
           category_id: "43"
           foreign_currency_symbol: $
-          recurrence_id: 6
-          piggy_bank_name: piggy_bank_name
+          recurrence_id: 0
           foreign_currency_id: "17"
           source_name: Checking account
           amount: "123.45"
@@ -14781,11 +14881,13 @@ components:
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
           destination_id: "2"
+          zoom_level: 6
           type: withdrawal
           destination_type: Asset account
-          transaction_journal_id: 10421
+          transaction_journal_id: "10421"
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
+          longitude: 5.916667
           bill_id: "111"
           foreign_currency_code: USD
           reconciled: false
@@ -14793,7 +14895,6 @@ components:
           source_type: Asset account
           foreign_currency_decimal_places: 2
           bill_name: Monthly rent
-          piggy_bank_id: 0
           original_source: original_source
           sepa_ct_id: sepa_ct_id
           tags:
@@ -14807,6 +14908,7 @@ components:
           destination_iban: NL02ABNA0123456789
           source_iban: NL02ABNA0123456789
           budget_id: "4"
+          latitude: 51.983333
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
@@ -14816,8 +14918,7 @@ components:
           invoice_date: 2000-01-23T04:56:07.000+00:00
           category_id: "43"
           foreign_currency_symbol: $
-          recurrence_id: 6
-          piggy_bank_name: piggy_bank_name
+          recurrence_id: 0
           foreign_currency_id: "17"
           source_name: Checking account
           amount: "123.45"
@@ -14854,18 +14955,6 @@ components:
           format: string
           readOnly: true
           type: string
-        error_if_duplicate_hash:
-          description: Break if the submitted transaction exists already.
-          example: false
-          format: boolean
-          readOnly: false
-          type: boolean
-        apply_rules:
-          description: Whether or not to apply rules when submitting transaction.
-          example: false
-          format: boolean
-          readOnly: false
-          type: boolean
         group_title:
           description: Title of the transaction if it has been split in more than
             one piece. Empty otherwise.
@@ -14885,6 +14974,7 @@ components:
       example:
         group_title: Split transaction title.
         apply_rules: false
+        fire_webhooks: true
         transactions:
         - date: 2018-09-17T12:46:47+01:00
           sepa_cc: sepa_cc
@@ -14986,6 +15076,13 @@ components:
         apply_rules:
           description: Whether or not to apply rules when submitting transaction.
           example: false
+          format: boolean
+          type: boolean
+        fire_webhooks:
+          default: true
+          description: Whether or not to fire the webhooks that are related to this
+            event.
+          example: true
           format: boolean
           type: boolean
         group_title:
@@ -15707,6 +15804,7 @@ components:
         name: My checking account
         opening_balance: "-1012.12"
         bic: BOFAUS3N
+        liability_direction: credit
         interest_period: monthly
         currency_id: "12"
         order: 1
@@ -15831,13 +15929,27 @@ components:
           format: string
           nullable: true
           type: string
+        liability_direction:
+          default: debit
+          description: '''credit'' indicates somebody owes you the liability. ''debit''
+            Indicates you owe this debt yourself. Works only for liabiltiies.'
+          enum:
+          - credit
+          - debit
+          - null
+          example: credit
+          format: string
+          nullable: true
+          type: string
         interest:
+          default: "0"
           description: Mandatory when type is liability. Interest percentage.
           example: "5.3"
           format: string
           nullable: true
           type: string
         interest_period:
+          default: monthly
           description: Mandatory when type is liability. Period over which the interest
             is calculated.
           enum:
@@ -15898,6 +16010,7 @@ components:
         opening_balance: "-1012.12"
         interest_period: monthly
         order: 1
+        current_debt: "1012.12"
         longitude: 5.916667
         include_net_worth: true
         opening_balance_date: 2018-09-17T12:46:47+01:00
@@ -15910,6 +16023,7 @@ components:
         iban: GB98MIDL07009312345678
         name: My checking account
         bic: BOFAUS3N
+        liability_direction: credit
         currency_id: "12"
       properties:
         created_at:
@@ -15922,6 +16036,17 @@ components:
           format: date-time
           readOnly: true
           type: string
+        active:
+          description: "If omitted, defaults to true."
+          example: false
+          format: boolean
+          type: boolean
+        order:
+          description: Order of the account. Is NULL if account is not asset or liability.
+          example: 1
+          format: int32
+          nullable: true
+          type: integer
         name:
           example: My checking account
           format: string
@@ -15942,46 +16067,18 @@ components:
           example: asset
           format: string
           type: string
-        iban:
-          example: GB98MIDL07009312345678
-          format: iban
-          nullable: true
-          type: string
-        bic:
-          example: BOFAUS3N
+        account_role:
+          description: Is only mandatory when the type is asset.
+          enum:
+          - defaultAsset
+          - sharedAsset
+          - savingAsset
+          - ccAsset
+          - cashWalletAsset
+          - null
+          example: defaultAsset
           format: string
           nullable: true
-          type: string
-        account_number:
-          example: "7009312345678"
-          format: string
-          nullable: true
-          type: string
-        opening_balance:
-          description: "Represents the opening balance, the initial amount this account\
-            \ holds."
-          example: "-1012.12"
-          format: amount
-          type: string
-        opening_balance_date:
-          description: Represents the date of the opening balance.
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
-          nullable: true
-          type: string
-        virtual_balance:
-          example: "123.45"
-          format: amount
-          type: string
-        current_balance:
-          example: "123.45"
-          format: amount
-          readOnly: true
-          type: string
-        current_balance_date:
-          example: 2018-09-17T12:46:47+01:00
-          format: date-time
-          readOnly: true
           type: string
         currency_id:
           description: Use either currency_id or currency_code. Defaults to the user's
@@ -16005,35 +16102,57 @@ components:
           format: int32
           readOnly: true
           type: integer
-        active:
-          description: "If omitted, defaults to true."
-          example: false
-          format: boolean
-          type: boolean
-        order:
-          description: Order of the account. Is NULL if account is not asset or liability.
-          example: 1
-          format: int32
+        current_balance:
+          example: "123.45"
+          format: amount
+          readOnly: true
+          type: string
+        current_balance_date:
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          readOnly: true
+          type: string
+        iban:
+          example: GB98MIDL07009312345678
+          format: iban
           nullable: true
-          type: integer
+          type: string
+        bic:
+          example: BOFAUS3N
+          format: string
+          nullable: true
+          type: string
+        account_number:
+          example: "7009312345678"
+          format: string
+          nullable: true
+          type: string
+        opening_balance:
+          description: "Represents the opening balance, the initial amount this account\
+            \ holds."
+          example: "-1012.12"
+          format: amount
+          type: string
+        current_debt:
+          description: Represents the current debt for liabilities.
+          example: "1012.12"
+          format: amount
+          type: string
+        opening_balance_date:
+          description: Represents the date of the opening balance.
+          example: 2018-09-17T12:46:47+01:00
+          format: date-time
+          nullable: true
+          type: string
+        virtual_balance:
+          example: "123.45"
+          format: amount
+          type: string
         include_net_worth:
           description: "If omitted, defaults to true."
           example: true
           format: boolean
           type: boolean
-        account_role:
-          description: Is only mandatory when the type is asset.
-          enum:
-          - defaultAsset
-          - sharedAsset
-          - savingAsset
-          - ccAsset
-          - cashWalletAsset
-          - null
-          example: defaultAsset
-          format: string
-          nullable: true
-          type: string
         credit_card_type:
           description: Mandatory when the account_role is ccAsset. Can only be monthlyFull
             or null.
@@ -16062,6 +16181,16 @@ components:
           format: string
           nullable: true
           type: string
+        liability_direction:
+          description: '''credit'' indicates somebody owes you the liability. ''debit''
+            Indicates you owe this debt yourself. Works only for liabiltiies.'
+          enum:
+          - credit
+          - debit
+          example: credit
+          format: string
+          nullable: false
+          type: string
         interest:
           description: Mandatory when type is liability. Interest percentage.
           example: "5.3"
@@ -16072,8 +16201,10 @@ components:
           description: Mandatory when type is liability. Period over which the interest
             is calculated.
           enum:
-          - daily
+          - weekly
           - monthly
+          - quarterly
+          - half-year
           - yearly
           - null
           example: monthly
@@ -17255,11 +17386,13 @@ components:
         notes: Some example notes
         sepa_batch_id: sepa_batch_id
         destination_id: "2"
+        zoom_level: 6
         type: withdrawal
         destination_type: Asset account
-        transaction_journal_id: 10421
+        transaction_journal_id: "10421"
         payment_date: 2000-01-23T04:56:07.000+00:00
         order: 0
+        longitude: 5.916667
         bill_id: "111"
         foreign_currency_code: USD
         reconciled: false
@@ -17267,7 +17400,6 @@ components:
         source_type: Asset account
         foreign_currency_decimal_places: 2
         bill_name: Monthly rent
-        piggy_bank_id: 0
         original_source: original_source
         sepa_ct_id: sepa_ct_id
         tags:
@@ -17281,6 +17413,7 @@ components:
         destination_iban: NL02ABNA0123456789
         source_iban: NL02ABNA0123456789
         budget_id: "4"
+        latitude: 51.983333
         description: Vegetables
         destination_name: Buy and Large
         external_id: external_id
@@ -17290,8 +17423,7 @@ components:
         invoice_date: 2000-01-23T04:56:07.000+00:00
         category_id: "43"
         foreign_currency_symbol: $
-        recurrence_id: 6
-        piggy_bank_name: piggy_bank_name
+        recurrence_id: 0
         foreign_currency_id: "17"
         source_name: Checking account
         amount: "123.45"
@@ -17321,10 +17453,10 @@ components:
           description: |
             ID of the underlying transaction journal. Each transaction consists of a transaction group (see the top ID) and one or more journals
             making up the splits of the transaction.
-          example: 10421
-          format: int32
+          example: "10421"
+          format: string
           readOnly: true
-          type: integer
+          type: string
         type:
           description: Type of transaction.
           enum:
@@ -17340,16 +17472,6 @@ components:
           description: Date of the transaction
           example: 2018-09-17T12:46:47+01:00
           format: date-time
-          type: string
-        amount:
-          description: Amount of the transaction.
-          example: "123.45"
-          format: amount
-          type: string
-        description:
-          description: Description of the transaction.
-          example: Vegetables
-          format: string
           type: string
         order:
           description: Order of this entry in the list of transactions.
@@ -17387,12 +17509,6 @@ components:
           format: int32
           readOnly: true
           type: integer
-        foreign_amount:
-          description: The amount in a foreign currency.
-          example: "123.45"
-          format: amount
-          nullable: true
-          type: string
         foreign_currency_id:
           description: Currency ID of the foreign currency. Default is null. Is required
             when you submit a foreign amount.
@@ -17421,33 +17537,21 @@ components:
           nullable: true
           readOnly: true
           type: integer
-        budget_id:
-          description: The budget ID for this transaction.
-          example: "4"
-          format: string
+        amount:
+          description: Amount of the transaction.
+          example: "123.45"
+          format: amount
+          type: string
+        foreign_amount:
+          description: The amount in a foreign currency.
+          example: "123.45"
+          format: amount
           nullable: true
           type: string
-        budget_name:
-          description: "The name of the budget to be used. If the budget name is unknown,\
-            \ the ID will be used or the value will be ignored."
-          example: Groceries
+        description:
+          description: Description of the transaction.
+          example: Vegetables
           format: string
-          nullable: true
-          readOnly: true
-          type: string
-        category_id:
-          description: The category ID for this transaction.
-          example: "43"
-          format: string
-          nullable: true
-          type: string
-        category_name:
-          description: "The name of the category to be used. If the category is unknown,\
-            \ it will be created. If the ID and the name point to different categories,\
-            \ the ID overrules the name."
-          example: Groceries
-          format: string
-          nullable: true
           type: string
         source_id:
           description: "ID of the source account. For a withdrawal or a transfer,\
@@ -17499,22 +17603,34 @@ components:
           type: string
         destination_type:
           $ref: '#/components/schemas/AccountTypeProperty'
-        reconciled:
-          description: "If the transaction has been reconciled already. When you set\
-            \ this, the amount can no longer be edited by the user."
-          example: false
-          format: boolean
-          type: boolean
-        piggy_bank_id:
-          description: Optional. Use either this or the piggy_bank_name
-          format: int32
-          type: integer
-          writeOnly: true
-        piggy_bank_name:
-          description: Optional. Use either this or the piggy_bank_id
+        budget_id:
+          description: The budget ID for this transaction.
+          example: "4"
           format: string
+          nullable: true
           type: string
-          writeOnly: true
+        budget_name:
+          description: "The name of the budget to be used. If the budget name is unknown,\
+            \ the ID will be used or the value will be ignored."
+          example: Groceries
+          format: string
+          nullable: true
+          readOnly: true
+          type: string
+        category_id:
+          description: The category ID for this transaction.
+          example: "43"
+          format: string
+          nullable: true
+          type: string
+        category_name:
+          description: "The name of the category to be used. If the category is unknown,\
+            \ it will be created. If the ID and the name point to different categories,\
+            \ the ID overrules the name."
+          example: Groceries
+          format: string
+          nullable: true
+          type: string
         bill_id:
           description: Optional. Use either this or the bill_name
           example: "111"
@@ -17524,6 +17640,17 @@ components:
         bill_name:
           description: Optional. Use either this or the bill_id
           example: Monthly rent
+          format: string
+          nullable: true
+          type: string
+        reconciled:
+          description: "If the transaction has been reconciled already. When you set\
+            \ this, the amount can no longer be edited by the user."
+          example: false
+          format: boolean
+          type: boolean
+        notes:
+          example: Some example notes
           format: string
           nullable: true
           type: string
@@ -17537,11 +17664,6 @@ components:
           nullable: true
           type: array
           example: null
-        notes:
-          example: Some example notes
-          format: string
-          nullable: true
-          type: string
         internal_reference:
           description: Reference to internal reference of other systems.
           format: string
@@ -17580,7 +17702,7 @@ components:
           readOnly: true
           type: integer
         bunq_payment_id:
-          description: Internal ID of bunq transaction.
+          description: Internal ID of bunq transaction. DEPRECATED
           format: string
           nullable: true
           type: string
@@ -17654,6 +17776,28 @@ components:
           format: date-time
           nullable: true
           type: string
+        latitude:
+          description: "Latitude of the transaction's location, if applicable. Can\
+            \ be used to draw a map."
+          example: 51.983333
+          format: double
+          nullable: true
+          type: number
+        longitude:
+          description: "Latitude of the transaction's location, if applicable. Can\
+            \ be used to draw a map."
+          example: 5.916667
+          format: double
+          nullable: true
+          type: number
+        zoom_level:
+          description: "Zoom level for the map, if drawn. This to set the box right.\
+            \ Unfortunately this is a proprietary value because each map provider\
+            \ has different zoom levels."
+          example: 6
+          format: int32
+          nullable: true
+          type: integer
       required:
       - amount
       - date

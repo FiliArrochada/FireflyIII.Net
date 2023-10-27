@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | **string** | The ID of a transaction journal (basically a single split). | 
+**TransactionGroupId** | **string** | The ID of the underlying transaction group. | [optional] 
 **Name** | **string** | Transaction description with ID in the name. | 
 **Description** | **string** | Transaction description with ID in the name. | 
 

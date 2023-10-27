@@ -9,7 +9,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**GetBudgetsAC**](AutocompleteApi.md#getbudgetsac) | **GET** /api/v1/autocomplete/budgets | Returns all budgets of the user returned in a basic auto-complete array. |
 | [**GetCategoriesAC**](AutocompleteApi.md#getcategoriesac) | **GET** /api/v1/autocomplete/categories | Returns all categories of the user returned in a basic auto-complete array. |
 | [**GetCurrenciesAC**](AutocompleteApi.md#getcurrenciesac) | **GET** /api/v1/autocomplete/currencies | Returns all currencies of the user returned in a basic auto-complete array. |
-| [**GetCurrenciesCodeAC**](AutocompleteApi.md#getcurrenciescodeac) | **GET** /api/v1/autocomplete/currencies-with-code | Returns all currencies of the user returned in a basic auto-complete array. |
+| [**GetCurrenciesCodeAC**](AutocompleteApi.md#getcurrenciescodeac) | **GET** /api/v1/autocomplete/currencies-with-code | Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. |
 | [**GetObjectGroupsAC**](AutocompleteApi.md#getobjectgroupsac) | **GET** /api/v1/autocomplete/object-groups | Returns all object groups of the user returned in a basic auto-complete array. |
 | [**GetPiggiesAC**](AutocompleteApi.md#getpiggiesac) | **GET** /api/v1/autocomplete/piggy-banks | Returns all piggy banks of the user returned in a basic auto-complete array. |
 | [**GetPiggiesBalanceAC**](AutocompleteApi.md#getpiggiesbalanceac) | **GET** /api/v1/autocomplete/piggy-banks-with-balance | Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information. |
@@ -19,7 +19,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**GetTagAC**](AutocompleteApi.md#gettagac) | **GET** /api/v1/autocomplete/tags | Returns all tags of the user returned in a basic auto-complete array. |
 | [**GetTransactionTypesAC**](AutocompleteApi.md#gettransactiontypesac) | **GET** /api/v1/autocomplete/transaction-types | Returns all transaction types returned in a basic auto-complete array. English only. |
 | [**GetTransactionsAC**](AutocompleteApi.md#gettransactionsac) | **GET** /api/v1/autocomplete/transactions | Returns all transaction descriptions of the user returned in a basic auto-complete array. |
-| [**GetTransactionsIDAC**](AutocompleteApi.md#gettransactionsidac) | **GET** /api/v1/autocomplete/transactions-with-id | Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. |
+| [**GetTransactionsIDAC**](AutocompleteApi.md#gettransactionsidac) | **GET** /api/v1/autocomplete/transactions-with-id | Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. |
 
 <a id="getaccountsac"></a>
 # **GetAccountsAC**
@@ -499,7 +499,7 @@ catch (ApiException e)
 # **GetCurrenciesCodeAC**
 > List&lt;AutocompleteCurrencyCode&gt; GetCurrenciesCodeAC (string query = null, int? limit = null)
 
-Returns all currencies of the user returned in a basic auto-complete array.
+Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
 
 ### Example
 ```csharp
@@ -526,7 +526,7 @@ namespace Example
 
             try
             {
-                // Returns all currencies of the user returned in a basic auto-complete array.
+                // Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
                 List<AutocompleteCurrencyCode> result = apiInstance.GetCurrenciesCodeAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -547,7 +547,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Returns all currencies of the user returned in a basic auto-complete array.
+    // Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
     ApiResponse<List<AutocompleteCurrencyCode>> response = apiInstance.GetCurrenciesCodeACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -585,7 +585,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of currencies with very basic information and the currency code between brackets. |  -  |
+| **200** | A list of currencies with very basic information and the currency code between brackets. This endpoint is DEPRECATED and I suggest you DO NOT use it. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1439,7 +1439,7 @@ catch (ApiException e)
 # **GetTransactionsIDAC**
 > List&lt;AutocompleteTransactionID&gt; GetTransactionsIDAC (string query = null, int? limit = null)
 
-Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array.
+Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
 
 ### Example
 ```csharp
@@ -1466,7 +1466,7 @@ namespace Example
 
             try
             {
-                // Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array.
+                // Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
                 List<AutocompleteTransactionID> result = apiInstance.GetTransactionsIDAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -1487,7 +1487,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array.
+    // Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
     ApiResponse<List<AutocompleteTransactionID>> response = apiInstance.GetTransactionsIDACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1525,7 +1525,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A list of transactions with very basic information. |  -  |
+| **200** | A list of transactions with very basic information. This endpoint is DEPRECATED and I suggest you DO NOT use it. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

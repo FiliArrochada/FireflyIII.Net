@@ -4,7 +4,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**BulkAccountMoveTransactions**](DataApi.md#bulkaccountmovetransactions) | **POST** /api/v1/data/bulk/accounts/transactions | Bulk move transactions from one account to another. |
+| [**BulkUpdateTransactions**](DataApi.md#bulkupdatetransactions) | **POST** /api/v1/data/bulk/transactions | Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials |
 | [**DestroyData**](DataApi.md#destroydata) | **DELETE** /api/v1/data/destroy | Endpoint to destroy user data |
 | [**ExportAccounts**](DataApi.md#exportaccounts) | **GET** /api/v1/data/export/accounts | Export account data from Firefly III |
 | [**ExportBills**](DataApi.md#exportbills) | **GET** /api/v1/data/export/bills | Export bills from Firefly III |
@@ -16,13 +16,13 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**ExportTags**](DataApi.md#exporttags) | **GET** /api/v1/data/export/tags | Export tag data from Firefly III |
 | [**ExportTransactions**](DataApi.md#exporttransactions) | **GET** /api/v1/data/export/transactions | Export transaction data from Firefly III |
 
-<a id="bulkaccountmovetransactions"></a>
-# **BulkAccountMoveTransactions**
-> void BulkAccountMoveTransactions (BulkAccountTransactionObject bulkAccountTransactionObject)
+<a id="bulkupdatetransactions"></a>
+# **BulkUpdateTransactions**
+> void BulkUpdateTransactions (string query)
 
-Bulk move transactions from one account to another.
+Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
 
-Allows you to move all from one account to another. Requires two of the exact same accounts to work. Will not migrate deleted transactions. Both accounts must be of the exact same type (asset accounts for example). 
+Allows you to update transactions in bulk. 
 
 ### Example
 ```csharp
@@ -34,7 +34,7 @@ using FireflyIIINet.Model;
 
 namespace Example
 {
-    public class BulkAccountMoveTransactionsExample
+    public class BulkUpdateTransactionsExample
     {
         public static void Main()
         {
@@ -44,16 +44,16 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var bulkAccountTransactionObject = new BulkAccountTransactionObject(); // BulkAccountTransactionObject | JSON array with the necessary information to facilitate the move.
+            var query = "query_example";  // string | The JSON query.
 
             try
             {
-                // Bulk move transactions from one account to another.
-                apiInstance.BulkAccountMoveTransactions(bulkAccountTransactionObject);
+                // Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
+                apiInstance.BulkUpdateTransactions(query);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DataApi.BulkAccountMoveTransactions: " + e.Message);
+                Debug.Print("Exception when calling DataApi.BulkUpdateTransactions: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -62,18 +62,18 @@ namespace Example
 }
 ```
 
-#### Using the BulkAccountMoveTransactionsWithHttpInfo variant
+#### Using the BulkUpdateTransactionsWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
-    // Bulk move transactions from one account to another.
-    apiInstance.BulkAccountMoveTransactionsWithHttpInfo(bulkAccountTransactionObject);
+    // Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
+    apiInstance.BulkUpdateTransactionsWithHttpInfo(query);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling DataApi.BulkAccountMoveTransactionsWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling DataApi.BulkUpdateTransactionsWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -83,7 +83,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **bulkAccountTransactionObject** | [**BulkAccountTransactionObject**](BulkAccountTransactionObject.md) | JSON array with the necessary information to facilitate the move. |  |
+| **query** | **string** | The JSON query. |  |
 
 ### Return type
 
@@ -95,14 +95,14 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Empty response when the move was successful. |  -  |
+| **204** | Empty response when the update was successful. A future improvement is to include the changed transactions. |  -  |
 | **500** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -135,7 +135,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var objects = new DataDestroyObject(); // DataDestroyObject | The type of data that you wish to destroy.
+            var objects = new DataDestroyObject(); // DataDestroyObject | The type of data that you wish to destroy. You can only use one at a time.
 
             try
             {
@@ -174,7 +174,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **objects** | [**DataDestroyObject**](DataDestroyObject.md) | The type of data that you wish to destroy. |  |
+| **objects** | [**DataDestroyObject**](DataDestroyObject.md) | The type of data that you wish to destroy. You can only use one at a time. |  |
 
 ### Return type
 
