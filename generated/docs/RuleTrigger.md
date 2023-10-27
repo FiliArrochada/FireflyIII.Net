@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int** |  | [optional] [readonly] 
+**Id** | **string** |  | [optional] [readonly] 
 **CreatedAt** | **DateTime** |  | [optional] [readonly] 
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
 **Type** | **string** | The type of thing this trigger responds to. A limited set is possible | 

@@ -10,7 +10,7 @@ info:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
   title: Firefly III API
-  version: 1.3.0
+  version: 1.4.0
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/
@@ -26,6 +26,8 @@ tags:
 - description: "All attachments of the authenticated user, including up- and downloading\
     \ of the files."
   name: attachments
+- description: All auto-complete endpoints.
+  name: autocomplete
 - description: The total available amount that is available for budgeting every period.
   name: available_budgets
 - description: All bills by the user.
@@ -36,9 +38,6 @@ tags:
   name: charts
 - description: Manage all the user&#039;s categories
   name: categories
-- description: "Manage system currency exchange rates, add your own rates or read\
-    \ them from providers configured in Firefly III"
-  name: currency_exchange_rates
 - description: Manage the global Firefly III configuration
   name: configuration
 - description: "Manage all currencies in the system, disable and enable them or add\
@@ -622,6 +621,539 @@ paths:
       summary: Upload an attachment.
       tags:
       - attachments
+  /api/v1/autocomplete/accounts:
+    get:
+      operationId: getAccountsAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "For asset accounts, returns the balance on this date."
+        example: 2020-09-17
+        explode: true
+        in: query
+        name: date
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: Optional filter on the account type(s) returned
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/AccountTypeFilter'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteAccountArray'
+          description: A list of accounts with very basic information.
+      summary: All accounts of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/bills:
+    get:
+      operationId: getBillsAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteBillArray'
+          description: A list of bills with very basic information.
+      summary: All bills of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/budgets:
+    get:
+      operationId: getBudgetsAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteBudgetArray'
+          description: A list of budgets with very basic information.
+      summary: All budgets of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/categories:
+    get:
+      operationId: getCategoriesAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteCategoryArray'
+          description: A list of categories with very basic information.
+      summary: All categories of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/currencies:
+    get:
+      operationId: getCurrenciesAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteCurrencyArray'
+          description: A list of currencies with very basic information.
+      summary: All currencies of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/currencies-with-code:
+    get:
+      operationId: getCurrenciesCodeAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteCurrencyCodeArray'
+          description: A list of currencies with very basic information and the currency
+            code between brackets.
+      summary: All currencies of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/object-groups:
+    get:
+      operationId: getObjectGroupsAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteObjectGroupArray'
+          description: A list of object groups with very basic information.
+      summary: All object groups of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/piggy-banks:
+    get:
+      operationId: getPiggiesAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompletePiggyArray'
+          description: A list of piggy banks with very basic information.
+      summary: All piggy banks of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/piggy-banks-with-balance:
+    get:
+      operationId: getPiggiesBalanceAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompletePiggyBalanceArray'
+          description: A list of piggy banks with very basic balance information.
+      summary: All piggy banks of the user returned in a basic auto-complete array
+        complemented with balance information.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/rules:
+    get:
+      operationId: getRulesAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteRuleArray'
+          description: A list of rules with very basic information.
+      summary: All rules of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/rule-groups:
+    get:
+      operationId: getRuleGroupsAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteRuleGroupArray'
+          description: A list of rule groups with very basic information.
+      summary: All rule groups of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/tags:
+    get:
+      operationId: getTagAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteTagArray'
+          description: A list of tags with very basic information.
+      summary: All tags of the user returned in a basic auto-complete array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/transactions:
+    get:
+      operationId: getTransactionsAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteTransactionArray'
+          description: A list of transaction descriptions with very basic information.
+      summary: All transaction descriptions of the user returned in a basic auto-complete
+        array.
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/transactions-with-id:
+    get:
+      operationId: getTransactionsIDAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteTransactionIDArray'
+          description: A list of transactions with very basic information.
+      summary: "All transactions, complemented with their ID, of the user returned\
+        \ in a basic auto-complete array."
+      tags:
+      - autocomplete
+  /api/v1/autocomplete/transaction-types:
+    get:
+      operationId: getTransactionTypesAC
+      parameters:
+      - description: The autocomplete search query.
+        example: str
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          format: string
+          type: string
+        style: form
+      - description: The autocomplete number of items returned
+        example: 10
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompleteTransactionTypeArray'
+          description: A list of transaction types with very basic information.
+      summary: All transaction types returned in a basic auto-complete array. English
+        only.
+      tags:
+      - autocomplete
   /api/v1/available_budgets:
     get:
       description: |
@@ -1206,7 +1738,7 @@ paths:
           A date formatted YYYY-MM-DD, to get info on how much the user has spent.
         explode: true
         in: query
-        name: start_date
+        name: start
         required: false
         schema:
           example: 2018-09-17
@@ -1217,7 +1749,7 @@ paths:
           A date formatted YYYY-MM-DD, to get info on how much the user has spent.
         explode: true
         in: query
-        name: end_date
+        name: end
         required: false
         schema:
           example: 2018-12-31
@@ -1871,63 +2403,6 @@ paths:
       summary: Lists all attachments.
       tags:
       - categories
-  /api/v1/cer:
-    get:
-      description: Get an exchange rate. If Firefly III doesn't know the rate it will
-        set the rate to 1.0.
-      operationId: getExchangeRate
-      parameters:
-      - description: "The source currency code. If omitted, defaults to EUR."
-        explode: true
-        in: query
-        name: from
-        required: false
-        schema:
-          example: EUR
-          format: string
-          type: string
-        style: form
-      - description: "The destination currency code. If omitted, defaults to USD."
-        explode: true
-        in: query
-        name: to
-        required: false
-        schema:
-          example: USD
-          format: string
-          type: string
-        style: form
-      - description: The date you want to know the exchange rate on.
-        explode: true
-        in: query
-        name: date
-        required: false
-        schema:
-          example: 2018-09-17
-          format: date
-          type: string
-        style: form
-      - description: "The amount in the source currency. If added, Firefly III will\
-          \ calculate the amount in the destination currency."
-        explode: true
-        in: query
-        name: amount
-        required: false
-        schema:
-          example: 120.12
-          format: double
-          type: number
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExchangeRate'
-          description: The exchange rate as requested
-      summary: Get an exchange rate.
-      tags:
-      - currency_exchange_rates
   /api/v1/chart/ab/overview/{id}:
     get:
       description: |
@@ -4284,15 +4759,6 @@ paths:
           example: 1
           type: integer
         style: simple
-      - description: Page number. The default pagination is 50 items.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          example: 1
-          type: integer
-        style: form
       - description: |
           A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.
         explode: true
@@ -4314,24 +4780,6 @@ paths:
           example: 2018-09-17
           format: date
           type: string
-        style: form
-      - description: |
-          Maximum number of transactions Firefly III will try. Don't set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.
-        explode: true
-        in: query
-        name: search_limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: |
-          Maximum number of transactions the rule can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don't go above the user's page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.
-        explode: true
-        in: query
-        name: triggered_limit
-        required: false
-        schema:
-          type: integer
         style: form
       - description: |
           Limit the testing of the rule to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.
@@ -5261,13 +5709,14 @@ components:
         current_balance_date: 2018-09-17T00:00:00.000+00:00
         interest: "5.3"
         current_balance: "123.45"
-        opening_balance: -1012.12
+        opening_balance: "-1012.12"
         interest_period: monthly
+        order: 1
         include_net_worth: true
         opening_balance_date: 2018-09-17T00:00:00.000+00:00
         currency_symbol: $
         liability_start_date: 2017-09-17T00:00:00.000+00:00
-        active: true
+        active: false
         monthly_payment_date: 2018-09-17T00:00:00.000+00:00
         virtual_balance: "123.45"
         liability_type: loan
@@ -5320,9 +5769,9 @@ components:
           format: string
           type: string
         opening_balance:
-          example: -1012.12
-          format: double
-          type: number
+          example: "-1012.12"
+          format: amount
+          type: string
         opening_balance_date:
           example: 2018-09-17
           format: date
@@ -5365,15 +5814,19 @@ components:
           type: integer
         active:
           description: "If omitted, defaults to true."
-          example: true
+          example: false
           format: boolean
           type: boolean
+        order:
+          description: Order of the account
+          example: 1
+          format: int32
+          type: integer
         include_net_worth:
           description: "If omitted, defaults to true."
           example: true
           format: boolean
           type: boolean
-          writeOnly: true
         account_role:
           description: Is only mandatory when the type is asset.
           enum:
@@ -5459,13 +5912,14 @@ components:
             current_balance_date: 2018-09-17T00:00:00.000+00:00
             interest: "5.3"
             current_balance: "123.45"
-            opening_balance: -1012.12
+            opening_balance: "-1012.12"
             interest_period: monthly
+            order: 1
             include_net_worth: true
             opening_balance_date: 2018-09-17T00:00:00.000+00:00
             currency_symbol: $
             liability_start_date: 2017-09-17T00:00:00.000+00:00
-            active: true
+            active: false
             monthly_payment_date: 2018-09-17T00:00:00.000+00:00
             virtual_balance: "123.45"
             liability_type: loan
@@ -5489,13 +5943,14 @@ components:
             current_balance_date: 2018-09-17T00:00:00.000+00:00
             interest: "5.3"
             current_balance: "123.45"
-            opening_balance: -1012.12
+            opening_balance: "-1012.12"
             interest_period: monthly
+            order: 1
             include_net_worth: true
             opening_balance_date: 2018-09-17T00:00:00.000+00:00
             currency_symbol: $
             liability_start_date: 2017-09-17T00:00:00.000+00:00
-            active: true
+            active: false
             monthly_payment_date: 2018-09-17T00:00:00.000+00:00
             virtual_balance: "123.45"
             liability_type: loan
@@ -5539,13 +5994,14 @@ components:
           current_balance_date: 2018-09-17T00:00:00.000+00:00
           interest: "5.3"
           current_balance: "123.45"
-          opening_balance: -1012.12
+          opening_balance: "-1012.12"
           interest_period: monthly
+          order: 1
           include_net_worth: true
           opening_balance_date: 2018-09-17T00:00:00.000+00:00
           currency_symbol: $
           liability_start_date: 2017-09-17T00:00:00.000+00:00
-          active: true
+          active: false
           monthly_payment_date: 2018-09-17T00:00:00.000+00:00
           virtual_balance: "123.45"
           liability_type: loan
@@ -5597,13 +6053,14 @@ components:
             current_balance_date: 2018-09-17T00:00:00.000+00:00
             interest: "5.3"
             current_balance: "123.45"
-            opening_balance: -1012.12
+            opening_balance: "-1012.12"
             interest_period: monthly
+            order: 1
             include_net_worth: true
             opening_balance_date: 2018-09-17T00:00:00.000+00:00
             currency_symbol: $
             liability_start_date: 2017-09-17T00:00:00.000+00:00
-            active: true
+            active: false
             monthly_payment_date: 2018-09-17T00:00:00.000+00:00
             virtual_balance: "123.45"
             liability_type: loan
@@ -5873,6 +6330,557 @@ components:
       required:
       - data
       type: object
+    AutocompleteAccount:
+      example:
+        currency_symbol: $
+        name: Checking Account
+        id: "2"
+        name_with_balance: Checking Account ($123.45)
+        type: Asset account
+        currency_id: 12
+        currency_code: EUR
+        currency_decimal_places: 2
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the account found by an auto-complete search.
+          example: Checking Account
+          format: string
+          readOnly: true
+          type: string
+        name_with_balance:
+          description: Asset accounts and liabilities have a second field with the
+            given date's account balance.
+          example: Checking Account ($123.45)
+          format: string
+          readOnly: true
+          type: string
+        type:
+          description: Account type of the account found by the auto-complete search.
+          example: Asset account
+          format: string
+          readOnly: true
+          type: string
+        currency_id:
+          description: Currency ID for this account.
+          example: 12
+          format: int32
+          readOnly: true
+          type: integer
+        currency_code:
+          description: Currency code for this account.
+          example: EUR
+          format: string
+          readOnly: true
+          type: string
+        currency_symbol:
+          example: $
+          format: string
+          readOnly: true
+          type: string
+        currency_decimal_places:
+          example: 2
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - currency_code
+      - currency_decimal_places
+      - currency_id
+      - currency_symbol
+      - id
+      - name
+      - name_with_balance
+      - type
+      type: object
+    AutocompleteAccountArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteAccount'
+      type: array
+    AutocompleteBill:
+      example:
+        name: Yearly bill
+        id: "2"
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the bill found by an auto-complete search.
+          example: Yearly bill
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    AutocompleteBillArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteBill'
+      type: array
+    AutocompleteBudget:
+      example:
+        name: Groceries
+        id: "2"
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the budget found by an auto-complete search.
+          example: Groceries
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    AutocompleteBudgetArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteBudget'
+      type: array
+    AutocompleteCategory:
+      example:
+        name: Category X
+        id: "2"
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the category found by an auto-complete search.
+          example: Category X
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    AutocompleteCategoryArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteCategory'
+      type: array
+    AutocompleteCurrency:
+      example:
+        symbol: $
+        code: EUR
+        name: Currency name
+        id: "2"
+        decimal_places: 2
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Currency name.
+          example: Currency name
+          format: string
+          readOnly: true
+          type: string
+        code:
+          description: Currency code for this account.
+          example: EUR
+          format: string
+          readOnly: true
+          type: string
+        symbol:
+          example: $
+          format: string
+          readOnly: true
+          type: string
+        decimal_places:
+          example: 2
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - code
+      - decimal_places
+      - id
+      - name
+      - symbol
+      type: object
+    AutocompleteCurrencyArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteCurrency'
+      type: array
+    AutocompleteCurrencyCode:
+      example:
+        symbol: $
+        code: EUR
+        name: Currency name (XCN)
+        id: "2"
+        decimal_places: 2
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Currency name with the code between brackets.
+          example: Currency name (XCN)
+          format: string
+          readOnly: true
+          type: string
+        code:
+          description: Currency code for this account.
+          example: EUR
+          format: string
+          readOnly: true
+          type: string
+        symbol:
+          example: $
+          format: string
+          readOnly: true
+          type: string
+        decimal_places:
+          example: 2
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - code
+      - decimal_places
+      - id
+      - name
+      - symbol
+      type: object
+    AutocompleteCurrencyCodeArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteCurrencyCode'
+      type: array
+    AutocompleteObjectGroup:
+      example:
+        name: Object Group one
+        id: "2"
+        title: Object Group one
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        title:
+          description: Title of the object group found by an auto-complete search.
+          example: Object Group one
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Title of the object group found by an auto-complete search.
+          example: Object Group one
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - title
+      type: object
+    AutocompleteObjectGroupArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteObjectGroup'
+      type: array
+    AutocompletePiggy:
+      example:
+        currency_symbol: $
+        name: New couch
+        id: "2"
+        currency_id: 12
+        currency_code: EUR
+        currency_decimal_places: 2
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the piggy bank found by an auto-complete search.
+          example: New couch
+          format: string
+          readOnly: true
+          type: string
+        currency_id:
+          description: Currency ID for this piggy bank.
+          example: 12
+          format: int32
+          readOnly: true
+          type: integer
+        currency_code:
+          description: Currency code for this piggy bank.
+          example: EUR
+          format: string
+          readOnly: true
+          type: string
+        currency_symbol:
+          example: $
+          format: string
+          readOnly: true
+          type: string
+        currency_decimal_places:
+          example: 2
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - id
+      - name
+      type: object
+    AutocompletePiggyArray:
+      items:
+        $ref: '#/components/schemas/AutocompletePiggy'
+      type: array
+    AutocompletePiggyBalance:
+      example:
+        currency_symbol: $
+        name: New couch
+        id: "2"
+        name_with_balance: New couch
+        currency_id: 12
+        currency_code: EUR
+        currency_decimal_places: 2
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the piggy bank found by an auto-complete search.
+          example: New couch
+          format: string
+          readOnly: true
+          type: string
+        name_with_balance:
+          description: Name of the piggy bank found by an auto-complete search with
+            the current balance formatted nicely.
+          example: New couch
+          format: string
+          readOnly: true
+          type: string
+        currency_id:
+          description: Currency ID for this piggy bank.
+          example: 12
+          format: int32
+          readOnly: true
+          type: integer
+        currency_code:
+          description: Currency code for this piggy bank.
+          example: EUR
+          format: string
+          readOnly: true
+          type: string
+        currency_symbol:
+          example: $
+          format: string
+          readOnly: true
+          type: string
+        currency_decimal_places:
+          example: 2
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - id
+      - name
+      type: object
+    AutocompletePiggyBalanceArray:
+      items:
+        $ref: '#/components/schemas/AutocompletePiggyBalance'
+      type: array
+    AutocompleteRule:
+      example:
+        name: Rule one
+        id: "2"
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the rule found by an auto-complete search.
+          example: Rule one
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    AutocompleteRuleArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteRule'
+      type: array
+    AutocompleteRuleGroup:
+      example:
+        name: Rule group one
+        id: "2"
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the rule group found by an auto-complete search.
+          example: Rule group one
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    AutocompleteRuleGroupArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteRuleGroup'
+      type: array
+    AutocompleteTag:
+      example:
+        name: too-expensive-tag-example
+        id: "2"
+        tag: too-expensive-tag-example
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Name of the tag found by an auto-complete search.
+          example: too-expensive-tag-example
+          format: string
+          readOnly: true
+          type: string
+        tag:
+          description: Name of the tag found by an auto-complete search.
+          example: too-expensive-tag-example
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - tag
+      type: object
+    AutocompleteTagArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteTag'
+      type: array
+    AutocompleteTransaction:
+      example:
+        name: Transaction
+        description: Transaction
+        id: "2"
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Transaction description with ID
+          example: Transaction
+          format: string
+          readOnly: true
+          type: string
+        description:
+          description: Transaction description with ID
+          example: Transaction
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - description
+      - id
+      - name
+      type: object
+    AutocompleteTransactionArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteTransaction'
+      type: array
+    AutocompleteTransactionID:
+      example:
+        name: "#12: Transaction"
+        description: "#12: Transaction"
+        id: "2"
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Transaction description with ID
+          example: "#12: Transaction"
+          format: string
+          readOnly: true
+          type: string
+        description:
+          description: Transaction description with ID
+          example: "#12: Transaction"
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - description
+      - id
+      - name
+      type: object
+    AutocompleteTransactionIDArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteTransactionID'
+      type: array
+    AutocompleteTransactionType:
+      example:
+        name: Withdrawal
+        id: "2"
+        type: Withdrawal
+      properties:
+        id:
+          example: "2"
+          format: string
+          readOnly: true
+          type: string
+        name:
+          description: Type of the object found by an auto-complete search.
+          example: Withdrawal
+          format: string
+          readOnly: true
+          type: string
+        type:
+          description: Name of the object found by an auto-complete search.
+          example: Withdrawal
+          format: string
+          readOnly: true
+          type: string
+      required:
+      - id
+      - name
+      - type
+      type: object
+    AutocompleteTransactionTypeArray:
+      items:
+        $ref: '#/components/schemas/AutocompleteTransactionType'
+      type: array
     AvailableBudget:
       example:
         amount: "123.45"
@@ -6540,7 +7548,11 @@ components:
       type: object
     Budget:
       example:
+        auto_budget_currency_id: 12
+        auto_budget_amount: "-1012.12"
+        auto_budget_period: EUR
         updated_at: 2018-09-17T12:46:47+01:00
+        auto_budget_type: reset
         spent:
         - currency_symbol: $
           sum: "123.45"
@@ -6555,6 +7567,7 @@ components:
         name: Bills
         created_at: 2018-09-17T12:46:47+01:00
         active: false
+        auto_budget_currency_code: EUR
         order: 5
       properties:
         created_at:
@@ -6580,6 +7593,43 @@ components:
           format: int32
           readOnly: true
           type: integer
+        auto_budget_type:
+          description: The type of auto-budget that Firefly III must create.
+          enum:
+          - reset
+          - rollover
+          - none
+          example: reset
+          format: string
+          type: string
+        auto_budget_currency_id:
+          description: Use either currency_id or currency_code. Defaults to the user's
+            default currency.
+          example: 12
+          format: int32
+          type: integer
+        auto_budget_currency_code:
+          description: Use either currency_id or currency_code. Defaults to the user's
+            default currency.
+          example: EUR
+          format: string
+          type: string
+        auto_budget_amount:
+          example: "-1012.12"
+          format: amount
+          type: string
+        auto_budget_period:
+          description: Period for the auto budget
+          enum:
+          - daily
+          - weekly
+          - monthly
+          - quarterly
+          - half_year
+          - yearly
+          example: EUR
+          format: string
+          type: string
         spent:
           description: Information on how much was spent in this budget. Is only filled
             in when the start and end date are submitted.
@@ -6594,7 +7644,11 @@ components:
       example:
         data:
         - attributes:
+            auto_budget_currency_id: 12
+            auto_budget_amount: "-1012.12"
+            auto_budget_period: EUR
             updated_at: 2018-09-17T12:46:47+01:00
+            auto_budget_type: reset
             spent:
             - currency_symbol: $
               sum: "123.45"
@@ -6609,11 +7663,16 @@ components:
             name: Bills
             created_at: 2018-09-17T12:46:47+01:00
             active: false
+            auto_budget_currency_code: EUR
             order: 5
           id: "2"
           type: budgets
         - attributes:
+            auto_budget_currency_id: 12
+            auto_budget_amount: "-1012.12"
+            auto_budget_period: EUR
             updated_at: 2018-09-17T12:46:47+01:00
+            auto_budget_type: reset
             spent:
             - currency_symbol: $
               sum: "123.45"
@@ -6628,6 +7687,7 @@ components:
             name: Bills
             created_at: 2018-09-17T12:46:47+01:00
             active: false
+            auto_budget_currency_code: EUR
             order: 5
           id: "2"
           type: budgets
@@ -6883,7 +7943,11 @@ components:
     BudgetRead:
       example:
         attributes:
+          auto_budget_currency_id: 12
+          auto_budget_amount: "-1012.12"
+          auto_budget_period: EUR
           updated_at: 2018-09-17T12:46:47+01:00
+          auto_budget_type: reset
           spent:
           - currency_symbol: $
             sum: "123.45"
@@ -6898,6 +7962,7 @@ components:
           name: Bills
           created_at: 2018-09-17T12:46:47+01:00
           active: false
+          auto_budget_currency_code: EUR
           order: 5
         id: "2"
         type: budgets
@@ -6922,7 +7987,11 @@ components:
       example:
         data:
           attributes:
+            auto_budget_currency_id: 12
+            auto_budget_amount: "-1012.12"
+            auto_budget_period: EUR
             updated_at: 2018-09-17T12:46:47+01:00
+            auto_budget_type: reset
             spent:
             - currency_symbol: $
               sum: "123.45"
@@ -6937,6 +8006,7 @@ components:
             name: Bills
             created_at: 2018-09-17T12:46:47+01:00
             active: false
+            auto_budget_currency_code: EUR
             order: 5
           id: "2"
           type: budgets
@@ -6994,6 +8064,7 @@ components:
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
+        notes: Some example notes
         updated_at: 2018-09-17T12:46:47+01:00
         spent:
         - amount: "-12423.45"
@@ -7025,6 +8096,10 @@ components:
           type: string
         name:
           example: Lunch
+          format: string
+          type: string
+        notes:
+          example: Some example notes
           format: string
           type: string
         spent:
@@ -7059,6 +8134,7 @@ components:
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
+            notes: Some example notes
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
             - amount: "-12423.45"
@@ -7095,6 +8171,7 @@ components:
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
+            notes: Some example notes
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
             - amount: "-12423.45"
@@ -7192,6 +8269,7 @@ components:
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
+          notes: Some example notes
           updated_at: 2018-09-17T12:46:47+01:00
           spent:
           - amount: "-12423.45"
@@ -7248,6 +8326,7 @@ components:
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
+            notes: Some example notes
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
             - amount: "-12423.45"
@@ -7604,7 +8683,7 @@ components:
           from_currency_decimal_places: 2
           from_currency_name: Euro
           from_currency_id: 5
-        id: 2
+        id: "2"
         type: currency_exchange_rates
       properties:
         type:
@@ -7613,9 +8692,9 @@ components:
           format: string
           type: string
         id:
-          example: 2
-          format: int32
-          type: integer
+          example: "2"
+          format: string
+          type: string
         attributes:
           $ref: '#/components/schemas/ExchangeRate_attributes'
       type: object
@@ -7637,7 +8716,7 @@ components:
             from_currency_decimal_places: 2
             from_currency_name: Euro
             from_currency_id: 5
-          id: 2
+          id: "2"
           type: currency_exchange_rates
         - attributes:
             date: 2018-09-17T00:00:00.000+00:00
@@ -7654,7 +8733,7 @@ components:
             from_currency_decimal_places: 2
             from_currency_name: Euro
             from_currency_id: 5
-          id: 2
+          id: "2"
           type: currency_exchange_rates
         meta:
           pagination:
@@ -7697,7 +8776,7 @@ components:
           key: abcdef
           errors: errors
           status: import_finished
-        id: 2
+        id: "2"
         type: import_jobs
       properties:
         type:
@@ -7706,9 +8785,9 @@ components:
           format: string
           type: string
         id:
-          example: 2
-          format: int32
-          type: integer
+          example: "2"
+          format: string
+          type: string
         attributes:
           $ref: '#/components/schemas/ImportJob_attributes'
       type: object
@@ -7729,7 +8808,7 @@ components:
             key: abcdef
             errors: errors
             status: import_finished
-          id: 2
+          id: "2"
           type: import_jobs
         - attributes:
             tag_tag: Import with key 'abcdef'
@@ -7745,7 +8824,7 @@ components:
             key: abcdef
             errors: errors
             status: import_finished
-          id: 2
+          id: "2"
           type: import_jobs
         meta:
           pagination:
@@ -7789,7 +8868,7 @@ components:
             key: abcdef
             errors: errors
             status: import_finished
-          id: 2
+          id: "2"
           type: import_jobs
       properties:
         data:
@@ -8638,7 +9717,7 @@ components:
           created_at: 2018-09-17T12:46:47+01:00
           description: Every week on Friday
           skip: 0
-          id: 2
+          id: "2"
           type: weekly
           moment: "3"
         - occurrences:
@@ -8649,7 +9728,7 @@ components:
           created_at: 2018-09-17T12:46:47+01:00
           description: Every week on Friday
           skip: 0
-          id: 2
+          id: "2"
           type: weekly
           moment: "3"
         updated_at: 2018-09-17T12:46:47+01:00
@@ -8816,7 +9895,7 @@ components:
               created_at: 2018-09-17T12:46:47+01:00
               description: Every week on Friday
               skip: 0
-              id: 2
+              id: "2"
               type: weekly
               moment: "3"
             - occurrences:
@@ -8827,7 +9906,7 @@ components:
               created_at: 2018-09-17T12:46:47+01:00
               description: Every week on Friday
               skip: 0
-              id: 2
+              id: "2"
               type: weekly
               moment: "3"
             updated_at: 2018-09-17T12:46:47+01:00
@@ -8916,7 +9995,7 @@ components:
               created_at: 2018-09-17T12:46:47+01:00
               description: Every week on Friday
               skip: 0
-              id: 2
+              id: "2"
               type: weekly
               moment: "3"
             - occurrences:
@@ -8927,7 +10006,7 @@ components:
               created_at: 2018-09-17T12:46:47+01:00
               description: Every week on Friday
               skip: 0
-              id: 2
+              id: "2"
               type: weekly
               moment: "3"
             updated_at: 2018-09-17T12:46:47+01:00
@@ -9043,7 +10122,7 @@ components:
             created_at: 2018-09-17T12:46:47+01:00
             description: Every week on Friday
             skip: 0
-            id: 2
+            id: "2"
             type: weekly
             moment: "3"
           - occurrences:
@@ -9054,7 +10133,7 @@ components:
             created_at: 2018-09-17T12:46:47+01:00
             description: Every week on Friday
             skip: 0
-            id: 2
+            id: "2"
             type: weekly
             moment: "3"
           updated_at: 2018-09-17T12:46:47+01:00
@@ -9097,15 +10176,15 @@ components:
         created_at: 2018-09-17T12:46:47+01:00
         description: Every week on Friday
         skip: 0
-        id: 2
+        id: "2"
         type: weekly
         moment: "3"
       properties:
         id:
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           readOnly: true
-          type: integer
+          type: string
         created_at:
           example: 2018-09-17T12:46:47+01:00
           format: date-time
@@ -9252,7 +10331,7 @@ components:
               created_at: 2018-09-17T12:46:47+01:00
               description: Every week on Friday
               skip: 0
-              id: 2
+              id: "2"
               type: weekly
               moment: "3"
             - occurrences:
@@ -9263,7 +10342,7 @@ components:
               created_at: 2018-09-17T12:46:47+01:00
               description: Every week on Friday
               skip: 0
-              id: 2
+              id: "2"
               type: weekly
               moment: "3"
             updated_at: 2018-09-17T12:46:47+01:00
@@ -9470,7 +10549,7 @@ components:
           updated_at: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
           active: true
-          id: 2
+          id: "2"
           type: user_action
           value: tag1
           order: 5
@@ -9478,7 +10557,7 @@ components:
           updated_at: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
           active: true
-          id: 2
+          id: "2"
           type: user_action
           value: tag1
           order: 5
@@ -9491,7 +10570,7 @@ components:
           updated_at: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
           active: true
-          id: 2
+          id: "2"
           type: set_category
           value: Daily groceries
           order: 5
@@ -9499,7 +10578,7 @@ components:
           updated_at: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
           active: true
-          id: 2
+          id: "2"
           type: set_category
           value: Daily groceries
           order: 5
@@ -9588,16 +10667,16 @@ components:
         updated_at: 2018-09-17T12:46:47+01:00
         created_at: 2018-09-17T12:46:47+01:00
         active: true
-        id: 2
+        id: "2"
         type: set_category
         value: Daily groceries
         order: 5
       properties:
         id:
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           readOnly: true
-          type: integer
+          type: string
         created_at:
           example: 2018-09-17T12:46:47+01:00
           format: date-time
@@ -9677,7 +10756,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: user_action
               value: tag1
               order: 5
@@ -9685,7 +10764,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: user_action
               value: tag1
               order: 5
@@ -9698,7 +10777,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: set_category
               value: Daily groceries
               order: 5
@@ -9706,7 +10785,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: set_category
               value: Daily groceries
               order: 5
@@ -9730,7 +10809,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: user_action
               value: tag1
               order: 5
@@ -9738,7 +10817,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: user_action
               value: tag1
               order: 5
@@ -9751,7 +10830,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: set_category
               value: Daily groceries
               order: 5
@@ -9759,7 +10838,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: set_category
               value: Daily groceries
               order: 5
@@ -9964,7 +11043,7 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             active: true
-            id: 2
+            id: "2"
             type: user_action
             value: tag1
             order: 5
@@ -9972,7 +11051,7 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             active: true
-            id: 2
+            id: "2"
             type: user_action
             value: tag1
             order: 5
@@ -9985,7 +11064,7 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             active: true
-            id: 2
+            id: "2"
             type: set_category
             value: Daily groceries
             order: 5
@@ -9993,7 +11072,7 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             active: true
-            id: 2
+            id: "2"
             type: set_category
             value: Daily groceries
             order: 5
@@ -10040,7 +11119,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: user_action
               value: tag1
               order: 5
@@ -10048,7 +11127,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: user_action
               value: tag1
               order: 5
@@ -10061,7 +11140,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: set_category
               value: Daily groceries
               order: 5
@@ -10069,7 +11148,7 @@ components:
               updated_at: 2018-09-17T12:46:47+01:00
               created_at: 2018-09-17T12:46:47+01:00
               active: true
-              id: 2
+              id: "2"
               type: set_category
               value: Daily groceries
               order: 5
@@ -10093,16 +11172,16 @@ components:
         updated_at: 2018-09-17T12:46:47+01:00
         created_at: 2018-09-17T12:46:47+01:00
         active: true
-        id: 2
+        id: "2"
         type: user_action
         value: tag1
         order: 5
       properties:
         id:
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           readOnly: true
-          type: integer
+          type: string
         created_at:
           example: 2018-09-17T12:46:47+01:00
           format: date-time
@@ -10259,11 +11338,11 @@ components:
         tags:
         - size: 24.56
           tag: expensive
-          id: 2
+          id: "2"
           relative: 0.345
         - size: 24.56
           tag: expensive
-          id: 2
+          id: "2"
           relative: 0.345
       properties:
         tags:
@@ -10275,7 +11354,7 @@ components:
       example:
         size: 24.56
         tag: expensive
-        id: 2
+        id: "2"
         relative: 0.345
       properties:
         tag:
@@ -10285,9 +11364,9 @@ components:
           type: string
         id:
           description: ID of the tag
-          example: 2
-          format: int32
-          type: integer
+          example: "2"
+          format: string
+          type: string
         size:
           description: "The total amount of money related to this tag. There is no\
             \ currency information available, and this is a basic sum of all amounts\
@@ -10437,7 +11516,7 @@ components:
         error_if_duplicate_hash: false
         created_at: 2018-09-17T12:46:47+01:00
         transactions:
-        - date: 2018-09-17T00:00:00.000+00:00
+        - date: 2000-01-23
           category_name: Groceries
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
@@ -10488,14 +11567,16 @@ components:
           interest_date: 2000-01-23
           sepa_db: sepa_db
           due_date: 2000-01-23
+          recurrence_total: 0
           book_date: 2000-01-23
+          recurrence_count: 12
           bunq_payment_id: bunq_payment_id
           sepa_ct_op: sepa_ct_op
           source_id: 2
           user: 3
           currency_id: 12
           sepa_ci: sepa_ci
-        - date: 2018-09-17T00:00:00.000+00:00
+        - date: 2000-01-23
           category_name: Groceries
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
@@ -10546,7 +11627,9 @@ components:
           interest_date: 2000-01-23
           sepa_db: sepa_db
           due_date: 2000-01-23
+          recurrence_total: 0
           book_date: 2000-01-23
+          recurrence_count: 12
           bunq_payment_id: bunq_payment_id
           sepa_ct_op: sepa_ct_op
           source_id: 2
@@ -10607,7 +11690,7 @@ components:
             error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
-            - date: 2018-09-17T00:00:00.000+00:00
+            - date: 2000-01-23
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
@@ -10658,14 +11741,16 @@ components:
               interest_date: 2000-01-23
               sepa_db: sepa_db
               due_date: 2000-01-23
+              recurrence_total: 0
               book_date: 2000-01-23
+              recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
               source_id: 2
               user: 3
               currency_id: 12
               sepa_ci: sepa_ci
-            - date: 2018-09-17T00:00:00.000+00:00
+            - date: 2000-01-23
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
@@ -10716,7 +11801,9 @@ components:
               interest_date: 2000-01-23
               sepa_db: sepa_db
               due_date: 2000-01-23
+              recurrence_total: 0
               book_date: 2000-01-23
+              recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
               source_id: 2
@@ -10738,7 +11825,7 @@ components:
             error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
-            - date: 2018-09-17T00:00:00.000+00:00
+            - date: 2000-01-23
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
@@ -10789,14 +11876,16 @@ components:
               interest_date: 2000-01-23
               sepa_db: sepa_db
               due_date: 2000-01-23
+              recurrence_total: 0
               book_date: 2000-01-23
+              recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
               source_id: 2
               user: 3
               currency_id: 12
               sepa_ci: sepa_ci
-            - date: 2018-09-17T00:00:00.000+00:00
+            - date: 2000-01-23
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
@@ -10847,7 +11936,9 @@ components:
               interest_date: 2000-01-23
               sepa_db: sepa_db
               due_date: 2000-01-23
+              recurrence_total: 0
               book_date: 2000-01-23
+              recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
               source_id: 2
@@ -11071,7 +12162,7 @@ components:
           error_if_duplicate_hash: false
           created_at: 2018-09-17T12:46:47+01:00
           transactions:
-          - date: 2018-09-17T00:00:00.000+00:00
+          - date: 2000-01-23
             category_name: Groceries
             notes: Some example notes
             sepa_batch_id: sepa_batch_id
@@ -11122,14 +12213,16 @@ components:
             interest_date: 2000-01-23
             sepa_db: sepa_db
             due_date: 2000-01-23
+            recurrence_total: 0
             book_date: 2000-01-23
+            recurrence_count: 12
             bunq_payment_id: bunq_payment_id
             sepa_ct_op: sepa_ct_op
             source_id: 2
             user: 3
             currency_id: 12
             sepa_ci: sepa_ci
-          - date: 2018-09-17T00:00:00.000+00:00
+          - date: 2000-01-23
             category_name: Groceries
             notes: Some example notes
             sepa_batch_id: sepa_batch_id
@@ -11180,7 +12273,9 @@ components:
             interest_date: 2000-01-23
             sepa_db: sepa_db
             due_date: 2000-01-23
+            recurrence_total: 0
             book_date: 2000-01-23
+            recurrence_count: 12
             bunq_payment_id: bunq_payment_id
             sepa_ct_op: sepa_ct_op
             source_id: 2
@@ -11225,7 +12320,7 @@ components:
             error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
-            - date: 2018-09-17T00:00:00.000+00:00
+            - date: 2000-01-23
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
@@ -11276,14 +12371,16 @@ components:
               interest_date: 2000-01-23
               sepa_db: sepa_db
               due_date: 2000-01-23
+              recurrence_total: 0
               book_date: 2000-01-23
+              recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
               source_id: 2
               user: 3
               currency_id: 12
               sepa_ci: sepa_ci
-            - date: 2018-09-17T00:00:00.000+00:00
+            - date: 2000-01-23
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
@@ -11334,7 +12431,9 @@ components:
               interest_date: 2000-01-23
               sepa_db: sepa_db
               due_date: 2000-01-23
+              recurrence_total: 0
               book_date: 2000-01-23
+              recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
               source_id: 2
@@ -11357,7 +12456,7 @@ components:
       type: object
     TransactionSplit:
       example:
-        date: 2018-09-17T00:00:00.000+00:00
+        date: 2000-01-23
         category_name: Groceries
         notes: Some example notes
         sepa_batch_id: sepa_batch_id
@@ -11408,7 +12507,9 @@ components:
         interest_date: 2000-01-23
         sepa_db: sepa_db
         due_date: 2000-01-23
+        recurrence_total: 0
         book_date: 2000-01-23
+        recurrence_count: 12
         bunq_payment_id: bunq_payment_id
         sepa_ct_op: sepa_ct_op
         source_id: 2
@@ -11437,12 +12538,12 @@ components:
           - deposit
           - transfer
           - reconciliation
+          - opening balance
           example: withdrawal
           format: string
           type: string
         date:
           description: Date of the transaction
-          example: 2018-09-17
           format: date
           type: string
         amount:
@@ -11667,6 +12768,19 @@ components:
           nullable: true
           readOnly: true
           type: integer
+        recurrence_total:
+          description: Total number of transactions expected to be created by this
+            recurrence repetition. Will be 0 if infinite.
+          example: 0
+          format: int32
+          readOnly: true
+          type: integer
+        recurrence_count:
+          description: "The # of the current transaction created under this recurrence."
+          example: 12
+          format: int32
+          readOnly: true
+          type: integer
         bunq_payment_id:
           description: Internal ID of bunq transaction.
           format: string
@@ -11747,6 +12861,7 @@ components:
       - description
       - destination_id
       - source_id
+      - type
       type: object
     TransactionTypeFilter:
       enum:

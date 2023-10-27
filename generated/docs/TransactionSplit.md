@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **User** | **int** | User ID | [optional] [readonly] 
 **TransactionJournalId** | **int** | ID of the underlying transaction journal. Each transaction consists of a transaction group (see the top ID) and one or more journals making up the splits of the transaction.  | [optional] [readonly] 
-**Type** | **string** | Type of transaction. | [optional] 
+**Type** | **string** | Type of transaction. | 
 **Date** | **DateTime** | Date of the transaction | 
 **Amount** | **string** | Amount of the transaction. | 
 **Description** | **string** | Description of the transaction. | 
@@ -44,6 +44,8 @@ Name | Type | Description | Notes
 **ExternalId** | **string** | Reference to external ID in other systems. | [optional] 
 **OriginalSource** | **string** | System generated identifier for original creator of transaction. | [optional] [readonly] 
 **RecurrenceId** | **int?** | Reference to recurrence that made the transaction. | [optional] [readonly] 
+**RecurrenceTotal** | **int** | Total number of transactions expected to be created by this recurrence repetition. Will be 0 if infinite. | [optional] [readonly] 
+**RecurrenceCount** | **int** | The # of the current transaction created under this recurrence. | [optional] [readonly] 
 **BunqPaymentId** | **string** | Internal ID of bunq transaction. | [optional] 
 **ImportHashV2** | **string** | Hash value of original import transaction (for duplicate detection). | [optional] [readonly] 
 **SepaCc** | **string** | SEPA Clearing Code | [optional] 

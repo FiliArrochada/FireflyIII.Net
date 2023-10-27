@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int** |  | [optional] [readonly] 
+**Id** | **string** |  | [optional] [readonly] 
 **CreatedAt** | **DateTime** |  | [optional] [readonly] 
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
 **Type** | **string** | The type of the repetition. ndom means: the n-th weekday of the month, where you can also specify which day of the week. | 

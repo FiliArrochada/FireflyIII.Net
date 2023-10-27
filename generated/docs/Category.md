@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **DateTime** |  | [optional] [readonly] 
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
 **Name** | **string** |  | 
+**Notes** | **string** |  | [optional] 
 **Spent** | [**List&lt;CategorySpent&gt;**](CategorySpent.md) |  | [optional] [readonly] 
 **Earned** | [**List&lt;CategoryEarned&gt;**](CategoryEarned.md) |  | [optional] [readonly] 
 

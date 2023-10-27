@@ -202,7 +202,7 @@ void (empty response body)
 
 <a id="getbudget"></a>
 # **GetBudget**
-> BudgetSingle GetBudget (int id, DateTime? startDate = null, DateTime? endDate = null)
+> BudgetSingle GetBudget (int id, DateTime? start = null, DateTime? end = null)
 
 Get a single budget.
 
@@ -229,13 +229,13 @@ namespace Example
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the requested budget.
-            var startDate = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
-            var endDate = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
 
             try
             {
                 // Get a single budget.
-                BudgetSingle result = apiInstance.GetBudget(id, startDate, endDate);
+                BudgetSingle result = apiInstance.GetBudget(id, start, end);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -256,7 +256,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single budget.
-    ApiResponse<BudgetSingle> response = apiInstance.GetBudgetWithHttpInfo(id, startDate, endDate);
+    ApiResponse<BudgetSingle> response = apiInstance.GetBudgetWithHttpInfo(id, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -274,8 +274,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the requested budget. |  |
-| **startDate** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
-| **endDate** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
 
 ### Return type
 

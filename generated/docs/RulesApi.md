@@ -485,7 +485,7 @@ catch (ApiException e)
 
 <a id="testrule"></a>
 # **TestRule**
-> TransactionArray TestRule (int id, int? page = null, DateTime? start = null, DateTime? end = null, int? searchLimit = null, int? triggeredLimit = null, string accounts = null)
+> TransactionArray TestRule (int id, DateTime? start = null, DateTime? end = null, string accounts = null)
 
 Test which transactions would be hit by the rule. No changes will be made.
 
@@ -512,17 +512,14 @@ namespace Example
 
             var apiInstance = new RulesApi(config);
             var id = 1;  // int | The ID of the rule.
-            var page = 1;  // int? | Page number. The default pagination is 50 items. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
-            var searchLimit = 56;  // int? | Maximum number of transactions Firefly III will try. Don't set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.  (optional) 
-            var triggeredLimit = 56;  // int? | Maximum number of transactions the rule can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don't go above the user's page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.  (optional) 
             var accounts = 1,2,3;  // string | Limit the testing of the rule to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
 
             try
             {
                 // Test which transactions would be hit by the rule. No changes will be made.
-                TransactionArray result = apiInstance.TestRule(id, page, start, end, searchLimit, triggeredLimit, accounts);
+                TransactionArray result = apiInstance.TestRule(id, start, end, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -543,7 +540,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Test which transactions would be hit by the rule. No changes will be made.
-    ApiResponse<TransactionArray> response = apiInstance.TestRuleWithHttpInfo(id, page, start, end, searchLimit, triggeredLimit, accounts);
+    ApiResponse<TransactionArray> response = apiInstance.TestRuleWithHttpInfo(id, start, end, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -561,11 +558,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the rule. |  |
-| **page** | **int?** | Page number. The default pagination is 50 items. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
-| **searchLimit** | **int?** | Maximum number of transactions Firefly III will try. Don&#39;t set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.  | [optional]  |
-| **triggeredLimit** | **int?** | Maximum number of transactions the rule can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don&#39;t go above the user&#39;s page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.  | [optional]  |
 | **accounts** | **string** | Limit the testing of the rule to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
 
 ### Return type
