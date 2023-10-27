@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
 **Name** | **string** |  | 
 **Active** | **bool** |  | [optional] 
+**Notes** | **string** |  | [optional] 
 **Order** | **int** |  | [optional] [readonly] 
 **AutoBudgetType** | **AutoBudgetType** |  | [optional] 
 **AutoBudgetCurrencyId** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 

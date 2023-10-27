@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **CurrencySymbol** | **string** |  | [optional] [readonly] 
 **CurrencyDecimalPlaces** | **int** | Number of decimals supported by the currency | [optional] [readonly] 
 **TargetAmount** | **string** |  | 
-**Percentage** | **float** |  | [optional] [readonly] 
+**Percentage** | **float?** |  | [optional] [readonly] 
 **CurrentAmount** | **string** |  | [optional] 
 **LeftToSave** | **string** |  | [optional] [readonly] 
 **SavePerMonth** | **string** |  | [optional] [readonly] 

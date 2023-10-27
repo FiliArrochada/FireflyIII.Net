@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [optional] 
 **Active** | **bool** |  | [optional] 
 **Order** | **int** |  | [optional] 
+**Notes** | **string** |  | [optional] 
 **AutoBudgetType** | **AutoBudgetType** |  | [optional] 
 **AutoBudgetCurrencyId** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
 **AutoBudgetCurrencyCode** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 

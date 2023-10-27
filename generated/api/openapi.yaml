@@ -5,12 +5,12 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2022-02-04T17:00:55+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2022-04-04T03:54:41+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v1.5.5
-  version: 1.5.5
+  title: Firefly III API v1.5.6
+  version: 1.5.6
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org
@@ -3651,6 +3651,70 @@ paths:
       summary: List all transactions in a category.
       tags:
       - categories
+  /api/v1/categories/transactions-without-category:
+    get:
+      description: "Get all transactions without a category, possibly limited by start\
+        \ and end"
+      operationId: listTransactionWithoutCategory
+      parameters:
+      - description: Limits the number of results on one page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          example: 5
+          type: integer
+        style: form
+      - description: Page number. The default pagination is 50.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      - description: |
+          A date formatted YYYY-MM-DD.
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          example: 2018-09-17
+          format: date
+          type: string
+        style: form
+      - description: |
+          A date formatted YYYY-MM-DD.
+        explode: true
+        in: query
+        name: end
+        required: false
+        schema:
+          example: 2018-12-31
+          format: date
+          type: string
+        style: form
+      - description: Optional filter on the transaction type(s) returned
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/TransactionTypeFilter'
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TransactionArray'
+          description: A list of transactions.
+      summary: All transactions without a category.
+      tags:
+      - categories
   /api/v1/categories/{id}/attachments:
     get:
       description: Lists all attachments.
@@ -6362,6 +6426,70 @@ paths:
       summary: All transactions to a budget.
       tags:
       - budgets
+  /api/v1/budgets/transactions-without-budget:
+    get:
+      description: "Get all transactions without a budget, possibly limited by start\
+        \ and end"
+      operationId: listTransactionWithoutBudget
+      parameters:
+      - description: Limits the number of results on one page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          example: 5
+          type: integer
+        style: form
+      - description: Page number. The default pagination is 50.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      - description: |
+          A date formatted YYYY-MM-DD.
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          example: 2018-09-17
+          format: date
+          type: string
+        style: form
+      - description: |
+          A date formatted YYYY-MM-DD.
+        explode: true
+        in: query
+        name: end
+        required: false
+        schema:
+          example: 2018-12-31
+          format: date
+          type: string
+        style: form
+      - description: Optional filter on the transaction type(s) returned
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/TransactionTypeFilter'
+        style: form
+      responses:
+        "200":
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TransactionArray'
+          description: A list of transactions.
+      summary: All transactions without a budget.
+      tags:
+      - budgets
   /api/v1/budgets/{id}/attachments:
     get:
       description: Lists all attachments.
@@ -8680,6 +8808,10 @@ components:
       - firefly.enable_external_map
       - firefly.expected_source_types
       - app.timezone
+      - firefly.bill_periods
+      - firefly.credit_card_types
+      - firefly.languages
+      - firefly.valid_view_ranges
       type: string
     AccountSearchFieldFilter:
       enum:
@@ -8776,6 +8908,7 @@ components:
           auto_budget_currency_id: "12"
           auto_budget_amount: "-1012.12"
           auto_budget_period: monthly
+          notes: Some notes
           updated_at: 2018-09-17T12:46:47+01:00
           auto_budget_type: reset
           spent:
@@ -10161,6 +10294,7 @@ components:
             auto_budget_currency_id: "12"
             auto_budget_amount: "-1012.12"
             auto_budget_period: monthly
+            notes: Some notes
             updated_at: 2018-09-17T12:46:47+01:00
             auto_budget_type: reset
             spent:
@@ -14513,10 +14647,12 @@ components:
         target_amount:
           example: "123.45"
           format: amount
+          nullable: true
           type: string
         percentage:
           example: 12.5
           format: float
+          nullable: true
           readOnly: true
           type: number
         current_amount:
@@ -14526,11 +14662,13 @@ components:
         left_to_save:
           example: "700.00"
           format: string
+          nullable: true
           readOnly: true
           type: string
         save_per_month:
           example: "12.45"
           format: string
+          nullable: true
           readOnly: true
           type: string
         start_date:
@@ -14609,6 +14747,7 @@ components:
         target_amount:
           example: "123.45"
           format: amount
+          nullable: true
           type: string
         current_amount:
           example: "123.45"
@@ -14695,6 +14834,7 @@ components:
         target_amount:
           example: "123.45"
           format: amount
+          nullable: true
           type: string
         current_amount:
           example: "123.45"
@@ -17639,6 +17779,7 @@ components:
         auto_budget_currency_id: "12"
         auto_budget_amount: "-1012.12"
         auto_budget_period: monthly
+        notes: Some notes
         updated_at: 2018-09-17T12:46:47+01:00
         auto_budget_type: reset
         spent:
@@ -17676,6 +17817,11 @@ components:
           example: false
           format: boolean
           type: boolean
+        notes:
+          example: Some notes
+          format: string
+          nullable: true
+          type: string
         order:
           example: 5
           format: int32
@@ -17719,6 +17865,7 @@ components:
         auto_budget_currency_id: "12"
         auto_budget_amount: "-1012.12"
         auto_budget_period: monthly
+        notes: Some notes
         auto_budget_type: reset
         name: Bills
         active: false
@@ -17738,6 +17885,11 @@ components:
           format: int32
           readOnly: true
           type: integer
+        notes:
+          example: Some notes
+          format: string
+          nullable: true
+          type: string
         auto_budget_type:
           $ref: '#/components/schemas/AutoBudgetType'
         auto_budget_currency_id:
@@ -17769,6 +17921,7 @@ components:
         auto_budget_currency_id: "12"
         auto_budget_amount: "-1012.12"
         auto_budget_period: monthly
+        notes: Some notes
         auto_budget_type: reset
         name: Bills
         active: false
@@ -17787,6 +17940,11 @@ components:
           example: 5
           format: int32
           type: integer
+        notes:
+          example: Some notes
+          format: string
+          nullable: true
+          type: string
         auto_budget_type:
           $ref: '#/components/schemas/AutoBudgetType'
         auto_budget_currency_id:

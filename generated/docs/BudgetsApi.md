@@ -14,6 +14,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**ListBudgetLimitByBudget**](BudgetsApi.md#listbudgetlimitbybudget) | **GET** /api/v1/budgets/{id}/limits | Get all limits for a budget. |
 | [**ListTransactionByBudget**](BudgetsApi.md#listtransactionbybudget) | **GET** /api/v1/budgets/{id}/transactions | All transactions to a budget. |
 | [**ListTransactionByBudgetLimit**](BudgetsApi.md#listtransactionbybudgetlimit) | **GET** /api/v1/budgets/{id}/limits/{limitId}/transactions | List all transactions by a budget limit ID. |
+| [**ListTransactionWithoutBudget**](BudgetsApi.md#listtransactionwithoutbudget) | **GET** /api/v1/budgets/transactions-without-budget | All transactions without a budget. |
 | [**StoreBudget**](BudgetsApi.md#storebudget) | **POST** /api/v1/budgets | Store a new budget |
 | [**StoreBudgetLimit**](BudgetsApi.md#storebudgetlimit) | **POST** /api/v1/budgets/{id}/limits | Store new budget limit. |
 | [**UpdateBudget**](BudgetsApi.md#updatebudget) | **PUT** /api/v1/budgets/{id} | Update existing budget. |
@@ -967,6 +968,108 @@ catch (ApiException e)
 | **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
 | **limitId** | **string** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
+
+### Return type
+
+[**TransactionArray**](TransactionArray.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/vnd.api+json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of transactions. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listtransactionwithoutbudget"></a>
+# **ListTransactionWithoutBudget**
+> TransactionArray ListTransactionWithoutBudget (int? limit = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+
+All transactions without a budget.
+
+Get all transactions without a budget, possibly limited by start and end
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class ListTransactionWithoutBudgetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new BudgetsApi(config);
+            var limit = 5;  // int? | Limits the number of results on one page. (optional) 
+            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
+
+            try
+            {
+                // All transactions without a budget.
+                TransactionArray result = apiInstance.ListTransactionWithoutBudget(limit, page, start, end, type);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling BudgetsApi.ListTransactionWithoutBudget: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListTransactionWithoutBudgetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // All transactions without a budget.
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionWithoutBudgetWithHttpInfo(limit, page, start, end, type);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BudgetsApi.ListTransactionWithoutBudgetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **limit** | **int?** | Limits the number of results on one page. | [optional]  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
