@@ -19,7 +19,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deletewebhook"></a>
 # **DeleteWebhook**
-> void DeleteWebhook (int id)
+> void DeleteWebhook (string id)
 
 Delete a webhook.
 
@@ -45,7 +45,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
 
             try
             {
@@ -84,7 +84,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 
 ### Return type
 
@@ -111,7 +111,7 @@ void (empty response body)
 
 <a id="deletewebhookmessage"></a>
 # **DeleteWebhookMessage**
-> void DeleteWebhookMessage (int id, int messageId)
+> void DeleteWebhookMessage (string id, int messageId)
 
 Delete a webhook message.
 
@@ -137,7 +137,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
 
             try
@@ -177,7 +177,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
 
 ### Return type
@@ -205,7 +205,7 @@ void (empty response body)
 
 <a id="deletewebhookmessageattempt"></a>
 # **DeleteWebhookMessageAttempt**
-> void DeleteWebhookMessageAttempt (int id, int messageId, int attemptId)
+> void DeleteWebhookMessageAttempt (string id, int messageId, int attemptId)
 
 Delete a webhook attempt.
 
@@ -231,7 +231,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
             var attemptId = 1;  // int | The webhook message attempt ID.
 
@@ -272,7 +272,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
 | **attemptId** | **int** | The webhook message attempt ID. |  |
 
@@ -301,7 +301,7 @@ void (empty response body)
 
 <a id="getsinglewebhookmessage"></a>
 # **GetSingleWebhookMessage**
-> WebhookMessageSingle GetSingleWebhookMessage (int id, int messageId)
+> WebhookMessageSingle GetSingleWebhookMessage (string id, int messageId)
 
 Get a single message from a webhook.
 
@@ -327,7 +327,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
 
             try
@@ -371,7 +371,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
 
 ### Return type
@@ -398,7 +398,7 @@ catch (ApiException e)
 
 <a id="getsinglewebhookmessageattempt"></a>
 # **GetSingleWebhookMessageAttempt**
-> WebhookAttemptSingle GetSingleWebhookMessageAttempt (int id, int messageId, int attemptId)
+> WebhookAttemptSingle GetSingleWebhookMessageAttempt (string id, int messageId, int attemptId)
 
 Get a single failed attempt from a single webhook message.
 
@@ -424,7 +424,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
             var attemptId = 1;  // int | The webhook attempt ID.
 
@@ -469,7 +469,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
 | **attemptId** | **int** | The webhook attempt ID. |  |
 
@@ -497,7 +497,7 @@ catch (ApiException e)
 
 <a id="getwebhook"></a>
 # **GetWebhook**
-> WebhookSingle GetWebhook (int id)
+> WebhookSingle GetWebhook (string id)
 
 Get a single webhook.
 
@@ -523,7 +523,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
 
             try
             {
@@ -566,7 +566,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 
 ### Return type
 
@@ -592,7 +592,7 @@ catch (ApiException e)
 
 <a id="getwebhookmessageattempts"></a>
 # **GetWebhookMessageAttempts**
-> WebhookAttemptArray GetWebhookMessageAttempts (int id, int messageId, int? page = null)
+> WebhookAttemptArray GetWebhookMessageAttempts (string id, int messageId, int? page = null)
 
 Get all the failed attempts of a single webhook message.
 
@@ -618,7 +618,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
@@ -663,7 +663,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
@@ -691,7 +691,7 @@ catch (ApiException e)
 
 <a id="getwebhookmessages"></a>
 # **GetWebhookMessages**
-> WebhookMessageArray GetWebhookMessages (int id)
+> WebhookMessageArray GetWebhookMessages (string id)
 
 Get all the messages of a single webhook.
 
@@ -717,7 +717,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
 
             try
             {
@@ -760,7 +760,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 
 ### Return type
 
@@ -975,7 +975,7 @@ catch (ApiException e)
 
 <a id="submitwebook"></a>
 # **SubmitWebook**
-> void SubmitWebook (int id)
+> void SubmitWebook (string id)
 
 Submit messages for a webhook.
 
@@ -1001,7 +1001,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
 
             try
             {
@@ -1040,7 +1040,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 
 ### Return type
 
@@ -1068,7 +1068,7 @@ void (empty response body)
 
 <a id="updatewebhook"></a>
 # **UpdateWebhook**
-> WebhookSingle UpdateWebhook (int id, WebhookUpdate webhookUpdate)
+> WebhookSingle UpdateWebhook (string id, WebhookUpdate webhookUpdate)
 
 Update existing webhook.
 
@@ -1094,7 +1094,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
-            var id = 1;  // int | The webhook ID.
+            var id = 123;  // string | The webhook ID.
             var webhookUpdate = new WebhookUpdate(); // WebhookUpdate | JSON array with updated webhook information. See the model for the exact specifications.
 
             try
@@ -1138,7 +1138,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The webhook ID. |  |
+| **id** | **string** | The webhook ID. |  |
 | **webhookUpdate** | [**WebhookUpdate**](WebhookUpdate.md) | JSON array with updated webhook information. See the model for the exact specifications. |  |
 
 ### Return type

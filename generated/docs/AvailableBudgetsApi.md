@@ -12,7 +12,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleteavailablebudget"></a>
 # **DeleteAvailableBudget**
-> void DeleteAvailableBudget (int id)
+> void DeleteAvailableBudget (string id)
 
 Delete an available budget.
 
@@ -38,7 +38,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
-            var id = 1;  // int | The ID of the available budget.
+            var id = 123;  // string | The ID of the available budget.
 
             try
             {
@@ -77,7 +77,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the available budget. |  |
+| **id** | **string** | The ID of the available budget. |  |
 
 ### Return type
 
@@ -103,7 +103,7 @@ void (empty response body)
 
 <a id="getavailablebudget"></a>
 # **GetAvailableBudget**
-> AvailableBudgetSingle GetAvailableBudget (int id)
+> AvailableBudgetSingle GetAvailableBudget (string id)
 
 Get a single available budget.
 
@@ -129,7 +129,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
-            var id = 1;  // int | The ID of the available budget.
+            var id = 123;  // string | The ID of the available budget.
 
             try
             {
@@ -172,7 +172,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the available budget. |  |
+| **id** | **string** | The ID of the available budget. |  |
 
 ### Return type
 
@@ -391,7 +391,7 @@ catch (ApiException e)
 
 <a id="updateavailablebudget"></a>
 # **UpdateAvailableBudget**
-> AvailableBudgetSingle UpdateAvailableBudget (int id, AvailableBudgetUpdate availableBudgetUpdate)
+> AvailableBudgetSingle UpdateAvailableBudget (string id, AvailableBudgetUpdate availableBudgetUpdate)
 
 Update existing available budget, to change for example the date range of the amount or the amount itself.
 
@@ -417,7 +417,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
-            var id = 1;  // int | The ID of the object.X
+            var id = 123;  // string | The ID of the object.X
             var availableBudgetUpdate = new AvailableBudgetUpdate(); // AvailableBudgetUpdate | JSON array or form value with updated available budget information. See the model for the exact specifications.
 
             try
@@ -461,7 +461,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the object.X |  |
+| **id** | **string** | The ID of the object.X |  |
 | **availableBudgetUpdate** | [**AvailableBudgetUpdate**](AvailableBudgetUpdate.md) | JSON array or form value with updated available budget information. See the model for the exact specifications. |  |
 
 ### Return type

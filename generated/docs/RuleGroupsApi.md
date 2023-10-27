@@ -15,7 +15,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleterulegroup"></a>
 # **DeleteRuleGroup**
-> void DeleteRuleGroup (int id)
+> void DeleteRuleGroup (string id)
 
 Delete a rule group.
 
@@ -41,7 +41,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
-            var id = 1;  // int | The ID of the rule group.
+            var id = 123;  // string | The ID of the rule group.
 
             try
             {
@@ -80,7 +80,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule group. |  |
+| **id** | **string** | The ID of the rule group. |  |
 
 ### Return type
 
@@ -106,7 +106,7 @@ void (empty response body)
 
 <a id="firerulegroup"></a>
 # **FireRuleGroup**
-> void FireRuleGroup (int id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
+> void FireRuleGroup (string id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
 
 Fire the rule group on your transactions.
 
@@ -132,7 +132,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
-            var id = 1;  // int | The ID of the rule group.
+            var id = 123;  // string | The ID of the rule group.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
             var accounts = new List<long>(); // List<long> | Limit the triggering of the rule group to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  (optional) 
@@ -174,7 +174,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule group. |  |
+| **id** | **string** | The ID of the rule group. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **accounts** | [**List&lt;long&gt;**](long.md) | Limit the triggering of the rule group to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  | [optional]  |
@@ -202,7 +202,7 @@ void (empty response body)
 
 <a id="getrulegroup"></a>
 # **GetRuleGroup**
-> RuleGroupSingle GetRuleGroup (int id)
+> RuleGroupSingle GetRuleGroup (string id)
 
 Get a single rule group.
 
@@ -228,7 +228,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
-            var id = 1;  // int | The ID of the rule group.
+            var id = 123;  // string | The ID of the rule group.
 
             try
             {
@@ -271,7 +271,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule group. |  |
+| **id** | **string** | The ID of the rule group. |  |
 
 ### Return type
 
@@ -297,7 +297,7 @@ catch (ApiException e)
 
 <a id="listrulebygroup"></a>
 # **ListRuleByGroup**
-> RuleArray ListRuleByGroup (int id, int? page = null)
+> RuleArray ListRuleByGroup (string id, int? page = null)
 
 List rules in this rule group.
 
@@ -323,7 +323,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
-            var id = 1;  // int | The ID of the rule group.
+            var id = 123;  // string | The ID of the rule group.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -367,7 +367,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule group. |  |
+| **id** | **string** | The ID of the rule group. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -582,7 +582,7 @@ catch (ApiException e)
 
 <a id="testrulegroup"></a>
 # **TestRuleGroup**
-> TransactionArray TestRuleGroup (int id, int? page = null, DateTime? start = null, DateTime? end = null, int? searchLimit = null, int? triggeredLimit = null, List<long> accounts = null)
+> TransactionArray TestRuleGroup (string id, int? page = null, DateTime? start = null, DateTime? end = null, int? searchLimit = null, int? triggeredLimit = null, List<long> accounts = null)
 
 Test which transactions would be hit by the rule group. No changes will be made.
 
@@ -608,7 +608,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
-            var id = 1;  // int | The ID of the rule group.
+            var id = 123;  // string | The ID of the rule group.
             var page = 1;  // int? | Page number. The default pagination is 50 items. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
@@ -657,7 +657,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule group. |  |
+| **id** | **string** | The ID of the rule group. |  |
 | **page** | **int?** | Page number. The default pagination is 50 items. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
@@ -688,7 +688,7 @@ catch (ApiException e)
 
 <a id="updaterulegroup"></a>
 # **UpdateRuleGroup**
-> RuleGroupSingle UpdateRuleGroup (int id, RuleGroupUpdate ruleGroupUpdate)
+> RuleGroupSingle UpdateRuleGroup (string id, RuleGroupUpdate ruleGroupUpdate)
 
 Update existing rule group.
 
@@ -714,7 +714,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
-            var id = 1;  // int | The ID of the rule group.
+            var id = 123;  // string | The ID of the rule group.
             var ruleGroupUpdate = new RuleGroupUpdate(); // RuleGroupUpdate | JSON array with updated rule group information. See the model for the exact specifications.
 
             try
@@ -758,7 +758,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule group. |  |
+| **id** | **string** | The ID of the rule group. |  |
 | **ruleGroupUpdate** | [**RuleGroupUpdate**](RuleGroupUpdate.md) | JSON array with updated rule group information. See the model for the exact specifications. |  |
 
 ### Return type

@@ -15,7 +15,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleteaccount"></a>
 # **DeleteAccount**
-> void DeleteAccount (int id)
+> void DeleteAccount (string id)
 
 Permanently delete account.
 
@@ -41,7 +41,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
 
             try
             {
@@ -80,7 +80,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 
 ### Return type
 
@@ -106,7 +106,7 @@ void (empty response body)
 
 <a id="getaccount"></a>
 # **GetAccount**
-> AccountSingle GetAccount (int id, DateTime? date = null)
+> AccountSingle GetAccount (string id, DateTime? date = null)
 
 Get single account.
 
@@ -132,7 +132,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
             var date = DateTime.Parse("2013-10-20");  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
 
             try
@@ -176,7 +176,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 | **date** | **DateTime?** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
 
 ### Return type
@@ -301,7 +301,7 @@ catch (ApiException e)
 
 <a id="listattachmentbyaccount"></a>
 # **ListAttachmentByAccount**
-> AttachmentArray ListAttachmentByAccount (int id, int? page = null)
+> AttachmentArray ListAttachmentByAccount (string id, int? page = null)
 
 Lists all attachments.
 
@@ -327,7 +327,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -371,7 +371,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -398,7 +398,7 @@ catch (ApiException e)
 
 <a id="listpiggybankbyaccount"></a>
 # **ListPiggyBankByAccount**
-> PiggyBankArray ListPiggyBankByAccount (int id, int? page = null)
+> PiggyBankArray ListPiggyBankByAccount (string id, int? page = null)
 
 List all piggy banks related to the account.
 
@@ -424,7 +424,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
             var page = 56;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
@@ -468,7 +468,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
@@ -494,7 +494,7 @@ catch (ApiException e)
 
 <a id="listtransactionbyaccount"></a>
 # **ListTransactionByAccount**
-> TransactionArray ListTransactionByAccount (int id, int? page = null, int? limit = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByAccount (string id, int? page = null, int? limit = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
 List all transactions related to the account.
 
@@ -520,7 +520,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
             var limit = 5;  // int? | Limits the number of results on one page. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
@@ -568,7 +568,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 | **limit** | **int?** | Limits the number of results on one page. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
@@ -693,7 +693,7 @@ catch (ApiException e)
 
 <a id="updateaccount"></a>
 # **UpdateAccount**
-> AccountSingle UpdateAccount (int id, AccountUpdate accountUpdate)
+> AccountSingle UpdateAccount (string id, AccountUpdate accountUpdate)
 
 Update existing account.
 
@@ -719,7 +719,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
             var accountUpdate = new AccountUpdate(); // AccountUpdate | JSON array or formdata with updated account information. See the model for the exact specifications.
 
             try
@@ -763,7 +763,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 | **accountUpdate** | [**AccountUpdate**](AccountUpdate.md) | JSON array or formdata with updated account information. See the model for the exact specifications. |  |
 
 ### Return type

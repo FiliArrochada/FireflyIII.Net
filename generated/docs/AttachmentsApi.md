@@ -14,7 +14,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleteattachment"></a>
 # **DeleteAttachment**
-> void DeleteAttachment (int id)
+> void DeleteAttachment (string id)
 
 Delete an attachment.
 
@@ -40,7 +40,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
-            var id = 1;  // int | The ID of the single.
+            var id = 123;  // string | The ID of the single.
 
             try
             {
@@ -79,7 +79,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the single. |  |
+| **id** | **string** | The ID of the single. |  |
 
 ### Return type
 
@@ -105,7 +105,7 @@ void (empty response body)
 
 <a id="downloadattachment"></a>
 # **DownloadAttachment**
-> System.IO.Stream DownloadAttachment (int id)
+> System.IO.Stream DownloadAttachment (string id)
 
 Download a single attachment.
 
@@ -131,7 +131,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
-            var id = 1;  // int | The ID of the attachment.
+            var id = 123;  // string | The ID of the attachment.
 
             try
             {
@@ -174,7 +174,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the attachment. |  |
+| **id** | **string** | The ID of the attachment. |  |
 
 ### Return type
 
@@ -200,7 +200,7 @@ catch (ApiException e)
 
 <a id="getattachment"></a>
 # **GetAttachment**
-> AttachmentSingle GetAttachment (int id)
+> AttachmentSingle GetAttachment (string id)
 
 Get a single attachment.
 
@@ -226,7 +226,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
-            var id = 1;  // int | The ID of the attachment.
+            var id = 123;  // string | The ID of the attachment.
 
             try
             {
@@ -269,7 +269,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the attachment. |  |
+| **id** | **string** | The ID of the attachment. |  |
 
 ### Return type
 
@@ -484,7 +484,7 @@ catch (ApiException e)
 
 <a id="updateattachment"></a>
 # **UpdateAttachment**
-> AttachmentSingle UpdateAttachment (int id, AttachmentUpdate attachmentUpdate)
+> AttachmentSingle UpdateAttachment (string id, AttachmentUpdate attachmentUpdate)
 
 Update existing attachment.
 
@@ -510,7 +510,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
-            var id = 1;  // int | The ID of the attachment.
+            var id = 123;  // string | The ID of the attachment.
             var attachmentUpdate = new AttachmentUpdate(); // AttachmentUpdate | JSON array with updated attachment information. See the model for the exact specifications.
 
             try
@@ -554,7 +554,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the attachment. |  |
+| **id** | **string** | The ID of the attachment. |  |
 | **attachmentUpdate** | [**AttachmentUpdate**](AttachmentUpdate.md) | JSON array with updated attachment information. See the model for the exact specifications. |  |
 
 ### Return type
@@ -581,7 +581,7 @@ catch (ApiException e)
 
 <a id="uploadattachment"></a>
 # **UploadAttachment**
-> void UploadAttachment (int id, System.IO.Stream body = null)
+> void UploadAttachment (string id, System.IO.Stream body = null)
 
 Upload an attachment.
 
@@ -607,7 +607,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
-            var id = 1;  // int | The ID of the attachment.
+            var id = 123;  // string | The ID of the attachment.
             var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream |  (optional) 
 
             try
@@ -647,7 +647,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the attachment. |  |
+| **id** | **string** | The ID of the attachment. |  |
 | **body** | **System.IO.Stream****System.IO.Stream** |  | [optional]  |
 
 ### Return type

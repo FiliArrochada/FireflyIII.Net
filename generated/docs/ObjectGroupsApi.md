@@ -13,7 +13,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleteobjectgroup"></a>
 # **DeleteObjectGroup**
-> void DeleteObjectGroup (int id)
+> void DeleteObjectGroup (string id)
 
 Delete a object group.
 
@@ -39,7 +39,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ObjectGroupsApi(config);
-            var id = 1;  // int | The ID of the object group.
+            var id = 123;  // string | The ID of the object group.
 
             try
             {
@@ -78,7 +78,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the object group. |  |
+| **id** | **string** | The ID of the object group. |  |
 
 ### Return type
 
@@ -104,7 +104,7 @@ void (empty response body)
 
 <a id="getobjectgroup"></a>
 # **GetObjectGroup**
-> ObjectGroupSingle GetObjectGroup (int id)
+> ObjectGroupSingle GetObjectGroup (string id)
 
 Get a single object group.
 
@@ -130,7 +130,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ObjectGroupsApi(config);
-            var id = 1;  // int | The ID of the object group.
+            var id = 123;  // string | The ID of the object group.
 
             try
             {
@@ -173,7 +173,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the object group. |  |
+| **id** | **string** | The ID of the object group. |  |
 
 ### Return type
 
@@ -199,7 +199,7 @@ catch (ApiException e)
 
 <a id="listbillbyobjectgroup"></a>
 # **ListBillByObjectGroup**
-> BillArray ListBillByObjectGroup (int id, int? page = null)
+> BillArray ListBillByObjectGroup (string id, int? page = null)
 
 List all bills with this object group.
 
@@ -225,7 +225,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ObjectGroupsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
             var page = 56;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
@@ -269,7 +269,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
@@ -389,7 +389,7 @@ catch (ApiException e)
 
 <a id="listpiggybankbyobjectgroup"></a>
 # **ListPiggyBankByObjectGroup**
-> PiggyBankArray ListPiggyBankByObjectGroup (int id, int? page = null)
+> PiggyBankArray ListPiggyBankByObjectGroup (string id, int? page = null)
 
 List all piggy banks related to the object group.
 
@@ -415,7 +415,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ObjectGroupsApi(config);
-            var id = 1;  // int | The ID of the account.
+            var id = 123;  // string | The ID of the account.
             var page = 56;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
@@ -459,7 +459,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the account. |  |
+| **id** | **string** | The ID of the account. |  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
@@ -485,7 +485,7 @@ catch (ApiException e)
 
 <a id="updateobjectgroup"></a>
 # **UpdateObjectGroup**
-> ObjectGroupSingle UpdateObjectGroup (int id, ObjectGroupUpdate objectGroupUpdate)
+> ObjectGroupSingle UpdateObjectGroup (string id, ObjectGroupUpdate objectGroupUpdate)
 
 Update existing object group.
 
@@ -511,7 +511,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ObjectGroupsApi(config);
-            var id = 1;  // int | The ID of the object group
+            var id = 123;  // string | The ID of the object group
             var objectGroupUpdate = new ObjectGroupUpdate(); // ObjectGroupUpdate | JSON array with updated piggy bank information. See the model for the exact specifications.
 
             try
@@ -555,7 +555,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the object group |  |
+| **id** | **string** | The ID of the object group |  |
 | **objectGroupUpdate** | [**ObjectGroupUpdate**](ObjectGroupUpdate.md) | JSON array with updated piggy bank information. See the model for the exact specifications. |  |
 
 ### Return type

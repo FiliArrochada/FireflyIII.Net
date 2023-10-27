@@ -193,7 +193,7 @@ catch (ApiException e)
 
 <a id="setconfiguration"></a>
 # **SetConfiguration**
-> ConfigurationSingle SetConfiguration (ConfigValueUpdateFilter name, ConfigurationUpdateValue value)
+> ConfigurationSingle SetConfiguration (ConfigValueUpdateFilter name, PolymorphicProperty value)
 
 Update configuration value
 
@@ -220,7 +220,7 @@ namespace Example
 
             var apiInstance = new ConfigurationApi(config);
             var name = new ConfigValueUpdateFilter(); // ConfigValueUpdateFilter | The name of the configuration value you want to update.
-            var value = new ConfigurationUpdateValue(); // ConfigurationUpdateValue | 
+            var value = new PolymorphicProperty(); // PolymorphicProperty | 
 
             try
             {
@@ -264,7 +264,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **name** | [**ConfigValueUpdateFilter**](ConfigValueUpdateFilter.md) | The name of the configuration value you want to update. |  |
-| **value** | [**ConfigurationUpdateValue**](ConfigurationUpdateValue.md) |  |  |
+| **value** | [**PolymorphicProperty**](PolymorphicProperty.md) |  |  |
 
 ### Return type
 

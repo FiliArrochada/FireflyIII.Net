@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** |  | [optional] [readonly] 
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
-**Type** | **string** |  | [optional] 
+**Type** | **RecurrenceTransactionType** |  | [optional] 
 **Title** | **string** |  | [optional] 
 **Description** | **string** | Not to be confused with the description of the actual transaction(s) being created. | [optional] 
 **FirstDate** | **DateTime** | First time the recurring transaction will fire. Must be after today. | [optional] 

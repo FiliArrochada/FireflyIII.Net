@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of thing this trigger responds to. A limited set is possible | [optional] 
+**Type** | **RuleTriggerKeyword** |  | [optional] 
 **Value** | **string** | The accompanying value the trigger responds to. This value is often mandatory, but this depends on the trigger. | [optional] 
 **Order** | **int** | Order of the trigger | [optional] 
 **Active** | **bool** | If the trigger is active. | [optional] 

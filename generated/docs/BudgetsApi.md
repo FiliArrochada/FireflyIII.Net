@@ -21,7 +21,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deletebudget"></a>
 # **DeleteBudget**
-> void DeleteBudget (int id)
+> void DeleteBudget (string id)
 
 Delete a budget.
 
@@ -47,7 +47,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget.
+            var id = 123;  // string | The ID of the budget.
 
             try
             {
@@ -86,7 +86,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. |  |
+| **id** | **string** | The ID of the budget. |  |
 
 ### Return type
 
@@ -112,7 +112,7 @@ void (empty response body)
 
 <a id="deletebudgetlimit"></a>
 # **DeleteBudgetLimit**
-> void DeleteBudgetLimit (int id, int limitId)
+> void DeleteBudgetLimit (string id, string limitId)
 
 Delete a budget limit.
 
@@ -138,8 +138,8 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
-            var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
+            var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var limitId = 123;  // string | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
 
             try
             {
@@ -178,8 +178,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
-| **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
+| **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **limitId** | **string** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 
 ### Return type
 
@@ -205,7 +205,7 @@ void (empty response body)
 
 <a id="getbudget"></a>
 # **GetBudget**
-> BudgetSingle GetBudget (int id, DateTime? start = null, DateTime? end = null)
+> BudgetSingle GetBudget (string id, DateTime? start = null, DateTime? end = null)
 
 Get a single budget.
 
@@ -231,7 +231,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the requested budget.
+            var id = 123;  // string | The ID of the requested budget.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
 
@@ -276,7 +276,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the requested budget. |  |
+| **id** | **string** | The ID of the requested budget. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
 
@@ -304,7 +304,7 @@ catch (ApiException e)
 
 <a id="getbudgetlimit"></a>
 # **GetBudgetLimit**
-> BudgetLimitSingle GetBudgetLimit (int id, int limitId)
+> BudgetLimitSingle GetBudgetLimit (string id, int limitId)
 
 Get single budget limit.
 
@@ -328,7 +328,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
             var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
 
             try
@@ -372,7 +372,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
 | **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 
 ### Return type
@@ -399,7 +399,7 @@ catch (ApiException e)
 
 <a id="listattachmentbybudget"></a>
 # **ListAttachmentByBudget**
-> AttachmentArray ListAttachmentByBudget (int id, int? page = null)
+> AttachmentArray ListAttachmentByBudget (string id, int? page = null)
 
 Lists all attachments of a budget.
 
@@ -425,7 +425,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget.
+            var id = 123;  // string | The ID of the budget.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -469,7 +469,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. |  |
+| **id** | **string** | The ID of the budget. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -690,7 +690,7 @@ catch (ApiException e)
 
 <a id="listbudgetlimitbybudget"></a>
 # **ListBudgetLimitByBudget**
-> BudgetLimitArray ListBudgetLimitByBudget (int id, DateTime? start = null, DateTime? end = null)
+> BudgetLimitArray ListBudgetLimitByBudget (string id, DateTime? start = null, DateTime? end = null)
 
 Get all limits for a budget.
 
@@ -716,7 +716,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the requested budget.
+            var id = 123;  // string | The ID of the requested budget.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
 
@@ -761,7 +761,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the requested budget. |  |
+| **id** | **string** | The ID of the requested budget. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 
@@ -788,7 +788,7 @@ catch (ApiException e)
 
 <a id="listtransactionbybudget"></a>
 # **ListTransactionByBudget**
-> TransactionArray ListTransactionByBudget (int id, int? limit = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByBudget (string id, int? limit = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
 All transactions to a budget.
 
@@ -814,7 +814,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget.
+            var id = 123;  // string | The ID of the budget.
             var limit = 5;  // int? | Limits the number of results on one page. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
@@ -862,7 +862,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. |  |
+| **id** | **string** | The ID of the budget. |  |
 | **limit** | **int?** | Limits the number of results on one page. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
@@ -892,7 +892,7 @@ catch (ApiException e)
 
 <a id="listtransactionbybudgetlimit"></a>
 # **ListTransactionByBudgetLimit**
-> TransactionArray ListTransactionByBudgetLimit (int id, int limitId, int? page = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByBudgetLimit (string id, string limitId, int? page = null, TransactionTypeFilter type = null)
 
 List all transactions by a budget limit ID.
 
@@ -918,8 +918,8 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
-            var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
+            var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var limitId = 123;  // string | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
 
@@ -964,8 +964,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
-| **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
+| **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **limitId** | **string** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
@@ -1087,7 +1087,7 @@ catch (ApiException e)
 
 <a id="storebudgetlimit"></a>
 # **StoreBudgetLimit**
-> BudgetLimitSingle StoreBudgetLimit (int id, BudgetLimitStore budgetLimitStore)
+> BudgetLimitSingle StoreBudgetLimit (string id, BudgetLimitStore budgetLimitStore)
 
 Store new budget limit.
 
@@ -1113,7 +1113,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget.
+            var id = 123;  // string | The ID of the budget.
             var budgetLimitStore = new BudgetLimitStore(); // BudgetLimitStore | JSON array or key=value pairs with the necessary budget information. See the model for the exact specifications.
 
             try
@@ -1157,7 +1157,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. |  |
+| **id** | **string** | The ID of the budget. |  |
 | **budgetLimitStore** | [**BudgetLimitStore**](BudgetLimitStore.md) | JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications. |  |
 
 ### Return type
@@ -1184,7 +1184,7 @@ catch (ApiException e)
 
 <a id="updatebudget"></a>
 # **UpdateBudget**
-> BudgetSingle UpdateBudget (int id, BudgetUpdate budgetUpdate)
+> BudgetSingle UpdateBudget (string id, BudgetUpdate budgetUpdate)
 
 Update existing budget.
 
@@ -1210,7 +1210,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget.
+            var id = 123;  // string | The ID of the budget.
             var budgetUpdate = new BudgetUpdate(); // BudgetUpdate | JSON array with updated budget information. See the model for the exact specifications.
 
             try
@@ -1254,7 +1254,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. |  |
+| **id** | **string** | The ID of the budget. |  |
 | **budgetUpdate** | [**BudgetUpdate**](BudgetUpdate.md) | JSON array with updated budget information. See the model for the exact specifications. |  |
 
 ### Return type
@@ -1281,7 +1281,7 @@ catch (ApiException e)
 
 <a id="updatebudgetlimit"></a>
 # **UpdateBudgetLimit**
-> BudgetLimitSingle UpdateBudgetLimit (int id, int limitId, BudgetLimit budgetLimit)
+> BudgetLimitSingle UpdateBudgetLimit (string id, string limitId, BudgetLimit budgetLimit)
 
 Update existing budget limit.
 
@@ -1307,8 +1307,8 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
-            var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
+            var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var limitId = 123;  // string | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
             var budgetLimit = new BudgetLimit(); // BudgetLimit | JSON array with updated budget limit information. See the model for the exact specifications.
 
             try
@@ -1352,8 +1352,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
-| **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
+| **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **limitId** | **string** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 | **budgetLimit** | [**BudgetLimit**](BudgetLimit.md) | JSON array with updated budget limit information. See the model for the exact specifications. |  |
 
 ### Return type

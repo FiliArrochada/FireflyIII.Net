@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **User** | **string** | User ID | [optional] [readonly] 
 **TransactionJournalId** | **string** | ID of the underlying transaction journal. Each transaction consists of a transaction group (see the top ID) and one or more journals making up the splits of the transaction.  | [optional] [readonly] 
-**Type** | **string** | Type of transaction. | 
+**Type** | **TransactionTypeProperty** |  | 
 **Date** | **DateTime** | Date of the transaction | 
 **Order** | **int?** | Order of this entry in the list of transactions. | [optional] 
 **CurrencyId** | **string** | Currency ID. Default is the source account&#39;s currency, or the user&#39;s default currency. Can be used instead of currency_code. | [optional] 
@@ -40,6 +40,7 @@ Name | Type | Description | Notes
 **Tags** | **List&lt;string&gt;** | Array of tags. | [optional] 
 **InternalReference** | **string** | Reference to internal reference of other systems. | [optional] 
 **ExternalId** | **string** | Reference to external ID in other systems. | [optional] 
+**ExternalUrl** | **string** | External, custom URL for this transaction. | [optional] 
 **OriginalSource** | **string** | System generated identifier for original creator of transaction. | [optional] [readonly] 
 **RecurrenceId** | **int?** | Reference to recurrence that made the transaction. | [optional] [readonly] 
 **RecurrenceTotal** | **int?** | Total number of transactions expected to be created by this recurrence repetition. Will be 0 if infinite. | [optional] [readonly] 
@@ -63,6 +64,7 @@ Name | Type | Description | Notes
 **Latitude** | **double?** | Latitude of the transaction&#39;s location, if applicable. Can be used to draw a map. | [optional] 
 **Longitude** | **double?** | Latitude of the transaction&#39;s location, if applicable. Can be used to draw a map. | [optional] 
 **ZoomLevel** | **int?** | Zoom level for the map, if drawn. This to set the box right. Unfortunately this is a proprietary value because each map provider has different zoom levels. | [optional] 
+**HasAttachments** | **bool** | If the transaction has attachments. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

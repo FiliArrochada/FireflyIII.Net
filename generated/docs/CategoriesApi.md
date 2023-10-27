@@ -14,7 +14,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deletecategory"></a>
 # **DeleteCategory**
-> void DeleteCategory (int id)
+> void DeleteCategory (string id)
 
 Delete a category.
 
@@ -40,7 +40,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
-            var id = 1;  // int | The ID of the category.
+            var id = 123;  // string | The ID of the category.
 
             try
             {
@@ -79,7 +79,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the category. |  |
+| **id** | **string** | The ID of the category. |  |
 
 ### Return type
 
@@ -105,7 +105,7 @@ void (empty response body)
 
 <a id="getcategory"></a>
 # **GetCategory**
-> CategorySingle GetCategory (int id, DateTime? start = null, DateTime? end = null)
+> CategorySingle GetCategory (string id, DateTime? start = null, DateTime? end = null)
 
 Get a single category.
 
@@ -131,7 +131,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
-            var id = 1;  // int | The ID of the category.
+            var id = 123;  // string | The ID of the category.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to show spent and earned info.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to show spent and earned info.  (optional) 
 
@@ -176,7 +176,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the category. |  |
+| **id** | **string** | The ID of the category. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to show spent and earned info.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to show spent and earned info.  | [optional]  |
 
@@ -204,7 +204,7 @@ catch (ApiException e)
 
 <a id="listattachmentbycategory"></a>
 # **ListAttachmentByCategory**
-> AttachmentArray ListAttachmentByCategory (int id, int? page = null)
+> AttachmentArray ListAttachmentByCategory (string id, int? page = null)
 
 Lists all attachments.
 
@@ -230,7 +230,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
-            var id = 1;  // int | The ID of the category.
+            var id = 123;  // string | The ID of the category.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -274,7 +274,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the category. |  |
+| **id** | **string** | The ID of the category. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -395,7 +395,7 @@ catch (ApiException e)
 
 <a id="listtransactionbycategory"></a>
 # **ListTransactionByCategory**
-> TransactionArray ListTransactionByCategory (int id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByCategory (string id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
 List all transactions in a category.
 
@@ -421,7 +421,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
-            var id = 1;  // int | The ID of the category.
+            var id = 123;  // string | The ID of the category.
             var page = 1;  // int? | Page number. The default pagination is per 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the result list.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the result list.  (optional) 
@@ -468,7 +468,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the category. |  |
+| **id** | **string** | The ID of the category. |  |
 | **page** | **int?** | Page number. The default pagination is per 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the result list.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the result list.  | [optional]  |
@@ -592,7 +592,7 @@ catch (ApiException e)
 
 <a id="updatecategory"></a>
 # **UpdateCategory**
-> CategorySingle UpdateCategory (int id, CategoryUpdate categoryUpdate)
+> CategorySingle UpdateCategory (string id, CategoryUpdate categoryUpdate)
 
 Update existing category.
 
@@ -618,7 +618,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
-            var id = 1;  // int | The ID of the category.
+            var id = 123;  // string | The ID of the category.
             var categoryUpdate = new CategoryUpdate(); // CategoryUpdate | JSON array with updated category information. See the model for the exact specifications.
 
             try
@@ -662,7 +662,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the category. |  |
+| **id** | **string** | The ID of the category. |  |
 | **categoryUpdate** | [**CategoryUpdate**](CategoryUpdate.md) | JSON array with updated category information. See the model for the exact specifications. |  |
 
 ### Return type

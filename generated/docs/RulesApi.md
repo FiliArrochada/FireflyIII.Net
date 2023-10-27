@@ -14,7 +14,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleterule"></a>
 # **DeleteRule**
-> void DeleteRule (int id)
+> void DeleteRule (string id)
 
 Delete an rule.
 
@@ -40,7 +40,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RulesApi(config);
-            var id = 1;  // int | The ID of the rule.
+            var id = 123;  // string | The ID of the rule.
 
             try
             {
@@ -79,7 +79,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule. |  |
+| **id** | **string** | The ID of the rule. |  |
 
 ### Return type
 
@@ -105,7 +105,7 @@ void (empty response body)
 
 <a id="firerule"></a>
 # **FireRule**
-> void FireRule (int id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
+> void FireRule (string id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
 
 Fire the rule on your transactions.
 
@@ -131,7 +131,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RulesApi(config);
-            var id = 1;  // int | The ID of the rule.
+            var id = 123;  // string | The ID of the rule.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the start date is not present, it will be set to one year ago. If you use this field, both the start date and the end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the end date is not present, it will be set to today. If you use this field, both the start date and the end date must be present.  (optional) 
             var accounts = new List<long>(); // List<long> | Limit the triggering of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  (optional) 
@@ -173,7 +173,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule. |  |
+| **id** | **string** | The ID of the rule. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the start date is not present, it will be set to one year ago. If you use this field, both the start date and the end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the end date is not present, it will be set to today. If you use this field, both the start date and the end date must be present.  | [optional]  |
 | **accounts** | [**List&lt;long&gt;**](long.md) | Limit the triggering of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  | [optional]  |
@@ -201,7 +201,7 @@ void (empty response body)
 
 <a id="getrule"></a>
 # **GetRule**
-> RuleSingle GetRule (int id)
+> RuleSingle GetRule (string id)
 
 Get a single rule.
 
@@ -227,7 +227,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RulesApi(config);
-            var id = 1;  // int | The ID of the object.X
+            var id = 123;  // string | The ID of the object.X
 
             try
             {
@@ -270,7 +270,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the object.X |  |
+| **id** | **string** | The ID of the object.X |  |
 
 ### Return type
 
@@ -485,7 +485,7 @@ catch (ApiException e)
 
 <a id="testrule"></a>
 # **TestRule**
-> TransactionArray TestRule (int id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
+> TransactionArray TestRule (string id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
 
 Test which transactions would be hit by the rule. No changes will be made.
 
@@ -511,7 +511,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RulesApi(config);
-            var id = 1;  // int | The ID of the rule.
+            var id = 123;  // string | The ID of the rule.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
             var accounts = new List<long>(); // List<long> | Limit the testing of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  (optional) 
@@ -557,7 +557,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the rule. |  |
+| **id** | **string** | The ID of the rule. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **accounts** | [**List&lt;long&gt;**](long.md) | Limit the testing of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  | [optional]  |
@@ -585,7 +585,7 @@ catch (ApiException e)
 
 <a id="updaterule"></a>
 # **UpdateRule**
-> RuleSingle UpdateRule (int id, RuleUpdate ruleUpdate)
+> RuleSingle UpdateRule (string id, RuleUpdate ruleUpdate)
 
 Update existing rule.
 
@@ -611,7 +611,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RulesApi(config);
-            var id = 1;  // int | The ID of the object.X
+            var id = 123;  // string | The ID of the object.X
             var ruleUpdate = new RuleUpdate(); // RuleUpdate | JSON array with updated rule information. See the model for the exact specifications.
 
             try
@@ -655,7 +655,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the object.X |  |
+| **id** | **string** | The ID of the object.X |  |
 | **ruleUpdate** | [**RuleUpdate**](RuleUpdate.md) | JSON array with updated rule information. See the model for the exact specifications. |  |
 
 ### Return type

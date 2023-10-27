@@ -12,7 +12,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleteuser"></a>
 # **DeleteUser**
-> void DeleteUser (int id)
+> void DeleteUser (string id)
 
 Delete a user.
 
@@ -38,7 +38,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UsersApi(config);
-            var id = 1;  // int | The user ID.
+            var id = 123;  // string | The user ID.
 
             try
             {
@@ -77,7 +77,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The user ID. |  |
+| **id** | **string** | The user ID. |  |
 
 ### Return type
 
@@ -104,7 +104,7 @@ void (empty response body)
 
 <a id="getuser"></a>
 # **GetUser**
-> UserSingle GetUser (int id)
+> UserSingle GetUser (string id)
 
 Get a single user.
 
@@ -130,7 +130,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UsersApi(config);
-            var id = 1;  // int | The user ID.
+            var id = 123;  // string | The user ID.
 
             try
             {
@@ -173,7 +173,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The user ID. |  |
+| **id** | **string** | The user ID. |  |
 
 ### Return type
 
@@ -388,7 +388,7 @@ catch (ApiException e)
 
 <a id="updateuser"></a>
 # **UpdateUser**
-> UserSingle UpdateUser (int id, User user)
+> UserSingle UpdateUser (string id, User user)
 
 Update an existing user's information.
 
@@ -414,7 +414,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new UsersApi(config);
-            var id = 1;  // int | The user ID.
+            var id = 123;  // string | The user ID.
             var user = new User(); // User | JSON array with updated user information. See the model for the exact specifications.
 
             try
@@ -458,7 +458,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The user ID. |  |
+| **id** | **string** | The user ID. |  |
 | **user** | [**User**](User.md) | JSON array with updated user information. See the model for the exact specifications. |  |
 
 ### Return type

@@ -13,7 +13,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deleterecurrence"></a>
 # **DeleteRecurrence**
-> void DeleteRecurrence (int id)
+> void DeleteRecurrence (string id)
 
 Delete a recurring transaction.
 
@@ -39,7 +39,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
-            var id = 1;  // int | The ID of the recurring transaction.
+            var id = 123;  // string | The ID of the recurring transaction.
 
             try
             {
@@ -78,7 +78,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the recurring transaction. |  |
+| **id** | **string** | The ID of the recurring transaction. |  |
 
 ### Return type
 
@@ -104,7 +104,7 @@ void (empty response body)
 
 <a id="getrecurrence"></a>
 # **GetRecurrence**
-> RecurrenceSingle GetRecurrence (int id)
+> RecurrenceSingle GetRecurrence (string id)
 
 Get a single recurring transaction.
 
@@ -130,7 +130,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
-            var id = 1;  // int | The ID of the recurring transaction.
+            var id = 123;  // string | The ID of the recurring transaction.
 
             try
             {
@@ -173,7 +173,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the recurring transaction. |  |
+| **id** | **string** | The ID of the recurring transaction. |  |
 
 ### Return type
 
@@ -293,7 +293,7 @@ catch (ApiException e)
 
 <a id="listtransactionbyrecurrence"></a>
 # **ListTransactionByRecurrence**
-> TransactionArray ListTransactionByRecurrence (int id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByRecurrence (string id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
 List all transactions created by a recurring transaction.
 
@@ -319,7 +319,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
-            var id = 1;  // int | The ID of the recurring transaction.
+            var id = 123;  // string | The ID of the recurring transaction.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. Both the start and end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. Both the start and end date must be present.  (optional) 
@@ -366,7 +366,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the recurring transaction. |  |
+| **id** | **string** | The ID of the recurring transaction. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD. Both the start and end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD. Both the start and end date must be present.  | [optional]  |
@@ -490,7 +490,7 @@ catch (ApiException e)
 
 <a id="updaterecurrence"></a>
 # **UpdateRecurrence**
-> RecurrenceSingle UpdateRecurrence (int id, RecurrenceUpdate recurrenceUpdate)
+> RecurrenceSingle UpdateRecurrence (string id, RecurrenceUpdate recurrenceUpdate)
 
 Update existing recurring transaction.
 
@@ -516,7 +516,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
-            var id = 1;  // int | The ID of the recurring transaction.
+            var id = 123;  // string | The ID of the recurring transaction.
             var recurrenceUpdate = new RecurrenceUpdate(); // RecurrenceUpdate | JSON array with updated recurring transaction information. See the model for the exact specifications.
 
             try
@@ -560,7 +560,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the recurring transaction. |  |
+| **id** | **string** | The ID of the recurring transaction. |  |
 | **recurrenceUpdate** | [**RecurrenceUpdate**](RecurrenceUpdate.md) | JSON array with updated recurring transaction information. See the model for the exact specifications. |  |
 
 ### Return type

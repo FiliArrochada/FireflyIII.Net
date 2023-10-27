@@ -13,11 +13,11 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**ListLinksByJournal**](TransactionsApi.md#listlinksbyjournal) | **GET** /api/v1/transaction-journals/{id}/links | Lists all the transaction links for an individual journal (individual split). |
 | [**ListTransaction**](TransactionsApi.md#listtransaction) | **GET** /api/v1/transactions | List all the user&#39;s transactions.  |
 | [**StoreTransaction**](TransactionsApi.md#storetransaction) | **POST** /api/v1/transactions | Store a new transaction |
-| [**UpdateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /api/v1/transactions/{id} | Update existing transaction. |
+| [**UpdateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /api/v1/transactions/{id} | Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials |
 
 <a id="deletetransaction"></a>
 # **DeleteTransaction**
-> void DeleteTransaction (int id)
+> void DeleteTransaction (string id)
 
 Delete a transaction.
 
@@ -43,7 +43,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction.
+            var id = 123;  // string | The ID of the transaction.
 
             try
             {
@@ -82,7 +82,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction. |  |
+| **id** | **string** | The ID of the transaction. |  |
 
 ### Return type
 
@@ -108,7 +108,7 @@ void (empty response body)
 
 <a id="deletetransactionjournal"></a>
 # **DeleteTransactionJournal**
-> void DeleteTransactionJournal (int id)
+> void DeleteTransactionJournal (string id)
 
 Delete split from transaction
 
@@ -134,7 +134,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction journal (the split) you wish to delete.
+            var id = 123;  // string | The ID of the transaction journal (the split) you wish to delete.
 
             try
             {
@@ -173,7 +173,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction journal (the split) you wish to delete. |  |
+| **id** | **string** | The ID of the transaction journal (the split) you wish to delete. |  |
 
 ### Return type
 
@@ -199,7 +199,7 @@ void (empty response body)
 
 <a id="gettransaction"></a>
 # **GetTransaction**
-> TransactionSingle GetTransaction (int id)
+> TransactionSingle GetTransaction (string id)
 
 Get a single transaction.
 
@@ -225,7 +225,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction.
+            var id = 123;  // string | The ID of the transaction.
 
             try
             {
@@ -268,7 +268,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction. |  |
+| **id** | **string** | The ID of the transaction. |  |
 
 ### Return type
 
@@ -294,7 +294,7 @@ catch (ApiException e)
 
 <a id="gettransactionbyjournal"></a>
 # **GetTransactionByJournal**
-> TransactionSingle GetTransactionByJournal (int id)
+> TransactionSingle GetTransactionByJournal (string id)
 
 Get a single transaction, based on one of the underlying transaction journals (transaction splits).
 
@@ -320,7 +320,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction journal (split).
+            var id = 123;  // string | The ID of the transaction journal (split).
 
             try
             {
@@ -363,7 +363,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction journal (split). |  |
+| **id** | **string** | The ID of the transaction journal (split). |  |
 
 ### Return type
 
@@ -389,7 +389,7 @@ catch (ApiException e)
 
 <a id="listattachmentbytransaction"></a>
 # **ListAttachmentByTransaction**
-> AttachmentArray ListAttachmentByTransaction (int id, int? page = null)
+> AttachmentArray ListAttachmentByTransaction (string id, int? page = null)
 
 Lists all attachments.
 
@@ -415,7 +415,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction.
+            var id = 123;  // string | The ID of the transaction.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -459,7 +459,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction. |  |
+| **id** | **string** | The ID of the transaction. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -486,7 +486,7 @@ catch (ApiException e)
 
 <a id="listeventbytransaction"></a>
 # **ListEventByTransaction**
-> PiggyBankEventArray ListEventByTransaction (int id, int? page = null)
+> PiggyBankEventArray ListEventByTransaction (string id, int? page = null)
 
 Lists all piggy bank events.
 
@@ -512,7 +512,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction.
+            var id = 123;  // string | The ID of the transaction.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -556,7 +556,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction. |  |
+| **id** | **string** | The ID of the transaction. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -583,7 +583,7 @@ catch (ApiException e)
 
 <a id="listlinksbyjournal"></a>
 # **ListLinksByJournal**
-> TransactionLinkArray ListLinksByJournal (int id, int? page = null)
+> TransactionLinkArray ListLinksByJournal (string id, int? page = null)
 
 Lists all the transaction links for an individual journal (individual split).
 
@@ -609,7 +609,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction journal / the split.
+            var id = 123;  // string | The ID of the transaction journal / the split.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -653,7 +653,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction journal / the split. |  |
+| **id** | **string** | The ID of the transaction journal / the split. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -875,9 +875,9 @@ catch (ApiException e)
 
 <a id="updatetransaction"></a>
 # **UpdateTransaction**
-> TransactionSingle UpdateTransaction (int id, TransactionUpdate transactionUpdate)
+> TransactionSingle UpdateTransaction (string id, TransactionUpdate transactionUpdate)
 
-Update existing transaction.
+Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
 
 Update an existing transaction.
 
@@ -901,12 +901,12 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction.
+            var id = 123;  // string | The ID of the transaction.
             var transactionUpdate = new TransactionUpdate(); // TransactionUpdate | JSON array with updated transaction information. See the model for the exact specifications.
 
             try
             {
-                // Update existing transaction.
+                // Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
                 TransactionSingle result = apiInstance.UpdateTransaction(id, transactionUpdate);
                 Debug.WriteLine(result);
             }
@@ -927,7 +927,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Update existing transaction.
+    // Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
     ApiResponse<TransactionSingle> response = apiInstance.UpdateTransactionWithHttpInfo(id, transactionUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -945,7 +945,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction. |  |
+| **id** | **string** | The ID of the transaction. |  |
 | **transactionUpdate** | [**TransactionUpdate**](TransactionUpdate.md) | JSON array with updated transaction information. See the model for the exact specifications. |  |
 
 ### Return type

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** | Defaults to true | [optional] 
+**Enabled** | **bool** | Defaults to true | [optional] [default to true]
 **VarDefault** | **bool** | Make this currency the default currency. | [optional] 
 **Code** | **string** |  | 
 **Name** | **string** |  | 

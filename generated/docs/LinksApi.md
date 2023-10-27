@@ -18,7 +18,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deletelinktype"></a>
 # **DeleteLinkType**
-> void DeleteLinkType (int id)
+> void DeleteLinkType (string id)
 
 Permanently delete link type.
 
@@ -44,7 +44,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var id = 1;  // int | The ID of the link type.
+            var id = 123;  // string | The ID of the link type.
 
             try
             {
@@ -83,7 +83,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the link type. |  |
+| **id** | **string** | The ID of the link type. |  |
 
 ### Return type
 
@@ -110,7 +110,7 @@ void (empty response body)
 
 <a id="deletetransactionlink"></a>
 # **DeleteTransactionLink**
-> void DeleteTransactionLink (int id)
+> void DeleteTransactionLink (string id)
 
 Permanently delete link between transactions.
 
@@ -136,7 +136,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var id = 1;  // int | The ID of the transaction link.
+            var id = 123;  // string | The ID of the transaction link.
 
             try
             {
@@ -175,7 +175,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction link. |  |
+| **id** | **string** | The ID of the transaction link. |  |
 
 ### Return type
 
@@ -201,7 +201,7 @@ void (empty response body)
 
 <a id="getlinktype"></a>
 # **GetLinkType**
-> LinkTypeSingle GetLinkType (int id)
+> LinkTypeSingle GetLinkType (string id)
 
 Get single a link type.
 
@@ -227,7 +227,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var id = 1;  // int | The ID of the link type.
+            var id = 123;  // string | The ID of the link type.
 
             try
             {
@@ -270,7 +270,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the link type. |  |
+| **id** | **string** | The ID of the link type. |  |
 
 ### Return type
 
@@ -296,7 +296,7 @@ catch (ApiException e)
 
 <a id="gettransactionlink"></a>
 # **GetTransactionLink**
-> TransactionLinkSingle GetTransactionLink (int id)
+> TransactionLinkSingle GetTransactionLink (string id)
 
 Get a single link.
 
@@ -322,7 +322,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var id = 1;  // int | The ID of the transaction link.
+            var id = 123;  // string | The ID of the transaction link.
 
             try
             {
@@ -365,7 +365,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction link. |  |
+| **id** | **string** | The ID of the transaction link. |  |
 
 ### Return type
 
@@ -485,7 +485,7 @@ catch (ApiException e)
 
 <a id="listtransactionbylinktype"></a>
 # **ListTransactionByLinkType**
-> TransactionArray ListTransactionByLinkType (int id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByLinkType (string id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
 List all transactions under this link type.
 
@@ -511,7 +511,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var id = 1;  // int | The ID of the link type.
+            var id = 123;  // string | The ID of the link type.
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the results.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the results.  (optional) 
@@ -558,7 +558,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the link type. |  |
+| **id** | **string** | The ID of the link type. |  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the results.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the results.  | [optional]  |
@@ -871,7 +871,7 @@ catch (ApiException e)
 
 <a id="updatelinktype"></a>
 # **UpdateLinkType**
-> LinkTypeSingle UpdateLinkType (int id, LinkTypeUpdate linkTypeUpdate)
+> LinkTypeSingle UpdateLinkType (string id, LinkTypeUpdate linkTypeUpdate)
 
 Update existing link type.
 
@@ -897,7 +897,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var id = 1;  // int | The ID of the link type.
+            var id = 123;  // string | The ID of the link type.
             var linkTypeUpdate = new LinkTypeUpdate(); // LinkTypeUpdate | JSON array or formdata with updated link type information. See the model for the exact specifications.
 
             try
@@ -941,7 +941,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the link type. |  |
+| **id** | **string** | The ID of the link type. |  |
 | **linkTypeUpdate** | [**LinkTypeUpdate**](LinkTypeUpdate.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
 
 ### Return type
@@ -969,7 +969,7 @@ catch (ApiException e)
 
 <a id="updatetransactionlink"></a>
 # **UpdateTransactionLink**
-> TransactionLinkSingle UpdateTransactionLink (int id, TransactionLinkUpdate transactionLinkUpdate)
+> TransactionLinkSingle UpdateTransactionLink (string id, TransactionLinkUpdate transactionLinkUpdate)
 
 Update an existing link between transactions.
 
@@ -995,7 +995,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var id = 1;  // int | The ID of the transaction link.
+            var id = 123;  // string | The ID of the transaction link.
             var transactionLinkUpdate = new TransactionLinkUpdate(); // TransactionLinkUpdate | JSON array or formdata with updated link type information. See the model for the exact specifications.
 
             try
@@ -1039,7 +1039,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction link. |  |
+| **id** | **string** | The ID of the transaction link. |  |
 | **transactionLinkUpdate** | [**TransactionLinkUpdate**](TransactionLinkUpdate.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
 
 ### Return type

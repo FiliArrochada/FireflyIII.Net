@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Active** | **bool** |  | [optional] 
 **Order** | **int** |  | [optional] [readonly] 
-**AutoBudgetType** | **string** | The type of auto-budget that Firefly III must create. | [optional] 
+**AutoBudgetType** | **AutoBudgetType** |  | [optional] 
 **AutoBudgetCurrencyId** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
 **AutoBudgetCurrencyCode** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
 **AutoBudgetAmount** | **string** |  | [optional] 
-**AutoBudgetPeriod** | **string** | Period for the auto budget | [optional] 
+**AutoBudgetPeriod** | **AutoBudgetPeriod** |  | [optional] 
 **Spent** | [**List&lt;BudgetSpent&gt;**](BudgetSpent.md) | Information on how much was spent in this budget. Is only filled in when the start and end date are submitted. | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

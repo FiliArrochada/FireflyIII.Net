@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of thing this action will do. A limited set is possible. | [optional] 
+**Type** | **RuleActionKeyword** |  | [optional] 
 **Value** | **string** | The accompanying value the action will set, change or update. Can be empty, but for some types this value is mandatory. | [optional] 
 **Order** | **int** | Order of the action | [optional] 
 **Active** | **bool** | If the action is active. | [optional] 

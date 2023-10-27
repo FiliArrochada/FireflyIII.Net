@@ -14,7 +14,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deletepiggybank"></a>
 # **DeletePiggyBank**
-> void DeletePiggyBank (int id)
+> void DeletePiggyBank (string id)
 
 Delete a piggy bank.
 
@@ -40,7 +40,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
-            var id = 1;  // int | The ID of the piggy bank.
+            var id = 123;  // string | The ID of the piggy bank.
 
             try
             {
@@ -79,7 +79,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the piggy bank. |  |
+| **id** | **string** | The ID of the piggy bank. |  |
 
 ### Return type
 
@@ -105,7 +105,7 @@ void (empty response body)
 
 <a id="getpiggybank"></a>
 # **GetPiggyBank**
-> PiggyBankSingle GetPiggyBank (int id)
+> PiggyBankSingle GetPiggyBank (string id)
 
 Get a single piggy bank.
 
@@ -131,7 +131,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
-            var id = 1;  // int | The ID of the piggy bank.
+            var id = 123;  // string | The ID of the piggy bank.
 
             try
             {
@@ -174,7 +174,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the piggy bank. |  |
+| **id** | **string** | The ID of the piggy bank. |  |
 
 ### Return type
 
@@ -200,7 +200,7 @@ catch (ApiException e)
 
 <a id="listattachmentbypiggybank"></a>
 # **ListAttachmentByPiggyBank**
-> AttachmentArray ListAttachmentByPiggyBank (int id, int? page = null)
+> AttachmentArray ListAttachmentByPiggyBank (string id, int? page = null)
 
 Lists all attachments.
 
@@ -226,7 +226,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
-            var id = 1;  // int | The ID of the piggy bank.
+            var id = 123;  // string | The ID of the piggy bank.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -270,7 +270,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the piggy bank. |  |
+| **id** | **string** | The ID of the piggy bank. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -297,7 +297,7 @@ catch (ApiException e)
 
 <a id="listeventbypiggybank"></a>
 # **ListEventByPiggyBank**
-> PiggyBankEventArray ListEventByPiggyBank (int id, int? page = null)
+> PiggyBankEventArray ListEventByPiggyBank (string id, int? page = null)
 
 List all events linked to a piggy bank.
 
@@ -323,7 +323,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
-            var id = 1;  // int | The ID of the piggy bank
+            var id = 123;  // string | The ID of the piggy bank
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -367,7 +367,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the piggy bank |  |
+| **id** | **string** | The ID of the piggy bank |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -582,7 +582,7 @@ catch (ApiException e)
 
 <a id="updatepiggybank"></a>
 # **UpdatePiggyBank**
-> PiggyBankSingle UpdatePiggyBank (int id, PiggyBankUpdate piggyBankUpdate)
+> PiggyBankSingle UpdatePiggyBank (string id, PiggyBankUpdate piggyBankUpdate)
 
 Update existing piggy bank.
 
@@ -608,7 +608,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
-            var id = 1;  // int | The ID of the piggy bank
+            var id = 123;  // string | The ID of the piggy bank
             var piggyBankUpdate = new PiggyBankUpdate(); // PiggyBankUpdate | JSON array with updated piggy bank information. See the model for the exact specifications.
 
             try
@@ -652,7 +652,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the piggy bank |  |
+| **id** | **string** | The ID of the piggy bank |  |
 | **piggyBankUpdate** | [**PiggyBankUpdate**](PiggyBankUpdate.md) | JSON array with updated piggy bank information. See the model for the exact specifications. |  |
 
 ### Return type

@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **Notes** | **string** |  | [optional] 
 **InternalReference** | **string** | Reference to internal reference of other systems. | [optional] 
 **ExternalId** | **string** | Reference to external ID in other systems. | [optional] 
+**ExternalUrl** | **string** | External, custom URL for this transaction. | [optional] 
 **BunqPaymentId** | **string** | Internal ID of bunq transaction. | [optional] 
 **SepaCc** | **string** | SEPA Clearing Code | [optional] 
 **SepaCtOp** | **string** | SEPA Opposing Account Identifier | [optional] 

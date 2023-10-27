@@ -5,12 +5,12 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2021-09-25T14:21:28+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2022-02-04T17:00:55+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v1.5.4
-  version: 1.5.4
+  title: Firefly III API v1.5.5
+  version: 1.5.5
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org
@@ -2600,8 +2600,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -2622,8 +2622,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -2648,8 +2648,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -2690,8 +2690,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -2718,8 +2718,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -2749,8 +2749,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.
@@ -2814,8 +2814,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the start date is not present, it will be set to one year ago. If you use this field, both the start date and the end date must be present.
@@ -2873,8 +2873,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -2907,8 +2907,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -2931,8 +2931,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD.
@@ -3063,8 +3063,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -3084,8 +3084,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.
@@ -3131,8 +3131,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -3227,8 +3227,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -3248,8 +3248,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -3273,8 +3273,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -3400,8 +3400,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -3421,8 +3421,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -3446,8 +3446,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -3473,7 +3473,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationError'
           description: Validation errors (see body)
-      summary: Update existing transaction.
+      summary: "Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials"
       tags:
       - transactions
   /api/v1/object_groups:
@@ -3511,8 +3511,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -3532,8 +3532,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -3557,8 +3557,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -3599,8 +3599,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is per 50.
         explode: true
@@ -3662,8 +3662,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -3753,8 +3753,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -3774,8 +3774,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -3799,8 +3799,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -3840,8 +3840,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -3875,8 +3875,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -3911,8 +3911,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -4029,8 +4029,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -4050,8 +4050,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -4075,8 +4075,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -4406,8 +4406,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -4427,8 +4427,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD, to show spent and earned info.
@@ -4474,8 +4474,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -4674,8 +4674,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -4710,8 +4710,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -4731,8 +4731,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -4834,8 +4834,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -4856,8 +4856,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.
@@ -4892,8 +4892,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -5240,9 +5240,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD.
@@ -5286,9 +5285,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -5329,9 +5327,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The ID of the budget limit. The budget limit MUST be associated
           to the budget ID.
@@ -5340,9 +5337,8 @@ paths:
         name: limitId
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -5362,9 +5358,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The ID of the budget limit. The budget limit MUST be associated
           to the budget ID.
@@ -5400,9 +5395,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The ID of the budget limit. The budget limit MUST be associated
           to the budget ID.
@@ -5411,9 +5405,8 @@ paths:
         name: limitId
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -5569,9 +5562,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -5592,8 +5584,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD, to get info on how much the user has spent.
@@ -5640,9 +5632,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -5682,8 +5673,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -5715,8 +5706,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -5750,8 +5741,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -5838,8 +5829,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -5860,8 +5851,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -5885,8 +5876,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -5927,8 +5918,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is per 50 items.
         explode: true
@@ -6068,8 +6059,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -6089,8 +6080,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -6114,8 +6105,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -6158,9 +6149,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The ID of the budget limit. The budget limit MUST be associated
           to the budget ID.
@@ -6169,9 +6159,8 @@ paths:
         name: limitId
         required: true
         schema:
-          example: 1
-          minimum: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -6312,8 +6301,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Limits the number of results on one page.
         explode: true
@@ -6384,8 +6373,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -6420,8 +6409,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is per 50 items.
         explode: true
@@ -6452,8 +6441,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is per 50 items.
         explode: true
@@ -6541,8 +6530,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -6563,8 +6552,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -6589,8 +6578,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -6687,8 +6676,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -6711,8 +6700,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -6737,8 +6726,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -6781,8 +6770,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50 items.
         explode: true
@@ -6873,8 +6862,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: |
           A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.
@@ -6933,8 +6922,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is per 50 items.
         explode: true
@@ -7005,8 +6994,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is 50.
         explode: true
@@ -7041,8 +7030,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: Page number. The default pagination is per 50 items.
         explode: true
@@ -7346,8 +7335,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -7370,8 +7359,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -7395,8 +7384,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -7522,8 +7511,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "204":
@@ -7545,8 +7534,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -7572,8 +7561,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       requestBody:
         content:
@@ -7616,8 +7605,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -7643,8 +7632,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       responses:
         "200":
@@ -7670,8 +7659,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The webhook message ID.
         explode: false
@@ -7704,8 +7693,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The webhook message ID.
         explode: false
@@ -7742,8 +7731,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The webhook message ID.
         explode: false
@@ -7789,8 +7778,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The webhook message ID.
         explode: false
@@ -7834,8 +7823,8 @@ paths:
         name: id
         required: true
         schema:
-          example: 1
-          type: integer
+          example: "123"
+          type: string
         style: simple
       - description: The webhook message ID.
         explode: false
@@ -8186,6 +8175,7 @@ components:
               zoom_level: 6
               type: withdrawal
               destination_type: Asset account
+              external_url: external_url
               transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
@@ -8226,6 +8216,7 @@ components:
               amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
+              has_attachments: false
               currency_symbol: $
               interest_date: 2000-01-23T04:56:07.000+00:00
               sepa_db: sepa_db
@@ -8247,6 +8238,7 @@ components:
               zoom_level: 6
               type: withdrawal
               destination_type: Asset account
+              external_url: external_url
               transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
@@ -8287,6 +8279,7 @@ components:
               amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
+              has_attachments: false
               currency_symbol: $
               interest_date: 2000-01-23T04:56:07.000+00:00
               sepa_db: sepa_db
@@ -8321,6 +8314,7 @@ components:
               zoom_level: 6
               type: withdrawal
               destination_type: Asset account
+              external_url: external_url
               transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
@@ -8361,6 +8355,7 @@ components:
               amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
+              has_attachments: false
               currency_symbol: $
               interest_date: 2000-01-23T04:56:07.000+00:00
               sepa_db: sepa_db
@@ -8382,6 +8377,7 @@ components:
               zoom_level: 6
               type: withdrawal
               destination_type: Asset account
+              external_url: external_url
               transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
@@ -8422,6 +8418,7 @@ components:
               amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
+              has_attachments: false
               currency_symbol: $
               interest_date: 2000-01-23T04:56:07.000+00:00
               sepa_db: sepa_db
@@ -8896,7 +8893,7 @@ components:
         data:
           attributes:
             updated_at: 2018-09-17T12:46:47+01:00
-            data: EUR
+            data: null
             name: currencyPreference
             created_at: 2018-09-17T12:46:47+01:00
           id: "2"
@@ -8992,7 +8989,7 @@ components:
       example:
         attributes:
           updated_at: 2018-09-17T12:46:47+01:00
-          data: EUR
+          data: null
           name: currencyPreference
           created_at: 2018-09-17T12:46:47+01:00
         id: "2"
@@ -9110,6 +9107,7 @@ components:
             zoom_level: 6
             type: withdrawal
             destination_type: Asset account
+            external_url: external_url
             transaction_journal_id: "10421"
             payment_date: 2000-01-23T04:56:07.000+00:00
             order: 0
@@ -9150,6 +9148,7 @@ components:
             amount: "123.45"
             budget_name: Groceries
             currency_name: Euro
+            has_attachments: false
             currency_symbol: $
             interest_date: 2000-01-23T04:56:07.000+00:00
             sepa_db: sepa_db
@@ -9171,6 +9170,7 @@ components:
             zoom_level: 6
             type: withdrawal
             destination_type: Asset account
+            external_url: external_url
             transaction_journal_id: "10421"
             payment_date: 2000-01-23T04:56:07.000+00:00
             order: 0
@@ -9211,6 +9211,7 @@ components:
             amount: "123.45"
             budget_name: Groceries
             currency_name: Euro
+            has_attachments: false
             currency_symbol: $
             interest_date: 2000-01-23T04:56:07.000+00:00
             sepa_db: sepa_db
@@ -9617,7 +9618,7 @@ components:
           interest: "5.3"
           current_balance: "123.45"
           opening_balance: "-1012.12"
-          interest_period: monthly
+          interest_period: credit
           order: 1
           current_debt: "1012.12"
           longitude: 5.916667
@@ -9718,7 +9719,7 @@ components:
         data:
           editable: true
           title: null
-          value: some-variable
+          value: null
       properties:
         data:
           $ref: '#/components/schemas/Configuration'
@@ -9893,7 +9894,7 @@ components:
             interest: "5.3"
             current_balance: "123.45"
             opening_balance: "-1012.12"
-            interest_period: monthly
+            interest_period: credit
             order: 1
             current_debt: "1012.12"
             longitude: 5.916667
@@ -10386,6 +10387,7 @@ components:
               zoom_level: 6
               type: withdrawal
               destination_type: Asset account
+              external_url: external_url
               transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
@@ -10426,6 +10428,7 @@ components:
               amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
+              has_attachments: false
               currency_symbol: $
               interest_date: 2000-01-23T04:56:07.000+00:00
               sepa_db: sepa_db
@@ -10447,6 +10450,7 @@ components:
               zoom_level: 6
               type: withdrawal
               destination_type: Asset account
+              external_url: external_url
               transaction_journal_id: "10421"
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
@@ -10487,6 +10491,7 @@ components:
               amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
+              has_attachments: false
               currency_symbol: $
               interest_date: 2000-01-23T04:56:07.000+00:00
               sepa_db: sepa_db
@@ -10636,6 +10641,215 @@ components:
       - links
       - type
       type: object
+    AutoBudgetPeriod:
+      description: Period for the auto budget
+      enum:
+      - daily
+      - weekly
+      - monthly
+      - quarterly
+      - half-year
+      - yearly
+      - null
+      example: monthly
+      format: string
+      nullable: true
+      type: string
+    StringArray:
+      items:
+        $ref: '#/components/schemas/StringArrayItem'
+      type: array
+    AttachableType:
+      description: The object class to which the attachment must be linked.
+      enum:
+      - Account
+      - Budget
+      - Bill
+      - TransactionJournal
+      - PiggyBank
+      - Tag
+      example: Bill
+      format: string
+      type: string
+    RuleTriggerKeyword:
+      description: The type of thing this trigger responds to. A limited set is possible
+      enum:
+      - from_account_starts
+      - from_account_ends
+      - from_account_is
+      - from_account_contains
+      - to_account_starts
+      - to_account_ends
+      - to_account_is
+      - to_account_contains
+      - amount_less
+      - amount_exactly
+      - amount_more
+      - description_starts
+      - description_ends
+      - description_contains
+      - description_is
+      - transaction_type
+      - category_is
+      - budget_is
+      - tag_is
+      - currency_is
+      - has_attachments
+      - has_no_category
+      - has_any_category
+      - has_no_budget
+      - has_any_budget
+      - has_no_tag
+      - has_any_tag
+      - notes_contain
+      - notes_start
+      - notes_end
+      - notes_are
+      - no_notes
+      - any_notes
+      - source_account_is
+      - destination_account_is
+      - source_account_starts
+      example: user_action
+      format: string
+      type: string
+    AccountRoleProperty:
+      description: Is only mandatory when the type is asset.
+      enum:
+      - defaultAsset
+      - sharedAsset
+      - savingAsset
+      - ccAsset
+      - cashWalletAsset
+      - null
+      example: defaultAsset
+      format: string
+      nullable: true
+      type: string
+    RecurrenceTransactionType:
+      enum:
+      - withdrawal
+      - transfer
+      - deposit
+      example: withdrawal
+      format: string
+      type: string
+    AutoBudgetType:
+      description: The type of auto-budget that Firefly III must create.
+      enum:
+      - reset
+      - rollover
+      - none
+      - null
+      example: reset
+      format: string
+      nullable: true
+      type: string
+    LiabilityType:
+      description: Mandatory when type is liability. Specifies the exact type.
+      enum:
+      - loan
+      - debt
+      - mortgage
+      - null
+      example: loan
+      format: string
+      nullable: true
+      type: string
+    StringArrayItem:
+      format: string
+      type: string
+    WebhookTrigger:
+      description: The trigger for the webhook.
+      enum:
+      - TRIGGER_STORE_TRANSACTION
+      - TRIGGER_UPDATE_TRANSACTION
+      - TRIGGER_DESTROY_TRANSACTION
+      example: TRIGGER_DESTROY_TRANSACTION
+      format: string
+      nullable: false
+      type: string
+    WebhookResponse:
+      description: Indicator for what Firefly III will deliver to the webhook URL.
+      enum:
+      - RESPONSE_TRANSACTIONS
+      - RESPONSE_ACCOUNTS
+      - RESPONSE_NONE
+      example: RESPONSE_TRANSACTIONS
+      format: string
+      nullable: false
+      type: string
+    InterestPeriod:
+      description: Mandatory when type is liability. Period over which the interest
+        is calculated.
+      enum:
+      - weekly
+      - monthly
+      - quarterly
+      - half-year
+      - yearly
+      - null
+      example: monthly
+      format: string
+      nullable: true
+      type: string
+    BillRepeatFrequency:
+      description: How often the bill must be paid.
+      enum:
+      - weekly
+      - monthly
+      - quarterly
+      - half-year
+      - yearly
+      example: monthly
+      format: string
+      type: string
+    RuleTriggerType:
+      description: Which action is necessary for the rule to fire? Use either store-journal
+        or update-journal.
+      enum:
+      - store-journal
+      - update-journal
+      example: store-journal
+      format: string
+      type: string
+    LiabilityDirection:
+      description: '''credit'' indicates somebody owes you the liability. ''debit''
+        Indicates you owe this debt yourself. Works only for liabiltiies.'
+      enum:
+      - credit
+      - debit
+      - null
+      example: credit
+      format: string
+      nullable: true
+      type: string
+    UserRoleProperty:
+      description: Role for the user. Can be empty or omitted.
+      enum:
+      - owner
+      - demo
+      - null
+      example: owner
+      format: string
+      nullable: true
+      type: string
+    ShortAccountTypeProperty:
+      description: "Can only be one one these account types. import, initial-balance\
+        \ and reconciliation cannot be set manually."
+      enum:
+      - asset
+      - expense
+      - import
+      - revenue
+      - cash
+      - liability
+      - liabilities
+      - initial-balance
+      - reconciliation
+      example: asset
+      format: string
+      type: string
     AccountTypeProperty:
       enum:
       - Default account
@@ -10653,6 +10867,91 @@ components:
       example: Asset account
       format: string
       readOnly: true
+      type: string
+    WebhookDelivery:
+      description: Format of the delivered response.
+      enum:
+      - DELIVERY_JSON
+      example: DELIVERY_JSON
+      format: string
+      nullable: false
+      type: string
+    CreditCardType:
+      description: Mandatory when the account_role is ccAsset. Can only be monthlyFull
+        or null.
+      enum:
+      - monthlyFull
+      - null
+      example: monthlyFull
+      format: string
+      nullable: true
+      type: string
+    UserBlockedCodeProperty:
+      description: "If you say the user must be blocked, this will be the reason code."
+      enum:
+      - email_changed
+      - null
+      example: email_changed
+      format: string
+      nullable: true
+      type: string
+    RuleActionKeyword:
+      description: The type of thing this action will do. A limited set is possible.
+      enum:
+      - user_action
+      - set_category
+      - clear_category
+      - set_budget
+      - clear_budget
+      - add_tag
+      - remove_tag
+      - remove_all_tags
+      - set_description
+      - append_description
+      - prepend_description
+      - set_source_account
+      - set_destination_account
+      - set_notes
+      - append_notes
+      - prepend_notes
+      - clear_notes
+      - link_to_bill
+      - convert_withdrawal
+      - convert_deposit
+      - convert_transfer
+      - delete_transaction
+      example: set_category
+      format: string
+      type: string
+    TransactionTypeProperty:
+      enum:
+      - withdrawal
+      - deposit
+      - transfer
+      - reconciliation
+      - opening balance
+      example: withdrawal
+      format: string
+      type: string
+    PolymorphicProperty:
+      oneOf:
+      - type: boolean
+      - type: string
+      - type: object
+      - items:
+          $ref: '#/components/schemas/StringArrayItem'
+        type: array
+    RecurrenceRepetitionType:
+      description: "The type of the repetition. ndom means: the n-th weekday of the\
+        \ month, where you can also specify which day of the week."
+      enum:
+      - daily
+      - weekly
+      - ndom
+      - monthly
+      - yearly
+      example: weekly
+      format: string
       type: string
     AutocompleteBudget:
       example:
@@ -11571,12 +11870,12 @@ components:
       example:
         editable: true
         title: null
-        value: some-variable
+        value: null
       properties:
         title:
           $ref: '#/components/schemas/ConfigValueFilter'
         value:
-          $ref: '#/components/schemas/Configuration_value'
+          $ref: '#/components/schemas/PolymorphicProperty'
         editable:
           description: If this config variable can be edited by the user
           example: true
@@ -11616,7 +11915,7 @@ components:
     ConfigurationUpdate:
       properties:
         value:
-          $ref: '#/components/schemas/ConfigurationUpdate_value'
+          $ref: '#/components/schemas/PolymorphicProperty'
       required:
       - value
       type: object
@@ -11684,6 +11983,7 @@ components:
           readOnly: true
           type: string
         enabled:
+          default: true
           description: Defaults to true
           example: true
           format: boolean
@@ -11725,6 +12025,7 @@ components:
         decimal_places: 2
       properties:
         enabled:
+          default: true
           description: Defaults to true
           example: true
           format: boolean
@@ -11798,34 +12099,11 @@ components:
           readOnly: true
           type: string
         trigger:
-          description: The trigger for the webhook.
-          enum:
-          - TRIGGER_STORE_TRANSACTION
-          - TRIGGER_UPDATE_TRANSACTION
-          - TRIGGER_DESTROY_TRANSACTION
-          example: TRIGGER_DESTROY_TRANSACTION
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookTrigger'
         response:
-          description: Indicator for what Firefly III will deliver to the webhook
-            URL.
-          enum:
-          - RESPONSE_TRANSACTIONS
-          - RESPONSE_ACCOUNTS
-          - RESPONSE_NONE
-          example: RESPONSE_TRANSACTIONS
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookResponse'
         delivery:
-          description: Format of the delivered response.
-          enum:
-          - DELIVERY_JSON
-          example: DELIVERY_JSON
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookDelivery'
         url:
           description: The URL of the webhook. Has to start with `https`.
           example: https://example.com
@@ -11860,34 +12138,11 @@ components:
           format: string
           type: string
         trigger:
-          description: The trigger for the webhook.
-          enum:
-          - TRIGGER_STORE_TRANSACTION
-          - TRIGGER_UPDATE_TRANSACTION
-          - TRIGGER_DESTROY_TRANSACTION
-          example: TRIGGER_DESTROY_TRANSACTION
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookTrigger'
         response:
-          description: Indicator for what Firefly III will deliver to the webhook
-            URL.
-          enum:
-          - RESPONSE_TRANSACTIONS
-          - RESPONSE_ACCOUNTS
-          - RESPONSE_NONE
-          example: RESPONSE_TRANSACTIONS
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookResponse'
         delivery:
-          description: Format of the delivered response.
-          enum:
-          - DELIVERY_JSON
-          example: DELIVERY_JSON
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookDelivery'
         url:
           description: The URL of the webhook. Has to start with `https`.
           example: https://example.com
@@ -11931,34 +12186,11 @@ components:
           format: string
           type: string
         trigger:
-          description: The trigger for the webhook.
-          enum:
-          - TRIGGER_STORE_TRANSACTION
-          - TRIGGER_UPDATE_TRANSACTION
-          - TRIGGER_DESTROY_TRANSACTION
-          example: TRIGGER_DESTROY_TRANSACTION
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookTrigger'
         response:
-          description: Indicator for what Firefly III will deliver to the webhook
-            URL.
-          enum:
-          - RESPONSE_TRANSACTIONS
-          - RESPONSE_ACCOUNTS
-          - RESPONSE_NONE
-          example: RESPONSE_TRANSACTIONS
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookResponse'
         delivery:
-          description: Format of the delivered response.
-          enum:
-          - DELIVERY_JSON
-          example: DELIVERY_JSON
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/WebhookDelivery'
         url:
           description: The URL of the webhook. Has to start with `https`.
           example: https://example.com
@@ -12020,13 +12252,7 @@ components:
           moment: "3"
       properties:
         type:
-          enum:
-          - withdrawal
-          - transfer
-          - deposit
-          example: withdrawal
-          format: string
-          type: string
+          $ref: '#/components/schemas/RecurrenceTransactionType'
         title:
           example: Rent
           format: string
@@ -12194,13 +12420,7 @@ components:
           readOnly: true
           type: string
         type:
-          enum:
-          - withdrawal
-          - transfer
-          - deposit
-          example: withdrawal
-          format: string
-          type: string
+          $ref: '#/components/schemas/RecurrenceTransactionType'
         title:
           example: Rent
           format: string
@@ -12439,17 +12659,7 @@ components:
         moment: "3"
       properties:
         type:
-          description: "The type of the repetition. ndom means: the n-th weekday of\
-            \ the month, where you can also specify which day of the week."
-          enum:
-          - daily
-          - weekly
-          - ndom
-          - monthly
-          - yearly
-          example: weekly
-          format: string
-          type: string
+          $ref: '#/components/schemas/RecurrenceRepetitionType'
         moment:
           description: |
             Information that defined the type of repetition.
@@ -12486,17 +12696,7 @@ components:
         moment: "3"
       properties:
         type:
-          description: "The type of the repetition. ndom means: the n-th weekday of\
-            \ the month, where you can also specify which day of the week."
-          enum:
-          - daily
-          - weekly
-          - ndom
-          - monthly
-          - yearly
-          example: weekly
-          format: string
-          type: string
+          $ref: '#/components/schemas/RecurrenceRepetitionType'
         moment:
           description: |
             Information that defined the type of repetition.
@@ -12558,17 +12758,7 @@ components:
           readOnly: true
           type: string
         type:
-          description: "The type of the repetition. ndom means: the n-th weekday of\
-            \ the month, where you can also specify which day of the week."
-          enum:
-          - daily
-          - weekly
-          - ndom
-          - monthly
-          - yearly
-          example: weekly
-          format: string
-          type: string
+          $ref: '#/components/schemas/RecurrenceRepetitionType'
         moment:
           description: |
             Information that defined the type of repetition.
@@ -12707,16 +12897,7 @@ components:
           format: date-time
           type: string
         repeat_freq:
-          description: How often the bill must be paid.
-          enum:
-          - weekly
-          - monthly
-          - quarterly
-          - half-year
-          - yearly
-          example: monthly
-          format: string
-          type: string
+          $ref: '#/components/schemas/BillRepeatFrequency'
         skip:
           description: How often the bill must be skipped. 1 means a bi-monthly bill.
           example: 0
@@ -12848,16 +13029,7 @@ components:
           format: date-time
           type: string
         repeat_freq:
-          description: How often the bill must be paid.
-          enum:
-          - weekly
-          - monthly
-          - quarterly
-          - half-year
-          - yearly
-          example: monthly
-          format: string
-          type: string
+          $ref: '#/components/schemas/BillRepeatFrequency'
         skip:
           description: How often the bill must be skipped. 1 means a bi-monthly bill.
           example: 0
@@ -12947,16 +13119,7 @@ components:
           format: date-time
           type: string
         repeat_freq:
-          description: How often the bill must be paid.
-          enum:
-          - weekly
-          - monthly
-          - quarterly
-          - half-year
-          - yearly
-          example: monthly
-          format: string
-          type: string
+          $ref: '#/components/schemas/BillRepeatFrequency'
         skip:
           description: How often the bill must be skipped. 1 means a bi-monthly bill.
           example: 0
@@ -13134,17 +13297,7 @@ components:
           format: string
           type: string
         attachable_type:
-          description: The object class to which the attachment must be linked.
-          enum:
-          - Account
-          - Budget
-          - Bill
-          - TransactionJournal
-          - PiggyBank
-          - Tag
-          example: Bill
-          format: string
-          type: string
+          $ref: '#/components/schemas/AttachableType'
         attachable_id:
           description: ID of the model this attachment is linked to.
           example: "134"
@@ -13190,17 +13343,7 @@ components:
           readOnly: true
           type: string
         attachable_type:
-          description: The object class to which the attachment must be linked.
-          enum:
-          - Account
-          - Budget
-          - Bill
-          - TransactionJournal
-          - PiggyBank
-          - Tag
-          example: Bill
-          format: string
-          type: string
+          $ref: '#/components/schemas/AttachableType'
         attachable_id:
           description: ID of the model this attachment is linked to.
           example: "134"
@@ -13294,32 +13437,7 @@ components:
           readOnly: true
           type: string
         type:
-          description: The type of thing this action will do. A limited set is possible.
-          enum:
-          - user_action
-          - set_category
-          - clear_category
-          - set_budget
-          - clear_budget
-          - add_tag
-          - remove_tag
-          - remove_all_tags
-          - set_description
-          - append_description
-          - prepend_description
-          - set_source_account
-          - set_destination_account
-          - set_notes
-          - append_notes
-          - prepend_notes
-          - clear_notes
-          - link_to_bill
-          - convert_withdrawal
-          - convert_deposit
-          - convert_transfer
-          example: set_category
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleActionKeyword'
         value:
           description: "The accompanying value the action will set, change or update.\
             \ Can be empty, but for some types this value is mandatory."
@@ -13333,11 +13451,13 @@ components:
           format: int32
           type: integer
         active:
+          default: true
           description: If the action is active. Defaults to true.
           example: true
           format: boolean
           type: boolean
         stop_processing:
+          default: false
           description: "When true, other actions will not be fired after this action\
             \ has fired. Defaults to false."
           example: false
@@ -13356,32 +13476,7 @@ components:
         order: 5
       properties:
         type:
-          description: The type of thing this action will do. A limited set is possible.
-          enum:
-          - user_action
-          - set_category
-          - clear_category
-          - set_budget
-          - clear_budget
-          - add_tag
-          - remove_tag
-          - remove_all_tags
-          - set_description
-          - append_description
-          - prepend_description
-          - set_source_account
-          - set_destination_account
-          - set_notes
-          - append_notes
-          - prepend_notes
-          - clear_notes
-          - link_to_bill
-          - convert_withdrawal
-          - convert_deposit
-          - convert_transfer
-          example: set_category
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleActionKeyword'
         value:
           description: "The accompanying value the action will set, change or update.\
             \ Can be empty, but for some types this value is mandatory."
@@ -13415,32 +13510,7 @@ components:
         order: 5
       properties:
         type:
-          description: The type of thing this action will do. A limited set is possible.
-          enum:
-          - user_action
-          - set_category
-          - clear_category
-          - set_budget
-          - clear_budget
-          - add_tag
-          - remove_tag
-          - remove_all_tags
-          - set_description
-          - append_description
-          - prepend_description
-          - set_source_account
-          - set_destination_account
-          - set_notes
-          - append_notes
-          - prepend_notes
-          - clear_notes
-          - link_to_bill
-          - convert_withdrawal
-          - convert_deposit
-          - convert_transfer
-          example: set_category
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleActionKeyword'
         value:
           description: "The accompanying value the action will set, change or update.\
             \ Can be empty, but for some types this value is mandatory."
@@ -13454,11 +13524,13 @@ components:
           format: int32
           type: integer
         active:
+          default: true
           description: If the action is active. Defaults to true.
           example: true
           format: boolean
           type: boolean
         stop_processing:
+          default: false
           description: "When true, other actions will not be fired after this action\
             \ has fired. Defaults to false."
           example: false
@@ -13730,20 +13802,15 @@ components:
           format: int32
           type: integer
         trigger:
-          description: Which action is necessary for the rule to fire? Use either
-            store-journal or update-journal.
-          enum:
-          - store-journal
-          - update-journal
-          example: store-journal
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleTriggerType'
         active:
+          default: true
           description: Whether or not the rule is even active. Default is true.
           example: true
           format: boolean
           type: boolean
         strict:
+          default: true
           description: "If the rule is set to be strict, ALL triggers must hit in\
             \ order for the rule to fire. Otherwise, just one is enough. Default value\
             \ is true."
@@ -13855,15 +13922,9 @@ components:
           readOnly: true
           type: integer
         trigger:
-          description: Which action is necessary for the rule to fire? Use either
-            store-journal or update-journal.
-          enum:
-          - store-journal
-          - update-journal
-          example: store-journal
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleTriggerType'
         active:
+          default: true
           description: Whether or not the rule is even active. Default is true.
           example: true
           format: boolean
@@ -13876,6 +13937,7 @@ components:
           format: boolean
           type: boolean
         stop_processing:
+          default: false
           description: "If this value is true and the rule is triggered, other rules\
             \  after this one in the group will be skipped. Default value is false."
           example: false
@@ -13948,15 +14010,9 @@ components:
           format: int32
           type: integer
         trigger:
-          description: Which action is necessary for the rule to fire? Use either
-            store-journal or update-journal.
-          enum:
-          - store-journal
-          - update-journal
-          example: store-journal
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleTriggerType'
         active:
+          default: true
           description: Whether or not the rule is even active. Default is true.
           example: true
           format: boolean
@@ -13969,6 +14025,7 @@ components:
           format: boolean
           type: boolean
         stop_processing:
+          default: false
           description: "If this value is true and the rule is triggered, other rules\
             \  after this one in the group will be skipped. Default value is false."
           example: false
@@ -14347,17 +14404,17 @@ components:
       type: object
     PreferenceUpdate:
       example:
-        data: EUR
+        data: null
       properties:
         data:
-          $ref: '#/components/schemas/PreferenceUpdate_data'
+          $ref: '#/components/schemas/PolymorphicProperty'
       required:
       - data
       type: object
     Preference:
       example:
         updated_at: 2018-09-17T12:46:47+01:00
-        data: EUR
+        data: null
         name: currencyPreference
         created_at: 2018-09-17T12:46:47+01:00
       properties:
@@ -14376,7 +14433,7 @@ components:
           format: string
           type: string
         data:
-          $ref: '#/components/schemas/PreferenceUpdate_data'
+          $ref: '#/components/schemas/PolymorphicProperty'
       required:
       - data
       - name
@@ -14702,6 +14759,7 @@ components:
           type: withdrawal
           currency_code: EUR
           invoice_date: 2000-01-23T04:56:07.000+00:00
+          external_url: external_url
           category_id: "43"
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: "17"
@@ -14746,6 +14804,7 @@ components:
           type: withdrawal
           currency_code: EUR
           invoice_date: 2000-01-23T04:56:07.000+00:00
+          external_url: external_url
           category_id: "43"
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: "17"
@@ -14823,6 +14882,7 @@ components:
           zoom_level: 6
           type: withdrawal
           destination_type: Asset account
+          external_url: external_url
           transaction_journal_id: "10421"
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
@@ -14863,6 +14923,7 @@ components:
           amount: "123.45"
           budget_name: Groceries
           currency_name: Euro
+          has_attachments: false
           currency_symbol: $
           interest_date: 2000-01-23T04:56:07.000+00:00
           sepa_db: sepa_db
@@ -14884,6 +14945,7 @@ components:
           zoom_level: 6
           type: withdrawal
           destination_type: Asset account
+          external_url: external_url
           transaction_journal_id: "10421"
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
@@ -14924,6 +14986,7 @@ components:
           amount: "123.45"
           budget_name: Groceries
           currency_name: Euro
+          has_attachments: false
           currency_symbol: $
           interest_date: 2000-01-23T04:56:07.000+00:00
           sepa_db: sepa_db
@@ -14991,6 +15054,7 @@ components:
           currency_code: EUR
           currency_decimal_places: 2
           invoice_date: 2000-01-23T04:56:07.000+00:00
+          external_url: external_url
           category_id: "43"
           foreign_currency_symbol: $
           foreign_currency_id: "17"
@@ -15039,6 +15103,7 @@ components:
           currency_code: EUR
           currency_decimal_places: 2
           invoice_date: 2000-01-23T04:56:07.000+00:00
+          external_url: external_url
           category_id: "43"
           foreign_currency_symbol: $
           foreign_currency_id: "17"
@@ -15205,23 +15270,9 @@ components:
           format: boolean
           type: boolean
         blocked_code:
-          description: "If you say the user must be blocked, this will be the reason\
-            \ code."
-          enum:
-          - email_changed
-          - null
-          example: email_changed
-          format: string
-          type: string
+          $ref: '#/components/schemas/UserBlockedCodeProperty'
         role:
-          description: Role for the new user. Can be empty or omitted.
-          enum:
-          - owner
-          - demo
-          - null
-          example: owner
-          format: string
-          type: string
+          $ref: '#/components/schemas/UserRoleProperty'
       required:
       - email
       title: A single user
@@ -15364,45 +15415,7 @@ components:
           readOnly: true
           type: string
         type:
-          description: The type of thing this trigger responds to. A limited set is
-            possible
-          enum:
-          - from_account_starts
-          - from_account_ends
-          - from_account_is
-          - from_account_contains
-          - to_account_starts
-          - to_account_ends
-          - to_account_is
-          - to_account_contains
-          - amount_less
-          - amount_exactly
-          - amount_more
-          - description_starts
-          - description_ends
-          - description_contains
-          - description_is
-          - transaction_type
-          - category_is
-          - budget_is
-          - tag_is
-          - currency_is
-          - has_attachments
-          - has_no_category
-          - has_any_category
-          - has_no_budget
-          - has_any_budget
-          - has_no_tag
-          - has_any_tag
-          - notes_contain
-          - notes_start
-          - notes_end
-          - notes_are
-          - no_notes
-          - any_notes
-          example: user_action
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleTriggerKeyword'
         value:
           description: "The accompanying value the trigger responds to. This value\
             \ is often mandatory, but this depends on the trigger."
@@ -15416,11 +15429,13 @@ components:
           readOnly: true
           type: integer
         active:
+          default: true
           description: If the trigger is active. Defaults to true.
           example: true
           format: boolean
           type: boolean
         stop_processing:
+          default: false
           description: "When true, other triggers will not be checked if this trigger\
             \ was triggered. Defaults to false."
           example: false
@@ -15439,45 +15454,7 @@ components:
         order: 5
       properties:
         type:
-          description: The type of thing this trigger responds to. A limited set is
-            possible
-          enum:
-          - from_account_starts
-          - from_account_ends
-          - from_account_is
-          - from_account_contains
-          - to_account_starts
-          - to_account_ends
-          - to_account_is
-          - to_account_contains
-          - amount_less
-          - amount_exactly
-          - amount_more
-          - description_starts
-          - description_ends
-          - description_contains
-          - description_is
-          - transaction_type
-          - category_is
-          - budget_is
-          - tag_is
-          - currency_is
-          - has_attachments
-          - has_no_category
-          - has_any_category
-          - has_no_budget
-          - has_any_budget
-          - has_no_tag
-          - has_any_tag
-          - notes_contain
-          - notes_start
-          - notes_end
-          - notes_are
-          - no_notes
-          - any_notes
-          example: user_action
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleTriggerKeyword'
         value:
           description: "The accompanying value the trigger responds to. This value\
             \ is often mandatory, but this depends on the trigger."
@@ -15510,45 +15487,7 @@ components:
         order: 5
       properties:
         type:
-          description: The type of thing this trigger responds to. A limited set is
-            possible
-          enum:
-          - from_account_starts
-          - from_account_ends
-          - from_account_is
-          - from_account_contains
-          - to_account_starts
-          - to_account_ends
-          - to_account_is
-          - to_account_contains
-          - amount_less
-          - amount_exactly
-          - amount_more
-          - description_starts
-          - description_ends
-          - description_contains
-          - description_is
-          - transaction_type
-          - category_is
-          - budget_is
-          - tag_is
-          - currency_is
-          - has_attachments
-          - has_no_category
-          - has_any_category
-          - has_no_budget
-          - has_any_budget
-          - has_no_tag
-          - has_any_tag
-          - notes_contain
-          - notes_start
-          - notes_end
-          - notes_are
-          - no_notes
-          - any_notes
-          example: user_action
-          format: string
-          type: string
+          $ref: '#/components/schemas/RuleTriggerKeyword'
         value:
           description: "The accompanying value the trigger responds to. This value\
             \ is often mandatory, but this depends on the trigger."
@@ -15561,11 +15500,13 @@ components:
           format: int32
           type: integer
         active:
+          default: true
           description: If the trigger is active. Defaults to true.
           example: true
           format: boolean
           type: boolean
         stop_processing:
+          default: false
           description: "When true, other triggers will not be checked if this trigger\
             \ was triggered. Defaults to false."
           example: false
@@ -15676,6 +15617,7 @@ components:
           format: string
           type: string
         active:
+          default: true
           description: "If omitted, defaults to true."
           example: false
           format: boolean
@@ -15686,33 +15628,15 @@ components:
           format: int32
           type: integer
         include_net_worth:
+          default: true
           description: "If omitted, defaults to true."
           example: true
           format: boolean
           type: boolean
         account_role:
-          description: Is only mandatory when the type is asset.
-          enum:
-          - defaultAsset
-          - sharedAsset
-          - savingAsset
-          - ccAsset
-          - cashWalletAsset
-          - null
-          example: defaultAsset
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AccountRoleProperty'
         credit_card_type:
-          description: Mandatory when the account_role is ccAsset. Can only be monthlyFull
-            or null.
-          enum:
-          - monthlyFull
-          - null
-          example: monthlyFull
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/CreditCardType'
         monthly_payment_date:
           description: Mandatory when the account_role is ccAsset. Moment at which
             CC payment installments are asked for by the bank.
@@ -15721,16 +15645,7 @@ components:
           nullable: true
           type: string
         liability_type:
-          description: Mandatory when type is liability. Specifies the exact type.
-          enum:
-          - loan
-          - debt
-          - mortgage
-          - null
-          example: loan
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/LiabilityType'
         interest:
           description: Mandatory when type is liability. Interest percentage.
           example: "5.3"
@@ -15738,17 +15653,7 @@ components:
           nullable: true
           type: string
         interest_period:
-          description: Mandatory when type is liability. Period over which the interest
-            is calculated.
-          enum:
-          - daily
-          - monthly
-          - yearly
-          - null
-          example: monthly
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/InterestPeriod'
         notes:
           example: Some example notes
           format: string
@@ -15815,21 +15720,7 @@ components:
           format: string
           type: string
         type:
-          description: "Can only be one one these account types. import, initial-balance\
-            \ and reconciliation cannot be set manually."
-          enum:
-          - asset
-          - expense
-          - import
-          - revenue
-          - cash
-          - liability
-          - liabilities
-          - initial-balance
-          - reconciliation
-          example: asset
-          format: string
-          type: string
+          $ref: '#/components/schemas/ShortAccountTypeProperty'
         iban:
           example: GB98MIDL07009312345678
           format: iban
@@ -15874,6 +15765,7 @@ components:
           format: string
           type: string
         active:
+          default: true
           description: "If omitted, defaults to true."
           example: false
           format: boolean
@@ -15884,33 +15776,15 @@ components:
           format: int32
           type: integer
         include_net_worth:
+          default: true
           description: "If omitted, defaults to true."
           example: true
           format: boolean
           type: boolean
         account_role:
-          description: Is only mandatory when the type is asset.
-          enum:
-          - defaultAsset
-          - sharedAsset
-          - savingAsset
-          - ccAsset
-          - cashWalletAsset
-          - null
-          example: defaultAsset
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AccountRoleProperty'
         credit_card_type:
-          description: Mandatory when the account_role is ccAsset. Can only be monthlyFull
-            or null.
-          enum:
-          - monthlyFull
-          - null
-          example: monthlyFull
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/CreditCardType'
         monthly_payment_date:
           description: Mandatory when the account_role is ccAsset. Moment at which
             CC payment installments are asked for by the bank.
@@ -15919,28 +15793,9 @@ components:
           nullable: true
           type: string
         liability_type:
-          description: Mandatory when type is liability. Specifies the exact type.
-          enum:
-          - loan
-          - debt
-          - mortgage
-          - null
-          example: loan
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/LiabilityType'
         liability_direction:
-          default: debit
-          description: '''credit'' indicates somebody owes you the liability. ''debit''
-            Indicates you owe this debt yourself. Works only for liabiltiies.'
-          enum:
-          - credit
-          - debit
-          - null
-          example: credit
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/LiabilityDirection'
         interest:
           default: "0"
           description: Mandatory when type is liability. Interest percentage.
@@ -15949,18 +15804,7 @@ components:
           nullable: true
           type: string
         interest_period:
-          default: monthly
-          description: Mandatory when type is liability. Period over which the interest
-            is calculated.
-          enum:
-          - daily
-          - monthly
-          - yearly
-          - null
-          example: monthly
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/InterestPeriod'
         notes:
           example: Some example notes
           format: string
@@ -16008,7 +15852,7 @@ components:
         interest: "5.3"
         current_balance: "123.45"
         opening_balance: "-1012.12"
-        interest_period: monthly
+        interest_period: credit
         order: 1
         current_debt: "1012.12"
         longitude: 5.916667
@@ -16037,6 +15881,7 @@ components:
           readOnly: true
           type: string
         active:
+          default: true
           description: "If omitted, defaults to true."
           example: false
           format: boolean
@@ -16052,34 +15897,9 @@ components:
           format: string
           type: string
         type:
-          description: "Can only be one one these account types. import, initial-balance\
-            \ and reconciliation cannot be set manually."
-          enum:
-          - asset
-          - expense
-          - import
-          - revenue
-          - cash
-          - liability
-          - liabilities
-          - initial-balance
-          - reconciliation
-          example: asset
-          format: string
-          type: string
+          $ref: '#/components/schemas/ShortAccountTypeProperty'
         account_role:
-          description: Is only mandatory when the type is asset.
-          enum:
-          - defaultAsset
-          - sharedAsset
-          - savingAsset
-          - ccAsset
-          - cashWalletAsset
-          - null
-          example: defaultAsset
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AccountRoleProperty'
         currency_id:
           description: Use either currency_id or currency_code. Defaults to the user's
             default currency.
@@ -16137,6 +15957,7 @@ components:
           description: Represents the current debt for liabilities.
           example: "1012.12"
           format: amount
+          nullable: true
           type: string
         opening_balance_date:
           description: Represents the date of the opening balance.
@@ -16149,20 +15970,13 @@ components:
           format: amount
           type: string
         include_net_worth:
+          default: true
           description: "If omitted, defaults to true."
           example: true
           format: boolean
           type: boolean
         credit_card_type:
-          description: Mandatory when the account_role is ccAsset. Can only be monthlyFull
-            or null.
-          enum:
-          - monthlyFull
-          - null
-          example: monthlyFull
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/CreditCardType'
         monthly_payment_date:
           description: Mandatory when the account_role is ccAsset. Moment at which
             CC payment installments are asked for by the bank.
@@ -16171,26 +15985,9 @@ components:
           nullable: true
           type: string
         liability_type:
-          description: Mandatory when type is liability. Specifies the exact type.
-          enum:
-          - loan
-          - debt
-          - mortgage
-          - null
-          example: loan
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/LiabilityType'
         liability_direction:
-          description: '''credit'' indicates somebody owes you the liability. ''debit''
-            Indicates you owe this debt yourself. Works only for liabiltiies.'
-          enum:
-          - credit
-          - debit
-          example: credit
-          format: string
-          nullable: false
-          type: string
+          $ref: '#/components/schemas/LiabilityDirection'
         interest:
           description: Mandatory when type is liability. Interest percentage.
           example: "5.3"
@@ -16198,19 +15995,7 @@ components:
           nullable: true
           type: string
         interest_period:
-          description: Mandatory when type is liability. Period over which the interest
-            is calculated.
-          enum:
-          - weekly
-          - monthly
-          - quarterly
-          - half-year
-          - yearly
-          - null
-          example: monthly
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/LiabilityDirection'
         notes:
           example: Some example notes
           format: string
@@ -16766,6 +16551,7 @@ components:
         currency_code: EUR
         currency_decimal_places: 2
         invoice_date: 2000-01-23T04:56:07.000+00:00
+        external_url: external_url
         category_id: "43"
         foreign_currency_symbol: $
         foreign_currency_id: "17"
@@ -17000,6 +16786,11 @@ components:
           format: string
           nullable: true
           type: string
+        external_url:
+          description: "External, custom URL for this transaction."
+          format: string
+          nullable: true
+          type: string
         bunq_payment_id:
           description: Internal ID of bunq transaction.
           format: string
@@ -17085,6 +16876,7 @@ components:
         type: withdrawal
         currency_code: EUR
         invoice_date: 2000-01-23T04:56:07.000+00:00
+        external_url: external_url
         category_id: "43"
         piggy_bank_name: piggy_bank_name
         foreign_currency_id: "17"
@@ -17118,16 +16910,7 @@ components:
         sepa_ci: sepa_ci
       properties:
         type:
-          description: Type of transaction.
-          enum:
-          - withdrawal
-          - deposit
-          - transfer
-          - reconciliation
-          - opening balance
-          example: withdrawal
-          format: string
-          type: string
+          $ref: '#/components/schemas/TransactionTypeProperty'
         date:
           description: Date of the transaction
           example: 2018-09-17T12:46:47+01:00
@@ -17301,6 +17084,11 @@ components:
           format: string
           nullable: true
           type: string
+        external_url:
+          description: "External, custom URL for this transaction."
+          format: string
+          nullable: true
+          type: string
         bunq_payment_id:
           description: Internal ID of bunq transaction. Field is no longer used but
             still works.
@@ -17375,8 +17163,6 @@ components:
       - amount
       - date
       - description
-      - destination_id
-      - source_id
       - type
       type: object
     TransactionSplit:
@@ -17389,6 +17175,7 @@ components:
         zoom_level: 6
         type: withdrawal
         destination_type: Asset account
+        external_url: external_url
         transaction_journal_id: "10421"
         payment_date: 2000-01-23T04:56:07.000+00:00
         order: 0
@@ -17429,6 +17216,7 @@ components:
         amount: "123.45"
         budget_name: Groceries
         currency_name: Euro
+        has_attachments: false
         currency_symbol: $
         interest_date: 2000-01-23T04:56:07.000+00:00
         sepa_db: sepa_db
@@ -17458,16 +17246,7 @@ components:
           readOnly: true
           type: string
         type:
-          description: Type of transaction.
-          enum:
-          - withdrawal
-          - deposit
-          - transfer
-          - reconciliation
-          - opening balance
-          example: withdrawal
-          format: string
-          type: string
+          $ref: '#/components/schemas/TransactionTypeProperty'
         date:
           description: Date of the transaction
           example: 2018-09-17T12:46:47+01:00
@@ -17674,6 +17453,11 @@ components:
           format: string
           nullable: true
           type: string
+        external_url:
+          description: "External, custom URL for this transaction."
+          format: string
+          nullable: true
+          type: string
         original_source:
           description: System generated identifier for original creator of transaction.
           format: string
@@ -17798,6 +17582,11 @@ components:
           format: int32
           nullable: true
           type: integer
+        has_attachments:
+          description: If the transaction has attachments.
+          example: false
+          format: boolean
+          type: boolean
       required:
       - amount
       - date
@@ -17893,16 +17682,7 @@ components:
           readOnly: true
           type: integer
         auto_budget_type:
-          description: The type of auto-budget that Firefly III must create.
-          enum:
-          - reset
-          - rollover
-          - none
-          - null
-          example: reset
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AutoBudgetType'
         auto_budget_currency_id:
           description: Use either currency_id or currency_code. Defaults to the user's
             default currency.
@@ -17923,19 +17703,7 @@ components:
           nullable: true
           type: string
         auto_budget_period:
-          description: Period for the auto budget
-          enum:
-          - daily
-          - weekly
-          - monthly
-          - quarterly
-          - half_year
-          - yearly
-          - null
-          example: monthly
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AutoBudgetPeriod'
         spent:
           description: Information on how much was spent in this budget. Is only filled
             in when the start and end date are submitted.
@@ -17971,16 +17739,7 @@ components:
           readOnly: true
           type: integer
         auto_budget_type:
-          description: The type of auto-budget that Firefly III must create.
-          enum:
-          - reset
-          - rollover
-          - none
-          - null
-          example: reset
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AutoBudgetType'
         auto_budget_currency_id:
           description: Use either currency_id or currency_code. Defaults to the user's
             default currency.
@@ -18001,19 +17760,7 @@ components:
           nullable: true
           type: string
         auto_budget_period:
-          description: Period for the auto budget
-          enum:
-          - daily
-          - weekly
-          - monthly
-          - quarterly
-          - half_year
-          - yearly
-          - null
-          example: monthly
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AutoBudgetPeriod'
       required:
       - name
       type: object
@@ -18041,16 +17788,7 @@ components:
           format: int32
           type: integer
         auto_budget_type:
-          description: The type of auto-budget that Firefly III must create.
-          enum:
-          - reset
-          - rollover
-          - none
-          - null
-          example: reset
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AutoBudgetType'
         auto_budget_currency_id:
           description: Use either currency_id or currency_code. Defaults to the user's
             default currency.
@@ -18071,44 +17809,8 @@ components:
           nullable: true
           type: string
         auto_budget_period:
-          description: Period for the auto budget
-          enum:
-          - daily
-          - weekly
-          - monthly
-          - quarterly
-          - half_year
-          - yearly
-          - null
-          example: monthly
-          format: string
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/AutoBudgetPeriod'
       type: object
-    Configuration_value:
-      description: Content of the configuration variable. Is very dynamic and can
-        be anything from booleans to arrays.
-      example: some-variable
-      oneOf:
-      - type: boolean
-      - type: string
-      - type: object
-      - items:
-          format: string
-          type: string
-        type: array
-    ConfigurationUpdate_value:
-      description: "Can be a number, a string, boolean or object. This depends on\
-        \ the actual configuration value."
-      example: Some-new-config var
-      oneOf:
-      - type: boolean
-      - type: string
-      - type: object
-      - items:
-          format: string
-          type: string
-        type: array
     SystemInfo_data:
       properties:
         version:
@@ -18191,17 +17893,6 @@ components:
           format: string
           type: string
       type: object
-    PreferenceUpdate_data:
-      description: The actual preference content.
-      example: EUR
-      oneOf:
-      - type: boolean
-      - type: string
-      - type: object
-      - items:
-          format: string
-          type: string
-        type: array
     Meta_pagination:
       example:
         per_page: 100

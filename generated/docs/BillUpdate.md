@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Date** | **DateTime** |  | [optional] 
 **EndDate** | **DateTime** | The date after which this bill is no longer valid or applicable | [optional] 
 **ExtensionDate** | **DateTime** | The date before which the bill must be renewed (or cancelled) | [optional] 
-**RepeatFreq** | **string** | How often the bill must be paid. | [optional] 
+**RepeatFreq** | **BillRepeatFrequency** |  | [optional] 
 **Skip** | **int** | How often the bill must be skipped. 1 means a bi-monthly bill. | [optional] 
 **Active** | **bool** | If the bill is active. | [optional] 
 **Notes** | **string** |  | [optional] 

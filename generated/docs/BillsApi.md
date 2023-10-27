@@ -15,7 +15,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="deletebill"></a>
 # **DeleteBill**
-> void DeleteBill (int id)
+> void DeleteBill (string id)
 
 Delete a bill.
 
@@ -41,7 +41,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BillsApi(config);
-            var id = 1;  // int | The ID of the bill.
+            var id = 123;  // string | The ID of the bill.
 
             try
             {
@@ -80,7 +80,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the bill. |  |
+| **id** | **string** | The ID of the bill. |  |
 
 ### Return type
 
@@ -106,7 +106,7 @@ void (empty response body)
 
 <a id="getbill"></a>
 # **GetBill**
-> BillSingle GetBill (int id, DateTime? start = null, DateTime? end = null)
+> BillSingle GetBill (string id, DateTime? start = null, DateTime? end = null)
 
 Get a single bill.
 
@@ -132,7 +132,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BillsApi(config);
-            var id = 1;  // int | The ID of the bill.
+            var id = 123;  // string | The ID of the bill.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
 
@@ -177,7 +177,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the bill. |  |
+| **id** | **string** | The ID of the bill. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional]  |
 
@@ -205,7 +205,7 @@ catch (ApiException e)
 
 <a id="listattachmentbybill"></a>
 # **ListAttachmentByBill**
-> AttachmentArray ListAttachmentByBill (int id, int? page = null)
+> AttachmentArray ListAttachmentByBill (string id, int? page = null)
 
 List all attachments uploaded to the bill.
 
@@ -231,7 +231,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BillsApi(config);
-            var id = 1;  // int | The ID of the bill.
+            var id = 123;  // string | The ID of the bill.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -275,7 +275,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the bill. |  |
+| **id** | **string** | The ID of the bill. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -399,7 +399,7 @@ catch (ApiException e)
 
 <a id="listrulebybill"></a>
 # **ListRuleByBill**
-> RuleArray ListRuleByBill (int id)
+> RuleArray ListRuleByBill (string id)
 
 List all rules associated with the bill.
 
@@ -425,7 +425,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BillsApi(config);
-            var id = 1;  // int | The ID of the bill.
+            var id = 123;  // string | The ID of the bill.
 
             try
             {
@@ -468,7 +468,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the bill. |  |
+| **id** | **string** | The ID of the bill. |  |
 
 ### Return type
 
@@ -493,7 +493,7 @@ catch (ApiException e)
 
 <a id="listtransactionbybill"></a>
 # **ListTransactionByBill**
-> TransactionArray ListTransactionByBill (int id, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByBill (string id, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
 List all transactions associated with the  bill.
 
@@ -519,7 +519,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BillsApi(config);
-            var id = 1;  // int | The ID of the bill.
+            var id = 123;  // string | The ID of the bill.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
@@ -565,7 +565,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the bill. |  |
+| **id** | **string** | The ID of the bill. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
@@ -688,7 +688,7 @@ catch (ApiException e)
 
 <a id="updatebill"></a>
 # **UpdateBill**
-> BillSingle UpdateBill (int id, BillUpdate billUpdate)
+> BillSingle UpdateBill (string id, BillUpdate billUpdate)
 
 Update existing bill.
 
@@ -714,7 +714,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BillsApi(config);
-            var id = 1;  // int | The ID of the bill.
+            var id = 123;  // string | The ID of the bill.
             var billUpdate = new BillUpdate(); // BillUpdate | JSON array or key=value pairs with updated bill information. See the model for the exact specifications.
 
             try
@@ -758,7 +758,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the bill. |  |
+| **id** | **string** | The ID of the bill. |  |
 | **billUpdate** | [**BillUpdate**](BillUpdate.md) | JSON array or key&#x3D;value pairs with updated bill information. See the model for the exact specifications. |  |
 
 ### Return type

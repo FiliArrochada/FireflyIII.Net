@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** |  | [optional] [readonly] 
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
-**AttachableType** | **string** | The object class to which the attachment must be linked. | 
+**AttachableType** | **AttachableType** |  | 
 **AttachableId** | **string** | ID of the model this attachment is linked to. | 
 **Md5** | **string** | MD5 hash of the file for basic duplicate detection. | [optional] 
 **Filename** | **string** |  | 

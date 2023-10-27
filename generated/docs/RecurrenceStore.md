@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Type** | **RecurrenceTransactionType** |  | 
 **Title** | **string** |  | 
 **Description** | **string** | Not to be confused with the description of the actual transaction(s) being created. | [optional] 
 **FirstDate** | **DateTime** | First time the recurring transaction will fire. Must be after today. | 
