@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **DestinationId** | **string** | ID of the destination account. | 
 **Tags** | **List&lt;string&gt;** | Array of tags. | [optional] 
 **PiggyBankId** | **string** | Optional. | [optional] 
+**BillId** | **string** | Optional. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

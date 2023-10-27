@@ -5,12 +5,12 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-05-17T04:54:43+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-06-11T09:13:59+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v2.0.2
-  version: 2.0.2
+  title: Firefly III API v2.0.3
+  version: 2.0.3
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/api
@@ -15509,12 +15509,14 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: "17"
               source_name: Checking account
+              bill_id: "123"
               amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
               source_type: Asset account
               foreign_currency_decimal_places: 2
+              bill_name: bill_name
               piggy_bank_id: "123"
               tags:
               - Barbecue preparation
@@ -15537,12 +15539,14 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: "17"
               source_name: Checking account
+              bill_id: "123"
               amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
               source_type: Asset account
               foreign_currency_decimal_places: 2
+              bill_name: bill_name
               piggy_bank_id: "123"
               tags:
               - Barbecue preparation
@@ -15609,12 +15613,14 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: "17"
               source_name: Checking account
+              bill_id: "123"
               amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
               source_type: Asset account
               foreign_currency_decimal_places: 2
+              bill_name: bill_name
               piggy_bank_id: "123"
               tags:
               - Barbecue preparation
@@ -15637,12 +15643,14 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: "17"
               source_name: Checking account
+              bill_id: "123"
               amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
               source_type: Asset account
               foreign_currency_decimal_places: 2
+              bill_name: bill_name
               piggy_bank_id: "123"
               tags:
               - Barbecue preparation
@@ -17997,12 +18005,14 @@ components:
             piggy_bank_name: piggy_bank_name
             foreign_currency_id: "17"
             source_name: Checking account
+            bill_id: "123"
             amount: "123.45"
             budget_name: Groceries
             foreign_currency_code: GBP
             currency_symbol: €
             source_type: Asset account
             foreign_currency_decimal_places: 2
+            bill_name: bill_name
             piggy_bank_id: "123"
             tags:
             - Barbecue preparation
@@ -18025,12 +18035,14 @@ components:
             piggy_bank_name: piggy_bank_name
             foreign_currency_id: "17"
             source_name: Checking account
+            bill_id: "123"
             amount: "123.45"
             budget_name: Groceries
             foreign_currency_code: GBP
             currency_symbol: €
             source_type: Asset account
             foreign_currency_decimal_places: 2
+            bill_name: bill_name
             piggy_bank_id: "123"
             tags:
             - Barbecue preparation
@@ -18120,12 +18132,14 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: "17"
               source_name: Checking account
+              bill_id: "123"
               amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
               source_type: Asset account
               foreign_currency_decimal_places: 2
+              bill_name: bill_name
               piggy_bank_id: "123"
               tags:
               - Barbecue preparation
@@ -18148,12 +18162,14 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: "17"
               source_name: Checking account
+              bill_id: "123"
               amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
               source_type: Asset account
               foreign_currency_decimal_places: 2
+              bill_name: bill_name
               piggy_bank_id: "123"
               tags:
               - Barbecue preparation
@@ -20959,12 +20975,14 @@ components:
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: "17"
           source_name: Checking account
+          bill_id: "123"
           amount: "123.45"
           budget_name: Groceries
           foreign_currency_code: GBP
           currency_symbol: €
           source_type: Asset account
           foreign_currency_decimal_places: 2
+          bill_name: bill_name
           piggy_bank_id: "123"
           tags:
           - Barbecue preparation
@@ -20987,12 +21005,14 @@ components:
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: "17"
           source_name: Checking account
+          bill_id: "123"
           amount: "123.45"
           budget_name: Groceries
           foreign_currency_code: GBP
           currency_symbol: €
           source_type: Asset account
           foreign_currency_decimal_places: 2
+          bill_name: bill_name
           piggy_bank_id: "123"
           tags:
           - Barbecue preparation
@@ -21111,7 +21131,8 @@ components:
         type: withdrawal
         title: Rent
         transactions:
-        - amount: "123.45"
+        - bill_id: "123"
+          amount: "123.45"
           foreign_currency_code: GBP
           budget_id: "4"
           destination_id: "258"
@@ -21126,7 +21147,8 @@ components:
           source_id: "913"
           currency_id: "3"
           foreign_currency_id: "17"
-        - amount: "123.45"
+        - bill_id: "123"
+          amount: "123.45"
           foreign_currency_code: GBP
           budget_id: "4"
           destination_id: "258"
@@ -21225,34 +21247,36 @@ components:
         active: true
         title: Rent
         transactions:
-        - amount: "123.45"
-          foreign_amount: "123.45"
-          category_id: "211"
+        - bill_id: "123"
+          amount: "123.45"
           budget_id: "4"
           destination_id: "258"
           description: Rent for the current month
-          source_id: "913"
-          currency_id: "3"
           currency_code: EUR
-          foreign_currency_id: "17"
           piggy_bank_id: "123"
           tags:
           - Barbecue preparation
           - Barbecue preparation
-        - amount: "123.45"
           foreign_amount: "123.45"
           category_id: "211"
+          source_id: "913"
+          currency_id: "3"
+          foreign_currency_id: "17"
+        - bill_id: "123"
+          amount: "123.45"
           budget_id: "4"
           destination_id: "258"
           description: Rent for the current month
-          source_id: "913"
-          currency_id: "3"
           currency_code: EUR
-          foreign_currency_id: "17"
           piggy_bank_id: "123"
           tags:
           - Barbecue preparation
           - Barbecue preparation
+          foreign_amount: "123.45"
+          category_id: "211"
+          source_id: "913"
+          currency_id: "3"
+          foreign_currency_id: "17"
         first_date: 2018-09-17T00:00:00.000+00:00
         repetitions:
         - weekend: 1
@@ -21488,12 +21512,14 @@ components:
         piggy_bank_name: piggy_bank_name
         foreign_currency_id: "17"
         source_name: Checking account
+        bill_id: "123"
         amount: "123.45"
         budget_name: Groceries
         foreign_currency_code: GBP
         currency_symbol: €
         source_type: Asset account
         foreign_currency_decimal_places: 2
+        bill_name: bill_name
         piggy_bank_id: "123"
         tags:
         - Barbecue preparation
@@ -21645,12 +21671,24 @@ components:
           format: string
           nullable: true
           type: string
+        bill_id:
+          description: Optional. Use either this or the bill_name
+          example: "123"
+          format: string
+          nullable: true
+          type: string
+        bill_name:
+          description: Optional. Use either this or the bill_id
+          format: string
+          nullable: true
+          type: string
       required:
       - amount
       - description
       type: object
     RecurrenceTransactionStore:
       example:
+        bill_id: "123"
         amount: "123.45"
         foreign_currency_code: GBP
         budget_id: "4"
@@ -21742,6 +21780,12 @@ components:
           format: string
           nullable: true
           type: string
+        bill_id:
+          description: Optional.
+          example: "123"
+          format: string
+          nullable: true
+          type: string
       required:
       - amount
       - description
@@ -21750,20 +21794,21 @@ components:
       type: object
     RecurrenceTransactionUpdate:
       example:
+        bill_id: "123"
         amount: "123.45"
-        foreign_amount: "123.45"
-        category_id: "211"
         budget_id: "4"
         destination_id: "258"
         description: Rent for the current month
-        source_id: "913"
-        currency_id: "3"
         currency_code: EUR
-        foreign_currency_id: "17"
         piggy_bank_id: "123"
         tags:
         - Barbecue preparation
         - Barbecue preparation
+        foreign_amount: "123.45"
+        category_id: "211"
+        source_id: "913"
+        currency_id: "3"
+        foreign_currency_id: "17"
       properties:
         description:
           example: Rent for the current month
@@ -21828,6 +21873,12 @@ components:
           type: array
           example: null
         piggy_bank_id:
+          example: "123"
+          format: string
+          nullable: true
+          type: string
+        bill_id:
+          description: Optional.
           example: "123"
           format: string
           nullable: true

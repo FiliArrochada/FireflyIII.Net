@@ -30,6 +30,8 @@ Name | Type | Description | Notes
 **Tags** | **List&lt;string&gt;** | Array of tags. | [optional] 
 **PiggyBankId** | **string** | Optional. Use either this or the piggy_bank_name | [optional] 
 **PiggyBankName** | **string** | Optional. Use either this or the piggy_bank_id | [optional] 
+**BillId** | **string** | Optional. Use either this or the bill_name | [optional] 
+**BillName** | **string** | Optional. Use either this or the bill_id | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
