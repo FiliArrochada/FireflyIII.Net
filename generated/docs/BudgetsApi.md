@@ -5,18 +5,19 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**DeleteBudget**](BudgetsApi.md#deletebudget) | **DELETE** /api/v1/budgets/{id} | Delete a budget. |
-| [**DeleteBudgetLimit**](BudgetsApi.md#deletebudgetlimit) | **DELETE** /api/v1/budgets/limits/{id} | Delete a budget limit. |
+| [**DeleteBudgetLimit**](BudgetsApi.md#deletebudgetlimit) | **DELETE** /api/v1/budgets/{id}/limits/{limitId} | Delete a budget limit. |
 | [**GetBudget**](BudgetsApi.md#getbudget) | **GET** /api/v1/budgets/{id} | Get a single budget. |
-| [**GetBudgetLimit**](BudgetsApi.md#getbudgetlimit) | **GET** /api/v1/budgets/limits/{id} | Get single budget limit. |
-| [**ListAttachmentByBudget**](BudgetsApi.md#listattachmentbybudget) | **GET** /api/v1/budgets/{id}/attachments | Lists all attachments. |
+| [**GetBudgetLimit**](BudgetsApi.md#getbudgetlimit) | **GET** /api/v1/budgets/{id}/limits/{limitId} | Get single budget limit. |
+| [**ListAttachmentByBudget**](BudgetsApi.md#listattachmentbybudget) | **GET** /api/v1/budgets/{id}/attachments | Lists all attachments of a budget. |
 | [**ListBudget**](BudgetsApi.md#listbudget) | **GET** /api/v1/budgets | List all budgets. |
-| [**ListBudgetLimitByBudget**](BudgetsApi.md#listbudgetlimitbybudget) | **GET** /api/v1/budgets/{id}/limits | Get all limits |
+| [**ListBudgetLimit**](BudgetsApi.md#listbudgetlimit) | **GET** /api/v1/budget-limits | Get list of budget limits by date |
+| [**ListBudgetLimitByBudget**](BudgetsApi.md#listbudgetlimitbybudget) | **GET** /api/v1/budgets/{id}/limits | Get all limits for a budget. |
 | [**ListTransactionByBudget**](BudgetsApi.md#listtransactionbybudget) | **GET** /api/v1/budgets/{id}/transactions | All transactions to a budget. |
-| [**ListTransactionByBudgetLimit**](BudgetsApi.md#listtransactionbybudgetlimit) | **GET** /api/v1/budgets/limits/{id}/transactions | List all transactions by a budget limit ID. |
+| [**ListTransactionByBudgetLimit**](BudgetsApi.md#listtransactionbybudgetlimit) | **GET** /api/v1/budgets/{id}/limits/{limitId}/transactions | List all transactions by a budget limit ID. |
 | [**StoreBudget**](BudgetsApi.md#storebudget) | **POST** /api/v1/budgets | Store a new budget |
 | [**StoreBudgetLimit**](BudgetsApi.md#storebudgetlimit) | **POST** /api/v1/budgets/{id}/limits | Store new budget limit. |
 | [**UpdateBudget**](BudgetsApi.md#updatebudget) | **PUT** /api/v1/budgets/{id} | Update existing budget. |
-| [**UpdateBudgetLimit**](BudgetsApi.md#updatebudgetlimit) | **PUT** /api/v1/budgets/limits/{id} | Update existing budget limit. |
+| [**UpdateBudgetLimit**](BudgetsApi.md#updatebudgetlimit) | **PUT** /api/v1/budgets/{id}/limits/{limitId} | Update existing budget limit. |
 
 <a id="deletebudget"></a>
 # **DeleteBudget**
@@ -44,6 +45,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the budget.
@@ -93,7 +96,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -111,7 +114,7 @@ void (empty response body)
 
 <a id="deletebudgetlimit"></a>
 # **DeleteBudgetLimit**
-> void DeleteBudgetLimit (int id)
+> void DeleteBudgetLimit (int id, int limitId)
 
 Delete a budget limit.
 
@@ -135,14 +138,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the requested budget limit.
+            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
 
             try
             {
                 // Delete a budget limit.
-                apiInstance.DeleteBudgetLimit(id);
+                apiInstance.DeleteBudgetLimit(id, limitId);
             }
             catch (ApiException  e)
             {
@@ -162,7 +168,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a budget limit.
-    apiInstance.DeleteBudgetLimitWithHttpInfo(id);
+    apiInstance.DeleteBudgetLimitWithHttpInfo(id, limitId);
 }
 catch (ApiException e)
 {
@@ -176,7 +182,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the requested budget limit. |  |
+| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 
 ### Return type
 
@@ -184,7 +191,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -226,6 +233,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the requested budget.
@@ -283,12 +292,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -301,7 +310,7 @@ catch (ApiException e)
 
 <a id="getbudgetlimit"></a>
 # **GetBudgetLimit**
-> BudgetLimitSingle GetBudgetLimit (int id)
+> BudgetLimitSingle GetBudgetLimit (int id, int limitId)
 
 Get single budget limit.
 
@@ -323,14 +332,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the requested budget limit.
+            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
 
             try
             {
                 // Get single budget limit.
-                BudgetLimitSingle result = apiInstance.GetBudgetLimit(id);
+                BudgetLimitSingle result = apiInstance.GetBudgetLimit(id, limitId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -351,7 +363,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get single budget limit.
-    ApiResponse<BudgetLimitSingle> response = apiInstance.GetBudgetLimitWithHttpInfo(id);
+    ApiResponse<BudgetLimitSingle> response = apiInstance.GetBudgetLimitWithHttpInfo(id, limitId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -368,7 +380,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the requested budget limit. |  |
+| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 
 ### Return type
 
@@ -376,12 +389,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -396,7 +409,7 @@ catch (ApiException e)
 # **ListAttachmentByBudget**
 > AttachmentArray ListAttachmentByBudget (int id, int? page = null)
 
-Lists all attachments.
+Lists all attachments of a budget.
 
 Lists all attachments.
 
@@ -418,6 +431,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the budget.
@@ -425,7 +440,7 @@ namespace Example
 
             try
             {
-                // Lists all attachments.
+                // Lists all attachments of a budget.
                 AttachmentArray result = apiInstance.ListAttachmentByBudget(id, page);
                 Debug.WriteLine(result);
             }
@@ -446,7 +461,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Lists all attachments.
+    // Lists all attachments of a budget.
     ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByBudgetWithHttpInfo(id, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -473,12 +488,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -515,6 +530,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -572,12 +589,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -587,11 +604,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listbudgetlimit"></a>
+# **ListBudgetLimit**
+> BudgetLimitArray ListBudgetLimit (DateTime start, DateTime end)
+
+Get list of budget limits by date
+
+Get all budget limits for for this date range. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class ListBudgetLimitExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new BudgetsApi(config);
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime | A date formatted YYYY-MM-DD. 
+
+            try
+            {
+                // Get list of budget limits by date
+                BudgetLimitArray result = apiInstance.ListBudgetLimit(start, end);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling BudgetsApi.ListBudgetLimit: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListBudgetLimitWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get list of budget limits by date
+    ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitWithHttpInfo(start, end);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BudgetsApi.ListBudgetLimitWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
+| **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
+
+### Return type
+
+[**BudgetLimitArray**](BudgetLimitArray.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/vnd.api+json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of budget limits. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listbudgetlimitbybudget"></a>
 # **ListBudgetLimitByBudget**
 > BudgetLimitArray ListBudgetLimitByBudget (int id, DateTime? start = null, DateTime? end = null)
 
-Get all limits
+Get all limits for a budget.
 
 Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \"spent\" array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
 
@@ -613,6 +728,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the requested budget.
@@ -621,7 +738,7 @@ namespace Example
 
             try
             {
-                // Get all limits
+                // Get all limits for a budget.
                 BudgetLimitArray result = apiInstance.ListBudgetLimitByBudget(id, start, end);
                 Debug.WriteLine(result);
             }
@@ -642,7 +759,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get all limits
+    // Get all limits for a budget.
     ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitByBudgetWithHttpInfo(id, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -670,12 +787,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -711,6 +828,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the budget.
@@ -774,12 +893,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -791,7 +910,7 @@ catch (ApiException e)
 
 <a id="listtransactionbybudgetlimit"></a>
 # **ListTransactionByBudgetLimit**
-> TransactionArray ListTransactionByBudgetLimit (int id, int? page = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByBudgetLimit (int id, int limitId, int? page = null, TransactionTypeFilter type = null)
 
 List all transactions by a budget limit ID.
 
@@ -815,16 +934,19 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the requested budget limit.
+            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
 
             try
             {
                 // List all transactions by a budget limit ID.
-                TransactionArray result = apiInstance.ListTransactionByBudgetLimit(id, page, type);
+                TransactionArray result = apiInstance.ListTransactionByBudgetLimit(id, limitId, page, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -845,7 +967,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all transactions by a budget limit ID.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByBudgetLimitWithHttpInfo(id, page, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByBudgetLimitWithHttpInfo(id, limitId, page, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -862,7 +984,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the requested budget limit. |  |
+| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
@@ -872,12 +995,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -889,7 +1012,7 @@ catch (ApiException e)
 
 <a id="storebudget"></a>
 # **StoreBudget**
-> BudgetSingle StoreBudget (Budget budget)
+> BudgetSingle StoreBudget (BudgetStore budgetStore)
 
 Store a new budget
 
@@ -913,14 +1036,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var budget = new Budget(); // Budget | JSON array or key=value pairs with the necessary budget information. See the model for the exact specifications.
+            var budgetStore = new BudgetStore(); // BudgetStore | JSON array or key=value pairs with the necessary budget information. See the model for the exact specifications.
 
             try
             {
                 // Store a new budget
-                BudgetSingle result = apiInstance.StoreBudget(budget);
+                BudgetSingle result = apiInstance.StoreBudget(budgetStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -941,7 +1066,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new budget
-    ApiResponse<BudgetSingle> response = apiInstance.StoreBudgetWithHttpInfo(budget);
+    ApiResponse<BudgetSingle> response = apiInstance.StoreBudgetWithHttpInfo(budgetStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -958,7 +1083,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **budget** | [**Budget**](Budget.md) | JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications. |  |
+| **budgetStore** | [**BudgetStore**](BudgetStore.md) | JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -966,12 +1091,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -984,11 +1109,11 @@ catch (ApiException e)
 
 <a id="storebudgetlimit"></a>
 # **StoreBudgetLimit**
-> BudgetLimitSingle StoreBudgetLimit (int id, BudgetLimit budgetLimit)
+> BudgetLimitSingle StoreBudgetLimit (int id, BudgetLimitStore budgetLimitStore)
 
 Store new budget limit.
 
-Store a new budget limit.
+Store a new budget limit under this budget.
 
 ### Example
 ```csharp
@@ -1008,15 +1133,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the budget.
-            var budgetLimit = new BudgetLimit(); // BudgetLimit | JSON array or key=value pairs with the necessary budget information. See the model for the exact specifications.
+            var budgetLimitStore = new BudgetLimitStore(); // BudgetLimitStore | JSON array or key=value pairs with the necessary budget information. See the model for the exact specifications.
 
             try
             {
                 // Store new budget limit.
-                BudgetLimitSingle result = apiInstance.StoreBudgetLimit(id, budgetLimit);
+                BudgetLimitSingle result = apiInstance.StoreBudgetLimit(id, budgetLimitStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1037,7 +1164,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store new budget limit.
-    ApiResponse<BudgetLimitSingle> response = apiInstance.StoreBudgetLimitWithHttpInfo(id, budgetLimit);
+    ApiResponse<BudgetLimitSingle> response = apiInstance.StoreBudgetLimitWithHttpInfo(id, budgetLimitStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1055,7 +1182,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the budget. |  |
-| **budgetLimit** | [**BudgetLimit**](BudgetLimit.md) | JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications. |  |
+| **budgetLimitStore** | [**BudgetLimitStore**](BudgetLimitStore.md) | JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -1063,12 +1190,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -1081,7 +1208,7 @@ catch (ApiException e)
 
 <a id="updatebudget"></a>
 # **UpdateBudget**
-> BudgetSingle UpdateBudget (int id, Budget budget)
+> BudgetSingle UpdateBudget (int id, BudgetUpdate budgetUpdate)
 
 Update existing budget.
 
@@ -1105,15 +1232,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 1;  // int | The ID of the budget.
-            var budget = new Budget(); // Budget | JSON array with updated budget information. See the model for the exact specifications.
+            var budgetUpdate = new BudgetUpdate(); // BudgetUpdate | JSON array with updated budget information. See the model for the exact specifications.
 
             try
             {
                 // Update existing budget.
-                BudgetSingle result = apiInstance.UpdateBudget(id, budget);
+                BudgetSingle result = apiInstance.UpdateBudget(id, budgetUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1134,7 +1263,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing budget.
-    ApiResponse<BudgetSingle> response = apiInstance.UpdateBudgetWithHttpInfo(id, budget);
+    ApiResponse<BudgetSingle> response = apiInstance.UpdateBudgetWithHttpInfo(id, budgetUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1152,7 +1281,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the budget. |  |
-| **budget** | [**Budget**](Budget.md) | JSON array with updated budget information. See the model for the exact specifications. |  |
+| **budgetUpdate** | [**BudgetUpdate**](BudgetUpdate.md) | JSON array with updated budget information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -1160,12 +1289,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -1178,7 +1307,7 @@ catch (ApiException e)
 
 <a id="updatebudgetlimit"></a>
 # **UpdateBudgetLimit**
-> BudgetLimitSingle UpdateBudgetLimit (int id, BudgetLimit budgetLimit)
+> BudgetLimitSingle UpdateBudgetLimit (int id, int limitId, BudgetLimit budgetLimit)
 
 Update existing budget limit.
 
@@ -1202,15 +1331,18 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
-            var id = 1;  // int | The ID of the requested budget limit. The budget limit MUST be associated to the budget ID.
+            var id = 1;  // int | The ID of the budget. The budget limit MUST be associated to the budget ID.
+            var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
             var budgetLimit = new BudgetLimit(); // BudgetLimit | JSON array with updated budget limit information. See the model for the exact specifications.
 
             try
             {
                 // Update existing budget limit.
-                BudgetLimitSingle result = apiInstance.UpdateBudgetLimit(id, budgetLimit);
+                BudgetLimitSingle result = apiInstance.UpdateBudgetLimit(id, limitId, budgetLimit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1231,7 +1363,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing budget limit.
-    ApiResponse<BudgetLimitSingle> response = apiInstance.UpdateBudgetLimitWithHttpInfo(id, budgetLimit);
+    ApiResponse<BudgetLimitSingle> response = apiInstance.UpdateBudgetLimitWithHttpInfo(id, limitId, budgetLimit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1248,7 +1380,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the requested budget limit. The budget limit MUST be associated to the budget ID. |  |
+| **id** | **int** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
+| **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 | **budgetLimit** | [**BudgetLimit**](BudgetLimit.md) | JSON array with updated budget limit information. See the model for the exact specifications. |  |
 
 ### Return type
@@ -1257,12 +1390,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

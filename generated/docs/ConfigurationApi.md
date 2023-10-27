@@ -4,16 +4,17 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetConfiguration**](ConfigurationApi.md#getconfiguration) | **GET** /api/v1/configuration | Get Firefly III system configuration. |
-| [**SetConfiguration**](ConfigurationApi.md#setconfiguration) | **POST** /api/v1/configuration/{name} | Update configuration |
+| [**GetConfiguration**](ConfigurationApi.md#getconfiguration) | **GET** /api/v1/configuration | Get Firefly III system configuration values. |
+| [**GetSingleConfiguration**](ConfigurationApi.md#getsingleconfiguration) | **GET** /api/v1/configuration/{name} | Get a single Firefly III system configuration value |
+| [**SetConfiguration**](ConfigurationApi.md#setconfiguration) | **PUT** /api/v1/configuration/{name} | Update configuration value |
 
 <a id="getconfiguration"></a>
 # **GetConfiguration**
-> ModelConfiguration GetConfiguration ()
+> List&lt;ModelConfiguration&gt; GetConfiguration ()
 
-Get Firefly III system configuration.
+Get Firefly III system configuration values.
 
-Get system configuration
+Returns all editable and not-editable configuration values for this Firefly III installation
 
 ### Example
 ```csharp
@@ -33,13 +34,15 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ConfigurationApi(config);
 
             try
             {
-                // Get Firefly III system configuration.
-                ModelConfiguration result = apiInstance.GetConfiguration();
+                // Get Firefly III system configuration values.
+                List<ModelConfiguration> result = apiInstance.GetConfiguration();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -59,8 +62,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get Firefly III system configuration.
-    ApiResponse<ModelConfiguration> response = apiInstance.GetConfigurationWithHttpInfo();
+    // Get Firefly III system configuration values.
+    ApiResponse<List<ModelConfiguration>> response = apiInstance.GetConfigurationWithHttpInfo();
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -77,11 +80,11 @@ catch (ApiException e)
 This endpoint does not need any parameter.
 ### Return type
 
-[**ModelConfiguration**](ModelConfiguration.md)
+[**List&lt;ModelConfiguration&gt;**](ModelConfiguration.md)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -92,17 +95,113 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | System configuration |  -  |
+| **200** | System configuration values |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getsingleconfiguration"></a>
+# **GetSingleConfiguration**
+> ConfigurationSingle GetSingleConfiguration (ConfigValueFilter name)
+
+Get a single Firefly III system configuration value
+
+Returns one configuration variable for this Firefly III installation
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class GetSingleConfigurationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new ConfigurationApi(config);
+            var name = new ConfigValueFilter(); // ConfigValueFilter | The name of the configuration value you want to know.
+
+            try
+            {
+                // Get a single Firefly III system configuration value
+                ConfigurationSingle result = apiInstance.GetSingleConfiguration(name);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConfigurationApi.GetSingleConfiguration: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetSingleConfigurationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single Firefly III system configuration value
+    ApiResponse<ConfigurationSingle> response = apiInstance.GetSingleConfigurationWithHttpInfo(name);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConfigurationApi.GetSingleConfigurationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **name** | [**ConfigValueFilter**](ConfigValueFilter.md) | The name of the configuration value you want to know. |  |
+
+### Return type
+
+[**ConfigurationSingle**](ConfigurationSingle.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One system configuration value |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="setconfiguration"></a>
 # **SetConfiguration**
-> ModelConfiguration SetConfiguration (string name, string value)
+> ConfigurationSingle SetConfiguration (ConfigValueUpdateFilter name, ConfigurationUpdateValue value)
 
-Update configuration
+Update configuration value
 
-Set a single config value.
+Set a single configuration value. Not all configuration values can be updated so the list of accepted configuration variables is small.
 
 ### Example
 ```csharp
@@ -122,15 +221,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new ConfigurationApi(config);
-            var name = single_user_mode;  // string | The configuration value name.
-            var value = "value_example";  // string | Can be a number or a boolean. This depends on the actual configuration value.
+            var name = new ConfigValueUpdateFilter(); // ConfigValueUpdateFilter | The name of the configuration value you want to update.
+            var value = new ConfigurationUpdateValue(); // ConfigurationUpdateValue | 
 
             try
             {
-                // Update configuration
-                ModelConfiguration result = apiInstance.SetConfiguration(name, value);
+                // Update configuration value
+                ConfigurationSingle result = apiInstance.SetConfiguration(name, value);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -150,8 +251,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Update configuration
-    ApiResponse<ModelConfiguration> response = apiInstance.SetConfigurationWithHttpInfo(name, value);
+    // Update configuration value
+    ApiResponse<ConfigurationSingle> response = apiInstance.SetConfigurationWithHttpInfo(name, value);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -168,16 +269,16 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **name** | **string** | The configuration value name. |  |
-| **value** | **string** | Can be a number or a boolean. This depends on the actual configuration value. |  |
+| **name** | [**ConfigValueUpdateFilter**](ConfigValueUpdateFilter.md) | The name of the configuration value you want to update. |  |
+| **value** | [**ConfigurationUpdateValue**](ConfigurationUpdateValue.md) |  |  |
 
 ### Return type
 
-[**ModelConfiguration**](ModelConfiguration.md)
+[**ConfigurationSingle**](ConfigurationSingle.md)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -188,7 +289,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | New config stored, result in response. |  -  |
+| **200** | New configuration value stored, result in response. |  -  |
 | **422** | Validation errors (see body) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

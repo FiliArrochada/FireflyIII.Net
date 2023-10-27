@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | **string** | This is a reference to the type of info shared, not influenced by translations or user preferences. | [optional] 
+**Key** | **string** | This is a reference to the type of info shared, not influenced by translations or user preferences. The EUR value is a reference to the currency code. Possibilities are: balance-in-ABC, spent-in-ABC, earned-in-ABC, bills-paid-in-ABC, bills-unpaid-in-ABC, left-to-spend-in-ABC and net-worth-in-ABC. | [optional] 
 **Title** | **string** | A translated title for the information shared. | [optional] 
 **MonetaryValue** | **double** | The amount as a float. | [optional] 
-**CurrencyId** | **int** | The currency ID of the associated currency. | [optional] 
+**CurrencyId** | **string** | The currency ID of the associated currency. | [optional] 
 **CurrencyCode** | **string** |  | [optional] 
 **CurrencySymbol** | **string** |  | [optional] 
 **CurrencyDecimalPlaces** | **int** | Number of decimals for the associated currency. | [optional] 

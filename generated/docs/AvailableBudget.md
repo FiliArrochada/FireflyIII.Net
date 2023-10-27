@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | **DateTime** |  | [optional] [readonly] 
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
-**CurrencyId** | **int** | Use either currency_id or currency_code. | [optional] 
+**CurrencyId** | **string** | Use either currency_id or currency_code. | [optional] 
 **CurrencyCode** | **string** | Use either currency_id or currency_code. | [optional] 
 **CurrencySymbol** | **string** |  | [optional] [readonly] 
 **CurrencyDecimalPlaces** | **int** |  | [optional] [readonly] 

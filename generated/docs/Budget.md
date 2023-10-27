@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Active** | **bool** |  | [optional] 
 **Order** | **int** |  | [optional] [readonly] 
 **AutoBudgetType** | **string** | The type of auto-budget that Firefly III must create. | [optional] 
-**AutoBudgetCurrencyId** | **int** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
+**AutoBudgetCurrencyId** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
 **AutoBudgetCurrencyCode** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
 **AutoBudgetAmount** | **string** |  | [optional] 
 **AutoBudgetPeriod** | **string** | Period for the auto budget | [optional] 

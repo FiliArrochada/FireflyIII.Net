@@ -38,6 +38,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank.
@@ -87,7 +89,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -129,6 +131,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank.
@@ -182,12 +186,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -224,6 +228,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank.
@@ -279,12 +285,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -321,6 +327,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank
@@ -376,12 +384,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -417,6 +425,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -470,12 +480,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -487,7 +497,7 @@ catch (ApiException e)
 
 <a id="storepiggybank"></a>
 # **StorePiggyBank**
-> PiggyBankSingle StorePiggyBank (PiggyBank piggyBank)
+> PiggyBankSingle StorePiggyBank (PiggyBankStore piggyBankStore)
 
 Store a new piggy bank
 
@@ -511,14 +521,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
-            var piggyBank = new PiggyBank(); // PiggyBank | JSON array or key=value pairs with the necessary piggy bank information. See the model for the exact specifications.
+            var piggyBankStore = new PiggyBankStore(); // PiggyBankStore | JSON array or key=value pairs with the necessary piggy bank information. See the model for the exact specifications.
 
             try
             {
                 // Store a new piggy bank
-                PiggyBankSingle result = apiInstance.StorePiggyBank(piggyBank);
+                PiggyBankSingle result = apiInstance.StorePiggyBank(piggyBankStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -539,7 +551,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new piggy bank
-    ApiResponse<PiggyBankSingle> response = apiInstance.StorePiggyBankWithHttpInfo(piggyBank);
+    ApiResponse<PiggyBankSingle> response = apiInstance.StorePiggyBankWithHttpInfo(piggyBankStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -556,7 +568,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **piggyBank** | [**PiggyBank**](PiggyBank.md) | JSON array or key&#x3D;value pairs with the necessary piggy bank information. See the model for the exact specifications. |  |
+| **piggyBankStore** | [**PiggyBankStore**](PiggyBankStore.md) | JSON array or key&#x3D;value pairs with the necessary piggy bank information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -564,12 +576,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -582,7 +594,7 @@ catch (ApiException e)
 
 <a id="updatepiggybank"></a>
 # **UpdatePiggyBank**
-> PiggyBankSingle UpdatePiggyBank (int id, PiggyBank piggyBank)
+> PiggyBankSingle UpdatePiggyBank (int id, PiggyBankUpdate piggyBankUpdate)
 
 Update existing piggy bank.
 
@@ -606,15 +618,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank
-            var piggyBank = new PiggyBank(); // PiggyBank | JSON array with updated piggy bank information. See the model for the exact specifications.
+            var piggyBankUpdate = new PiggyBankUpdate(); // PiggyBankUpdate | JSON array with updated piggy bank information. See the model for the exact specifications.
 
             try
             {
                 // Update existing piggy bank.
-                PiggyBankSingle result = apiInstance.UpdatePiggyBank(id, piggyBank);
+                PiggyBankSingle result = apiInstance.UpdatePiggyBank(id, piggyBankUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -635,7 +649,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing piggy bank.
-    ApiResponse<PiggyBankSingle> response = apiInstance.UpdatePiggyBankWithHttpInfo(id, piggyBank);
+    ApiResponse<PiggyBankSingle> response = apiInstance.UpdatePiggyBankWithHttpInfo(id, piggyBankUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -653,7 +667,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the piggy bank |  |
-| **piggyBank** | [**PiggyBank**](PiggyBank.md) | JSON array with updated piggy bank information. See the model for the exact specifications. |  |
+| **piggyBankUpdate** | [**PiggyBankUpdate**](PiggyBankUpdate.md) | JSON array with updated piggy bank information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -661,12 +675,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

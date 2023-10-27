@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
 **Title** | **string** |  | 
 **Description** | **string** |  | [optional] 
-**RuleGroupId** | **int** | ID of the rule group under which the rule must be stored. Either this field or rule_group_title is mandatory. | 
+**RuleGroupId** | **string** | ID of the rule group under which the rule must be stored. Either this field or rule_group_title is mandatory. | 
 **RuleGroupTitle** | **string** | Title of the rule group under which the rule must be stored. Either this field or rule_group_id is mandatory. | [optional] 
 **Order** | **int** |  | [optional] [readonly] 
 **Trigger** | **string** | Which action is necessary for the rule to fire? Use either store-journal or update-journal. | 

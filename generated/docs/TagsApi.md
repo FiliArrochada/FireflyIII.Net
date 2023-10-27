@@ -6,7 +6,6 @@ All URIs are relative to *https://demo.firefly-iii.org*
 |--------|--------------|-------------|
 | [**DeleteTag**](TagsApi.md#deletetag) | **DELETE** /api/v1/tags/{tag} | Delete an tag. |
 | [**GetTag**](TagsApi.md#gettag) | **GET** /api/v1/tags/{tag} | Get a single tag. |
-| [**GetTagCloud**](TagsApi.md#gettagcloud) | **GET** /api/v1/tag-cloud | Returns a basic tag cloud. |
 | [**ListAttachmentByTag**](TagsApi.md#listattachmentbytag) | **GET** /api/v1/tags/{tag}/attachments | Lists all attachments. |
 | [**ListTag**](TagsApi.md#listtag) | **GET** /api/v1/tags | List all tags. |
 | [**ListTransactionByTag**](TagsApi.md#listtransactionbytag) | **GET** /api/v1/tags/{tag}/transactions | List all transactions with this tag. |
@@ -39,9 +38,11 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
-            var tag = groceries;  // string | Either the tag itself or the tag ID.
+            var tag = groceries;  // string | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary.
 
             try
             {
@@ -80,7 +81,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **tag** | **string** | Either the tag itself or the tag ID. |  |
+| **tag** | **string** | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary. |  |
 
 ### Return type
 
@@ -88,7 +89,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -130,9 +131,11 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
-            var tag = groceries;  // string | Either the tag itself or the tag ID.
+            var tag = groceries;  // string | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary.
             var page = 56;  // int? | Page number (optional) 
 
             try
@@ -176,7 +179,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **tag** | **string** | Either the tag itself or the tag ID. |  |
+| **tag** | **string** | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary. |  |
 | **page** | **int?** | Page number | [optional]  |
 
 ### Return type
@@ -185,12 +188,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -198,102 +201,6 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The requested tag |  -  |
 | **404** | Tag not found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="gettagcloud"></a>
-# **GetTagCloud**
-> TagCloud GetTagCloud (DateTime start, DateTime end)
-
-Returns a basic tag cloud.
-
-Returns a list of tags, which can be used to draw a basic tag cloud.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using FireflyIIINet.Api;
-using FireflyIIINet.Client;
-using FireflyIIINet.Model;
-
-namespace Example
-{
-    public class GetTagCloudExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
-            // Configure OAuth2 access token for authorization: firefly_iii_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new TagsApi(config);
-            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
-
-            try
-            {
-                // Returns a basic tag cloud.
-                TagCloud result = apiInstance.GetTagCloud(start, end);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling TagsApi.GetTagCloud: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetTagCloudWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Returns a basic tag cloud.
-    ApiResponse<TagCloud> response = apiInstance.GetTagCloudWithHttpInfo(start, end);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling TagsApi.GetTagCloudWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-
-### Return type
-
-[**TagCloud**](TagCloud.md)
-
-### Authorization
-
-[firefly_iii_auth](../README.md#firefly_iii_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A tag cloud |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -323,6 +230,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tag = groceries;  // string | Either the tag itself or the tag ID.
@@ -378,12 +287,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -420,6 +329,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var page = 56;  // int? | Page number (optional) 
@@ -473,12 +384,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -514,6 +425,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tag = groceries;  // string | Either the tag itself or the tag ID.
@@ -575,12 +488,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -592,7 +505,7 @@ catch (ApiException e)
 
 <a id="storetag"></a>
 # **StoreTag**
-> TagSingle StoreTag (TagModel tagModel)
+> TagSingle StoreTag (TagModelStore tagModelStore)
 
 Store a new tag
 
@@ -616,14 +529,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
-            var tagModel = new TagModel(); // TagModel | JSON array or key=value pairs with the necessary tag information. See the model for the exact specifications.
+            var tagModelStore = new TagModelStore(); // TagModelStore | JSON array or key=value pairs with the necessary tag information. See the model for the exact specifications.
 
             try
             {
                 // Store a new tag
-                TagSingle result = apiInstance.StoreTag(tagModel);
+                TagSingle result = apiInstance.StoreTag(tagModelStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -644,7 +559,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new tag
-    ApiResponse<TagSingle> response = apiInstance.StoreTagWithHttpInfo(tagModel);
+    ApiResponse<TagSingle> response = apiInstance.StoreTagWithHttpInfo(tagModelStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -661,7 +576,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **tagModel** | [**TagModel**](TagModel.md) | JSON array or key&#x3D;value pairs with the necessary tag information. See the model for the exact specifications. |  |
+| **tagModelStore** | [**TagModelStore**](TagModelStore.md) | JSON array or key&#x3D;value pairs with the necessary tag information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -669,12 +584,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -687,7 +602,7 @@ catch (ApiException e)
 
 <a id="updatetag"></a>
 # **UpdateTag**
-> TagSingle UpdateTag (string tag, TagModel tagModel)
+> TagSingle UpdateTag (string tag, TagModelUpdate tagModelUpdate)
 
 Update existing tag.
 
@@ -711,15 +626,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
-            var tag = groceries;  // string | Either the tag itself or the tag ID.
-            var tagModel = new TagModel(); // TagModel | JSON array with updated tag information. See the model for the exact specifications.
+            var tag = groceries;  // string | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary.
+            var tagModelUpdate = new TagModelUpdate(); // TagModelUpdate | JSON array with updated tag information. See the model for the exact specifications.
 
             try
             {
                 // Update existing tag.
-                TagSingle result = apiInstance.UpdateTag(tag, tagModel);
+                TagSingle result = apiInstance.UpdateTag(tag, tagModelUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -740,7 +657,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing tag.
-    ApiResponse<TagSingle> response = apiInstance.UpdateTagWithHttpInfo(tag, tagModel);
+    ApiResponse<TagSingle> response = apiInstance.UpdateTagWithHttpInfo(tag, tagModelUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -757,8 +674,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **tag** | **string** | Either the tag itself or the tag ID. |  |
-| **tagModel** | [**TagModel**](TagModel.md) | JSON array with updated tag information. See the model for the exact specifications. |  |
+| **tag** | **string** | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary. |  |
+| **tagModelUpdate** | [**TagModelUpdate**](TagModelUpdate.md) | JSON array with updated tag information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -766,12 +683,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

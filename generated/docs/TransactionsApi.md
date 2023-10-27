@@ -5,10 +5,12 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**DeleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /api/v1/transactions/{id} | Delete a transaction. |
+| [**DeleteTransactionJournal**](TransactionsApi.md#deletetransactionjournal) | **DELETE** /api/v1/transaction-journals/{id} | Delete split from transaction |
 | [**GetTransaction**](TransactionsApi.md#gettransaction) | **GET** /api/v1/transactions/{id} | Get a single transaction. |
-| [**GetTransactionByJournal**](TransactionsApi.md#gettransactionbyjournal) | **GET** /api/v1/transaction-journals/{id} | Get a single transaction, based on one of the underlying transaction journals. |
+| [**GetTransactionByJournal**](TransactionsApi.md#gettransactionbyjournal) | **GET** /api/v1/transaction-journals/{id} | Get a single transaction, based on one of the underlying transaction journals (transaction splits). |
 | [**ListAttachmentByTransaction**](TransactionsApi.md#listattachmentbytransaction) | **GET** /api/v1/transactions/{id}/attachments | Lists all attachments. |
 | [**ListEventByTransaction**](TransactionsApi.md#listeventbytransaction) | **GET** /api/v1/transactions/{id}/piggy_bank_events | Lists all piggy bank events. |
+| [**ListLinksByJournal**](TransactionsApi.md#listlinksbyjournal) | **GET** /api/v1/transaction-journals/{id}/links | Lists all the transaction links for an individual journal (individual split). |
 | [**ListTransaction**](TransactionsApi.md#listtransaction) | **GET** /api/v1/transactions | List all the user&#39;s transactions.  |
 | [**StoreTransaction**](TransactionsApi.md#storetransaction) | **POST** /api/v1/transactions | Store a new transaction |
 | [**UpdateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /api/v1/transactions/{id} | Update existing transaction. |
@@ -39,6 +41,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
@@ -88,7 +92,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -100,6 +104,99 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Transaction deleted. |  -  |
+| **404** | No such transaction. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletetransactionjournal"></a>
+# **DeleteTransactionJournal**
+> void DeleteTransactionJournal (int id)
+
+Delete split from transaction
+
+Delete an individual journal (split) from a transaction.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class DeleteTransactionJournalExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new TransactionsApi(config);
+            var id = 1;  // int | The ID of the transaction journal (the split) you wish to delete.
+
+            try
+            {
+                // Delete split from transaction
+                apiInstance.DeleteTransactionJournal(id);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TransactionsApi.DeleteTransactionJournal: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteTransactionJournalWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete split from transaction
+    apiInstance.DeleteTransactionJournalWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.DeleteTransactionJournalWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction journal (the split) you wish to delete. |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Transaction journal (split) deleted. |  -  |
 | **404** | No such transaction. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -130,6 +227,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
@@ -183,12 +282,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -203,9 +302,9 @@ catch (ApiException e)
 # **GetTransactionByJournal**
 > TransactionSingle GetTransactionByJournal (int id)
 
-Get a single transaction, based on one of the underlying transaction journals.
+Get a single transaction, based on one of the underlying transaction journals (transaction splits).
 
-Get a single transaction by underlying journal.
+Get a single transaction by underlying journal (split).
 
 ### Example
 ```csharp
@@ -225,13 +324,15 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var id = 1;  // int | The ID of the transaction journal.
+            var id = 1;  // int | The ID of the transaction journal (split).
 
             try
             {
-                // Get a single transaction, based on one of the underlying transaction journals.
+                // Get a single transaction, based on one of the underlying transaction journals (transaction splits).
                 TransactionSingle result = apiInstance.GetTransactionByJournal(id);
                 Debug.WriteLine(result);
             }
@@ -252,7 +353,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get a single transaction, based on one of the underlying transaction journals.
+    // Get a single transaction, based on one of the underlying transaction journals (transaction splits).
     ApiResponse<TransactionSingle> response = apiInstance.GetTransactionByJournalWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -270,7 +371,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **int** | The ID of the transaction journal. |  |
+| **id** | **int** | The ID of the transaction journal (split). |  |
 
 ### Return type
 
@@ -278,12 +379,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -320,6 +421,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
@@ -375,12 +478,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -417,6 +520,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
@@ -472,12 +577,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -485,6 +590,105 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | A list of piggy bank events. |  -  |
 | **404** | No such transaction. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listlinksbyjournal"></a>
+# **ListLinksByJournal**
+> TransactionLinkArray ListLinksByJournal (int id, int? page = null)
+
+Lists all the transaction links for an individual journal (individual split).
+
+Lists all the transaction links for an individual journal (a split). Don't use the group ID, you need the actual underlying journal (the split).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class ListLinksByJournalExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new TransactionsApi(config);
+            var id = 1;  // int | The ID of the transaction journal / the split.
+            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
+
+            try
+            {
+                // Lists all the transaction links for an individual journal (individual split).
+                TransactionLinkArray result = apiInstance.ListLinksByJournal(id, page);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TransactionsApi.ListLinksByJournal: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListLinksByJournalWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Lists all the transaction links for an individual journal (individual split).
+    ApiResponse<TransactionLinkArray> response = apiInstance.ListLinksByJournalWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.ListLinksByJournalWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction journal / the split. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+
+### Return type
+
+[**TransactionLinkArray**](TransactionLinkArray.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/vnd.api+json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of transaction links. |  -  |
+| **404** | No such transaction journal (transaction split). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -514,6 +718,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -573,12 +779,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -590,7 +796,7 @@ catch (ApiException e)
 
 <a id="storetransaction"></a>
 # **StoreTransaction**
-> TransactionSingle StoreTransaction (Transaction transaction)
+> TransactionSingle StoreTransaction (TransactionStore transactionStore)
 
 Store a new transaction
 
@@ -614,14 +820,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
-            var transaction = new Transaction(); // Transaction | JSON array or key=value pairs with the necessary transaction information. See the model for the exact specifications.
+            var transactionStore = new TransactionStore(); // TransactionStore | JSON array or key=value pairs with the necessary transaction information. See the model for the exact specifications.
 
             try
             {
                 // Store a new transaction
-                TransactionSingle result = apiInstance.StoreTransaction(transaction);
+                TransactionSingle result = apiInstance.StoreTransaction(transactionStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -642,7 +850,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new transaction
-    ApiResponse<TransactionSingle> response = apiInstance.StoreTransactionWithHttpInfo(transaction);
+    ApiResponse<TransactionSingle> response = apiInstance.StoreTransactionWithHttpInfo(transactionStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -659,7 +867,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **transaction** | [**Transaction**](Transaction.md) | JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications. |  |
+| **transactionStore** | [**TransactionStore**](TransactionStore.md) | JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -667,12 +875,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -685,7 +893,7 @@ catch (ApiException e)
 
 <a id="updatetransaction"></a>
 # **UpdateTransaction**
-> TransactionSingle UpdateTransaction (int id, Transaction transaction)
+> TransactionSingle UpdateTransaction (int id, TransactionUpdate transactionUpdate)
 
 Update existing transaction.
 
@@ -709,15 +917,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
-            var transaction = new Transaction(); // Transaction | JSON array with updated transaction information. See the model for the exact specifications.
+            var transactionUpdate = new TransactionUpdate(); // TransactionUpdate | JSON array with updated transaction information. See the model for the exact specifications.
 
             try
             {
                 // Update existing transaction.
-                TransactionSingle result = apiInstance.UpdateTransaction(id, transaction);
+                TransactionSingle result = apiInstance.UpdateTransaction(id, transactionUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -738,7 +948,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing transaction.
-    ApiResponse<TransactionSingle> response = apiInstance.UpdateTransactionWithHttpInfo(id, transaction);
+    ApiResponse<TransactionSingle> response = apiInstance.UpdateTransactionWithHttpInfo(id, transactionUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -756,7 +966,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the transaction. |  |
-| **transaction** | [**Transaction**](Transaction.md) | JSON array with updated transaction information. See the model for the exact specifications. |  |
+| **transactionUpdate** | [**TransactionUpdate**](TransactionUpdate.md) | JSON array with updated transaction information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -764,12 +974,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

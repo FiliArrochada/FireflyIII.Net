@@ -38,6 +38,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RulesApi(config);
             var id = 1;  // int | The ID of the rule.
@@ -87,7 +89,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -105,7 +107,7 @@ void (empty response body)
 
 <a id="firerule"></a>
 # **FireRule**
-> void FireRule (int id, DateTime? start = null, DateTime? end = null, string accounts = null)
+> void FireRule (int id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
 
 Fire the rule on your transactions.
 
@@ -129,12 +131,14 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RulesApi(config);
             var id = 1;  // int | The ID of the rule.
-            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
-            var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
-            var accounts = 1,2,3;  // string | Limit the testing of the rule to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the start date is not present, it will be set to one year ago. If you use this field, both the start date and the end date must be present.  (optional) 
+            var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the end date is not present, it will be set to today. If you use this field, both the start date and the end date must be present.  (optional) 
+            var accounts = new List<long>(); // List<long> | Limit the triggering of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  (optional) 
 
             try
             {
@@ -174,9 +178,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the rule. |  |
-| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
-| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
-| **accounts** | **string** | Limit the testing of the rule to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the start date is not present, it will be set to one year ago. If you use this field, both the start date and the end date must be present.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. If the end date is not present, it will be set to today. If you use this field, both the start date and the end date must be present.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;**](long.md) | Limit the triggering of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  | [optional]  |
 
 ### Return type
 
@@ -184,7 +188,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -225,6 +229,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RulesApi(config);
             var id = 1;  // int | The ID of the object.X
@@ -278,12 +284,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -320,6 +326,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RulesApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -373,12 +381,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -390,7 +398,7 @@ catch (ApiException e)
 
 <a id="storerule"></a>
 # **StoreRule**
-> RuleSingle StoreRule (Rule rule)
+> RuleSingle StoreRule (RuleStore ruleStore)
 
 Store a new rule
 
@@ -414,14 +422,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RulesApi(config);
-            var rule = new Rule(); // Rule | JSON array or key=value pairs with the necessary rule information. See the model for the exact specifications.
+            var ruleStore = new RuleStore(); // RuleStore | JSON array or key=value pairs with the necessary rule information. See the model for the exact specifications.
 
             try
             {
                 // Store a new rule
-                RuleSingle result = apiInstance.StoreRule(rule);
+                RuleSingle result = apiInstance.StoreRule(ruleStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -442,7 +452,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new rule
-    ApiResponse<RuleSingle> response = apiInstance.StoreRuleWithHttpInfo(rule);
+    ApiResponse<RuleSingle> response = apiInstance.StoreRuleWithHttpInfo(ruleStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -459,7 +469,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **rule** | [**Rule**](Rule.md) | JSON array or key&#x3D;value pairs with the necessary rule information. See the model for the exact specifications. |  |
+| **ruleStore** | [**RuleStore**](RuleStore.md) | JSON array or key&#x3D;value pairs with the necessary rule information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -467,12 +477,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -485,7 +495,7 @@ catch (ApiException e)
 
 <a id="testrule"></a>
 # **TestRule**
-> TransactionArray TestRule (int id, DateTime? start = null, DateTime? end = null, string accounts = null)
+> TransactionArray TestRule (int id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
 
 Test which transactions would be hit by the rule. No changes will be made.
 
@@ -509,12 +519,14 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RulesApi(config);
             var id = 1;  // int | The ID of the rule.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
-            var accounts = 1,2,3;  // string | Limit the testing of the rule to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
+            var accounts = new List<long>(); // List<long> | Limit the testing of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  (optional) 
 
             try
             {
@@ -560,7 +572,7 @@ catch (ApiException e)
 | **id** | **int** | The ID of the rule. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
-| **accounts** | **string** | Limit the testing of the rule to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;**](long.md) | Limit the testing of the rule to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  | [optional]  |
 
 ### Return type
 
@@ -568,12 +580,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -585,7 +597,7 @@ catch (ApiException e)
 
 <a id="updaterule"></a>
 # **UpdateRule**
-> RuleSingle UpdateRule (int id, Rule rule)
+> RuleSingle UpdateRule (int id, RuleUpdate ruleUpdate)
 
 Update existing rule.
 
@@ -609,15 +621,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RulesApi(config);
             var id = 1;  // int | The ID of the object.X
-            var rule = new Rule(); // Rule | JSON array with updated rule information. See the model for the exact specifications.
+            var ruleUpdate = new RuleUpdate(); // RuleUpdate | JSON array with updated rule information. See the model for the exact specifications.
 
             try
             {
                 // Update existing rule.
-                RuleSingle result = apiInstance.UpdateRule(id, rule);
+                RuleSingle result = apiInstance.UpdateRule(id, ruleUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -638,7 +652,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing rule.
-    ApiResponse<RuleSingle> response = apiInstance.UpdateRuleWithHttpInfo(id, rule);
+    ApiResponse<RuleSingle> response = apiInstance.UpdateRuleWithHttpInfo(id, ruleUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -656,7 +670,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the object.X |  |
-| **rule** | [**Rule**](Rule.md) | JSON array with updated rule information. See the model for the exact specifications. |  |
+| **ruleUpdate** | [**RuleUpdate**](RuleUpdate.md) | JSON array with updated rule information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -664,12 +678,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

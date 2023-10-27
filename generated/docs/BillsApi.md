@@ -39,6 +39,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
@@ -88,7 +90,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -130,6 +132,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
@@ -187,12 +191,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -229,6 +233,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
@@ -284,12 +290,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -325,6 +331,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -382,12 +390,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -423,6 +431,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
@@ -476,12 +486,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -517,6 +527,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
@@ -576,12 +588,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -593,7 +605,7 @@ catch (ApiException e)
 
 <a id="storebill"></a>
 # **StoreBill**
-> BillSingle StoreBill (Bill bill)
+> BillSingle StoreBill (BillStore billStore)
 
 Store a new bill
 
@@ -617,14 +629,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
-            var bill = new Bill(); // Bill | JSON array or key=value pairs with the necessary bill information. See the model for the exact specifications.
+            var billStore = new BillStore(); // BillStore | JSON array or key=value pairs with the necessary bill information. See the model for the exact specifications.
 
             try
             {
                 // Store a new bill
-                BillSingle result = apiInstance.StoreBill(bill);
+                BillSingle result = apiInstance.StoreBill(billStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -645,7 +659,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new bill
-    ApiResponse<BillSingle> response = apiInstance.StoreBillWithHttpInfo(bill);
+    ApiResponse<BillSingle> response = apiInstance.StoreBillWithHttpInfo(billStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -662,7 +676,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **bill** | [**Bill**](Bill.md) | JSON array or key&#x3D;value pairs with the necessary bill information. See the model for the exact specifications. |  |
+| **billStore** | [**BillStore**](BillStore.md) | JSON array or key&#x3D;value pairs with the necessary bill information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -670,12 +684,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -688,7 +702,7 @@ catch (ApiException e)
 
 <a id="updatebill"></a>
 # **UpdateBill**
-> BillSingle UpdateBill (int id, Bill bill)
+> BillSingle UpdateBill (int id, BillUpdate billUpdate)
 
 Update existing bill.
 
@@ -712,15 +726,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
-            var bill = new Bill(); // Bill | JSON array or key=value pairs with updated bill information. See the model for the exact specifications.
+            var billUpdate = new BillUpdate(); // BillUpdate | JSON array or key=value pairs with updated bill information. See the model for the exact specifications.
 
             try
             {
                 // Update existing bill.
-                BillSingle result = apiInstance.UpdateBill(id, bill);
+                BillSingle result = apiInstance.UpdateBill(id, billUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -741,7 +757,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing bill.
-    ApiResponse<BillSingle> response = apiInstance.UpdateBillWithHttpInfo(id, bill);
+    ApiResponse<BillSingle> response = apiInstance.UpdateBillWithHttpInfo(id, billUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -759,7 +775,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the bill. |  |
-| **bill** | [**Bill**](Bill.md) | JSON array or key&#x3D;value pairs with updated bill information. See the model for the exact specifications. |  |
+| **billUpdate** | [**BillUpdate**](BillUpdate.md) | JSON array or key&#x3D;value pairs with updated bill information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -767,12 +783,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

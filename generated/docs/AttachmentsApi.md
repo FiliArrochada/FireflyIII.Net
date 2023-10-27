@@ -38,6 +38,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the single.
@@ -87,7 +89,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -129,6 +131,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
@@ -182,7 +186,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -224,6 +228,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
@@ -277,12 +283,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -319,6 +325,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -372,12 +380,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -389,7 +397,7 @@ catch (ApiException e)
 
 <a id="storeattachment"></a>
 # **StoreAttachment**
-> AttachmentSingle StoreAttachment (Attachment attachment)
+> AttachmentSingle StoreAttachment (AttachmentStore attachmentStore)
 
 Store a new attachment.
 
@@ -413,14 +421,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
-            var attachment = new Attachment(); // Attachment | JSON array or key=value pairs with the necessary attachment information. See the model for the exact specifications.
+            var attachmentStore = new AttachmentStore(); // AttachmentStore | JSON array or key=value pairs with the necessary attachment information. See the model for the exact specifications.
 
             try
             {
                 // Store a new attachment.
-                AttachmentSingle result = apiInstance.StoreAttachment(attachment);
+                AttachmentSingle result = apiInstance.StoreAttachment(attachmentStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -441,7 +451,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new attachment.
-    ApiResponse<AttachmentSingle> response = apiInstance.StoreAttachmentWithHttpInfo(attachment);
+    ApiResponse<AttachmentSingle> response = apiInstance.StoreAttachmentWithHttpInfo(attachmentStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -458,7 +468,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **attachment** | [**Attachment**](Attachment.md) | JSON array or key&#x3D;value pairs with the necessary attachment information. See the model for the exact specifications. |  |
+| **attachmentStore** | [**AttachmentStore**](AttachmentStore.md) | JSON array or key&#x3D;value pairs with the necessary attachment information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -466,12 +476,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -484,7 +494,7 @@ catch (ApiException e)
 
 <a id="updateattachment"></a>
 # **UpdateAttachment**
-> AttachmentSingle UpdateAttachment (int id, Attachment attachment)
+> AttachmentSingle UpdateAttachment (int id, AttachmentUpdate attachmentUpdate)
 
 Update existing attachment.
 
@@ -508,15 +518,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
-            var attachment = new Attachment(); // Attachment | JSON array with updated attachment information. See the model for the exact specifications.
+            var attachmentUpdate = new AttachmentUpdate(); // AttachmentUpdate | JSON array with updated attachment information. See the model for the exact specifications.
 
             try
             {
                 // Update existing attachment.
-                AttachmentSingle result = apiInstance.UpdateAttachment(id, attachment);
+                AttachmentSingle result = apiInstance.UpdateAttachment(id, attachmentUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -537,7 +549,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing attachment.
-    ApiResponse<AttachmentSingle> response = apiInstance.UpdateAttachmentWithHttpInfo(id, attachment);
+    ApiResponse<AttachmentSingle> response = apiInstance.UpdateAttachmentWithHttpInfo(id, attachmentUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -555,7 +567,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the attachment. |  |
-| **attachment** | [**Attachment**](Attachment.md) | JSON array with updated attachment information. See the model for the exact specifications. |  |
+| **attachmentUpdate** | [**AttachmentUpdate**](AttachmentUpdate.md) | JSON array with updated attachment information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -563,12 +575,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -605,6 +617,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
@@ -656,7 +670,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 

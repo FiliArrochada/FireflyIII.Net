@@ -42,6 +42,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
@@ -91,7 +93,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -134,6 +136,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the transaction link.
@@ -183,7 +187,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -225,6 +229,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
@@ -278,12 +284,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -320,6 +326,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the transaction link.
@@ -373,12 +381,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -415,6 +423,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50 items. (optional) 
@@ -468,12 +478,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -509,6 +519,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
@@ -570,7 +582,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -611,6 +623,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
@@ -664,12 +678,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -705,6 +719,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var linkType = new LinkType(); // LinkType | JSON array with the necessary link type information or key=value pairs. See the model for the exact specifications.
@@ -758,12 +774,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -776,7 +792,7 @@ catch (ApiException e)
 
 <a id="storetransactionlink"></a>
 # **StoreTransactionLink**
-> TransactionLinkSingle StoreTransactionLink (TransactionLink transactionLink)
+> TransactionLinkSingle StoreTransactionLink (TransactionLinkStore transactionLinkStore)
 
 Create a new link between transactions
 
@@ -800,14 +816,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
-            var transactionLink = new TransactionLink(); // TransactionLink | JSON array with the necessary link type information or key=value pairs. See the model for the exact specifications.
+            var transactionLinkStore = new TransactionLinkStore(); // TransactionLinkStore | JSON array with the necessary link type information or key=value pairs. See the model for the exact specifications.
 
             try
             {
                 // Create a new link between transactions
-                TransactionLinkSingle result = apiInstance.StoreTransactionLink(transactionLink);
+                TransactionLinkSingle result = apiInstance.StoreTransactionLink(transactionLinkStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -828,7 +846,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a new link between transactions
-    ApiResponse<TransactionLinkSingle> response = apiInstance.StoreTransactionLinkWithHttpInfo(transactionLink);
+    ApiResponse<TransactionLinkSingle> response = apiInstance.StoreTransactionLinkWithHttpInfo(transactionLinkStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -845,7 +863,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **transactionLink** | [**TransactionLink**](TransactionLink.md) | JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications. |  |
+| **transactionLinkStore** | [**TransactionLinkStore**](TransactionLinkStore.md) | JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -853,12 +871,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -871,7 +889,7 @@ catch (ApiException e)
 
 <a id="updatelinktype"></a>
 # **UpdateLinkType**
-> LinkTypeSingle UpdateLinkType (int id, LinkType linkType)
+> LinkTypeSingle UpdateLinkType (int id, LinkTypeUpdate linkTypeUpdate)
 
 Update existing link type.
 
@@ -895,15 +913,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
-            var linkType = new LinkType(); // LinkType | JSON array or formdata with updated link type information. See the model for the exact specifications.
+            var linkTypeUpdate = new LinkTypeUpdate(); // LinkTypeUpdate | JSON array or formdata with updated link type information. See the model for the exact specifications.
 
             try
             {
                 // Update existing link type.
-                LinkTypeSingle result = apiInstance.UpdateLinkType(id, linkType);
+                LinkTypeSingle result = apiInstance.UpdateLinkType(id, linkTypeUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -924,7 +944,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing link type.
-    ApiResponse<LinkTypeSingle> response = apiInstance.UpdateLinkTypeWithHttpInfo(id, linkType);
+    ApiResponse<LinkTypeSingle> response = apiInstance.UpdateLinkTypeWithHttpInfo(id, linkTypeUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -942,7 +962,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the link type. |  |
-| **linkType** | [**LinkType**](LinkType.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
+| **linkTypeUpdate** | [**LinkTypeUpdate**](LinkTypeUpdate.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -950,12 +970,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -969,7 +989,7 @@ catch (ApiException e)
 
 <a id="updatetransactionlink"></a>
 # **UpdateTransactionLink**
-> TransactionLinkSingle UpdateTransactionLink (int id, TransactionLink transactionLink)
+> TransactionLinkSingle UpdateTransactionLink (int id, TransactionLinkUpdate transactionLinkUpdate)
 
 Update an existing link between transactions.
 
@@ -993,15 +1013,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the transaction link.
-            var transactionLink = new TransactionLink(); // TransactionLink | JSON array or formdata with updated link type information. See the model for the exact specifications.
+            var transactionLinkUpdate = new TransactionLinkUpdate(); // TransactionLinkUpdate | JSON array or formdata with updated link type information. See the model for the exact specifications.
 
             try
             {
                 // Update an existing link between transactions.
-                TransactionLinkSingle result = apiInstance.UpdateTransactionLink(id, transactionLink);
+                TransactionLinkSingle result = apiInstance.UpdateTransactionLink(id, transactionLinkUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1022,7 +1044,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update an existing link between transactions.
-    ApiResponse<TransactionLinkSingle> response = apiInstance.UpdateTransactionLinkWithHttpInfo(id, transactionLink);
+    ApiResponse<TransactionLinkSingle> response = apiInstance.UpdateTransactionLinkWithHttpInfo(id, transactionLinkUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1040,7 +1062,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the transaction link. |  |
-| **transactionLink** | [**TransactionLink**](TransactionLink.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
+| **transactionLinkUpdate** | [**TransactionLinkUpdate**](TransactionLinkUpdate.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -1048,12 +1070,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

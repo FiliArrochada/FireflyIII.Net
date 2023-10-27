@@ -9,7 +9,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 <a id="searchaccounts"></a>
 # **SearchAccounts**
-> AccountArray SearchAccounts (string query, AccountTypeFilter type, AccountSearchFieldFilter field, int? page = null)
+> AccountArray SearchAccounts (string query, AccountSearchFieldFilter field, int? page = null, AccountTypeFilter type = null)
 
 Search for accounts
 
@@ -33,17 +33,19 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new SearchApi(config);
             var query = checking;  // string | The query you wish to search for.
-            var type = new AccountTypeFilter(); // AccountTypeFilter | The type of accounts you wish to limit the search to.
             var field = new AccountSearchFieldFilter(); // AccountSearchFieldFilter | The account field(s) you want to search in.
             var page = 1;  // int? | Page number. The default pagination is 50 (optional) 
+            var type = new AccountTypeFilter(); // AccountTypeFilter | The type of accounts you wish to limit the search to. (optional) 
 
             try
             {
                 // Search for accounts
-                AccountArray result = apiInstance.SearchAccounts(query, type, field, page);
+                AccountArray result = apiInstance.SearchAccounts(query, field, page, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -64,7 +66,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Search for accounts
-    ApiResponse<AccountArray> response = apiInstance.SearchAccountsWithHttpInfo(query, type, field, page);
+    ApiResponse<AccountArray> response = apiInstance.SearchAccountsWithHttpInfo(query, field, page, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -82,9 +84,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The query you wish to search for. |  |
-| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | The type of accounts you wish to limit the search to. |  |
 | **field** | [**AccountSearchFieldFilter**](AccountSearchFieldFilter.md) | The account field(s) you want to search in. |  |
 | **page** | **int?** | Page number. The default pagination is 50 | [optional]  |
+| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | The type of accounts you wish to limit the search to. | [optional]  |
 
 ### Return type
 
@@ -92,12 +94,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -113,7 +115,7 @@ catch (ApiException e)
 
 Search for transactions
 
-Search for transactions
+Searches through the users transactions.
 
 ### Example
 ```csharp
@@ -133,6 +135,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new SearchApi(config);
             var query = groceries;  // string | The query you wish to search for.
@@ -188,12 +192,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details

@@ -39,6 +39,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
@@ -88,7 +90,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -106,7 +108,7 @@ void (empty response body)
 
 <a id="firerulegroup"></a>
 # **FireRuleGroup**
-> void FireRuleGroup (int id, DateTime? start = null, DateTime? end = null, string accounts = null)
+> void FireRuleGroup (int id, DateTime? start = null, DateTime? end = null, List<long> accounts = null)
 
 Fire the rule group on your transactions.
 
@@ -130,12 +132,14 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
-            var accounts = 1,2,3;  // string | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
+            var accounts = new List<long>(); // List<long> | Limit the triggering of the rule group to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  (optional) 
 
             try
             {
@@ -177,7 +181,7 @@ catch (ApiException e)
 | **id** | **int** | The ID of the rule group. |  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
-| **accounts** | **string** | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;**](long.md) | Limit the triggering of the rule group to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  | [optional]  |
 
 ### Return type
 
@@ -185,7 +189,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -226,6 +230,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
@@ -279,12 +285,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -321,6 +327,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
@@ -376,12 +384,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -417,6 +425,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50 (optional) 
@@ -470,12 +480,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -487,7 +497,7 @@ catch (ApiException e)
 
 <a id="storerulegroup"></a>
 # **StoreRuleGroup**
-> RuleGroupSingle StoreRuleGroup (RuleGroup ruleGroup)
+> RuleGroupSingle StoreRuleGroup (RuleGroupStore ruleGroupStore)
 
 Store a new rule group.
 
@@ -511,14 +521,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
-            var ruleGroup = new RuleGroup(); // RuleGroup | JSON array or key=value pairs with the necessary rule group information. See the model for the exact specifications.
+            var ruleGroupStore = new RuleGroupStore(); // RuleGroupStore | JSON array or key=value pairs with the necessary rule group information. See the model for the exact specifications.
 
             try
             {
                 // Store a new rule group.
-                RuleGroupSingle result = apiInstance.StoreRuleGroup(ruleGroup);
+                RuleGroupSingle result = apiInstance.StoreRuleGroup(ruleGroupStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -539,7 +551,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new rule group.
-    ApiResponse<RuleGroupSingle> response = apiInstance.StoreRuleGroupWithHttpInfo(ruleGroup);
+    ApiResponse<RuleGroupSingle> response = apiInstance.StoreRuleGroupWithHttpInfo(ruleGroupStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -556,7 +568,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **ruleGroup** | [**RuleGroup**](RuleGroup.md) | JSON array or key&#x3D;value pairs with the necessary rule group information. See the model for the exact specifications. |  |
+| **ruleGroupStore** | [**RuleGroupStore**](RuleGroupStore.md) | JSON array or key&#x3D;value pairs with the necessary rule group information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -564,12 +576,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -582,7 +594,7 @@ catch (ApiException e)
 
 <a id="testrulegroup"></a>
 # **TestRuleGroup**
-> TransactionArray TestRuleGroup (int id, int? page = null, DateTime? start = null, DateTime? end = null, int? searchLimit = null, int? triggeredLimit = null, string accounts = null)
+> TransactionArray TestRuleGroup (int id, int? page = null, DateTime? start = null, DateTime? end = null, int? searchLimit = null, int? triggeredLimit = null, List<long> accounts = null)
 
 Test which transactions would be hit by the rule group. No changes will be made.
 
@@ -606,6 +618,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
@@ -614,7 +628,7 @@ namespace Example
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
             var searchLimit = 56;  // int? | Maximum number of transactions Firefly III will try. Don't set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.  (optional) 
             var triggeredLimit = 56;  // int? | Maximum number of transactions the rule group can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don't go above the user's page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.  (optional) 
-            var accounts = 1,2,3;  // string | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
+            var accounts = new List<long>(); // List<long> | Limit the testing of the rule group to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  (optional) 
 
             try
             {
@@ -663,7 +677,7 @@ catch (ApiException e)
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
 | **searchLimit** | **int?** | Maximum number of transactions Firefly III will try. Don&#39;t set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.  | [optional]  |
 | **triggeredLimit** | **int?** | Maximum number of transactions the rule group can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don&#39;t go above the user&#39;s page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.  | [optional]  |
-| **accounts** | **string** | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;**](long.md) | Limit the testing of the rule group to these asset accounts or liabilities. Only asset accounts and liabilities will be accepted. Other types will be silently dropped.  | [optional]  |
 
 ### Return type
 
@@ -671,12 +685,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -688,7 +702,7 @@ catch (ApiException e)
 
 <a id="updaterulegroup"></a>
 # **UpdateRuleGroup**
-> RuleGroupSingle UpdateRuleGroup (int id, RuleGroup ruleGroup)
+> RuleGroupSingle UpdateRuleGroup (int id, RuleGroupUpdate ruleGroupUpdate)
 
 Update existing rule group.
 
@@ -712,15 +726,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
-            var ruleGroup = new RuleGroup(); // RuleGroup | JSON array with updated rule group information. See the model for the exact specifications.
+            var ruleGroupUpdate = new RuleGroupUpdate(); // RuleGroupUpdate | JSON array with updated rule group information. See the model for the exact specifications.
 
             try
             {
                 // Update existing rule group.
-                RuleGroupSingle result = apiInstance.UpdateRuleGroup(id, ruleGroup);
+                RuleGroupSingle result = apiInstance.UpdateRuleGroup(id, ruleGroupUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -741,7 +757,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing rule group.
-    ApiResponse<RuleGroupSingle> response = apiInstance.UpdateRuleGroupWithHttpInfo(id, ruleGroup);
+    ApiResponse<RuleGroupSingle> response = apiInstance.UpdateRuleGroupWithHttpInfo(id, ruleGroupUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -759,7 +775,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the rule group. |  |
-| **ruleGroup** | [**RuleGroup**](RuleGroup.md) | JSON array with updated rule group information. See the model for the exact specifications. |  |
+| **ruleGroupUpdate** | [**RuleGroupUpdate**](RuleGroupUpdate.md) | JSON array with updated rule group information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -767,12 +783,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

@@ -4,27 +4,28 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetAccountsAC**](AutocompleteApi.md#getaccountsac) | **GET** /api/v1/autocomplete/accounts | All accounts of the user returned in a basic auto-complete array. |
-| [**GetBillsAC**](AutocompleteApi.md#getbillsac) | **GET** /api/v1/autocomplete/bills | All bills of the user returned in a basic auto-complete array. |
-| [**GetBudgetsAC**](AutocompleteApi.md#getbudgetsac) | **GET** /api/v1/autocomplete/budgets | All budgets of the user returned in a basic auto-complete array. |
-| [**GetCategoriesAC**](AutocompleteApi.md#getcategoriesac) | **GET** /api/v1/autocomplete/categories | All categories of the user returned in a basic auto-complete array. |
-| [**GetCurrenciesAC**](AutocompleteApi.md#getcurrenciesac) | **GET** /api/v1/autocomplete/currencies | All currencies of the user returned in a basic auto-complete array. |
-| [**GetCurrenciesCodeAC**](AutocompleteApi.md#getcurrenciescodeac) | **GET** /api/v1/autocomplete/currencies-with-code | All currencies of the user returned in a basic auto-complete array. |
-| [**GetObjectGroupsAC**](AutocompleteApi.md#getobjectgroupsac) | **GET** /api/v1/autocomplete/object-groups | All object groups of the user returned in a basic auto-complete array. |
-| [**GetPiggiesAC**](AutocompleteApi.md#getpiggiesac) | **GET** /api/v1/autocomplete/piggy-banks | All piggy banks of the user returned in a basic auto-complete array. |
-| [**GetPiggiesBalanceAC**](AutocompleteApi.md#getpiggiesbalanceac) | **GET** /api/v1/autocomplete/piggy-banks-with-balance | All piggy banks of the user returned in a basic auto-complete array complemented with balance information. |
-| [**GetRuleGroupsAC**](AutocompleteApi.md#getrulegroupsac) | **GET** /api/v1/autocomplete/rule-groups | All rule groups of the user returned in a basic auto-complete array. |
-| [**GetRulesAC**](AutocompleteApi.md#getrulesac) | **GET** /api/v1/autocomplete/rules | All rules of the user returned in a basic auto-complete array. |
-| [**GetTagAC**](AutocompleteApi.md#gettagac) | **GET** /api/v1/autocomplete/tags | All tags of the user returned in a basic auto-complete array. |
-| [**GetTransactionTypesAC**](AutocompleteApi.md#gettransactiontypesac) | **GET** /api/v1/autocomplete/transaction-types | All transaction types returned in a basic auto-complete array. English only. |
-| [**GetTransactionsAC**](AutocompleteApi.md#gettransactionsac) | **GET** /api/v1/autocomplete/transactions | All transaction descriptions of the user returned in a basic auto-complete array. |
-| [**GetTransactionsIDAC**](AutocompleteApi.md#gettransactionsidac) | **GET** /api/v1/autocomplete/transactions-with-id | All transactions, complemented with their ID, of the user returned in a basic auto-complete array. |
+| [**GetAccountsAC**](AutocompleteApi.md#getaccountsac) | **GET** /api/v1/autocomplete/accounts | Returns all accounts of the user returned in a basic auto-complete array. |
+| [**GetBillsAC**](AutocompleteApi.md#getbillsac) | **GET** /api/v1/autocomplete/bills | Returns all bills of the user returned in a basic auto-complete array. |
+| [**GetBudgetsAC**](AutocompleteApi.md#getbudgetsac) | **GET** /api/v1/autocomplete/budgets | Returns all budgets of the user returned in a basic auto-complete array. |
+| [**GetCategoriesAC**](AutocompleteApi.md#getcategoriesac) | **GET** /api/v1/autocomplete/categories | Returns all categories of the user returned in a basic auto-complete array. |
+| [**GetCurrenciesAC**](AutocompleteApi.md#getcurrenciesac) | **GET** /api/v1/autocomplete/currencies | Returns all currencies of the user returned in a basic auto-complete array. |
+| [**GetCurrenciesCodeAC**](AutocompleteApi.md#getcurrenciescodeac) | **GET** /api/v1/autocomplete/currencies-with-code | Returns all currencies of the user returned in a basic auto-complete array. |
+| [**GetObjectGroupsAC**](AutocompleteApi.md#getobjectgroupsac) | **GET** /api/v1/autocomplete/object-groups | Returns all object groups of the user returned in a basic auto-complete array. |
+| [**GetPiggiesAC**](AutocompleteApi.md#getpiggiesac) | **GET** /api/v1/autocomplete/piggy-banks | Returns all piggy banks of the user returned in a basic auto-complete array. |
+| [**GetPiggiesBalanceAC**](AutocompleteApi.md#getpiggiesbalanceac) | **GET** /api/v1/autocomplete/piggy-banks-with-balance | Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information. |
+| [**GetRecurringAC**](AutocompleteApi.md#getrecurringac) | **GET** /api/v1/autocomplete/recurring | Returns all recurring transactions of the user returned in a basic auto-complete array. |
+| [**GetRuleGroupsAC**](AutocompleteApi.md#getrulegroupsac) | **GET** /api/v1/autocomplete/rule-groups | Returns all rule groups of the user returned in a basic auto-complete array. |
+| [**GetRulesAC**](AutocompleteApi.md#getrulesac) | **GET** /api/v1/autocomplete/rules | Returns all rules of the user returned in a basic auto-complete array. |
+| [**GetTagAC**](AutocompleteApi.md#gettagac) | **GET** /api/v1/autocomplete/tags | Returns all tags of the user returned in a basic auto-complete array. |
+| [**GetTransactionTypesAC**](AutocompleteApi.md#gettransactiontypesac) | **GET** /api/v1/autocomplete/transaction-types | Returns all transaction types returned in a basic auto-complete array. English only. |
+| [**GetTransactionsAC**](AutocompleteApi.md#gettransactionsac) | **GET** /api/v1/autocomplete/transactions | Returns all transaction descriptions of the user returned in a basic auto-complete array. |
+| [**GetTransactionsIDAC**](AutocompleteApi.md#gettransactionsidac) | **GET** /api/v1/autocomplete/transactions-with-id | Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. |
 
 <a id="getaccountsac"></a>
 # **GetAccountsAC**
 > List&lt;AutocompleteAccount&gt; GetAccountsAC (string query = null, int? limit = null, string date = null, AccountTypeFilter type = null)
 
-All accounts of the user returned in a basic auto-complete array.
+Returns all accounts of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -44,16 +45,18 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
-            var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
-            var date = 2020-09-17;  // string | For asset accounts, returns the balance on this date. (optional) 
-            var type = new AccountTypeFilter(); // AccountTypeFilter | Optional filter on the account type(s) returned (optional) 
+            var query = query-string;  // string | The autocomplete search query for accounts. (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
+            var date = 2020-09-17;  // string | If the account is an asset account or a liability, the autocomplete will also return the balance of the account on this date. (optional) 
+            var type = new AccountTypeFilter(); // AccountTypeFilter | Optional filter on the account type(s) used in the autocomplete. (optional) 
 
             try
             {
-                // All accounts of the user returned in a basic auto-complete array.
+                // Returns all accounts of the user returned in a basic auto-complete array.
                 List<AutocompleteAccount> result = apiInstance.GetAccountsAC(query, limit, date, type);
                 Debug.WriteLine(result);
             }
@@ -74,7 +77,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All accounts of the user returned in a basic auto-complete array.
+    // Returns all accounts of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteAccount>> response = apiInstance.GetAccountsACWithHttpInfo(query, limit, date, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -92,10 +95,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
-| **date** | **string** | For asset accounts, returns the balance on this date. | [optional]  |
-| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | Optional filter on the account type(s) returned | [optional]  |
+| **query** | **string** | The autocomplete search query for accounts. | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
+| **date** | **string** | If the account is an asset account or a liability, the autocomplete will also return the balance of the account on this date. | [optional]  |
+| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | Optional filter on the account type(s) used in the autocomplete. | [optional]  |
 
 ### Return type
 
@@ -103,7 +106,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -122,7 +125,7 @@ catch (ApiException e)
 # **GetBillsAC**
 > List&lt;AutocompleteBill&gt; GetBillsAC (string query = null, int? limit = null)
 
-All bills of the user returned in a basic auto-complete array.
+Returns all bills of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -142,14 +145,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
-            var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var query = query-string;  // string | The autocomplete search query for bills. (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All bills of the user returned in a basic auto-complete array.
+                // Returns all bills of the user returned in a basic auto-complete array.
                 List<AutocompleteBill> result = apiInstance.GetBillsAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -170,7 +175,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All bills of the user returned in a basic auto-complete array.
+    // Returns all bills of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteBill>> response = apiInstance.GetBillsACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -188,8 +193,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **query** | **string** | The autocomplete search query for bills. | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -197,7 +202,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -216,7 +221,7 @@ catch (ApiException e)
 # **GetBudgetsAC**
 > List&lt;AutocompleteBudget&gt; GetBudgetsAC (string query = null, int? limit = null)
 
-All budgets of the user returned in a basic auto-complete array.
+Returns all budgets of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -236,14 +241,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned (optional) 
 
             try
             {
-                // All budgets of the user returned in a basic auto-complete array.
+                // Returns all budgets of the user returned in a basic auto-complete array.
                 List<AutocompleteBudget> result = apiInstance.GetBudgetsAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -264,7 +271,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All budgets of the user returned in a basic auto-complete array.
+    // Returns all budgets of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteBudget>> response = apiInstance.GetBudgetsACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -283,7 +290,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned | [optional]  |
 
 ### Return type
 
@@ -291,7 +298,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -310,7 +317,7 @@ catch (ApiException e)
 # **GetCategoriesAC**
 > List&lt;AutocompleteCategory&gt; GetCategoriesAC (string query = null, int? limit = null)
 
-All categories of the user returned in a basic auto-complete array.
+Returns all categories of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -330,14 +337,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All categories of the user returned in a basic auto-complete array.
+                // Returns all categories of the user returned in a basic auto-complete array.
                 List<AutocompleteCategory> result = apiInstance.GetCategoriesAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -358,7 +367,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All categories of the user returned in a basic auto-complete array.
+    // Returns all categories of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteCategory>> response = apiInstance.GetCategoriesACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -377,7 +386,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -385,7 +394,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -404,7 +413,7 @@ catch (ApiException e)
 # **GetCurrenciesAC**
 > List&lt;AutocompleteCurrency&gt; GetCurrenciesAC (string query = null, int? limit = null)
 
-All currencies of the user returned in a basic auto-complete array.
+Returns all currencies of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -424,14 +433,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All currencies of the user returned in a basic auto-complete array.
+                // Returns all currencies of the user returned in a basic auto-complete array.
                 List<AutocompleteCurrency> result = apiInstance.GetCurrenciesAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -452,7 +463,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All currencies of the user returned in a basic auto-complete array.
+    // Returns all currencies of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteCurrency>> response = apiInstance.GetCurrenciesACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -471,7 +482,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -479,7 +490,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -498,7 +509,7 @@ catch (ApiException e)
 # **GetCurrenciesCodeAC**
 > List&lt;AutocompleteCurrencyCode&gt; GetCurrenciesCodeAC (string query = null, int? limit = null)
 
-All currencies of the user returned in a basic auto-complete array.
+Returns all currencies of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -518,14 +529,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All currencies of the user returned in a basic auto-complete array.
+                // Returns all currencies of the user returned in a basic auto-complete array.
                 List<AutocompleteCurrencyCode> result = apiInstance.GetCurrenciesCodeAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -546,7 +559,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All currencies of the user returned in a basic auto-complete array.
+    // Returns all currencies of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteCurrencyCode>> response = apiInstance.GetCurrenciesCodeACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -565,7 +578,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -573,7 +586,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -592,7 +605,7 @@ catch (ApiException e)
 # **GetObjectGroupsAC**
 > List&lt;AutocompleteObjectGroup&gt; GetObjectGroupsAC (string query = null, int? limit = null)
 
-All object groups of the user returned in a basic auto-complete array.
+Returns all object groups of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -612,14 +625,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All object groups of the user returned in a basic auto-complete array.
+                // Returns all object groups of the user returned in a basic auto-complete array.
                 List<AutocompleteObjectGroup> result = apiInstance.GetObjectGroupsAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -640,7 +655,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All object groups of the user returned in a basic auto-complete array.
+    // Returns all object groups of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteObjectGroup>> response = apiInstance.GetObjectGroupsACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -659,7 +674,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -667,7 +682,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -686,7 +701,7 @@ catch (ApiException e)
 # **GetPiggiesAC**
 > List&lt;AutocompletePiggy&gt; GetPiggiesAC (string query = null, int? limit = null)
 
-All piggy banks of the user returned in a basic auto-complete array.
+Returns all piggy banks of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -706,14 +721,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All piggy banks of the user returned in a basic auto-complete array.
+                // Returns all piggy banks of the user returned in a basic auto-complete array.
                 List<AutocompletePiggy> result = apiInstance.GetPiggiesAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -734,7 +751,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All piggy banks of the user returned in a basic auto-complete array.
+    // Returns all piggy banks of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompletePiggy>> response = apiInstance.GetPiggiesACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -753,7 +770,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -761,7 +778,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -780,7 +797,7 @@ catch (ApiException e)
 # **GetPiggiesBalanceAC**
 > List&lt;AutocompletePiggyBalance&gt; GetPiggiesBalanceAC (string query = null, int? limit = null)
 
-All piggy banks of the user returned in a basic auto-complete array complemented with balance information.
+Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information.
 
 ### Example
 ```csharp
@@ -800,14 +817,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All piggy banks of the user returned in a basic auto-complete array complemented with balance information.
+                // Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information.
                 List<AutocompletePiggyBalance> result = apiInstance.GetPiggiesBalanceAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -828,7 +847,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All piggy banks of the user returned in a basic auto-complete array complemented with balance information.
+    // Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information.
     ApiResponse<List<AutocompletePiggyBalance>> response = apiInstance.GetPiggiesBalanceACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -847,7 +866,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -855,7 +874,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -870,11 +889,107 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getrecurringac"></a>
+# **GetRecurringAC**
+> List&lt;AutocompleteRecurrence&gt; GetRecurringAC (string query = null, int? limit = null)
+
+Returns all recurring transactions of the user returned in a basic auto-complete array.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class GetRecurringACExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            var apiInstance = new AutocompleteApi(config);
+            var query = str;  // string | The autocomplete search query. (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
+
+            try
+            {
+                // Returns all recurring transactions of the user returned in a basic auto-complete array.
+                List<AutocompleteRecurrence> result = apiInstance.GetRecurringAC(query, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AutocompleteApi.GetRecurringAC: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetRecurringACWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Returns all recurring transactions of the user returned in a basic auto-complete array.
+    ApiResponse<List<AutocompleteRecurrence>> response = apiInstance.GetRecurringACWithHttpInfo(query, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AutocompleteApi.GetRecurringACWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **query** | **string** | The autocomplete search query. | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
+
+### Return type
+
+[**List&lt;AutocompleteRecurrence&gt;**](AutocompleteRecurrence.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of recurring transactions with very basic information. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getrulegroupsac"></a>
 # **GetRuleGroupsAC**
 > List&lt;AutocompleteRuleGroup&gt; GetRuleGroupsAC (string query = null, int? limit = null)
 
-All rule groups of the user returned in a basic auto-complete array.
+Returns all rule groups of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -894,14 +1009,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All rule groups of the user returned in a basic auto-complete array.
+                // Returns all rule groups of the user returned in a basic auto-complete array.
                 List<AutocompleteRuleGroup> result = apiInstance.GetRuleGroupsAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -922,7 +1039,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All rule groups of the user returned in a basic auto-complete array.
+    // Returns all rule groups of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteRuleGroup>> response = apiInstance.GetRuleGroupsACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -941,7 +1058,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -949,7 +1066,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -968,7 +1085,7 @@ catch (ApiException e)
 # **GetRulesAC**
 > List&lt;AutocompleteRule&gt; GetRulesAC (string query = null, int? limit = null)
 
-All rules of the user returned in a basic auto-complete array.
+Returns all rules of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -988,14 +1105,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All rules of the user returned in a basic auto-complete array.
+                // Returns all rules of the user returned in a basic auto-complete array.
                 List<AutocompleteRule> result = apiInstance.GetRulesAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -1016,7 +1135,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All rules of the user returned in a basic auto-complete array.
+    // Returns all rules of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteRule>> response = apiInstance.GetRulesACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1035,7 +1154,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -1043,7 +1162,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -1062,7 +1181,7 @@ catch (ApiException e)
 # **GetTagAC**
 > List&lt;AutocompleteTag&gt; GetTagAC (string query = null, int? limit = null)
 
-All tags of the user returned in a basic auto-complete array.
+Returns all tags of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -1082,14 +1201,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All tags of the user returned in a basic auto-complete array.
+                // Returns all tags of the user returned in a basic auto-complete array.
                 List<AutocompleteTag> result = apiInstance.GetTagAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -1110,7 +1231,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All tags of the user returned in a basic auto-complete array.
+    // Returns all tags of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteTag>> response = apiInstance.GetTagACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1129,7 +1250,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -1137,7 +1258,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -1156,7 +1277,7 @@ catch (ApiException e)
 # **GetTransactionTypesAC**
 > List&lt;AutocompleteTransactionType&gt; GetTransactionTypesAC (string query = null, int? limit = null)
 
-All transaction types returned in a basic auto-complete array. English only.
+Returns all transaction types returned in a basic auto-complete array. English only.
 
 ### Example
 ```csharp
@@ -1176,14 +1297,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All transaction types returned in a basic auto-complete array. English only.
+                // Returns all transaction types returned in a basic auto-complete array. English only.
                 List<AutocompleteTransactionType> result = apiInstance.GetTransactionTypesAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -1204,7 +1327,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All transaction types returned in a basic auto-complete array. English only.
+    // Returns all transaction types returned in a basic auto-complete array. English only.
     ApiResponse<List<AutocompleteTransactionType>> response = apiInstance.GetTransactionTypesACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1223,7 +1346,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -1231,7 +1354,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -1250,7 +1373,7 @@ catch (ApiException e)
 # **GetTransactionsAC**
 > List&lt;AutocompleteTransaction&gt; GetTransactionsAC (string query = null, int? limit = null)
 
-All transaction descriptions of the user returned in a basic auto-complete array.
+Returns all transaction descriptions of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -1270,14 +1393,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All transaction descriptions of the user returned in a basic auto-complete array.
+                // Returns all transaction descriptions of the user returned in a basic auto-complete array.
                 List<AutocompleteTransaction> result = apiInstance.GetTransactionsAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -1298,7 +1423,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All transaction descriptions of the user returned in a basic auto-complete array.
+    // Returns all transaction descriptions of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteTransaction>> response = apiInstance.GetTransactionsACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1317,7 +1442,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -1325,7 +1450,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -1344,7 +1469,7 @@ catch (ApiException e)
 # **GetTransactionsIDAC**
 > List&lt;AutocompleteTransactionID&gt; GetTransactionsIDAC (string query = null, int? limit = null)
 
-All transactions, complemented with their ID, of the user returned in a basic auto-complete array.
+Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array.
 
 ### Example
 ```csharp
@@ -1364,14 +1489,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AutocompleteApi(config);
             var query = str;  // string | The autocomplete search query. (optional) 
-            var limit = 10;  // int? | The autocomplete number of items returned (optional) 
+            var limit = 10;  // int? | The number of items returned. (optional) 
 
             try
             {
-                // All transactions, complemented with their ID, of the user returned in a basic auto-complete array.
+                // Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array.
                 List<AutocompleteTransactionID> result = apiInstance.GetTransactionsIDAC(query, limit);
                 Debug.WriteLine(result);
             }
@@ -1392,7 +1519,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // All transactions, complemented with their ID, of the user returned in a basic auto-complete array.
+    // Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array.
     ApiResponse<List<AutocompleteTransactionID>> response = apiInstance.GetTransactionsIDACWithHttpInfo(query, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1411,7 +1538,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The autocomplete search query. | [optional]  |
-| **limit** | **int?** | The autocomplete number of items returned | [optional]  |
+| **limit** | **int?** | The number of items returned. | [optional]  |
 
 ### Return type
 
@@ -1419,7 +1546,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 

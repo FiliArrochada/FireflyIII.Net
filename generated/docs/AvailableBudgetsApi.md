@@ -36,6 +36,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
             var id = 1;  // int | The ID of the available budget.
@@ -85,7 +87,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -127,6 +129,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
             var id = 1;  // int | The ID of the available budget.
@@ -180,12 +184,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -222,6 +226,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -279,12 +285,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -296,7 +302,7 @@ catch (ApiException e)
 
 <a id="storeavailablebudget"></a>
 # **StoreAvailableBudget**
-> AvailableBudgetSingle StoreAvailableBudget (AvailableBudget availableBudget)
+> AvailableBudgetSingle StoreAvailableBudget (AvailableBudgetStore availableBudgetStore)
 
 Store a new available budget
 
@@ -320,14 +326,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
-            var availableBudget = new AvailableBudget(); // AvailableBudget | JSON array or key=value pairs with the necessary available budget information. See the model for the exact specifications.
+            var availableBudgetStore = new AvailableBudgetStore(); // AvailableBudgetStore | JSON array or key=value pairs with the necessary available budget information. See the model for the exact specifications.
 
             try
             {
                 // Store a new available budget
-                AvailableBudgetSingle result = apiInstance.StoreAvailableBudget(availableBudget);
+                AvailableBudgetSingle result = apiInstance.StoreAvailableBudget(availableBudgetStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -348,7 +356,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new available budget
-    ApiResponse<AvailableBudgetSingle> response = apiInstance.StoreAvailableBudgetWithHttpInfo(availableBudget);
+    ApiResponse<AvailableBudgetSingle> response = apiInstance.StoreAvailableBudgetWithHttpInfo(availableBudgetStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -365,7 +373,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **availableBudget** | [**AvailableBudget**](AvailableBudget.md) | JSON array or key&#x3D;value pairs with the necessary available budget information. See the model for the exact specifications. |  |
+| **availableBudgetStore** | [**AvailableBudgetStore**](AvailableBudgetStore.md) | JSON array or key&#x3D;value pairs with the necessary available budget information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -373,12 +381,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -391,7 +399,7 @@ catch (ApiException e)
 
 <a id="updateavailablebudget"></a>
 # **UpdateAvailableBudget**
-> AvailableBudgetSingle UpdateAvailableBudget (int id, AvailableBudget availableBudget)
+> AvailableBudgetSingle UpdateAvailableBudget (int id, AvailableBudgetUpdate availableBudgetUpdate)
 
 Update existing available budget, to change for example the date range of the amount or the amount itself.
 
@@ -415,15 +423,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AvailableBudgetsApi(config);
             var id = 1;  // int | The ID of the object.X
-            var availableBudget = new AvailableBudget(); // AvailableBudget | JSON array or form value with updated available budget information. See the model for the exact specifications.
+            var availableBudgetUpdate = new AvailableBudgetUpdate(); // AvailableBudgetUpdate | JSON array or form value with updated available budget information. See the model for the exact specifications.
 
             try
             {
                 // Update existing available budget, to change for example the date range of the amount or the amount itself.
-                AvailableBudgetSingle result = apiInstance.UpdateAvailableBudget(id, availableBudget);
+                AvailableBudgetSingle result = apiInstance.UpdateAvailableBudget(id, availableBudgetUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -444,7 +454,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing available budget, to change for example the date range of the amount or the amount itself.
-    ApiResponse<AvailableBudgetSingle> response = apiInstance.UpdateAvailableBudgetWithHttpInfo(id, availableBudget);
+    ApiResponse<AvailableBudgetSingle> response = apiInstance.UpdateAvailableBudgetWithHttpInfo(id, availableBudgetUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -462,7 +472,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the object.X |  |
-| **availableBudget** | [**AvailableBudget**](AvailableBudget.md) | JSON array or form value with updated available budget information. See the model for the exact specifications. |  |
+| **availableBudgetUpdate** | [**AvailableBudgetUpdate**](AvailableBudgetUpdate.md) | JSON array or form value with updated available budget information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -470,12 +480,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Content-Type**: application/vnd.api+json, application/x-www-form-urlencoded
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

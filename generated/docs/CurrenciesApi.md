@@ -15,7 +15,6 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**ListBillByCurrency**](CurrenciesApi.md#listbillbycurrency) | **GET** /api/v1/currencies/{code}/bills | List all bills with this currency. |
 | [**ListBudgetLimitByCurrency**](CurrenciesApi.md#listbudgetlimitbycurrency) | **GET** /api/v1/currencies/{code}/budget_limits | List all budget limits with this currency |
 | [**ListCurrency**](CurrenciesApi.md#listcurrency) | **GET** /api/v1/currencies | List all currencies. |
-| [**ListExchangeRateByCurrency**](CurrenciesApi.md#listexchangeratebycurrency) | **GET** /api/v1/currencies/{code}/cer | List all known exchange rates with (from or to) this currency. |
 | [**ListRecurrenceByCurrency**](CurrenciesApi.md#listrecurrencebycurrency) | **GET** /api/v1/currencies/{code}/recurrences | List all recurring transactions with this currency. |
 | [**ListRuleByCurrency**](CurrenciesApi.md#listrulebycurrency) | **GET** /api/v1/currencies/{code}/rules | List all rules with this currency. |
 | [**ListTransactionByCurrency**](CurrenciesApi.md#listtransactionbycurrency) | **GET** /api/v1/currencies/{code}/transactions | List all transactions with this currency. |
@@ -28,7 +27,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 Make currency default currency.
 
-Make this currency the default currency. If the currency is not enabled, it will be enabled as well.
+Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
 
 ### Example
 ```csharp
@@ -48,6 +47,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
@@ -101,12 +102,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -142,6 +143,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = GBP;  // string | The currency code.
@@ -191,7 +194,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -233,6 +236,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = 56;  // int | The currency code.
@@ -286,12 +291,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -328,6 +333,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
@@ -381,12 +388,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -422,6 +429,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
@@ -475,12 +484,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -517,6 +526,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
 
@@ -565,7 +576,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -582,7 +593,7 @@ This endpoint does not need any parameter.
 
 <a id="listaccountbycurrency"></a>
 # **ListAccountByCurrency**
-> AccountArray ListAccountByCurrency (string code, int? page = null, string date = null, AccountTypeFilter type = null)
+> AccountArray ListAccountByCurrency (string code, int? page = null, DateTime? date = null, AccountTypeFilter type = null)
 
 List all accounts with this currency.
 
@@ -606,11 +617,13 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var date = "date_example";  // string | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
+            var date = DateTime.Parse("2013-10-20");  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
             var type = new AccountTypeFilter(); // AccountTypeFilter | Optional filter on the account type(s) returned (optional) 
 
             try
@@ -656,7 +669,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
-| **date** | **string** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
+| **date** | **DateTime?** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
 | **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | Optional filter on the account type(s) returned | [optional]  |
 
 ### Return type
@@ -665,12 +678,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -706,6 +719,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = EUR;  // string | The currency code.
@@ -761,12 +776,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -802,6 +817,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
@@ -857,12 +874,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -898,6 +915,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
@@ -957,12 +976,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -998,6 +1017,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -1051,120 +1072,18 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of currencies. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="listexchangeratebycurrency"></a>
-# **ListExchangeRateByCurrency**
-> ExchangeRateArray ListExchangeRateByCurrency (string code, int? page = null, DateTime? date = null, DateTime? start = null, DateTime? end = null)
-
-List all known exchange rates with (from or to) this currency.
-
-List all known exchange rates.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using FireflyIIINet.Api;
-using FireflyIIINet.Client;
-using FireflyIIINet.Model;
-
-namespace Example
-{
-    public class ListExchangeRateByCurrencyExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
-            // Configure OAuth2 access token for authorization: firefly_iii_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new CurrenciesApi(config);
-            var code = GBP;  // string | The currency code.
-            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var date = DateTime.Parse("2013-10-20");  // DateTime? | The date of which you want to know the exchange rate  (optional) 
-            var start = DateTime.Parse("2013-10-20");  // DateTime? | Use this instead of the date parameter to search for a range of currency exchange values.  (optional) 
-            var end = DateTime.Parse("2013-10-20");  // DateTime? | Use this instead of the date parameter to search for a range of currency exchange values.  (optional) 
-
-            try
-            {
-                // List all known exchange rates with (from or to) this currency.
-                ExchangeRateArray result = apiInstance.ListExchangeRateByCurrency(code, page, date, start, end);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CurrenciesApi.ListExchangeRateByCurrency: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ListExchangeRateByCurrencyWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // List all known exchange rates with (from or to) this currency.
-    ApiResponse<ExchangeRateArray> response = apiInstance.ListExchangeRateByCurrencyWithHttpInfo(code, page, date, start, end);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CurrenciesApi.ListExchangeRateByCurrencyWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **code** | **string** | The currency code. |  |
-| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
-| **date** | **DateTime?** | The date of which you want to know the exchange rate  | [optional]  |
-| **start** | **DateTime?** | Use this instead of the date parameter to search for a range of currency exchange values.  | [optional]  |
-| **end** | **DateTime?** | Use this instead of the date parameter to search for a range of currency exchange values.  | [optional]  |
-
-### Return type
-
-[**ExchangeRateArray**](ExchangeRateArray.md)
-
-### Authorization
-
-[firefly_iii_auth](../README.md#firefly_iii_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of exchange rates |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1194,6 +1113,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = EUR;  // string | The currency code.
@@ -1249,12 +1170,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -1290,6 +1211,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
@@ -1345,12 +1268,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -1362,7 +1285,7 @@ catch (ApiException e)
 
 <a id="listtransactionbycurrency"></a>
 # **ListTransactionByCurrency**
-> TransactionArray ListTransactionByCurrency (string code, int? page = null, DateTime? startDate = null, DateTime? endDate = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByCurrency (string code, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
 List all transactions with this currency.
 
@@ -1386,18 +1309,20 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
             var page = 1;  // int? | Page number. The default pagination is per 50. (optional) 
-            var startDate = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the list of transactions.  (optional) 
-            var endDate = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the list of transactions.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the list of transactions.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the list of transactions.  (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
 
             try
             {
                 // List all transactions with this currency.
-                TransactionArray result = apiInstance.ListTransactionByCurrency(code, page, startDate, endDate, type);
+                TransactionArray result = apiInstance.ListTransactionByCurrency(code, page, start, end, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1418,7 +1343,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all transactions with this currency.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByCurrencyWithHttpInfo(code, page, startDate, endDate, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByCurrencyWithHttpInfo(code, page, start, end, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1437,8 +1362,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
 | **page** | **int?** | Page number. The default pagination is per 50. | [optional]  |
-| **startDate** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the list of transactions.  | [optional]  |
-| **endDate** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the list of transactions.  | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the list of transactions.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the list of transactions.  | [optional]  |
 | **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
@@ -1447,12 +1372,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -1464,7 +1389,7 @@ catch (ApiException e)
 
 <a id="storecurrency"></a>
 # **StoreCurrency**
-> CurrencySingle StoreCurrency (Currency currency)
+> CurrencySingle StoreCurrency (CurrencyStore currencyStore)
 
 Store a new currency
 
@@ -1488,14 +1413,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
-            var currency = new Currency(); // Currency | JSON array or key=value pairs with the necessary currency information. See the model for the exact specifications.
+            var currencyStore = new CurrencyStore(); // CurrencyStore | JSON array or key=value pairs with the necessary currency information. See the model for the exact specifications.
 
             try
             {
                 // Store a new currency
-                CurrencySingle result = apiInstance.StoreCurrency(currency);
+                CurrencySingle result = apiInstance.StoreCurrency(currencyStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1516,7 +1443,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new currency
-    ApiResponse<CurrencySingle> response = apiInstance.StoreCurrencyWithHttpInfo(currency);
+    ApiResponse<CurrencySingle> response = apiInstance.StoreCurrencyWithHttpInfo(currencyStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1533,7 +1460,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **currency** | [**Currency**](Currency.md) | JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications. |  |
+| **currencyStore** | [**CurrencyStore**](CurrencyStore.md) | JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -1541,12 +1468,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -1559,7 +1486,7 @@ catch (ApiException e)
 
 <a id="updatecurrency"></a>
 # **UpdateCurrency**
-> CurrencySingle UpdateCurrency (string code, Currency currency)
+> CurrencySingle UpdateCurrency (string code, CurrencyUpdate currencyUpdate)
 
 Update existing currency.
 
@@ -1583,15 +1510,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = EUR;  // string | The currency code.
-            var currency = new Currency(); // Currency | JSON array with updated currency information. See the model for the exact specifications.
+            var currencyUpdate = new CurrencyUpdate(); // CurrencyUpdate | JSON array with updated currency information. See the model for the exact specifications.
 
             try
             {
                 // Update existing currency.
-                CurrencySingle result = apiInstance.UpdateCurrency(code, currency);
+                CurrencySingle result = apiInstance.UpdateCurrency(code, currencyUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1612,7 +1541,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing currency.
-    ApiResponse<CurrencySingle> response = apiInstance.UpdateCurrencyWithHttpInfo(code, currency);
+    ApiResponse<CurrencySingle> response = apiInstance.UpdateCurrencyWithHttpInfo(code, currencyUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1630,7 +1559,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
-| **currency** | [**Currency**](Currency.md) | JSON array with updated currency information. See the model for the exact specifications. |  |
+| **currencyUpdate** | [**CurrencyUpdate**](CurrencyUpdate.md) | JSON array with updated currency information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -1638,11 +1567,11 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/vnd.api+json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 

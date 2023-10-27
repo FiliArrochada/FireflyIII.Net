@@ -9,7 +9,6 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**ListRecurrence**](RecurrencesApi.md#listrecurrence) | **GET** /api/v1/recurrences | List all recurring transactions. |
 | [**ListTransactionByRecurrence**](RecurrencesApi.md#listtransactionbyrecurrence) | **GET** /api/v1/recurrences/{id}/transactions | List all transactions created by a recurring transaction. |
 | [**StoreRecurrence**](RecurrencesApi.md#storerecurrence) | **POST** /api/v1/recurrences | Store a new recurring transaction |
-| [**TriggerRecurrence**](RecurrencesApi.md#triggerrecurrence) | **POST** /api/v1/recurrences/trigger | Trigger the creation of recurring transactions (like a cron job). |
 | [**UpdateRecurrence**](RecurrencesApi.md#updaterecurrence) | **PUT** /api/v1/recurrences/{id} | Update existing recurring transaction. |
 
 <a id="deleterecurrence"></a>
@@ -18,7 +17,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 Delete a recurring transaction.
 
-Delete a recurring transaction. Transactions created will not be deleted.
+Delete a recurring transaction. Transactions created by the recurring transaction will not be deleted.
 
 ### Example
 ```csharp
@@ -38,6 +37,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 1;  // int | The ID of the recurring transaction.
@@ -87,7 +88,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -129,6 +130,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 1;  // int | The ID of the recurring transaction.
@@ -182,12 +185,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -224,6 +227,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -277,12 +282,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -318,6 +323,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 1;  // int | The ID of the recurring transaction.
@@ -379,12 +386,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -396,7 +403,7 @@ catch (ApiException e)
 
 <a id="storerecurrence"></a>
 # **StoreRecurrence**
-> RecurrenceSingle StoreRecurrence (Recurrence recurrence)
+> RecurrenceSingle StoreRecurrence (RecurrenceStore recurrenceStore)
 
 Store a new recurring transaction
 
@@ -420,14 +427,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
-            var recurrence = new Recurrence(); // Recurrence | JSON array or key=value pairs with the necessary recurring transaction information. See the model for the exact specifications.
+            var recurrenceStore = new RecurrenceStore(); // RecurrenceStore | JSON array or key=value pairs with the necessary recurring transaction information. See the model for the exact specifications.
 
             try
             {
                 // Store a new recurring transaction
-                RecurrenceSingle result = apiInstance.StoreRecurrence(recurrence);
+                RecurrenceSingle result = apiInstance.StoreRecurrence(recurrenceStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -448,7 +457,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new recurring transaction
-    ApiResponse<RecurrenceSingle> response = apiInstance.StoreRecurrenceWithHttpInfo(recurrence);
+    ApiResponse<RecurrenceSingle> response = apiInstance.StoreRecurrenceWithHttpInfo(recurrenceStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -465,7 +474,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **recurrence** | [**Recurrence**](Recurrence.md) | JSON array or key&#x3D;value pairs with the necessary recurring transaction information. See the model for the exact specifications. |  |
+| **recurrenceStore** | [**RecurrenceStore**](RecurrenceStore.md) | JSON array or key&#x3D;value pairs with the necessary recurring transaction information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -473,12 +482,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -489,95 +498,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="triggerrecurrence"></a>
-# **TriggerRecurrence**
-> void TriggerRecurrence ()
-
-Trigger the creation of recurring transactions (like a cron job).
-
-Triggers the recurring transactions, like a cron job would. If the schedule does not call for a new transaction to be created, nothing will happen. 
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using FireflyIIINet.Api;
-using FireflyIIINet.Client;
-using FireflyIIINet.Model;
-
-namespace Example
-{
-    public class TriggerRecurrenceExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
-            // Configure OAuth2 access token for authorization: firefly_iii_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new RecurrencesApi(config);
-
-            try
-            {
-                // Trigger the creation of recurring transactions (like a cron job).
-                apiInstance.TriggerRecurrence();
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling RecurrencesApi.TriggerRecurrence: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the TriggerRecurrenceWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Trigger the creation of recurring transactions (like a cron job).
-    apiInstance.TriggerRecurrenceWithHttpInfo();
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling RecurrencesApi.TriggerRecurrenceWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[firefly_iii_auth](../README.md#firefly_iii_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | Not triggered (not yet due or unable to). |  -  |
-| **200** | Triggered. Due to the way it&#39;s fired (an asynchronous job), the result cannot be shown to you. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a id="updaterecurrence"></a>
 # **UpdateRecurrence**
-> RecurrenceSingle UpdateRecurrence (int id, Recurrence recurrence)
+> RecurrenceSingle UpdateRecurrence (int id, RecurrenceUpdate recurrenceUpdate)
 
 Update existing recurring transaction.
 
@@ -601,15 +524,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 1;  // int | The ID of the recurring transaction.
-            var recurrence = new Recurrence(); // Recurrence | JSON array with updated recurring transaction information. See the model for the exact specifications.
+            var recurrenceUpdate = new RecurrenceUpdate(); // RecurrenceUpdate | JSON array with updated recurring transaction information. See the model for the exact specifications.
 
             try
             {
                 // Update existing recurring transaction.
-                RecurrenceSingle result = apiInstance.UpdateRecurrence(id, recurrence);
+                RecurrenceSingle result = apiInstance.UpdateRecurrence(id, recurrenceUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -630,7 +555,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing recurring transaction.
-    ApiResponse<RecurrenceSingle> response = apiInstance.UpdateRecurrenceWithHttpInfo(id, recurrence);
+    ApiResponse<RecurrenceSingle> response = apiInstance.UpdateRecurrenceWithHttpInfo(id, recurrenceUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -648,7 +573,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the recurring transaction. |  |
-| **recurrence** | [**Recurrence**](Recurrence.md) | JSON array with updated recurring transaction information. See the model for the exact specifications. |  |
+| **recurrenceUpdate** | [**RecurrenceUpdate**](RecurrenceUpdate.md) | JSON array with updated recurring transaction information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -656,12 +581,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details

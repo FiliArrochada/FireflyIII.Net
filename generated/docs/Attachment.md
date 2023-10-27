@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **DateTime** |  | [optional] [readonly] 
 **Filename** | **string** |  | 
 **AttachableType** | **string** | The object class to which the attachment must be linked. | 
-**AttachableId** | **int** | ID of the model this attachment is linked to. | 
+**AttachableId** | **string** | ID of the model this attachment is linked to. | 
 **Md5** | **string** | MD5 hash of the file for basic duplicate detection. | [optional] 
 **DownloadUri** | **string** |  | [optional] 
 **UploadUri** | **string** |  | [optional] 

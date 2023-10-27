@@ -39,6 +39,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
@@ -88,7 +90,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -130,6 +132,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
@@ -185,12 +189,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -227,6 +231,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
@@ -284,12 +290,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -325,6 +331,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
@@ -380,12 +388,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -422,6 +430,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
@@ -477,12 +487,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -518,6 +528,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
@@ -581,12 +593,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json
 
 
 ### HTTP response details
@@ -598,7 +610,7 @@ catch (ApiException e)
 
 <a id="storeaccount"></a>
 # **StoreAccount**
-> AccountSingle StoreAccount (Account account)
+> AccountSingle StoreAccount (AccountStore accountStore)
 
 Create new account.
 
@@ -622,14 +634,16 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
-            var account = new Account(); // Account | JSON array with the necessary account information or key=value pairs. See the model for the exact specifications.
+            var accountStore = new AccountStore(); // AccountStore | JSON array with the necessary account information or key=value pairs. See the model for the exact specifications.
 
             try
             {
                 // Create new account.
-                AccountSingle result = apiInstance.StoreAccount(account);
+                AccountSingle result = apiInstance.StoreAccount(accountStore);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -650,7 +664,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create new account.
-    ApiResponse<AccountSingle> response = apiInstance.StoreAccountWithHttpInfo(account);
+    ApiResponse<AccountSingle> response = apiInstance.StoreAccountWithHttpInfo(accountStore);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -667,7 +681,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **account** | [**Account**](Account.md) | JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications. |  |
+| **accountStore** | [**AccountStore**](AccountStore.md) | JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -675,12 +689,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -693,7 +707,7 @@ catch (ApiException e)
 
 <a id="updateaccount"></a>
 # **UpdateAccount**
-> AccountSingle UpdateAccount (int id, Account account)
+> AccountSingle UpdateAccount (int id, AccountUpdate accountUpdate)
 
 Update existing account.
 
@@ -717,15 +731,17 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
-            var account = new Account(); // Account | JSON array or formdata with updated account information. See the model for the exact specifications.
+            var accountUpdate = new AccountUpdate(); // AccountUpdate | JSON array or formdata with updated account information. See the model for the exact specifications.
 
             try
             {
                 // Update existing account.
-                AccountSingle result = apiInstance.UpdateAccount(id, account);
+                AccountSingle result = apiInstance.UpdateAccount(id, accountUpdate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -746,7 +762,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing account.
-    ApiResponse<AccountSingle> response = apiInstance.UpdateAccountWithHttpInfo(id, account);
+    ApiResponse<AccountSingle> response = apiInstance.UpdateAccountWithHttpInfo(id, accountUpdate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -764,7 +780,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the account. |  |
-| **account** | [**Account**](Account.md) | JSON array or formdata with updated account information. See the model for the exact specifications. |  |
+| **accountUpdate** | [**AccountUpdate**](AccountUpdate.md) | JSON array or formdata with updated account information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -772,12 +788,12 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
