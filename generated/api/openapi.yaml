@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   contact:
-    email: thegrumpydictator@gmail.com
+    email: james@firefly-iii.org
     name: James Cole
     url: https://firefly-iii.org
   description: |
@@ -10,7 +10,7 @@ info:
     name: GPLv3
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
   title: Firefly III API
-  version: 1.0.1
+  version: 1.0.2
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/
@@ -10050,6 +10050,7 @@ components:
     Transaction:
       example:
         group_title: Split transaction title.
+        apply_rules: false
         updated_at: 2018-09-17T12:46:47+01:00
         created_at: 2018-09-17T12:46:47+01:00
         transactions:
@@ -10187,12 +10188,18 @@ components:
           format: int32
           readOnly: true
           type: integer
+        apply_rules:
+          description: Whether or not to apply rules when submitting transaction.
+          example: false
+          format: boolean
+          readOnly: false
+          type: boolean
         group_title:
           description: Title of the transaction if it has been split in more than
             one piece. Empty otherwise.
           example: Split transaction title.
           format: string
-          readOnly: true
+          readOnly: false
           type: string
         transactions:
           items:
@@ -10206,6 +10213,7 @@ components:
         data:
         - attributes:
             group_title: Split transaction title.
+            apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
@@ -10335,6 +10343,7 @@ components:
           type: transactions
         - attributes:
             group_title: Split transaction title.
+            apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
@@ -10666,6 +10675,7 @@ components:
       example:
         attributes:
           group_title: Split transaction title.
+          apply_rules: false
           updated_at: 2018-09-17T12:46:47+01:00
           created_at: 2018-09-17T12:46:47+01:00
           transactions:
@@ -10818,6 +10828,7 @@ components:
         data:
           attributes:
             group_title: Split transaction title.
+            apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
@@ -11369,7 +11380,7 @@ components:
         blocked: false
         created_at: 2018-09-17T12:46:47+01:00
         blocked_code: email_changed
-        email: thegrumpydictator@gmail.com
+        email: james@firefly-iii.org
       properties:
         created_at:
           example: 2018-09-17T12:46:47+01:00
@@ -11383,7 +11394,7 @@ components:
           type: string
         email:
           description: The new users email address.
-          example: thegrumpydictator@gmail.com
+          example: james@firefly-iii.org
           format: email
           type: string
         blocked:
@@ -11422,7 +11433,7 @@ components:
             blocked: false
             created_at: 2018-09-17T12:46:47+01:00
             blocked_code: email_changed
-            email: thegrumpydictator@gmail.com
+            email: james@firefly-iii.org
           links:
             "0":
               rel: self
@@ -11436,7 +11447,7 @@ components:
             blocked: false
             created_at: 2018-09-17T12:46:47+01:00
             blocked_code: email_changed
-            email: thegrumpydictator@gmail.com
+            email: james@firefly-iii.org
           links:
             "0":
               rel: self
@@ -11477,7 +11488,7 @@ components:
           blocked: false
           created_at: 2018-09-17T12:46:47+01:00
           blocked_code: email_changed
-          email: thegrumpydictator@gmail.com
+          email: james@firefly-iii.org
         links:
           "0":
             rel: self
@@ -11514,7 +11525,7 @@ components:
             blocked: false
             created_at: 2018-09-17T12:46:47+01:00
             blocked_code: email_changed
-            email: thegrumpydictator@gmail.com
+            email: james@firefly-iii.org
           links:
             "0":
               rel: self
