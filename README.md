@@ -16,7 +16,7 @@ From >= v2.0.0
 
 ## Getting Started
 
-- [Current API Example](generated/Readme.md)
+- [Current API Example](generated/README.md)
 
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
