@@ -4,6 +4,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**BulkAccountMoveTransactions**](DataApi.md#bulkaccountmovetransactions) | **POST** /api/v1/data/bulk/accounts/transactions | Bulk move transactions from one account to another. |
 | [**DestroyData**](DataApi.md#destroydata) | **DELETE** /api/v1/data/destroy | Endpoint to destroy user data |
 | [**ExportAccounts**](DataApi.md#exportaccounts) | **GET** /api/v1/data/export/accounts | Export account data from Firefly III |
 | [**ExportBills**](DataApi.md#exportbills) | **GET** /api/v1/data/export/bills | Export bills from Firefly III |
@@ -14,6 +15,97 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**ExportRules**](DataApi.md#exportrules) | **GET** /api/v1/data/export/rules | Export rule groups and rule data from Firefly III |
 | [**ExportTags**](DataApi.md#exporttags) | **GET** /api/v1/data/export/tags | Export tag data from Firefly III |
 | [**ExportTransactions**](DataApi.md#exporttransactions) | **GET** /api/v1/data/export/transactions | Export transaction data from Firefly III |
+
+<a id="bulkaccountmovetransactions"></a>
+# **BulkAccountMoveTransactions**
+> void BulkAccountMoveTransactions (BulkAccountTransactionObject bulkAccountTransactionObject)
+
+Bulk move transactions from one account to another.
+
+Allows you to move all from one account to another. Requires two of the exact same accounts to work. Will not migrate deleted transactions. Both accounts must be of the exact same type (asset accounts for example). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class BulkAccountMoveTransactionsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new DataApi(config);
+            var bulkAccountTransactionObject = new BulkAccountTransactionObject(); // BulkAccountTransactionObject | JSON array with the necessary information to facilitate the move.
+
+            try
+            {
+                // Bulk move transactions from one account to another.
+                apiInstance.BulkAccountMoveTransactions(bulkAccountTransactionObject);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DataApi.BulkAccountMoveTransactions: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the BulkAccountMoveTransactionsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Bulk move transactions from one account to another.
+    apiInstance.BulkAccountMoveTransactionsWithHttpInfo(bulkAccountTransactionObject);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DataApi.BulkAccountMoveTransactionsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **bulkAccountTransactionObject** | [**BulkAccountTransactionObject**](BulkAccountTransactionObject.md) | JSON array with the necessary information to facilitate the move. |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Empty response when the move was successful. |  -  |
+| **500** | Internal error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="destroydata"></a>
 # **DestroyData**
@@ -41,8 +133,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var objects = new DataDestroyObject(); // DataDestroyObject | The type of data that you wish to destroy.
@@ -92,7 +182,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -134,8 +224,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -189,7 +277,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -230,8 +318,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -285,7 +371,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -326,8 +412,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -381,7 +465,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -422,8 +506,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -477,7 +559,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -518,8 +600,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -573,7 +653,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -614,8 +694,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -669,7 +747,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -710,8 +788,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -765,7 +841,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -806,8 +882,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
@@ -861,7 +935,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -902,8 +976,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new DataApi(config);
             var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
@@ -963,7 +1035,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 

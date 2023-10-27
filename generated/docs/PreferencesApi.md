@@ -35,8 +35,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
             var name = currencyPreference;  // string | The name of the preference.
@@ -90,7 +88,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -131,8 +129,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -186,7 +182,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -227,8 +223,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
             var preference = new Preference(); // Preference | JSON array with the necessary preference information or key=value pairs. See the model for the exact specifications.
@@ -282,7 +276,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -324,8 +318,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
             var name = currencyPreference;  // string | The name of the preference. Will always overwrite. Will be created if it does not exist.
@@ -381,7 +373,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 

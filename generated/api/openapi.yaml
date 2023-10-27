@@ -5,18 +5,17 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2021-04-04T11:50:40+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2021-05-14T15:49:56+00:00
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v1.5.1
-  version: 1.5.1
+  title: Firefly III API v1.5.2
+  version: 1.5.2
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org
 security:
 - firefly_iii_auth: []
-- local_bearer_auth: []
 tags:
 - description: "These endpoints deliver general system information, version- and meta\
     \ information."
@@ -991,6 +990,29 @@ paths:
         "500":
           description: "Internal error, or user is unauthorized to destroy data."
       summary: Endpoint to destroy user data
+      tags:
+      - data
+  /api/v1/data/bulk/accounts/transactions:
+    post:
+      description: |
+        Allows you to move all from one account to another. Requires two of the exact same accounts to work. Will not migrate deleted transactions. Both accounts must be of the exact same type (asset accounts for example).
+      operationId: bulkAccountMoveTransactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkAccountTransactionObject'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BulkAccountTransactionObject'
+        description: JSON array with the necessary information to facilitate the move.
+        required: true
+      responses:
+        "204":
+          description: Empty response when the move was successful.
+        "500":
+          description: Internal error.
+      summary: Bulk move transactions from one account to another.
       tags:
       - data
   /api/v1/insight/expense/bill:
@@ -8157,13 +8179,13 @@ components:
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
-              destination_id: 2
+              destination_id: "2"
               type: withdrawal
               destination_type: Asset account
               transaction_journal_id: 10421
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
-              bill_id: 111
+              bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
               sepa_country: sepa_country
@@ -8183,7 +8205,7 @@ components:
               sepa_cc: sepa_cc
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
-              budget_id: 4
+              budget_id: "4"
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8191,11 +8213,11 @@ components:
               import_hash_v2: import_hash_v2
               currency_decimal_places: 2
               invoice_date: 2000-01-23T04:56:07.000+00:00
-              category_id: 43
+              category_id: "43"
               foreign_currency_symbol: $
               recurrence_id: 6
               piggy_bank_name: piggy_bank_name
-              foreign_currency_id: 17
+              foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
               budget_name: Groceries
@@ -8209,21 +8231,21 @@ components:
               recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
-              source_id: 2
-              user: 3
-              currency_id: 12
+              source_id: "2"
+              user: "3"
+              currency_id: "12"
               sepa_ci: sepa_ci
             - date: 2018-09-17T12:46:47+01:00
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
-              destination_id: 2
+              destination_id: "2"
               type: withdrawal
               destination_type: Asset account
               transaction_journal_id: 10421
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
-              bill_id: 111
+              bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
               sepa_country: sepa_country
@@ -8243,7 +8265,7 @@ components:
               sepa_cc: sepa_cc
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
-              budget_id: 4
+              budget_id: "4"
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8251,11 +8273,11 @@ components:
               import_hash_v2: import_hash_v2
               currency_decimal_places: 2
               invoice_date: 2000-01-23T04:56:07.000+00:00
-              category_id: 43
+              category_id: "43"
               foreign_currency_symbol: $
               recurrence_id: 6
               piggy_bank_name: piggy_bank_name
-              foreign_currency_id: 17
+              foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
               budget_name: Groceries
@@ -8269,9 +8291,9 @@ components:
               recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
-              source_id: 2
-              user: 3
-              currency_id: 12
+              source_id: "2"
+              user: "3"
+              currency_id: "12"
               sepa_ci: sepa_ci
             user: "3"
           links:
@@ -8292,13 +8314,13 @@ components:
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
-              destination_id: 2
+              destination_id: "2"
               type: withdrawal
               destination_type: Asset account
               transaction_journal_id: 10421
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
-              bill_id: 111
+              bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
               sepa_country: sepa_country
@@ -8318,7 +8340,7 @@ components:
               sepa_cc: sepa_cc
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
-              budget_id: 4
+              budget_id: "4"
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8326,11 +8348,11 @@ components:
               import_hash_v2: import_hash_v2
               currency_decimal_places: 2
               invoice_date: 2000-01-23T04:56:07.000+00:00
-              category_id: 43
+              category_id: "43"
               foreign_currency_symbol: $
               recurrence_id: 6
               piggy_bank_name: piggy_bank_name
-              foreign_currency_id: 17
+              foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
               budget_name: Groceries
@@ -8344,21 +8366,21 @@ components:
               recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
-              source_id: 2
-              user: 3
-              currency_id: 12
+              source_id: "2"
+              user: "3"
+              currency_id: "12"
               sepa_ci: sepa_ci
             - date: 2018-09-17T12:46:47+01:00
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
-              destination_id: 2
+              destination_id: "2"
               type: withdrawal
               destination_type: Asset account
               transaction_journal_id: 10421
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
-              bill_id: 111
+              bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
               sepa_country: sepa_country
@@ -8378,7 +8400,7 @@ components:
               sepa_cc: sepa_cc
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
-              budget_id: 4
+              budget_id: "4"
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -8386,11 +8408,11 @@ components:
               import_hash_v2: import_hash_v2
               currency_decimal_places: 2
               invoice_date: 2000-01-23T04:56:07.000+00:00
-              category_id: 43
+              category_id: "43"
               foreign_currency_symbol: $
               recurrence_id: 6
               piggy_bank_name: piggy_bank_name
-              foreign_currency_id: 17
+              foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
               budget_name: Groceries
@@ -8404,9 +8426,9 @@ components:
               recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
-              source_id: 2
-              user: 3
-              currency_id: 12
+              source_id: "2"
+              user: "3"
+              currency_id: "12"
               sepa_ci: sepa_ci
             user: "3"
           links:
@@ -8650,6 +8672,12 @@ components:
       - firefly.default_location
       - firefly.account_to_transaction
       - firefly.allowed_opposing_types
+      - firefly.accountRoles
+      - firefly.valid_liabilities
+      - firefly.interest_periods
+      - firefly.enable_external_map
+      - firefly.expected_source_types
+      - app.timezone
       type: string
     AccountSearchFieldFilter:
       enum:
@@ -9074,13 +9102,13 @@ components:
             category_name: Groceries
             notes: Some example notes
             sepa_batch_id: sepa_batch_id
-            destination_id: 2
+            destination_id: "2"
             type: withdrawal
             destination_type: Asset account
             transaction_journal_id: 10421
             payment_date: 2000-01-23T04:56:07.000+00:00
             order: 0
-            bill_id: 111
+            bill_id: "111"
             foreign_currency_code: USD
             reconciled: false
             sepa_country: sepa_country
@@ -9100,7 +9128,7 @@ components:
             sepa_cc: sepa_cc
             destination_iban: NL02ABNA0123456789
             source_iban: NL02ABNA0123456789
-            budget_id: 4
+            budget_id: "4"
             description: Vegetables
             destination_name: Buy and Large
             external_id: external_id
@@ -9108,11 +9136,11 @@ components:
             import_hash_v2: import_hash_v2
             currency_decimal_places: 2
             invoice_date: 2000-01-23T04:56:07.000+00:00
-            category_id: 43
+            category_id: "43"
             foreign_currency_symbol: $
             recurrence_id: 6
             piggy_bank_name: piggy_bank_name
-            foreign_currency_id: 17
+            foreign_currency_id: "17"
             source_name: Checking account
             amount: "123.45"
             budget_name: Groceries
@@ -9126,21 +9154,21 @@ components:
             recurrence_count: 12
             bunq_payment_id: bunq_payment_id
             sepa_ct_op: sepa_ct_op
-            source_id: 2
-            user: 3
-            currency_id: 12
+            source_id: "2"
+            user: "3"
+            currency_id: "12"
             sepa_ci: sepa_ci
           - date: 2018-09-17T12:46:47+01:00
             category_name: Groceries
             notes: Some example notes
             sepa_batch_id: sepa_batch_id
-            destination_id: 2
+            destination_id: "2"
             type: withdrawal
             destination_type: Asset account
             transaction_journal_id: 10421
             payment_date: 2000-01-23T04:56:07.000+00:00
             order: 0
-            bill_id: 111
+            bill_id: "111"
             foreign_currency_code: USD
             reconciled: false
             sepa_country: sepa_country
@@ -9160,7 +9188,7 @@ components:
             sepa_cc: sepa_cc
             destination_iban: NL02ABNA0123456789
             source_iban: NL02ABNA0123456789
-            budget_id: 4
+            budget_id: "4"
             description: Vegetables
             destination_name: Buy and Large
             external_id: external_id
@@ -9168,11 +9196,11 @@ components:
             import_hash_v2: import_hash_v2
             currency_decimal_places: 2
             invoice_date: 2000-01-23T04:56:07.000+00:00
-            category_id: 43
+            category_id: "43"
             foreign_currency_symbol: $
             recurrence_id: 6
             piggy_bank_name: piggy_bank_name
-            foreign_currency_id: 17
+            foreign_currency_id: "17"
             source_name: Checking account
             amount: "123.45"
             budget_name: Groceries
@@ -9186,9 +9214,9 @@ components:
             recurrence_count: 12
             bunq_payment_id: bunq_payment_id
             sepa_ct_op: sepa_ct_op
-            source_id: 2
-            user: 3
-            currency_id: 12
+            source_id: "2"
+            user: "3"
+            currency_id: "12"
             sepa_ci: sepa_ci
           user: "3"
         links:
@@ -10337,13 +10365,13 @@ components:
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
-              destination_id: 2
+              destination_id: "2"
               type: withdrawal
               destination_type: Asset account
               transaction_journal_id: 10421
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
-              bill_id: 111
+              bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
               sepa_country: sepa_country
@@ -10363,7 +10391,7 @@ components:
               sepa_cc: sepa_cc
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
-              budget_id: 4
+              budget_id: "4"
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -10371,11 +10399,11 @@ components:
               import_hash_v2: import_hash_v2
               currency_decimal_places: 2
               invoice_date: 2000-01-23T04:56:07.000+00:00
-              category_id: 43
+              category_id: "43"
               foreign_currency_symbol: $
               recurrence_id: 6
               piggy_bank_name: piggy_bank_name
-              foreign_currency_id: 17
+              foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
               budget_name: Groceries
@@ -10389,21 +10417,21 @@ components:
               recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
-              source_id: 2
-              user: 3
-              currency_id: 12
+              source_id: "2"
+              user: "3"
+              currency_id: "12"
               sepa_ci: sepa_ci
             - date: 2018-09-17T12:46:47+01:00
               category_name: Groceries
               notes: Some example notes
               sepa_batch_id: sepa_batch_id
-              destination_id: 2
+              destination_id: "2"
               type: withdrawal
               destination_type: Asset account
               transaction_journal_id: 10421
               payment_date: 2000-01-23T04:56:07.000+00:00
               order: 0
-              bill_id: 111
+              bill_id: "111"
               foreign_currency_code: USD
               reconciled: false
               sepa_country: sepa_country
@@ -10423,7 +10451,7 @@ components:
               sepa_cc: sepa_cc
               destination_iban: NL02ABNA0123456789
               source_iban: NL02ABNA0123456789
-              budget_id: 4
+              budget_id: "4"
               description: Vegetables
               destination_name: Buy and Large
               external_id: external_id
@@ -10431,11 +10459,11 @@ components:
               import_hash_v2: import_hash_v2
               currency_decimal_places: 2
               invoice_date: 2000-01-23T04:56:07.000+00:00
-              category_id: 43
+              category_id: "43"
               foreign_currency_symbol: $
               recurrence_id: 6
               piggy_bank_name: piggy_bank_name
-              foreign_currency_id: 17
+              foreign_currency_id: "17"
               source_name: Checking account
               amount: "123.45"
               budget_name: Groceries
@@ -10449,9 +10477,9 @@ components:
               recurrence_count: 12
               bunq_payment_id: bunq_payment_id
               sepa_ct_op: sepa_ct_op
-              source_id: 2
-              user: 3
-              currency_id: 12
+              source_id: "2"
+              user: "3"
+              currency_id: "12"
               sepa_ci: sepa_ci
             user: "3"
           links:
@@ -11201,6 +11229,27 @@ components:
       - deposits
       - transfers
       type: string
+    BulkAccountTransactionObject:
+      example:
+        original_account: 2
+        destination_account: 17
+      properties:
+        original_account:
+          description: "The original account, where you wish to transactions away\
+            \ from."
+          example: 2
+          format: integer
+          type: number
+        destination_account:
+          description: "The destination account, where the transactions will be moved\
+            \ to."
+          example: 17
+          format: integer
+          type: number
+      required:
+      - destination_account
+      - original_account
+      type: object
     InsightTransferEntry:
       example:
         in: "123.45"
@@ -14551,21 +14600,21 @@ components:
           category_name: Groceries
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
-          budget_id: 4
-          destination_id: 2
+          budget_id: "4"
+          destination_id: "2"
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
           type: withdrawal
           currency_code: EUR
           invoice_date: 2000-01-23T04:56:07.000+00:00
-          category_id: 43
+          category_id: "43"
           piggy_bank_name: piggy_bank_name
-          foreign_currency_id: 17
+          foreign_currency_id: "17"
           source_name: Checking account
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
-          bill_id: 111
+          bill_id: "112"
           amount: "123.45"
           budget_name: Groceries
           foreign_currency_code: USD
@@ -14586,30 +14635,30 @@ components:
           foreign_amount: "123.45"
           process_date: 2000-01-23T04:56:07.000+00:00
           sepa_ep: sepa_ep
-          source_id: 2
+          source_id: "2"
           internal_reference: internal_reference
-          currency_id: 12
+          currency_id: "12"
           sepa_ci: sepa_ci
         - date: 2018-09-17T12:46:47+01:00
           sepa_cc: sepa_cc
           category_name: Groceries
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
-          budget_id: 4
-          destination_id: 2
+          budget_id: "4"
+          destination_id: "2"
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
           type: withdrawal
           currency_code: EUR
           invoice_date: 2000-01-23T04:56:07.000+00:00
-          category_id: 43
+          category_id: "43"
           piggy_bank_name: piggy_bank_name
-          foreign_currency_id: 17
+          foreign_currency_id: "17"
           source_name: Checking account
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
-          bill_id: 111
+          bill_id: "112"
           amount: "123.45"
           budget_name: Groceries
           foreign_currency_code: USD
@@ -14630,9 +14679,9 @@ components:
           foreign_amount: "123.45"
           process_date: 2000-01-23T04:56:07.000+00:00
           sepa_ep: sepa_ep
-          source_id: 2
+          source_id: "2"
           internal_reference: internal_reference
-          currency_id: 12
+          currency_id: "12"
           sepa_ci: sepa_ci
       properties:
         error_if_duplicate_hash:
@@ -14671,13 +14720,13 @@ components:
           category_name: Groceries
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
-          destination_id: 2
+          destination_id: "2"
           type: withdrawal
           destination_type: Asset account
           transaction_journal_id: 10421
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
-          bill_id: 111
+          bill_id: "111"
           foreign_currency_code: USD
           reconciled: false
           sepa_country: sepa_country
@@ -14697,7 +14746,7 @@ components:
           sepa_cc: sepa_cc
           destination_iban: NL02ABNA0123456789
           source_iban: NL02ABNA0123456789
-          budget_id: 4
+          budget_id: "4"
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
@@ -14705,11 +14754,11 @@ components:
           import_hash_v2: import_hash_v2
           currency_decimal_places: 2
           invoice_date: 2000-01-23T04:56:07.000+00:00
-          category_id: 43
+          category_id: "43"
           foreign_currency_symbol: $
           recurrence_id: 6
           piggy_bank_name: piggy_bank_name
-          foreign_currency_id: 17
+          foreign_currency_id: "17"
           source_name: Checking account
           amount: "123.45"
           budget_name: Groceries
@@ -14723,21 +14772,21 @@ components:
           recurrence_count: 12
           bunq_payment_id: bunq_payment_id
           sepa_ct_op: sepa_ct_op
-          source_id: 2
-          user: 3
-          currency_id: 12
+          source_id: "2"
+          user: "3"
+          currency_id: "12"
           sepa_ci: sepa_ci
         - date: 2018-09-17T12:46:47+01:00
           category_name: Groceries
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
-          destination_id: 2
+          destination_id: "2"
           type: withdrawal
           destination_type: Asset account
           transaction_journal_id: 10421
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
-          bill_id: 111
+          bill_id: "111"
           foreign_currency_code: USD
           reconciled: false
           sepa_country: sepa_country
@@ -14757,7 +14806,7 @@ components:
           sepa_cc: sepa_cc
           destination_iban: NL02ABNA0123456789
           source_iban: NL02ABNA0123456789
-          budget_id: 4
+          budget_id: "4"
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
@@ -14765,11 +14814,11 @@ components:
           import_hash_v2: import_hash_v2
           currency_decimal_places: 2
           invoice_date: 2000-01-23T04:56:07.000+00:00
-          category_id: 43
+          category_id: "43"
           foreign_currency_symbol: $
           recurrence_id: 6
           piggy_bank_name: piggy_bank_name
-          foreign_currency_id: 17
+          foreign_currency_id: "17"
           source_name: Checking account
           amount: "123.45"
           budget_name: Groceries
@@ -14783,9 +14832,9 @@ components:
           recurrence_count: 12
           bunq_payment_id: bunq_payment_id
           sepa_ct_op: sepa_ct_op
-          source_id: 2
-          user: 3
-          currency_id: 12
+          source_id: "2"
+          user: "3"
+          currency_id: "12"
           sepa_ci: sepa_ci
         user: "3"
       properties:
@@ -14844,21 +14893,21 @@ components:
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
           source_iban: NL02ABNA0123456789
-          budget_id: 4
-          destination_id: 2
+          budget_id: "4"
+          destination_id: "2"
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
           currency_code: EUR
           currency_decimal_places: 2
           invoice_date: 2000-01-23T04:56:07.000+00:00
-          category_id: 43
+          category_id: "43"
           foreign_currency_symbol: $
-          foreign_currency_id: 17
+          foreign_currency_id: "17"
           source_name: Checking account
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
-          bill_id: 111
+          bill_id: "111"
           amount: "123.45"
           budget_name: Groceries
           currency_name: Euro
@@ -14881,9 +14930,9 @@ components:
           foreign_amount: "123.45"
           process_date: 2000-01-23T04:56:07.000+00:00
           sepa_ep: sepa_ep
-          source_id: 2
+          source_id: "2"
           internal_reference: internal_reference
-          currency_id: 12
+          currency_id: "12"
           sepa_ci: sepa_ci
         - date: 2018-09-17T12:46:47+01:00
           sepa_cc: sepa_cc
@@ -14892,21 +14941,21 @@ components:
           notes: Some example notes
           sepa_batch_id: sepa_batch_id
           source_iban: NL02ABNA0123456789
-          budget_id: 4
-          destination_id: 2
+          budget_id: "4"
+          destination_id: "2"
           description: Vegetables
           destination_name: Buy and Large
           external_id: external_id
           currency_code: EUR
           currency_decimal_places: 2
           invoice_date: 2000-01-23T04:56:07.000+00:00
-          category_id: 43
+          category_id: "43"
           foreign_currency_symbol: $
-          foreign_currency_id: 17
+          foreign_currency_id: "17"
           source_name: Checking account
           payment_date: 2000-01-23T04:56:07.000+00:00
           order: 0
-          bill_id: 111
+          bill_id: "111"
           amount: "123.45"
           budget_name: Groceries
           currency_name: Euro
@@ -14929,9 +14978,9 @@ components:
           foreign_amount: "123.45"
           process_date: 2000-01-23T04:56:07.000+00:00
           sepa_ep: sepa_ep
-          source_id: 2
+          source_id: "2"
           internal_reference: internal_reference
-          currency_id: 12
+          currency_id: "12"
           sepa_ci: sepa_ci
       properties:
         apply_rules:
@@ -16578,21 +16627,21 @@ components:
         notes: Some example notes
         sepa_batch_id: sepa_batch_id
         source_iban: NL02ABNA0123456789
-        budget_id: 4
-        destination_id: 2
+        budget_id: "4"
+        destination_id: "2"
         description: Vegetables
         destination_name: Buy and Large
         external_id: external_id
         currency_code: EUR
         currency_decimal_places: 2
         invoice_date: 2000-01-23T04:56:07.000+00:00
-        category_id: 43
+        category_id: "43"
         foreign_currency_symbol: $
-        foreign_currency_id: 17
+        foreign_currency_id: "17"
         source_name: Checking account
         payment_date: 2000-01-23T04:56:07.000+00:00
         order: 0
-        bill_id: 111
+        bill_id: "111"
         amount: "123.45"
         budget_name: Groceries
         currency_name: Euro
@@ -16615,9 +16664,9 @@ components:
         foreign_amount: "123.45"
         process_date: 2000-01-23T04:56:07.000+00:00
         sepa_ep: sepa_ep
-        source_id: 2
+        source_id: "2"
         internal_reference: internal_reference
-        currency_id: 12
+        currency_id: "12"
         sepa_ci: sepa_ci
       properties:
         date:
@@ -16644,10 +16693,10 @@ components:
         currency_id:
           description: "Currency ID. Default is the source account's currency, or\
             \ the user's default currency. Can be used instead of currency_code."
-          example: 12
-          format: int32
+          example: "12"
+          format: string
           nullable: true
-          type: integer
+          type: string
         currency_code:
           description: "Currency code. Default is the source account's currency, or\
             \ the user's default currency. Can be used instead of currency_id."
@@ -16680,10 +16729,10 @@ components:
         foreign_currency_id:
           description: Currency ID of the foreign currency. Default is null. Is required
             when you submit a foreign amount.
-          example: 17
-          format: int32
+          example: "17"
+          format: string
           nullable: true
-          type: integer
+          type: string
         foreign_currency_code:
           description: "Currency code of the foreign currency. Default is NULL. Can\
             \ be used instead of the foreign_currency_id, but this or the ID is required\
@@ -16707,10 +16756,10 @@ components:
           type: integer
         budget_id:
           description: The budget ID for this transaction.
-          example: 4
-          format: int32
+          example: "4"
+          format: string
           nullable: true
-          type: integer
+          type: string
         budget_name:
           description: "The name of the budget to be used. If the budget name is unknown,\
             \ the ID will be used or the value will be ignored."
@@ -16721,10 +16770,10 @@ components:
           type: string
         category_id:
           description: The category ID for this transaction.
-          example: 43
-          format: int32
+          example: "43"
+          format: string
           nullable: true
-          type: integer
+          type: string
         category_name:
           description: "The name of the category to be used. If the category is unknown,\
             \ it will be created. If the ID and the name point to different categories,\
@@ -16737,10 +16786,10 @@ components:
           description: "ID of the source account. For a withdrawal or a transfer,\
             \ this must always be an asset account. For deposits, this must be a revenue\
             \ account."
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           nullable: true
-          type: integer
+          type: string
         source_name:
           description: "Name of the source account. For a withdrawal or a transfer,\
             \ this must always be an asset account. For deposits, this must be a revenue\
@@ -16760,10 +16809,10 @@ components:
           description: "ID of the destination account. For a deposit or a transfer,\
             \ this must always be an asset account. For withdrawals this must be an\
             \ expense account."
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           nullable: true
-          type: integer
+          type: string
         destination_name:
           description: "Name of the destination account. You can submit the name instead\
             \ of the ID. For everything except transfers, the account will be auto-generated\
@@ -16785,10 +16834,10 @@ components:
           type: boolean
         bill_id:
           description: Optional. Use either this or the bill_name
-          example: 111
-          format: int32
+          example: "111"
+          format: string
           nullable: true
-          type: integer
+          type: string
         bill_name:
           description: Optional. Use either this or the bill_id
           example: Monthly rent
@@ -16897,21 +16946,21 @@ components:
         category_name: Groceries
         notes: Some example notes
         sepa_batch_id: sepa_batch_id
-        budget_id: 4
-        destination_id: 2
+        budget_id: "4"
+        destination_id: "2"
         description: Vegetables
         destination_name: Buy and Large
         external_id: external_id
         type: withdrawal
         currency_code: EUR
         invoice_date: 2000-01-23T04:56:07.000+00:00
-        category_id: 43
+        category_id: "43"
         piggy_bank_name: piggy_bank_name
-        foreign_currency_id: 17
+        foreign_currency_id: "17"
         source_name: Checking account
         payment_date: 2000-01-23T04:56:07.000+00:00
         order: 0
-        bill_id: 111
+        bill_id: "112"
         amount: "123.45"
         budget_name: Groceries
         foreign_currency_code: USD
@@ -16932,9 +16981,9 @@ components:
         foreign_amount: "123.45"
         process_date: 2000-01-23T04:56:07.000+00:00
         sepa_ep: sepa_ep
-        source_id: 2
+        source_id: "2"
         internal_reference: internal_reference
-        currency_id: 12
+        currency_id: "12"
         sepa_ci: sepa_ci
       properties:
         type:
@@ -16973,10 +17022,10 @@ components:
           description: "Currency ID. Default is the source account's currency, or\
             \ the user's default currency. The value you submit may be overruled by\
             \ the source or destination account."
-          example: 12
-          format: int32
+          example: "12"
+          format: string
           nullable: true
-          type: integer
+          type: string
         currency_code:
           description: "Currency code. Default is the source account's currency, or\
             \ the user's default currency. The value you submit may be overruled by\
@@ -16994,10 +17043,10 @@ components:
         foreign_currency_id:
           description: Currency ID of the foreign currency. Default is null. Is required
             when you submit a foreign amount.
-          example: 17
-          format: int32
+          example: "17"
+          format: string
           nullable: true
-          type: integer
+          type: string
         foreign_currency_code:
           description: "Currency code of the foreign currency. Default is NULL. Can\
             \ be used instead of the foreign_currency_id, but this or the ID is required\
@@ -17008,10 +17057,10 @@ components:
           type: string
         budget_id:
           description: The budget ID for this transaction.
-          example: 4
-          format: int32
+          example: "4"
+          format: string
           nullable: true
-          type: integer
+          type: string
         budget_name:
           description: "The name of the budget to be used. If the budget name is unknown,\
             \ the ID will be used or the value will be ignored."
@@ -17022,10 +17071,10 @@ components:
           type: string
         category_id:
           description: The category ID for this transaction.
-          example: 43
-          format: int32
+          example: "43"
+          format: string
           nullable: true
-          type: integer
+          type: string
         category_name:
           description: "The name of the category to be used. If the category is unknown,\
             \ it will be created. If the ID and the name point to different categories,\
@@ -17038,10 +17087,10 @@ components:
           description: "ID of the source account. For a withdrawal or a transfer,\
             \ this must always be an asset account. For deposits, this must be a revenue\
             \ account."
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           nullable: true
-          type: integer
+          type: string
         source_name:
           description: "Name of the source account. For a withdrawal or a transfer,\
             \ this must always be an asset account. For deposits, this must be a revenue\
@@ -17056,10 +17105,10 @@ components:
           description: "ID of the destination account. For a deposit or a transfer,\
             \ this must always be an asset account. For withdrawals this must be an\
             \ expense account."
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           nullable: true
-          type: integer
+          type: string
         destination_name:
           description: "Name of the destination account. You can submit the name instead\
             \ of the ID. For everything except transfers, the account will be auto-generated\
@@ -17086,10 +17135,10 @@ components:
           writeOnly: true
         bill_id:
           description: Optional. Use either this or the bill_name
-          example: 111
-          format: int32
+          example: "112"
+          format: string
           nullable: true
-          type: integer
+          type: string
         bill_name:
           description: Optional. Use either this or the bill_id
           example: Monthly rent
@@ -17205,13 +17254,13 @@ components:
         category_name: Groceries
         notes: Some example notes
         sepa_batch_id: sepa_batch_id
-        destination_id: 2
+        destination_id: "2"
         type: withdrawal
         destination_type: Asset account
         transaction_journal_id: 10421
         payment_date: 2000-01-23T04:56:07.000+00:00
         order: 0
-        bill_id: 111
+        bill_id: "111"
         foreign_currency_code: USD
         reconciled: false
         sepa_country: sepa_country
@@ -17231,7 +17280,7 @@ components:
         sepa_cc: sepa_cc
         destination_iban: NL02ABNA0123456789
         source_iban: NL02ABNA0123456789
-        budget_id: 4
+        budget_id: "4"
         description: Vegetables
         destination_name: Buy and Large
         external_id: external_id
@@ -17239,11 +17288,11 @@ components:
         import_hash_v2: import_hash_v2
         currency_decimal_places: 2
         invoice_date: 2000-01-23T04:56:07.000+00:00
-        category_id: 43
+        category_id: "43"
         foreign_currency_symbol: $
         recurrence_id: 6
         piggy_bank_name: piggy_bank_name
-        foreign_currency_id: 17
+        foreign_currency_id: "17"
         source_name: Checking account
         amount: "123.45"
         budget_name: Groceries
@@ -17257,17 +17306,17 @@ components:
         recurrence_count: 12
         bunq_payment_id: bunq_payment_id
         sepa_ct_op: sepa_ct_op
-        source_id: 2
-        user: 3
-        currency_id: 12
+        source_id: "2"
+        user: "3"
+        currency_id: "12"
         sepa_ci: sepa_ci
       properties:
         user:
           description: User ID
-          example: 3
-          format: int32
+          example: "3"
+          format: string
           readOnly: true
-          type: integer
+          type: string
         transaction_journal_id:
           description: |
             ID of the underlying transaction journal. Each transaction consists of a transaction group (see the top ID) and one or more journals
@@ -17311,10 +17360,10 @@ components:
         currency_id:
           description: "Currency ID. Default is the source account's currency, or\
             \ the user's default currency. Can be used instead of currency_code."
-          example: 12
-          format: int32
+          example: "12"
+          format: string
           nullable: true
-          type: integer
+          type: string
         currency_code:
           description: "Currency code. Default is the source account's currency, or\
             \ the user's default currency. Can be used instead of currency_id."
@@ -17347,10 +17396,10 @@ components:
         foreign_currency_id:
           description: Currency ID of the foreign currency. Default is null. Is required
             when you submit a foreign amount.
-          example: 17
-          format: int32
+          example: "17"
+          format: string
           nullable: true
-          type: integer
+          type: string
         foreign_currency_code:
           description: "Currency code of the foreign currency. Default is NULL. Can\
             \ be used instead of the foreign_currency_id, but this or the ID is required\
@@ -17374,10 +17423,10 @@ components:
           type: integer
         budget_id:
           description: The budget ID for this transaction.
-          example: 4
-          format: int32
+          example: "4"
+          format: string
           nullable: true
-          type: integer
+          type: string
         budget_name:
           description: "The name of the budget to be used. If the budget name is unknown,\
             \ the ID will be used or the value will be ignored."
@@ -17388,10 +17437,10 @@ components:
           type: string
         category_id:
           description: The category ID for this transaction.
-          example: 43
-          format: int32
+          example: "43"
+          format: string
           nullable: true
-          type: integer
+          type: string
         category_name:
           description: "The name of the category to be used. If the category is unknown,\
             \ it will be created. If the ID and the name point to different categories,\
@@ -17404,10 +17453,10 @@ components:
           description: "ID of the source account. For a withdrawal or a transfer,\
             \ this must always be an asset account. For deposits, this must be a revenue\
             \ account."
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           nullable: true
-          type: integer
+          type: string
         source_name:
           description: "Name of the source account. For a withdrawal or a transfer,\
             \ this must always be an asset account. For deposits, this must be a revenue\
@@ -17430,10 +17479,10 @@ components:
           description: "ID of the destination account. For a deposit or a transfer,\
             \ this must always be an asset account. For withdrawals this must be an\
             \ expense account."
-          example: 2
-          format: int32
+          example: "2"
+          format: string
           nullable: true
-          type: integer
+          type: string
         destination_name:
           description: "Name of the destination account. You can submit the name instead\
             \ of the ID. For everything except transfers, the account will be auto-generated\
@@ -17468,10 +17517,10 @@ components:
           writeOnly: true
         bill_id:
           description: Optional. Use either this or the bill_name
-          example: 111
-          format: int32
+          example: "111"
+          format: string
           nullable: true
-          type: integer
+          type: string
         bill_name:
           description: Optional. Use either this or the bill_id
           example: Monthly rent

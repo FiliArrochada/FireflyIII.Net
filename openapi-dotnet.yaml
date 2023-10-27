@@ -5,10 +5,10 @@
 # (TODO Move this into a github action - preferably along with generation)
 # dotnet pack -c Release -p:PackageVersion=0.1.0 -p:PackageLicenseExpression=MIT .\generated\src\FireflyIII\FireflyIII.csproj
 
-inputSpec: api-yaml/firefly-iii-1.5.1.yaml
+inputSpec: api-yaml/firefly-iii-1.5.2.yaml
 generatorName: csharp
 outputDir: generated/
 packageName: FireflyIIINet
-packageVersion: 1.5.1
+packageVersion: 1.5.2
 targetFramework: netstandard2.0 # is only on lang version C# 7.3
 #nullableReferenceTypes: true # must be lang version > C# 8.0

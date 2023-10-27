@@ -38,8 +38,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the single.
@@ -89,7 +87,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -131,8 +129,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
@@ -186,7 +182,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -228,8 +224,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
@@ -283,7 +277,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -325,8 +319,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
@@ -380,7 +372,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -421,8 +413,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var attachmentStore = new AttachmentStore(); // AttachmentStore | JSON array or key=value pairs with the necessary attachment information. See the model for the exact specifications.
@@ -476,7 +466,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -518,8 +508,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
@@ -575,7 +563,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -617,8 +605,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
@@ -670,7 +656,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 

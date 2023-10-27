@@ -55,8 +55,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -114,7 +112,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -155,8 +153,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -216,7 +212,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -257,8 +253,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -318,7 +312,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -359,8 +353,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -420,7 +412,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -461,8 +453,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -520,7 +510,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -561,8 +551,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -620,7 +608,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -661,8 +649,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -720,7 +706,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -761,8 +747,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -820,7 +804,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -861,8 +845,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -920,7 +902,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -961,8 +943,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1022,7 +1002,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1063,8 +1043,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1122,7 +1100,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1163,8 +1141,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1222,7 +1198,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1263,8 +1239,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1324,7 +1298,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1365,8 +1339,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1424,7 +1396,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1465,8 +1437,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1524,7 +1494,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1565,8 +1535,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1624,7 +1592,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1665,8 +1633,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1726,7 +1692,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1767,8 +1733,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1826,7 +1790,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1867,8 +1831,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -1928,7 +1890,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -1969,8 +1931,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -2028,7 +1988,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -2069,8 +2029,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -2128,7 +2086,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -2169,8 +2127,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -2230,7 +2186,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -2271,8 +2227,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -2330,7 +2284,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -2371,8 +2325,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new InsightApi(config);
             var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
@@ -2430,7 +2382,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 

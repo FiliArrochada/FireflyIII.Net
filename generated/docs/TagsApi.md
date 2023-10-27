@@ -38,8 +38,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tag = groceries;  // string | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary.
@@ -89,7 +87,7 @@ void (empty response body)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -131,8 +129,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tag = groceries;  // string | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary.
@@ -188,7 +184,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -230,8 +226,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tag = groceries;  // string | Either the tag itself or the tag ID.
@@ -287,7 +281,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -329,8 +323,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var page = 56;  // int? | Page number (optional) 
@@ -384,7 +376,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -425,8 +417,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tag = groceries;  // string | Either the tag itself or the tag ID.
@@ -488,7 +478,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -529,8 +519,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tagModelStore = new TagModelStore(); // TagModelStore | JSON array or key=value pairs with the necessary tag information. See the model for the exact specifications.
@@ -584,7 +572,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 
@@ -626,8 +614,6 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
-            // Configure Bearer token for authorization: local_bearer_auth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new TagsApi(config);
             var tag = groceries;  // string | Either the tag itself or the tag ID. If you use the tag itself, and it contains international (non-ASCII) characters, your milage may vary.
@@ -683,7 +669,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth)
 
 ### HTTP request headers
 

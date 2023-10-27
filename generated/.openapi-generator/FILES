@@ -67,6 +67,7 @@ docs/BudgetSpent.md
 docs/BudgetStore.md
 docs/BudgetUpdate.md
 docs/BudgetsApi.md
+docs/BulkAccountTransactionObject.md
 docs/CategoriesApi.md
 docs/Category.md
 docs/CategoryArray.md
@@ -223,7 +224,7 @@ docs/WebhookUpdate.md
 docs/WebhooksApi.md
 git_push.sh
 src/FireflyIIINet.Test/FireflyIIINet.Test.csproj
-src/FireflyIIINet.Test/Model/InsightTransferEntryTests.cs
+src/FireflyIIINet.Test/Model/BulkAccountTransactionObjectTests.cs
 src/FireflyIIINet/Api/AboutApi.cs
 src/FireflyIIINet/Api/AccountsApi.cs
 src/FireflyIIINet/Api/AttachmentsApi.cs
@@ -328,6 +329,7 @@ src/FireflyIIINet/Model/BudgetSingle.cs
 src/FireflyIIINet/Model/BudgetSpent.cs
 src/FireflyIIINet/Model/BudgetStore.cs
 src/FireflyIIINet/Model/BudgetUpdate.cs
+src/FireflyIIINet/Model/BulkAccountTransactionObject.cs
 src/FireflyIIINet/Model/Category.cs
 src/FireflyIIINet/Model/CategoryArray.cs
 src/FireflyIIINet/Model/CategoryEarned.cs
