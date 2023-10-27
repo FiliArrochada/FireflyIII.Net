@@ -5,19 +5,20 @@ info:
     name: James Cole
     url: https://firefly-iii.org
   description: |
-    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-09-23T06:30:30+00:00
+    This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the "Authorize" button to try the API below. This file was last generated on 2023-10-15T12:13:25+00:00
 
     Please keep in mind that the demo site does not accept requests from curl, colly, wget, etc. You must use a browser or a tool like Postman to make requests. Too many script kiddies out there, sorry about that.
   license:
     name: AGPLv3
     url: https://www.gnu.org/licenses/agpl-3.0.en.html
-  title: Firefly III API v2.0.9
-  version: 2.0.9
+  title: Firefly III API v2.0.10
+  version: 2.0.10
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/api
 security:
 - firefly_iii_auth: []
+- local_bearer_auth: []
 tags:
 - description: "Endpoints that deliver all of the user&#039;s asset, expense and other\
     \ accounts (and the metadata) together with related transactions, piggy banks\
@@ -222,6 +223,16 @@ paths:
           format: int32
           type: integer
         style: form
+      - description: Number of items per page. The default pagination is per 50 items.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          example: 10
+          format: int32
+          type: integer
+        style: form
       - description: The ID of the account.
         explode: false
         in: path
@@ -231,15 +242,6 @@ paths:
           example: "123"
           type: string
         style: simple
-      - description: Limits the number of results on one page.
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          example: 5
-          type: integer
-        style: form
       - description: |
           A date formatted YYYY-MM-DD.
         explode: true
@@ -474,13 +476,24 @@ paths:
           format: uuid
           type: string
         style: simple
-      - description: Page number. The default pagination is 50.
+      - description: Number of items per page. The default pagination is per 50 items.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          example: 10
+          format: int32
+          type: integer
+        style: form
+      - description: Page number. The default pagination is per 50 items.
         explode: true
         in: query
         name: page
         required: false
         schema:
           example: 1
+          format: int32
           type: integer
         style: form
       responses:
@@ -630,16 +643,6 @@ paths:
           format: date
           type: string
         style: form
-      - description: Page number. The default pagination is per 50 items.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          example: 1
-          format: int32
-          type: integer
-        style: form
       - description: The ID of the budget.
         explode: false
         in: path
@@ -723,16 +726,6 @@ paths:
         schema:
           format: date
           type: string
-        style: form
-      - description: Page number. The default pagination is per 50 items.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          example: 1
-          format: int32
-          type: integer
         style: form
       - description: The ID of the budget.
         explode: false
@@ -818,16 +811,6 @@ paths:
           format: date
           type: string
         style: form
-      - description: Page number. The default pagination is per 50 items.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          example: 1
-          format: int32
-          type: integer
-        style: form
       - description: The ID of the budget.
         explode: false
         in: path
@@ -911,16 +894,6 @@ paths:
         schema:
           format: date
           type: string
-        style: form
-      - description: Page number. The default pagination is per 50 items.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          example: 1
-          format: int32
-          type: integer
         style: form
       - description: The ID of the budget.
         explode: false

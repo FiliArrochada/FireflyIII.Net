@@ -32,12 +32,14 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 123;  // string | The ID of the account.
             var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
-            var limit = 5;  // int? | Limits the number of results on one page. (optional) 
+            var limit = 10;  // int? | Number of items per page. The default pagination is per 50 items. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var type = new TransactionTypeFilter?(); // TransactionTypeFilter? | Optional filter on the transaction type(s) returned. (optional) 
@@ -86,7 +88,7 @@ catch (ApiException e)
 | **id** | **string** | The ID of the account. |  |
 | **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
-| **limit** | **int?** | Limits the number of results on one page. | [optional]  |
+| **limit** | **int?** | Number of items per page. The default pagination is per 50 items. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **type** | [**TransactionTypeFilter?**](TransactionTypeFilter?.md) | Optional filter on the transaction type(s) returned. | [optional]  |
@@ -97,7 +99,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 

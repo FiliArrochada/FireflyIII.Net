@@ -13,7 +13,7 @@ All URIs are relative to *https://demo.firefly-iii.org/api*
 
 <a id="getbudgetedforbudget"></a>
 # **GetBudgetedForBudget**
-> List&lt;TransactionSum&gt; GetBudgetedForBudget (DateTime start, DateTime end, string id, Guid? xTraceId = null, int? page = null)
+> List&lt;TransactionSum&gt; GetBudgetedForBudget (DateTime start, DateTime end, string id, Guid? xTraceId = null)
 
 Returns the budgeted amount for the given budget in the given period.
 
@@ -37,18 +37,19 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var id = 123;  // string | The ID of the budget.
             var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
-            var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
             {
                 // Returns the budgeted amount for the given budget in the given period.
-                List<TransactionSum> result = apiInstance.GetBudgetedForBudget(start, end, id, xTraceId, page);
+                List<TransactionSum> result = apiInstance.GetBudgetedForBudget(start, end, id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -69,7 +70,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Returns the budgeted amount for the given budget in the given period.
-    ApiResponse<List<TransactionSum>> response = apiInstance.GetBudgetedForBudgetWithHttpInfo(start, end, id, xTraceId, page);
+    ApiResponse<List<TransactionSum>> response = apiInstance.GetBudgetedForBudgetWithHttpInfo(start, end, id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -90,7 +91,6 @@ catch (ApiException e)
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **id** | **string** | The ID of the budget. |  |
 | **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
-| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
 
@@ -98,7 +98,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -120,7 +120,7 @@ catch (ApiException e)
 
 <a id="getbudgetedforbudgets"></a>
 # **GetBudgetedForBudgets**
-> List&lt;TransactionSum&gt; GetBudgetedForBudgets (DateTime start, DateTime end, string id, Guid? xTraceId = null, int? page = null)
+> List&lt;TransactionSum&gt; GetBudgetedForBudgets (DateTime start, DateTime end, string id, Guid? xTraceId = null)
 
 Returns the budgeted amount for all budgets in the given period.
 
@@ -144,18 +144,19 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var id = 123;  // string | The ID of the budget.
             var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
-            var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
             {
                 // Returns the budgeted amount for all budgets in the given period.
-                List<TransactionSum> result = apiInstance.GetBudgetedForBudgets(start, end, id, xTraceId, page);
+                List<TransactionSum> result = apiInstance.GetBudgetedForBudgets(start, end, id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -176,7 +177,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Returns the budgeted amount for all budgets in the given period.
-    ApiResponse<List<TransactionSum>> response = apiInstance.GetBudgetedForBudgetsWithHttpInfo(start, end, id, xTraceId, page);
+    ApiResponse<List<TransactionSum>> response = apiInstance.GetBudgetedForBudgetsWithHttpInfo(start, end, id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -197,7 +198,6 @@ catch (ApiException e)
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **id** | **string** | The ID of the budget. |  |
 | **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
-| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
 
@@ -205,7 +205,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -227,7 +227,7 @@ catch (ApiException e)
 
 <a id="getspentforbudget"></a>
 # **GetSpentForBudget**
-> List&lt;TransactionSum&gt; GetSpentForBudget (DateTime start, DateTime end, string id, Guid? xTraceId = null, int? page = null)
+> List&lt;TransactionSum&gt; GetSpentForBudget (DateTime start, DateTime end, string id, Guid? xTraceId = null)
 
 Returns the spent amount for the given budget in the given period.
 
@@ -251,18 +251,19 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var id = 123;  // string | The ID of the budget.
             var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
-            var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
             {
                 // Returns the spent amount for the given budget in the given period.
-                List<TransactionSum> result = apiInstance.GetSpentForBudget(start, end, id, xTraceId, page);
+                List<TransactionSum> result = apiInstance.GetSpentForBudget(start, end, id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -283,7 +284,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Returns the spent amount for the given budget in the given period.
-    ApiResponse<List<TransactionSum>> response = apiInstance.GetSpentForBudgetWithHttpInfo(start, end, id, xTraceId, page);
+    ApiResponse<List<TransactionSum>> response = apiInstance.GetSpentForBudgetWithHttpInfo(start, end, id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -304,7 +305,6 @@ catch (ApiException e)
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **id** | **string** | The ID of the budget. |  |
 | **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
-| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
 
@@ -312,7 +312,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -334,7 +334,7 @@ catch (ApiException e)
 
 <a id="getspentforbudgets"></a>
 # **GetSpentForBudgets**
-> List&lt;TransactionSum&gt; GetSpentForBudgets (DateTime start, DateTime end, string id, Guid? xTraceId = null, int? page = null)
+> List&lt;TransactionSum&gt; GetSpentForBudgets (DateTime start, DateTime end, string id, Guid? xTraceId = null)
 
 Returns the spent amount for all budgets in the given period.
 
@@ -358,18 +358,19 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var id = 123;  // string | The ID of the budget.
             var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
-            var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
             {
                 // Returns the spent amount for all budgets in the given period.
-                List<TransactionSum> result = apiInstance.GetSpentForBudgets(start, end, id, xTraceId, page);
+                List<TransactionSum> result = apiInstance.GetSpentForBudgets(start, end, id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -390,7 +391,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Returns the spent amount for all budgets in the given period.
-    ApiResponse<List<TransactionSum>> response = apiInstance.GetSpentForBudgetsWithHttpInfo(start, end, id, xTraceId, page);
+    ApiResponse<List<TransactionSum>> response = apiInstance.GetSpentForBudgetsWithHttpInfo(start, end, id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -411,7 +412,6 @@ catch (ApiException e)
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **id** | **string** | The ID of the budget. |  |
 | **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
-| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
 
@@ -419,7 +419,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -465,6 +465,8 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
@@ -524,7 +526,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
@@ -545,7 +547,7 @@ catch (ApiException e)
 
 <a id="listbudgets"></a>
 # **ListBudgets**
-> BudgetV2Array ListBudgets (Guid? xTraceId = null, int? page = null)
+> BudgetV2Array ListBudgets (Guid? xTraceId = null, int? limit = null, int? page = null)
 
 List all budgets.
 
@@ -569,15 +571,18 @@ namespace Example
             config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
+            // Configure Bearer token for authorization: local_bearer_auth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
-            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
+            var limit = 10;  // int? | Number of items per page. The default pagination is per 50 items. (optional) 
+            var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
             {
                 // List all budgets.
-                BudgetV2Array result = apiInstance.ListBudgets(xTraceId, page);
+                BudgetV2Array result = apiInstance.ListBudgets(xTraceId, limit, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -598,7 +603,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all budgets.
-    ApiResponse<BudgetV2Array> response = apiInstance.ListBudgetsWithHttpInfo(xTraceId, page);
+    ApiResponse<BudgetV2Array> response = apiInstance.ListBudgetsWithHttpInfo(xTraceId, limit, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -616,7 +621,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
-| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+| **limit** | **int?** | Number of items per page. The default pagination is per 50 items. | [optional]  |
+| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
 
@@ -624,7 +630,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[firefly_iii_auth](../README.md#firefly_iii_auth)
+[firefly_iii_auth](../README.md#firefly_iii_auth), [local_bearer_auth](../README.md#local_bearer_auth)
 
 ### HTTP request headers
 
