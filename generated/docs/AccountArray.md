@@ -1,4 +1,4 @@
-# FireflyIII.Model.AccountArray
+# FireflyIIINet.Model.AccountArray
 
 ## Properties
 

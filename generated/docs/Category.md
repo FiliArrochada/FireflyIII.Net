@@ -1,4 +1,4 @@
-# FireflyIII.Model.Category
+# FireflyIIINet.Model.Category
 
 ## Properties
 

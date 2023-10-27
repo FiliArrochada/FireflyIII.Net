@@ -1,4 +1,4 @@
-# FireflyIII.Model.BudgetArray
+# FireflyIIINet.Model.BudgetArray
 
 ## Properties
 

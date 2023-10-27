@@ -1,4 +1,4 @@
-# FireflyIII.Api.SummaryApi
+# FireflyIIINet.Api.SummaryApi
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
@@ -18,9 +18,9 @@ Returns basic sums of the users data, like the net worth, spent and earned amoun
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# FireflyIII.Model.Account
+# FireflyIIINet.Model.Account
 
 ## Properties
 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **LiabilityType** | **string** | Mandatory when type is liability. Specifies the exact type. | [optional] 
 **LiabilityAmount** | **double** | Mandatory when type is liability. Amount of money in the liability. Must be positive. | [optional] 
 **LiabilityStartDate** | **DateTime** | Mandatory when type is liability. Start date for the liability. | [optional] 
-**Interest** | **float** | Mandatory when type is liability. Interest percentage. | [optional] 
+**Interest** | **string** | Mandatory when type is liability. Interest percentage. | [optional] 
 **InterestPeriod** | **string** | Mandatory when type is liability. Period over which the interest is calculated. | [optional] 
 **Notes** | **string** |  | [optional] 
 

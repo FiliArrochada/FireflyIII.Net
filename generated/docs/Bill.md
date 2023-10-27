@@ -1,4 +1,4 @@
-# FireflyIII.Model.Bill
+# FireflyIIINet.Model.Bill
 
 ## Properties
 

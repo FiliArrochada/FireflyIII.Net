@@ -1,4 +1,4 @@
-# FireflyIII.Model.RuleArray
+# FireflyIIINet.Model.RuleArray
 
 ## Properties
 

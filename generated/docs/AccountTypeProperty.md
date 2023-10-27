@@ -1,4 +1,4 @@
-# FireflyIII.Model.AccountTypeProperty
+# FireflyIIINet.Model.AccountTypeProperty
 
 ## Properties
 

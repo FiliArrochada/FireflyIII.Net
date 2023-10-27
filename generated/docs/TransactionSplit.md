@@ -1,4 +1,4 @@
-# FireflyIII.Model.TransactionSplit
+# FireflyIIINet.Model.TransactionSplit
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# FireflyIII.Api.ConfigurationApi
+# FireflyIIINet.Api.ConfigurationApi
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
@@ -19,9 +19,9 @@ Get system configuration
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -108,9 +108,9 @@ Set a single config value.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {

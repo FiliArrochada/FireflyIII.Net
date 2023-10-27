@@ -1,4 +1,4 @@
-# FireflyIII.Model.RecurrenceSingle
+# FireflyIIINet.Model.RecurrenceSingle
 
 ## Properties
 

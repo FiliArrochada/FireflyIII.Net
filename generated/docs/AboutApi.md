@@ -1,4 +1,4 @@
-# FireflyIII.Api.AboutApi
+# FireflyIIINet.Api.AboutApi
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
@@ -19,9 +19,9 @@ Returns general system information and versions of the (supporting) software.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -108,9 +108,9 @@ Returns the currently authenticated user.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {

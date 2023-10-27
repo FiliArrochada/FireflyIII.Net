@@ -1,4 +1,4 @@
-# FireflyIII.Model.TransactionSingle
+# FireflyIIINet.Model.TransactionSingle
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# FireflyIII.Model.ObjectLink0
+# FireflyIIINet.Model.ObjectLink0
 
 ## Properties
 

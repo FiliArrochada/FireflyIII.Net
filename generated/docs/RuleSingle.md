@@ -1,4 +1,4 @@
-# FireflyIII.Model.RuleSingle
+# FireflyIIINet.Model.RuleSingle
 
 ## Properties
 

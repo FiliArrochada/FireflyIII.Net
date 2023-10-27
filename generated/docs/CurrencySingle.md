@@ -1,4 +1,4 @@
-# FireflyIII.Model.CurrencySingle
+# FireflyIIINet.Model.CurrencySingle
 
 ## Properties
 

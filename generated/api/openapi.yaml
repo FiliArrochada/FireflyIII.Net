@@ -10,7 +10,7 @@ info:
     name: GPLv3
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
   title: Firefly III API
-  version: 1.0.0
+  version: 1.0.1
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/
@@ -4942,7 +4942,7 @@ components:
         currency_decimal_places: 2
         updated_at: 2018-09-17T12:46:47+01:00
         current_balance_date: 2018-09-17T00:00:00.000+00:00
-        interest: 3
+        interest: "5.3"
         current_balance: 152.34
         opening_balance: -1012.12
         interest_period: monthly
@@ -5105,9 +5105,9 @@ components:
           type: string
         interest:
           description: Mandatory when type is liability. Interest percentage.
-          example: 3
-          format: float
-          type: number
+          example: "5.3"
+          format: string
+          type: string
         interest_period:
           description: Mandatory when type is liability. Period over which the interest
             is calculated.
@@ -5140,7 +5140,7 @@ components:
             currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             current_balance_date: 2018-09-17T00:00:00.000+00:00
-            interest: 3
+            interest: "5.3"
             current_balance: 152.34
             opening_balance: -1012.12
             interest_period: monthly
@@ -5170,7 +5170,7 @@ components:
             currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             current_balance_date: 2018-09-17T00:00:00.000+00:00
-            interest: 3
+            interest: "5.3"
             current_balance: 152.34
             opening_balance: -1012.12
             interest_period: monthly
@@ -5220,7 +5220,7 @@ components:
           currency_decimal_places: 2
           updated_at: 2018-09-17T12:46:47+01:00
           current_balance_date: 2018-09-17T00:00:00.000+00:00
-          interest: 3
+          interest: "5.3"
           current_balance: 152.34
           opening_balance: -1012.12
           interest_period: monthly
@@ -5270,7 +5270,7 @@ components:
             currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             current_balance_date: 2018-09-17T00:00:00.000+00:00
-            interest: 3
+            interest: "5.3"
             current_balance: 152.34
             opening_balance: -1012.12
             interest_period: monthly
@@ -5339,18 +5339,16 @@ components:
       type: string
     Attachment:
       example:
-        notes: Some notes
-        upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-        mime: application/pdf
-        created_at: 2018-09-17T12:46:47+01:00
-        model_id: 134
-        title: Some PDF file
         filename: file.pdf
+        notes: Some notes
         updated_at: 2018-09-17T12:46:47+01:00
         size: 48211
         download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+        upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+        mime: application/pdf
         attachable_id: 134
-        model: Bill
+        created_at: 2018-09-17T12:46:47+01:00
+        title: Some PDF file
         attachable_type: Bill
         md5: 0c3f95f34370baa88f9fd9a671fea305
       properties:
@@ -5376,30 +5374,12 @@ components:
           - ImportJob
           example: Bill
           format: string
-          readOnly: true
           type: string
-        model:
-          description: The object class to which the attachment must be linked.
-          enum:
-          - Bill
-          - TransactionJournal
-          - ImportJob
-          example: Bill
-          format: string
-          type: string
-          writeOnly: true
         attachable_id:
           description: ID of the model this attachment is linked to.
           example: 134
           format: int32
-          readOnly: true
           type: integer
-        model_id:
-          description: ID of the model this attachment is linked to.
-          example: 134
-          format: int32
-          type: integer
-          writeOnly: true
         md5:
           description: MD5 hash of the file for basic duplicate detection.
           example: 0c3f95f34370baa88f9fd9a671fea305
@@ -5432,26 +5412,24 @@ components:
           readOnly: true
           type: integer
       required:
+      - attachable_id
+      - attachable_type
       - filename
-      - model
-      - model_id
       type: object
     AttachmentArray:
       example:
         data:
         - attributes:
-            notes: Some notes
-            upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-            mime: application/pdf
-            created_at: 2018-09-17T12:46:47+01:00
-            model_id: 134
-            title: Some PDF file
             filename: file.pdf
+            notes: Some notes
             updated_at: 2018-09-17T12:46:47+01:00
             size: 48211
             download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+            upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+            mime: application/pdf
             attachable_id: 134
-            model: Bill
+            created_at: 2018-09-17T12:46:47+01:00
+            title: Some PDF file
             attachable_type: Bill
             md5: 0c3f95f34370baa88f9fd9a671fea305
           links:
@@ -5462,18 +5440,16 @@ components:
           id: "2"
           type: attachments
         - attributes:
-            notes: Some notes
-            upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-            mime: application/pdf
-            created_at: 2018-09-17T12:46:47+01:00
-            model_id: 134
-            title: Some PDF file
             filename: file.pdf
+            notes: Some notes
             updated_at: 2018-09-17T12:46:47+01:00
             size: 48211
             download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+            upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+            mime: application/pdf
             attachable_id: 134
-            model: Bill
+            created_at: 2018-09-17T12:46:47+01:00
+            title: Some PDF file
             attachable_type: Bill
             md5: 0c3f95f34370baa88f9fd9a671fea305
           links:
@@ -5504,18 +5480,16 @@ components:
     AttachmentRead:
       example:
         attributes:
-          notes: Some notes
-          upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-          mime: application/pdf
-          created_at: 2018-09-17T12:46:47+01:00
-          model_id: 134
-          title: Some PDF file
           filename: file.pdf
+          notes: Some notes
           updated_at: 2018-09-17T12:46:47+01:00
           size: 48211
           download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+          upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+          mime: application/pdf
           attachable_id: 134
-          model: Bill
+          created_at: 2018-09-17T12:46:47+01:00
+          title: Some PDF file
           attachable_type: Bill
           md5: 0c3f95f34370baa88f9fd9a671fea305
         links:
@@ -5549,18 +5523,16 @@ components:
       example:
         data:
           attributes:
-            notes: Some notes
-            upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
-            mime: application/pdf
-            created_at: 2018-09-17T12:46:47+01:00
-            model_id: 134
-            title: Some PDF file
             filename: file.pdf
+            notes: Some notes
             updated_at: 2018-09-17T12:46:47+01:00
             size: 48211
             download_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+            upload_uri: https://demo.firefly-iii.org/api/v1/attachments/191/download
+            mime: application/pdf
             attachable_id: 134
-            model: Bill
+            created_at: 2018-09-17T12:46:47+01:00
+            title: Some PDF file
             attachable_type: Bill
             md5: 0c3f95f34370baa88f9fd9a671fea305
           links:

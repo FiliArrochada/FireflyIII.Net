@@ -1,4 +1,4 @@
-# FireflyIII.Model.TransactionRead
+# FireflyIIINet.Model.TransactionRead
 
 ## Properties
 

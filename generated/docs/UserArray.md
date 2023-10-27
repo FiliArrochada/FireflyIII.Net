@@ -1,4 +1,4 @@
-# FireflyIII.Model.UserArray
+# FireflyIIINet.Model.UserArray
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# FireflyIII.Api.BillsApi
+# FireflyIIINet.Api.BillsApi
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
@@ -25,9 +25,9 @@ Delete a bill. This will not delete any associated rules. Will not remove associ
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -116,9 +116,9 @@ Get a single bill.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -215,9 +215,9 @@ This endpoint will list all attachments linked to the bill.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -311,9 +311,9 @@ This endpoint will list all the user's bills.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -409,9 +409,9 @@ This endpoint will list all rules that have an action to set the bill to this bi
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -503,9 +503,9 @@ This endpoint will list all transactions linked to this bill.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -603,9 +603,9 @@ Creates a new bill. The data required can be submitted as a JSON body or as a li
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {
@@ -698,9 +698,9 @@ Update existing bill.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using FireflyIII.Api;
-using FireflyIII.Client;
-using FireflyIII.Model;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
 
 namespace Example
 {

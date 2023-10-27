@@ -1,4 +1,4 @@
-# FireflyIII.Model.RuleAction
+# FireflyIIINet.Model.RuleAction
 
 ## Properties
 

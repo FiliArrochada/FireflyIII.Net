@@ -1,4 +1,4 @@
-# FireflyIII.Model.TransactionTypeFilter
+# FireflyIIINet.Model.TransactionTypeFilter
 
 ## Properties
 

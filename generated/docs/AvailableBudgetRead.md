@@ -1,4 +1,4 @@
-# FireflyIII.Model.AvailableBudgetRead
+# FireflyIIINet.Model.AvailableBudgetRead
 
 ## Properties
 

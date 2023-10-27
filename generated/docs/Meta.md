@@ -1,4 +1,4 @@
-# FireflyIII.Model.Meta
+# FireflyIIINet.Model.Meta
 
 ## Properties
 

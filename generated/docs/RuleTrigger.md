@@ -1,4 +1,4 @@
-# FireflyIII.Model.RuleTrigger
+# FireflyIIINet.Model.RuleTrigger
 
 ## Properties
 

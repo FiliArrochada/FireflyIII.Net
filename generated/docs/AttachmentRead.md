@@ -1,4 +1,4 @@
-# FireflyIII.Model.AttachmentRead
+# FireflyIIINet.Model.AttachmentRead
 
 ## Properties
 

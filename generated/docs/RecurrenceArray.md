@@ -1,4 +1,4 @@
-# FireflyIII.Model.RecurrenceArray
+# FireflyIIINet.Model.RecurrenceArray
 
 ## Properties
 

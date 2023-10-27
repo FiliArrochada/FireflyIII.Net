@@ -1,4 +1,4 @@
-# FireflyIII.Model.ImportJob
+# FireflyIIINet.Model.ImportJob
 
 ## Properties
 

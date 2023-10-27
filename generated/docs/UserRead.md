@@ -1,4 +1,4 @@
-# FireflyIII.Model.UserRead
+# FireflyIIINet.Model.UserRead
 
 ## Properties
 

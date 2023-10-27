@@ -1,4 +1,4 @@
-# FireflyIII.Model.AccountRead
+# FireflyIIINet.Model.AccountRead
 
 ## Properties
 

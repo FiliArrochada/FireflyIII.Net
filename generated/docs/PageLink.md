@@ -1,4 +1,4 @@
-# FireflyIII.Model.PageLink
+# FireflyIIINet.Model.PageLink
 
 ## Properties
 

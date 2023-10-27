@@ -1,4 +1,4 @@
-# FireflyIII.Model.RuleGroup
+# FireflyIIINet.Model.RuleGroup
 
 ## Properties
 

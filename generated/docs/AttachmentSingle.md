@@ -1,4 +1,4 @@
-# FireflyIII.Model.AttachmentSingle
+# FireflyIIINet.Model.AttachmentSingle
 
 ## Properties
 

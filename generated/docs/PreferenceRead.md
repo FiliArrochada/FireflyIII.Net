@@ -1,4 +1,4 @@
-# FireflyIII.Model.PreferenceRead
+# FireflyIIINet.Model.PreferenceRead
 
 ## Properties
 

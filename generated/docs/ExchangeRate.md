@@ -1,4 +1,4 @@
-# FireflyIII.Model.ExchangeRate
+# FireflyIIINet.Model.ExchangeRate
 
 ## Properties
 

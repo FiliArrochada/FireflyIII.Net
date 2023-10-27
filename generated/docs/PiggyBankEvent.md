@@ -1,4 +1,4 @@
-# FireflyIII.Model.PiggyBankEvent
+# FireflyIIINet.Model.PiggyBankEvent
 
 ## Properties
 

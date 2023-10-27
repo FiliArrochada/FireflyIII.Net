@@ -1,4 +1,4 @@
-# FireflyIII.Model.MetaPagination
+# FireflyIIINet.Model.MetaPagination
 
 ## Properties
 

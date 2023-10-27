@@ -1,4 +1,4 @@
-# FireflyIII.Model.BasicSummaryEntry
+# FireflyIIINet.Model.BasicSummaryEntry
 
 ## Properties
 

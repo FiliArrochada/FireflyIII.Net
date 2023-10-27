@@ -1,4 +1,4 @@
-# FireflyIII.Model.CurrencyRead
+# FireflyIIINet.Model.CurrencyRead
 
 ## Properties
 

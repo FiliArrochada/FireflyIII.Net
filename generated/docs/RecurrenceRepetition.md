@@ -1,4 +1,4 @@
-# FireflyIII.Model.RecurrenceRepetition
+# FireflyIIINet.Model.RecurrenceRepetition
 
 ## Properties
 

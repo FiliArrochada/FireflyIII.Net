@@ -1,4 +1,4 @@
-# FireflyIII.Model.Preference
+# FireflyIIINet.Model.Preference
 
 ## Properties
 

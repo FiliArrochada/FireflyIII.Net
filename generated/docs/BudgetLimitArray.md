@@ -1,4 +1,4 @@
-# FireflyIII.Model.BudgetLimitArray
+# FireflyIIINet.Model.BudgetLimitArray
 
 ## Properties
 

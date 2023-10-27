@@ -1,4 +1,4 @@
-# FireflyIII.Model.ChartDataPoint
+# FireflyIIINet.Model.ChartDataPoint
 
 ## Properties
 

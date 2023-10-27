@@ -1,4 +1,4 @@
-# FireflyIII.Model.CategorySingle
+# FireflyIIINet.Model.CategorySingle
 
 ## Properties
 
