@@ -7,10 +7,10 @@ info:
   description: |
     This is the official documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. This version of the API is live from version v4.7.9 and onwards. You may use the "Authorize" button to try the API below.
   license:
-    name: GPLv3
-    url: https://www.gnu.org/licenses/gpl-3.0.en.html
+    name: AGPLv3
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
   title: Firefly III API
-  version: 1.0.2
+  version: 1.3.0
 servers:
 - description: Firefly III demo site
   url: https://demo.firefly-iii.org/
@@ -380,6 +380,41 @@ paths:
                 $ref: '#/components/schemas/TransactionArray'
           description: A list of transactions
       summary: List all transactions related to the account.
+      tags:
+      - accounts
+  /api/v1/accounts/{id}/attachments:
+    get:
+      description: Lists all attachments.
+      operationId: listAttachmentByAccount
+      parameters:
+      - description: The ID of the account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1
+          type: integer
+        style: simple
+      - description: Page number. The default pagination is 50.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentArray'
+          description: A list of attachments
+        "404":
+          description: No such account.
+      summary: Lists all attachments.
       tags:
       - accounts
   /api/v1/attachments:
@@ -1538,6 +1573,41 @@ paths:
       summary: List all transactions by a budget limit ID.
       tags:
       - budgets
+  /api/v1/budgets/{id}/attachments:
+    get:
+      description: Lists all attachments.
+      operationId: listAttachmentByBudget
+      parameters:
+      - description: The ID of the budget.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1
+          type: integer
+        style: simple
+      - description: Page number. The default pagination is 50.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentArray'
+          description: A list of attachments
+        "404":
+          description: No such budget.
+      summary: Lists all attachments.
+      tags:
+      - budgets
   /api/v1/categories:
     get:
       description: List all categories.
@@ -1628,6 +1698,28 @@ paths:
           example: 1
           type: integer
         style: simple
+      - description: |
+          A date formatted YYYY-MM-DD, to show spent and earned info.
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          example: 2018-09-17
+          format: date
+          type: string
+        style: form
+      - description: |
+          A date formatted YYYY-MM-DD, to show spent and earned info.
+        explode: true
+        in: query
+        name: end
+        required: false
+        schema:
+          example: 2018-12-31
+          format: date
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1742,6 +1834,41 @@ paths:
                 $ref: '#/components/schemas/TransactionArray'
           description: A list of transactions.
       summary: List all transactions in a category.
+      tags:
+      - categories
+  /api/v1/categories/{id}/attachments:
+    get:
+      description: Lists all attachments.
+      operationId: listAttachmentByCategory
+      parameters:
+      - description: The ID of the category.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1
+          type: integer
+        style: simple
+      - description: Page number. The default pagination is 50.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentArray'
+          description: A list of attachments
+        "404":
+          description: No such category.
+      summary: Lists all attachments.
       tags:
       - categories
   /api/v1/cer:
@@ -2646,6 +2773,43 @@ paths:
       summary: List all transactions with this currency.
       tags:
       - currencies
+  /api/v1/currencies/default:
+    get:
+      description: Get the user's default currency.
+      operationId: getDefaultCurrency
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencySingle'
+          description: The default currency
+      summary: Get the user's default currency.
+      tags:
+      - currencies
+  /api/v1/data/destroy:
+    delete:
+      description: |
+        A call to this endpoint permanently destroys the requested data type. Use it with care and always with user permission.
+        The demo user is incapable of using this endpoint.
+      operationId: destroyData
+      parameters:
+      - description: The type of data that you wish to destroy.
+        explode: true
+        in: query
+        name: objects
+        required: true
+        schema:
+          $ref: '#/components/schemas/DataDestroyObject'
+        style: form
+      responses:
+        "204":
+          description: Empty response when data has been destroyed.
+        "500":
+          description: "Internal error, or user is unauthorized to destroy data."
+      summary: Endpoint to destroy user data
+      tags:
+      - data
   /api/v1/import/list:
     get:
       description: List all imports
@@ -3296,6 +3460,41 @@ paths:
                 $ref: '#/components/schemas/PiggyBankEventArray'
           description: A list of piggy bank related events
       summary: List all events linked to a piggy bank.
+      tags:
+      - piggy_banks
+  /api/v1/piggy_banks/{id}/attachments:
+    get:
+      description: Lists all attachments.
+      operationId: listAttachmentByPiggyBank
+      parameters:
+      - description: The ID of the piggy bank.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1
+          type: integer
+        style: simple
+      - description: Page number. The default pagination is 50.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentArray'
+          description: A list of attachments
+        "404":
+          description: No such piggy bank.
+      summary: Lists all attachments.
       tags:
       - piggy_banks
   /api/v1/preferences:
@@ -4212,6 +4411,88 @@ paths:
       summary: Fire the rule on your transactions.
       tags:
       - rules
+  /api/v1/search/transactions:
+    get:
+      description: Search for transactions
+      operationId: searchTransactions
+      parameters:
+      - description: The query you wish to search for.
+        explode: true
+        in: query
+        name: query
+        required: true
+        schema:
+          example: groceries
+          type: string
+        style: form
+      - description: Page number. The default pagination is 50
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionArray'
+          description: A list of transactions.
+      summary: Search for transactions
+      tags:
+      - search
+  /api/v1/search/accounts:
+    get:
+      description: Search for accounts
+      operationId: searchAccounts
+      parameters:
+      - description: Page number. The default pagination is 50
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      - description: The query you wish to search for.
+        explode: true
+        in: query
+        name: query
+        required: true
+        schema:
+          example: checking
+          type: string
+        style: form
+      - description: The type of accounts you wish to limit the search to.
+        explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          $ref: '#/components/schemas/AccountTypeFilter'
+        style: form
+      - description: The account field(s) you want to search in.
+        explode: true
+        in: query
+        name: field
+        required: true
+        schema:
+          $ref: '#/components/schemas/AccountSearchFieldFilter'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountArray'
+          description: A list of accounts.
+      summary: Search for accounts
+      tags:
+      - search
   /api/v1/summary/basic:
     get:
       description: |
@@ -4510,6 +4791,42 @@ paths:
                 $ref: '#/components/schemas/TransactionArray'
           description: A list of transactions.
       summary: List all transactions with this tag.
+      tags:
+      - tags
+  /api/v1/tags/{tag}/attachments:
+    get:
+      description: Lists all attachments.
+      operationId: listAttachmentByTag
+      parameters:
+      - description: Either the tag itself or the tag ID.
+        explode: false
+        in: path
+        name: tag
+        required: true
+        schema:
+          example: groceries
+          format: string
+          type: string
+        style: simple
+      - description: Page number. The default pagination is 50.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentArray'
+          description: A list of attachments
+        "404":
+          description: No such tag.
+      summary: Lists all attachments.
       tags:
       - tags
   /api/v1/transactions:
@@ -4935,7 +5252,7 @@ components:
         account_number: "7009312345678"
         notes: Some example notes
         account_role: defaultAsset
-        liability_amount: 12000
+        liability_amount: "123.45"
         created_at: 2018-09-17T12:46:47+01:00
         type: asset
         currency_code: EUR
@@ -4943,7 +5260,7 @@ components:
         updated_at: 2018-09-17T12:46:47+01:00
         current_balance_date: 2018-09-17T00:00:00.000+00:00
         interest: "5.3"
-        current_balance: 152.34
+        current_balance: "123.45"
         opening_balance: -1012.12
         interest_period: monthly
         include_net_worth: true
@@ -4952,7 +5269,7 @@ components:
         liability_start_date: 2017-09-17T00:00:00.000+00:00
         active: true
         monthly_payment_date: 2018-09-17T00:00:00.000+00:00
-        virtual_balance: 1000
+        virtual_balance: "123.45"
         liability_type: loan
         credit_card_type: monthlyFull
         iban: GB98MIDL07009312345678
@@ -5011,14 +5328,14 @@ components:
           format: date
           type: string
         virtual_balance:
-          example: 1000
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         current_balance:
-          example: 152.34
-          format: double
+          example: "123.45"
+          format: amount
           readOnly: true
-          type: number
+          type: string
         current_balance_date:
           example: 2018-09-17
           format: date
@@ -5095,9 +5412,9 @@ components:
         liability_amount:
           description: Mandatory when type is liability. Amount of money in the liability.
             Must be positive.
-          example: 12000
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         liability_start_date:
           description: Mandatory when type is liability. Start date for the liability.
           example: 2017-09-17
@@ -5133,7 +5450,7 @@ components:
             account_number: "7009312345678"
             notes: Some example notes
             account_role: defaultAsset
-            liability_amount: 12000
+            liability_amount: "123.45"
             created_at: 2018-09-17T12:46:47+01:00
             type: asset
             currency_code: EUR
@@ -5141,7 +5458,7 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             current_balance_date: 2018-09-17T00:00:00.000+00:00
             interest: "5.3"
-            current_balance: 152.34
+            current_balance: "123.45"
             opening_balance: -1012.12
             interest_period: monthly
             include_net_worth: true
@@ -5150,7 +5467,7 @@ components:
             liability_start_date: 2017-09-17T00:00:00.000+00:00
             active: true
             monthly_payment_date: 2018-09-17T00:00:00.000+00:00
-            virtual_balance: 1000
+            virtual_balance: "123.45"
             liability_type: loan
             credit_card_type: monthlyFull
             iban: GB98MIDL07009312345678
@@ -5163,7 +5480,7 @@ components:
             account_number: "7009312345678"
             notes: Some example notes
             account_role: defaultAsset
-            liability_amount: 12000
+            liability_amount: "123.45"
             created_at: 2018-09-17T12:46:47+01:00
             type: asset
             currency_code: EUR
@@ -5171,7 +5488,7 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             current_balance_date: 2018-09-17T00:00:00.000+00:00
             interest: "5.3"
-            current_balance: 152.34
+            current_balance: "123.45"
             opening_balance: -1012.12
             interest_period: monthly
             include_net_worth: true
@@ -5180,7 +5497,7 @@ components:
             liability_start_date: 2017-09-17T00:00:00.000+00:00
             active: true
             monthly_payment_date: 2018-09-17T00:00:00.000+00:00
-            virtual_balance: 1000
+            virtual_balance: "123.45"
             liability_type: loan
             credit_card_type: monthlyFull
             iban: GB98MIDL07009312345678
@@ -5213,7 +5530,7 @@ components:
           account_number: "7009312345678"
           notes: Some example notes
           account_role: defaultAsset
-          liability_amount: 12000
+          liability_amount: "123.45"
           created_at: 2018-09-17T12:46:47+01:00
           type: asset
           currency_code: EUR
@@ -5221,7 +5538,7 @@ components:
           updated_at: 2018-09-17T12:46:47+01:00
           current_balance_date: 2018-09-17T00:00:00.000+00:00
           interest: "5.3"
-          current_balance: 152.34
+          current_balance: "123.45"
           opening_balance: -1012.12
           interest_period: monthly
           include_net_worth: true
@@ -5230,7 +5547,7 @@ components:
           liability_start_date: 2017-09-17T00:00:00.000+00:00
           active: true
           monthly_payment_date: 2018-09-17T00:00:00.000+00:00
-          virtual_balance: 1000
+          virtual_balance: "123.45"
           liability_type: loan
           credit_card_type: monthlyFull
           iban: GB98MIDL07009312345678
@@ -5256,6 +5573,14 @@ components:
       - id
       - type
       type: object
+    AccountSearchFieldFilter:
+      enum:
+      - all
+      - iban
+      - name
+      - number
+      - id
+      type: string
     AccountSingle:
       example:
         data:
@@ -5263,7 +5588,7 @@ components:
             account_number: "7009312345678"
             notes: Some example notes
             account_role: defaultAsset
-            liability_amount: 12000
+            liability_amount: "123.45"
             created_at: 2018-09-17T12:46:47+01:00
             type: asset
             currency_code: EUR
@@ -5271,7 +5596,7 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             current_balance_date: 2018-09-17T00:00:00.000+00:00
             interest: "5.3"
-            current_balance: 152.34
+            current_balance: "123.45"
             opening_balance: -1012.12
             interest_period: monthly
             include_net_worth: true
@@ -5280,7 +5605,7 @@ components:
             liability_start_date: 2017-09-17T00:00:00.000+00:00
             active: true
             monthly_payment_date: 2018-09-17T00:00:00.000+00:00
-            virtual_balance: 1000
+            virtual_balance: "123.45"
             liability_type: loan
             credit_card_type: monthlyFull
             iban: GB98MIDL07009312345678
@@ -5550,27 +5875,27 @@ components:
       type: object
     AvailableBudget:
       example:
-        amount: 250
+        amount: "123.45"
         spent_outside_budget:
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
         updated_at: 2018-09-17T12:46:47+01:00
         spent_in_budgets:
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
@@ -5613,9 +5938,9 @@ components:
           readOnly: true
           type: integer
         amount:
-          example: 250
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         start:
           description: Start date of the available budget.
           example: 2017-09-17
@@ -5645,27 +5970,27 @@ components:
       example:
         data:
         - attributes:
-            amount: 250
+            amount: "123.45"
             spent_outside_budget:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             spent_in_budgets:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -5679,27 +6004,27 @@ components:
           id: "2"
           type: available_budgets
         - attributes:
-            amount: 250
+            amount: "123.45"
             spent_outside_budget:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             spent_in_budgets:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -5733,27 +6058,27 @@ components:
     AvailableBudgetRead:
       example:
         attributes:
-          amount: 250
+          amount: "123.45"
           spent_outside_budget:
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
           updated_at: 2018-09-17T12:46:47+01:00
           spent_in_budgets:
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
@@ -5787,27 +6112,27 @@ components:
       example:
         data:
           attributes:
-            amount: 250
+            amount: "123.45"
             spent_outside_budget:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             spent_in_budgets:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -5901,9 +6226,10 @@ components:
         currency_symbol: $
         created_at: 2018-09-17T12:46:47+01:00
         active: true
-        amount_max: 601
+        amount_max: "123.45"
         skip: 0
         next_expected_match: 2018-09-17T00:00:00.000+00:00
+        object_group_order: 5
         repeat_freq: monthly
         currency_code: EUR
         currency_decimal_places: 2
@@ -5911,6 +6237,7 @@ components:
         - 2000-01-23
         - 2000-01-23
         updated_at: 2018-09-17T12:46:47+01:00
+        object_group_id: 5
         paid_dates:
         - date: 2000-01-23
           transaction_group_id: 0
@@ -5919,8 +6246,9 @@ components:
           transaction_group_id: 0
           transaction_journal_id: 6
         name: Rent
-        amount_min: 600
+        amount_min: "123.45"
         currency_id: 5
+        object_group_title: Example Group
       properties:
         created_at:
           example: 2018-09-17T12:46:47+01:00
@@ -5957,13 +6285,13 @@ components:
           format: string
           type: string
         amount_min:
-          example: 600
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         amount_max:
-          example: 601
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         date:
           example: 2018-09-17
           format: date
@@ -5999,6 +6327,22 @@ components:
           format: date
           readOnly: true
           type: string
+        object_group_id:
+          description: The group ID of the group this object is part of. NULL if no
+            group.
+          example: 5
+          format: int32
+          type: integer
+        object_group_order:
+          description: "The order of the group. At least 1, for the highest sorting."
+          example: 5
+          format: int32
+          type: integer
+        object_group_title:
+          description: The name of the group. NULL if no group.
+          example: Example Group
+          format: string
+          type: string
         pay_dates:
           description: Array of future dates when the bill is expected to be paid.
             Autogenerated.
@@ -6030,9 +6374,10 @@ components:
             currency_symbol: $
             created_at: 2018-09-17T12:46:47+01:00
             active: true
-            amount_max: 601
+            amount_max: "123.45"
             skip: 0
             next_expected_match: 2018-09-17T00:00:00.000+00:00
+            object_group_order: 5
             repeat_freq: monthly
             currency_code: EUR
             currency_decimal_places: 2
@@ -6040,6 +6385,7 @@ components:
             - 2000-01-23
             - 2000-01-23
             updated_at: 2018-09-17T12:46:47+01:00
+            object_group_id: 5
             paid_dates:
             - date: 2000-01-23
               transaction_group_id: 0
@@ -6048,8 +6394,9 @@ components:
               transaction_group_id: 0
               transaction_journal_id: 6
             name: Rent
-            amount_min: 600
+            amount_min: "123.45"
             currency_id: 5
+            object_group_title: Example Group
           id: "2"
           type: bills
         - attributes:
@@ -6058,9 +6405,10 @@ components:
             currency_symbol: $
             created_at: 2018-09-17T12:46:47+01:00
             active: true
-            amount_max: 601
+            amount_max: "123.45"
             skip: 0
             next_expected_match: 2018-09-17T00:00:00.000+00:00
+            object_group_order: 5
             repeat_freq: monthly
             currency_code: EUR
             currency_decimal_places: 2
@@ -6068,6 +6416,7 @@ components:
             - 2000-01-23
             - 2000-01-23
             updated_at: 2018-09-17T12:46:47+01:00
+            object_group_id: 5
             paid_dates:
             - date: 2000-01-23
               transaction_group_id: 0
@@ -6076,8 +6425,9 @@ components:
               transaction_group_id: 0
               transaction_journal_id: 6
             name: Rent
-            amount_min: 600
+            amount_min: "123.45"
             currency_id: 5
+            object_group_title: Example Group
           id: "2"
           type: bills
         meta:
@@ -6106,9 +6456,10 @@ components:
           currency_symbol: $
           created_at: 2018-09-17T12:46:47+01:00
           active: true
-          amount_max: 601
+          amount_max: "123.45"
           skip: 0
           next_expected_match: 2018-09-17T00:00:00.000+00:00
+          object_group_order: 5
           repeat_freq: monthly
           currency_code: EUR
           currency_decimal_places: 2
@@ -6116,6 +6467,7 @@ components:
           - 2000-01-23
           - 2000-01-23
           updated_at: 2018-09-17T12:46:47+01:00
+          object_group_id: 5
           paid_dates:
           - date: 2000-01-23
             transaction_group_id: 0
@@ -6124,8 +6476,9 @@ components:
             transaction_group_id: 0
             transaction_journal_id: 6
           name: Rent
-          amount_min: 600
+          amount_min: "123.45"
           currency_id: 5
+          object_group_title: Example Group
         id: "2"
         type: bills
       properties:
@@ -6154,9 +6507,10 @@ components:
             currency_symbol: $
             created_at: 2018-09-17T12:46:47+01:00
             active: true
-            amount_max: 601
+            amount_max: "123.45"
             skip: 0
             next_expected_match: 2018-09-17T00:00:00.000+00:00
+            object_group_order: 5
             repeat_freq: monthly
             currency_code: EUR
             currency_decimal_places: 2
@@ -6164,6 +6518,7 @@ components:
             - 2000-01-23
             - 2000-01-23
             updated_at: 2018-09-17T12:46:47+01:00
+            object_group_id: 5
             paid_dates:
             - date: 2000-01-23
               transaction_group_id: 0
@@ -6172,8 +6527,9 @@ components:
               transaction_group_id: 0
               transaction_journal_id: 6
             name: Rent
-            amount_min: 600
+            amount_min: "123.45"
             currency_id: 5
+            object_group_title: Example Group
           id: "2"
           type: bills
       properties:
@@ -6187,12 +6543,12 @@ components:
         updated_at: 2018-09-17T12:46:47+01:00
         spent:
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
@@ -6241,12 +6597,12 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -6260,12 +6616,12 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -6295,18 +6651,18 @@ components:
       type: object
     BudgetLimit:
       example:
-        amount: 250
+        amount: "123.45"
         updated_at: 2018-09-17T12:46:47+01:00
         currency_symbol: $
         budget_id: 23
         spent:
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
         - currency_symbol: $
-          sum: -1929.11
+          sum: "123.45"
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
@@ -6365,9 +6721,9 @@ components:
           format: date
           type: string
         amount:
-          example: 250
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         spent:
           items:
             $ref: '#/components/schemas/BudgetSpent'
@@ -6383,18 +6739,18 @@ components:
       example:
         data:
         - attributes:
-            amount: 250
+            amount: "123.45"
             updated_at: 2018-09-17T12:46:47+01:00
             currency_symbol: $
             budget_id: 23
             spent:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -6407,18 +6763,18 @@ components:
           id: "2"
           type: budget_limits
         - attributes:
-            amount: 250
+            amount: "123.45"
             updated_at: 2018-09-17T12:46:47+01:00
             currency_symbol: $
             budget_id: 23
             spent:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -6451,18 +6807,18 @@ components:
     BudgetLimitRead:
       example:
         attributes:
-          amount: 250
+          amount: "123.45"
           updated_at: 2018-09-17T12:46:47+01:00
           currency_symbol: $
           budget_id: 23
           spent:
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
@@ -6495,18 +6851,18 @@ components:
       example:
         data:
           attributes:
-            amount: 250
+            amount: "123.45"
             updated_at: 2018-09-17T12:46:47+01:00
             currency_symbol: $
             budget_id: 23
             spent:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -6530,12 +6886,12 @@ components:
           updated_at: 2018-09-17T12:46:47+01:00
           spent:
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
           - currency_symbol: $
-            sum: -1929.11
+            sum: "123.45"
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
@@ -6569,12 +6925,12 @@ components:
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
             - currency_symbol: $
-              sum: -1929.11
+              sum: "123.45"
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
@@ -6593,16 +6949,16 @@ components:
     BudgetSpent:
       example:
         currency_symbol: $
-        sum: -1929.11
+        sum: "123.45"
         currency_id: 5
         currency_code: USD
         currency_decimal_places: 2
       properties:
         sum:
           description: The amount spent.
-          example: -1929.11
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         currency_id:
           example: 5
           format: int32
@@ -6624,14 +6980,14 @@ components:
     Category:
       example:
         earned:
-        - amount: 1929.11
+        - amount: "123.45"
           currency_symbol: $
           start: 2018-04-01T00:00:00.000+00:00
           end: 2018-04-30T00:00:00.000+00:00
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
-        - amount: 1929.11
+        - amount: "123.45"
           currency_symbol: $
           start: 2018-04-01T00:00:00.000+00:00
           end: 2018-04-30T00:00:00.000+00:00
@@ -6640,14 +6996,14 @@ components:
           currency_decimal_places: 2
         updated_at: 2018-09-17T12:46:47+01:00
         spent:
-        - amount: -1929.11
+        - amount: "-12423.45"
           currency_symbol: $
           start: 2018-04-01T00:00:00.000+00:00
           end: 2018-04-30T00:00:00.000+00:00
           currency_id: 5
           currency_code: USD
           currency_decimal_places: 2
-        - amount: -1929.11
+        - amount: "-12423.45"
           currency_symbol: $
           start: 2018-04-01T00:00:00.000+00:00
           end: 2018-04-30T00:00:00.000+00:00
@@ -6689,14 +7045,14 @@ components:
         data:
         - attributes:
             earned:
-            - amount: 1929.11
+            - amount: "123.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
-            - amount: 1929.11
+            - amount: "123.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
@@ -6705,14 +7061,14 @@ components:
               currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
-            - amount: -1929.11
+            - amount: "-12423.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
-            - amount: -1929.11
+            - amount: "-12423.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
@@ -6725,14 +7081,14 @@ components:
           type: categories
         - attributes:
             earned:
-            - amount: 1929.11
+            - amount: "123.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
-            - amount: 1929.11
+            - amount: "123.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
@@ -6741,14 +7097,14 @@ components:
               currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
-            - amount: -1929.11
+            - amount: "-12423.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
-            - amount: -1929.11
+            - amount: "-12423.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
@@ -6779,7 +7135,7 @@ components:
       type: object
     CategoryEarned:
       example:
-        amount: 1929.11
+        amount: "123.45"
         currency_symbol: $
         start: 2018-04-01T00:00:00.000+00:00
         end: 2018-04-30T00:00:00.000+00:00
@@ -6814,22 +7170,22 @@ components:
           type: integer
         amount:
           description: The amount earned.
-          example: 1929.11
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
       type: object
     CategoryRead:
       example:
         attributes:
           earned:
-          - amount: 1929.11
+          - amount: "123.45"
             currency_symbol: $
             start: 2018-04-01T00:00:00.000+00:00
             end: 2018-04-30T00:00:00.000+00:00
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
-          - amount: 1929.11
+          - amount: "123.45"
             currency_symbol: $
             start: 2018-04-01T00:00:00.000+00:00
             end: 2018-04-30T00:00:00.000+00:00
@@ -6838,14 +7194,14 @@ components:
             currency_decimal_places: 2
           updated_at: 2018-09-17T12:46:47+01:00
           spent:
-          - amount: -1929.11
+          - amount: "-12423.45"
             currency_symbol: $
             start: 2018-04-01T00:00:00.000+00:00
             end: 2018-04-30T00:00:00.000+00:00
             currency_id: 5
             currency_code: USD
             currency_decimal_places: 2
-          - amount: -1929.11
+          - amount: "-12423.45"
             currency_symbol: $
             start: 2018-04-01T00:00:00.000+00:00
             end: 2018-04-30T00:00:00.000+00:00
@@ -6878,14 +7234,14 @@ components:
         data:
           attributes:
             earned:
-            - amount: 1929.11
+            - amount: "123.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
-            - amount: 1929.11
+            - amount: "123.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
@@ -6894,14 +7250,14 @@ components:
               currency_decimal_places: 2
             updated_at: 2018-09-17T12:46:47+01:00
             spent:
-            - amount: -1929.11
+            - amount: "-12423.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
               currency_id: 5
               currency_code: USD
               currency_decimal_places: 2
-            - amount: -1929.11
+            - amount: "-12423.45"
               currency_symbol: $
               start: 2018-04-01T00:00:00.000+00:00
               end: 2018-04-30T00:00:00.000+00:00
@@ -6920,7 +7276,7 @@ components:
       type: object
     CategorySpent:
       example:
-        amount: -1929.11
+        amount: "-12423.45"
         currency_symbol: $
         start: 2018-04-01T00:00:00.000+00:00
         end: 2018-04-30T00:00:00.000+00:00
@@ -6955,9 +7311,9 @@ components:
           type: integer
         amount:
           description: The amount spent.
-          example: -1929.11
-          format: double
-          type: number
+          example: "-12423.45"
+          format: amount
+          type: string
       type: object
     ChartBar:
       items:
@@ -7033,10 +7389,6 @@ components:
           type: array
       type: object
     ChartLine:
-      items:
-        $ref: '#/components/schemas/ChartDataSet'
-      type: array
-    ChartPie:
       items:
         $ref: '#/components/schemas/ChartDataSet'
       type: array
@@ -7215,12 +7567,32 @@ components:
       required:
       - data
       type: object
+    DataDestroyObject:
+      enum:
+      - budgets
+      - bills
+      - piggy_banks
+      - rules
+      - recurring
+      - categories
+      - tags
+      - object_groups
+      - accounts
+      - asset_accounts
+      - expense_accounts
+      - revenue_accounts
+      - liabilities
+      - transactions
+      - withdrawals
+      - deposits
+      - transfers
+      type: string
     ExchangeRate:
       example:
         attributes:
           date: 2018-09-17T00:00:00.000+00:00
           to_currency_decimal_places: 2
-          amount: 82.12
+          amount: "123.45"
           to_currency_symbol: $
           from_currency_symbol: $
           to_currency_code: EUR
@@ -7253,7 +7625,7 @@ components:
         - attributes:
             date: 2018-09-17T00:00:00.000+00:00
             to_currency_decimal_places: 2
-            amount: 82.12
+            amount: "123.45"
             to_currency_symbol: $
             from_currency_symbol: $
             to_currency_code: EUR
@@ -7270,7 +7642,7 @@ components:
         - attributes:
             date: 2018-09-17T00:00:00.000+00:00
             to_currency_decimal_places: 2
-            amount: 82.12
+            amount: "123.45"
             to_currency_symbol: $
             from_currency_symbol: $
             to_currency_code: EUR
@@ -7608,18 +7980,20 @@ components:
       type: object
     PiggyBank:
       example:
-        target_amount: 800
+        target_amount: "123.45"
         notes: Some notes
         target_date: 2020-09-17T00:00:00.000+00:00
         currency_symbol: $
         left_to_save: 700
         created_at: 2018-09-17T12:46:47+01:00
         active: true
+        object_group_order: 5
         currency_code: USD
         currency_decimal_places: 2
-        current_amount: 100
+        current_amount: "123.45"
         account_id: 13
         updated_at: 2018-09-17T12:46:47+01:00
+        object_group_id: 5
         account_name: Savings account
         percentage: 12.5
         name: New digital camera
@@ -7627,6 +8001,7 @@ components:
         save_per_month: 12.45
         start_date: 2018-09-17T00:00:00.000+00:00
         order: 5
+        object_group_title: Example Group
       properties:
         created_at:
           example: 2018-09-17T12:46:47+01:00
@@ -7676,18 +8051,18 @@ components:
           readOnly: true
           type: integer
         target_amount:
-          example: 800
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         percentage:
           example: 12.5
           format: float
           readOnly: true
           type: number
         current_amount:
-          example: 100
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         left_to_save:
           example: 700
           format: double
@@ -7711,7 +8086,6 @@ components:
         order:
           example: 5
           format: int32
-          readOnly: true
           type: integer
         active:
           example: true
@@ -7720,6 +8094,22 @@ components:
           type: boolean
         notes:
           example: Some notes
+          format: string
+          type: string
+        object_group_id:
+          description: The group ID of the group this object is part of. NULL if no
+            group.
+          example: 5
+          format: int32
+          type: integer
+        object_group_order:
+          description: "The order of the group. At least 1, for the highest sorting."
+          example: 5
+          format: int32
+          type: integer
+        object_group_title:
+          description: The name of the group. NULL if no group.
+          example: Example Group
           format: string
           type: string
       required:
@@ -7731,18 +8121,20 @@ components:
       example:
         data:
         - attributes:
-            target_amount: 800
+            target_amount: "123.45"
             notes: Some notes
             target_date: 2020-09-17T00:00:00.000+00:00
             currency_symbol: $
             left_to_save: 700
             created_at: 2018-09-17T12:46:47+01:00
             active: true
+            object_group_order: 5
             currency_code: USD
             currency_decimal_places: 2
-            current_amount: 100
+            current_amount: "123.45"
             account_id: 13
             updated_at: 2018-09-17T12:46:47+01:00
+            object_group_id: 5
             account_name: Savings account
             percentage: 12.5
             name: New digital camera
@@ -7750,6 +8142,7 @@ components:
             save_per_month: 12.45
             start_date: 2018-09-17T00:00:00.000+00:00
             order: 5
+            object_group_title: Example Group
           links:
             "0":
               rel: self
@@ -7758,18 +8151,20 @@ components:
           id: "2"
           type: piggy_banks
         - attributes:
-            target_amount: 800
+            target_amount: "123.45"
             notes: Some notes
             target_date: 2020-09-17T00:00:00.000+00:00
             currency_symbol: $
             left_to_save: 700
             created_at: 2018-09-17T12:46:47+01:00
             active: true
+            object_group_order: 5
             currency_code: USD
             currency_decimal_places: 2
-            current_amount: 100
+            current_amount: "123.45"
             account_id: 13
             updated_at: 2018-09-17T12:46:47+01:00
+            object_group_id: 5
             account_name: Savings account
             percentage: 12.5
             name: New digital camera
@@ -7777,6 +8172,7 @@ components:
             save_per_month: 12.45
             start_date: 2018-09-17T00:00:00.000+00:00
             order: 5
+            object_group_title: Example Group
           links:
             "0":
               rel: self
@@ -7810,6 +8206,16 @@ components:
       - meta
       type: object
     PiggyBankEvent:
+      example:
+        journal_id: 4291
+        transaction_id: 4291
+        amount: "123.45"
+        updated_at: 2018-09-17T12:46:47+01:00
+        currency_symbol: $
+        created_at: 2018-09-17T12:46:47+01:00
+        currency_id: 5
+        currency_code: EUR
+        currency_decimal_places: 2
       properties:
         created_at:
           example: 2018-09-17T12:46:47+01:00
@@ -7836,9 +8242,9 @@ components:
           format: int32
           type: integer
         amount:
-          example: 250
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         journal_id:
           description: The journal associated with the event.
           example: 4291
@@ -7853,25 +8259,15 @@ components:
       example:
         data:
         - attributes:
-            target_amount: 800
-            notes: Some notes
-            target_date: 2020-09-17T00:00:00.000+00:00
-            currency_symbol: $
-            left_to_save: 700
-            created_at: 2018-09-17T12:46:47+01:00
-            active: true
-            currency_code: USD
-            currency_decimal_places: 2
-            current_amount: 100
-            account_id: 13
+            journal_id: 4291
+            transaction_id: 4291
+            amount: "123.45"
             updated_at: 2018-09-17T12:46:47+01:00
-            account_name: Savings account
-            percentage: 12.5
-            name: New digital camera
+            currency_symbol: $
+            created_at: 2018-09-17T12:46:47+01:00
             currency_id: 5
-            save_per_month: 12.45
-            start_date: 2018-09-17T00:00:00.000+00:00
-            order: 5
+            currency_code: EUR
+            currency_decimal_places: 2
           links:
             "0":
               rel: self
@@ -7880,25 +8276,15 @@ components:
           id: "2"
           type: piggy_bank_eventss
         - attributes:
-            target_amount: 800
-            notes: Some notes
-            target_date: 2020-09-17T00:00:00.000+00:00
-            currency_symbol: $
-            left_to_save: 700
-            created_at: 2018-09-17T12:46:47+01:00
-            active: true
-            currency_code: USD
-            currency_decimal_places: 2
-            current_amount: 100
-            account_id: 13
+            journal_id: 4291
+            transaction_id: 4291
+            amount: "123.45"
             updated_at: 2018-09-17T12:46:47+01:00
-            account_name: Savings account
-            percentage: 12.5
-            name: New digital camera
+            currency_symbol: $
+            created_at: 2018-09-17T12:46:47+01:00
             currency_id: 5
-            save_per_month: 12.45
-            start_date: 2018-09-17T00:00:00.000+00:00
-            order: 5
+            currency_code: EUR
+            currency_decimal_places: 2
           links:
             "0":
               rel: self
@@ -7934,25 +8320,15 @@ components:
     PiggyBankEventRead:
       example:
         attributes:
-          target_amount: 800
-          notes: Some notes
-          target_date: 2020-09-17T00:00:00.000+00:00
-          currency_symbol: $
-          left_to_save: 700
-          created_at: 2018-09-17T12:46:47+01:00
-          active: true
-          currency_code: USD
-          currency_decimal_places: 2
-          current_amount: 100
-          account_id: 13
+          journal_id: 4291
+          transaction_id: 4291
+          amount: "123.45"
           updated_at: 2018-09-17T12:46:47+01:00
-          account_name: Savings account
-          percentage: 12.5
-          name: New digital camera
+          currency_symbol: $
+          created_at: 2018-09-17T12:46:47+01:00
           currency_id: 5
-          save_per_month: 12.45
-          start_date: 2018-09-17T00:00:00.000+00:00
-          order: 5
+          currency_code: EUR
+          currency_decimal_places: 2
         links:
           "0":
             rel: self
@@ -7971,7 +8347,7 @@ components:
           format: string
           type: string
         attributes:
-          $ref: '#/components/schemas/PiggyBank'
+          $ref: '#/components/schemas/PiggyBankEvent'
         links:
           $ref: '#/components/schemas/ObjectLink'
       required:
@@ -7983,18 +8359,20 @@ components:
     PiggyBankRead:
       example:
         attributes:
-          target_amount: 800
+          target_amount: "123.45"
           notes: Some notes
           target_date: 2020-09-17T00:00:00.000+00:00
           currency_symbol: $
           left_to_save: 700
           created_at: 2018-09-17T12:46:47+01:00
           active: true
+          object_group_order: 5
           currency_code: USD
           currency_decimal_places: 2
-          current_amount: 100
+          current_amount: "123.45"
           account_id: 13
           updated_at: 2018-09-17T12:46:47+01:00
+          object_group_id: 5
           account_name: Savings account
           percentage: 12.5
           name: New digital camera
@@ -8002,6 +8380,7 @@ components:
           save_per_month: 12.45
           start_date: 2018-09-17T00:00:00.000+00:00
           order: 5
+          object_group_title: Example Group
         links:
           "0":
             rel: self
@@ -8033,18 +8412,20 @@ components:
       example:
         data:
           attributes:
-            target_amount: 800
+            target_amount: "123.45"
             notes: Some notes
             target_date: 2020-09-17T00:00:00.000+00:00
             currency_symbol: $
             left_to_save: 700
             created_at: 2018-09-17T12:46:47+01:00
             active: true
+            object_group_order: 5
             currency_code: USD
             currency_decimal_places: 2
-            current_amount: 100
+            current_amount: "123.45"
             account_id: 13
             updated_at: 2018-09-17T12:46:47+01:00
+            object_group_id: 5
             account_name: Savings account
             percentage: 12.5
             name: New digital camera
@@ -8052,6 +8433,7 @@ components:
             save_per_month: 12.45
             start_date: 2018-09-17T00:00:00.000+00:00
             order: 5
+            object_group_title: Example Group
           links:
             "0":
               rel: self
@@ -8206,7 +8588,7 @@ components:
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: 17
           source_name: Checking account
-          amount: -810.12
+          amount: "123.45"
           budget_name: Groceries
           foreign_currency_code: GBP
           currency_symbol: €
@@ -8216,7 +8598,7 @@ components:
           tags:
           - Barbecue preparation
           - Barbecue preparation
-          foreign_amount: -990
+          foreign_amount: "123.45"
           source_id: 913
           currency_id: 3
         - category_name: Bills
@@ -8234,7 +8616,7 @@ components:
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: 17
           source_name: Checking account
-          amount: -810.12
+          amount: "123.45"
           budget_name: Groceries
           foreign_currency_code: GBP
           currency_symbol: €
@@ -8244,7 +8626,7 @@ components:
           tags:
           - Barbecue preparation
           - Barbecue preparation
-          foreign_amount: -990
+          foreign_amount: "123.45"
           source_id: 913
           currency_id: 3
         repetitions:
@@ -8384,7 +8766,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: -810.12
+              amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
@@ -8394,7 +8776,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: -990
+              foreign_amount: "123.45"
               source_id: 913
               currency_id: 3
             - category_name: Bills
@@ -8412,7 +8794,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: -810.12
+              amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
@@ -8422,7 +8804,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: -990
+              foreign_amount: "123.45"
               source_id: 913
               currency_id: 3
             repetitions:
@@ -8484,7 +8866,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: -810.12
+              amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
@@ -8494,7 +8876,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: -990
+              foreign_amount: "123.45"
               source_id: 913
               currency_id: 3
             - category_name: Bills
@@ -8512,7 +8894,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: -810.12
+              amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
@@ -8522,7 +8904,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: -990
+              foreign_amount: "123.45"
               source_id: 913
               currency_id: 3
             repetitions:
@@ -8611,7 +8993,7 @@ components:
             piggy_bank_name: piggy_bank_name
             foreign_currency_id: 17
             source_name: Checking account
-            amount: -810.12
+            amount: "123.45"
             budget_name: Groceries
             foreign_currency_code: GBP
             currency_symbol: €
@@ -8621,7 +9003,7 @@ components:
             tags:
             - Barbecue preparation
             - Barbecue preparation
-            foreign_amount: -990
+            foreign_amount: "123.45"
             source_id: 913
             currency_id: 3
           - category_name: Bills
@@ -8639,7 +9021,7 @@ components:
             piggy_bank_name: piggy_bank_name
             foreign_currency_id: 17
             source_name: Checking account
-            amount: -810.12
+            amount: "123.45"
             budget_name: Groceries
             foreign_currency_code: GBP
             currency_symbol: €
@@ -8649,7 +9031,7 @@ components:
             tags:
             - Barbecue preparation
             - Barbecue preparation
-            foreign_amount: -990
+            foreign_amount: "123.45"
             source_id: 913
             currency_id: 3
           repetitions:
@@ -8820,7 +9202,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: -810.12
+              amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
@@ -8830,7 +9212,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: -990
+              foreign_amount: "123.45"
               source_id: 913
               currency_id: 3
             - category_name: Bills
@@ -8848,7 +9230,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: -810.12
+              amount: "123.45"
               budget_name: Groceries
               foreign_currency_code: GBP
               currency_symbol: €
@@ -8858,7 +9240,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: -990
+              foreign_amount: "123.45"
               source_id: 913
               currency_id: 3
             repetitions:
@@ -8917,7 +9299,7 @@ components:
         piggy_bank_name: piggy_bank_name
         foreign_currency_id: 17
         source_name: Checking account
-        amount: -810.12
+        amount: "123.45"
         budget_name: Groceries
         foreign_currency_code: GBP
         currency_symbol: €
@@ -8927,7 +9309,7 @@ components:
         tags:
         - Barbecue preparation
         - Barbecue preparation
-        foreign_amount: -990
+        foreign_amount: "123.45"
         source_id: 913
         currency_id: 3
       properties:
@@ -8937,15 +9319,15 @@ components:
           type: string
         amount:
           description: Amount of the transaction.
-          example: -810.12
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         foreign_amount:
           description: Foreign amount of the transaction.
-          example: -990
-          format: double
+          example: "123.45"
+          format: amount
           nullable: true
-          type: number
+          type: string
         currency_id:
           description: Submit either a currency_id or a currency_code.
           example: 3
@@ -10052,6 +10434,7 @@ components:
         group_title: Split transaction title.
         apply_rules: false
         updated_at: 2018-09-17T12:46:47+01:00
+        error_if_duplicate_hash: false
         created_at: 2018-09-17T12:46:47+01:00
         transactions:
         - date: 2018-09-17T00:00:00.000+00:00
@@ -10077,7 +10460,7 @@ components:
           tags:
           - Barbecue preparation
           - Barbecue preparation
-          foreign_amount: 16.95
+          foreign_amount: "123.45"
           process_date: 2000-01-23
           sepa_ep: sepa_ep
           internal_reference: internal_reference
@@ -10098,7 +10481,7 @@ components:
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: 17
           source_name: Checking account
-          amount: 12.95
+          amount: "123.45"
           budget_name: Groceries
           currency_name: Euro
           currency_symbol: $
@@ -10135,7 +10518,7 @@ components:
           tags:
           - Barbecue preparation
           - Barbecue preparation
-          foreign_amount: 16.95
+          foreign_amount: "123.45"
           process_date: 2000-01-23
           sepa_ep: sepa_ep
           internal_reference: internal_reference
@@ -10156,7 +10539,7 @@ components:
           piggy_bank_name: piggy_bank_name
           foreign_currency_id: 17
           source_name: Checking account
-          amount: 12.95
+          amount: "123.45"
           budget_name: Groceries
           currency_name: Euro
           currency_symbol: $
@@ -10188,6 +10571,12 @@ components:
           format: int32
           readOnly: true
           type: integer
+        error_if_duplicate_hash:
+          description: Break if the submitted transaction exists already.
+          example: false
+          format: boolean
+          readOnly: false
+          type: boolean
         apply_rules:
           description: Whether or not to apply rules when submitting transaction.
           example: false
@@ -10215,6 +10604,7 @@ components:
             group_title: Split transaction title.
             apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
+            error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
             - date: 2018-09-17T00:00:00.000+00:00
@@ -10240,7 +10630,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: 16.95
+              foreign_amount: "123.45"
               process_date: 2000-01-23
               sepa_ep: sepa_ep
               internal_reference: internal_reference
@@ -10261,7 +10651,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: 12.95
+              amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
               currency_symbol: $
@@ -10298,7 +10688,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: 16.95
+              foreign_amount: "123.45"
               process_date: 2000-01-23
               sepa_ep: sepa_ep
               internal_reference: internal_reference
@@ -10319,7 +10709,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: 12.95
+              amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
               currency_symbol: $
@@ -10345,6 +10735,7 @@ components:
             group_title: Split transaction title.
             apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
+            error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
             - date: 2018-09-17T00:00:00.000+00:00
@@ -10370,7 +10761,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: 16.95
+              foreign_amount: "123.45"
               process_date: 2000-01-23
               sepa_ep: sepa_ep
               internal_reference: internal_reference
@@ -10391,7 +10782,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: 12.95
+              amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
               currency_symbol: $
@@ -10428,7 +10819,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: 16.95
+              foreign_amount: "123.45"
               process_date: 2000-01-23
               sepa_ep: sepa_ep
               internal_reference: internal_reference
@@ -10449,7 +10840,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: 12.95
+              amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
               currency_symbol: $
@@ -10677,6 +11068,7 @@ components:
           group_title: Split transaction title.
           apply_rules: false
           updated_at: 2018-09-17T12:46:47+01:00
+          error_if_duplicate_hash: false
           created_at: 2018-09-17T12:46:47+01:00
           transactions:
           - date: 2018-09-17T00:00:00.000+00:00
@@ -10702,7 +11094,7 @@ components:
             tags:
             - Barbecue preparation
             - Barbecue preparation
-            foreign_amount: 16.95
+            foreign_amount: "123.45"
             process_date: 2000-01-23
             sepa_ep: sepa_ep
             internal_reference: internal_reference
@@ -10723,7 +11115,7 @@ components:
             piggy_bank_name: piggy_bank_name
             foreign_currency_id: 17
             source_name: Checking account
-            amount: 12.95
+            amount: "123.45"
             budget_name: Groceries
             currency_name: Euro
             currency_symbol: $
@@ -10760,7 +11152,7 @@ components:
             tags:
             - Barbecue preparation
             - Barbecue preparation
-            foreign_amount: 16.95
+            foreign_amount: "123.45"
             process_date: 2000-01-23
             sepa_ep: sepa_ep
             internal_reference: internal_reference
@@ -10781,7 +11173,7 @@ components:
             piggy_bank_name: piggy_bank_name
             foreign_currency_id: 17
             source_name: Checking account
-            amount: 12.95
+            amount: "123.45"
             budget_name: Groceries
             currency_name: Euro
             currency_symbol: $
@@ -10830,6 +11222,7 @@ components:
             group_title: Split transaction title.
             apply_rules: false
             updated_at: 2018-09-17T12:46:47+01:00
+            error_if_duplicate_hash: false
             created_at: 2018-09-17T12:46:47+01:00
             transactions:
             - date: 2018-09-17T00:00:00.000+00:00
@@ -10855,7 +11248,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: 16.95
+              foreign_amount: "123.45"
               process_date: 2000-01-23
               sepa_ep: sepa_ep
               internal_reference: internal_reference
@@ -10876,7 +11269,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: 12.95
+              amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
               currency_symbol: $
@@ -10913,7 +11306,7 @@ components:
               tags:
               - Barbecue preparation
               - Barbecue preparation
-              foreign_amount: 16.95
+              foreign_amount: "123.45"
               process_date: 2000-01-23
               sepa_ep: sepa_ep
               internal_reference: internal_reference
@@ -10934,7 +11327,7 @@ components:
               piggy_bank_name: piggy_bank_name
               foreign_currency_id: 17
               source_name: Checking account
-              amount: 12.95
+              amount: "123.45"
               budget_name: Groceries
               currency_name: Euro
               currency_symbol: $
@@ -10987,7 +11380,7 @@ components:
         tags:
         - Barbecue preparation
         - Barbecue preparation
-        foreign_amount: 16.95
+        foreign_amount: "123.45"
         process_date: 2000-01-23
         sepa_ep: sepa_ep
         internal_reference: internal_reference
@@ -11008,7 +11401,7 @@ components:
         piggy_bank_name: piggy_bank_name
         foreign_currency_id: 17
         source_name: Checking account
-        amount: 12.95
+        amount: "123.45"
         budget_name: Groceries
         currency_name: Euro
         currency_symbol: $
@@ -11054,12 +11447,11 @@ components:
           type: string
         amount:
           description: Amount of the transaction.
-          example: 12.95
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
         description:
-          description: Description of the transaction. Will only be used if more than
-            one split is submitted.
+          description: Description of the transaction.
           example: Vegetables
           format: string
           type: string
@@ -11101,21 +11493,21 @@ components:
           type: integer
         foreign_amount:
           description: The amount in a foreign currency.
-          example: 16.95
-          format: double
+          example: "123.45"
+          format: amount
           nullable: true
-          type: number
+          type: string
         foreign_currency_id:
-          description: Currency ID. Default is null. Is required when you submit a
-            foreign amount.
+          description: Currency ID of the foreign currency. Default is null. Is required
+            when you submit a foreign amount.
           example: 17
           format: int32
           nullable: true
           type: integer
         foreign_currency_code:
-          description: "Currency code. Default is NULL. Can be used instead of the\
-            \ foreign_currency_id, but either is required when submitting a foreign\
-            \ amount."
+          description: "Currency code of the foreign currency. Default is NULL. Can\
+            \ be used instead of the foreign_currency_id, but this or the ID is required\
+            \ when submitting a foreign amount."
           example: USD
           format: string
           nullable: true
@@ -11607,7 +11999,7 @@ components:
       example:
         date: 2018-09-17T00:00:00.000+00:00
         to_currency_decimal_places: 2
-        amount: 82.12
+        amount: "123.45"
         to_currency_symbol: $
         from_currency_symbol: $
         to_currency_code: EUR
@@ -11674,9 +12066,9 @@ components:
           type: number
         amount:
           description: "The amount in the \"to\"-currency, if provided in the request."
-          example: 82.12
-          format: double
-          type: number
+          example: "123.45"
+          format: amount
+          type: string
       type: object
     ImportJob_attributes:
       example:

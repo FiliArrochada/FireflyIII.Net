@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **BudgetId** | **int** | The budget ID of the associated budget. | 
 **Start** | **DateTime** | Start date of the budget limit. | 
 **End** | **DateTime** | End date of the budget limit. | 
-**Amount** | **double** |  | 
+**Amount** | **string** |  | 
 **Spent** | [**List&lt;BudgetSpent&gt;**](BudgetSpent.md) |  | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

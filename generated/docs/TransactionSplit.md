@@ -8,17 +8,17 @@ Name | Type | Description | Notes
 **TransactionJournalId** | **int** | ID of the underlying transaction journal. Each transaction consists of a transaction group (see the top ID) and one or more journals making up the splits of the transaction.  | [optional] [readonly] 
 **Type** | **string** | Type of transaction. | [optional] 
 **Date** | **DateTime** | Date of the transaction | 
-**Amount** | **double** | Amount of the transaction. | 
-**Description** | **string** | Description of the transaction. Will only be used if more than one split is submitted. | 
+**Amount** | **string** | Amount of the transaction. | 
+**Description** | **string** | Description of the transaction. | 
 **Order** | **int?** | Order of this entry in the list of transactions. | [optional] 
 **CurrencyId** | **int?** | Currency ID. Default is the source account&#39;s currency, or the user&#39;s default currency. Can be used instead of currency_code. | [optional] 
 **CurrencyCode** | **string** | Currency code. Default is the source account&#39;s currency, or the user&#39;s default currency. Can be used instead of currency_id. | [optional] 
 **CurrencySymbol** | **string** |  | [optional] [readonly] 
 **CurrencyName** | **string** |  | [optional] [readonly] 
 **CurrencyDecimalPlaces** | **int** | Number of decimals used in this currency. | [optional] [readonly] 
-**ForeignAmount** | **double?** | The amount in a foreign currency. | [optional] 
-**ForeignCurrencyId** | **int?** | Currency ID. Default is null. Is required when you submit a foreign amount. | [optional] 
-**ForeignCurrencyCode** | **string** | Currency code. Default is NULL. Can be used instead of the foreign_currency_id, but either is required when submitting a foreign amount. | [optional] 
+**ForeignAmount** | **string** | The amount in a foreign currency. | [optional] 
+**ForeignCurrencyId** | **int?** | Currency ID of the foreign currency. Default is null. Is required when you submit a foreign amount. | [optional] 
+**ForeignCurrencyCode** | **string** | Currency code of the foreign currency. Default is NULL. Can be used instead of the foreign_currency_id, but this or the ID is required when submitting a foreign amount. | [optional] 
 **ForeignCurrencySymbol** | **string** |  | [optional] [readonly] 
 **ForeignCurrencyDecimalPlaces** | **int?** | Number of decimals in the currency | [optional] [readonly] 
 **BudgetId** | **int?** | The budget ID for this transaction. | [optional] 

@@ -6,6 +6,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 |--------|--------------|-------------|
 | [**DeletePiggyBank**](PiggyBanksApi.md#deletepiggybank) | **DELETE** /api/v1/piggy_banks/{id} | Delete a piggy bank. |
 | [**GetPiggyBank**](PiggyBanksApi.md#getpiggybank) | **GET** /api/v1/piggy_banks/{id} | Get a single piggy bank. |
+| [**ListAttachmentByPiggyBank**](PiggyBanksApi.md#listattachmentbypiggybank) | **GET** /api/v1/piggy_banks/{id}/attachments | Lists all attachments. |
 | [**ListEventByPiggyBank**](PiggyBanksApi.md#listeventbypiggybank) | **GET** /api/v1/piggy_banks/{id}/events | List all events linked to a piggy bank. |
 | [**ListPiggyBank**](PiggyBanksApi.md#listpiggybank) | **GET** /api/v1/piggy_banks | List all piggy banks. |
 | [**StorePiggyBank**](PiggyBanksApi.md#storepiggybank) | **POST** /api/v1/piggy_banks | Store a new piggy bank |
@@ -194,6 +195,103 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The requested piggy bank |  -  |
 | **404** | Piggy bank not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listattachmentbypiggybank"></a>
+# **ListAttachmentByPiggyBank**
+> AttachmentArray ListAttachmentByPiggyBank (int id, int? page = null)
+
+Lists all attachments.
+
+Lists all attachments.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class ListAttachmentByPiggyBankExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PiggyBanksApi(config);
+            var id = 1;  // int | The ID of the piggy bank.
+            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
+
+            try
+            {
+                // Lists all attachments.
+                AttachmentArray result = apiInstance.ListAttachmentByPiggyBank(id, page);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PiggyBanksApi.ListAttachmentByPiggyBank: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAttachmentByPiggyBankWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Lists all attachments.
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByPiggyBankWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PiggyBanksApi.ListAttachmentByPiggyBankWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the piggy bank. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+
+### Return type
+
+[**AttachmentArray**](AttachmentArray.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of attachments |  -  |
+| **404** | No such piggy bank. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

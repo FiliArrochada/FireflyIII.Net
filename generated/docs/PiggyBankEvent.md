@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CurrencyCode** | **string** |  | [optional] 
 **CurrencySymbol** | **string** |  | [optional] 
 **CurrencyDecimalPlaces** | **int** |  | [optional] 
-**Amount** | **double** |  | [optional] 
+**Amount** | **string** |  | [optional] 
 **JournalId** | **int** | The journal associated with the event. | [optional] 
 **TransactionId** | **int** |  | [optional] 
 

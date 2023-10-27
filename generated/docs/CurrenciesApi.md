@@ -9,6 +9,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**DisableCurrency**](CurrenciesApi.md#disablecurrency) | **POST** /api/v1/currencies/{code}/disable | Disable a currency. |
 | [**EnableCurrency**](CurrenciesApi.md#enablecurrency) | **POST** /api/v1/currencies/{code}/enable | Enable a single currency. |
 | [**GetCurrency**](CurrenciesApi.md#getcurrency) | **GET** /api/v1/currencies/{code} | Get a single currency. |
+| [**GetDefaultCurrency**](CurrenciesApi.md#getdefaultcurrency) | **GET** /api/v1/currencies/default | Get the user&#39;s default currency. |
 | [**ListAccountByCurrency**](CurrenciesApi.md#listaccountbycurrency) | **GET** /api/v1/currencies/{code}/accounts | List all accounts with this currency. |
 | [**ListAvailableBudgetByCurrency**](CurrenciesApi.md#listavailablebudgetbycurrency) | **GET** /api/v1/currencies/{code}/available_budgets | List all available budgets with this currency. |
 | [**ListBillByCurrency**](CurrenciesApi.md#listbillbycurrency) | **GET** /api/v1/currencies/{code}/bills | List all bills with this currency. |
@@ -487,6 +488,95 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The requested currency |  -  |
 | **404** | Currency not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getdefaultcurrency"></a>
+# **GetDefaultCurrency**
+> CurrencySingle GetDefaultCurrency ()
+
+Get the user's default currency.
+
+Get the user's default currency.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class GetDefaultCurrencyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new CurrenciesApi(config);
+
+            try
+            {
+                // Get the user's default currency.
+                CurrencySingle result = apiInstance.GetDefaultCurrency();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CurrenciesApi.GetDefaultCurrency: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetDefaultCurrencyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get the user's default currency.
+    ApiResponse<CurrencySingle> response = apiInstance.GetDefaultCurrencyWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CurrenciesApi.GetDefaultCurrencyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**CurrencySingle**](CurrencySingle.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The default currency |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

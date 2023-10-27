@@ -6,6 +6,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 |--------|--------------|-------------|
 | [**DeleteCategory**](CategoriesApi.md#deletecategory) | **DELETE** /api/v1/categories/{id} | Delete a category. |
 | [**GetCategory**](CategoriesApi.md#getcategory) | **GET** /api/v1/categories/{id} | Get a single category. |
+| [**ListAttachmentByCategory**](CategoriesApi.md#listattachmentbycategory) | **GET** /api/v1/categories/{id}/attachments | Lists all attachments. |
 | [**ListCategory**](CategoriesApi.md#listcategory) | **GET** /api/v1/categories | List all categories. |
 | [**ListTransactionByCategory**](CategoriesApi.md#listtransactionbycategory) | **GET** /api/v1/categories/{id}/transactions | List all transactions in a category. |
 | [**StoreCategory**](CategoriesApi.md#storecategory) | **POST** /api/v1/categories | Store a new category |
@@ -104,7 +105,7 @@ void (empty response body)
 
 <a id="getcategory"></a>
 # **GetCategory**
-> CategorySingle GetCategory (int id)
+> CategorySingle GetCategory (int id, DateTime? start = null, DateTime? end = null)
 
 Get a single category.
 
@@ -131,11 +132,13 @@ namespace Example
 
             var apiInstance = new CategoriesApi(config);
             var id = 1;  // int | The ID of the category.
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to show spent and earned info.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to show spent and earned info.  (optional) 
 
             try
             {
                 // Get a single category.
-                CategorySingle result = apiInstance.GetCategory(id);
+                CategorySingle result = apiInstance.GetCategory(id, start, end);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -156,7 +159,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single category.
-    ApiResponse<CategorySingle> response = apiInstance.GetCategoryWithHttpInfo(id);
+    ApiResponse<CategorySingle> response = apiInstance.GetCategoryWithHttpInfo(id, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -174,6 +177,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **int** | The ID of the category. |  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to show spent and earned info.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to show spent and earned info.  | [optional]  |
 
 ### Return type
 
@@ -194,6 +199,103 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The requested category |  -  |
 | **404** | Category not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listattachmentbycategory"></a>
+# **ListAttachmentByCategory**
+> AttachmentArray ListAttachmentByCategory (int id, int? page = null)
+
+Lists all attachments.
+
+Lists all attachments.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class ListAttachmentByCategoryExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new CategoriesApi(config);
+            var id = 1;  // int | The ID of the category.
+            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
+
+            try
+            {
+                // Lists all attachments.
+                AttachmentArray result = apiInstance.ListAttachmentByCategory(id, page);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling CategoriesApi.ListAttachmentByCategory: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAttachmentByCategoryWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Lists all attachments.
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByCategoryWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling CategoriesApi.ListAttachmentByCategoryWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the category. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+
+### Return type
+
+[**AttachmentArray**](AttachmentArray.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of attachments |  -  |
+| **404** | No such category. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

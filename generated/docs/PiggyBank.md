@@ -13,16 +13,19 @@ Name | Type | Description | Notes
 **CurrencyCode** | **string** |  | [optional] [readonly] 
 **CurrencySymbol** | **string** |  | [optional] [readonly] 
 **CurrencyDecimalPlaces** | **int** | Number of decimals supported by the currency | [optional] [readonly] 
-**TargetAmount** | **double** |  | 
+**TargetAmount** | **string** |  | 
 **Percentage** | **float** |  | [optional] [readonly] 
-**CurrentAmount** | **double** |  | [optional] 
+**CurrentAmount** | **string** |  | [optional] 
 **LeftToSave** | **double** |  | [optional] [readonly] 
 **SavePerMonth** | **double** |  | [optional] [readonly] 
 **StartDate** | **DateTime** | The date you started with this piggy bank. | [optional] 
 **TargetDate** | **DateTime** | The date you intend to finish saving money. | [optional] 
-**Order** | **int** |  | [optional] [readonly] 
+**Order** | **int** |  | [optional] 
 **Active** | **bool** |  | [optional] [readonly] 
 **Notes** | **string** |  | [optional] 
+**ObjectGroupId** | **int** | The group ID of the group this object is part of. NULL if no group. | [optional] 
+**ObjectGroupOrder** | **int** | The order of the group. At least 1, for the highest sorting. | [optional] 
+**ObjectGroupTitle** | **string** | The name of the group. NULL if no group. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

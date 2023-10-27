@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | **string** |  | 
-**Amount** | **double** | Amount of the transaction. | 
-**ForeignAmount** | **double?** | Foreign amount of the transaction. | [optional] 
+**Amount** | **string** | Amount of the transaction. | 
+**ForeignAmount** | **string** | Foreign amount of the transaction. | [optional] 
 **CurrencyId** | **int** | Submit either a currency_id or a currency_code. | [optional] 
 **CurrencyCode** | **string** | Submit either a currency_id or a currency_code. | [optional] 
 **CurrencySymbol** | **string** |  | [optional] [readonly] 

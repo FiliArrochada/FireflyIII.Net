@@ -8,6 +8,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**DeleteBudgetLimit**](BudgetsApi.md#deletebudgetlimit) | **DELETE** /api/v1/budgets/limits/{id} | Delete a budget limit. |
 | [**GetBudget**](BudgetsApi.md#getbudget) | **GET** /api/v1/budgets/{id} | Get a single budget. |
 | [**GetBudgetLimit**](BudgetsApi.md#getbudgetlimit) | **GET** /api/v1/budgets/limits/{id} | Get single budget limit. |
+| [**ListAttachmentByBudget**](BudgetsApi.md#listattachmentbybudget) | **GET** /api/v1/budgets/{id}/attachments | Lists all attachments. |
 | [**ListBudget**](BudgetsApi.md#listbudget) | **GET** /api/v1/budgets | List all budgets. |
 | [**ListBudgetLimitByBudget**](BudgetsApi.md#listbudgetlimitbybudget) | **GET** /api/v1/budgets/{id}/limits | Get all limits |
 | [**ListTransactionByBudget**](BudgetsApi.md#listtransactionbybudget) | **GET** /api/v1/budgets/{id}/transactions | All transactions to a budget. |
@@ -388,6 +389,103 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | The requested budget limit |  -  |
 | **404** | Budget limit not found. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listattachmentbybudget"></a>
+# **ListAttachmentByBudget**
+> AttachmentArray ListAttachmentByBudget (int id, int? page = null)
+
+Lists all attachments.
+
+Lists all attachments.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class ListAttachmentByBudgetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new BudgetsApi(config);
+            var id = 1;  // int | The ID of the budget.
+            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
+
+            try
+            {
+                // Lists all attachments.
+                AttachmentArray result = apiInstance.ListAttachmentByBudget(id, page);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling BudgetsApi.ListAttachmentByBudget: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAttachmentByBudgetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Lists all attachments.
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByBudgetWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BudgetsApi.ListAttachmentByBudgetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the budget. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+
+### Return type
+
+[**AttachmentArray**](AttachmentArray.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of attachments |  -  |
+| **404** | No such budget. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

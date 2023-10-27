@@ -7,6 +7,7 @@ All URIs are relative to *https://demo.firefly-iii.org*
 | [**DeleteAccount**](AccountsApi.md#deleteaccount) | **DELETE** /api/v1/accounts/{id} | Permanently delete account. |
 | [**GetAccount**](AccountsApi.md#getaccount) | **GET** /api/v1/accounts/{id} | Get single account. |
 | [**ListAccount**](AccountsApi.md#listaccount) | **GET** /api/v1/accounts | List all accounts. |
+| [**ListAttachmentByAccount**](AccountsApi.md#listattachmentbyaccount) | **GET** /api/v1/accounts/{id}/attachments | Lists all attachments. |
 | [**ListPiggyBankByAccount**](AccountsApi.md#listpiggybankbyaccount) | **GET** /api/v1/accounts/{id}/piggy_banks | List all piggy banks related to the account. |
 | [**ListTransactionByAccount**](AccountsApi.md#listtransactionbyaccount) | **GET** /api/v1/accounts/{id}/transactions | List all transactions related to the account. |
 | [**StoreAccount**](AccountsApi.md#storeaccount) | **POST** /api/v1/accounts | Create new account. |
@@ -295,6 +296,103 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of accounts |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listattachmentbyaccount"></a>
+# **ListAttachmentByAccount**
+> AttachmentArray ListAttachmentByAccount (int id, int? page = null)
+
+Lists all attachments.
+
+Lists all attachments.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class ListAttachmentByAccountExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new AccountsApi(config);
+            var id = 1;  // int | The ID of the account.
+            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
+
+            try
+            {
+                // Lists all attachments.
+                AttachmentArray result = apiInstance.ListAttachmentByAccount(id, page);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AccountsApi.ListAttachmentByAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAttachmentByAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Lists all attachments.
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByAccountWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.ListAttachmentByAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the account. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+
+### Return type
+
+[**AttachmentArray**](AttachmentArray.md)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A list of attachments |  -  |
+| **404** | No such account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

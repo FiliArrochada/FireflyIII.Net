@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **ToCurrencyDecimalPlaces** | **int** |  | [optional] 
 **Date** | **DateTime** |  | [optional] 
 **Rate** | **float** |  | [optional] 
-**Amount** | **double** | The amount in the \&quot;to\&quot;-currency, if provided in the request. | [optional] 
+**Amount** | **string** | The amount in the \&quot;to\&quot;-currency, if provided in the request. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CurrencyCode** | **string** | Use either currency_id or currency_code. | [optional] 
 **CurrencySymbol** | **string** |  | [optional] [readonly] 
 **CurrencyDecimalPlaces** | **int** |  | [optional] [readonly] 
-**Amount** | **double** |  | 
+**Amount** | **string** |  | 
 **Start** | **DateTime** | Start date of the available budget. | 
 **End** | **DateTime** | End date of the available budget. | 
 **SpentInBudgets** | [**List&lt;BudgetSpent&gt;**](BudgetSpent.md) |  | [optional] [readonly] 

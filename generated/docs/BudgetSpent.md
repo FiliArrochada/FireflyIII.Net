@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sum** | **double** | The amount spent. | [optional] 
+**Sum** | **string** | The amount spent. | [optional] 
 **CurrencyId** | **int** |  | [optional] 
 **CurrencyCode** | **string** |  | [optional] 
 **CurrencySymbol** | **string** |  | [optional] 
