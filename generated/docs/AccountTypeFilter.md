@@ -1,4 +1,5 @@
 # FireflyIII.Model.AccountTypeFilter
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -2,19 +2,18 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteBill**](BillsApi.md#deletebill) | **DELETE** /api/v1/bills/{id} | Delete a bill.
-[**GetBill**](BillsApi.md#getbill) | **GET** /api/v1/bills/{id} | Get a single bill.
-[**ListAttachmentByBill**](BillsApi.md#listattachmentbybill) | **GET** /api/v1/bills/{id}/attachments | List all attachments uploaded to the bill.
-[**ListBill**](BillsApi.md#listbill) | **GET** /api/v1/bills | List all bills.
-[**ListRuleByBill**](BillsApi.md#listrulebybill) | **GET** /api/v1/bills/{id}/rules | List all rules associated with the bill.
-[**ListTransactionByBill**](BillsApi.md#listtransactionbybill) | **GET** /api/v1/bills/{id}/transactions | List all transactions associated with the  bill.
-[**StoreBill**](BillsApi.md#storebill) | **POST** /api/v1/bills | Store a new bill
-[**UpdateBill**](BillsApi.md#updatebill) | **PUT** /api/v1/bills/{id} | Update existing bill.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteBill**](BillsApi.md#deletebill) | **DELETE** /api/v1/bills/{id} | Delete a bill. |
+| [**GetBill**](BillsApi.md#getbill) | **GET** /api/v1/bills/{id} | Get a single bill. |
+| [**ListAttachmentByBill**](BillsApi.md#listattachmentbybill) | **GET** /api/v1/bills/{id}/attachments | List all attachments uploaded to the bill. |
+| [**ListBill**](BillsApi.md#listbill) | **GET** /api/v1/bills | List all bills. |
+| [**ListRuleByBill**](BillsApi.md#listrulebybill) | **GET** /api/v1/bills/{id}/rules | List all rules associated with the bill. |
+| [**ListTransactionByBill**](BillsApi.md#listtransactionbybill) | **GET** /api/v1/bills/{id}/transactions | List all transactions associated with the  bill. |
+| [**StoreBill**](BillsApi.md#storebill) | **POST** /api/v1/bills | Store a new bill |
+| [**UpdateBill**](BillsApi.md#updatebill) | **PUT** /api/v1/bills/{id} | Update existing bill. |
 
-
-<a name="deletebill"></a>
+<a id="deletebill"></a>
 # **DeleteBill**
 > void DeleteBill (int id)
 
@@ -36,11 +35,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
 
             try
@@ -50,8 +50,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.DeleteBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.DeleteBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -59,11 +59,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a bill.
+    apiInstance.DeleteBillWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.DeleteBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the bill. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the bill. |  |
 
 ### Return type
 
@@ -78,6 +95,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -86,7 +104,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getbill"></a>
+<a id="getbill"></a>
 # **GetBill**
 > BillSingle GetBill (int id, DateTime? start = null, DateTime? end = null)
 
@@ -108,14 +126,15 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
-            var end = Sun Dec 30 18:00:00 CST 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
 
             try
             {
@@ -125,8 +144,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.GetBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.GetBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -134,13 +153,33 @@ namespace Example
 }
 ```
 
+#### Using the GetBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single bill.
+    ApiResponse<BillSingle> response = apiInstance.GetBillWithHttpInfo(id, start, end);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.GetBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the bill. | 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the bill. |  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional]  |
 
 ### Return type
 
@@ -155,6 +194,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -163,7 +203,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listattachmentbybill"></a>
+<a id="listattachmentbybill"></a>
 # **ListAttachmentByBill**
 > AttachmentArray ListAttachmentByBill (int id, int? page = null)
 
@@ -185,11 +225,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
@@ -201,8 +242,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.ListAttachmentByBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.ListAttachmentByBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -210,12 +251,32 @@ namespace Example
 }
 ```
 
+#### Using the ListAttachmentByBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all attachments uploaded to the bill.
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByBillWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.ListAttachmentByBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the bill. | 
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the bill. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -230,6 +291,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -237,7 +299,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listbill"></a>
+<a id="listbill"></a>
 # **ListBill**
 > BillArray ListBill (int? page = null, DateTime? start = null, DateTime? end = null)
 
@@ -259,14 +321,15 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
-            var end = Sun Dec 30 18:00:00 CST 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  (optional) 
 
             try
             {
@@ -276,8 +339,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.ListBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.ListBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -285,13 +348,33 @@ namespace Example
 }
 ```
 
+#### Using the ListBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all bills.
+    ApiResponse<BillArray> response = apiInstance.ListBillWithHttpInfo(page, start, end);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.ListBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD. If it is are added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD. If it is added to the request, Firefly III will calculate the appropriate payment and paid dates.  | [optional]  |
 
 ### Return type
 
@@ -306,6 +389,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -313,7 +397,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listrulebybill"></a>
+<a id="listrulebybill"></a>
 # **ListRuleByBill**
 > RuleArray ListRuleByBill (int id)
 
@@ -335,11 +419,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
 
             try
@@ -350,8 +435,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.ListRuleByBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.ListRuleByBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -359,11 +444,31 @@ namespace Example
 }
 ```
 
+#### Using the ListRuleByBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all rules associated with the bill.
+    ApiResponse<RuleArray> response = apiInstance.ListRuleByBillWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.ListRuleByBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the bill. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the bill. |  |
 
 ### Return type
 
@@ -378,6 +483,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -385,7 +491,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listtransactionbybill"></a>
+<a id="listtransactionbybill"></a>
 # **ListTransactionByBill**
 > TransactionArray ListTransactionByBill (int id, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
@@ -407,14 +513,15 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var end = Sun Dec 30 18:00:00 CST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
 
             try
@@ -425,8 +532,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.ListTransactionByBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.ListTransactionByBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -434,14 +541,34 @@ namespace Example
 }
 ```
 
+#### Using the ListTransactionByBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all transactions associated with the  bill.
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByBillWithHttpInfo(id, start, end, type);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.ListTransactionByBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the bill. | 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD.  | [optional] 
- **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md)| Optional filter on the transaction type(s) returned | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the bill. |  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
+| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
 
@@ -456,6 +583,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -463,7 +591,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storebill"></a>
+<a id="storebill"></a>
 # **StoreBill**
 > BillSingle StoreBill (Bill bill)
 
@@ -485,11 +613,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var bill = new Bill(); // Bill | JSON array or key=value pairs with the necessary bill information. See the model for the exact specifications.
 
             try
@@ -500,8 +629,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.StoreBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.StoreBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -509,11 +638,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Store a new bill
+    ApiResponse<BillSingle> response = apiInstance.StoreBillWithHttpInfo(bill);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.StoreBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **bill** | [**Bill**](Bill.md)| JSON array or key&#x3D;value pairs with the necessary bill information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **bill** | [**Bill**](Bill.md) | JSON array or key&#x3D;value pairs with the necessary bill information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -528,6 +677,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -536,7 +686,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatebill"></a>
+<a id="updatebill"></a>
 # **UpdateBill**
 > BillSingle UpdateBill (int id, Bill bill)
 
@@ -558,11 +708,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new BillsApi(Configuration.Default);
+            var apiInstance = new BillsApi(config);
             var id = 1;  // int | The ID of the bill.
             var bill = new Bill(); // Bill | JSON array or key=value pairs with updated bill information. See the model for the exact specifications.
 
@@ -574,8 +725,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BillsApi.UpdateBill: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BillsApi.UpdateBill: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -583,12 +734,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateBillWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing bill.
+    ApiResponse<BillSingle> response = apiInstance.UpdateBillWithHttpInfo(id, bill);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BillsApi.UpdateBillWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the bill. | 
- **bill** | [**Bill**](Bill.md)| JSON array or key&#x3D;value pairs with updated bill information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the bill. |  |
+| **bill** | [**Bill**](Bill.md) | JSON array or key&#x3D;value pairs with updated bill information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -602,6 +773,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

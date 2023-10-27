@@ -1,4 +1,5 @@
 # FireflyIII.Model.ImportJobAttributes
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -12,7 +13,7 @@ Name | Type | Description | Notes
 **Provider** | **string** | Import provider that did the import. | [optional] 
 **Status** | **string** | Status of import job. | [optional] 
 **Stage** | **string** | Current stage. | [optional] 
-**Configuration** | **string** | JSON string with job-specific configuration. | [optional] 
+**VarConfiguration** | **string** | JSON string with job-specific configuration. | [optional] 
 **ExtendedStatus** | **string** | JSON string with job-specific status. | [optional] 
 **Transactions** | **string** | JSON string with a count of transactions in the job. | [optional] 
 **Errors** | **string** | JSON string with a list of errors. | [optional] 

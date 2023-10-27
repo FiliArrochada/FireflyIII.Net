@@ -1,4 +1,5 @@
 # FireflyIII.Model.TransactionLink
+
 ## Properties
 
 Name | Type | Description | Notes

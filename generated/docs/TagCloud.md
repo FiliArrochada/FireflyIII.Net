@@ -1,4 +1,5 @@
 # FireflyIII.Model.TagCloud
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -2,14 +2,13 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetPreference**](PreferencesApi.md#getpreference) | **GET** /api/v1/preferences/{name} | Return a single preference.
-[**ListPreference**](PreferencesApi.md#listpreference) | **GET** /api/v1/preferences | List all users preferences.
-[**UpdatePreference**](PreferencesApi.md#updatepreference) | **PUT** /api/v1/preferences/{name} | Update preference
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetPreference**](PreferencesApi.md#getpreference) | **GET** /api/v1/preferences/{name} | Return a single preference. |
+| [**ListPreference**](PreferencesApi.md#listpreference) | **GET** /api/v1/preferences | List all users preferences. |
+| [**UpdatePreference**](PreferencesApi.md#updatepreference) | **PUT** /api/v1/preferences/{name} | Update preference |
 
-
-<a name="getpreference"></a>
+<a id="getpreference"></a>
 # **GetPreference**
 > PreferenceSingle GetPreference (string name)
 
@@ -31,11 +30,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PreferencesApi(Configuration.Default);
+            var apiInstance = new PreferencesApi(config);
             var name = currencyPreference;  // string | The name of the preference.
 
             try
@@ -46,8 +46,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PreferencesApi.GetPreference: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PreferencesApi.GetPreference: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -55,11 +55,31 @@ namespace Example
 }
 ```
 
+#### Using the GetPreferenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Return a single preference.
+    ApiResponse<PreferenceSingle> response = apiInstance.GetPreferenceWithHttpInfo(name);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PreferencesApi.GetPreferenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| The name of the preference. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **name** | **string** | The name of the preference. |  |
 
 ### Return type
 
@@ -74,6 +94,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -81,7 +102,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listpreference"></a>
+<a id="listpreference"></a>
 # **ListPreference**
 > PreferenceArray ListPreference (int? page = null)
 
@@ -103,11 +124,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PreferencesApi(Configuration.Default);
+            var apiInstance = new PreferencesApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -118,8 +140,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PreferencesApi.ListPreference: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PreferencesApi.ListPreference: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -127,11 +149,31 @@ namespace Example
 }
 ```
 
+#### Using the ListPreferenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all users preferences.
+    ApiResponse<PreferenceArray> response = apiInstance.ListPreferenceWithHttpInfo(page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PreferencesApi.ListPreferenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -146,6 +188,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -153,7 +196,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatepreference"></a>
+<a id="updatepreference"></a>
 # **UpdatePreference**
 > PreferenceSingle UpdatePreference (string name, Preference preference)
 
@@ -175,11 +218,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PreferencesApi(Configuration.Default);
+            var apiInstance = new PreferencesApi(config);
             var name = currencyPreference;  // string | The name of the preference. Will always overwrite. Will be created if it does not exist.
             var preference = new Preference(); // Preference | JSON array or key=value pairs with the necessary preference information. See the model for the exact specifications.
 
@@ -191,8 +235,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PreferencesApi.UpdatePreference: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PreferencesApi.UpdatePreference: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -200,12 +244,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdatePreferenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update preference
+    ApiResponse<PreferenceSingle> response = apiInstance.UpdatePreferenceWithHttpInfo(name, preference);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PreferencesApi.UpdatePreferenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| The name of the preference. Will always overwrite. Will be created if it does not exist. | 
- **preference** | [**Preference**](Preference.md)| JSON array or key&#x3D;value pairs with the necessary preference information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **name** | **string** | The name of the preference. Will always overwrite. Will be created if it does not exist. |  |
+| **preference** | [**Preference**](Preference.md) | JSON array or key&#x3D;value pairs with the necessary preference information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -219,6 +283,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

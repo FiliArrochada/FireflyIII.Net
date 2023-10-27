@@ -2,17 +2,16 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeletePiggyBank**](PiggyBanksApi.md#deletepiggybank) | **DELETE** /api/v1/piggy_banks/{id} | Delete a piggy bank.
-[**GetPiggyBank**](PiggyBanksApi.md#getpiggybank) | **GET** /api/v1/piggy_banks/{id} | Get a single piggy bank.
-[**ListEventByPiggyBank**](PiggyBanksApi.md#listeventbypiggybank) | **GET** /api/v1/piggy_banks/{id}/events | List all events linked to a piggy bank.
-[**ListPiggyBank**](PiggyBanksApi.md#listpiggybank) | **GET** /api/v1/piggy_banks | List all piggy banks.
-[**StorePiggyBank**](PiggyBanksApi.md#storepiggybank) | **POST** /api/v1/piggy_banks | Store a new piggy bank
-[**UpdatePiggyBank**](PiggyBanksApi.md#updatepiggybank) | **PUT** /api/v1/piggy_banks/{id} | Update existing piggy bank.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeletePiggyBank**](PiggyBanksApi.md#deletepiggybank) | **DELETE** /api/v1/piggy_banks/{id} | Delete a piggy bank. |
+| [**GetPiggyBank**](PiggyBanksApi.md#getpiggybank) | **GET** /api/v1/piggy_banks/{id} | Get a single piggy bank. |
+| [**ListEventByPiggyBank**](PiggyBanksApi.md#listeventbypiggybank) | **GET** /api/v1/piggy_banks/{id}/events | List all events linked to a piggy bank. |
+| [**ListPiggyBank**](PiggyBanksApi.md#listpiggybank) | **GET** /api/v1/piggy_banks | List all piggy banks. |
+| [**StorePiggyBank**](PiggyBanksApi.md#storepiggybank) | **POST** /api/v1/piggy_banks | Store a new piggy bank |
+| [**UpdatePiggyBank**](PiggyBanksApi.md#updatepiggybank) | **PUT** /api/v1/piggy_banks/{id} | Update existing piggy bank. |
 
-
-<a name="deletepiggybank"></a>
+<a id="deletepiggybank"></a>
 # **DeletePiggyBank**
 > void DeletePiggyBank (int id)
 
@@ -34,11 +33,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PiggyBanksApi(Configuration.Default);
+            var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank.
 
             try
@@ -48,8 +48,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PiggyBanksApi.DeletePiggyBank: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PiggyBanksApi.DeletePiggyBank: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -57,11 +57,28 @@ namespace Example
 }
 ```
 
+#### Using the DeletePiggyBankWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a piggy bank.
+    apiInstance.DeletePiggyBankWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PiggyBanksApi.DeletePiggyBankWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the piggy bank. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the piggy bank. |  |
 
 ### Return type
 
@@ -76,6 +93,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -84,7 +102,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpiggybank"></a>
+<a id="getpiggybank"></a>
 # **GetPiggyBank**
 > PiggyBankSingle GetPiggyBank (int id)
 
@@ -106,11 +124,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PiggyBanksApi(Configuration.Default);
+            var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank.
 
             try
@@ -121,8 +140,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PiggyBanksApi.GetPiggyBank: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PiggyBanksApi.GetPiggyBank: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -130,11 +149,31 @@ namespace Example
 }
 ```
 
+#### Using the GetPiggyBankWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single piggy bank.
+    ApiResponse<PiggyBankSingle> response = apiInstance.GetPiggyBankWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PiggyBanksApi.GetPiggyBankWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the piggy bank. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the piggy bank. |  |
 
 ### Return type
 
@@ -149,6 +188,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -157,7 +197,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listeventbypiggybank"></a>
+<a id="listeventbypiggybank"></a>
 # **ListEventByPiggyBank**
 > PiggyBankEventArray ListEventByPiggyBank (int id, int? page = null)
 
@@ -179,11 +219,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PiggyBanksApi(Configuration.Default);
+            var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
@@ -195,8 +236,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PiggyBanksApi.ListEventByPiggyBank: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PiggyBanksApi.ListEventByPiggyBank: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -204,12 +245,32 @@ namespace Example
 }
 ```
 
+#### Using the ListEventByPiggyBankWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all events linked to a piggy bank.
+    ApiResponse<PiggyBankEventArray> response = apiInstance.ListEventByPiggyBankWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PiggyBanksApi.ListEventByPiggyBankWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the piggy bank | 
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the piggy bank |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -224,6 +285,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -231,7 +293,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listpiggybank"></a>
+<a id="listpiggybank"></a>
 # **ListPiggyBank**
 > PiggyBankArray ListPiggyBank (int? page = null)
 
@@ -253,11 +315,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PiggyBanksApi(Configuration.Default);
+            var apiInstance = new PiggyBanksApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -268,8 +331,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PiggyBanksApi.ListPiggyBank: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PiggyBanksApi.ListPiggyBank: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -277,11 +340,31 @@ namespace Example
 }
 ```
 
+#### Using the ListPiggyBankWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all piggy banks.
+    ApiResponse<PiggyBankArray> response = apiInstance.ListPiggyBankWithHttpInfo(page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PiggyBanksApi.ListPiggyBankWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -296,6 +379,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -303,7 +387,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storepiggybank"></a>
+<a id="storepiggybank"></a>
 # **StorePiggyBank**
 > PiggyBankSingle StorePiggyBank (PiggyBank piggyBank)
 
@@ -325,11 +409,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PiggyBanksApi(Configuration.Default);
+            var apiInstance = new PiggyBanksApi(config);
             var piggyBank = new PiggyBank(); // PiggyBank | JSON array or key=value pairs with the necessary piggy bank information. See the model for the exact specifications.
 
             try
@@ -340,8 +425,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PiggyBanksApi.StorePiggyBank: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PiggyBanksApi.StorePiggyBank: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -349,11 +434,31 @@ namespace Example
 }
 ```
 
+#### Using the StorePiggyBankWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Store a new piggy bank
+    ApiResponse<PiggyBankSingle> response = apiInstance.StorePiggyBankWithHttpInfo(piggyBank);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PiggyBanksApi.StorePiggyBankWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **piggyBank** | [**PiggyBank**](PiggyBank.md)| JSON array or key&#x3D;value pairs with the necessary piggy bank information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **piggyBank** | [**PiggyBank**](PiggyBank.md) | JSON array or key&#x3D;value pairs with the necessary piggy bank information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -368,6 +473,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -376,7 +482,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatepiggybank"></a>
+<a id="updatepiggybank"></a>
 # **UpdatePiggyBank**
 > PiggyBankSingle UpdatePiggyBank (int id, PiggyBank piggyBank)
 
@@ -398,11 +504,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PiggyBanksApi(Configuration.Default);
+            var apiInstance = new PiggyBanksApi(config);
             var id = 1;  // int | The ID of the piggy bank
             var piggyBank = new PiggyBank(); // PiggyBank | JSON array with updated piggy bank information. See the model for the exact specifications.
 
@@ -414,8 +521,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PiggyBanksApi.UpdatePiggyBank: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling PiggyBanksApi.UpdatePiggyBank: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -423,12 +530,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdatePiggyBankWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing piggy bank.
+    ApiResponse<PiggyBankSingle> response = apiInstance.UpdatePiggyBankWithHttpInfo(id, piggyBank);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PiggyBanksApi.UpdatePiggyBankWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the piggy bank | 
- **piggyBank** | [**PiggyBank**](PiggyBank.md)| JSON array with updated piggy bank information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the piggy bank |  |
+| **piggyBank** | [**PiggyBank**](PiggyBank.md) | JSON array with updated piggy bank information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -442,6 +569,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

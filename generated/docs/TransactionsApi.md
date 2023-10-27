@@ -2,19 +2,18 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /api/v1/transactions/{id} | Delete a transaction.
-[**GetTransaction**](TransactionsApi.md#gettransaction) | **GET** /api/v1/transactions/{id} | Get a single transaction.
-[**GetTransactionByJournal**](TransactionsApi.md#gettransactionbyjournal) | **GET** /api/v1/transaction-journals/{id} | Get a single transaction, based on one of the underlying transaction journals.
-[**ListAttachmentByTransaction**](TransactionsApi.md#listattachmentbytransaction) | **GET** /api/v1/transactions/{id}/attachments | Lists all attachments.
-[**ListEventByTransaction**](TransactionsApi.md#listeventbytransaction) | **GET** /api/v1/transactions/{id}/piggy_bank_events | Lists all piggy bank events.
-[**ListTransaction**](TransactionsApi.md#listtransaction) | **GET** /api/v1/transactions | List all the user&#39;s transactions. 
-[**StoreTransaction**](TransactionsApi.md#storetransaction) | **POST** /api/v1/transactions | Store a new transaction
-[**UpdateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /api/v1/transactions/{id} | Update existing transaction.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteTransaction**](TransactionsApi.md#deletetransaction) | **DELETE** /api/v1/transactions/{id} | Delete a transaction. |
+| [**GetTransaction**](TransactionsApi.md#gettransaction) | **GET** /api/v1/transactions/{id} | Get a single transaction. |
+| [**GetTransactionByJournal**](TransactionsApi.md#gettransactionbyjournal) | **GET** /api/v1/transaction-journals/{id} | Get a single transaction, based on one of the underlying transaction journals. |
+| [**ListAttachmentByTransaction**](TransactionsApi.md#listattachmentbytransaction) | **GET** /api/v1/transactions/{id}/attachments | Lists all attachments. |
+| [**ListEventByTransaction**](TransactionsApi.md#listeventbytransaction) | **GET** /api/v1/transactions/{id}/piggy_bank_events | Lists all piggy bank events. |
+| [**ListTransaction**](TransactionsApi.md#listtransaction) | **GET** /api/v1/transactions | List all the user&#39;s transactions.  |
+| [**StoreTransaction**](TransactionsApi.md#storetransaction) | **POST** /api/v1/transactions | Store a new transaction |
+| [**UpdateTransaction**](TransactionsApi.md#updatetransaction) | **PUT** /api/v1/transactions/{id} | Update existing transaction. |
 
-
-<a name="deletetransaction"></a>
+<a id="deletetransaction"></a>
 # **DeleteTransaction**
 > void DeleteTransaction (int id)
 
@@ -36,11 +35,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
 
             try
@@ -50,8 +50,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.DeleteTransaction: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.DeleteTransaction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -59,11 +59,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteTransactionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a transaction.
+    apiInstance.DeleteTransactionWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.DeleteTransactionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction. |  |
 
 ### Return type
 
@@ -78,6 +95,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -86,7 +104,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettransaction"></a>
+<a id="gettransaction"></a>
 # **GetTransaction**
 > TransactionSingle GetTransaction (int id)
 
@@ -108,11 +126,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
 
             try
@@ -123,8 +142,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.GetTransaction: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.GetTransaction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -132,11 +151,31 @@ namespace Example
 }
 ```
 
+#### Using the GetTransactionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single transaction.
+    ApiResponse<TransactionSingle> response = apiInstance.GetTransactionWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.GetTransactionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction. |  |
 
 ### Return type
 
@@ -151,6 +190,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -159,7 +199,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettransactionbyjournal"></a>
+<a id="gettransactionbyjournal"></a>
 # **GetTransactionByJournal**
 > TransactionSingle GetTransactionByJournal (int id)
 
@@ -181,11 +221,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction journal.
 
             try
@@ -196,8 +237,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.GetTransactionByJournal: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.GetTransactionByJournal: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -205,11 +246,31 @@ namespace Example
 }
 ```
 
+#### Using the GetTransactionByJournalWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single transaction, based on one of the underlying transaction journals.
+    ApiResponse<TransactionSingle> response = apiInstance.GetTransactionByJournalWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.GetTransactionByJournalWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction journal. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction journal. |  |
 
 ### Return type
 
@@ -224,6 +285,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -232,7 +294,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listattachmentbytransaction"></a>
+<a id="listattachmentbytransaction"></a>
 # **ListAttachmentByTransaction**
 > AttachmentArray ListAttachmentByTransaction (int id, int? page = null)
 
@@ -254,11 +316,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
@@ -270,8 +333,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.ListAttachmentByTransaction: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.ListAttachmentByTransaction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -279,12 +342,32 @@ namespace Example
 }
 ```
 
+#### Using the ListAttachmentByTransactionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Lists all attachments.
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByTransactionWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.ListAttachmentByTransactionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction. | 
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -299,6 +382,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -307,7 +391,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listeventbytransaction"></a>
+<a id="listeventbytransaction"></a>
 # **ListEventByTransaction**
 > PiggyBankEventArray ListEventByTransaction (int id, int? page = null)
 
@@ -329,11 +413,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
@@ -345,8 +430,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.ListEventByTransaction: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.ListEventByTransaction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -354,12 +439,32 @@ namespace Example
 }
 ```
 
+#### Using the ListEventByTransactionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Lists all piggy bank events.
+    ApiResponse<PiggyBankEventArray> response = apiInstance.ListEventByTransactionWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.ListEventByTransactionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction. | 
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -374,6 +479,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -382,7 +488,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listtransaction"></a>
+<a id="listtransaction"></a>
 # **ListTransaction**
 > TransactionArray ListTransaction (int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
@@ -404,14 +510,15 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional) 
-            var end = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD. This is the end date of the selected range (inclusive).  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional) 
+            var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. This is the end date of the selected range (inclusive).  (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned. (optional) 
 
             try
@@ -422,8 +529,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.ListTransaction: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.ListTransaction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -431,14 +538,34 @@ namespace Example
 }
 ```
 
+#### Using the ListTransactionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all the user's transactions. 
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionWithHttpInfo(page, start, end, type);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.ListTransactionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD. This is the end date of the selected range (inclusive).  | [optional] 
- **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md)| Optional filter on the transaction type(s) returned. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD. This is the end date of the selected range (inclusive).  | [optional]  |
+| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned. | [optional]  |
 
 ### Return type
 
@@ -453,6 +580,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -460,7 +588,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storetransaction"></a>
+<a id="storetransaction"></a>
 # **StoreTransaction**
 > TransactionSingle StoreTransaction (Transaction transaction)
 
@@ -482,11 +610,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var transaction = new Transaction(); // Transaction | JSON array or key=value pairs with the necessary transaction information. See the model for the exact specifications.
 
             try
@@ -497,8 +626,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.StoreTransaction: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.StoreTransaction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -506,11 +635,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreTransactionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Store a new transaction
+    ApiResponse<TransactionSingle> response = apiInstance.StoreTransactionWithHttpInfo(transaction);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.StoreTransactionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **transaction** | [**Transaction**](Transaction.md)| JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **transaction** | [**Transaction**](Transaction.md) | JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -525,6 +674,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -533,7 +683,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatetransaction"></a>
+<a id="updatetransaction"></a>
 # **UpdateTransaction**
 > TransactionSingle UpdateTransaction (int id, Transaction transaction)
 
@@ -555,11 +705,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TransactionsApi(Configuration.Default);
+            var apiInstance = new TransactionsApi(config);
             var id = 1;  // int | The ID of the transaction.
             var transaction = new Transaction(); // Transaction | JSON array with updated transaction information. See the model for the exact specifications.
 
@@ -571,8 +722,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactionsApi.UpdateTransaction: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactionsApi.UpdateTransaction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -580,12 +731,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateTransactionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing transaction.
+    ApiResponse<TransactionSingle> response = apiInstance.UpdateTransactionWithHttpInfo(id, transaction);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactionsApi.UpdateTransactionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction. | 
- **transaction** | [**Transaction**](Transaction.md)| JSON array with updated transaction information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction. |  |
+| **transaction** | [**Transaction**](Transaction.md) | JSON array with updated transaction information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -599,6 +770,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -1,9 +1,10 @@
 # FireflyIII.Model.SystemInfoData
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Version** | **string** |  | 
+**VarVersion** | **string** |  | 
 **ApiVersion** | **string** |  | 
 **PhpVersion** | **string** |  | 
 **Os** | **string** |  | 

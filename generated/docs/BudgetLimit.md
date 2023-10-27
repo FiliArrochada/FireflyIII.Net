@@ -1,4 +1,5 @@
 # FireflyIII.Model.BudgetLimit
+
 ## Properties
 
 Name | Type | Description | Notes

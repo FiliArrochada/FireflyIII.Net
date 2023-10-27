@@ -1,4 +1,5 @@
 # FireflyIII.Model.SystemInfo
+
 ## Properties
 
 Name | Type | Description | Notes

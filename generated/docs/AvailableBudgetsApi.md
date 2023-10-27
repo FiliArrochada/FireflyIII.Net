@@ -2,16 +2,15 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteAvailableBudget**](AvailableBudgetsApi.md#deleteavailablebudget) | **DELETE** /api/v1/available_budgets/{id} | Delete an available budget.
-[**GetAvailableBudget**](AvailableBudgetsApi.md#getavailablebudget) | **GET** /api/v1/available_budgets/{id} | Get a single available budget.
-[**ListAvailableBudget**](AvailableBudgetsApi.md#listavailablebudget) | **GET** /api/v1/available_budgets | List all available budget amounts.
-[**StoreAvailableBudget**](AvailableBudgetsApi.md#storeavailablebudget) | **POST** /api/v1/available_budgets | Store a new available budget
-[**UpdateAvailableBudget**](AvailableBudgetsApi.md#updateavailablebudget) | **PUT** /api/v1/available_budgets/{id} | Update existing available budget, to change for example the date range of the amount or the amount itself.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteAvailableBudget**](AvailableBudgetsApi.md#deleteavailablebudget) | **DELETE** /api/v1/available_budgets/{id} | Delete an available budget. |
+| [**GetAvailableBudget**](AvailableBudgetsApi.md#getavailablebudget) | **GET** /api/v1/available_budgets/{id} | Get a single available budget. |
+| [**ListAvailableBudget**](AvailableBudgetsApi.md#listavailablebudget) | **GET** /api/v1/available_budgets | List all available budget amounts. |
+| [**StoreAvailableBudget**](AvailableBudgetsApi.md#storeavailablebudget) | **POST** /api/v1/available_budgets | Store a new available budget |
+| [**UpdateAvailableBudget**](AvailableBudgetsApi.md#updateavailablebudget) | **PUT** /api/v1/available_budgets/{id} | Update existing available budget, to change for example the date range of the amount or the amount itself. |
 
-
-<a name="deleteavailablebudget"></a>
+<a id="deleteavailablebudget"></a>
 # **DeleteAvailableBudget**
 > void DeleteAvailableBudget (int id)
 
@@ -33,11 +32,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AvailableBudgetsApi(Configuration.Default);
+            var apiInstance = new AvailableBudgetsApi(config);
             var id = 1;  // int | The ID of the available budget.
 
             try
@@ -47,8 +47,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AvailableBudgetsApi.DeleteAvailableBudget: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AvailableBudgetsApi.DeleteAvailableBudget: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -56,11 +56,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteAvailableBudgetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete an available budget.
+    apiInstance.DeleteAvailableBudgetWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AvailableBudgetsApi.DeleteAvailableBudgetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the available budget. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the available budget. |  |
 
 ### Return type
 
@@ -75,6 +92,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -83,7 +101,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getavailablebudget"></a>
+<a id="getavailablebudget"></a>
 # **GetAvailableBudget**
 > AvailableBudgetSingle GetAvailableBudget (int id)
 
@@ -105,11 +123,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AvailableBudgetsApi(Configuration.Default);
+            var apiInstance = new AvailableBudgetsApi(config);
             var id = 1;  // int | The ID of the available budget.
 
             try
@@ -120,8 +139,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AvailableBudgetsApi.GetAvailableBudget: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AvailableBudgetsApi.GetAvailableBudget: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -129,11 +148,31 @@ namespace Example
 }
 ```
 
+#### Using the GetAvailableBudgetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single available budget.
+    ApiResponse<AvailableBudgetSingle> response = apiInstance.GetAvailableBudgetWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AvailableBudgetsApi.GetAvailableBudgetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the available budget. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the available budget. |  |
 
 ### Return type
 
@@ -148,6 +187,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -156,7 +196,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listavailablebudget"></a>
+<a id="listavailablebudget"></a>
 # **ListAvailableBudget**
 > AvailableBudgetArray ListAvailableBudget (int? page = null, DateTime? start = null, DateTime? end = null)
 
@@ -178,14 +218,15 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AvailableBudgetsApi(Configuration.Default);
+            var apiInstance = new AvailableBudgetsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var end = Sun Dec 30 18:00:00 CST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
 
             try
             {
@@ -195,8 +236,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AvailableBudgetsApi.ListAvailableBudget: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AvailableBudgetsApi.ListAvailableBudget: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -204,13 +245,33 @@ namespace Example
 }
 ```
 
+#### Using the ListAvailableBudgetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all available budget amounts.
+    ApiResponse<AvailableBudgetArray> response = apiInstance.ListAvailableBudgetWithHttpInfo(page, start, end);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AvailableBudgetsApi.ListAvailableBudgetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 
 ### Return type
 
@@ -225,6 +286,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -232,7 +294,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storeavailablebudget"></a>
+<a id="storeavailablebudget"></a>
 # **StoreAvailableBudget**
 > AvailableBudgetSingle StoreAvailableBudget (AvailableBudget availableBudget)
 
@@ -254,11 +316,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AvailableBudgetsApi(Configuration.Default);
+            var apiInstance = new AvailableBudgetsApi(config);
             var availableBudget = new AvailableBudget(); // AvailableBudget | JSON array or key=value pairs with the necessary available budget information. See the model for the exact specifications.
 
             try
@@ -269,8 +332,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AvailableBudgetsApi.StoreAvailableBudget: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AvailableBudgetsApi.StoreAvailableBudget: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -278,11 +341,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreAvailableBudgetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Store a new available budget
+    ApiResponse<AvailableBudgetSingle> response = apiInstance.StoreAvailableBudgetWithHttpInfo(availableBudget);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AvailableBudgetsApi.StoreAvailableBudgetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **availableBudget** | [**AvailableBudget**](AvailableBudget.md)| JSON array or key&#x3D;value pairs with the necessary available budget information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **availableBudget** | [**AvailableBudget**](AvailableBudget.md) | JSON array or key&#x3D;value pairs with the necessary available budget information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -297,6 +380,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -305,7 +389,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateavailablebudget"></a>
+<a id="updateavailablebudget"></a>
 # **UpdateAvailableBudget**
 > AvailableBudgetSingle UpdateAvailableBudget (int id, AvailableBudget availableBudget)
 
@@ -327,11 +411,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AvailableBudgetsApi(Configuration.Default);
+            var apiInstance = new AvailableBudgetsApi(config);
             var id = 1;  // int | The ID of the object.X
             var availableBudget = new AvailableBudget(); // AvailableBudget | JSON array or form value with updated available budget information. See the model for the exact specifications.
 
@@ -343,8 +428,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AvailableBudgetsApi.UpdateAvailableBudget: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AvailableBudgetsApi.UpdateAvailableBudget: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -352,12 +437,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateAvailableBudgetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing available budget, to change for example the date range of the amount or the amount itself.
+    ApiResponse<AvailableBudgetSingle> response = apiInstance.UpdateAvailableBudgetWithHttpInfo(id, availableBudget);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AvailableBudgetsApi.UpdateAvailableBudgetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the object.X | 
- **availableBudget** | [**AvailableBudget**](AvailableBudget.md)| JSON array or form value with updated available budget information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the object.X |  |
+| **availableBudget** | [**AvailableBudget**](AvailableBudget.md) | JSON array or form value with updated available budget information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -371,6 +476,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

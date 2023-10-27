@@ -2,22 +2,21 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteLinkType**](LinksApi.md#deletelinktype) | **DELETE** /api/v1/link_types/{id} | Permanently delete link type.
-[**DeleteTransactionLink**](LinksApi.md#deletetransactionlink) | **DELETE** /api/v1/transaction_links/{id} | Permanently delete link between transactions.
-[**GetLinkType**](LinksApi.md#getlinktype) | **GET** /api/v1/link_types/{id} | Get single a link type.
-[**GetTransactionLink**](LinksApi.md#gettransactionlink) | **GET** /api/v1/transaction_links/{id} | Get a single link.
-[**ListLinkType**](LinksApi.md#listlinktype) | **GET** /api/v1/link_types | List all types of links.
-[**ListTransactionByLinkType**](LinksApi.md#listtransactionbylinktype) | **GET** /api/v1/link_types/{id}/transactions | List all transactions under this link type.
-[**ListTransactionLink**](LinksApi.md#listtransactionlink) | **GET** /api/v1/transaction_links | List all transaction links.
-[**StoreLinkType**](LinksApi.md#storelinktype) | **POST** /api/v1/link_types | Create a new link type
-[**StoreTransactionLink**](LinksApi.md#storetransactionlink) | **POST** /api/v1/transaction_links | Create a new link between transactions
-[**UpdateLinkType**](LinksApi.md#updatelinktype) | **PUT** /api/v1/link_types/{id} | Update existing link type.
-[**UpdateTransactionLink**](LinksApi.md#updatetransactionlink) | **PUT** /api/v1/transaction_links/{id} | Update an existing link between transactions.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteLinkType**](LinksApi.md#deletelinktype) | **DELETE** /api/v1/link_types/{id} | Permanently delete link type. |
+| [**DeleteTransactionLink**](LinksApi.md#deletetransactionlink) | **DELETE** /api/v1/transaction_links/{id} | Permanently delete link between transactions. |
+| [**GetLinkType**](LinksApi.md#getlinktype) | **GET** /api/v1/link_types/{id} | Get single a link type. |
+| [**GetTransactionLink**](LinksApi.md#gettransactionlink) | **GET** /api/v1/transaction_links/{id} | Get a single link. |
+| [**ListLinkType**](LinksApi.md#listlinktype) | **GET** /api/v1/link_types | List all types of links. |
+| [**ListTransactionByLinkType**](LinksApi.md#listtransactionbylinktype) | **GET** /api/v1/link_types/{id}/transactions | List all transactions under this link type. |
+| [**ListTransactionLink**](LinksApi.md#listtransactionlink) | **GET** /api/v1/transaction_links | List all transaction links. |
+| [**StoreLinkType**](LinksApi.md#storelinktype) | **POST** /api/v1/link_types | Create a new link type |
+| [**StoreTransactionLink**](LinksApi.md#storetransactionlink) | **POST** /api/v1/transaction_links | Create a new link between transactions |
+| [**UpdateLinkType**](LinksApi.md#updatelinktype) | **PUT** /api/v1/link_types/{id} | Update existing link type. |
+| [**UpdateTransactionLink**](LinksApi.md#updatetransactionlink) | **PUT** /api/v1/transaction_links/{id} | Update an existing link between transactions. |
 
-
-<a name="deletelinktype"></a>
+<a id="deletelinktype"></a>
 # **DeleteLinkType**
 > void DeleteLinkType (int id)
 
@@ -39,11 +38,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
 
             try
@@ -53,8 +53,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.DeleteLinkType: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.DeleteLinkType: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -62,11 +62,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteLinkTypeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Permanently delete link type.
+    apiInstance.DeleteLinkTypeWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.DeleteLinkTypeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the link type. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the link type. |  |
 
 ### Return type
 
@@ -81,6 +98,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -90,7 +108,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deletetransactionlink"></a>
+<a id="deletetransactionlink"></a>
 # **DeleteTransactionLink**
 > void DeleteTransactionLink (int id)
 
@@ -112,11 +130,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the transaction link.
 
             try
@@ -126,8 +145,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.DeleteTransactionLink: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.DeleteTransactionLink: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -135,11 +154,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteTransactionLinkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Permanently delete link between transactions.
+    apiInstance.DeleteTransactionLinkWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.DeleteTransactionLinkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction link. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction link. |  |
 
 ### Return type
 
@@ -154,6 +190,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -162,7 +199,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getlinktype"></a>
+<a id="getlinktype"></a>
 # **GetLinkType**
 > LinkTypeSingle GetLinkType (int id)
 
@@ -184,11 +221,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
 
             try
@@ -199,8 +237,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.GetLinkType: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.GetLinkType: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -208,11 +246,31 @@ namespace Example
 }
 ```
 
+#### Using the GetLinkTypeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get single a link type.
+    ApiResponse<LinkTypeSingle> response = apiInstance.GetLinkTypeWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.GetLinkTypeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the link type. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the link type. |  |
 
 ### Return type
 
@@ -227,6 +285,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -235,7 +294,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettransactionlink"></a>
+<a id="gettransactionlink"></a>
 # **GetTransactionLink**
 > TransactionLinkSingle GetTransactionLink (int id)
 
@@ -257,11 +316,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the transaction link.
 
             try
@@ -272,8 +332,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.GetTransactionLink: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.GetTransactionLink: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -281,11 +341,31 @@ namespace Example
 }
 ```
 
+#### Using the GetTransactionLinkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single link.
+    ApiResponse<TransactionLinkSingle> response = apiInstance.GetTransactionLinkWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.GetTransactionLinkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction link. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction link. |  |
 
 ### Return type
 
@@ -300,6 +380,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -308,7 +389,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listlinktype"></a>
+<a id="listlinktype"></a>
 # **ListLinkType**
 > LinkTypeArray ListLinkType (int? page = null)
 
@@ -330,11 +411,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50 items. (optional) 
 
             try
@@ -345,8 +427,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.ListLinkType: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.ListLinkType: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -354,11 +436,31 @@ namespace Example
 }
 ```
 
+#### Using the ListLinkTypeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all types of links.
+    ApiResponse<LinkTypeArray> response = apiInstance.ListLinkTypeWithHttpInfo(page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.ListLinkTypeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50 items. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50 items. | [optional]  |
 
 ### Return type
 
@@ -373,6 +475,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -380,7 +483,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listtransactionbylinktype"></a>
+<a id="listtransactionbylinktype"></a>
 # **ListTransactionByLinkType**
 > TransactionArray ListTransactionByLinkType (int id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
@@ -402,15 +505,16 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the results.  (optional) 
-            var end = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the results.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the results.  (optional) 
+            var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the results.  (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned. (optional) 
 
             try
@@ -421,8 +525,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.ListTransactionByLinkType: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.ListTransactionByLinkType: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -430,15 +534,35 @@ namespace Example
 }
 ```
 
+#### Using the ListTransactionByLinkTypeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all transactions under this link type.
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByLinkTypeWithHttpInfo(id, page, start, end, type);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.ListTransactionByLinkTypeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the link type. | 
- **page** | **int?**| Page number. The default pagination is per 50 items. | [optional] 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD, to limit the results.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD, to limit the results.  | [optional] 
- **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md)| Optional filter on the transaction type(s) returned. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the link type. |  |
+| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the results.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the results.  | [optional]  |
+| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned. | [optional]  |
 
 ### Return type
 
@@ -453,6 +577,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -460,7 +585,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listtransactionlink"></a>
+<a id="listtransactionlink"></a>
 # **ListTransactionLink**
 > TransactionLinkArray ListTransactionLink (int? page = null)
 
@@ -482,11 +607,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
@@ -497,8 +623,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.ListTransactionLink: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.ListTransactionLink: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -506,11 +632,31 @@ namespace Example
 }
 ```
 
+#### Using the ListTransactionLinkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all transaction links.
+    ApiResponse<TransactionLinkArray> response = apiInstance.ListTransactionLinkWithHttpInfo(page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.ListTransactionLinkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is per 50 items. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
 
@@ -525,6 +671,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -532,7 +679,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storelinktype"></a>
+<a id="storelinktype"></a>
 # **StoreLinkType**
 > LinkTypeSingle StoreLinkType (LinkType linkType)
 
@@ -554,11 +701,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var linkType = new LinkType(); // LinkType | JSON array with the necessary link type information or key=value pairs. See the model for the exact specifications.
 
             try
@@ -569,8 +717,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.StoreLinkType: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.StoreLinkType: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -578,11 +726,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreLinkTypeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a new link type
+    ApiResponse<LinkTypeSingle> response = apiInstance.StoreLinkTypeWithHttpInfo(linkType);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.StoreLinkTypeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **linkType** | [**LinkType**](LinkType.md)| JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **linkType** | [**LinkType**](LinkType.md) | JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -597,6 +765,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -605,7 +774,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storetransactionlink"></a>
+<a id="storetransactionlink"></a>
 # **StoreTransactionLink**
 > TransactionLinkSingle StoreTransactionLink (TransactionLink transactionLink)
 
@@ -627,11 +796,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var transactionLink = new TransactionLink(); // TransactionLink | JSON array with the necessary link type information or key=value pairs. See the model for the exact specifications.
 
             try
@@ -642,8 +812,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.StoreTransactionLink: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.StoreTransactionLink: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -651,11 +821,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreTransactionLinkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a new link between transactions
+    ApiResponse<TransactionLinkSingle> response = apiInstance.StoreTransactionLinkWithHttpInfo(transactionLink);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.StoreTransactionLinkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **transactionLink** | [**TransactionLink**](TransactionLink.md)| JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **transactionLink** | [**TransactionLink**](TransactionLink.md) | JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -670,6 +860,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -678,7 +869,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatelinktype"></a>
+<a id="updatelinktype"></a>
 # **UpdateLinkType**
 > LinkTypeSingle UpdateLinkType (int id, LinkType linkType)
 
@@ -700,11 +891,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the link type.
             var linkType = new LinkType(); // LinkType | JSON array or formdata with updated link type information. See the model for the exact specifications.
 
@@ -716,8 +908,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.UpdateLinkType: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.UpdateLinkType: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -725,12 +917,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateLinkTypeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing link type.
+    ApiResponse<LinkTypeSingle> response = apiInstance.UpdateLinkTypeWithHttpInfo(id, linkType);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.UpdateLinkTypeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the link type. | 
- **linkType** | [**LinkType**](LinkType.md)| JSON array or formdata with updated link type information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the link type. |  |
+| **linkType** | [**LinkType**](LinkType.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -745,6 +957,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -754,7 +967,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatetransactionlink"></a>
+<a id="updatetransactionlink"></a>
 # **UpdateTransactionLink**
 > TransactionLinkSingle UpdateTransactionLink (int id, TransactionLink transactionLink)
 
@@ -776,11 +989,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LinksApi(Configuration.Default);
+            var apiInstance = new LinksApi(config);
             var id = 1;  // int | The ID of the transaction link.
             var transactionLink = new TransactionLink(); // TransactionLink | JSON array or formdata with updated link type information. See the model for the exact specifications.
 
@@ -792,8 +1006,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling LinksApi.UpdateTransactionLink: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling LinksApi.UpdateTransactionLink: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -801,12 +1015,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateTransactionLinkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update an existing link between transactions.
+    ApiResponse<TransactionLinkSingle> response = apiInstance.UpdateTransactionLinkWithHttpInfo(id, transactionLink);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling LinksApi.UpdateTransactionLinkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the transaction link. | 
- **transactionLink** | [**TransactionLink**](TransactionLink.md)| JSON array or formdata with updated link type information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the transaction link. |  |
+| **transactionLink** | [**TransactionLink**](TransactionLink.md) | JSON array or formdata with updated link type information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -820,6 +1054,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

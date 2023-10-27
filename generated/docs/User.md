@@ -1,4 +1,5 @@
 # FireflyIII.Model.User
+
 ## Properties
 
 Name | Type | Description | Notes

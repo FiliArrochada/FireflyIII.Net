@@ -2,19 +2,18 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteRuleGroup**](RuleGroupsApi.md#deleterulegroup) | **DELETE** /api/v1/rule_groups/{id} | Delete a rule group.
-[**FireRuleGroup**](RuleGroupsApi.md#firerulegroup) | **POST** /api/v1/rule_groups/{id}/trigger | Fire the rule group on your transactions.
-[**GetRuleGroup**](RuleGroupsApi.md#getrulegroup) | **GET** /api/v1/rule_groups/{id} | Get a single rule group.
-[**ListRuleByGroup**](RuleGroupsApi.md#listrulebygroup) | **GET** /api/v1/rule_groups/{id}/rules | List rules in this rule group.
-[**ListRuleGroup**](RuleGroupsApi.md#listrulegroup) | **GET** /api/v1/rule_groups | List all rule groups.
-[**StoreRuleGroup**](RuleGroupsApi.md#storerulegroup) | **POST** /api/v1/rule_groups | Store a new rule group.
-[**TestRuleGroup**](RuleGroupsApi.md#testrulegroup) | **GET** /api/v1/rule_groups/{id}/test | Test which transactions would be hit by the rule group. No changes will be made.
-[**UpdateRuleGroup**](RuleGroupsApi.md#updaterulegroup) | **PUT** /api/v1/rule_groups/{id} | Update existing rule group.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteRuleGroup**](RuleGroupsApi.md#deleterulegroup) | **DELETE** /api/v1/rule_groups/{id} | Delete a rule group. |
+| [**FireRuleGroup**](RuleGroupsApi.md#firerulegroup) | **POST** /api/v1/rule_groups/{id}/trigger | Fire the rule group on your transactions. |
+| [**GetRuleGroup**](RuleGroupsApi.md#getrulegroup) | **GET** /api/v1/rule_groups/{id} | Get a single rule group. |
+| [**ListRuleByGroup**](RuleGroupsApi.md#listrulebygroup) | **GET** /api/v1/rule_groups/{id}/rules | List rules in this rule group. |
+| [**ListRuleGroup**](RuleGroupsApi.md#listrulegroup) | **GET** /api/v1/rule_groups | List all rule groups. |
+| [**StoreRuleGroup**](RuleGroupsApi.md#storerulegroup) | **POST** /api/v1/rule_groups | Store a new rule group. |
+| [**TestRuleGroup**](RuleGroupsApi.md#testrulegroup) | **GET** /api/v1/rule_groups/{id}/test | Test which transactions would be hit by the rule group. No changes will be made. |
+| [**UpdateRuleGroup**](RuleGroupsApi.md#updaterulegroup) | **PUT** /api/v1/rule_groups/{id} | Update existing rule group. |
 
-
-<a name="deleterulegroup"></a>
+<a id="deleterulegroup"></a>
 # **DeleteRuleGroup**
 > void DeleteRuleGroup (int id)
 
@@ -36,11 +35,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
 
             try
@@ -50,8 +50,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.DeleteRuleGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.DeleteRuleGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -59,11 +59,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteRuleGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a rule group.
+    apiInstance.DeleteRuleGroupWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.DeleteRuleGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the rule group. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the rule group. |  |
 
 ### Return type
 
@@ -78,6 +95,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -86,7 +104,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="firerulegroup"></a>
+<a id="firerulegroup"></a>
 # **FireRuleGroup**
 > void FireRuleGroup (int id, DateTime? start = null, DateTime? end = null, string accounts = null)
 
@@ -108,14 +126,15 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
-            var end = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
+            var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  (optional) 
             var accounts = 1,2,3;  // string | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
 
             try
@@ -125,8 +144,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.FireRuleGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.FireRuleGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -134,14 +153,31 @@ namespace Example
 }
 ```
 
+#### Using the FireRuleGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Fire the rule group on your transactions.
+    apiInstance.FireRuleGroupWithHttpInfo(id, start, end, accounts);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.FireRuleGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the rule group. | 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional] 
- **accounts** | **string**| Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the rule group. |  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the actions will be applied to. Both the start date and the end date must be present.  | [optional]  |
+| **accounts** | **string** | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
 
 ### Return type
 
@@ -156,6 +192,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -163,7 +200,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getrulegroup"></a>
+<a id="getrulegroup"></a>
 # **GetRuleGroup**
 > RuleGroupSingle GetRuleGroup (int id)
 
@@ -185,11 +222,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
 
             try
@@ -200,8 +238,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.GetRuleGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.GetRuleGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -209,11 +247,31 @@ namespace Example
 }
 ```
 
+#### Using the GetRuleGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single rule group.
+    ApiResponse<RuleGroupSingle> response = apiInstance.GetRuleGroupWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.GetRuleGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the rule group. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the rule group. |  |
 
 ### Return type
 
@@ -228,6 +286,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -236,7 +295,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listrulebygroup"></a>
+<a id="listrulebygroup"></a>
 # **ListRuleByGroup**
 > RuleArray ListRuleByGroup (int id, int? page = null)
 
@@ -258,11 +317,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
@@ -274,8 +334,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.ListRuleByGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.ListRuleByGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -283,12 +343,32 @@ namespace Example
 }
 ```
 
+#### Using the ListRuleByGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List rules in this rule group.
+    ApiResponse<RuleArray> response = apiInstance.ListRuleByGroupWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.ListRuleByGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the rule group. | 
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the rule group. |  |
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -303,6 +383,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -310,7 +391,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listrulegroup"></a>
+<a id="listrulegroup"></a>
 # **ListRuleGroup**
 > RuleGroupArray ListRuleGroup (int? page = null)
 
@@ -332,11 +413,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50 (optional) 
 
             try
@@ -347,8 +429,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.ListRuleGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.ListRuleGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -356,11 +438,31 @@ namespace Example
 }
 ```
 
+#### Using the ListRuleGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all rule groups.
+    ApiResponse<RuleGroupArray> response = apiInstance.ListRuleGroupWithHttpInfo(page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.ListRuleGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50 | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50 | [optional]  |
 
 ### Return type
 
@@ -375,6 +477,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -382,7 +485,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storerulegroup"></a>
+<a id="storerulegroup"></a>
 # **StoreRuleGroup**
 > RuleGroupSingle StoreRuleGroup (RuleGroup ruleGroup)
 
@@ -404,11 +507,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var ruleGroup = new RuleGroup(); // RuleGroup | JSON array or key=value pairs with the necessary rule group information. See the model for the exact specifications.
 
             try
@@ -419,8 +523,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.StoreRuleGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.StoreRuleGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -428,11 +532,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreRuleGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Store a new rule group.
+    ApiResponse<RuleGroupSingle> response = apiInstance.StoreRuleGroupWithHttpInfo(ruleGroup);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.StoreRuleGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ruleGroup** | [**RuleGroup**](RuleGroup.md)| JSON array or key&#x3D;value pairs with the necessary rule group information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **ruleGroup** | [**RuleGroup**](RuleGroup.md) | JSON array or key&#x3D;value pairs with the necessary rule group information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -447,6 +571,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -455,7 +580,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="testrulegroup"></a>
+<a id="testrulegroup"></a>
 # **TestRuleGroup**
 > TransactionArray TestRuleGroup (int id, int? page = null, DateTime? start = null, DateTime? end = null, int? searchLimit = null, int? triggeredLimit = null, string accounts = null)
 
@@ -477,15 +602,16 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
             var page = 1;  // int? | Page number. The default pagination is 50 items. (optional) 
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
-            var end = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
+            var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  (optional) 
             var searchLimit = 56;  // int? | Maximum number of transactions Firefly III will try. Don't set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.  (optional) 
             var triggeredLimit = 56;  // int? | Maximum number of transactions the rule group can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don't go above the user's page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.  (optional) 
             var accounts = 1,2,3;  // string | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
@@ -498,8 +624,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.TestRuleGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.TestRuleGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -507,17 +633,37 @@ namespace Example
 }
 ```
 
+#### Using the TestRuleGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Test which transactions would be hit by the rule group. No changes will be made.
+    ApiResponse<TransactionArray> response = apiInstance.TestRuleGroupWithHttpInfo(id, page, start, end, searchLimit, triggeredLimit, accounts);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.TestRuleGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the rule group. | 
- **page** | **int?**| Page number. The default pagination is 50 items. | [optional] 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional] 
- **searchLimit** | **int?**| Maximum number of transactions Firefly III will try. Don&#39;t set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.  | [optional] 
- **triggeredLimit** | **int?**| Maximum number of transactions the rule group can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don&#39;t go above the user&#39;s page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.  | [optional] 
- **accounts** | **string**| Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the rule group. |  |
+| **page** | **int?** | Page number. The default pagination is 50 items. | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the transactions the test will be applied to. Both the start date and the end date must be present.  | [optional]  |
+| **searchLimit** | **int?** | Maximum number of transactions Firefly III will try. Don&#39;t set this too high, or it will take Firefly III very long to run the test. I suggest a max of 200.  | [optional]  |
+| **triggeredLimit** | **int?** | Maximum number of transactions the rule group can actually trigger on, before Firefly III stops. I would suggest setting this to 10 or 15. Don&#39;t go above the user&#39;s page size, because browsing to page 2 or 3 of a test result would fire the test again, making any navigation efforts very slow.  | [optional]  |
+| **accounts** | **string** | Limit the testing of the rule group to these asset accounts. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
 
 ### Return type
 
@@ -532,6 +678,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -539,7 +686,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updaterulegroup"></a>
+<a id="updaterulegroup"></a>
 # **UpdateRuleGroup**
 > RuleGroupSingle UpdateRuleGroup (int id, RuleGroup ruleGroup)
 
@@ -561,11 +708,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new RuleGroupsApi(Configuration.Default);
+            var apiInstance = new RuleGroupsApi(config);
             var id = 1;  // int | The ID of the rule group.
             var ruleGroup = new RuleGroup(); // RuleGroup | JSON array with updated rule group information. See the model for the exact specifications.
 
@@ -577,8 +725,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RuleGroupsApi.UpdateRuleGroup: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling RuleGroupsApi.UpdateRuleGroup: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -586,12 +734,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateRuleGroupWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing rule group.
+    ApiResponse<RuleGroupSingle> response = apiInstance.UpdateRuleGroupWithHttpInfo(id, ruleGroup);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RuleGroupsApi.UpdateRuleGroupWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the rule group. | 
- **ruleGroup** | [**RuleGroup**](RuleGroup.md)| JSON array with updated rule group information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the rule group. |  |
+| **ruleGroup** | [**RuleGroup**](RuleGroup.md) | JSON array with updated rule group information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -605,6 +773,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

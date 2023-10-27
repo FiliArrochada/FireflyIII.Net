@@ -1,4 +1,5 @@
 # FireflyIII.Model.AvailableBudget
+
 ## Properties
 
 Name | Type | Description | Notes

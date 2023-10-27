@@ -1,4 +1,5 @@
 # FireflyIII.Model.CategorySpent
+
 ## Properties
 
 Name | Type | Description | Notes

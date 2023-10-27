@@ -1,4 +1,5 @@
 # FireflyIII.Model.ExchangeRateAttributes
+
 ## Properties
 
 Name | Type | Description | Notes

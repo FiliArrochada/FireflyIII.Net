@@ -2,18 +2,17 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteAttachment**](AttachmentsApi.md#deleteattachment) | **DELETE** /api/v1/attachments/{id} | Delete an attachment.
-[**DownloadAttachment**](AttachmentsApi.md#downloadattachment) | **GET** /api/v1/attachments/{id}/download | Download a single attachment.
-[**GetAttachment**](AttachmentsApi.md#getattachment) | **GET** /api/v1/attachments/{id} | Get a single attachment.
-[**ListAttachment**](AttachmentsApi.md#listattachment) | **GET** /api/v1/attachments | List all attachments.
-[**StoreAttachment**](AttachmentsApi.md#storeattachment) | **POST** /api/v1/attachments | Store a new attachment.
-[**UpdateAttachment**](AttachmentsApi.md#updateattachment) | **PUT** /api/v1/attachments/{id} | Update existing attachment.
-[**UploadAttachment**](AttachmentsApi.md#uploadattachment) | **POST** /api/v1/attachments/{id}/upload | Upload an attachment.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteAttachment**](AttachmentsApi.md#deleteattachment) | **DELETE** /api/v1/attachments/{id} | Delete an attachment. |
+| [**DownloadAttachment**](AttachmentsApi.md#downloadattachment) | **GET** /api/v1/attachments/{id}/download | Download a single attachment. |
+| [**GetAttachment**](AttachmentsApi.md#getattachment) | **GET** /api/v1/attachments/{id} | Get a single attachment. |
+| [**ListAttachment**](AttachmentsApi.md#listattachment) | **GET** /api/v1/attachments | List all attachments. |
+| [**StoreAttachment**](AttachmentsApi.md#storeattachment) | **POST** /api/v1/attachments | Store a new attachment. |
+| [**UpdateAttachment**](AttachmentsApi.md#updateattachment) | **PUT** /api/v1/attachments/{id} | Update existing attachment. |
+| [**UploadAttachment**](AttachmentsApi.md#uploadattachment) | **POST** /api/v1/attachments/{id}/upload | Upload an attachment. |
 
-
-<a name="deleteattachment"></a>
+<a id="deleteattachment"></a>
 # **DeleteAttachment**
 > void DeleteAttachment (int id)
 
@@ -35,11 +34,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AttachmentsApi(Configuration.Default);
+            var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the single.
 
             try
@@ -49,8 +49,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AttachmentsApi.DeleteAttachment: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AttachmentsApi.DeleteAttachment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -58,11 +58,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteAttachmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete an attachment.
+    apiInstance.DeleteAttachmentWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AttachmentsApi.DeleteAttachmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the single. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the single. |  |
 
 ### Return type
 
@@ -77,6 +94,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -85,7 +103,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="downloadattachment"></a>
+<a id="downloadattachment"></a>
 # **DownloadAttachment**
 > System.IO.Stream DownloadAttachment (int id)
 
@@ -107,11 +125,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AttachmentsApi(Configuration.Default);
+            var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
 
             try
@@ -122,8 +141,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AttachmentsApi.DownloadAttachment: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AttachmentsApi.DownloadAttachment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -131,11 +150,31 @@ namespace Example
 }
 ```
 
+#### Using the DownloadAttachmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Download a single attachment.
+    ApiResponse<System.IO.Stream> response = apiInstance.DownloadAttachmentWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AttachmentsApi.DownloadAttachmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the attachment. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the attachment. |  |
 
 ### Return type
 
@@ -150,6 +189,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/octet-stream
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -158,7 +198,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getattachment"></a>
+<a id="getattachment"></a>
 # **GetAttachment**
 > AttachmentSingle GetAttachment (int id)
 
@@ -180,11 +220,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AttachmentsApi(Configuration.Default);
+            var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
 
             try
@@ -195,8 +236,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AttachmentsApi.GetAttachment: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AttachmentsApi.GetAttachment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -204,11 +245,31 @@ namespace Example
 }
 ```
 
+#### Using the GetAttachmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a single attachment.
+    ApiResponse<AttachmentSingle> response = apiInstance.GetAttachmentWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AttachmentsApi.GetAttachmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the attachment. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the attachment. |  |
 
 ### Return type
 
@@ -223,6 +284,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -231,7 +293,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listattachment"></a>
+<a id="listattachment"></a>
 # **ListAttachment**
 > AttachmentArray ListAttachment (int? page = null)
 
@@ -253,11 +315,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AttachmentsApi(Configuration.Default);
+            var apiInstance = new AttachmentsApi(config);
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
@@ -268,8 +331,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AttachmentsApi.ListAttachment: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AttachmentsApi.ListAttachment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -277,11 +340,31 @@ namespace Example
 }
 ```
 
+#### Using the ListAttachmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all attachments.
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentWithHttpInfo(page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AttachmentsApi.ListAttachmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is 50. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
 
@@ -296,6 +379,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -303,7 +387,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storeattachment"></a>
+<a id="storeattachment"></a>
 # **StoreAttachment**
 > AttachmentSingle StoreAttachment (Attachment attachment)
 
@@ -325,11 +409,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AttachmentsApi(Configuration.Default);
+            var apiInstance = new AttachmentsApi(config);
             var attachment = new Attachment(); // Attachment | JSON array or key=value pairs with the necessary attachment information. See the model for the exact specifications.
 
             try
@@ -340,8 +425,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AttachmentsApi.StoreAttachment: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AttachmentsApi.StoreAttachment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -349,11 +434,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreAttachmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Store a new attachment.
+    ApiResponse<AttachmentSingle> response = apiInstance.StoreAttachmentWithHttpInfo(attachment);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AttachmentsApi.StoreAttachmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **attachment** | [**Attachment**](Attachment.md)| JSON array or key&#x3D;value pairs with the necessary attachment information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **attachment** | [**Attachment**](Attachment.md) | JSON array or key&#x3D;value pairs with the necessary attachment information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -368,6 +473,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -376,7 +482,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateattachment"></a>
+<a id="updateattachment"></a>
 # **UpdateAttachment**
 > AttachmentSingle UpdateAttachment (int id, Attachment attachment)
 
@@ -398,11 +504,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AttachmentsApi(Configuration.Default);
+            var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
             var attachment = new Attachment(); // Attachment | JSON array with updated attachment information. See the model for the exact specifications.
 
@@ -414,8 +521,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AttachmentsApi.UpdateAttachment: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AttachmentsApi.UpdateAttachment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -423,12 +530,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateAttachmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing attachment.
+    ApiResponse<AttachmentSingle> response = apiInstance.UpdateAttachmentWithHttpInfo(id, attachment);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AttachmentsApi.UpdateAttachmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the attachment. | 
- **attachment** | [**Attachment**](Attachment.md)| JSON array with updated attachment information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the attachment. |  |
+| **attachment** | [**Attachment**](Attachment.md) | JSON array with updated attachment information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -443,6 +570,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -451,7 +579,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="uploadattachment"></a>
+<a id="uploadattachment"></a>
 # **UploadAttachment**
 > void UploadAttachment (int id, System.IO.Stream body = null)
 
@@ -473,13 +601,14 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AttachmentsApi(Configuration.Default);
+            var apiInstance = new AttachmentsApi(config);
             var id = 1;  // int | The ID of the attachment.
-            var body = BINARY_DATA_HERE;  // System.IO.Stream |  (optional) 
+            var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream |  (optional) 
 
             try
             {
@@ -488,8 +617,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AttachmentsApi.UploadAttachment: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AttachmentsApi.UploadAttachment: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -497,12 +626,29 @@ namespace Example
 }
 ```
 
+#### Using the UploadAttachmentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Upload an attachment.
+    apiInstance.UploadAttachmentWithHttpInfo(id, body);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AttachmentsApi.UploadAttachmentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the attachment. | 
- **body** | **System.IO.Stream****System.IO.Stream**|  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the attachment. |  |
+| **body** | **System.IO.Stream****System.IO.Stream** |  | [optional]  |
 
 ### Return type
 
@@ -516,6 +662,7 @@ void (empty response body)
 
  - **Content-Type**: application/octet-stream
  - **Accept**: Not defined
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -1,4 +1,5 @@
 # FireflyIII.Model.Preference
+
 ## Properties
 
 Name | Type | Description | Notes

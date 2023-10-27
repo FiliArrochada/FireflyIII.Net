@@ -1,4 +1,5 @@
 # FireflyIII.Model.PiggyBank
+
 ## Properties
 
 Name | Type | Description | Notes

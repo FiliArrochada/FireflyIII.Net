@@ -1,4 +1,5 @@
 # FireflyIII.Model.Account
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 **OpeningBalance** | **double** |  | [optional] 
 **OpeningBalanceDate** | **DateTime** |  | [optional] 
 **VirtualBalance** | **double** |  | [optional] 
-**CurrentBalance** | **decimal** |  | [optional] [readonly] 
+**CurrentBalance** | **double** |  | [optional] [readonly] 
 **CurrentBalanceDate** | **DateTime** |  | [optional] [readonly] 
 **CurrencyId** | **int** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
 **CurrencyCode** | **string** | Use either currency_id or currency_code. Defaults to the user&#39;s default currency. | [optional] 
@@ -21,7 +22,7 @@ Name | Type | Description | Notes
 **CurrencyDecimalPlaces** | **int** |  | [optional] [readonly] 
 **Active** | **bool** | If omitted, defaults to true. | [optional] 
 **IncludeNetWorth** | **bool** | If omitted, defaults to true. | [optional] 
-**AccountRole** | **string** | Is only mandatory when the type is asset. | 
+**AccountRole** | **string** | Is only mandatory when the type is asset. | [optional] 
 **CreditCardType** | **string** | Mandatory when the account_role is ccAsset. Can only be monthlyFull. | [optional] 
 **MonthlyPaymentDate** | **DateTime?** | Mandatory when the account_role is ccAsset. Moment at which CC payment installments are asked for by the bank. | [optional] 
 **LiabilityType** | **string** | Mandatory when type is liability. Specifies the exact type. | [optional] 

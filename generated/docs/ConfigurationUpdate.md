@@ -1,4 +1,5 @@
 # FireflyIII.Model.ConfigurationUpdate
+
 ## Properties
 
 Name | Type | Description | Notes

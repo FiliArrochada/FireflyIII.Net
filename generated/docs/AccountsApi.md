@@ -2,18 +2,17 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteAccount**](AccountsApi.md#deleteaccount) | **DELETE** /api/v1/accounts/{id} | Permanently delete account.
-[**GetAccount**](AccountsApi.md#getaccount) | **GET** /api/v1/accounts/{id} | Get single account.
-[**ListAccount**](AccountsApi.md#listaccount) | **GET** /api/v1/accounts | List all accounts.
-[**ListPiggyBankByAccount**](AccountsApi.md#listpiggybankbyaccount) | **GET** /api/v1/accounts/{id}/piggy_banks | List all piggy banks related to the account.
-[**ListTransactionByAccount**](AccountsApi.md#listtransactionbyaccount) | **GET** /api/v1/accounts/{id}/transactions | List all transactions related to the account.
-[**StoreAccount**](AccountsApi.md#storeaccount) | **POST** /api/v1/accounts | Create new account.
-[**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /api/v1/accounts/{id} | Update existing account.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteAccount**](AccountsApi.md#deleteaccount) | **DELETE** /api/v1/accounts/{id} | Permanently delete account. |
+| [**GetAccount**](AccountsApi.md#getaccount) | **GET** /api/v1/accounts/{id} | Get single account. |
+| [**ListAccount**](AccountsApi.md#listaccount) | **GET** /api/v1/accounts | List all accounts. |
+| [**ListPiggyBankByAccount**](AccountsApi.md#listpiggybankbyaccount) | **GET** /api/v1/accounts/{id}/piggy_banks | List all piggy banks related to the account. |
+| [**ListTransactionByAccount**](AccountsApi.md#listtransactionbyaccount) | **GET** /api/v1/accounts/{id}/transactions | List all transactions related to the account. |
+| [**StoreAccount**](AccountsApi.md#storeaccount) | **POST** /api/v1/accounts | Create new account. |
+| [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /api/v1/accounts/{id} | Update existing account. |
 
-
-<a name="deleteaccount"></a>
+<a id="deleteaccount"></a>
 # **DeleteAccount**
 > void DeleteAccount (int id)
 
@@ -35,11 +34,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AccountsApi(Configuration.Default);
+            var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
 
             try
@@ -49,8 +49,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AccountsApi.DeleteAccount: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AccountsApi.DeleteAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -58,11 +58,28 @@ namespace Example
 }
 ```
 
+#### Using the DeleteAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Permanently delete account.
+    apiInstance.DeleteAccountWithHttpInfo(id);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.DeleteAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the account. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the account. |  |
 
 ### Return type
 
@@ -77,6 +94,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -85,7 +103,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getaccount"></a>
+<a id="getaccount"></a>
 # **GetAccount**
 > AccountSingle GetAccount (int id, DateTime? date = null)
 
@@ -107,13 +125,14 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AccountsApi(Configuration.Default);
+            var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
-            var date = 2013-10-20;  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
+            var date = DateTime.Parse("2013-10-20");  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
 
             try
             {
@@ -123,8 +142,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AccountsApi.GetAccount: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AccountsApi.GetAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -132,12 +151,32 @@ namespace Example
 }
 ```
 
+#### Using the GetAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get single account.
+    ApiResponse<AccountSingle> response = apiInstance.GetAccountWithHttpInfo(id, date);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.GetAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the account. | 
- **date** | **DateTime?**| A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the account. |  |
+| **date** | **DateTime?** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
 
 ### Return type
 
@@ -152,6 +191,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -160,7 +200,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listaccount"></a>
+<a id="listaccount"></a>
 # **ListAccount**
 > AccountArray ListAccount (int? page = null, DateTime? date = null, AccountTypeFilter type = null)
 
@@ -182,13 +222,14 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AccountsApi(Configuration.Default);
+            var apiInstance = new AccountsApi(config);
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
-            var date = 2013-10-20;  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
+            var date = DateTime.Parse("2013-10-20");  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
             var type = new AccountTypeFilter(); // AccountTypeFilter | Optional filter on the account type(s) returned (optional) 
 
             try
@@ -199,8 +240,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AccountsApi.ListAccount: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AccountsApi.ListAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -208,13 +249,33 @@ namespace Example
 }
 ```
 
+#### Using the ListAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all accounts.
+    ApiResponse<AccountArray> response = apiInstance.ListAccountWithHttpInfo(page, date, type);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.ListAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int?**| Page number. The default pagination is per 50 items. | [optional] 
- **date** | **DateTime?**| A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional] 
- **type** | [**AccountTypeFilter**](AccountTypeFilter.md)| Optional filter on the account type(s) returned | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
+| **date** | **DateTime?** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
+| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | Optional filter on the account type(s) returned | [optional]  |
 
 ### Return type
 
@@ -229,6 +290,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -236,7 +298,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listpiggybankbyaccount"></a>
+<a id="listpiggybankbyaccount"></a>
 # **ListPiggyBankByAccount**
 > PiggyBankArray ListPiggyBankByAccount (int id, int? page = null)
 
@@ -258,11 +320,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AccountsApi(Configuration.Default);
+            var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
             var page = 56;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
@@ -274,8 +337,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AccountsApi.ListPiggyBankByAccount: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AccountsApi.ListPiggyBankByAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -283,12 +346,32 @@ namespace Example
 }
 ```
 
+#### Using the ListPiggyBankByAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all piggy banks related to the account.
+    ApiResponse<PiggyBankArray> response = apiInstance.ListPiggyBankByAccountWithHttpInfo(id, page);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.ListPiggyBankByAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the account. | 
- **page** | **int?**| Page number. The default pagination is per 50 items. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the account. |  |
+| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
 
@@ -303,6 +386,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -310,7 +394,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listtransactionbyaccount"></a>
+<a id="listtransactionbyaccount"></a>
 # **ListTransactionByAccount**
 > TransactionArray ListTransactionByAccount (int id, int? page = null, int? limit = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
 
@@ -332,16 +416,17 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AccountsApi(Configuration.Default);
+            var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
             var limit = 5;  // int? | Limits the number of results on one page. (optional) 
-            var start = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var end = Sun Sep 16 19:00:00 CDT 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
+            var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned. (optional) 
 
             try
@@ -352,8 +437,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AccountsApi.ListTransactionByAccount: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AccountsApi.ListTransactionByAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -361,16 +446,36 @@ namespace Example
 }
 ```
 
+#### Using the ListTransactionByAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List all transactions related to the account.
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByAccountWithHttpInfo(id, page, limit, start, end, type);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.ListTransactionByAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the account. | 
- **page** | **int?**| Page number. The default pagination is per 50 items. | [optional] 
- **limit** | **int?**| Limits the number of results on one page. | [optional] 
- **start** | **DateTime?**| A date formatted YYYY-MM-DD.  | [optional] 
- **end** | **DateTime?**| A date formatted YYYY-MM-DD.  | [optional] 
- **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md)| Optional filter on the transaction type(s) returned. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the account. |  |
+| **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
+| **limit** | **int?** | Limits the number of results on one page. | [optional]  |
+| **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
+| **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
+| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned. | [optional]  |
 
 ### Return type
 
@@ -385,6 +490,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -392,7 +498,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="storeaccount"></a>
+<a id="storeaccount"></a>
 # **StoreAccount**
 > AccountSingle StoreAccount (Account account)
 
@@ -414,11 +520,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AccountsApi(Configuration.Default);
+            var apiInstance = new AccountsApi(config);
             var account = new Account(); // Account | JSON array with the necessary account information or key=value pairs. See the model for the exact specifications.
 
             try
@@ -429,8 +536,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AccountsApi.StoreAccount: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AccountsApi.StoreAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -438,11 +545,31 @@ namespace Example
 }
 ```
 
+#### Using the StoreAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create new account.
+    ApiResponse<AccountSingle> response = apiInstance.StoreAccountWithHttpInfo(account);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.StoreAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **account** | [**Account**](Account.md)| JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **account** | [**Account**](Account.md) | JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -457,6 +584,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -465,7 +593,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateaccount"></a>
+<a id="updateaccount"></a>
 # **UpdateAccount**
 > AccountSingle UpdateAccount (int id, Account account)
 
@@ -487,11 +615,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AccountsApi(Configuration.Default);
+            var apiInstance = new AccountsApi(config);
             var id = 1;  // int | The ID of the account.
             var account = new Account(); // Account | JSON array or formdata with updated account information. See the model for the exact specifications.
 
@@ -503,8 +632,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AccountsApi.UpdateAccount: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AccountsApi.UpdateAccount: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -512,12 +641,32 @@ namespace Example
 }
 ```
 
+#### Using the UpdateAccountWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update existing account.
+    ApiResponse<AccountSingle> response = apiInstance.UpdateAccountWithHttpInfo(id, account);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AccountsApi.UpdateAccountWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the account. | 
- **account** | [**Account**](Account.md)| JSON array or formdata with updated account information. See the model for the exact specifications. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **int** | The ID of the account. |  |
+| **account** | [**Account**](Account.md) | JSON array or formdata with updated account information. See the model for the exact specifications. |  |
 
 ### Return type
 
@@ -531,6 +680,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

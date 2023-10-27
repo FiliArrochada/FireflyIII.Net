@@ -2,15 +2,14 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetConfiguration**](ConfigurationApi.md#getconfiguration) | **GET** /api/v1/configuration | Get Firefly III system configuration.
-[**SetConfiguration**](ConfigurationApi.md#setconfiguration) | **POST** /api/v1/configuration/{name} | Update configuration
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetConfiguration**](ConfigurationApi.md#getconfiguration) | **GET** /api/v1/configuration | Get Firefly III system configuration. |
+| [**SetConfiguration**](ConfigurationApi.md#setconfiguration) | **POST** /api/v1/configuration/{name} | Update configuration |
 
-
-<a name="getconfiguration"></a>
+<a id="getconfiguration"></a>
 # **GetConfiguration**
-> SystemConfiguration GetConfiguration ()
+> ModelConfiguration GetConfiguration ()
 
 Get Firefly III system configuration.
 
@@ -30,22 +29,23 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new ConfigurationApi(Configuration.Default);
+            var apiInstance = new ConfigurationApi(config);
 
             try
             {
                 // Get Firefly III system configuration.
-                SystemConfiguration result = apiInstance.GetConfiguration();
+                ModelConfiguration result = apiInstance.GetConfiguration();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ConfigurationApi.GetConfiguration: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ConfigurationApi.GetConfiguration: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -53,12 +53,31 @@ namespace Example
 }
 ```
 
+#### Using the GetConfigurationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Firefly III system configuration.
+    ApiResponse<ModelConfiguration> response = apiInstance.GetConfigurationWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConfigurationApi.GetConfigurationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
-[**SystemConfiguration**](SystemConfiguration.md)
+[**ModelConfiguration**](ModelConfiguration.md)
 
 ### Authorization
 
@@ -69,6 +88,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -76,9 +96,9 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="setconfiguration"></a>
+<a id="setconfiguration"></a>
 # **SetConfiguration**
-> SystemConfiguration SetConfiguration (string name, string value)
+> ModelConfiguration SetConfiguration (string name, string value)
 
 Update configuration
 
@@ -98,24 +118,25 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new ConfigurationApi(Configuration.Default);
+            var apiInstance = new ConfigurationApi(config);
             var name = single_user_mode;  // string | The configuration value name.
-            var value = value_example;  // string | Can be a number or a boolean. This depends on the actual configuration value.
+            var value = "value_example";  // string | Can be a number or a boolean. This depends on the actual configuration value.
 
             try
             {
                 // Update configuration
-                SystemConfiguration result = apiInstance.SetConfiguration(name, value);
+                ModelConfiguration result = apiInstance.SetConfiguration(name, value);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling ConfigurationApi.SetConfiguration: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling ConfigurationApi.SetConfiguration: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -123,16 +144,36 @@ namespace Example
 }
 ```
 
+#### Using the SetConfigurationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update configuration
+    ApiResponse<ModelConfiguration> response = apiInstance.SetConfigurationWithHttpInfo(name, value);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConfigurationApi.SetConfigurationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| The configuration value name. | 
- **value** | **string**| Can be a number or a boolean. This depends on the actual configuration value. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **name** | **string** | The configuration value name. |  |
+| **value** | **string** | Can be a number or a boolean. This depends on the actual configuration value. |  |
 
 ### Return type
 
-[**SystemConfiguration**](SystemConfiguration.md)
+[**ModelConfiguration**](ModelConfiguration.md)
 
 ### Authorization
 
@@ -142,6 +183,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

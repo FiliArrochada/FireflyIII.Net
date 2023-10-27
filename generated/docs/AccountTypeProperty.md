@@ -1,4 +1,5 @@
 # FireflyIII.Model.AccountTypeProperty
+
 ## Properties
 
 Name | Type | Description | Notes

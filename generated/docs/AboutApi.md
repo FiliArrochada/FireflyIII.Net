@@ -2,13 +2,12 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetAbout**](AboutApi.md#getabout) | **GET** /api/v1/about | System information end point.
-[**GetCurrentUser**](AboutApi.md#getcurrentuser) | **GET** /api/v1/about/user | Currently authenticated user endpoint.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetAbout**](AboutApi.md#getabout) | **GET** /api/v1/about | System information end point. |
+| [**GetCurrentUser**](AboutApi.md#getcurrentuser) | **GET** /api/v1/about/user | Currently authenticated user endpoint. |
 
-
-<a name="getabout"></a>
+<a id="getabout"></a>
 # **GetAbout**
 > SystemInfo GetAbout ()
 
@@ -30,11 +29,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AboutApi(Configuration.Default);
+            var apiInstance = new AboutApi(config);
 
             try
             {
@@ -44,8 +44,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AboutApi.GetAbout: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AboutApi.GetAbout: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -53,9 +53,28 @@ namespace Example
 }
 ```
 
+#### Using the GetAboutWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // System information end point.
+    ApiResponse<SystemInfo> response = apiInstance.GetAboutWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AboutApi.GetAboutWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**SystemInfo**](SystemInfo.md)
@@ -69,6 +88,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
@@ -76,7 +96,7 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getcurrentuser"></a>
+<a id="getcurrentuser"></a>
 # **GetCurrentUser**
 > UserSingle GetCurrentUser ()
 
@@ -98,11 +118,12 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new AboutApi(Configuration.Default);
+            var apiInstance = new AboutApi(config);
 
             try
             {
@@ -112,8 +133,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling AboutApi.GetCurrentUser: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling AboutApi.GetCurrentUser: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -121,9 +142,28 @@ namespace Example
 }
 ```
 
+#### Using the GetCurrentUserWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Currently authenticated user endpoint.
+    ApiResponse<UserSingle> response = apiInstance.GetCurrentUserWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AboutApi.GetCurrentUserWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**UserSingle**](UserSingle.md)
@@ -136,6 +176,7 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

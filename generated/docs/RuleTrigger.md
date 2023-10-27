@@ -1,4 +1,5 @@
 # FireflyIII.Model.RuleTrigger
+
 ## Properties
 
 Name | Type | Description | Notes

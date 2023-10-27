@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://demo.firefly-iii.org*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetBasicSummary**](SummaryApi.md#getbasicsummary) | **GET** /api/v1/summary/basic | Returns basic sums of the users data.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetBasicSummary**](SummaryApi.md#getbasicsummary) | **GET** /api/v1/summary/basic | Returns basic sums of the users data. |
 
-
-<a name="getbasicsummary"></a>
+<a id="getbasicsummary"></a>
 # **GetBasicSummary**
 > List&lt;BasicSummaryEntry&gt; GetBasicSummary (DateTime start, DateTime end, string currencyCode = null)
 
@@ -29,14 +28,15 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://demo.firefly-iii.org";
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
-            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new SummaryApi(Configuration.Default);
-            var start = 2013-10-20;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2013-10-20;  // DateTime | A date formatted YYYY-MM-DD. 
-            var currencyCode = currencyCode_example;  // string | A currency code like EUR or USD, to filter the result.  (optional) 
+            var apiInstance = new SummaryApi(config);
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var currencyCode = "currencyCode_example";  // string | A currency code like EUR or USD, to filter the result.  (optional) 
 
             try
             {
@@ -46,8 +46,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SummaryApi.GetBasicSummary: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling SummaryApi.GetBasicSummary: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -55,13 +55,33 @@ namespace Example
 }
 ```
 
+#### Using the GetBasicSummaryWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Returns basic sums of the users data.
+    ApiResponse<List<BasicSummaryEntry>> response = apiInstance.GetBasicSummaryWithHttpInfo(start, end, currencyCode);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SummaryApi.GetBasicSummaryWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **start** | **DateTime**| A date formatted YYYY-MM-DD.  | 
- **end** | **DateTime**| A date formatted YYYY-MM-DD.  | 
- **currencyCode** | **string**| A currency code like EUR or USD, to filter the result.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
+| **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
+| **currencyCode** | **string** | A currency code like EUR or USD, to filter the result.  | [optional]  |
 
 ### Return type
 
@@ -75,6 +95,7 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
