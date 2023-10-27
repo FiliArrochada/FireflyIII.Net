@@ -1,17 +1,17 @@
 # FireflyIIINet.Api.PreferencesApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetPreference**](PreferencesApi.md#getpreference) | **GET** /api/v1/preferences/{name} | Return a single preference. |
-| [**ListPreference**](PreferencesApi.md#listpreference) | **GET** /api/v1/preferences | List all users preferences. |
-| [**StorePreference**](PreferencesApi.md#storepreference) | **POST** /api/v1/preferences | Store a new preference for this user. |
-| [**UpdatePreference**](PreferencesApi.md#updatepreference) | **PUT** /api/v1/preferences/{name} | Update preference |
+| [**GetPreference**](PreferencesApi.md#getpreference) | **GET** /v1/preferences/{name} | Return a single preference. |
+| [**ListPreference**](PreferencesApi.md#listpreference) | **GET** /v1/preferences | List all users preferences. |
+| [**StorePreference**](PreferencesApi.md#storepreference) | **POST** /v1/preferences | Store a new preference for this user. |
+| [**UpdatePreference**](PreferencesApi.md#updatepreference) | **PUT** /v1/preferences/{name} | Update preference |
 
 <a id="getpreference"></a>
 # **GetPreference**
-> PreferenceSingle GetPreference (string name)
+> PreferenceSingle GetPreference (string name, Guid? xTraceId = null)
 
 Return a single preference.
 
@@ -32,17 +32,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
             var name = currencyPreference;  // string | The name of the preference.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Return a single preference.
-                PreferenceSingle result = apiInstance.GetPreference(name);
+                PreferenceSingle result = apiInstance.GetPreference(name, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -63,7 +64,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Return a single preference.
-    ApiResponse<PreferenceSingle> response = apiInstance.GetPreferenceWithHttpInfo(name);
+    ApiResponse<PreferenceSingle> response = apiInstance.GetPreferenceWithHttpInfo(name, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -81,6 +82,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **name** | **string** | The name of the preference. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -93,19 +95,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A single preference. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listpreference"></a>
 # **ListPreference**
-> PreferenceArray ListPreference (int? page = null)
+> PreferenceArray ListPreference (Guid? xTraceId = null, int? page = null)
 
 List all users preferences.
 
@@ -126,17 +132,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // List all users preferences.
-                PreferenceArray result = apiInstance.ListPreference(page);
+                PreferenceArray result = apiInstance.ListPreference(xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -157,7 +164,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all users preferences.
-    ApiResponse<PreferenceArray> response = apiInstance.ListPreferenceWithHttpInfo(page);
+    ApiResponse<PreferenceArray> response = apiInstance.ListPreferenceWithHttpInfo(xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -174,6 +181,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -187,19 +195,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of preferences. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storepreference"></a>
 # **StorePreference**
-> PreferenceSingle StorePreference (Preference preference)
+> PreferenceSingle StorePreference (Preference preference, Guid? xTraceId = null)
 
 Store a new preference for this user.
 
@@ -220,17 +232,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
             var preference = new Preference(); // Preference | JSON array with the necessary preference information or key=value pairs. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store a new preference for this user.
-                PreferenceSingle result = apiInstance.StorePreference(preference);
+                PreferenceSingle result = apiInstance.StorePreference(preference, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -251,7 +264,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new preference for this user.
-    ApiResponse<PreferenceSingle> response = apiInstance.StorePreferenceWithHttpInfo(preference);
+    ApiResponse<PreferenceSingle> response = apiInstance.StorePreferenceWithHttpInfo(preference, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -269,6 +282,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **preference** | [**Preference**](Preference.md) | JSON array with the necessary preference information or key&#x3D;value pairs. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -288,13 +302,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New account stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updatepreference"></a>
 # **UpdatePreference**
-> PreferenceSingle UpdatePreference (string name, PreferenceUpdate preferenceUpdate)
+> PreferenceSingle UpdatePreference (string name, PreferenceUpdate preferenceUpdate, Guid? xTraceId = null)
 
 Update preference
 
@@ -315,18 +333,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PreferencesApi(config);
             var name = currencyPreference;  // string | The name of the preference. Will always overwrite. Will be created if it does not exist.
             var preferenceUpdate = new PreferenceUpdate(); // PreferenceUpdate | JSON array or key=value pairs with the necessary preference information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update preference
-                PreferenceSingle result = apiInstance.UpdatePreference(name, preferenceUpdate);
+                PreferenceSingle result = apiInstance.UpdatePreference(name, preferenceUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -347,7 +366,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update preference
-    ApiResponse<PreferenceSingle> response = apiInstance.UpdatePreferenceWithHttpInfo(name, preferenceUpdate);
+    ApiResponse<PreferenceSingle> response = apiInstance.UpdatePreferenceWithHttpInfo(name, preferenceUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -366,6 +385,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **name** | **string** | The name of the preference. Will always overwrite. Will be created if it does not exist. |  |
 | **preferenceUpdate** | [**PreferenceUpdate**](PreferenceUpdate.md) | JSON array or key&#x3D;value pairs with the necessary preference information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -385,7 +405,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated preference. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

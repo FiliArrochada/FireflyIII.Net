@@ -1,19 +1,19 @@
 # FireflyIIINet.Api.RecurrencesApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteRecurrence**](RecurrencesApi.md#deleterecurrence) | **DELETE** /api/v1/recurrences/{id} | Delete a recurring transaction. |
-| [**GetRecurrence**](RecurrencesApi.md#getrecurrence) | **GET** /api/v1/recurrences/{id} | Get a single recurring transaction. |
-| [**ListRecurrence**](RecurrencesApi.md#listrecurrence) | **GET** /api/v1/recurrences | List all recurring transactions. |
-| [**ListTransactionByRecurrence**](RecurrencesApi.md#listtransactionbyrecurrence) | **GET** /api/v1/recurrences/{id}/transactions | List all transactions created by a recurring transaction. |
-| [**StoreRecurrence**](RecurrencesApi.md#storerecurrence) | **POST** /api/v1/recurrences | Store a new recurring transaction |
-| [**UpdateRecurrence**](RecurrencesApi.md#updaterecurrence) | **PUT** /api/v1/recurrences/{id} | Update existing recurring transaction. |
+| [**DeleteRecurrence**](RecurrencesApi.md#deleterecurrence) | **DELETE** /v1/recurrences/{id} | Delete a recurring transaction. |
+| [**GetRecurrence**](RecurrencesApi.md#getrecurrence) | **GET** /v1/recurrences/{id} | Get a single recurring transaction. |
+| [**ListRecurrence**](RecurrencesApi.md#listrecurrence) | **GET** /v1/recurrences | List all recurring transactions. |
+| [**ListTransactionByRecurrence**](RecurrencesApi.md#listtransactionbyrecurrence) | **GET** /v1/recurrences/{id}/transactions | List all transactions created by a recurring transaction. |
+| [**StoreRecurrence**](RecurrencesApi.md#storerecurrence) | **POST** /v1/recurrences | Store a new recurring transaction |
+| [**UpdateRecurrence**](RecurrencesApi.md#updaterecurrence) | **PUT** /v1/recurrences/{id} | Update existing recurring transaction. |
 
 <a id="deleterecurrence"></a>
 # **DeleteRecurrence**
-> void DeleteRecurrence (string id)
+> void DeleteRecurrence (string id, Guid? xTraceId = null)
 
 Delete a recurring transaction.
 
@@ -34,17 +34,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 123;  // string | The ID of the recurring transaction.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a recurring transaction.
-                apiInstance.DeleteRecurrence(id);
+                apiInstance.DeleteRecurrence(id, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -64,7 +65,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a recurring transaction.
-    apiInstance.DeleteRecurrenceWithHttpInfo(id);
+    apiInstance.DeleteRecurrenceWithHttpInfo(id, xTraceId);
 }
 catch (ApiException e)
 {
@@ -79,6 +80,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the recurring transaction. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -91,20 +93,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Recurring transaction deleted. |  -  |
-| **404** | No such recurring transaction |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getrecurrence"></a>
 # **GetRecurrence**
-> RecurrenceSingle GetRecurrence (string id)
+> RecurrenceSingle GetRecurrence (string id, Guid? xTraceId = null)
 
 Get a single recurring transaction.
 
@@ -125,17 +130,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 123;  // string | The ID of the recurring transaction.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get a single recurring transaction.
-                RecurrenceSingle result = apiInstance.GetRecurrence(id);
+                RecurrenceSingle result = apiInstance.GetRecurrence(id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -156,7 +162,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single recurring transaction.
-    ApiResponse<RecurrenceSingle> response = apiInstance.GetRecurrenceWithHttpInfo(id);
+    ApiResponse<RecurrenceSingle> response = apiInstance.GetRecurrenceWithHttpInfo(id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -174,6 +180,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the recurring transaction. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -186,20 +193,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested recurring transaction |  -  |
-| **404** | Recurring transaction not found |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listrecurrence"></a>
 # **ListRecurrence**
-> RecurrenceArray ListRecurrence (int? page = null)
+> RecurrenceArray ListRecurrence (Guid? xTraceId = null, int? page = null)
 
 List all recurring transactions.
 
@@ -220,17 +230,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // List all recurring transactions.
-                RecurrenceArray result = apiInstance.ListRecurrence(page);
+                RecurrenceArray result = apiInstance.ListRecurrence(xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -251,7 +262,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all recurring transactions.
-    ApiResponse<RecurrenceArray> response = apiInstance.ListRecurrenceWithHttpInfo(page);
+    ApiResponse<RecurrenceArray> response = apiInstance.ListRecurrenceWithHttpInfo(xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -268,6 +279,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -281,19 +293,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of recurring transactions. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listtransactionbyrecurrence"></a>
 # **ListTransactionByRecurrence**
-> TransactionArray ListTransactionByRecurrence (string id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByRecurrence (string id, Guid? xTraceId = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter? type = null)
 
 List all transactions created by a recurring transaction.
 
@@ -314,21 +330,22 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 123;  // string | The ID of the recurring transaction.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. Both the start and end date must be present.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD. Both the start and end date must be present.  (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
+            var type = new TransactionTypeFilter?(); // TransactionTypeFilter? | Optional filter on the transaction type(s) returned (optional) 
 
             try
             {
                 // List all transactions created by a recurring transaction.
-                TransactionArray result = apiInstance.ListTransactionByRecurrence(id, page, start, end, type);
+                TransactionArray result = apiInstance.ListTransactionByRecurrence(id, xTraceId, page, start, end, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -349,7 +366,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all transactions created by a recurring transaction.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByRecurrenceWithHttpInfo(id, page, start, end, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByRecurrenceWithHttpInfo(id, xTraceId, page, start, end, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -367,10 +384,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the recurring transaction. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD. Both the start and end date must be present.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD. Both the start and end date must be present.  | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
+| **type** | [**TransactionTypeFilter?**](TransactionTypeFilter?.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
 
@@ -383,19 +401,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of transactions |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storerecurrence"></a>
 # **StoreRecurrence**
-> RecurrenceSingle StoreRecurrence (RecurrenceStore recurrenceStore)
+> RecurrenceSingle StoreRecurrence (RecurrenceStore recurrenceStore, Guid? xTraceId = null)
 
 Store a new recurring transaction
 
@@ -416,17 +438,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var recurrenceStore = new RecurrenceStore(); // RecurrenceStore | JSON array or key=value pairs with the necessary recurring transaction information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store a new recurring transaction
-                RecurrenceSingle result = apiInstance.StoreRecurrence(recurrenceStore);
+                RecurrenceSingle result = apiInstance.StoreRecurrence(recurrenceStore, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -447,7 +470,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new recurring transaction
-    ApiResponse<RecurrenceSingle> response = apiInstance.StoreRecurrenceWithHttpInfo(recurrenceStore);
+    ApiResponse<RecurrenceSingle> response = apiInstance.StoreRecurrenceWithHttpInfo(recurrenceStore, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -465,6 +488,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **recurrenceStore** | [**RecurrenceStore**](RecurrenceStore.md) | JSON array or key&#x3D;value pairs with the necessary recurring transaction information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -484,13 +508,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New recurring transaction stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updaterecurrence"></a>
 # **UpdateRecurrence**
-> RecurrenceSingle UpdateRecurrence (string id, RecurrenceUpdate recurrenceUpdate)
+> RecurrenceSingle UpdateRecurrence (string id, RecurrenceUpdate recurrenceUpdate, Guid? xTraceId = null)
 
 Update existing recurring transaction.
 
@@ -511,18 +539,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new RecurrencesApi(config);
             var id = 123;  // string | The ID of the recurring transaction.
             var recurrenceUpdate = new RecurrenceUpdate(); // RecurrenceUpdate | JSON array with updated recurring transaction information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing recurring transaction.
-                RecurrenceSingle result = apiInstance.UpdateRecurrence(id, recurrenceUpdate);
+                RecurrenceSingle result = apiInstance.UpdateRecurrence(id, recurrenceUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -543,7 +572,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing recurring transaction.
-    ApiResponse<RecurrenceSingle> response = apiInstance.UpdateRecurrenceWithHttpInfo(id, recurrenceUpdate);
+    ApiResponse<RecurrenceSingle> response = apiInstance.UpdateRecurrenceWithHttpInfo(id, recurrenceUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -562,6 +591,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the recurring transaction. |  |
 | **recurrenceUpdate** | [**RecurrenceUpdate**](RecurrenceUpdate.md) | JSON array with updated recurring transaction information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -581,7 +611,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated recurring transaction stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

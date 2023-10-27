@@ -1,16 +1,16 @@
 # FireflyIIINet.Api.ConfigurationApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetConfiguration**](ConfigurationApi.md#getconfiguration) | **GET** /api/v1/configuration | Get Firefly III system configuration values. |
-| [**GetSingleConfiguration**](ConfigurationApi.md#getsingleconfiguration) | **GET** /api/v1/configuration/{name} | Get a single Firefly III system configuration value |
-| [**SetConfiguration**](ConfigurationApi.md#setconfiguration) | **PUT** /api/v1/configuration/{name} | Update configuration value |
+| [**GetConfiguration**](ConfigurationApi.md#getconfiguration) | **GET** /v1/configuration | Get Firefly III system configuration values. |
+| [**GetSingleConfiguration**](ConfigurationApi.md#getsingleconfiguration) | **GET** /v1/configuration/{name} | Get a single Firefly III system configuration value |
+| [**SetConfiguration**](ConfigurationApi.md#setconfiguration) | **PUT** /v1/configuration/{name} | Update configuration value |
 
 <a id="getconfiguration"></a>
 # **GetConfiguration**
-> List&lt;ModelConfiguration&gt; GetConfiguration ()
+> List&lt;ModelConfiguration&gt; GetConfiguration (Guid? xTraceId = null)
 
 Get Firefly III system configuration values.
 
@@ -31,16 +31,17 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ConfigurationApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get Firefly III system configuration values.
-                List<ModelConfiguration> result = apiInstance.GetConfiguration();
+                List<ModelConfiguration> result = apiInstance.GetConfiguration(xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -61,7 +62,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Firefly III system configuration values.
-    ApiResponse<List<ModelConfiguration>> response = apiInstance.GetConfigurationWithHttpInfo();
+    ApiResponse<List<ModelConfiguration>> response = apiInstance.GetConfigurationWithHttpInfo(xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -75,7 +76,11 @@ catch (ApiException e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+
 ### Return type
 
 [**List&lt;ModelConfiguration&gt;**](ModelConfiguration.md)
@@ -87,19 +92,23 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/x-www-form-urlencoded
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | System configuration values |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getsingleconfiguration"></a>
 # **GetSingleConfiguration**
-> ConfigurationSingle GetSingleConfiguration (ConfigValueFilter name)
+> ConfigurationSingle GetSingleConfiguration (ConfigValueFilter name, Guid? xTraceId = null)
 
 Get a single Firefly III system configuration value
 
@@ -120,17 +129,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ConfigurationApi(config);
             var name = new ConfigValueFilter(); // ConfigValueFilter | The name of the configuration value you want to know.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get a single Firefly III system configuration value
-                ConfigurationSingle result = apiInstance.GetSingleConfiguration(name);
+                ConfigurationSingle result = apiInstance.GetSingleConfiguration(name, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -151,7 +161,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single Firefly III system configuration value
-    ApiResponse<ConfigurationSingle> response = apiInstance.GetSingleConfigurationWithHttpInfo(name);
+    ApiResponse<ConfigurationSingle> response = apiInstance.GetSingleConfigurationWithHttpInfo(name, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -169,6 +179,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **name** | [**ConfigValueFilter**](ConfigValueFilter.md) | The name of the configuration value you want to know. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -187,13 +198,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | One system configuration value |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="setconfiguration"></a>
 # **SetConfiguration**
-> ConfigurationSingle SetConfiguration (ConfigValueUpdateFilter name, PolymorphicProperty value)
+> ConfigurationSingle SetConfiguration (ConfigValueUpdateFilter name, PolymorphicProperty value, Guid? xTraceId = null)
 
 Update configuration value
 
@@ -214,18 +229,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new ConfigurationApi(config);
             var name = new ConfigValueUpdateFilter(); // ConfigValueUpdateFilter | The name of the configuration value you want to update.
             var value = new PolymorphicProperty(); // PolymorphicProperty | 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update configuration value
-                ConfigurationSingle result = apiInstance.SetConfiguration(name, value);
+                ConfigurationSingle result = apiInstance.SetConfiguration(name, value, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -246,7 +262,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update configuration value
-    ApiResponse<ConfigurationSingle> response = apiInstance.SetConfigurationWithHttpInfo(name, value);
+    ApiResponse<ConfigurationSingle> response = apiInstance.SetConfigurationWithHttpInfo(name, value, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -265,6 +281,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **name** | [**ConfigValueUpdateFilter**](ConfigValueUpdateFilter.md) | The name of the configuration value you want to update. |  |
 | **value** | [**PolymorphicProperty**](PolymorphicProperty.md) |  |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -284,7 +301,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New configuration value stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

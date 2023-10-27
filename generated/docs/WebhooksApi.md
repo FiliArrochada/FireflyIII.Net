@@ -1,25 +1,25 @@
 # FireflyIIINet.Api.WebhooksApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteWebhook**](WebhooksApi.md#deletewebhook) | **DELETE** /api/v1/webhooks/{id} | Delete a webhook. |
-| [**DeleteWebhookMessage**](WebhooksApi.md#deletewebhookmessage) | **DELETE** /api/v1/webhooks/{id}/messages/{messageId} | Delete a webhook message. |
-| [**DeleteWebhookMessageAttempt**](WebhooksApi.md#deletewebhookmessageattempt) | **DELETE** /api/v1/webhooks/{id}/messages/{messageId}/attempts/{attemptId} | Delete a webhook attempt. |
-| [**GetSingleWebhookMessage**](WebhooksApi.md#getsinglewebhookmessage) | **GET** /api/v1/webhooks/{id}/messages/{messageId} | Get a single message from a webhook. |
-| [**GetSingleWebhookMessageAttempt**](WebhooksApi.md#getsinglewebhookmessageattempt) | **GET** /api/v1/webhooks/{id}/messages/{messageId}/attempts/{attemptId} | Get a single failed attempt from a single webhook message. |
-| [**GetWebhook**](WebhooksApi.md#getwebhook) | **GET** /api/v1/webhooks/{id} | Get a single webhook. |
-| [**GetWebhookMessageAttempts**](WebhooksApi.md#getwebhookmessageattempts) | **GET** /api/v1/webhooks/{id}/messages/{messageId}/attempts | Get all the failed attempts of a single webhook message. |
-| [**GetWebhookMessages**](WebhooksApi.md#getwebhookmessages) | **GET** /api/v1/webhooks/{id}/messages | Get all the messages of a single webhook. |
-| [**ListWebhook**](WebhooksApi.md#listwebhook) | **GET** /api/v1/webhooks | List all webhooks. |
-| [**StoreWebhook**](WebhooksApi.md#storewebhook) | **POST** /api/v1/webhooks | Store a new webhook |
-| [**SubmitWebook**](WebhooksApi.md#submitwebook) | **POST** /api/v1/webhooks/{id}/submit | Submit messages for a webhook. |
-| [**UpdateWebhook**](WebhooksApi.md#updatewebhook) | **PUT** /api/v1/webhooks/{id} | Update existing webhook. |
+| [**DeleteWebhook**](WebhooksApi.md#deletewebhook) | **DELETE** /v1/webhooks/{id} | Delete a webhook. |
+| [**DeleteWebhookMessage**](WebhooksApi.md#deletewebhookmessage) | **DELETE** /v1/webhooks/{id}/messages/{messageId} | Delete a webhook message. |
+| [**DeleteWebhookMessageAttempt**](WebhooksApi.md#deletewebhookmessageattempt) | **DELETE** /v1/webhooks/{id}/messages/{messageId}/attempts/{attemptId} | Delete a webhook attempt. |
+| [**GetSingleWebhookMessage**](WebhooksApi.md#getsinglewebhookmessage) | **GET** /v1/webhooks/{id}/messages/{messageId} | Get a single message from a webhook. |
+| [**GetSingleWebhookMessageAttempt**](WebhooksApi.md#getsinglewebhookmessageattempt) | **GET** /v1/webhooks/{id}/messages/{messageId}/attempts/{attemptId} | Get a single failed attempt from a single webhook message. |
+| [**GetWebhook**](WebhooksApi.md#getwebhook) | **GET** /v1/webhooks/{id} | Get a single webhook. |
+| [**GetWebhookMessageAttempts**](WebhooksApi.md#getwebhookmessageattempts) | **GET** /v1/webhooks/{id}/messages/{messageId}/attempts | Get all the failed attempts of a single webhook message. |
+| [**GetWebhookMessages**](WebhooksApi.md#getwebhookmessages) | **GET** /v1/webhooks/{id}/messages | Get all the messages of a single webhook. |
+| [**ListWebhook**](WebhooksApi.md#listwebhook) | **GET** /v1/webhooks | List all webhooks. |
+| [**StoreWebhook**](WebhooksApi.md#storewebhook) | **POST** /v1/webhooks | Store a new webhook |
+| [**SubmitWebook**](WebhooksApi.md#submitwebook) | **POST** /v1/webhooks/{id}/submit | Submit messages for a webhook. |
+| [**UpdateWebhook**](WebhooksApi.md#updatewebhook) | **PUT** /v1/webhooks/{id} | Update existing webhook. |
 
 <a id="deletewebhook"></a>
 # **DeleteWebhook**
-> void DeleteWebhook (string id)
+> void DeleteWebhook (string id, Guid? xTraceId = null)
 
 Delete a webhook.
 
@@ -40,17 +40,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a webhook.
-                apiInstance.DeleteWebhook(id);
+                apiInstance.DeleteWebhook(id, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -70,7 +71,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a webhook.
-    apiInstance.DeleteWebhookWithHttpInfo(id);
+    apiInstance.DeleteWebhookWithHttpInfo(id, xTraceId);
 }
 catch (ApiException e)
 {
@@ -85,6 +86,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -97,21 +99,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Webhook deleted. |  -  |
-| **404** | No such webhook. |  -  |
-| **500** | Error when deleting. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="deletewebhookmessage"></a>
 # **DeleteWebhookMessage**
-> void DeleteWebhookMessage (string id, int messageId)
+> void DeleteWebhookMessage (string id, int messageId, Guid? xTraceId = null)
 
 Delete a webhook message.
 
@@ -132,18 +136,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a webhook message.
-                apiInstance.DeleteWebhookMessage(id, messageId);
+                apiInstance.DeleteWebhookMessage(id, messageId, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -163,7 +168,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a webhook message.
-    apiInstance.DeleteWebhookMessageWithHttpInfo(id, messageId);
+    apiInstance.DeleteWebhookMessageWithHttpInfo(id, messageId, xTraceId);
 }
 catch (ApiException e)
 {
@@ -179,6 +184,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -191,21 +197,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Webhook message deleted. |  -  |
-| **404** | No such webhook or webhook message. |  -  |
-| **500** | Error when deleting. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="deletewebhookmessageattempt"></a>
 # **DeleteWebhookMessageAttempt**
-> void DeleteWebhookMessageAttempt (string id, int messageId, int attemptId)
+> void DeleteWebhookMessageAttempt (string id, int messageId, int attemptId, Guid? xTraceId = null)
 
 Delete a webhook attempt.
 
@@ -226,7 +234,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -234,11 +242,12 @@ namespace Example
             var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
             var attemptId = 1;  // int | The webhook message attempt ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a webhook attempt.
-                apiInstance.DeleteWebhookMessageAttempt(id, messageId, attemptId);
+                apiInstance.DeleteWebhookMessageAttempt(id, messageId, attemptId, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -258,7 +267,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a webhook attempt.
-    apiInstance.DeleteWebhookMessageAttemptWithHttpInfo(id, messageId, attemptId);
+    apiInstance.DeleteWebhookMessageAttemptWithHttpInfo(id, messageId, attemptId, xTraceId);
 }
 catch (ApiException e)
 {
@@ -275,6 +284,7 @@ catch (ApiException e)
 | **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
 | **attemptId** | **int** | The webhook message attempt ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -287,21 +297,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Webhook message attempt deleted. |  -  |
-| **404** | No such webhook, webhook message or webhook attempt. |  -  |
-| **500** | Error when deleting. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getsinglewebhookmessage"></a>
 # **GetSingleWebhookMessage**
-> WebhookMessageSingle GetSingleWebhookMessage (string id, int messageId)
+> WebhookMessageSingle GetSingleWebhookMessage (string id, int messageId, Guid? xTraceId = null)
 
 Get a single message from a webhook.
 
@@ -322,18 +334,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get a single message from a webhook.
-                WebhookMessageSingle result = apiInstance.GetSingleWebhookMessage(id, messageId);
+                WebhookMessageSingle result = apiInstance.GetSingleWebhookMessage(id, messageId, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -354,7 +367,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single message from a webhook.
-    ApiResponse<WebhookMessageSingle> response = apiInstance.GetSingleWebhookMessageWithHttpInfo(id, messageId);
+    ApiResponse<WebhookMessageSingle> response = apiInstance.GetSingleWebhookMessageWithHttpInfo(id, messageId, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -373,6 +386,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -385,20 +399,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A single webhook message. |  -  |
-| **404** | Webhook message not found. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getsinglewebhookmessageattempt"></a>
 # **GetSingleWebhookMessageAttempt**
-> WebhookAttemptSingle GetSingleWebhookMessageAttempt (string id, int messageId, int attemptId)
+> WebhookAttemptSingle GetSingleWebhookMessageAttempt (string id, int messageId, int attemptId, Guid? xTraceId = null)
 
 Get a single failed attempt from a single webhook message.
 
@@ -419,7 +436,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -427,11 +444,12 @@ namespace Example
             var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
             var attemptId = 1;  // int | The webhook attempt ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get a single failed attempt from a single webhook message.
-                WebhookAttemptSingle result = apiInstance.GetSingleWebhookMessageAttempt(id, messageId, attemptId);
+                WebhookAttemptSingle result = apiInstance.GetSingleWebhookMessageAttempt(id, messageId, attemptId, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -452,7 +470,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single failed attempt from a single webhook message.
-    ApiResponse<WebhookAttemptSingle> response = apiInstance.GetSingleWebhookMessageAttemptWithHttpInfo(id, messageId, attemptId);
+    ApiResponse<WebhookAttemptSingle> response = apiInstance.GetSingleWebhookMessageAttemptWithHttpInfo(id, messageId, attemptId, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -472,6 +490,7 @@ catch (ApiException e)
 | **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
 | **attemptId** | **int** | The webhook attempt ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -484,20 +503,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A single webhook attempt. |  -  |
-| **404** | Webhook message attempt not found. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getwebhook"></a>
 # **GetWebhook**
-> WebhookSingle GetWebhook (string id)
+> WebhookSingle GetWebhook (string id, Guid? xTraceId = null)
 
 Get a single webhook.
 
@@ -518,17 +540,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get a single webhook.
-                WebhookSingle result = apiInstance.GetWebhook(id);
+                WebhookSingle result = apiInstance.GetWebhook(id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -549,7 +572,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single webhook.
-    ApiResponse<WebhookSingle> response = apiInstance.GetWebhookWithHttpInfo(id);
+    ApiResponse<WebhookSingle> response = apiInstance.GetWebhookWithHttpInfo(id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -567,6 +590,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -579,20 +603,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested webhook. |  -  |
-| **404** | Webhook not found. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getwebhookmessageattempts"></a>
 # **GetWebhookMessageAttempts**
-> WebhookAttemptArray GetWebhookMessageAttempts (string id, int messageId, int? page = null)
+> WebhookAttemptArray GetWebhookMessageAttempts (string id, int messageId, Guid? xTraceId = null, int? page = null)
 
 Get all the failed attempts of a single webhook message.
 
@@ -613,19 +640,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
             var messageId = 1;  // int | The webhook message ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
             {
                 // Get all the failed attempts of a single webhook message.
-                WebhookAttemptArray result = apiInstance.GetWebhookMessageAttempts(id, messageId, page);
+                WebhookAttemptArray result = apiInstance.GetWebhookMessageAttempts(id, messageId, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -646,7 +674,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get all the failed attempts of a single webhook message.
-    ApiResponse<WebhookAttemptArray> response = apiInstance.GetWebhookMessageAttemptsWithHttpInfo(id, messageId, page);
+    ApiResponse<WebhookAttemptArray> response = apiInstance.GetWebhookMessageAttemptsWithHttpInfo(id, messageId, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -665,6 +693,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
 | **messageId** | **int** | The webhook message ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
@@ -678,20 +707,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of webhook attempts. |  -  |
-| **404** | Webhook or webhook message not found. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getwebhookmessages"></a>
 # **GetWebhookMessages**
-> WebhookMessageArray GetWebhookMessages (string id)
+> WebhookMessageArray GetWebhookMessages (string id, Guid? xTraceId = null)
 
 Get all the messages of a single webhook.
 
@@ -712,17 +744,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get all the messages of a single webhook.
-                WebhookMessageArray result = apiInstance.GetWebhookMessages(id);
+                WebhookMessageArray result = apiInstance.GetWebhookMessages(id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -743,7 +776,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get all the messages of a single webhook.
-    ApiResponse<WebhookMessageArray> response = apiInstance.GetWebhookMessagesWithHttpInfo(id);
+    ApiResponse<WebhookMessageArray> response = apiInstance.GetWebhookMessagesWithHttpInfo(id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -761,6 +794,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -773,20 +807,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of webhook messages. |  -  |
-| **404** | Webhook not found. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listwebhook"></a>
 # **ListWebhook**
-> WebhookArray ListWebhook (int? page = null)
+> WebhookArray ListWebhook (Guid? xTraceId = null, int? page = null)
 
 List all webhooks.
 
@@ -807,17 +844,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | The page number, if necessary. The default pagination is 50, so 50 webhooks per page. (optional) 
 
             try
             {
                 // List all webhooks.
-                WebhookArray result = apiInstance.ListWebhook(page);
+                WebhookArray result = apiInstance.ListWebhook(xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -838,7 +876,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all webhooks.
-    ApiResponse<WebhookArray> response = apiInstance.ListWebhookWithHttpInfo(page);
+    ApiResponse<WebhookArray> response = apiInstance.ListWebhookWithHttpInfo(xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -855,6 +893,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | The page number, if necessary. The default pagination is 50, so 50 webhooks per page. | [optional]  |
 
 ### Return type
@@ -868,19 +907,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of webhooks. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storewebhook"></a>
 # **StoreWebhook**
-> WebhookSingle StoreWebhook (WebhookStore webhookStore)
+> WebhookSingle StoreWebhook (WebhookStore webhookStore, Guid? xTraceId = null)
 
 Store a new webhook
 
@@ -901,17 +944,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var webhookStore = new WebhookStore(); // WebhookStore | JSON array or key=value pairs with the necessary webhook information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store a new webhook
-                WebhookSingle result = apiInstance.StoreWebhook(webhookStore);
+                WebhookSingle result = apiInstance.StoreWebhook(webhookStore, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -932,7 +976,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new webhook
-    ApiResponse<WebhookSingle> response = apiInstance.StoreWebhookWithHttpInfo(webhookStore);
+    ApiResponse<WebhookSingle> response = apiInstance.StoreWebhookWithHttpInfo(webhookStore, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -950,6 +994,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookStore** | [**WebhookStore**](WebhookStore.md) | JSON array or key&#x3D;value pairs with the necessary webhook information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -969,13 +1014,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New webhook stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="submitwebook"></a>
 # **SubmitWebook**
-> void SubmitWebook (string id)
+> void SubmitWebook (string id, Guid? xTraceId = null)
 
 Submit messages for a webhook.
 
@@ -996,17 +1045,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Submit messages for a webhook.
-                apiInstance.SubmitWebook(id);
+                apiInstance.SubmitWebook(id, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -1026,7 +1076,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Submit messages for a webhook.
-    apiInstance.SubmitWebookWithHttpInfo(id);
+    apiInstance.SubmitWebookWithHttpInfo(id, xTraceId);
 }
 catch (ApiException e)
 {
@@ -1041,6 +1091,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1068,7 +1119,7 @@ void (empty response body)
 
 <a id="updatewebhook"></a>
 # **UpdateWebhook**
-> WebhookSingle UpdateWebhook (string id, WebhookUpdate webhookUpdate)
+> WebhookSingle UpdateWebhook (string id, WebhookUpdate webhookUpdate, Guid? xTraceId = null)
 
 Update existing webhook.
 
@@ -1089,18 +1140,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new WebhooksApi(config);
             var id = 123;  // string | The webhook ID.
             var webhookUpdate = new WebhookUpdate(); // WebhookUpdate | JSON array with updated webhook information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing webhook.
-                WebhookSingle result = apiInstance.UpdateWebhook(id, webhookUpdate);
+                WebhookSingle result = apiInstance.UpdateWebhook(id, webhookUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1121,7 +1173,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing webhook.
-    ApiResponse<WebhookSingle> response = apiInstance.UpdateWebhookWithHttpInfo(id, webhookUpdate);
+    ApiResponse<WebhookSingle> response = apiInstance.UpdateWebhookWithHttpInfo(id, webhookUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1140,6 +1192,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The webhook ID. |  |
 | **webhookUpdate** | [**WebhookUpdate**](WebhookUpdate.md) | JSON array with updated webhook information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1159,7 +1212,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated webhook stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

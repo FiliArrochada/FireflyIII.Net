@@ -1,28 +1,27 @@
 # FireflyIIINet.Api.BudgetsApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteBudget**](BudgetsApi.md#deletebudget) | **DELETE** /api/v1/budgets/{id} | Delete a budget. |
-| [**DeleteBudgetLimit**](BudgetsApi.md#deletebudgetlimit) | **DELETE** /api/v1/budgets/{id}/limits/{limitId} | Delete a budget limit. |
-| [**GetBudget**](BudgetsApi.md#getbudget) | **GET** /api/v1/budgets/{id} | Get a single budget. |
-| [**GetBudgetLimit**](BudgetsApi.md#getbudgetlimit) | **GET** /api/v1/budgets/{id}/limits/{limitId} | Get single budget limit. |
-| [**ListAttachmentByBudget**](BudgetsApi.md#listattachmentbybudget) | **GET** /api/v1/budgets/{id}/attachments | Lists all attachments of a budget. |
-| [**ListBudget**](BudgetsApi.md#listbudget) | **GET** /api/v1/budgets | List all budgets. |
-| [**ListBudgetLimit**](BudgetsApi.md#listbudgetlimit) | **GET** /api/v1/budget-limits | Get list of budget limits by date |
-| [**ListBudgetLimitByBudget**](BudgetsApi.md#listbudgetlimitbybudget) | **GET** /api/v1/budgets/{id}/limits | Get all limits for a budget. |
-| [**ListTransactionByBudget**](BudgetsApi.md#listtransactionbybudget) | **GET** /api/v1/budgets/{id}/transactions | All transactions to a budget. |
-| [**ListTransactionByBudgetLimit**](BudgetsApi.md#listtransactionbybudgetlimit) | **GET** /api/v1/budgets/{id}/limits/{limitId}/transactions | List all transactions by a budget limit ID. |
-| [**ListTransactionWithoutBudget**](BudgetsApi.md#listtransactionwithoutbudget) | **GET** /api/v1/budgets/transactions-without-budget | All transactions without a budget. |
-| [**StoreBudget**](BudgetsApi.md#storebudget) | **POST** /api/v1/budgets | Store a new budget |
-| [**StoreBudgetLimit**](BudgetsApi.md#storebudgetlimit) | **POST** /api/v1/budgets/{id}/limits | Store new budget limit. |
-| [**UpdateBudget**](BudgetsApi.md#updatebudget) | **PUT** /api/v1/budgets/{id} | Update existing budget. |
-| [**UpdateBudgetLimit**](BudgetsApi.md#updatebudgetlimit) | **PUT** /api/v1/budgets/{id}/limits/{limitId} | Update existing budget limit. |
+| [**DeleteBudget**](BudgetsApi.md#deletebudget) | **DELETE** /v1/budgets/{id} | Delete a budget. |
+| [**DeleteBudgetLimit**](BudgetsApi.md#deletebudgetlimit) | **DELETE** /v1/budgets/{id}/limits/{limitId} | Delete a budget limit. |
+| [**GetBudget**](BudgetsApi.md#getbudget) | **GET** /v1/budgets/{id} | Get a single budget. |
+| [**GetBudgetLimit**](BudgetsApi.md#getbudgetlimit) | **GET** /v1/budgets/{id}/limits/{limitId} | Get single budget limit. |
+| [**ListAttachmentByBudget**](BudgetsApi.md#listattachmentbybudget) | **GET** /v1/budgets/{id}/attachments | Lists all attachments of a budget. |
+| [**ListBudget**](BudgetsApi.md#listbudget) | **GET** /v1/budgets | List all budgets. |
+| [**ListBudgetLimit**](BudgetsApi.md#listbudgetlimit) | **GET** /v1/budget-limits | Get list of budget limits by date |
+| [**ListBudgetLimitByBudget**](BudgetsApi.md#listbudgetlimitbybudget) | **GET** /v1/budgets/{id}/limits | Get all limits for a budget. |
+| [**ListTransactionByBudget**](BudgetsApi.md#listtransactionbybudget) | **GET** /v1/budgets/{id}/transactions | All transactions to a budget. |
+| [**ListTransactionByBudgetLimit**](BudgetsApi.md#listtransactionbybudgetlimit) | **GET** /v1/budgets/{id}/limits/{limitId}/transactions | List all transactions by a budget limit ID. |
+| [**StoreBudget**](BudgetsApi.md#storebudget) | **POST** /v1/budgets | Store a new budget |
+| [**StoreBudgetLimit**](BudgetsApi.md#storebudgetlimit) | **POST** /v1/budgets/{id}/limits | Store new budget limit. |
+| [**UpdateBudget**](BudgetsApi.md#updatebudget) | **PUT** /v1/budgets/{id} | Update existing budget. |
+| [**UpdateBudgetLimit**](BudgetsApi.md#updatebudgetlimit) | **PUT** /v1/budgets/{id}/limits/{limitId} | Update existing budget limit. |
 
 <a id="deletebudget"></a>
 # **DeleteBudget**
-> void DeleteBudget (string id)
+> void DeleteBudget (string id, Guid? xTraceId = null)
 
 Delete a budget.
 
@@ -43,17 +42,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a budget.
-                apiInstance.DeleteBudget(id);
+                apiInstance.DeleteBudget(id, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -73,7 +73,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a budget.
-    apiInstance.DeleteBudgetWithHttpInfo(id);
+    apiInstance.DeleteBudgetWithHttpInfo(id, xTraceId);
 }
 catch (ApiException e)
 {
@@ -88,6 +88,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -100,20 +101,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Budget deleted. |  -  |
-| **404** | No such budget |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="deletebudgetlimit"></a>
 # **DeleteBudgetLimit**
-> void DeleteBudgetLimit (string id, string limitId)
+> void DeleteBudgetLimit (string id, string limitId, Guid? xTraceId = null)
 
 Delete a budget limit.
 
@@ -134,18 +138,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
             var limitId = 123;  // string | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a budget limit.
-                apiInstance.DeleteBudgetLimit(id, limitId);
+                apiInstance.DeleteBudgetLimit(id, limitId, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -165,7 +170,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a budget limit.
-    apiInstance.DeleteBudgetLimitWithHttpInfo(id, limitId);
+    apiInstance.DeleteBudgetLimitWithHttpInfo(id, limitId, xTraceId);
 }
 catch (ApiException e)
 {
@@ -181,6 +186,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
 | **limitId** | **string** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -193,20 +199,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Budget limit deleted. |  -  |
-| **404** | No such budget limit |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getbudget"></a>
 # **GetBudget**
-> BudgetSingle GetBudget (string id, DateTime? start = null, DateTime? end = null)
+> BudgetSingle GetBudget (string id, Guid? xTraceId = null, DateTime? start = null, DateTime? end = null)
 
 Get a single budget.
 
@@ -227,19 +236,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the requested budget.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional) 
 
             try
             {
                 // Get a single budget.
-                BudgetSingle result = apiInstance.GetBudget(id, start, end);
+                BudgetSingle result = apiInstance.GetBudget(id, xTraceId, start, end);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -260,7 +270,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single budget.
-    ApiResponse<BudgetSingle> response = apiInstance.GetBudgetWithHttpInfo(id, start, end);
+    ApiResponse<BudgetSingle> response = apiInstance.GetBudgetWithHttpInfo(id, xTraceId, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -278,6 +288,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the requested budget. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent.  | [optional]  |
 
@@ -292,20 +303,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested budget |  -  |
-| **404** | Budget not found. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getbudgetlimit"></a>
 # **GetBudgetLimit**
-> BudgetLimitSingle GetBudgetLimit (string id, int limitId)
+> BudgetLimitSingle GetBudgetLimit (string id, int limitId, Guid? xTraceId = null)
 
 Get single budget limit.
 
@@ -324,18 +338,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
             var limitId = 1;  // int | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get single budget limit.
-                BudgetLimitSingle result = apiInstance.GetBudgetLimit(id, limitId);
+                BudgetLimitSingle result = apiInstance.GetBudgetLimit(id, limitId, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -356,7 +371,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get single budget limit.
-    ApiResponse<BudgetLimitSingle> response = apiInstance.GetBudgetLimitWithHttpInfo(id, limitId);
+    ApiResponse<BudgetLimitSingle> response = apiInstance.GetBudgetLimitWithHttpInfo(id, limitId, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -375,6 +390,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
 | **limitId** | **int** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -387,20 +403,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested budget limit |  -  |
-| **404** | Budget limit not found. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listattachmentbybudget"></a>
 # **ListAttachmentByBudget**
-> AttachmentArray ListAttachmentByBudget (string id, int? page = null)
+> AttachmentArray ListAttachmentByBudget (string id, Guid? xTraceId = null, int? page = null)
 
 Lists all attachments of a budget.
 
@@ -421,18 +440,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // Lists all attachments of a budget.
-                AttachmentArray result = apiInstance.ListAttachmentByBudget(id, page);
+                AttachmentArray result = apiInstance.ListAttachmentByBudget(id, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -453,7 +473,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Lists all attachments of a budget.
-    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByBudgetWithHttpInfo(id, page);
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByBudgetWithHttpInfo(id, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -471,6 +491,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -484,20 +505,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of attachments |  -  |
-| **404** | No such budget. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listbudget"></a>
 # **ListBudget**
-> BudgetArray ListBudget (int? page = null, DateTime? start = null, DateTime? end = null)
+> BudgetArray ListBudget (Guid? xTraceId = null, int? page = null, DateTime? start = null, DateTime? end = null)
 
 List all budgets.
 
@@ -518,11 +542,12 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional) 
@@ -530,7 +555,7 @@ namespace Example
             try
             {
                 // List all budgets.
-                BudgetArray result = apiInstance.ListBudget(page, start, end);
+                BudgetArray result = apiInstance.ListBudget(xTraceId, page, start, end);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -551,7 +576,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all budgets.
-    ApiResponse<BudgetArray> response = apiInstance.ListBudgetWithHttpInfo(page, start, end);
+    ApiResponse<BudgetArray> response = apiInstance.ListBudgetWithHttpInfo(xTraceId, page, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -568,6 +593,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  | [optional]  |
@@ -583,19 +609,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of budgets. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listbudgetlimit"></a>
 # **ListBudgetLimit**
-> BudgetLimitArray ListBudgetLimit (DateTime start, DateTime end)
+> BudgetLimitArray ListBudgetLimit (DateTime start, DateTime end, Guid? xTraceId = null)
 
 Get list of budget limits by date
 
@@ -616,18 +646,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime | A date formatted YYYY-MM-DD. 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get list of budget limits by date
-                BudgetLimitArray result = apiInstance.ListBudgetLimit(start, end);
+                BudgetLimitArray result = apiInstance.ListBudgetLimit(start, end, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -648,7 +679,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get list of budget limits by date
-    ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitWithHttpInfo(start, end);
+    ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitWithHttpInfo(start, end, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -667,6 +698,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -679,19 +711,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of budget limits. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listbudgetlimitbybudget"></a>
 # **ListBudgetLimitByBudget**
-> BudgetLimitArray ListBudgetLimitByBudget (string id, DateTime? start = null, DateTime? end = null)
+> BudgetLimitArray ListBudgetLimitByBudget (string id, Guid? xTraceId = null, DateTime? start = null, DateTime? end = null)
 
 Get all limits for a budget.
 
@@ -712,19 +748,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the requested budget.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
 
             try
             {
                 // Get all limits for a budget.
-                BudgetLimitArray result = apiInstance.ListBudgetLimitByBudget(id, start, end);
+                BudgetLimitArray result = apiInstance.ListBudgetLimitByBudget(id, xTraceId, start, end);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -745,7 +782,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get all limits for a budget.
-    ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitByBudgetWithHttpInfo(id, start, end);
+    ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitByBudgetWithHttpInfo(id, xTraceId, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -763,6 +800,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the requested budget. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 
@@ -777,19 +815,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of budget limits applicable to this budget. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listtransactionbybudget"></a>
 # **ListTransactionByBudget**
-> TransactionArray ListTransactionByBudget (string id, int? limit = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByBudget (string id, Guid? xTraceId = null, int? limit = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter? type = null)
 
 All transactions to a budget.
 
@@ -810,22 +852,23 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var limit = 5;  // int? | Limits the number of results on one page. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
+            var type = new TransactionTypeFilter?(); // TransactionTypeFilter? | Optional filter on the transaction type(s) returned (optional) 
 
             try
             {
                 // All transactions to a budget.
-                TransactionArray result = apiInstance.ListTransactionByBudget(id, limit, page, start, end, type);
+                TransactionArray result = apiInstance.ListTransactionByBudget(id, xTraceId, limit, page, start, end, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -846,7 +889,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // All transactions to a budget.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByBudgetWithHttpInfo(id, limit, page, start, end, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByBudgetWithHttpInfo(id, xTraceId, limit, page, start, end, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -864,11 +907,12 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **limit** | **int?** | Limits the number of results on one page. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
+| **type** | [**TransactionTypeFilter?**](TransactionTypeFilter?.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
 
@@ -881,19 +925,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of transactions. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listtransactionbybudgetlimit"></a>
 # **ListTransactionByBudgetLimit**
-> TransactionArray ListTransactionByBudgetLimit (string id, string limitId, int? page = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByBudgetLimit (string id, string limitId, Guid? xTraceId = null, int? page = null, TransactionTypeFilter? type = null)
 
 List all transactions by a budget limit ID.
 
@@ -914,20 +962,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
             var limitId = 123;  // string | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
+            var type = new TransactionTypeFilter?(); // TransactionTypeFilter? | Optional filter on the transaction type(s) returned (optional) 
 
             try
             {
                 // List all transactions by a budget limit ID.
-                TransactionArray result = apiInstance.ListTransactionByBudgetLimit(id, limitId, page, type);
+                TransactionArray result = apiInstance.ListTransactionByBudgetLimit(id, limitId, xTraceId, page, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -948,7 +997,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all transactions by a budget limit ID.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByBudgetLimitWithHttpInfo(id, limitId, page, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByBudgetLimitWithHttpInfo(id, limitId, xTraceId, page, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -967,8 +1016,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
 | **limitId** | **string** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
+| **type** | [**TransactionTypeFilter?**](TransactionTypeFilter?.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
 
@@ -981,121 +1031,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of transactions. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="listtransactionwithoutbudget"></a>
-# **ListTransactionWithoutBudget**
-> TransactionArray ListTransactionWithoutBudget (int? limit = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
-
-All transactions without a budget.
-
-Get all transactions without a budget, possibly limited by start and end
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using FireflyIIINet.Api;
-using FireflyIIINet.Client;
-using FireflyIIINet.Model;
-
-namespace Example
-{
-    public class ListTransactionWithoutBudgetExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
-            // Configure OAuth2 access token for authorization: firefly_iii_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new BudgetsApi(config);
-            var limit = 5;  // int? | Limits the number of results on one page. (optional) 
-            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
-
-            try
-            {
-                // All transactions without a budget.
-                TransactionArray result = apiInstance.ListTransactionWithoutBudget(limit, page, start, end, type);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BudgetsApi.ListTransactionWithoutBudget: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ListTransactionWithoutBudgetWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // All transactions without a budget.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionWithoutBudgetWithHttpInfo(limit, page, start, end, type);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BudgetsApi.ListTransactionWithoutBudgetWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **limit** | **int?** | Limits the number of results on one page. | [optional]  |
-| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
-| **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
-| **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
-
-### Return type
-
-[**TransactionArray**](TransactionArray.md)
-
-### Authorization
-
-[firefly_iii_auth](../README.md#firefly_iii_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of transactions. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storebudget"></a>
 # **StoreBudget**
-> BudgetSingle StoreBudget (BudgetStore budgetStore)
+> BudgetSingle StoreBudget (BudgetStore budgetStore, Guid? xTraceId = null)
 
 Store a new budget
 
@@ -1116,17 +1068,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var budgetStore = new BudgetStore(); // BudgetStore | JSON array or key=value pairs with the necessary budget information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store a new budget
-                BudgetSingle result = apiInstance.StoreBudget(budgetStore);
+                BudgetSingle result = apiInstance.StoreBudget(budgetStore, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1147,7 +1100,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new budget
-    ApiResponse<BudgetSingle> response = apiInstance.StoreBudgetWithHttpInfo(budgetStore);
+    ApiResponse<BudgetSingle> response = apiInstance.StoreBudgetWithHttpInfo(budgetStore, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1165,6 +1118,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **budgetStore** | [**BudgetStore**](BudgetStore.md) | JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1184,13 +1138,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New budget stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storebudgetlimit"></a>
 # **StoreBudgetLimit**
-> BudgetLimitSingle StoreBudgetLimit (string id, BudgetLimitStore budgetLimitStore)
+> BudgetLimitSingle StoreBudgetLimit (string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = null)
 
 Store new budget limit.
 
@@ -1211,18 +1169,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget.
             var budgetLimitStore = new BudgetLimitStore(); // BudgetLimitStore | JSON array or key=value pairs with the necessary budget information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store new budget limit.
-                BudgetLimitSingle result = apiInstance.StoreBudgetLimit(id, budgetLimitStore);
+                BudgetLimitSingle result = apiInstance.StoreBudgetLimit(id, budgetLimitStore, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1243,7 +1202,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store new budget limit.
-    ApiResponse<BudgetLimitSingle> response = apiInstance.StoreBudgetLimitWithHttpInfo(id, budgetLimitStore);
+    ApiResponse<BudgetLimitSingle> response = apiInstance.StoreBudgetLimitWithHttpInfo(id, budgetLimitStore, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1262,6 +1221,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. |  |
 | **budgetLimitStore** | [**BudgetLimitStore**](BudgetLimitStore.md) | JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1281,13 +1241,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New budget limit stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updatebudget"></a>
 # **UpdateBudget**
-> BudgetSingle UpdateBudget (string id, BudgetUpdate budgetUpdate)
+> BudgetSingle UpdateBudget (string id, BudgetUpdate budgetUpdate, Guid? xTraceId = null)
 
 Update existing budget.
 
@@ -1308,18 +1272,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new BudgetsApi(config);
             var id = 123;  // string | The ID of the budget.
             var budgetUpdate = new BudgetUpdate(); // BudgetUpdate | JSON array with updated budget information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing budget.
-                BudgetSingle result = apiInstance.UpdateBudget(id, budgetUpdate);
+                BudgetSingle result = apiInstance.UpdateBudget(id, budgetUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1340,7 +1305,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing budget.
-    ApiResponse<BudgetSingle> response = apiInstance.UpdateBudgetWithHttpInfo(id, budgetUpdate);
+    ApiResponse<BudgetSingle> response = apiInstance.UpdateBudgetWithHttpInfo(id, budgetUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1359,6 +1324,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the budget. |  |
 | **budgetUpdate** | [**BudgetUpdate**](BudgetUpdate.md) | JSON array with updated budget information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1378,13 +1344,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated budget stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updatebudgetlimit"></a>
 # **UpdateBudgetLimit**
-> BudgetLimitSingle UpdateBudgetLimit (string id, string limitId, BudgetLimit budgetLimit)
+> BudgetLimitSingle UpdateBudgetLimit (string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = null)
 
 Update existing budget limit.
 
@@ -1405,7 +1375,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -1413,11 +1383,12 @@ namespace Example
             var id = 123;  // string | The ID of the budget. The budget limit MUST be associated to the budget ID.
             var limitId = 123;  // string | The ID of the budget limit. The budget limit MUST be associated to the budget ID.
             var budgetLimit = new BudgetLimit(); // BudgetLimit | JSON array with updated budget limit information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing budget limit.
-                BudgetLimitSingle result = apiInstance.UpdateBudgetLimit(id, limitId, budgetLimit);
+                BudgetLimitSingle result = apiInstance.UpdateBudgetLimit(id, limitId, budgetLimit, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1438,7 +1409,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing budget limit.
-    ApiResponse<BudgetLimitSingle> response = apiInstance.UpdateBudgetLimitWithHttpInfo(id, limitId, budgetLimit);
+    ApiResponse<BudgetLimitSingle> response = apiInstance.UpdateBudgetLimitWithHttpInfo(id, limitId, budgetLimit, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1458,6 +1429,7 @@ catch (ApiException e)
 | **id** | **string** | The ID of the budget. The budget limit MUST be associated to the budget ID. |  |
 | **limitId** | **string** | The ID of the budget limit. The budget limit MUST be associated to the budget ID. |  |
 | **budgetLimit** | [**BudgetLimit**](BudgetLimit.md) | JSON array with updated budget limit information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1477,7 +1449,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated budget limit stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

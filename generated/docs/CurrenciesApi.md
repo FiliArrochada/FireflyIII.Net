@@ -1,29 +1,29 @@
 # FireflyIIINet.Api.CurrenciesApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DefaultCurrency**](CurrenciesApi.md#defaultcurrency) | **POST** /api/v1/currencies/{code}/default | Make currency default currency. |
-| [**DeleteCurrency**](CurrenciesApi.md#deletecurrency) | **DELETE** /api/v1/currencies/{code} | Delete a currency. |
-| [**DisableCurrency**](CurrenciesApi.md#disablecurrency) | **POST** /api/v1/currencies/{code}/disable | Disable a currency. |
-| [**EnableCurrency**](CurrenciesApi.md#enablecurrency) | **POST** /api/v1/currencies/{code}/enable | Enable a single currency. |
-| [**GetCurrency**](CurrenciesApi.md#getcurrency) | **GET** /api/v1/currencies/{code} | Get a single currency. |
-| [**GetDefaultCurrency**](CurrenciesApi.md#getdefaultcurrency) | **GET** /api/v1/currencies/default | Get the user&#39;s default currency. |
-| [**ListAccountByCurrency**](CurrenciesApi.md#listaccountbycurrency) | **GET** /api/v1/currencies/{code}/accounts | List all accounts with this currency. |
-| [**ListAvailableBudgetByCurrency**](CurrenciesApi.md#listavailablebudgetbycurrency) | **GET** /api/v1/currencies/{code}/available_budgets | List all available budgets with this currency. |
-| [**ListBillByCurrency**](CurrenciesApi.md#listbillbycurrency) | **GET** /api/v1/currencies/{code}/bills | List all bills with this currency. |
-| [**ListBudgetLimitByCurrency**](CurrenciesApi.md#listbudgetlimitbycurrency) | **GET** /api/v1/currencies/{code}/budget_limits | List all budget limits with this currency |
-| [**ListCurrency**](CurrenciesApi.md#listcurrency) | **GET** /api/v1/currencies | List all currencies. |
-| [**ListRecurrenceByCurrency**](CurrenciesApi.md#listrecurrencebycurrency) | **GET** /api/v1/currencies/{code}/recurrences | List all recurring transactions with this currency. |
-| [**ListRuleByCurrency**](CurrenciesApi.md#listrulebycurrency) | **GET** /api/v1/currencies/{code}/rules | List all rules with this currency. |
-| [**ListTransactionByCurrency**](CurrenciesApi.md#listtransactionbycurrency) | **GET** /api/v1/currencies/{code}/transactions | List all transactions with this currency. |
-| [**StoreCurrency**](CurrenciesApi.md#storecurrency) | **POST** /api/v1/currencies | Store a new currency |
-| [**UpdateCurrency**](CurrenciesApi.md#updatecurrency) | **PUT** /api/v1/currencies/{code} | Update existing currency. |
+| [**DefaultCurrency**](CurrenciesApi.md#defaultcurrency) | **POST** /v1/currencies/{code}/default | Make currency default currency. |
+| [**DeleteCurrency**](CurrenciesApi.md#deletecurrency) | **DELETE** /v1/currencies/{code} | Delete a currency. |
+| [**DisableCurrency**](CurrenciesApi.md#disablecurrency) | **POST** /v1/currencies/{code}/disable | Disable a currency. |
+| [**EnableCurrency**](CurrenciesApi.md#enablecurrency) | **POST** /v1/currencies/{code}/enable | Enable a single currency. |
+| [**GetCurrency**](CurrenciesApi.md#getcurrency) | **GET** /v1/currencies/{code} | Get a single currency. |
+| [**GetDefaultCurrency**](CurrenciesApi.md#getdefaultcurrency) | **GET** /v1/currencies/default | Get the user&#39;s default currency. |
+| [**ListAccountByCurrency**](CurrenciesApi.md#listaccountbycurrency) | **GET** /v1/currencies/{code}/accounts | List all accounts with this currency. |
+| [**ListAvailableBudgetByCurrency**](CurrenciesApi.md#listavailablebudgetbycurrency) | **GET** /v1/currencies/{code}/available-budgets | List all available budgets with this currency. |
+| [**ListBillByCurrency**](CurrenciesApi.md#listbillbycurrency) | **GET** /v1/currencies/{code}/bills | List all bills with this currency. |
+| [**ListBudgetLimitByCurrency**](CurrenciesApi.md#listbudgetlimitbycurrency) | **GET** /v1/currencies/{code}/budget_limits | List all budget limits with this currency |
+| [**ListCurrency**](CurrenciesApi.md#listcurrency) | **GET** /v1/currencies | List all currencies. |
+| [**ListRecurrenceByCurrency**](CurrenciesApi.md#listrecurrencebycurrency) | **GET** /v1/currencies/{code}/recurrences | List all recurring transactions with this currency. |
+| [**ListRuleByCurrency**](CurrenciesApi.md#listrulebycurrency) | **GET** /v1/currencies/{code}/rules | List all rules with this currency. |
+| [**ListTransactionByCurrency**](CurrenciesApi.md#listtransactionbycurrency) | **GET** /v1/currencies/{code}/transactions | List all transactions with this currency. |
+| [**StoreCurrency**](CurrenciesApi.md#storecurrency) | **POST** /v1/currencies | Store a new currency |
+| [**UpdateCurrency**](CurrenciesApi.md#updatecurrency) | **PUT** /v1/currencies/{code} | Update existing currency. |
 
 <a id="defaultcurrency"></a>
 # **DefaultCurrency**
-> CurrencySingle DefaultCurrency (string code)
+> CurrencySingle DefaultCurrency (string code, Guid? xTraceId = null)
 
 Make currency default currency.
 
@@ -44,17 +44,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Make currency default currency.
-                CurrencySingle result = apiInstance.DefaultCurrency(code);
+                CurrencySingle result = apiInstance.DefaultCurrency(code, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -75,7 +76,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Make currency default currency.
-    ApiResponse<CurrencySingle> response = apiInstance.DefaultCurrencyWithHttpInfo(code);
+    ApiResponse<CurrencySingle> response = apiInstance.DefaultCurrencyWithHttpInfo(code, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -93,6 +94,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -105,19 +107,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Currency has been made the default currency. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="deletecurrency"></a>
 # **DeleteCurrency**
-> void DeleteCurrency (string code)
+> void DeleteCurrency (string code, Guid? xTraceId = null)
 
 Delete a currency.
 
@@ -138,17 +144,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = GBP;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a currency.
-                apiInstance.DeleteCurrency(code);
+                apiInstance.DeleteCurrency(code, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -168,7 +175,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a currency.
-    apiInstance.DeleteCurrencyWithHttpInfo(code);
+    apiInstance.DeleteCurrencyWithHttpInfo(code, xTraceId);
 }
 catch (ApiException e)
 {
@@ -183,6 +190,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -195,20 +203,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Currency deleted. |  -  |
-| **404** | No such currency |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="disablecurrency"></a>
 # **DisableCurrency**
-> CurrencySingle DisableCurrency (int code)
+> CurrencySingle DisableCurrency (int code, Guid? xTraceId = null)
 
 Disable a currency.
 
@@ -229,17 +240,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = 56;  // int | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Disable a currency.
-                CurrencySingle result = apiInstance.DisableCurrency(code);
+                CurrencySingle result = apiInstance.DisableCurrency(code, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -260,7 +272,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Disable a currency.
-    ApiResponse<CurrencySingle> response = apiInstance.DisableCurrencyWithHttpInfo(code);
+    ApiResponse<CurrencySingle> response = apiInstance.DisableCurrencyWithHttpInfo(code, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -278,6 +290,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **int** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -290,7 +303,7 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
@@ -298,12 +311,16 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **204** | Currency was disabled. |  -  |
 | **409** | Currency cannot be disabled, because it is still in use. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="enablecurrency"></a>
 # **EnableCurrency**
-> CurrencySingle EnableCurrency (string code)
+> CurrencySingle EnableCurrency (string code, Guid? xTraceId = null)
 
 Enable a single currency.
 
@@ -324,17 +341,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Enable a single currency.
-                CurrencySingle result = apiInstance.EnableCurrency(code);
+                CurrencySingle result = apiInstance.EnableCurrency(code, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -355,7 +373,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Enable a single currency.
-    ApiResponse<CurrencySingle> response = apiInstance.EnableCurrencyWithHttpInfo(code);
+    ApiResponse<CurrencySingle> response = apiInstance.EnableCurrencyWithHttpInfo(code, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -373,6 +391,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -385,19 +404,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Currency was enabled. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getcurrency"></a>
 # **GetCurrency**
-> CurrencySingle GetCurrency (string code)
+> CurrencySingle GetCurrency (string code, Guid? xTraceId = null)
 
 Get a single currency.
 
@@ -418,17 +441,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get a single currency.
-                CurrencySingle result = apiInstance.GetCurrency(code);
+                CurrencySingle result = apiInstance.GetCurrency(code, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -449,7 +473,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single currency.
-    ApiResponse<CurrencySingle> response = apiInstance.GetCurrencyWithHttpInfo(code);
+    ApiResponse<CurrencySingle> response = apiInstance.GetCurrencyWithHttpInfo(code, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -467,6 +491,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -479,20 +504,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested currency |  -  |
-| **404** | Currency not found |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getdefaultcurrency"></a>
 # **GetDefaultCurrency**
-> CurrencySingle GetDefaultCurrency ()
+> CurrencySingle GetDefaultCurrency (Guid? xTraceId = null)
 
 Get the user's default currency.
 
@@ -513,16 +541,17 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get the user's default currency.
-                CurrencySingle result = apiInstance.GetDefaultCurrency();
+                CurrencySingle result = apiInstance.GetDefaultCurrency(xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -543,7 +572,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get the user's default currency.
-    ApiResponse<CurrencySingle> response = apiInstance.GetDefaultCurrencyWithHttpInfo();
+    ApiResponse<CurrencySingle> response = apiInstance.GetDefaultCurrencyWithHttpInfo(xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -557,7 +586,11 @@ catch (ApiException e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+
 ### Return type
 
 [**CurrencySingle**](CurrencySingle.md)
@@ -576,12 +609,16 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The default currency |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listaccountbycurrency"></a>
 # **ListAccountByCurrency**
-> AccountArray ListAccountByCurrency (string code, int? page = null, DateTime? date = null, AccountTypeFilter type = null)
+> AccountArray ListAccountByCurrency (string code, Guid? xTraceId = null, int? page = null, DateTime? date = null, AccountTypeFilter? type = null)
 
 List all accounts with this currency.
 
@@ -602,20 +639,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var date = DateTime.Parse("2013-10-20");  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
-            var type = new AccountTypeFilter(); // AccountTypeFilter | Optional filter on the account type(s) returned (optional) 
+            var type = new AccountTypeFilter?(); // AccountTypeFilter? | Optional filter on the account type(s) returned (optional) 
 
             try
             {
                 // List all accounts with this currency.
-                AccountArray result = apiInstance.ListAccountByCurrency(code, page, date, type);
+                AccountArray result = apiInstance.ListAccountByCurrency(code, xTraceId, page, date, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -636,7 +674,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all accounts with this currency.
-    ApiResponse<AccountArray> response = apiInstance.ListAccountByCurrencyWithHttpInfo(code, page, date, type);
+    ApiResponse<AccountArray> response = apiInstance.ListAccountByCurrencyWithHttpInfo(code, xTraceId, page, date, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -654,9 +692,10 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **date** | **DateTime?** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
-| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | Optional filter on the account type(s) returned | [optional]  |
+| **type** | [**AccountTypeFilter?**](AccountTypeFilter?.md) | Optional filter on the account type(s) returned | [optional]  |
 
 ### Return type
 
@@ -669,19 +708,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of accounts |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listavailablebudgetbycurrency"></a>
 # **ListAvailableBudgetByCurrency**
-> AvailableBudgetArray ListAvailableBudgetByCurrency (string code, int? page = null)
+> AvailableBudgetArray ListAvailableBudgetByCurrency (string code, Guid? xTraceId = null, int? page = null)
 
 List all available budgets with this currency.
 
@@ -702,18 +745,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = EUR;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50 (optional) 
 
             try
             {
                 // List all available budgets with this currency.
-                AvailableBudgetArray result = apiInstance.ListAvailableBudgetByCurrency(code, page);
+                AvailableBudgetArray result = apiInstance.ListAvailableBudgetByCurrency(code, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -734,7 +778,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all available budgets with this currency.
-    ApiResponse<AvailableBudgetArray> response = apiInstance.ListAvailableBudgetByCurrencyWithHttpInfo(code, page);
+    ApiResponse<AvailableBudgetArray> response = apiInstance.ListAvailableBudgetByCurrencyWithHttpInfo(code, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -752,6 +796,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50 | [optional]  |
 
 ### Return type
@@ -765,19 +810,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of available budgets |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listbillbycurrency"></a>
 # **ListBillByCurrency**
-> BillArray ListBillByCurrency (string code, int? page = null)
+> BillArray ListBillByCurrency (string code, Guid? xTraceId = null, int? page = null)
 
 List all bills with this currency.
 
@@ -798,18 +847,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // List all bills with this currency.
-                BillArray result = apiInstance.ListBillByCurrency(code, page);
+                BillArray result = apiInstance.ListBillByCurrency(code, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -830,7 +880,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all bills with this currency.
-    ApiResponse<BillArray> response = apiInstance.ListBillByCurrencyWithHttpInfo(code, page);
+    ApiResponse<BillArray> response = apiInstance.ListBillByCurrencyWithHttpInfo(code, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -848,6 +898,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -861,19 +912,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of bills. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listbudgetlimitbycurrency"></a>
 # **ListBudgetLimitByCurrency**
-> BudgetLimitArray ListBudgetLimitByCurrency (string code, int? page = null, DateTime? start = null, DateTime? end = null)
+> BudgetLimitArray ListBudgetLimitByCurrency (string code, Guid? xTraceId = null, int? page = null, DateTime? start = null, DateTime? end = null)
 
 List all budget limits with this currency
 
@@ -894,12 +949,13 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
             var start = Mon Jan 01 00:00:00 WET 2018;  // DateTime? | Start date for the budget limit list. (optional) 
             var end = Wed Jan 31 00:00:00 WET 2018;  // DateTime? | End date for the budget limit list. (optional) 
@@ -907,7 +963,7 @@ namespace Example
             try
             {
                 // List all budget limits with this currency
-                BudgetLimitArray result = apiInstance.ListBudgetLimitByCurrency(code, page, start, end);
+                BudgetLimitArray result = apiInstance.ListBudgetLimitByCurrency(code, xTraceId, page, start, end);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -928,7 +984,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all budget limits with this currency
-    ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitByCurrencyWithHttpInfo(code, page, start, end);
+    ApiResponse<BudgetLimitArray> response = apiInstance.ListBudgetLimitByCurrencyWithHttpInfo(code, xTraceId, page, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -946,6 +1002,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 | **start** | **DateTime?** | Start date for the budget limit list. | [optional]  |
 | **end** | **DateTime?** | End date for the budget limit list. | [optional]  |
@@ -961,19 +1018,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of budget limits. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listcurrency"></a>
 # **ListCurrency**
-> CurrencyArray ListCurrency (int? page = null)
+> CurrencyArray ListCurrency (Guid? xTraceId = null, int? page = null)
 
 List all currencies.
 
@@ -994,17 +1055,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // List all currencies.
-                CurrencyArray result = apiInstance.ListCurrency(page);
+                CurrencyArray result = apiInstance.ListCurrency(xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1025,7 +1087,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all currencies.
-    ApiResponse<CurrencyArray> response = apiInstance.ListCurrencyWithHttpInfo(page);
+    ApiResponse<CurrencyArray> response = apiInstance.ListCurrencyWithHttpInfo(xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1042,6 +1104,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -1055,19 +1118,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of currencies. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listrecurrencebycurrency"></a>
 # **ListRecurrenceByCurrency**
-> RecurrenceArray ListRecurrenceByCurrency (string code, int? page = null)
+> RecurrenceArray ListRecurrenceByCurrency (string code, Guid? xTraceId = null, int? page = null)
 
 List all recurring transactions with this currency.
 
@@ -1088,18 +1155,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = EUR;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // List all recurring transactions with this currency.
-                RecurrenceArray result = apiInstance.ListRecurrenceByCurrency(code, page);
+                RecurrenceArray result = apiInstance.ListRecurrenceByCurrency(code, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1120,7 +1188,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all recurring transactions with this currency.
-    ApiResponse<RecurrenceArray> response = apiInstance.ListRecurrenceByCurrencyWithHttpInfo(code, page);
+    ApiResponse<RecurrenceArray> response = apiInstance.ListRecurrenceByCurrencyWithHttpInfo(code, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1138,6 +1206,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -1151,19 +1220,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of recurring transactions |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listrulebycurrency"></a>
 # **ListRuleByCurrency**
-> RuleArray ListRuleByCurrency (string code, int? page = null)
+> RuleArray ListRuleByCurrency (string code, Guid? xTraceId = null, int? page = null)
 
 List all rules with this currency.
 
@@ -1184,18 +1257,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination per 50. (optional) 
 
             try
             {
                 // List all rules with this currency.
-                RuleArray result = apiInstance.ListRuleByCurrency(code, page);
+                RuleArray result = apiInstance.ListRuleByCurrency(code, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1216,7 +1290,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all rules with this currency.
-    ApiResponse<RuleArray> response = apiInstance.ListRuleByCurrencyWithHttpInfo(code, page);
+    ApiResponse<RuleArray> response = apiInstance.ListRuleByCurrencyWithHttpInfo(code, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1234,6 +1308,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination per 50. | [optional]  |
 
 ### Return type
@@ -1247,19 +1322,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of rules |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listtransactionbycurrency"></a>
 # **ListTransactionByCurrency**
-> TransactionArray ListTransactionByCurrency (string code, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByCurrency (string code, Guid? xTraceId = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter? type = null)
 
 List all transactions with this currency.
 
@@ -1280,21 +1359,22 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = USD;  // string | The currency code.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is per 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the list of transactions.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the list of transactions.  (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
+            var type = new TransactionTypeFilter?(); // TransactionTypeFilter? | Optional filter on the transaction type(s) returned (optional) 
 
             try
             {
                 // List all transactions with this currency.
-                TransactionArray result = apiInstance.ListTransactionByCurrency(code, page, start, end, type);
+                TransactionArray result = apiInstance.ListTransactionByCurrency(code, xTraceId, page, start, end, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1315,7 +1395,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all transactions with this currency.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByCurrencyWithHttpInfo(code, page, start, end, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByCurrencyWithHttpInfo(code, xTraceId, page, start, end, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1333,10 +1413,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is per 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the list of transactions.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the list of transactions.  | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
+| **type** | [**TransactionTypeFilter?**](TransactionTypeFilter?.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
 
@@ -1349,19 +1430,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of transactions. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storecurrency"></a>
 # **StoreCurrency**
-> CurrencySingle StoreCurrency (CurrencyStore currencyStore)
+> CurrencySingle StoreCurrency (CurrencyStore currencyStore, Guid? xTraceId = null)
 
 Store a new currency
 
@@ -1382,17 +1467,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var currencyStore = new CurrencyStore(); // CurrencyStore | JSON array or key=value pairs with the necessary currency information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store a new currency
-                CurrencySingle result = apiInstance.StoreCurrency(currencyStore);
+                CurrencySingle result = apiInstance.StoreCurrency(currencyStore, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1413,7 +1499,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new currency
-    ApiResponse<CurrencySingle> response = apiInstance.StoreCurrencyWithHttpInfo(currencyStore);
+    ApiResponse<CurrencySingle> response = apiInstance.StoreCurrencyWithHttpInfo(currencyStore, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1431,6 +1517,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **currencyStore** | [**CurrencyStore**](CurrencyStore.md) | JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1450,13 +1537,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New currency stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updatecurrency"></a>
 # **UpdateCurrency**
-> CurrencySingle UpdateCurrency (string code, CurrencyUpdate currencyUpdate)
+> CurrencySingle UpdateCurrency (string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = null)
 
 Update existing currency.
 
@@ -1477,18 +1568,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
             var code = EUR;  // string | The currency code.
             var currencyUpdate = new CurrencyUpdate(); // CurrencyUpdate | JSON array with updated currency information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing currency.
-                CurrencySingle result = apiInstance.UpdateCurrency(code, currencyUpdate);
+                CurrencySingle result = apiInstance.UpdateCurrency(code, currencyUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1509,7 +1601,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing currency.
-    ApiResponse<CurrencySingle> response = apiInstance.UpdateCurrencyWithHttpInfo(code, currencyUpdate);
+    ApiResponse<CurrencySingle> response = apiInstance.UpdateCurrencyWithHttpInfo(code, currencyUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1528,6 +1620,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **code** | **string** | The currency code. |  |
 | **currencyUpdate** | [**CurrencyUpdate**](CurrencyUpdate.md) | JSON array with updated currency information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -1547,7 +1640,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated currency stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

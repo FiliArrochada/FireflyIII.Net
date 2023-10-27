@@ -1,21 +1,21 @@
 # FireflyIIINet.Api.AccountsApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteAccount**](AccountsApi.md#deleteaccount) | **DELETE** /api/v1/accounts/{id} | Permanently delete account. |
-| [**GetAccount**](AccountsApi.md#getaccount) | **GET** /api/v1/accounts/{id} | Get single account. |
-| [**ListAccount**](AccountsApi.md#listaccount) | **GET** /api/v1/accounts | List all accounts. |
-| [**ListAttachmentByAccount**](AccountsApi.md#listattachmentbyaccount) | **GET** /api/v1/accounts/{id}/attachments | Lists all attachments. |
-| [**ListPiggyBankByAccount**](AccountsApi.md#listpiggybankbyaccount) | **GET** /api/v1/accounts/{id}/piggy_banks | List all piggy banks related to the account. |
-| [**ListTransactionByAccount**](AccountsApi.md#listtransactionbyaccount) | **GET** /api/v1/accounts/{id}/transactions | List all transactions related to the account. |
-| [**StoreAccount**](AccountsApi.md#storeaccount) | **POST** /api/v1/accounts | Create new account. |
-| [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /api/v1/accounts/{id} | Update existing account. |
+| [**DeleteAccount**](AccountsApi.md#deleteaccount) | **DELETE** /v1/accounts/{id} | Permanently delete account. |
+| [**GetAccount**](AccountsApi.md#getaccount) | **GET** /v1/accounts/{id} | Get single account. |
+| [**ListAccount**](AccountsApi.md#listaccount) | **GET** /v1/accounts | List all accounts. |
+| [**ListAttachmentByAccount**](AccountsApi.md#listattachmentbyaccount) | **GET** /v1/accounts/{id}/attachments | Lists all attachments. |
+| [**ListPiggyBankByAccount**](AccountsApi.md#listpiggybankbyaccount) | **GET** /v1/accounts/{id}/piggy-banks | List all piggy banks related to the account. |
+| [**ListTransactionByAccount**](AccountsApi.md#listtransactionbyaccount) | **GET** /v1/accounts/{id}/transactions | List all transactions related to the account. |
+| [**StoreAccount**](AccountsApi.md#storeaccount) | **POST** /v1/accounts | Create new account. |
+| [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{id} | Update existing account. |
 
 <a id="deleteaccount"></a>
 # **DeleteAccount**
-> void DeleteAccount (string id)
+> void DeleteAccount (string id, Guid? xTraceId = null)
 
 Permanently delete account.
 
@@ -36,17 +36,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 123;  // string | The ID of the account.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Permanently delete account.
-                apiInstance.DeleteAccount(id);
+                apiInstance.DeleteAccount(id, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -66,7 +67,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Permanently delete account.
-    apiInstance.DeleteAccountWithHttpInfo(id);
+    apiInstance.DeleteAccountWithHttpInfo(id, xTraceId);
 }
 catch (ApiException e)
 {
@@ -81,6 +82,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the account. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -93,20 +95,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **204** | Account deleted |  -  |
-| **404** | No such account |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getaccount"></a>
 # **GetAccount**
-> AccountSingle GetAccount (string id, DateTime? date = null)
+> AccountSingle GetAccount (string id, Guid? xTraceId = null, DateTime? date = null)
 
 Get single account.
 
@@ -127,18 +132,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 123;  // string | The ID of the account.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var date = DateTime.Parse("2013-10-20");  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
 
             try
             {
                 // Get single account.
-                AccountSingle result = apiInstance.GetAccount(id, date);
+                AccountSingle result = apiInstance.GetAccount(id, xTraceId, date);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -159,7 +165,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get single account.
-    ApiResponse<AccountSingle> response = apiInstance.GetAccountWithHttpInfo(id, date);
+    ApiResponse<AccountSingle> response = apiInstance.GetAccountWithHttpInfo(id, xTraceId, date);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -177,6 +183,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the account. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **date** | **DateTime?** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
 
 ### Return type
@@ -190,20 +197,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The requested account |  -  |
-| **404** | Account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listaccount"></a>
 # **ListAccount**
-> AccountArray ListAccount (int? page = null, DateTime? date = null, AccountTypeFilter type = null)
+> AccountArray ListAccount (Guid? xTraceId = null, int? page = null, DateTime? date = null, AccountTypeFilter? type = null)
 
 List all accounts.
 
@@ -224,19 +234,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
             var date = DateTime.Parse("2013-10-20");  // DateTime? | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account's balance on that day.  (optional) 
-            var type = new AccountTypeFilter(); // AccountTypeFilter | Optional filter on the account type(s) returned (optional) 
+            var type = new AccountTypeFilter?(); // AccountTypeFilter? | Optional filter on the account type(s) returned (optional) 
 
             try
             {
                 // List all accounts.
-                AccountArray result = apiInstance.ListAccount(page, date, type);
+                AccountArray result = apiInstance.ListAccount(xTraceId, page, date, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -257,7 +268,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all accounts.
-    ApiResponse<AccountArray> response = apiInstance.ListAccountWithHttpInfo(page, date, type);
+    ApiResponse<AccountArray> response = apiInstance.ListAccountWithHttpInfo(xTraceId, page, date, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -274,9 +285,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 | **date** | **DateTime?** | A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  | [optional]  |
-| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | Optional filter on the account type(s) returned | [optional]  |
+| **type** | [**AccountTypeFilter?**](AccountTypeFilter?.md) | Optional filter on the account type(s) returned | [optional]  |
 
 ### Return type
 
@@ -289,19 +301,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of accounts |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listattachmentbyaccount"></a>
 # **ListAttachmentByAccount**
-> AttachmentArray ListAttachmentByAccount (string id, int? page = null)
+> AttachmentArray ListAttachmentByAccount (string id, Guid? xTraceId = null, int? page = null)
 
 Lists all attachments.
 
@@ -322,18 +338,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 123;  // string | The ID of the account.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // Lists all attachments.
-                AttachmentArray result = apiInstance.ListAttachmentByAccount(id, page);
+                AttachmentArray result = apiInstance.ListAttachmentByAccount(id, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -354,7 +371,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Lists all attachments.
-    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByAccountWithHttpInfo(id, page);
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByAccountWithHttpInfo(id, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -372,6 +389,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the account. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -385,20 +403,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of attachments |  -  |
-| **404** | No such account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listpiggybankbyaccount"></a>
 # **ListPiggyBankByAccount**
-> PiggyBankArray ListPiggyBankByAccount (string id, int? page = null)
+> PiggyBankArray ListPiggyBankByAccount (string id, Guid? xTraceId = null, int? page = null)
 
 List all piggy banks related to the account.
 
@@ -419,18 +440,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 123;  // string | The ID of the account.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 56;  // int? | Page number. The default pagination is per 50 items. (optional) 
 
             try
             {
                 // List all piggy banks related to the account.
-                PiggyBankArray result = apiInstance.ListPiggyBankByAccount(id, page);
+                PiggyBankArray result = apiInstance.ListPiggyBankByAccount(id, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -451,7 +473,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all piggy banks related to the account.
-    ApiResponse<PiggyBankArray> response = apiInstance.ListPiggyBankByAccountWithHttpInfo(id, page);
+    ApiResponse<PiggyBankArray> response = apiInstance.ListPiggyBankByAccountWithHttpInfo(id, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -469,6 +491,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the account. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 
 ### Return type
@@ -482,19 +505,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of piggy banks |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listtransactionbyaccount"></a>
 # **ListTransactionByAccount**
-> TransactionArray ListTransactionByAccount (string id, int? page = null, int? limit = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByAccount (string id, Guid? xTraceId = null, int? page = null, int? limit = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter? type = null)
 
 List all transactions related to the account.
 
@@ -515,22 +542,23 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 123;  // string | The ID of the account.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is per 50 items. (optional) 
             var limit = 5;  // int? | Limits the number of results on one page. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
             var end = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned. (optional) 
+            var type = new TransactionTypeFilter?(); // TransactionTypeFilter? | Optional filter on the transaction type(s) returned. (optional) 
 
             try
             {
                 // List all transactions related to the account.
-                TransactionArray result = apiInstance.ListTransactionByAccount(id, page, limit, start, end, type);
+                TransactionArray result = apiInstance.ListTransactionByAccount(id, xTraceId, page, limit, start, end, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -551,7 +579,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all transactions related to the account.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByAccountWithHttpInfo(id, page, limit, start, end, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByAccountWithHttpInfo(id, xTraceId, page, limit, start, end, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -569,11 +597,12 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the account. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is per 50 items. | [optional]  |
 | **limit** | **int?** | Limits the number of results on one page. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned. | [optional]  |
+| **type** | [**TransactionTypeFilter?**](TransactionTypeFilter?.md) | Optional filter on the transaction type(s) returned. | [optional]  |
 
 ### Return type
 
@@ -586,19 +615,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of transactions |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storeaccount"></a>
 # **StoreAccount**
-> AccountSingle StoreAccount (AccountStore accountStore)
+> AccountSingle StoreAccount (AccountStore accountStore, Guid? xTraceId = null)
 
 Create new account.
 
@@ -619,17 +652,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var accountStore = new AccountStore(); // AccountStore | JSON array with the necessary account information or key=value pairs. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Create new account.
-                AccountSingle result = apiInstance.StoreAccount(accountStore);
+                AccountSingle result = apiInstance.StoreAccount(accountStore, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -650,7 +684,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create new account.
-    ApiResponse<AccountSingle> response = apiInstance.StoreAccountWithHttpInfo(accountStore);
+    ApiResponse<AccountSingle> response = apiInstance.StoreAccountWithHttpInfo(accountStore, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -668,6 +702,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountStore** | [**AccountStore**](AccountStore.md) | JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -680,20 +715,24 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/vnd.api+json, application/json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
 | **200** | New account stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updateaccount"></a>
 # **UpdateAccount**
-> AccountSingle UpdateAccount (string id, AccountUpdate accountUpdate)
+> AccountSingle UpdateAccount (string id, AccountUpdate accountUpdate, Guid? xTraceId = null)
 
 Update existing account.
 
@@ -714,18 +753,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AccountsApi(config);
             var id = 123;  // string | The ID of the account.
             var accountUpdate = new AccountUpdate(); // AccountUpdate | JSON array or formdata with updated account information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing account.
-                AccountSingle result = apiInstance.UpdateAccount(id, accountUpdate);
+                AccountSingle result = apiInstance.UpdateAccount(id, accountUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -746,7 +786,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing account.
-    ApiResponse<AccountSingle> response = apiInstance.UpdateAccountWithHttpInfo(id, accountUpdate);
+    ApiResponse<AccountSingle> response = apiInstance.UpdateAccountWithHttpInfo(id, accountUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -765,6 +805,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the account. |  |
 | **accountUpdate** | [**AccountUpdate**](AccountUpdate.md) | JSON array or formdata with updated account information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -777,14 +818,18 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/vnd.api+json, application/json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
 | **200** | Updated account stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

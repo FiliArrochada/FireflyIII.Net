@@ -49,6 +49,7 @@ docs/AvailableBudgetSingle.md
 docs/AvailableBudgetStore.md
 docs/AvailableBudgetUpdate.md
 docs/AvailableBudgetsApi.md
+docs/BadRequest.md
 docs/BasicSummaryEntry.md
 docs/Bill.md
 docs/BillArray.md
@@ -107,6 +108,7 @@ docs/InsightGroupEntry.md
 docs/InsightTotalEntry.md
 docs/InsightTransferEntry.md
 docs/InterestPeriod.md
+docs/InternalException.md
 docs/LiabilityDirection.md
 docs/LiabilityType.md
 docs/LinkType.md
@@ -119,6 +121,7 @@ docs/LinksApi.md
 docs/Meta.md
 docs/MetaPagination.md
 docs/ModelConfiguration.md
+docs/NotFound.md
 docs/ObjectGroup.md
 docs/ObjectGroupArray.md
 docs/ObjectGroupRead.md
@@ -213,6 +216,7 @@ docs/TransactionTypeFilter.md
 docs/TransactionTypeProperty.md
 docs/TransactionUpdate.md
 docs/TransactionsApi.md
+docs/Unauthenticated.md
 docs/User.md
 docs/UserArray.md
 docs/UserBlockedCodeProperty.md
@@ -242,6 +246,10 @@ docs/WebhookUpdate.md
 docs/WebhooksApi.md
 git_push.sh
 src/FireflyIIINet.Test/FireflyIIINet.Test.csproj
+src/FireflyIIINet.Test/Model/BadRequestTests.cs
+src/FireflyIIINet.Test/Model/InternalExceptionTests.cs
+src/FireflyIIINet.Test/Model/NotFoundTests.cs
+src/FireflyIIINet.Test/Model/UnauthenticatedTests.cs
 src/FireflyIIINet/Api/AboutApi.cs
 src/FireflyIIINet/Api/AccountsApi.cs
 src/FireflyIIINet/Api/AttachmentsApi.cs
@@ -330,6 +338,7 @@ src/FireflyIIINet/Model/AvailableBudgetRead.cs
 src/FireflyIIINet/Model/AvailableBudgetSingle.cs
 src/FireflyIIINet/Model/AvailableBudgetStore.cs
 src/FireflyIIINet/Model/AvailableBudgetUpdate.cs
+src/FireflyIIINet/Model/BadRequest.cs
 src/FireflyIIINet/Model/BasicSummaryEntry.cs
 src/FireflyIIINet/Model/Bill.cs
 src/FireflyIIINet/Model/BillArray.cs
@@ -380,6 +389,7 @@ src/FireflyIIINet/Model/InsightGroupEntry.cs
 src/FireflyIIINet/Model/InsightTotalEntry.cs
 src/FireflyIIINet/Model/InsightTransferEntry.cs
 src/FireflyIIINet/Model/InterestPeriod.cs
+src/FireflyIIINet/Model/InternalException.cs
 src/FireflyIIINet/Model/LiabilityDirection.cs
 src/FireflyIIINet/Model/LiabilityType.cs
 src/FireflyIIINet/Model/LinkType.cs
@@ -391,6 +401,7 @@ src/FireflyIIINet/Model/LinkTypeUpdate.cs
 src/FireflyIIINet/Model/Meta.cs
 src/FireflyIIINet/Model/MetaPagination.cs
 src/FireflyIIINet/Model/ModelConfiguration.cs
+src/FireflyIIINet/Model/NotFound.cs
 src/FireflyIIINet/Model/ObjectGroup.cs
 src/FireflyIIINet/Model/ObjectGroupArray.cs
 src/FireflyIIINet/Model/ObjectGroupRead.cs
@@ -475,6 +486,7 @@ src/FireflyIIINet/Model/TransactionStore.cs
 src/FireflyIIINet/Model/TransactionTypeFilter.cs
 src/FireflyIIINet/Model/TransactionTypeProperty.cs
 src/FireflyIIINet/Model/TransactionUpdate.cs
+src/FireflyIIINet/Model/Unauthenticated.cs
 src/FireflyIIINet/Model/User.cs
 src/FireflyIIINet/Model/UserArray.cs
 src/FireflyIIINet/Model/UserBlockedCodeProperty.cs

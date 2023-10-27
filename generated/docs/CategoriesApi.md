@@ -1,21 +1,20 @@
 # FireflyIIINet.Api.CategoriesApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteCategory**](CategoriesApi.md#deletecategory) | **DELETE** /api/v1/categories/{id} | Delete a category. |
-| [**GetCategory**](CategoriesApi.md#getcategory) | **GET** /api/v1/categories/{id} | Get a single category. |
-| [**ListAttachmentByCategory**](CategoriesApi.md#listattachmentbycategory) | **GET** /api/v1/categories/{id}/attachments | Lists all attachments. |
-| [**ListCategory**](CategoriesApi.md#listcategory) | **GET** /api/v1/categories | List all categories. |
-| [**ListTransactionByCategory**](CategoriesApi.md#listtransactionbycategory) | **GET** /api/v1/categories/{id}/transactions | List all transactions in a category. |
-| [**ListTransactionWithoutCategory**](CategoriesApi.md#listtransactionwithoutcategory) | **GET** /api/v1/categories/transactions-without-category | All transactions without a category. |
-| [**StoreCategory**](CategoriesApi.md#storecategory) | **POST** /api/v1/categories | Store a new category |
-| [**UpdateCategory**](CategoriesApi.md#updatecategory) | **PUT** /api/v1/categories/{id} | Update existing category. |
+| [**DeleteCategory**](CategoriesApi.md#deletecategory) | **DELETE** /v1/categories/{id} | Delete a category. |
+| [**GetCategory**](CategoriesApi.md#getcategory) | **GET** /v1/categories/{id} | Get a single category. |
+| [**ListAttachmentByCategory**](CategoriesApi.md#listattachmentbycategory) | **GET** /v1/categories/{id}/attachments | Lists all attachments. |
+| [**ListCategory**](CategoriesApi.md#listcategory) | **GET** /v1/categories | List all categories. |
+| [**ListTransactionByCategory**](CategoriesApi.md#listtransactionbycategory) | **GET** /v1/categories/{id}/transactions | List all transactions in a category. |
+| [**StoreCategory**](CategoriesApi.md#storecategory) | **POST** /v1/categories | Store a new category |
+| [**UpdateCategory**](CategoriesApi.md#updatecategory) | **PUT** /v1/categories/{id} | Update existing category. |
 
 <a id="deletecategory"></a>
 # **DeleteCategory**
-> void DeleteCategory (string id)
+> void DeleteCategory (string id, Guid? xTraceId = null)
 
 Delete a category.
 
@@ -36,17 +35,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
             var id = 123;  // string | The ID of the category.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete a category.
-                apiInstance.DeleteCategory(id);
+                apiInstance.DeleteCategory(id, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -66,7 +66,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete a category.
-    apiInstance.DeleteCategoryWithHttpInfo(id);
+    apiInstance.DeleteCategoryWithHttpInfo(id, xTraceId);
 }
 catch (ApiException e)
 {
@@ -81,6 +81,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the category. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -93,20 +94,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Category deleted. |  -  |
-| **404** | No such category. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getcategory"></a>
 # **GetCategory**
-> CategorySingle GetCategory (string id, DateTime? start = null, DateTime? end = null)
+> CategorySingle GetCategory (string id, Guid? xTraceId = null, DateTime? start = null, DateTime? end = null)
 
 Get a single category.
 
@@ -127,19 +131,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
             var id = 123;  // string | The ID of the category.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to show spent and earned info.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to show spent and earned info.  (optional) 
 
             try
             {
                 // Get a single category.
-                CategorySingle result = apiInstance.GetCategory(id, start, end);
+                CategorySingle result = apiInstance.GetCategory(id, xTraceId, start, end);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -160,7 +165,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single category.
-    ApiResponse<CategorySingle> response = apiInstance.GetCategoryWithHttpInfo(id, start, end);
+    ApiResponse<CategorySingle> response = apiInstance.GetCategoryWithHttpInfo(id, xTraceId, start, end);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -178,6 +183,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the category. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to show spent and earned info.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to show spent and earned info.  | [optional]  |
 
@@ -192,20 +198,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested category |  -  |
-| **404** | Category not found |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listattachmentbycategory"></a>
 # **ListAttachmentByCategory**
-> AttachmentArray ListAttachmentByCategory (string id, int? page = null)
+> AttachmentArray ListAttachmentByCategory (string id, Guid? xTraceId = null, int? page = null)
 
 Lists all attachments.
 
@@ -226,18 +235,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
             var id = 123;  // string | The ID of the category.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // Lists all attachments.
-                AttachmentArray result = apiInstance.ListAttachmentByCategory(id, page);
+                AttachmentArray result = apiInstance.ListAttachmentByCategory(id, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -258,7 +268,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Lists all attachments.
-    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByCategoryWithHttpInfo(id, page);
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentByCategoryWithHttpInfo(id, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -276,6 +286,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the category. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -289,20 +300,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of attachments |  -  |
-| **404** | No such category. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listcategory"></a>
 # **ListCategory**
-> CategoryArray ListCategory (int? page = null)
+> CategoryArray ListCategory (Guid? xTraceId = null, int? page = null)
 
 List all categories.
 
@@ -323,17 +337,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // List all categories.
-                CategoryArray result = apiInstance.ListCategory(page);
+                CategoryArray result = apiInstance.ListCategory(xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -354,7 +369,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all categories.
-    ApiResponse<CategoryArray> response = apiInstance.ListCategoryWithHttpInfo(page);
+    ApiResponse<CategoryArray> response = apiInstance.ListCategoryWithHttpInfo(xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -371,6 +386,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -384,19 +400,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of categories. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listtransactionbycategory"></a>
 # **ListTransactionByCategory**
-> TransactionArray ListTransactionByCategory (string id, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
+> TransactionArray ListTransactionByCategory (string id, Guid? xTraceId = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter? type = null)
 
 List all transactions in a category.
 
@@ -417,21 +437,22 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
             var id = 123;  // string | The ID of the category.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is per 50. (optional) 
             var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the result list.  (optional) 
             var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD, to limit the result list.  (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
+            var type = new TransactionTypeFilter?(); // TransactionTypeFilter? | Optional filter on the transaction type(s) returned (optional) 
 
             try
             {
                 // List all transactions in a category.
-                TransactionArray result = apiInstance.ListTransactionByCategory(id, page, start, end, type);
+                TransactionArray result = apiInstance.ListTransactionByCategory(id, xTraceId, page, start, end, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -452,7 +473,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all transactions in a category.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByCategoryWithHttpInfo(id, page, start, end, type);
+    ApiResponse<TransactionArray> response = apiInstance.ListTransactionByCategoryWithHttpInfo(id, xTraceId, page, start, end, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -470,10 +491,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the category. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is per 50. | [optional]  |
 | **start** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the result list.  | [optional]  |
 | **end** | **DateTime?** | A date formatted YYYY-MM-DD, to limit the result list.  | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
+| **type** | [**TransactionTypeFilter?**](TransactionTypeFilter?.md) | Optional filter on the transaction type(s) returned | [optional]  |
 
 ### Return type
 
@@ -486,121 +508,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of transactions. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="listtransactionwithoutcategory"></a>
-# **ListTransactionWithoutCategory**
-> TransactionArray ListTransactionWithoutCategory (int? limit = null, int? page = null, DateTime? start = null, DateTime? end = null, TransactionTypeFilter type = null)
-
-All transactions without a category.
-
-Get all transactions without a category, possibly limited by start and end
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using FireflyIIINet.Api;
-using FireflyIIINet.Client;
-using FireflyIIINet.Model;
-
-namespace Example
-{
-    public class ListTransactionWithoutCategoryExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
-            // Configure OAuth2 access token for authorization: firefly_iii_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new CategoriesApi(config);
-            var limit = 5;  // int? | Limits the number of results on one page. (optional) 
-            var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
-            var start = Mon Sep 17 01:00:00 WEST 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var end = Mon Dec 31 00:00:00 WET 2018;  // DateTime? | A date formatted YYYY-MM-DD.  (optional) 
-            var type = new TransactionTypeFilter(); // TransactionTypeFilter | Optional filter on the transaction type(s) returned (optional) 
-
-            try
-            {
-                // All transactions without a category.
-                TransactionArray result = apiInstance.ListTransactionWithoutCategory(limit, page, start, end, type);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CategoriesApi.ListTransactionWithoutCategory: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the ListTransactionWithoutCategoryWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // All transactions without a category.
-    ApiResponse<TransactionArray> response = apiInstance.ListTransactionWithoutCategoryWithHttpInfo(limit, page, start, end, type);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CategoriesApi.ListTransactionWithoutCategoryWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **limit** | **int?** | Limits the number of results on one page. | [optional]  |
-| **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
-| **start** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
-| **end** | **DateTime?** | A date formatted YYYY-MM-DD.  | [optional]  |
-| **type** | [**TransactionTypeFilter**](TransactionTypeFilter.md) | Optional filter on the transaction type(s) returned | [optional]  |
-
-### Return type
-
-[**TransactionArray**](TransactionArray.md)
-
-### Authorization
-
-[firefly_iii_auth](../README.md#firefly_iii_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of transactions. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storecategory"></a>
 # **StoreCategory**
-> CategorySingle StoreCategory (Category category)
+> CategorySingle StoreCategory (Category category, Guid? xTraceId = null)
 
 Store a new category
 
@@ -621,17 +545,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
             var category = new Category(); // Category | JSON array or key=value pairs with the necessary category information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store a new category
-                CategorySingle result = apiInstance.StoreCategory(category);
+                CategorySingle result = apiInstance.StoreCategory(category, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -652,7 +577,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new category
-    ApiResponse<CategorySingle> response = apiInstance.StoreCategoryWithHttpInfo(category);
+    ApiResponse<CategorySingle> response = apiInstance.StoreCategoryWithHttpInfo(category, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -670,6 +595,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **category** | [**Category**](Category.md) | JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -689,13 +615,17 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | New category stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updatecategory"></a>
 # **UpdateCategory**
-> CategorySingle UpdateCategory (string id, CategoryUpdate categoryUpdate)
+> CategorySingle UpdateCategory (string id, CategoryUpdate categoryUpdate, Guid? xTraceId = null)
 
 Update existing category.
 
@@ -716,18 +646,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CategoriesApi(config);
             var id = 123;  // string | The ID of the category.
             var categoryUpdate = new CategoryUpdate(); // CategoryUpdate | JSON array with updated category information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing category.
-                CategorySingle result = apiInstance.UpdateCategory(id, categoryUpdate);
+                CategorySingle result = apiInstance.UpdateCategory(id, categoryUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -748,7 +679,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing category.
-    ApiResponse<CategorySingle> response = apiInstance.UpdateCategoryWithHttpInfo(id, categoryUpdate);
+    ApiResponse<CategorySingle> response = apiInstance.UpdateCategoryWithHttpInfo(id, categoryUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -767,6 +698,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the category. |  |
 | **categoryUpdate** | [**CategoryUpdate**](CategoryUpdate.md) | JSON array with updated category information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -786,7 +718,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated category stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
