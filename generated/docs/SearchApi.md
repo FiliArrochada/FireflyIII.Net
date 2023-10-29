@@ -1,15 +1,15 @@
 # FireflyIIINet.Api.SearchApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**SearchAccounts**](SearchApi.md#searchaccounts) | **GET** /api/v1/search/accounts | Search for accounts |
-| [**SearchTransactions**](SearchApi.md#searchtransactions) | **GET** /api/v1/search/transactions | Search for transactions |
+| [**SearchAccounts**](SearchApi.md#searchaccounts) | **GET** /v1/search/accounts | Search for accounts |
+| [**SearchTransactions**](SearchApi.md#searchtransactions) | **GET** /v1/search/transactions | Search for transactions |
 
 <a id="searchaccounts"></a>
 # **SearchAccounts**
-> AccountArray SearchAccounts (string query, AccountSearchFieldFilter field, int? page = null, AccountTypeFilter type = null)
+> AccountArray SearchAccounts (string query, AccountSearchFieldFilter field, Guid? xTraceId = null, int? page = null, AccountTypeFilter? type = null)
 
 Search for accounts
 
@@ -30,20 +30,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new SearchApi(config);
             var query = checking;  // string | The query you wish to search for.
             var field = new AccountSearchFieldFilter(); // AccountSearchFieldFilter | The account field(s) you want to search in.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50 (optional) 
-            var type = new AccountTypeFilter(); // AccountTypeFilter | The type of accounts you wish to limit the search to. (optional) 
+            var type = new AccountTypeFilter?(); // AccountTypeFilter? | The type of accounts you wish to limit the search to. (optional) 
 
             try
             {
                 // Search for accounts
-                AccountArray result = apiInstance.SearchAccounts(query, field, page, type);
+                AccountArray result = apiInstance.SearchAccounts(query, field, xTraceId, page, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -64,7 +65,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Search for accounts
-    ApiResponse<AccountArray> response = apiInstance.SearchAccountsWithHttpInfo(query, field, page, type);
+    ApiResponse<AccountArray> response = apiInstance.SearchAccountsWithHttpInfo(query, field, xTraceId, page, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -83,8 +84,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **query** | **string** | The query you wish to search for. |  |
 | **field** | [**AccountSearchFieldFilter**](AccountSearchFieldFilter.md) | The account field(s) you want to search in. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50 | [optional]  |
-| **type** | [**AccountTypeFilter**](AccountTypeFilter.md) | The type of accounts you wish to limit the search to. | [optional]  |
+| **type** | [**AccountTypeFilter?**](AccountTypeFilter?.md) | The type of accounts you wish to limit the search to. | [optional]  |
 
 ### Return type
 
@@ -97,19 +99,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of accounts. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="searchtransactions"></a>
 # **SearchTransactions**
-> TransactionArray SearchTransactions (string query, int? page = null)
+> TransactionArray SearchTransactions (string query, Guid? xTraceId = null, int? page = null)
 
 Search for transactions
 
@@ -130,18 +136,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new SearchApi(config);
             var query = groceries;  // string | The query you wish to search for.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50 (optional) 
 
             try
             {
                 // Search for transactions
-                TransactionArray result = apiInstance.SearchTransactions(query, page);
+                TransactionArray result = apiInstance.SearchTransactions(query, xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -162,7 +169,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Search for transactions
-    ApiResponse<TransactionArray> response = apiInstance.SearchTransactionsWithHttpInfo(query, page);
+    ApiResponse<TransactionArray> response = apiInstance.SearchTransactionsWithHttpInfo(query, xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -180,6 +187,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **query** | **string** | The query you wish to search for. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50 | [optional]  |
 
 ### Return type
@@ -193,13 +201,17 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/vnd.api+json, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A list of transactions. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

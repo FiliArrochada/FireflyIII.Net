@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **LiabilityType** | **LiabilityType** |  | [optional] 
 **LiabilityDirection** | **LiabilityDirection** |  | [optional] 
 **Interest** | **string** | Mandatory when type is liability. Interest percentage. | [optional] 
-**InterestPeriod** | **LiabilityDirection** |  | [optional] 
+**InterestPeriod** | **InterestPeriod** |  | [optional] 
 **Notes** | **string** |  | [optional] 
 **Latitude** | **double?** | Latitude of the accounts&#39;s location, if applicable. Can be used to draw a map. | [optional] 
 **Longitude** | **double?** | Latitude of the accounts&#39;s location, if applicable. Can be used to draw a map. | [optional] 

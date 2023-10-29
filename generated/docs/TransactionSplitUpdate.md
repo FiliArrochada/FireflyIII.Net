@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**TransactionJournalId** | **string** | Transaction journal ID of current transaction (split). | [optional] 
+**Type** | **TransactionTypeProperty** |  | [optional] 
 **Date** | **DateTime** | Date of the transaction | [optional] 
 **Amount** | **string** | Amount of the transaction. | [optional] 
 **Description** | **string** | Description of the transaction. | [optional] 

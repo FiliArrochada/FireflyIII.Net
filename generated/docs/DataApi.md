@@ -1,20 +1,21 @@
 # FireflyIIINet.Api.DataApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**BulkUpdateTransactions**](DataApi.md#bulkupdatetransactions) | **POST** /api/v1/data/bulk/transactions | Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials |
-| [**DestroyData**](DataApi.md#destroydata) | **DELETE** /api/v1/data/destroy | Endpoint to destroy user data |
-| [**ExportAccounts**](DataApi.md#exportaccounts) | **GET** /api/v1/data/export/accounts | Export account data from Firefly III |
-| [**ExportBills**](DataApi.md#exportbills) | **GET** /api/v1/data/export/bills | Export bills from Firefly III |
-| [**ExportBudgets**](DataApi.md#exportbudgets) | **GET** /api/v1/data/export/budgets | Export budgets and budget amount data from Firefly III |
-| [**ExportCategories**](DataApi.md#exportcategories) | **GET** /api/v1/data/export/categories | Export category data from Firefly III |
-| [**ExportPiggies**](DataApi.md#exportpiggies) | **GET** /api/v1/data/export/piggy-banks | Export piggy banks from Firefly III |
-| [**ExportRecurring**](DataApi.md#exportrecurring) | **GET** /api/v1/data/export/recurring | Export recurring transaction data from Firefly III |
-| [**ExportRules**](DataApi.md#exportrules) | **GET** /api/v1/data/export/rules | Export rule groups and rule data from Firefly III |
-| [**ExportTags**](DataApi.md#exporttags) | **GET** /api/v1/data/export/tags | Export tag data from Firefly III |
-| [**ExportTransactions**](DataApi.md#exporttransactions) | **GET** /api/v1/data/export/transactions | Export transaction data from Firefly III |
+| [**BulkUpdateTransactions**](DataApi.md#bulkupdatetransactions) | **POST** /v1/data/bulk/transactions | Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials |
+| [**DestroyData**](DataApi.md#destroydata) | **DELETE** /v1/data/destroy | Endpoint to destroy user data |
+| [**ExportAccounts**](DataApi.md#exportaccounts) | **GET** /v1/data/export/accounts | Export account data from Firefly III |
+| [**ExportBills**](DataApi.md#exportbills) | **GET** /v1/data/export/bills | Export bills from Firefly III |
+| [**ExportBudgets**](DataApi.md#exportbudgets) | **GET** /v1/data/export/budgets | Export budgets and budget amount data from Firefly III |
+| [**ExportCategories**](DataApi.md#exportcategories) | **GET** /v1/data/export/categories | Export category data from Firefly III |
+| [**ExportPiggies**](DataApi.md#exportpiggies) | **GET** /v1/data/export/piggy-banks | Export piggy banks from Firefly III |
+| [**ExportRecurring**](DataApi.md#exportrecurring) | **GET** /v1/data/export/recurring | Export recurring transaction data from Firefly III |
+| [**ExportRules**](DataApi.md#exportrules) | **GET** /v1/data/export/rules | Export rule groups and rule data from Firefly III |
+| [**ExportTags**](DataApi.md#exporttags) | **GET** /v1/data/export/tags | Export tag data from Firefly III |
+| [**ExportTransactions**](DataApi.md#exporttransactions) | **GET** /v1/data/export/transactions | Export transaction data from Firefly III |
+| [**PurgeData**](DataApi.md#purgedata) | **DELETE** /v1/data/purge | Endpoint to purge user data |
 
 <a id="bulkupdatetransactions"></a>
 # **BulkUpdateTransactions**
@@ -39,7 +40,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -96,24 +97,27 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **204** | Empty response when the update was successful. A future improvement is to include the changed transactions. |  -  |
-| **500** | Internal error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="destroydata"></a>
 # **DestroyData**
-> void DestroyData (DataDestroyObject objects)
+> void DestroyData (DataDestroyObject objects, Guid? xTraceId = null)
 
 Endpoint to destroy user data
 
-A call to this endpoint permanently destroys the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
+A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
 
 ### Example
 ```csharp
@@ -130,17 +134,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
             var objects = new DataDestroyObject(); // DataDestroyObject | The type of data that you wish to destroy. You can only use one at a time.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Endpoint to destroy user data
-                apiInstance.DestroyData(objects);
+                apiInstance.DestroyData(objects, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -160,7 +165,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Endpoint to destroy user data
-    apiInstance.DestroyDataWithHttpInfo(objects);
+    apiInstance.DestroyDataWithHttpInfo(objects, xTraceId);
 }
 catch (ApiException e)
 {
@@ -175,6 +180,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **objects** | [**DataDestroyObject**](DataDestroyObject.md) | The type of data that you wish to destroy. You can only use one at a time. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -187,20 +193,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **204** | Empty response when data has been destroyed. |  -  |
-| **500** | Internal error, or user is unauthorized to destroy data. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exportaccounts"></a>
 # **ExportAccounts**
-> System.IO.Stream ExportAccounts (ExportFileFilter type = null)
+> System.IO.Stream ExportAccounts (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export account data from Firefly III
 
@@ -221,17 +230,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export account data from Firefly III
-                System.IO.Stream result = apiInstance.ExportAccounts(type);
+                System.IO.Stream result = apiInstance.ExportAccounts(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -252,7 +262,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export account data from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportAccountsWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportAccountsWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -269,7 +279,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -282,19 +293,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exportbills"></a>
 # **ExportBills**
-> System.IO.Stream ExportBills (ExportFileFilter type = null)
+> System.IO.Stream ExportBills (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export bills from Firefly III
 
@@ -315,17 +330,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export bills from Firefly III
-                System.IO.Stream result = apiInstance.ExportBills(type);
+                System.IO.Stream result = apiInstance.ExportBills(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -346,7 +362,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export bills from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportBillsWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportBillsWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -363,7 +379,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -376,19 +393,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exportbudgets"></a>
 # **ExportBudgets**
-> System.IO.Stream ExportBudgets (ExportFileFilter type = null)
+> System.IO.Stream ExportBudgets (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export budgets and budget amount data from Firefly III
 
@@ -409,17 +430,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export budgets and budget amount data from Firefly III
-                System.IO.Stream result = apiInstance.ExportBudgets(type);
+                System.IO.Stream result = apiInstance.ExportBudgets(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -440,7 +462,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export budgets and budget amount data from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportBudgetsWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportBudgetsWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -457,7 +479,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -470,19 +493,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exportcategories"></a>
 # **ExportCategories**
-> System.IO.Stream ExportCategories (ExportFileFilter type = null)
+> System.IO.Stream ExportCategories (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export category data from Firefly III
 
@@ -503,17 +530,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export category data from Firefly III
-                System.IO.Stream result = apiInstance.ExportCategories(type);
+                System.IO.Stream result = apiInstance.ExportCategories(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -534,7 +562,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export category data from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportCategoriesWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportCategoriesWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -551,7 +579,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -564,19 +593,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exportpiggies"></a>
 # **ExportPiggies**
-> System.IO.Stream ExportPiggies (ExportFileFilter type = null)
+> System.IO.Stream ExportPiggies (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export piggy banks from Firefly III
 
@@ -597,17 +630,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export piggy banks from Firefly III
-                System.IO.Stream result = apiInstance.ExportPiggies(type);
+                System.IO.Stream result = apiInstance.ExportPiggies(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -628,7 +662,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export piggy banks from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportPiggiesWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportPiggiesWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -645,7 +679,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -658,19 +693,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exportrecurring"></a>
 # **ExportRecurring**
-> System.IO.Stream ExportRecurring (ExportFileFilter type = null)
+> System.IO.Stream ExportRecurring (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export recurring transaction data from Firefly III
 
@@ -691,17 +730,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export recurring transaction data from Firefly III
-                System.IO.Stream result = apiInstance.ExportRecurring(type);
+                System.IO.Stream result = apiInstance.ExportRecurring(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -722,7 +762,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export recurring transaction data from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportRecurringWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportRecurringWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -739,7 +779,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -752,19 +793,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exportrules"></a>
 # **ExportRules**
-> System.IO.Stream ExportRules (ExportFileFilter type = null)
+> System.IO.Stream ExportRules (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export rule groups and rule data from Firefly III
 
@@ -785,17 +830,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export rule groups and rule data from Firefly III
-                System.IO.Stream result = apiInstance.ExportRules(type);
+                System.IO.Stream result = apiInstance.ExportRules(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -816,7 +862,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export rule groups and rule data from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportRulesWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportRulesWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -833,7 +879,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -846,19 +893,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exporttags"></a>
 # **ExportTags**
-> System.IO.Stream ExportTags (ExportFileFilter type = null)
+> System.IO.Stream ExportTags (Guid? xTraceId = null, ExportFileFilter? type = null)
 
 Export tag data from Firefly III
 
@@ -879,17 +930,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export tag data from Firefly III
-                System.IO.Stream result = apiInstance.ExportTags(type);
+                System.IO.Stream result = apiInstance.ExportTags(xTraceId, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -910,7 +962,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export tag data from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportTagsWithHttpInfo(type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportTagsWithHttpInfo(xTraceId, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -927,7 +979,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -940,19 +993,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="exporttransactions"></a>
 # **ExportTransactions**
-> System.IO.Stream ExportTransactions (DateTime start, DateTime end, string accounts = null, ExportFileFilter type = null)
+> System.IO.Stream ExportTransactions (DateTime start, DateTime end, Guid? xTraceId = null, string? accounts = null, ExportFileFilter? type = null)
 
 Export transaction data from Firefly III
 
@@ -973,20 +1030,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new DataApi(config);
             var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
             var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = 1,2,3;  // string | Limit the export of transactions to these accounts only. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
-            var type = new ExportFileFilter(); // ExportFileFilter | The file type the export file (CSV is currently the only option). (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = 1,2,3;  // string? | Limit the export of transactions to these accounts only. Only asset accounts will be accepted. Other types will be silently dropped.  (optional) 
+            var type = new ExportFileFilter?(); // ExportFileFilter? | The file type the export file (CSV is currently the only option). (optional) 
 
             try
             {
                 // Export transaction data from Firefly III
-                System.IO.Stream result = apiInstance.ExportTransactions(start, end, accounts, type);
+                System.IO.Stream result = apiInstance.ExportTransactions(start, end, xTraceId, accounts, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1007,7 +1065,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Export transaction data from Firefly III
-    ApiResponse<System.IO.Stream> response = apiInstance.ExportTransactionsWithHttpInfo(start, end, accounts, type);
+    ApiResponse<System.IO.Stream> response = apiInstance.ExportTransactionsWithHttpInfo(start, end, xTraceId, accounts, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1026,8 +1084,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | **string** | Limit the export of transactions to these accounts only. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
-| **type** | [**ExportFileFilter**](ExportFileFilter.md) | The file type the export file (CSV is currently the only option). | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | **string?** | Limit the export of transactions to these accounts only. Only asset accounts will be accepted. Other types will be silently dropped.  | [optional]  |
+| **type** | [**ExportFileFilter?**](ExportFileFilter?.md) | The file type the export file (CSV is currently the only option). | [optional]  |
 
 ### Return type
 
@@ -1040,13 +1099,110 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/json, application/octet-stream
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The exported transaction in a file. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="purgedata"></a>
+# **PurgeData**
+> void PurgeData (Guid? xTraceId = null)
+
+Endpoint to purge user data
+
+A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+
+namespace Example
+{
+    public class PurgeDataExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://demo.firefly-iii.org/api";
+            // Configure OAuth2 access token for authorization: firefly_iii_auth
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new DataApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+
+            try
+            {
+                // Endpoint to purge user data
+                apiInstance.PurgeData(xTraceId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DataApi.PurgeData: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PurgeDataWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Endpoint to purge user data
+    apiInstance.PurgeDataWithHttpInfo(xTraceId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DataApi.PurgeDataWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[firefly_iii_auth](../README.md#firefly_iii_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
+| **204** | Empty response when data has been purged. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

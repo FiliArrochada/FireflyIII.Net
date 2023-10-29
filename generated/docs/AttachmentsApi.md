@@ -1,20 +1,20 @@
 # FireflyIIINet.Api.AttachmentsApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteAttachment**](AttachmentsApi.md#deleteattachment) | **DELETE** /api/v1/attachments/{id} | Delete an attachment. |
-| [**DownloadAttachment**](AttachmentsApi.md#downloadattachment) | **GET** /api/v1/attachments/{id}/download | Download a single attachment. |
-| [**GetAttachment**](AttachmentsApi.md#getattachment) | **GET** /api/v1/attachments/{id} | Get a single attachment. |
-| [**ListAttachment**](AttachmentsApi.md#listattachment) | **GET** /api/v1/attachments | List all attachments. |
-| [**StoreAttachment**](AttachmentsApi.md#storeattachment) | **POST** /api/v1/attachments | Store a new attachment. |
-| [**UpdateAttachment**](AttachmentsApi.md#updateattachment) | **PUT** /api/v1/attachments/{id} | Update existing attachment. |
-| [**UploadAttachment**](AttachmentsApi.md#uploadattachment) | **POST** /api/v1/attachments/{id}/upload | Upload an attachment. |
+| [**DeleteAttachment**](AttachmentsApi.md#deleteattachment) | **DELETE** /v1/attachments/{id} | Delete an attachment. |
+| [**DownloadAttachment**](AttachmentsApi.md#downloadattachment) | **GET** /v1/attachments/{id}/download | Download a single attachment. |
+| [**GetAttachment**](AttachmentsApi.md#getattachment) | **GET** /v1/attachments/{id} | Get a single attachment. |
+| [**ListAttachment**](AttachmentsApi.md#listattachment) | **GET** /v1/attachments | List all attachments. |
+| [**StoreAttachment**](AttachmentsApi.md#storeattachment) | **POST** /v1/attachments | Store a new attachment. |
+| [**UpdateAttachment**](AttachmentsApi.md#updateattachment) | **PUT** /v1/attachments/{id} | Update existing attachment. |
+| [**UploadAttachment**](AttachmentsApi.md#uploadattachment) | **POST** /v1/attachments/{id}/upload | Upload an attachment. |
 
 <a id="deleteattachment"></a>
 # **DeleteAttachment**
-> void DeleteAttachment (string id)
+> void DeleteAttachment (string id, Guid? xTraceId = null)
 
 Delete an attachment.
 
@@ -35,17 +35,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
-            var id = 123;  // string | The ID of the single.
+            var id = 123;  // string | The ID of the single attachment.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Delete an attachment.
-                apiInstance.DeleteAttachment(id);
+                apiInstance.DeleteAttachment(id, xTraceId);
             }
             catch (ApiException  e)
             {
@@ -65,7 +66,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete an attachment.
-    apiInstance.DeleteAttachmentWithHttpInfo(id);
+    apiInstance.DeleteAttachmentWithHttpInfo(id, xTraceId);
 }
 catch (ApiException e)
 {
@@ -79,7 +80,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **string** | The ID of the single. |  |
+| **id** | **string** | The ID of the single attachment. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -92,20 +94,23 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **204** | Attachment deleted. |  -  |
-| **404** | No such attachment |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="downloadattachment"></a>
 # **DownloadAttachment**
-> System.IO.Stream DownloadAttachment (string id)
+> System.IO.Stream DownloadAttachment (string id, Guid? xTraceId = null)
 
 Download a single attachment.
 
@@ -126,17 +131,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 123;  // string | The ID of the attachment.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Download a single attachment.
-                System.IO.Stream result = apiInstance.DownloadAttachment(id);
+                System.IO.Stream result = apiInstance.DownloadAttachment(id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -157,7 +163,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Download a single attachment.
-    ApiResponse<System.IO.Stream> response = apiInstance.DownloadAttachmentWithHttpInfo(id);
+    ApiResponse<System.IO.Stream> response = apiInstance.DownloadAttachmentWithHttpInfo(id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -175,6 +181,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the attachment. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -187,20 +194,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+ - **Accept**: application/octet-stream, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The requested attachment |  -  |
-| **404** | File not found |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getattachment"></a>
 # **GetAttachment**
-> AttachmentSingle GetAttachment (string id)
+> AttachmentSingle GetAttachment (string id, Guid? xTraceId = null)
 
 Get a single attachment.
 
@@ -221,17 +231,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 123;  // string | The ID of the attachment.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Get a single attachment.
-                AttachmentSingle result = apiInstance.GetAttachment(id);
+                AttachmentSingle result = apiInstance.GetAttachment(id, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -252,7 +263,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single attachment.
-    ApiResponse<AttachmentSingle> response = apiInstance.GetAttachmentWithHttpInfo(id);
+    ApiResponse<AttachmentSingle> response = apiInstance.GetAttachmentWithHttpInfo(id, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -270,6 +281,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the attachment. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -282,20 +294,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | The requested attachment |  -  |
-| **404** | Attachment not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="listattachment"></a>
 # **ListAttachment**
-> AttachmentArray ListAttachment (int? page = null)
+> AttachmentArray ListAttachment (Guid? xTraceId = null, int? page = null)
 
 List all attachments.
 
@@ -316,17 +331,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
             var page = 1;  // int? | Page number. The default pagination is 50. (optional) 
 
             try
             {
                 // List all attachments.
-                AttachmentArray result = apiInstance.ListAttachment(page);
+                AttachmentArray result = apiInstance.ListAttachment(xTraceId, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -347,7 +363,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List all attachments.
-    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentWithHttpInfo(page);
+    ApiResponse<AttachmentArray> response = apiInstance.ListAttachmentWithHttpInfo(xTraceId, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -364,6 +380,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 | **page** | **int?** | Page number. The default pagination is 50. | [optional]  |
 
 ### Return type
@@ -377,19 +394,23 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/vnd.api+json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of attachments. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="storeattachment"></a>
 # **StoreAttachment**
-> AttachmentSingle StoreAttachment (AttachmentStore attachmentStore)
+> AttachmentSingle StoreAttachment (AttachmentStore attachmentStore, Guid? xTraceId = null)
 
 Store a new attachment.
 
@@ -410,17 +431,18 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var attachmentStore = new AttachmentStore(); // AttachmentStore | JSON array or key=value pairs with the necessary attachment information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Store a new attachment.
-                AttachmentSingle result = apiInstance.StoreAttachment(attachmentStore);
+                AttachmentSingle result = apiInstance.StoreAttachment(attachmentStore, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -441,7 +463,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Store a new attachment.
-    ApiResponse<AttachmentSingle> response = apiInstance.StoreAttachmentWithHttpInfo(attachmentStore);
+    ApiResponse<AttachmentSingle> response = apiInstance.StoreAttachmentWithHttpInfo(attachmentStore, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -459,6 +481,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **attachmentStore** | [**AttachmentStore**](AttachmentStore.md) | JSON array or key&#x3D;value pairs with the necessary attachment information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -471,20 +494,24 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/vnd.api+json, application/json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | New attachment stored, result in response. |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="updateattachment"></a>
 # **UpdateAttachment**
-> AttachmentSingle UpdateAttachment (string id, AttachmentUpdate attachmentUpdate)
+> AttachmentSingle UpdateAttachment (string id, AttachmentUpdate attachmentUpdate, Guid? xTraceId = null)
 
 Update existing attachment.
 
@@ -505,18 +532,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 123;  // string | The ID of the attachment.
             var attachmentUpdate = new AttachmentUpdate(); // AttachmentUpdate | JSON array with updated attachment information. See the model for the exact specifications.
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
             {
                 // Update existing attachment.
-                AttachmentSingle result = apiInstance.UpdateAttachment(id, attachmentUpdate);
+                AttachmentSingle result = apiInstance.UpdateAttachment(id, attachmentUpdate, xTraceId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -537,7 +565,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update existing attachment.
-    ApiResponse<AttachmentSingle> response = apiInstance.UpdateAttachmentWithHttpInfo(id, attachmentUpdate);
+    ApiResponse<AttachmentSingle> response = apiInstance.UpdateAttachmentWithHttpInfo(id, attachmentUpdate, xTraceId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -556,6 +584,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the attachment. |  |
 | **attachmentUpdate** | [**AttachmentUpdate**](AttachmentUpdate.md) | JSON array with updated attachment information. See the model for the exact specifications. |  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
 
@@ -568,20 +597,24 @@ catch (ApiException e)
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/vnd.api+json, application/json
+ - **Accept**: application/json, application/vnd.api+json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | Updated attachment stored, result in response |  -  |
-| **422** | Validation errors (see body) |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="uploadattachment"></a>
 # **UploadAttachment**
-> void UploadAttachment (string id, System.IO.Stream body = null)
+> void UploadAttachment (string id, Guid? xTraceId = null, System.IO.Stream? body = null)
 
 Upload an attachment.
 
@@ -602,18 +635,19 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AttachmentsApi(config);
             var id = 123;  // string | The ID of the attachment.
-            var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream |  (optional) 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream? |  (optional) 
 
             try
             {
                 // Upload an attachment.
-                apiInstance.UploadAttachment(id, body);
+                apiInstance.UploadAttachment(id, xTraceId, body);
             }
             catch (ApiException  e)
             {
@@ -633,7 +667,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Upload an attachment.
-    apiInstance.UploadAttachmentWithHttpInfo(id, body);
+    apiInstance.UploadAttachmentWithHttpInfo(id, xTraceId, body);
 }
 catch (ApiException e)
 {
@@ -648,7 +682,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** | The ID of the attachment. |  |
-| **body** | **System.IO.Stream****System.IO.Stream** |  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **body** | **System.IO.Stream?****System.IO.Stream?** |  | [optional]  |
 
 ### Return type
 
@@ -661,15 +696,18 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/octet-stream
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Upload was a success |  -  |
-| **404** | File not found |  -  |
-| **422** | Upload invalid or empty file. |  -  |
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
+| **422** | Validation error. The body will have the exact details. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

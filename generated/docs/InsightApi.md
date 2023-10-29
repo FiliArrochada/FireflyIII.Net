@@ -1,37 +1,37 @@
 # FireflyIIINet.Api.InsightApi
 
-All URIs are relative to *https://demo.firefly-iii.org*
+All URIs are relative to *https://demo.firefly-iii.org/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**InsightExpenseAsset**](InsightApi.md#insightexpenseasset) | **GET** /api/v1/insight/expense/asset | Insight into expenses, grouped by asset account. |
-| [**InsightExpenseBill**](InsightApi.md#insightexpensebill) | **GET** /api/v1/insight/expense/bill | Insight into expenses, grouped by bill. |
-| [**InsightExpenseBudget**](InsightApi.md#insightexpensebudget) | **GET** /api/v1/insight/expense/budget | Insight into expenses, grouped by budget. |
-| [**InsightExpenseCategory**](InsightApi.md#insightexpensecategory) | **GET** /api/v1/insight/expense/category | Insight into expenses, grouped by category. |
-| [**InsightExpenseExpense**](InsightApi.md#insightexpenseexpense) | **GET** /api/v1/insight/expense/expense | Insight into expenses, grouped by expense account. |
-| [**InsightExpenseNoBill**](InsightApi.md#insightexpensenobill) | **GET** /api/v1/insight/expense/no-bill | Insight into expenses, without bill. |
-| [**InsightExpenseNoBudget**](InsightApi.md#insightexpensenobudget) | **GET** /api/v1/insight/expense/no-budget | Insight into expenses, without budget. |
-| [**InsightExpenseNoCategory**](InsightApi.md#insightexpensenocategory) | **GET** /api/v1/insight/expense/no-category | Insight into expenses, without category. |
-| [**InsightExpenseNoTag**](InsightApi.md#insightexpensenotag) | **GET** /api/v1/insight/expense/no-tag | Insight into expenses, without tag. |
-| [**InsightExpenseTag**](InsightApi.md#insightexpensetag) | **GET** /api/v1/insight/expense/tag | Insight into expenses, grouped by tag. |
-| [**InsightExpenseTotal**](InsightApi.md#insightexpensetotal) | **GET** /api/v1/insight/expense/total | Insight into total expenses. |
-| [**InsightIncomeAsset**](InsightApi.md#insightincomeasset) | **GET** /api/v1/insight/income/asset | Insight into income, grouped by asset account. |
-| [**InsightIncomeCategory**](InsightApi.md#insightincomecategory) | **GET** /api/v1/insight/income/category | Insight into income, grouped by category. |
-| [**InsightIncomeNoCategory**](InsightApi.md#insightincomenocategory) | **GET** /api/v1/insight/income/no-category | Insight into income, without category. |
-| [**InsightIncomeNoTag**](InsightApi.md#insightincomenotag) | **GET** /api/v1/insight/income/no-tag | Insight into income, without tag. |
-| [**InsightIncomeRevenue**](InsightApi.md#insightincomerevenue) | **GET** /api/v1/insight/income/revenue | Insight into income, grouped by revenue account. |
-| [**InsightIncomeTag**](InsightApi.md#insightincometag) | **GET** /api/v1/insight/income/tag | Insight into income, grouped by tag. |
-| [**InsightIncomeTotal**](InsightApi.md#insightincometotal) | **GET** /api/v1/insight/income/total | Insight into total income. |
-| [**InsightTransferCategory**](InsightApi.md#insighttransfercategory) | **GET** /api/v1/insight/transfer/category | Insight into transfers, grouped by category. |
-| [**InsightTransferNoCategory**](InsightApi.md#insighttransfernocategory) | **GET** /api/v1/insight/transfer/no-category | Insight into transfers, without category. |
-| [**InsightTransferNoTag**](InsightApi.md#insighttransfernotag) | **GET** /api/v1/insight/transfer/no-tag | Insight into expenses, without tag. |
-| [**InsightTransferTag**](InsightApi.md#insighttransfertag) | **GET** /api/v1/insight/transfer/tag | Insight into transfers, grouped by tag. |
-| [**InsightTransferTotal**](InsightApi.md#insighttransfertotal) | **GET** /api/v1/insight/transfer/total | Insight into total transfers. |
-| [**InsightTransfers**](InsightApi.md#insighttransfers) | **GET** /api/v1/insight/transfer/asset | Insight into transfers, grouped by account. |
+| [**InsightExpenseAsset**](InsightApi.md#insightexpenseasset) | **GET** /v1/insight/expense/asset | Insight into expenses, grouped by asset account. |
+| [**InsightExpenseBill**](InsightApi.md#insightexpensebill) | **GET** /v1/insight/expense/bill | Insight into expenses, grouped by bill. |
+| [**InsightExpenseBudget**](InsightApi.md#insightexpensebudget) | **GET** /v1/insight/expense/budget | Insight into expenses, grouped by budget. |
+| [**InsightExpenseCategory**](InsightApi.md#insightexpensecategory) | **GET** /v1/insight/expense/category | Insight into expenses, grouped by category. |
+| [**InsightExpenseExpense**](InsightApi.md#insightexpenseexpense) | **GET** /v1/insight/expense/expense | Insight into expenses, grouped by expense account. |
+| [**InsightExpenseNoBill**](InsightApi.md#insightexpensenobill) | **GET** /v1/insight/expense/no-bill | Insight into expenses, without bill. |
+| [**InsightExpenseNoBudget**](InsightApi.md#insightexpensenobudget) | **GET** /v1/insight/expense/no-budget | Insight into expenses, without budget. |
+| [**InsightExpenseNoCategory**](InsightApi.md#insightexpensenocategory) | **GET** /v1/insight/expense/no-category | Insight into expenses, without category. |
+| [**InsightExpenseNoTag**](InsightApi.md#insightexpensenotag) | **GET** /v1/insight/expense/no-tag | Insight into expenses, without tag. |
+| [**InsightExpenseTag**](InsightApi.md#insightexpensetag) | **GET** /v1/insight/expense/tag | Insight into expenses, grouped by tag. |
+| [**InsightExpenseTotal**](InsightApi.md#insightexpensetotal) | **GET** /v1/insight/expense/total | Insight into total expenses. |
+| [**InsightIncomeAsset**](InsightApi.md#insightincomeasset) | **GET** /v1/insight/income/asset | Insight into income, grouped by asset account. |
+| [**InsightIncomeCategory**](InsightApi.md#insightincomecategory) | **GET** /v1/insight/income/category | Insight into income, grouped by category. |
+| [**InsightIncomeNoCategory**](InsightApi.md#insightincomenocategory) | **GET** /v1/insight/income/no-category | Insight into income, without category. |
+| [**InsightIncomeNoTag**](InsightApi.md#insightincomenotag) | **GET** /v1/insight/income/no-tag | Insight into income, without tag. |
+| [**InsightIncomeRevenue**](InsightApi.md#insightincomerevenue) | **GET** /v1/insight/income/revenue | Insight into income, grouped by revenue account. |
+| [**InsightIncomeTag**](InsightApi.md#insightincometag) | **GET** /v1/insight/income/tag | Insight into income, grouped by tag. |
+| [**InsightIncomeTotal**](InsightApi.md#insightincometotal) | **GET** /v1/insight/income/total | Insight into total income. |
+| [**InsightTransferCategory**](InsightApi.md#insighttransfercategory) | **GET** /v1/insight/transfer/category | Insight into transfers, grouped by category. |
+| [**InsightTransferNoCategory**](InsightApi.md#insighttransfernocategory) | **GET** /v1/insight/transfer/no-category | Insight into transfers, without category. |
+| [**InsightTransferNoTag**](InsightApi.md#insighttransfernotag) | **GET** /v1/insight/transfer/no-tag | Insight into expenses, without tag. |
+| [**InsightTransferTag**](InsightApi.md#insighttransfertag) | **GET** /v1/insight/transfer/tag | Insight into transfers, grouped by tag. |
+| [**InsightTransferTotal**](InsightApi.md#insighttransfertotal) | **GET** /v1/insight/transfer/total | Insight into total transfers. |
+| [**InsightTransfers**](InsightApi.md#insighttransfers) | **GET** /v1/insight/transfer/asset | Insight into transfers, grouped by account. |
 
 <a id="insightexpenseasset"></a>
 # **InsightExpenseAsset**
-> List&lt;InsightGroupEntry&gt; InsightExpenseAsset (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightExpenseAsset (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into expenses, grouped by asset account.
 
@@ -52,19 +52,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, grouped by asset account.
-                List<InsightGroupEntry> result = apiInstance.InsightExpenseAsset(start, end, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightExpenseAsset(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -85,7 +86,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, grouped by asset account.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseAssetWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseAssetWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -104,7 +105,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -123,13 +125,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of asset accounts and expense details. Each asset account has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensebill"></a>
 # **InsightExpenseBill**
-> List&lt;InsightGroupEntry&gt; InsightExpenseBill (DateTime start, DateTime end, List<long> bills = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightExpenseBill (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? bills = null, List<long>? accounts = null)
 
 Insight into expenses, grouped by bill.
 
@@ -150,20 +156,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var bills = new List<long>(); // List<long> | The bills to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var bills = new List<long>?(); // List<long>? | The bills to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, grouped by bill.
-                List<InsightGroupEntry> result = apiInstance.InsightExpenseBill(start, end, bills, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightExpenseBill(start, end, xTraceId, bills, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -184,7 +191,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, grouped by bill.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseBillWithHttpInfo(start, end, bills, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseBillWithHttpInfo(start, end, xTraceId, bills, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -203,8 +210,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **bills** | [**List&lt;long&gt;**](long.md) | The bills to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **bills** | [**List&lt;long&gt;?**](long.md) | The bills to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -223,13 +231,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of budget and expense details. Each budget has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensebudget"></a>
 # **InsightExpenseBudget**
-> List&lt;InsightGroupEntry&gt; InsightExpenseBudget (DateTime start, DateTime end, List<long> budgets = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightExpenseBudget (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? budgets = null, List<long>? accounts = null)
 
 Insight into expenses, grouped by budget.
 
@@ -250,20 +262,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var budgets = new List<long>(); // List<long> | The budgets to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var budgets = new List<long>?(); // List<long>? | The budgets to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, grouped by budget.
-                List<InsightGroupEntry> result = apiInstance.InsightExpenseBudget(start, end, budgets, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightExpenseBudget(start, end, xTraceId, budgets, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -284,7 +297,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, grouped by budget.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseBudgetWithHttpInfo(start, end, budgets, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseBudgetWithHttpInfo(start, end, xTraceId, budgets, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -303,8 +316,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **budgets** | [**List&lt;long&gt;**](long.md) | The budgets to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **budgets** | [**List&lt;long&gt;?**](long.md) | The budgets to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -323,13 +337,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of budget and expense details. Each budget has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensecategory"></a>
 # **InsightExpenseCategory**
-> List&lt;InsightGroupEntry&gt; InsightExpenseCategory (DateTime start, DateTime end, List<long> categories = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightExpenseCategory (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? categories = null, List<long>? accounts = null)
 
 Insight into expenses, grouped by category.
 
@@ -350,20 +368,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var categories = new List<long>(); // List<long> | The categories to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var categories = new List<long>?(); // List<long>? | The categories to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, grouped by category.
-                List<InsightGroupEntry> result = apiInstance.InsightExpenseCategory(start, end, categories, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightExpenseCategory(start, end, xTraceId, categories, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -384,7 +403,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, grouped by category.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseCategoryWithHttpInfo(start, end, categories, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -403,8 +422,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **categories** | [**List&lt;long&gt;**](long.md) | The categories to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **categories** | [**List&lt;long&gt;?**](long.md) | The categories to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -423,13 +443,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of category and expense details. Each category has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpenseexpense"></a>
 # **InsightExpenseExpense**
-> List&lt;InsightGroupEntry&gt; InsightExpenseExpense (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightExpenseExpense (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into expenses, grouped by expense account.
 
@@ -450,19 +474,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you add the accounts ID's of expense accounts, only those accounts are included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. You can combine both asset / liability and expense account ID's. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you add the accounts ID's of expense accounts, only those accounts are included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. You can combine both asset / liability and expense account ID's. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, grouped by expense account.
-                List<InsightGroupEntry> result = apiInstance.InsightExpenseExpense(start, end, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightExpenseExpense(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -483,7 +508,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, grouped by expense account.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseExpenseWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseExpenseWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -502,7 +527,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you add the accounts ID&#39;s of expense accounts, only those accounts are included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. You can combine both asset / liability and expense account ID&#39;s. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you add the accounts ID&#39;s of expense accounts, only those accounts are included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. You can combine both asset / liability and expense account ID&#39;s. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -521,13 +547,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of expense accounts and expense details. Each expense acccount has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensenobill"></a>
 # **InsightExpenseNoBill**
-> List&lt;InsightTotalEntry&gt; InsightExpenseNoBill (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightExpenseNoBill (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into expenses, without bill.
 
@@ -548,19 +578,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, without bill.
-                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoBill(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoBill(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -581,7 +612,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, without bill.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoBillWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoBillWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -600,7 +631,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -619,13 +651,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of expense details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensenobudget"></a>
 # **InsightExpenseNoBudget**
-> List&lt;InsightTotalEntry&gt; InsightExpenseNoBudget (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightExpenseNoBudget (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into expenses, without budget.
 
@@ -646,19 +682,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, without budget.
-                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoBudget(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoBudget(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -679,7 +716,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, without budget.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoBudgetWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoBudgetWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -698,7 +735,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -717,13 +755,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of expense details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensenocategory"></a>
 # **InsightExpenseNoCategory**
-> List&lt;InsightTotalEntry&gt; InsightExpenseNoCategory (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightExpenseNoCategory (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into expenses, without category.
 
@@ -744,19 +786,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, without category.
-                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoCategory(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoCategory(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -777,7 +820,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, without category.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoCategoryWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -796,7 +839,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -815,13 +859,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of expense details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensenotag"></a>
 # **InsightExpenseNoTag**
-> List&lt;InsightTotalEntry&gt; InsightExpenseNoTag (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightExpenseNoTag (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into expenses, without tag.
 
@@ -842,19 +890,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, without tag.
-                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoTag(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightExpenseNoTag(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -875,7 +924,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, without tag.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoTagWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseNoTagWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -894,7 +943,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -913,13 +963,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of expense details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensetag"></a>
 # **InsightExpenseTag**
-> List&lt;InsightGroupEntry&gt; InsightExpenseTag (DateTime start, DateTime end, List<long> tags = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightExpenseTag (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? tags = null, List<long>? accounts = null)
 
 Insight into expenses, grouped by tag.
 
@@ -940,20 +994,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var tags = new List<long>(); // List<long> | The tags to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var tags = new List<long>?(); // List<long>? | The tags to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, grouped by tag.
-                List<InsightGroupEntry> result = apiInstance.InsightExpenseTag(start, end, tags, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightExpenseTag(start, end, xTraceId, tags, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -974,7 +1029,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, grouped by tag.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseTagWithHttpInfo(start, end, tags, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightExpenseTagWithHttpInfo(start, end, xTraceId, tags, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -993,8 +1048,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **tags** | [**List&lt;long&gt;**](long.md) | The tags to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **tags** | [**List&lt;long&gt;?**](long.md) | The tags to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1013,13 +1069,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of tag and expense details. Each tag has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightexpensetotal"></a>
 # **InsightExpenseTotal**
-> List&lt;InsightTotalEntry&gt; InsightExpenseTotal (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightExpenseTotal (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into total expenses.
 
@@ -1040,19 +1100,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into total expenses.
-                List<InsightTotalEntry> result = apiInstance.InsightExpenseTotal(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightExpenseTotal(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1073,7 +1134,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into total expenses.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseTotalWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightExpenseTotalWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1092,7 +1153,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1111,13 +1173,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of sums in different currencies. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightincomeasset"></a>
 # **InsightIncomeAsset**
-> List&lt;InsightGroupEntry&gt; InsightIncomeAsset (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightIncomeAsset (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into income, grouped by asset account.
 
@@ -1138,19 +1204,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into income, grouped by asset account.
-                List<InsightGroupEntry> result = apiInstance.InsightIncomeAsset(start, end, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightIncomeAsset(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1171,7 +1238,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into income, grouped by asset account.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeAssetWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeAssetWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1190,7 +1257,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1209,13 +1277,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of asset accounts and income details. Each asset account has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightincomecategory"></a>
 # **InsightIncomeCategory**
-> List&lt;InsightGroupEntry&gt; InsightIncomeCategory (DateTime start, DateTime end, List<long> categories = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightIncomeCategory (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? categories = null, List<long>? accounts = null)
 
 Insight into income, grouped by category.
 
@@ -1236,20 +1308,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var categories = new List<long>(); // List<long> | The categories to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var categories = new List<long>?(); // List<long>? | The categories to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into income, grouped by category.
-                List<InsightGroupEntry> result = apiInstance.InsightIncomeCategory(start, end, categories, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightIncomeCategory(start, end, xTraceId, categories, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1270,7 +1343,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into income, grouped by category.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeCategoryWithHttpInfo(start, end, categories, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1289,8 +1362,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **categories** | [**List&lt;long&gt;**](long.md) | The categories to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **categories** | [**List&lt;long&gt;?**](long.md) | The categories to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1309,13 +1383,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of category and income details. Each category has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightincomenocategory"></a>
 # **InsightIncomeNoCategory**
-> List&lt;InsightTotalEntry&gt; InsightIncomeNoCategory (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightIncomeNoCategory (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into income, without category.
 
@@ -1336,19 +1414,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into income, without category.
-                List<InsightTotalEntry> result = apiInstance.InsightIncomeNoCategory(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightIncomeNoCategory(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1369,7 +1448,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into income, without category.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightIncomeNoCategoryWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightIncomeNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1388,7 +1467,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1407,13 +1487,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of income details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightincomenotag"></a>
 # **InsightIncomeNoTag**
-> List&lt;InsightTotalEntry&gt; InsightIncomeNoTag (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightIncomeNoTag (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into income, without tag.
 
@@ -1434,19 +1518,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into income, without tag.
-                List<InsightTotalEntry> result = apiInstance.InsightIncomeNoTag(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightIncomeNoTag(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1467,7 +1552,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into income, without tag.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightIncomeNoTagWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightIncomeNoTagWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1486,7 +1571,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1505,13 +1591,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of income details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightincomerevenue"></a>
 # **InsightIncomeRevenue**
-> List&lt;InsightGroupEntry&gt; InsightIncomeRevenue (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightIncomeRevenue (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into income, grouped by revenue account.
 
@@ -1532,19 +1622,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you add the accounts ID's of revenue accounts, only those accounts are included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. You can combine both asset / liability and deposit account ID's. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you add the accounts ID's of revenue accounts, only those accounts are included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. You can combine both asset / liability and deposit account ID's. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into income, grouped by revenue account.
-                List<InsightGroupEntry> result = apiInstance.InsightIncomeRevenue(start, end, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightIncomeRevenue(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1565,7 +1656,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into income, grouped by revenue account.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeRevenueWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeRevenueWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1584,7 +1675,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you add the accounts ID&#39;s of revenue accounts, only those accounts are included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. You can combine both asset / liability and deposit account ID&#39;s. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you add the accounts ID&#39;s of revenue accounts, only those accounts are included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. You can combine both asset / liability and deposit account ID&#39;s. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1603,13 +1695,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of revenue accounts and income details. Each revenue acccount has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightincometag"></a>
 # **InsightIncomeTag**
-> List&lt;InsightGroupEntry&gt; InsightIncomeTag (DateTime start, DateTime end, List<long> tags = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightIncomeTag (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? tags = null, List<long>? accounts = null)
 
 Insight into income, grouped by tag.
 
@@ -1630,20 +1726,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var tags = new List<long>(); // List<long> | The tags to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var tags = new List<long>?(); // List<long>? | The tags to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into income, grouped by tag.
-                List<InsightGroupEntry> result = apiInstance.InsightIncomeTag(start, end, tags, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightIncomeTag(start, end, xTraceId, tags, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1664,7 +1761,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into income, grouped by tag.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeTagWithHttpInfo(start, end, tags, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightIncomeTagWithHttpInfo(start, end, xTraceId, tags, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1683,8 +1780,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **tags** | [**List&lt;long&gt;**](long.md) | The tags to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **tags** | [**List&lt;long&gt;?**](long.md) | The tags to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1703,13 +1801,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of tag and income details. Each tag has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insightincometotal"></a>
 # **InsightIncomeTotal**
-> List&lt;InsightTotalEntry&gt; InsightIncomeTotal (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightIncomeTotal (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into total income.
 
@@ -1730,19 +1832,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into total income.
-                List<InsightTotalEntry> result = apiInstance.InsightIncomeTotal(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightIncomeTotal(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1763,7 +1866,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into total income.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightIncomeTotalWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightIncomeTotalWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1782,7 +1885,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1801,13 +1905,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of sums in different currencies. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insighttransfercategory"></a>
 # **InsightTransferCategory**
-> List&lt;InsightGroupEntry&gt; InsightTransferCategory (DateTime start, DateTime end, List<long> categories = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightTransferCategory (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? categories = null, List<long>? accounts = null)
 
 Insight into transfers, grouped by category.
 
@@ -1828,20 +1936,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var categories = new List<long>(); // List<long> | The categories to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var categories = new List<long>?(); // List<long>? | The categories to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into transfers, grouped by category.
-                List<InsightGroupEntry> result = apiInstance.InsightTransferCategory(start, end, categories, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightTransferCategory(start, end, xTraceId, categories, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1862,7 +1971,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into transfers, grouped by category.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightTransferCategoryWithHttpInfo(start, end, categories, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightTransferCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1881,8 +1990,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **categories** | [**List&lt;long&gt;**](long.md) | The categories to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **categories** | [**List&lt;long&gt;?**](long.md) | The categories to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1901,13 +2011,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of category and transfer details. Each category has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insighttransfernocategory"></a>
 # **InsightTransferNoCategory**
-> List&lt;InsightTotalEntry&gt; InsightTransferNoCategory (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightTransferNoCategory (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into transfers, without category.
 
@@ -1928,19 +2042,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into transfers, without category.
-                List<InsightTotalEntry> result = apiInstance.InsightTransferNoCategory(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightTransferNoCategory(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1961,7 +2076,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into transfers, without category.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightTransferNoCategoryWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightTransferNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1980,7 +2095,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -1999,13 +2115,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of transfer details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insighttransfernotag"></a>
 # **InsightTransferNoTag**
-> List&lt;InsightTotalEntry&gt; InsightTransferNoTag (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightTransferNoTag (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into expenses, without tag.
 
@@ -2026,19 +2146,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers from those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into expenses, without tag.
-                List<InsightTotalEntry> result = apiInstance.InsightTransferNoTag(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightTransferNoTag(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2059,7 +2180,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into expenses, without tag.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightTransferNoTagWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightTransferNoTagWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2078,7 +2199,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -2097,13 +2219,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of transfer details. One row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insighttransfertag"></a>
 # **InsightTransferTag**
-> List&lt;InsightGroupEntry&gt; InsightTransferTag (DateTime start, DateTime end, List<long> tags = null, List<long> accounts = null)
+> List&lt;InsightGroupEntry&gt; InsightTransferTag (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? tags = null, List<long>? accounts = null)
 
 Insight into transfers, grouped by tag.
 
@@ -2124,20 +2250,21 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var tags = new List<long>(); // List<long> | The tags to be included in the results.  (optional) 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var tags = new List<long>?(); // List<long>? | The tags to be included in the results.  (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into transfers, grouped by tag.
-                List<InsightGroupEntry> result = apiInstance.InsightTransferTag(start, end, tags, accounts);
+                List<InsightGroupEntry> result = apiInstance.InsightTransferTag(start, end, xTraceId, tags, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2158,7 +2285,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into transfers, grouped by tag.
-    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightTransferTagWithHttpInfo(start, end, tags, accounts);
+    ApiResponse<List<InsightGroupEntry>> response = apiInstance.InsightTransferTagWithHttpInfo(start, end, xTraceId, tags, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2177,8 +2304,9 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **tags** | [**List&lt;long&gt;**](long.md) | The tags to be included in the results.  | [optional]  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **tags** | [**List&lt;long&gt;?**](long.md) | The tags to be included in the results.  | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -2197,13 +2325,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of tag and transfer details. Each tag has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insighttransfertotal"></a>
 # **InsightTransferTotal**
-> List&lt;InsightTotalEntry&gt; InsightTransferTotal (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTotalEntry&gt; InsightTransferTotal (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into total transfers.
 
@@ -2224,19 +2356,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into total transfers.
-                List<InsightTotalEntry> result = apiInstance.InsightTransferTotal(start, end, accounts);
+                List<InsightTotalEntry> result = apiInstance.InsightTransferTotal(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2257,7 +2390,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into total transfers.
-    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightTransferTotalWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTotalEntry>> response = apiInstance.InsightTransferTotalWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2276,7 +2409,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -2295,13 +2429,17 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of sums in different currencies. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="insighttransfers"></a>
 # **InsightTransfers**
-> List&lt;InsightTransferEntry&gt; InsightTransfers (DateTime start, DateTime end, List<long> accounts = null)
+> List&lt;InsightTransferEntry&gt; InsightTransfers (DateTime start, DateTime end, Guid? xTraceId = null, List<long>? accounts = null)
 
 Insight into transfers, grouped by account.
 
@@ -2322,19 +2460,20 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://demo.firefly-iii.org";
+            config.BasePath = "https://demo.firefly-iii.org/api";
             // Configure OAuth2 access token for authorization: firefly_iii_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new InsightApi(config);
-            var start = 2021-01-01;  // DateTime | A date formatted YYYY-MM-DD. 
-            var end = 2021-01-31;  // DateTime | A date formatted YYYY-MM-DD. 
-            var accounts = new List<long>(); // List<long> | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
+            var start = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var end = DateTime.Parse("2013-10-20");  // DateTime | A date formatted YYYY-MM-DD. 
+            var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
+            var accounts = new List<long>?(); // List<long>? | The accounts to be included in the results. If you include ID's of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID's will be ignored.  (optional) 
 
             try
             {
                 // Insight into transfers, grouped by account.
-                List<InsightTransferEntry> result = apiInstance.InsightTransfers(start, end, accounts);
+                List<InsightTransferEntry> result = apiInstance.InsightTransfers(start, end, xTraceId, accounts);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2355,7 +2494,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Insight into transfers, grouped by account.
-    ApiResponse<List<InsightTransferEntry>> response = apiInstance.InsightTransfersWithHttpInfo(start, end, accounts);
+    ApiResponse<List<InsightTransferEntry>> response = apiInstance.InsightTransfersWithHttpInfo(start, end, xTraceId, accounts);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2374,7 +2513,8 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **start** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
 | **end** | **DateTime** | A date formatted YYYY-MM-DD.  |  |
-| **accounts** | [**List&lt;long&gt;**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
+| **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
+| **accounts** | [**List&lt;long&gt;?**](long.md) | The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  | [optional]  |
 
 ### Return type
 
@@ -2393,6 +2533,10 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **401** | Unauthenticated |  -  |
+| **404** | Page not found |  -  |
+| **400** | Bad request |  -  |
+| **500** | Internal exception |  -  |
 | **200** | A list of asset accounts and transfer details. Each asset account has one row per currency. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
