@@ -52,11 +52,11 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("transactions is a required property for TransactionStore and cannot be null");
             }
-            this.Transactions = transactions;
-            this.ErrorIfDuplicateHash = errorIfDuplicateHash;
-            this.ApplyRules = applyRules;
-            this.FireWebhooks = fireWebhooks;
-            this.GroupTitle = groupTitle;
+            Transactions = transactions;
+            ErrorIfDuplicateHash = errorIfDuplicateHash;
+            ApplyRules = applyRules;
+            FireWebhooks = fireWebhooks;
+            GroupTitle = groupTitle;
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Title of the transaction if it has been split in more than one piece. Empty otherwise.</value>
         /// <example>Split transaction title.</example>
-        [DataMember(Name = "group_title", EmitDefaultValue = true)]
+        [DataMember(Name = "group_title", EmitDefaultValue = false)]
         public string GroupTitle { get; set; }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionStore);
+            return Equals(input as TransactionStore);
         }
 
         /// <summary>
@@ -146,27 +146,27 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.ErrorIfDuplicateHash == input.ErrorIfDuplicateHash ||
-                    this.ErrorIfDuplicateHash.Equals(input.ErrorIfDuplicateHash)
+                    ErrorIfDuplicateHash == input.ErrorIfDuplicateHash ||
+                    ErrorIfDuplicateHash.Equals(input.ErrorIfDuplicateHash)
                 ) && 
                 (
-                    this.ApplyRules == input.ApplyRules ||
-                    this.ApplyRules.Equals(input.ApplyRules)
+                    ApplyRules == input.ApplyRules ||
+                    ApplyRules.Equals(input.ApplyRules)
                 ) && 
                 (
-                    this.FireWebhooks == input.FireWebhooks ||
-                    this.FireWebhooks.Equals(input.FireWebhooks)
+                    FireWebhooks == input.FireWebhooks ||
+                    FireWebhooks.Equals(input.FireWebhooks)
                 ) && 
                 (
-                    this.GroupTitle == input.GroupTitle ||
-                    (this.GroupTitle != null &&
-                    this.GroupTitle.Equals(input.GroupTitle))
+                    GroupTitle == input.GroupTitle ||
+                    (GroupTitle != null &&
+                    GroupTitle.Equals(input.GroupTitle))
                 ) && 
                 (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions != null &&
+                    Transactions == input.Transactions ||
+                    Transactions != null &&
                     input.Transactions != null &&
-                    this.Transactions.SequenceEqual(input.Transactions)
+                    Transactions.SequenceEqual(input.Transactions)
                 );
         }
 
@@ -179,17 +179,14 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ErrorIfDuplicateHash.GetHashCode();
-                hashCode = (hashCode * 59) + this.ApplyRules.GetHashCode();
-                hashCode = (hashCode * 59) + this.FireWebhooks.GetHashCode();
-                if (this.GroupTitle != null)
+                hashCode = (hashCode * 59) + ErrorIfDuplicateHash.GetHashCode();
+                hashCode = (hashCode * 59) + ApplyRules.GetHashCode();
+                hashCode = (hashCode * 59) + FireWebhooks.GetHashCode();
+                if (GroupTitle != null)
                 {
-                    hashCode = (hashCode * 59) + this.GroupTitle.GetHashCode();
+                    hashCode = (hashCode * 59) + GroupTitle.GetHashCode();
                 }
-                if (this.Transactions != null)
-                {
-                    hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Transactions.GetHashCode();
                 return hashCode;
             }
         }
@@ -199,7 +196,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

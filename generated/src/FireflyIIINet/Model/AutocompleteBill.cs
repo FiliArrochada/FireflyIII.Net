@@ -50,14 +50,14 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("id is a required property for AutocompleteBill and cannot be null");
             }
-            this.Id = id;
+            Id = id;
             // to ensure "name" is required (not null)
             if (name == null)
             {
                 throw new ArgumentNullException("name is a required property for AutocompleteBill and cannot be null");
             }
-            this.Name = name;
-            this.Active = active;
+            Name = name;
+            Active = active;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AutocompleteBill);
+            return Equals(input as AutocompleteBill);
         }
 
         /// <summary>
@@ -130,18 +130,16 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    Id == input.Id ||
+					Id.Equals(input.Id)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 );
         }
 
@@ -154,15 +152,9 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
+				hashCode = (hashCode * 59) + Id.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
                 return hashCode;
             }
         }
@@ -172,7 +164,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

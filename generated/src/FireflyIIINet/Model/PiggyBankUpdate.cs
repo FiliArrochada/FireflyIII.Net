@@ -47,23 +47,23 @@ namespace FireflyIIINet.Model
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
         public PiggyBankUpdate(string name = default(string), string accountId = default(string), string targetAmount = default(string), string currentAmount = default(string), DateTime startDate = default(DateTime), DateTime? targetDate = default(DateTime?), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
         {
-            this.Name = name;
-            this.AccountId = accountId;
-            this.TargetAmount = targetAmount;
-            this.CurrentAmount = currentAmount;
-            this.StartDate = startDate;
-            this.TargetDate = targetDate;
-            this.Order = order;
-            this.Notes = notes;
-            this.ObjectGroupId = objectGroupId;
-            this.ObjectGroupTitle = objectGroupTitle;
+            Name = name;
+            AccountId = accountId;
+            TargetAmount = targetAmount;
+            CurrentAmount = currentAmount;
+            StartDate = startDate;
+            TargetDate = targetDate;
+            Order = order;
+            Notes = notes;
+            ObjectGroupId = objectGroupId;
+            ObjectGroupTitle = objectGroupTitle;
         }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
         /// <example>New digital camera</example>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
@@ -71,14 +71,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The ID of the asset account this piggy bank is connected to.</value>
         /// <example>13</example>
-        [DataMember(Name = "account_id", EmitDefaultValue = false)]
+        [DataMember(Name = "account_id", EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencyId
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; private set; }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencyCode
         /// </summary>
         /// <example>USD</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; private set; }
 
         /// <summary>
@@ -108,14 +108,14 @@ namespace FireflyIIINet.Model
         /// Gets or Sets TargetAmount
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "target_amount", EmitDefaultValue = true)]
+        [DataMember(Name = "target_amount", EmitDefaultValue = false)]
         public string TargetAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrentAmount
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "current_amount", EmitDefaultValue = false)]
+        [DataMember(Name = "current_amount", EmitDefaultValue = true)]
         public string CurrentAmount { get; set; }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date you started with this piggy bank.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
-        [DataMember(Name = "start_date", EmitDefaultValue = false)]
+        [DataMember(Name = "start_date", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime StartDate { get; set; }
 
@@ -132,7 +132,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date you intend to finish saving money.</value>
         /// <example>Thu Sep 17 01:00:00 WEST 2020</example>
-        [DataMember(Name = "target_date", EmitDefaultValue = true)]
+        [DataMember(Name = "target_date", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime? TargetDate { get; set; }
 
@@ -140,7 +140,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = false)]
+        [DataMember(Name = "order", EmitDefaultValue = true)]
         public int Order { get; set; }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The group ID of the group this object is part of. NULL if no group.</value>
         /// <example>5</example>
-        [DataMember(Name = "object_group_id", EmitDefaultValue = true)]
+        [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The name of the group. NULL if no group.</value>
         /// <example>Example Group</example>
-        [DataMember(Name = "object_group_title", EmitDefaultValue = true)]
+        [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PiggyBankUpdate);
+            return Equals(input as PiggyBankUpdate);
         }
 
         /// <summary>
@@ -238,67 +238,61 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
+                    AccountId == input.AccountId ||
+					AccountId.Equals(input.AccountId)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.TargetAmount == input.TargetAmount ||
-                    (this.TargetAmount != null &&
-                    this.TargetAmount.Equals(input.TargetAmount))
+                    TargetAmount == input.TargetAmount ||
+                    (TargetAmount != null &&
+                    TargetAmount.Equals(input.TargetAmount))
                 ) && 
                 (
-                    this.CurrentAmount == input.CurrentAmount ||
-                    (this.CurrentAmount != null &&
-                    this.CurrentAmount.Equals(input.CurrentAmount))
+                    CurrentAmount == input.CurrentAmount ||
+					CurrentAmount.Equals(input.CurrentAmount)
                 ) && 
                 (
-                    this.StartDate == input.StartDate ||
-                    (this.StartDate != null &&
-                    this.StartDate.Equals(input.StartDate))
+                    StartDate == input.StartDate ||
+					StartDate.Equals(input.StartDate)
                 ) && 
                 (
-                    this.TargetDate == input.TargetDate ||
-                    (this.TargetDate != null &&
-                    this.TargetDate.Equals(input.TargetDate))
+                    TargetDate == input.TargetDate ||
+                    (TargetDate != null &&
+                    TargetDate.Equals(input.TargetDate))
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    this.Order.Equals(input.Order)
+                    Order == input.Order ||
+                    Order.Equals(input.Order)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.ObjectGroupId == input.ObjectGroupId ||
-                    (this.ObjectGroupId != null &&
-                    this.ObjectGroupId.Equals(input.ObjectGroupId))
+                    ObjectGroupId == input.ObjectGroupId ||
+                    (ObjectGroupId != null &&
+                    ObjectGroupId.Equals(input.ObjectGroupId))
                 ) && 
                 (
-                    this.ObjectGroupTitle == input.ObjectGroupTitle ||
-                    (this.ObjectGroupTitle != null &&
-                    this.ObjectGroupTitle.Equals(input.ObjectGroupTitle))
+                    ObjectGroupTitle == input.ObjectGroupTitle ||
+                    (ObjectGroupTitle != null &&
+                    ObjectGroupTitle.Equals(input.ObjectGroupTitle))
                 );
         }
 
@@ -311,51 +305,33 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + AccountId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+                if (TargetAmount != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                    hashCode = (hashCode * 59) + TargetAmount.GetHashCode();
                 }
-                if (this.AccountId != null)
+				hashCode = (hashCode * 59) + CurrentAmount.GetHashCode();
+				hashCode = (hashCode * 59) + StartDate.GetHashCode();
+                if (TargetDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
+                    hashCode = (hashCode * 59) + TargetDate.GetHashCode();
                 }
-                if (this.CurrencyId != null)
+                hashCode = (hashCode * 59) + Order.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.CurrencyCode != null)
+                if (ObjectGroupId != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                    hashCode = (hashCode * 59) + ObjectGroupId.GetHashCode();
                 }
-                if (this.TargetAmount != null)
+                if (ObjectGroupTitle != null)
                 {
-                    hashCode = (hashCode * 59) + this.TargetAmount.GetHashCode();
-                }
-                if (this.CurrentAmount != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrentAmount.GetHashCode();
-                }
-                if (this.StartDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.StartDate.GetHashCode();
-                }
-                if (this.TargetDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.TargetDate.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Order.GetHashCode();
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
-                }
-                if (this.ObjectGroupId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ObjectGroupId.GetHashCode();
-                }
-                if (this.ObjectGroupTitle != null)
-                {
-                    hashCode = (hashCode * 59) + this.ObjectGroupTitle.GetHashCode();
+                    hashCode = (hashCode * 59) + ObjectGroupTitle.GetHashCode();
                 }
                 return hashCode;
             }
@@ -366,7 +342,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

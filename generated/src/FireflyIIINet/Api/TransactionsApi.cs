@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -47,7 +50,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -59,7 +62,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete an individual journal (split) from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -72,7 +75,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete an individual journal (split) from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -84,7 +87,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -97,7 +100,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -109,7 +112,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single transaction by underlying journal (split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -122,7 +125,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single transaction by underlying journal (split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -134,7 +137,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -148,7 +151,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -161,7 +164,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all piggy bank events.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -175,7 +178,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all piggy bank events.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -188,7 +191,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -202,7 +205,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -215,7 +218,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the user&#39;s transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -231,7 +234,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the user&#39;s transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -246,7 +249,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -259,7 +262,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -271,7 +274,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update an existing transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -285,7 +288,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update an existing transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -307,13 +310,13 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete a transaction.
@@ -321,26 +324,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete split from transaction
         /// </summary>
         /// <remarks>
         /// Delete an individual journal (split) from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteTransactionJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteTransactionJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete split from transaction
@@ -348,26 +351,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete an individual journal (split) from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteTransactionJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteTransactionJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get a single transaction.
         /// </summary>
         /// <remarks>
         /// Get a single transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionSingle</returns>
-        System.Threading.Tasks.Task<TransactionSingle> GetTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionSingle> GetTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get a single transaction.
@@ -375,26 +378,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionSingle>> GetTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionSingle>> GetTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get a single transaction, based on one of the underlying transaction journals (transaction splits).
         /// </summary>
         /// <remarks>
         /// Get a single transaction by underlying journal (split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionSingle</returns>
-        System.Threading.Tasks.Task<TransactionSingle> GetTransactionByJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionSingle> GetTransactionByJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get a single transaction, based on one of the underlying transaction journals (transaction splits).
@@ -402,27 +405,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single transaction by underlying journal (split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionSingle>> GetTransactionByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionSingle>> GetTransactionByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Lists all attachments.
         /// </summary>
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AttachmentArray> ListAttachmentByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Lists all attachments.
@@ -430,28 +433,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AttachmentArray>> ListAttachmentByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AttachmentArray>> ListAttachmentByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Lists all piggy bank events.
         /// </summary>
         /// <remarks>
         /// Lists all piggy bank events.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PiggyBankEventArray</returns>
-        System.Threading.Tasks.Task<PiggyBankEventArray> ListEventByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<PiggyBankEventArray> ListEventByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Lists all piggy bank events.
@@ -459,28 +462,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all piggy bank events.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PiggyBankEventArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PiggyBankEventArray>> ListEventByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<PiggyBankEventArray>> ListEventByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Lists all the transaction links for an individual journal (individual split).
         /// </summary>
         /// <remarks>
         /// Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkArray</returns>
-        System.Threading.Tasks.Task<TransactionLinkArray> ListLinksByJournalAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionLinkArray> ListLinksByJournalAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Lists all the transaction links for an individual journal (individual split).
@@ -488,21 +491,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionLinkArray>> ListLinksByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionLinkArray>> ListLinksByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all the user&#39;s transactions. 
         /// </summary>
         /// <remarks>
         /// List all the user&#39;s transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -511,7 +514,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all the user&#39;s transactions. 
@@ -519,7 +522,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the user&#39;s transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -528,20 +531,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Store a new transaction
         /// </summary>
         /// <remarks>
         /// Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionSingle</returns>
-        System.Threading.Tasks.Task<TransactionSingle> StoreTransactionAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionSingle> StoreTransactionAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Store a new transaction
@@ -549,27 +552,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionSingle>> StoreTransactionWithHttpInfoAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionSingle>> StoreTransactionWithHttpInfoAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
         /// </summary>
         /// <remarks>
         /// Update an existing transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionSingle</returns>
-        System.Threading.Tasks.Task<TransactionSingle> UpdateTransactionAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionSingle> UpdateTransactionAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
@@ -577,14 +580,14 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update an existing transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionSingle>> UpdateTransactionWithHttpInfoAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionSingle>> UpdateTransactionWithHttpInfoAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -601,7 +604,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class TransactionsApi : ITransactionsApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionsApi"/> class.
@@ -615,15 +618,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="TransactionsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public TransactionsApi(string basePath)
+        public TransactionsApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -632,17 +628,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public TransactionsApi(FireflyIIINet.Client.Configuration configuration)
+        public TransactionsApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -652,27 +648,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public TransactionsApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public TransactionsApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -680,19 +676,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -706,9 +702,103 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteTransaction.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteTransaction(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->DeleteTransaction");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.DeleteTransaction" ,operationIndex);
+
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Delete a transaction. Delete a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -721,91 +811,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a transaction. Delete a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->DeleteTransaction");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.DeleteTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteTransaction(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/transactions/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/transactions/{id}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteTransaction", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Delete a transaction. Delete a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteTransactionWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -813,22 +843,32 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a transaction. Delete a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteTransaction(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/transactions/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteTransaction", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteTransactionJournal.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteTransactionJournal(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->DeleteTransaction");
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->DeleteTransactionJournal");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -838,63 +878,23 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.DeleteTransactionJournal" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "TransactionsApi.DeleteTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/transactions/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Delete split from transaction Delete an individual journal (split) from a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -907,91 +907,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete split from transaction Delete an individual journal (split) from a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteTransactionJournalWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteTransactionJournalWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->DeleteTransactionJournal");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.DeleteTransactionJournal";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteTransactionJournal(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/transaction-journals/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteTransactionJournal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/transaction-journals/{id}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteTransactionJournal", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Delete split from transaction Delete an individual journal (split) from a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteTransactionJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteTransactionJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteTransactionJournalWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -999,211 +939,131 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete split from transaction Delete an individual journal (split) from a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (the split) you wish to delete.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteTransactionJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteTransactionJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteTransactionJournal(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/transaction-journals/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteTransactionJournal", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetTransaction.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetTransaction(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->DeleteTransactionJournal");
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->GetTransaction");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.GetTransaction" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "TransactionsApi.DeleteTransactionJournal";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/transaction-journals/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteTransactionJournal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get a single transaction. Get a single transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TransactionSingle</returns>
         public TransactionSingle GetTransaction(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = GetTransactionWithHttpInfo(id, xTraceId);
+            ApiResponse<TransactionSingle> localVarResponse = GetTransactionWithHttpInfo(id, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single transaction. Get a single transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionSingle> GetTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<TransactionSingle> GetTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->GetTransaction");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.GetTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransaction(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, Configuration);
+            ValidateException("GetTransaction", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get a single transaction. Get a single transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionSingle</returns>
-        public async System.Threading.Tasks.Task<TransactionSingle> GetTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionSingle> GetTransactionAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = await GetTransactionWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionSingle> localVarResponse = await GetTransactionWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single transaction. Get a single transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionSingle>> GetTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionSingle>> GetTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransaction(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetTransaction", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetTransactionByJournal.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetTransactionByJournal(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->GetTransaction");
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->GetTransactionByJournal");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1214,186 +1074,95 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.GetTransactionByJournal" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "TransactionsApi.GetTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get a single transaction, based on one of the underlying transaction journals (transaction splits). Get a single transaction by underlying journal (split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TransactionSingle</returns>
         public TransactionSingle GetTransactionByJournal(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = GetTransactionByJournalWithHttpInfo(id, xTraceId);
+            ApiResponse<TransactionSingle> localVarResponse = GetTransactionByJournalWithHttpInfo(id, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single transaction, based on one of the underlying transaction journals (transaction splits). Get a single transaction by underlying journal (split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionSingle> GetTransactionByJournalWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<TransactionSingle> GetTransactionByJournalWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->GetTransactionByJournal");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.GetTransactionByJournal";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionByJournal(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionSingle>("/v1/transaction-journals/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionByJournal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionSingle>("/v1/transaction-journals/{id}", localVarRequestOptions, Configuration);
+            ValidateException("GetTransactionByJournal", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get a single transaction, based on one of the underlying transaction journals (transaction splits). Get a single transaction by underlying journal (split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionSingle</returns>
-        public async System.Threading.Tasks.Task<TransactionSingle> GetTransactionByJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionSingle> GetTransactionByJournalAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = await GetTransactionByJournalWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionSingle> localVarResponse = await GetTransactionByJournalWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single transaction, based on one of the underlying transaction journals (transaction splits). Get a single transaction by underlying journal (split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal (split).</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionSingle>> GetTransactionByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionSingle>> GetTransactionByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionByJournal(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionSingle>("/v1/transaction-journals/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetTransactionByJournal", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListAttachmentByTransaction.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListAttachmentByTransaction(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->GetTransactionByJournal");
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListAttachmentByTransaction");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1404,63 +1173,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.ListAttachmentByTransaction" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (page != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "TransactionsApi.GetTransactionByJournal";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionSingle>("/v1/transaction-journals/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionByJournal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -1468,130 +1201,75 @@ namespace FireflyIIINet.Api
         /// <returns>AttachmentArray</returns>
         public AttachmentArray ListAttachmentByTransaction(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByTransactionWithHttpInfo(id, xTraceId, page);
+            ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByTransactionWithHttpInfo(id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AttachmentArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AttachmentArray> ListAttachmentByTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<AttachmentArray> ListAttachmentByTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListAttachmentByTransaction");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListAttachmentByTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByTransaction(id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AttachmentArray>("/v1/transactions/{id}/attachments", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AttachmentArray>("/v1/transactions/{id}/attachments", localVarRequestOptions, Configuration);
+            ValidateException("ListAttachmentByTransaction", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        public async System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AttachmentArray> ListAttachmentByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByTransactionWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByTransactionWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AttachmentArray>> ListAttachmentByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AttachmentArray>> ListAttachmentByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByTransaction(id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AttachmentArray>("/v1/transactions/{id}/attachments", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListAttachmentByTransaction", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListEventByTransaction.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListEventByTransaction(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListAttachmentByTransaction");
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListEventByTransaction");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1602,67 +1280,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.ListEventByTransaction" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListAttachmentByTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AttachmentArray>("/v1/transactions/{id}/attachments", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Lists all piggy bank events. Lists all piggy bank events.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -1670,130 +1308,75 @@ namespace FireflyIIINet.Api
         /// <returns>PiggyBankEventArray</returns>
         public PiggyBankEventArray ListEventByTransaction(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<PiggyBankEventArray> localVarResponse = ListEventByTransactionWithHttpInfo(id, xTraceId, page);
+            ApiResponse<PiggyBankEventArray> localVarResponse = ListEventByTransactionWithHttpInfo(id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all piggy bank events. Lists all piggy bank events.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PiggyBankEventArray</returns>
-        public FireflyIIINet.Client.ApiResponse<PiggyBankEventArray> ListEventByTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<PiggyBankEventArray> ListEventByTransactionWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListEventByTransaction");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListEventByTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListEventByTransaction(id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<PiggyBankEventArray>("/v1/transactions/{id}/piggy-bank-events", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListEventByTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<PiggyBankEventArray>("/v1/transactions/{id}/piggy-bank-events", localVarRequestOptions, Configuration);
+            ValidateException("ListEventByTransaction", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Lists all piggy bank events. Lists all piggy bank events.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PiggyBankEventArray</returns>
-        public async System.Threading.Tasks.Task<PiggyBankEventArray> ListEventByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<PiggyBankEventArray> ListEventByTransactionAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<PiggyBankEventArray> localVarResponse = await ListEventByTransactionWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<PiggyBankEventArray> localVarResponse = await ListEventByTransactionWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all piggy bank events. Lists all piggy bank events.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PiggyBankEventArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<PiggyBankEventArray>> ListEventByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<PiggyBankEventArray>> ListEventByTransactionWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListEventByTransaction(id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<PiggyBankEventArray>("/v1/transactions/{id}/piggy-bank-events", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListEventByTransaction", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListLinksByJournal.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListLinksByJournal(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListEventByTransaction");
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListLinksByJournal");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1804,67 +1387,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.ListLinksByJournal" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListEventByTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<PiggyBankEventArray>("/v1/transactions/{id}/piggy-bank-events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListEventByTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Lists all the transaction links for an individual journal (individual split). Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -1872,131 +1415,70 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionLinkArray</returns>
         public TransactionLinkArray ListLinksByJournal(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkArray> localVarResponse = ListLinksByJournalWithHttpInfo(id, xTraceId, page);
+            ApiResponse<TransactionLinkArray> localVarResponse = ListLinksByJournalWithHttpInfo(id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all the transaction links for an individual journal (individual split). Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionLinkArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionLinkArray> ListLinksByJournalWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<TransactionLinkArray> ListLinksByJournalWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListLinksByJournal");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListLinksByJournal";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListLinksByJournal(id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionLinkArray>("/v1/transaction-journals/{id}/links", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListLinksByJournal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionLinkArray>("/v1/transaction-journals/{id}/links", localVarRequestOptions, Configuration);
+            ValidateException("ListLinksByJournal", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Lists all the transaction links for an individual journal (individual split). Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkArray</returns>
-        public async System.Threading.Tasks.Task<TransactionLinkArray> ListLinksByJournalAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionLinkArray> ListLinksByJournalAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkArray> localVarResponse = await ListLinksByJournalWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionLinkArray> localVarResponse = await ListLinksByJournalWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all the transaction links for an individual journal (individual split). Lists all the transaction links for an individual journal (a split). Don&#39;t use the group ID, you need the actual underlying journal (the split).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction journal / the split.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionLinkArray>> ListLinksByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionLinkArray>> ListLinksByJournalWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->ListLinksByJournal");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListLinksByJournal(id, xTraceId, page, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionLinkArray>("/v1/transaction-journals/{id}/links", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListLinksByJournal", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransaction.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransaction(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2006,67 +1488,38 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.ListTransaction" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListLinksByJournal";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionLinkArray>("/v1/transaction-journals/{id}/links", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListLinksByJournal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all the user&#39;s transactions.  List all the user&#39;s transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -2076,14 +1529,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransaction(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionWithHttpInfo(xTraceId, page, start, end, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionWithHttpInfo(xTraceId, page, start, end, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all the user&#39;s transactions.  List all the user&#39;s transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -2091,90 +1544,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransaction(xTraceId, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransaction", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all the user&#39;s transactions.  List all the user&#39;s transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -2183,16 +1566,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionWithHttpInfoAsync(xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionWithHttpInfoAsync(xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all the user&#39;s transactions.  List all the user&#39;s transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD. This is the start date of the selected range (inclusive).  (optional)</param>
@@ -2201,119 +1584,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "TransactionsApi.ListTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransaction(xTraceId, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransaction", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
-        /// Store a new transaction Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
+        /// Provides a specific RequestOptions object for StoreTransaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>TransactionSingle</returns>
-        public TransactionSingle StoreTransaction(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = StoreTransactionWithHttpInfo(transactionStore, xTraceId);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Store a new transaction Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of TransactionSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionSingle> StoreTransactionWithHttpInfo(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
+		private RequestOptions GetRequestOptionsStoreTransaction(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'transactionStore' is set
             if (transactionStore == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionStore' when calling TransactionsApi->StoreTransaction");
+                throw new ApiException(400, "Missing required parameter 'transactionStore' when calling TransactionsApi->StoreTransaction");
             }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -2326,95 +1616,104 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.StoreTransaction" ,operationIndex);
 
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
             localVarRequestOptions.Data = transactionStore;
 
-            localVarRequestOptions.Operation = "TransactionsApi.StoreTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<TransactionSingle>("/v1/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Store a new transaction Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TransactionSingle</returns>
-        public async System.Threading.Tasks.Task<TransactionSingle> StoreTransactionAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>TransactionSingle</returns>
+        public TransactionSingle StoreTransaction(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = await StoreTransactionWithHttpInfoAsync(transactionStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionSingle> localVarResponse = StoreTransactionWithHttpInfo(transactionStore, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Store a new transaction Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TransactionSingle</returns>
+        public ApiResponse<TransactionSingle> StoreTransactionWithHttpInfo(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreTransaction(transactionStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Post<TransactionSingle>("/v1/transactions", localVarRequestOptions, Configuration);
+            ValidateException("StoreTransaction", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Store a new transaction Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionSingle</returns>
+        public async Task<TransactionSingle> StoreTransactionAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<TransactionSingle> localVarResponse = await StoreTransactionWithHttpInfoAsync(transactionStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Store a new transaction Creates a new transaction. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionStore">JSON array or key&#x3D;value pairs with the necessary transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionSingle>> StoreTransactionWithHttpInfoAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionSingle>> StoreTransactionWithHttpInfoAsync(TransactionStore transactionStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'transactionStore' is set
-            if (transactionStore == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreTransaction(transactionStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<TransactionSingle>("/v1/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreTransaction", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateTransaction.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateTransaction(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionStore' when calling TransactionsApi->StoreTransaction");
+                throw new ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->UpdateTransaction");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'transactionUpdate' is set
+            if (transactionUpdate == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'transactionUpdate' when calling TransactionsApi->UpdateTransaction");
+            }
 
             string[] _contentTypes = new string[] {
-                "application/json", 
+                "application/json",
                 "application/x-www-form-urlencoded"
             };
 
@@ -2424,63 +1723,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"TransactionsApi.UpdateTransaction" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = transactionStore;
-
-            localVarRequestOptions.Operation = "TransactionsApi.StoreTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = transactionUpdate;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<TransactionSingle>("/v1/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Update an existing transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2488,206 +1748,63 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionSingle</returns>
         public TransactionSingle UpdateTransaction(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = UpdateTransactionWithHttpInfo(id, transactionUpdate, xTraceId);
+            ApiResponse<TransactionSingle> localVarResponse = UpdateTransactionWithHttpInfo(id, transactionUpdate, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Update an existing transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionSingle> UpdateTransactionWithHttpInfo(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<TransactionSingle> UpdateTransactionWithHttpInfo(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->UpdateTransaction");
-            }
-
-            // verify the required parameter 'transactionUpdate' is set
-            if (transactionUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionUpdate' when calling TransactionsApi->UpdateTransaction");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json",
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = transactionUpdate;
-
-            localVarRequestOptions.Operation = "TransactionsApi.UpdateTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateTransaction(id, transactionUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Put<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateTransaction", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Update an existing transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionSingle</returns>
-        public async System.Threading.Tasks.Task<TransactionSingle> UpdateTransactionAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionSingle> UpdateTransactionAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionSingle> localVarResponse = await UpdateTransactionWithHttpInfoAsync(id, transactionUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionSingle> localVarResponse = await UpdateTransactionWithHttpInfoAsync(id, transactionUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing transaction. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Update an existing transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction.</param>
         /// <param name="transactionUpdate">JSON array with updated transaction information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionSingle>> UpdateTransactionWithHttpInfoAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionSingle>> UpdateTransactionWithHttpInfoAsync(string id, TransactionUpdate transactionUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling TransactionsApi->UpdateTransaction");
-            }
-
-            // verify the required parameter 'transactionUpdate' is set
-            if (transactionUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionUpdate' when calling TransactionsApi->UpdateTransaction");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = transactionUpdate;
-
-            localVarRequestOptions.Operation = "TransactionsApi.UpdateTransaction";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateTransaction(id, transactionUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateTransaction", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.PutAsync<TransactionSingle>("/v1/transactions/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateTransaction", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

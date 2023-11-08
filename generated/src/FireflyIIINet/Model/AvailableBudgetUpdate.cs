@@ -42,11 +42,11 @@ namespace FireflyIIINet.Model
         /// <param name="end">End date of the available budget..</param>
         public AvailableBudgetUpdate(string currencyId = default(string), string currencyCode = default(string), string amount = default(string), DateTime start = default(DateTime), DateTime end = default(DateTime))
         {
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.Amount = amount;
-            this.Start = start;
-            this.End = end;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            Amount = amount;
+            Start = start;
+            End = end;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code.</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        [DataMember(Name = "amount", EmitDefaultValue = true)]
         public string Amount { get; set; }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Start date of the available budget.</value>
         /// <example>Sun Sep 17 01:00:00 WEST 2017</example>
-        [DataMember(Name = "start", EmitDefaultValue = false)]
+        [DataMember(Name = "start", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime Start { get; set; }
 
@@ -86,7 +86,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>End date of the available budget.</value>
         /// <example>Sun Sep 17 01:00:00 WEST 2017</example>
-        [DataMember(Name = "end", EmitDefaultValue = false)]
+        [DataMember(Name = "end", EmitDefaultValue = true)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime End { get; set; }
 
@@ -113,7 +113,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AvailableBudgetUpdate);
+            return Equals(input as AvailableBudgetUpdate);
         }
 
         /// <summary>
@@ -139,29 +139,24 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    Amount == input.Amount ||
+					Amount.Equals(input.Amount)
                 ) && 
                 (
-                    this.Start == input.Start ||
-                    (this.Start != null &&
-                    this.Start.Equals(input.Start))
+                    Start == input.Start ||
+					Start.Equals(input.Start)
                 ) && 
                 (
-                    this.End == input.End ||
-                    (this.End != null &&
-                    this.End.Equals(input.End))
+                    End == input.End ||
+					End.Equals(input.End)
                 );
         }
 
@@ -174,26 +169,11 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
-                }
-                if (this.CurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
-                if (this.Amount != null)
-                {
-                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
-                }
-                if (this.Start != null)
-                {
-                    hashCode = (hashCode * 59) + this.Start.GetHashCode();
-                }
-                if (this.End != null)
-                {
-                    hashCode = (hashCode * 59) + this.End.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+				hashCode = (hashCode * 59) + Amount.GetHashCode();
+				hashCode = (hashCode * 59) + Start.GetHashCode();
+				hashCode = (hashCode * 59) + End.GetHashCode();
                 return hashCode;
             }
         }
@@ -203,7 +183,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

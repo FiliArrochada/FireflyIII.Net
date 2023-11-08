@@ -41,10 +41,10 @@ namespace FireflyIIINet.Model
         /// <param name="message">If the cron job ran into some kind of an error, this value will be the error message. The success message if the job actually ran OK. .</param>
         public CronResultRow(bool? jobFired = default(bool?), bool? jobSucceeded = default(bool?), bool? jobErrored = default(bool?), string message = default(string))
         {
-            this.JobFired = jobFired;
-            this.JobSucceeded = jobSucceeded;
-            this.JobErrored = jobErrored;
-            this.Message = message;
+            JobFired = jobFired;
+            JobSucceeded = jobSucceeded;
+            JobErrored = jobErrored;
+            Message = message;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>If the cron job ran into some kind of an error, this value will be the error message. The success message if the job actually ran OK. </value>
         /// <example>Cron result message</example>
-        [DataMember(Name = "message", EmitDefaultValue = true)]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CronResultRow);
+            return Equals(input as CronResultRow);
         }
 
         /// <summary>
@@ -127,24 +127,24 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.JobFired == input.JobFired ||
-                    (this.JobFired != null &&
-                    this.JobFired.Equals(input.JobFired))
+                    JobFired == input.JobFired ||
+                    (JobFired != null &&
+                    JobFired.Equals(input.JobFired))
                 ) && 
                 (
-                    this.JobSucceeded == input.JobSucceeded ||
-                    (this.JobSucceeded != null &&
-                    this.JobSucceeded.Equals(input.JobSucceeded))
+                    JobSucceeded == input.JobSucceeded ||
+                    (JobSucceeded != null &&
+                    JobSucceeded.Equals(input.JobSucceeded))
                 ) && 
                 (
-                    this.JobErrored == input.JobErrored ||
-                    (this.JobErrored != null &&
-                    this.JobErrored.Equals(input.JobErrored))
+                    JobErrored == input.JobErrored ||
+                    (JobErrored != null &&
+                    JobErrored.Equals(input.JobErrored))
                 ) && 
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    Message == input.Message ||
+                    (Message != null &&
+                    Message.Equals(input.Message))
                 );
         }
 
@@ -157,21 +157,21 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.JobFired != null)
+                if (JobFired != null)
                 {
-                    hashCode = (hashCode * 59) + this.JobFired.GetHashCode();
+                    hashCode = (hashCode * 59) + JobFired.GetHashCode();
                 }
-                if (this.JobSucceeded != null)
+                if (JobSucceeded != null)
                 {
-                    hashCode = (hashCode * 59) + this.JobSucceeded.GetHashCode();
+                    hashCode = (hashCode * 59) + JobSucceeded.GetHashCode();
                 }
-                if (this.JobErrored != null)
+                if (JobErrored != null)
                 {
-                    hashCode = (hashCode * 59) + this.JobErrored.GetHashCode();
+                    hashCode = (hashCode * 59) + JobErrored.GetHashCode();
                 }
-                if (this.Message != null)
+                if (Message != null)
                 {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
+                    hashCode = (hashCode * 59) + Message.GetHashCode();
                 }
                 return hashCode;
             }
@@ -182,7 +182,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

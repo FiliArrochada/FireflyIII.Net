@@ -40,30 +40,30 @@ namespace FireflyIIINet.Model
         /// <param name="outward">outward.</param>
         public LinkTypeUpdate(string name = default(string), string inward = default(string), string outward = default(string))
         {
-            this.Name = name;
-            this.Inward = inward;
-            this.Outward = outward;
+            Name = name;
+            Inward = inward;
+            Outward = outward;
         }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
         /// <example>Paid</example>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Inward
         /// </summary>
         /// <example>is (partially) paid for by</example>
-        [DataMember(Name = "inward", EmitDefaultValue = false)]
+        [DataMember(Name = "inward", EmitDefaultValue = true)]
         public string Inward { get; set; }
 
         /// <summary>
         /// Gets or Sets Outward
         /// </summary>
         /// <example>(partially) pays for</example>
-        [DataMember(Name = "outward", EmitDefaultValue = false)]
+        [DataMember(Name = "outward", EmitDefaultValue = true)]
         public string Outward { get; set; }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as LinkTypeUpdate);
+            return Equals(input as LinkTypeUpdate);
         }
 
         /// <summary>
@@ -113,19 +113,16 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Inward == input.Inward ||
-                    (this.Inward != null &&
-                    this.Inward.Equals(input.Inward))
+                    Inward == input.Inward ||
+					Inward.Equals(input.Inward)
                 ) && 
                 (
-                    this.Outward == input.Outward ||
-                    (this.Outward != null &&
-                    this.Outward.Equals(input.Outward))
+                    Outward == input.Outward ||
+					Outward.Equals(input.Outward)
                 );
         }
 
@@ -138,18 +135,9 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Inward != null)
-                {
-                    hashCode = (hashCode * 59) + this.Inward.GetHashCode();
-                }
-                if (this.Outward != null)
-                {
-                    hashCode = (hashCode * 59) + this.Outward.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + Inward.GetHashCode();
+				hashCode = (hashCode * 59) + Outward.GetHashCode();
                 return hashCode;
             }
         }
@@ -159,7 +147,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

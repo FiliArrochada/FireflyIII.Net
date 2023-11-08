@@ -49,8 +49,8 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("name is a required property for CategoryStore and cannot be null");
             }
-            this.Name = name;
-            this.Notes = notes;
+            Name = name;
+            Notes = notes;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some example notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CategoryStore);
+            return Equals(input as CategoryStore);
         }
 
         /// <summary>
@@ -113,14 +113,13 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 );
         }
 
@@ -133,13 +132,10 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
                 return hashCode;
             }
@@ -150,7 +146,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

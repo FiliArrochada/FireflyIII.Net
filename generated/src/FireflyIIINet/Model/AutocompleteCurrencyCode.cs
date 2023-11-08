@@ -52,26 +52,26 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("id is a required property for AutocompleteCurrencyCode and cannot be null");
             }
-            this.Id = id;
+            Id = id;
             // to ensure "name" is required (not null)
             if (name == null)
             {
                 throw new ArgumentNullException("name is a required property for AutocompleteCurrencyCode and cannot be null");
             }
-            this.Name = name;
+            Name = name;
             // to ensure "code" is required (not null)
             if (code == null)
             {
                 throw new ArgumentNullException("code is a required property for AutocompleteCurrencyCode and cannot be null");
             }
-            this.Code = code;
+            Code = code;
             // to ensure "symbol" is required (not null)
             if (symbol == null)
             {
                 throw new ArgumentNullException("symbol is a required property for AutocompleteCurrencyCode and cannot be null");
             }
-            this.Symbol = symbol;
-            this.DecimalPlaces = decimalPlaces;
+            Symbol = symbol;
+            DecimalPlaces = decimalPlaces;
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AutocompleteCurrencyCode);
+            return Equals(input as AutocompleteCurrencyCode);
         }
 
         /// <summary>
@@ -160,28 +160,24 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    Id == input.Id ||
+					Id.Equals(input.Id)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
+                    Code == input.Code ||
+					Code.Equals(input.Code)
                 ) && 
                 (
-                    this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    Symbol == input.Symbol ||
+					Symbol.Equals(input.Symbol)
                 ) && 
                 (
-                    this.DecimalPlaces == input.DecimalPlaces ||
-                    this.DecimalPlaces.Equals(input.DecimalPlaces)
+                    DecimalPlaces == input.DecimalPlaces ||
+                    DecimalPlaces.Equals(input.DecimalPlaces)
                 );
         }
 
@@ -194,23 +190,11 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Code != null)
-                {
-                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
-                }
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.DecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + Id.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + Code.GetHashCode();
+				hashCode = (hashCode * 59) + Symbol.GetHashCode();
+                hashCode = (hashCode * 59) + DecimalPlaces.GetHashCode();
                 return hashCode;
             }
         }
@@ -220,7 +204,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

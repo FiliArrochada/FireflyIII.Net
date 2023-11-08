@@ -50,19 +50,19 @@ namespace FireflyIIINet.Model
         /// <param name="nativeDecimalPlaces">Number of decimal places for this currency..</param>
         public TransactionSum(string id = default(string), string name = default(string), string symbol = default(string), string code = default(string), int decimalPlaces = default(int), string sum = default(string), bool converted = default(bool), string nativeSum = default(string), string nativeId = default(string), string nativeName = default(string), string nativeSymbol = default(string), string nativeCode = default(string), int nativeDecimalPlaces = default(int))
         {
-            this.Id = id;
-            this.Name = name;
-            this.Symbol = symbol;
-            this.Code = code;
-            this.DecimalPlaces = decimalPlaces;
-            this.Sum = sum;
-            this.Converted = converted;
-            this.NativeSum = nativeSum;
-            this.NativeId = nativeId;
-            this.NativeName = nativeName;
-            this.NativeSymbol = nativeSymbol;
-            this.NativeCode = nativeCode;
-            this.NativeDecimalPlaces = nativeDecimalPlaces;
+            Id = id;
+            Name = name;
+            Symbol = symbol;
+            Code = code;
+            DecimalPlaces = decimalPlaces;
+            Sum = sum;
+            Converted = converted;
+            NativeSum = nativeSum;
+            NativeId = nativeId;
+            NativeName = nativeName;
+            NativeSymbol = nativeSymbol;
+            NativeCode = nativeCode;
+            NativeDecimalPlaces = nativeDecimalPlaces;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID of the currency of this sum.</value>
         /// <example>12</example>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency name associated with this sum.</value>
         /// <example>Euro</example>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency symbol associated with this sum.</value>
         /// <example>$</example>
-        [DataMember(Name = "symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "symbol", EmitDefaultValue = true)]
         public string Symbol { get; set; }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency code associated with this sum.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name = "code", EmitDefaultValue = true)]
         public string Code { get; set; }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimal places for the currency associated with this sum.</value>
         /// <example>2</example>
-        [DataMember(Name = "decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "decimal_places", EmitDefaultValue = true)]
         public int DecimalPlaces { get; set; }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Sum as a string. Can also be negative</value>
         /// <example>12.34</example>
-        [DataMember(Name = "sum", EmitDefaultValue = false)]
+        [DataMember(Name = "sum", EmitDefaultValue = true)]
         public string Sum { get; set; }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Sum as a string, expressed in the user&#39;s native (default) currency. Can also be negative</value>
         /// <example>12.34</example>
-        [DataMember(Name = "native_sum", EmitDefaultValue = false)]
+        [DataMember(Name = "native_sum", EmitDefaultValue = true)]
         public string NativeSum { get; set; }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The ID of the user&#39;s native (default) currency.</value>
         /// <example>1</example>
-        [DataMember(Name = "native_id", EmitDefaultValue = false)]
+        [DataMember(Name = "native_id", EmitDefaultValue = true)]
         public string NativeId { get; set; }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The name of the user&#39;s native (default) currency</value>
         /// <example>US Dollar</example>
-        [DataMember(Name = "native_name", EmitDefaultValue = false)]
+        [DataMember(Name = "native_name", EmitDefaultValue = true)]
         public string NativeName { get; set; }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency symbol associated with this amount.</value>
         /// <example>$</example>
-        [DataMember(Name = "native_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "native_symbol", EmitDefaultValue = true)]
         public string NativeSymbol { get; set; }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency code of the user&#39;s native (default) currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "native_code", EmitDefaultValue = false)]
+        [DataMember(Name = "native_code", EmitDefaultValue = true)]
         public string NativeCode { get; set; }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimal places for this currency.</value>
         /// <example>2</example>
-        [DataMember(Name = "native_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "native_decimal_places", EmitDefaultValue = true)]
         public int NativeDecimalPlaces { get; set; }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionSum);
+            return Equals(input as TransactionSum);
         }
 
         /// <summary>
@@ -226,66 +226,56 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    Id == input.Id ||
+					Id.Equals(input.Id)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Symbol == input.Symbol ||
-                    (this.Symbol != null &&
-                    this.Symbol.Equals(input.Symbol))
+                    Symbol == input.Symbol ||
+					Symbol.Equals(input.Symbol)
                 ) && 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
+                    Code == input.Code ||
+					Code.Equals(input.Code)
                 ) && 
                 (
-                    this.DecimalPlaces == input.DecimalPlaces ||
-                    this.DecimalPlaces.Equals(input.DecimalPlaces)
+                    DecimalPlaces == input.DecimalPlaces ||
+                    DecimalPlaces.Equals(input.DecimalPlaces)
                 ) && 
                 (
-                    this.Sum == input.Sum ||
-                    (this.Sum != null &&
-                    this.Sum.Equals(input.Sum))
+                    Sum == input.Sum ||
+					Sum.Equals(input.Sum)
                 ) && 
                 (
-                    this.Converted == input.Converted ||
-                    this.Converted.Equals(input.Converted)
+                    Converted == input.Converted ||
+                    Converted.Equals(input.Converted)
                 ) && 
                 (
-                    this.NativeSum == input.NativeSum ||
-                    (this.NativeSum != null &&
-                    this.NativeSum.Equals(input.NativeSum))
+                    NativeSum == input.NativeSum ||
+					NativeSum.Equals(input.NativeSum)
                 ) && 
                 (
-                    this.NativeId == input.NativeId ||
-                    (this.NativeId != null &&
-                    this.NativeId.Equals(input.NativeId))
+                    NativeId == input.NativeId ||
+					NativeId.Equals(input.NativeId)
                 ) && 
                 (
-                    this.NativeName == input.NativeName ||
-                    (this.NativeName != null &&
-                    this.NativeName.Equals(input.NativeName))
+                    NativeName == input.NativeName ||
+					NativeName.Equals(input.NativeName)
                 ) && 
                 (
-                    this.NativeSymbol == input.NativeSymbol ||
-                    (this.NativeSymbol != null &&
-                    this.NativeSymbol.Equals(input.NativeSymbol))
+                    NativeSymbol == input.NativeSymbol ||
+					NativeSymbol.Equals(input.NativeSymbol)
                 ) && 
                 (
-                    this.NativeCode == input.NativeCode ||
-                    (this.NativeCode != null &&
-                    this.NativeCode.Equals(input.NativeCode))
+                    NativeCode == input.NativeCode ||
+					NativeCode.Equals(input.NativeCode)
                 ) && 
                 (
-                    this.NativeDecimalPlaces == input.NativeDecimalPlaces ||
-                    this.NativeDecimalPlaces.Equals(input.NativeDecimalPlaces)
+                    NativeDecimalPlaces == input.NativeDecimalPlaces ||
+                    NativeDecimalPlaces.Equals(input.NativeDecimalPlaces)
                 );
         }
 
@@ -298,49 +288,19 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Symbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.Symbol.GetHashCode();
-                }
-                if (this.Code != null)
-                {
-                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.DecimalPlaces.GetHashCode();
-                if (this.Sum != null)
-                {
-                    hashCode = (hashCode * 59) + this.Sum.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Converted.GetHashCode();
-                if (this.NativeSum != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeSum.GetHashCode();
-                }
-                if (this.NativeId != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeId.GetHashCode();
-                }
-                if (this.NativeName != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeName.GetHashCode();
-                }
-                if (this.NativeSymbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeSymbol.GetHashCode();
-                }
-                if (this.NativeCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeCode.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.NativeDecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + Id.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + Symbol.GetHashCode();
+				hashCode = (hashCode * 59) + Code.GetHashCode();
+                hashCode = (hashCode * 59) + DecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + Sum.GetHashCode();
+                hashCode = (hashCode * 59) + Converted.GetHashCode();
+				hashCode = (hashCode * 59) + NativeSum.GetHashCode();
+				hashCode = (hashCode * 59) + NativeId.GetHashCode();
+				hashCode = (hashCode * 59) + NativeName.GetHashCode();
+				hashCode = (hashCode * 59) + NativeSymbol.GetHashCode();
+				hashCode = (hashCode * 59) + NativeCode.GetHashCode();
+                hashCode = (hashCode * 59) + NativeDecimalPlaces.GetHashCode();
                 return hashCode;
             }
         }
@@ -350,7 +310,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

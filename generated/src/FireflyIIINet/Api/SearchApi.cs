@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Search for accounts
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -50,7 +53,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Search for accounts
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -65,7 +68,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Searches through the users transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
@@ -79,7 +82,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Searches through the users transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
@@ -101,7 +104,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Search for accounts
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -110,7 +113,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountArray</returns>
-        System.Threading.Tasks.Task<AccountArray> SearchAccountsAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AccountArray> SearchAccountsAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Search for accounts
@@ -118,7 +121,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Search for accounts
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -127,21 +130,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountArray>> SearchAccountsWithHttpInfoAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AccountArray>> SearchAccountsWithHttpInfoAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Search for transactions
         /// </summary>
         /// <remarks>
         /// Searches through the users transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> SearchTransactionsAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> SearchTransactionsAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Search for transactions
@@ -149,14 +152,14 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Searches through the users transactions.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> SearchTransactionsWithHttpInfoAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> SearchTransactionsWithHttpInfoAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -173,7 +176,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class SearchApi : ISearchApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchApi"/> class.
@@ -187,15 +190,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="SearchApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public SearchApi(string basePath)
+        public SearchApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -204,17 +200,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public SearchApi(FireflyIIINet.Client.Configuration configuration)
+        public SearchApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -224,27 +220,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public SearchApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public SearchApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -252,19 +248,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -278,9 +274,119 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for SearchAccounts.
+        /// </summary>
+		private RequestOptions GetRequestOptionsSearchAccounts(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+		{
+            // verify the required parameter 'query' is set
+            if (query == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'query' when calling SearchApi->SearchAccounts");
+            }
+
+            // verify the required parameter 'field' is set
+            if (field == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'field' when calling SearchApi->SearchAccounts");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/vnd.api+json",
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"SearchApi.SearchAccounts" ,operationIndex);
+
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "field", field));
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Search for accounts Search for accounts
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -290,14 +396,14 @@ namespace FireflyIIINet.Api
         /// <returns>AccountArray</returns>
         public AccountArray SearchAccounts(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AccountArray> localVarResponse = SearchAccountsWithHttpInfo(query, field, xTraceId, page, type);
+            ApiResponse<AccountArray> localVarResponse = SearchAccountsWithHttpInfo(query, field, xTraceId, page, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Search for accounts Search for accounts
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -305,96 +411,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">The type of accounts you wish to limit the search to. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AccountArray> SearchAccountsWithHttpInfo(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+        public ApiResponse<AccountArray> SearchAccountsWithHttpInfo(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'query' is set
-            if (query == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'query' when calling SearchApi->SearchAccounts");
-            }
-
-            // verify the required parameter 'field' is set
-            if (field == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'field' when calling SearchApi->SearchAccounts");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "field", field));
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "SearchApi.SearchAccounts";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsSearchAccounts(query, field, xTraceId, page, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AccountArray>("/v1/search/accounts", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SearchAccounts", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AccountArray>("/v1/search/accounts", localVarRequestOptions, Configuration);
+            ValidateException("SearchAccounts", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Search for accounts Search for accounts
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -403,16 +433,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountArray</returns>
-        public async System.Threading.Tasks.Task<AccountArray> SearchAccountsAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AccountArray> SearchAccountsAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AccountArray> localVarResponse = await SearchAccountsWithHttpInfoAsync(query, field, xTraceId, page, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AccountArray> localVarResponse = await SearchAccountsWithHttpInfoAsync(query, field, xTraceId, page, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Search for accounts Search for accounts
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="field">The account field(s) you want to search in.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -421,22 +451,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AccountArray>> SearchAccountsWithHttpInfoAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AccountArray>> SearchAccountsWithHttpInfoAsync(string query, AccountSearchFieldFilter field, Guid? xTraceId = default(Guid?), int? page = default(int?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsSearchAccounts(query, field, xTraceId, page, type, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AccountArray>("/v1/search/accounts", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("SearchAccounts", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for SearchTransactions.
+        /// </summary>
+		private RequestOptions GetRequestOptionsSearchTransactions(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'query' is set
             if (query == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'query' when calling SearchApi->SearchAccounts");
+                throw new ApiException(400, "Missing required parameter 'query' when calling SearchApi->SearchTransactions");
             }
-
-            // verify the required parameter 'field' is set
-            if (field == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'field' when calling SearchApi->SearchAccounts");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -447,72 +481,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"SearchApi.SearchTransactions" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "field", field));
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "SearchApi.SearchAccounts";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AccountArray>("/v1/search/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SearchAccounts", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Search for transactions Searches through the users transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
@@ -520,196 +509,63 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray SearchTransactions(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = SearchTransactionsWithHttpInfo(query, xTraceId, page);
+            ApiResponse<TransactionArray> localVarResponse = SearchTransactionsWithHttpInfo(query, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Search for transactions Searches through the users transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> SearchTransactionsWithHttpInfo(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> SearchTransactionsWithHttpInfo(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'query' is set
-            if (query == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'query' when calling SearchApi->SearchTransactions");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "SearchApi.SearchTransactions";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsSearchTransactions(query, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/search/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SearchTransactions", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/search/transactions", localVarRequestOptions, Configuration);
+            ValidateException("SearchTransactions", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Search for transactions Searches through the users transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> SearchTransactionsAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> SearchTransactionsAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await SearchTransactionsWithHttpInfoAsync(query, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await SearchTransactionsWithHttpInfoAsync(query, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Search for transactions Searches through the users transactions.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The query you wish to search for.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> SearchTransactionsWithHttpInfoAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> SearchTransactionsWithHttpInfoAsync(string query, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'query' is set
-            if (query == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'query' when calling SearchApi->SearchTransactions");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "SearchApi.SearchTransactions";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsSearchTransactions(query, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/search/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SearchTransactions", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/search/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("SearchTransactions", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

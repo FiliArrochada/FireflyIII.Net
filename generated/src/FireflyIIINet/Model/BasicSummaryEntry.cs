@@ -47,16 +47,16 @@ namespace FireflyIIINet.Model
         /// <param name="subTitle">A short explanation of the amounts origin. Already formatted according to the locale of the user or translated, if relevant..</param>
         public BasicSummaryEntry(string key = default(string), string title = default(string), double monetaryValue = default(double), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string valueParsed = default(string), string localIcon = default(string), string subTitle = default(string))
         {
-            this.Key = key;
-            this.Title = title;
-            this.MonetaryValue = monetaryValue;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.CurrencySymbol = currencySymbol;
-            this.CurrencyDecimalPlaces = currencyDecimalPlaces;
-            this.ValueParsed = valueParsed;
-            this.LocalIcon = localIcon;
-            this.SubTitle = subTitle;
+            Key = key;
+            Title = title;
+            MonetaryValue = monetaryValue;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            CurrencySymbol = currencySymbol;
+            CurrencyDecimalPlaces = currencyDecimalPlaces;
+            ValueParsed = valueParsed;
+            LocalIcon = localIcon;
+            SubTitle = subTitle;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>This is a reference to the type of info shared, not influenced by translations or user preferences. The EUR value is a reference to the currency code. Possibilities are: balance-in-ABC, spent-in-ABC, earned-in-ABC, bills-paid-in-ABC, bills-unpaid-in-ABC, left-to-spend-in-ABC and net-worth-in-ABC.</value>
         /// <example>balance-in-EUR</example>
-        [DataMember(Name = "key", EmitDefaultValue = false)]
+        [DataMember(Name = "key", EmitDefaultValue = true)]
         public string Key { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>A translated title for the information shared.</value>
         /// <example>Balance ($)</example>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name = "title", EmitDefaultValue = true)]
         public string Title { get; set; }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The amount as a float.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "monetary_value", EmitDefaultValue = false)]
+        [DataMember(Name = "monetary_value", EmitDefaultValue = true)]
         public double MonetaryValue { get; set; }
 
         /// <summary>
@@ -88,21 +88,21 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency ID of the associated currency.</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencyCode
         /// </summary>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimals for the associated currency.</value>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         public int CurrencyDecimalPlaces { get; set; }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The amount formatted according to the users locale</value>
         /// <example>$ 12.45</example>
-        [DataMember(Name = "value_parsed", EmitDefaultValue = false)]
+        [DataMember(Name = "value_parsed", EmitDefaultValue = true)]
         public string ValueParsed { get; set; }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Reference to a font-awesome icon without the fa- part.</value>
         /// <example>balance-scale</example>
-        [DataMember(Name = "local_icon", EmitDefaultValue = false)]
+        [DataMember(Name = "local_icon", EmitDefaultValue = true)]
         public string LocalIcon { get; set; }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>A short explanation of the amounts origin. Already formatted according to the locale of the user or translated, if relevant.</value>
         /// <example>$20 + $-40</example>
-        [DataMember(Name = "sub_title", EmitDefaultValue = false)]
+        [DataMember(Name = "sub_title", EmitDefaultValue = true)]
         public string SubTitle { get; set; }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BasicSummaryEntry);
+            return Equals(input as BasicSummaryEntry);
         }
 
         /// <summary>
@@ -191,52 +191,44 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Key == input.Key ||
-                    (this.Key != null &&
-                    this.Key.Equals(input.Key))
+                    Key == input.Key ||
+					Key.Equals(input.Key)
                 ) && 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.MonetaryValue == input.MonetaryValue ||
-                    this.MonetaryValue.Equals(input.MonetaryValue)
+                    MonetaryValue == input.MonetaryValue ||
+                    MonetaryValue.Equals(input.MonetaryValue)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.CurrencySymbol == input.CurrencySymbol ||
-                    (this.CurrencySymbol != null &&
-                    this.CurrencySymbol.Equals(input.CurrencySymbol))
+                    CurrencySymbol == input.CurrencySymbol ||
+					CurrencySymbol.Equals(input.CurrencySymbol)
                 ) && 
                 (
-                    this.CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
-                    this.CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
+                    CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
+                    CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
                 ) && 
                 (
-                    this.ValueParsed == input.ValueParsed ||
-                    (this.ValueParsed != null &&
-                    this.ValueParsed.Equals(input.ValueParsed))
+                    ValueParsed == input.ValueParsed ||
+					ValueParsed.Equals(input.ValueParsed)
                 ) && 
                 (
-                    this.LocalIcon == input.LocalIcon ||
-                    (this.LocalIcon != null &&
-                    this.LocalIcon.Equals(input.LocalIcon))
+                    LocalIcon == input.LocalIcon ||
+					LocalIcon.Equals(input.LocalIcon)
                 ) && 
                 (
-                    this.SubTitle == input.SubTitle ||
-                    (this.SubTitle != null &&
-                    this.SubTitle.Equals(input.SubTitle))
+                    SubTitle == input.SubTitle ||
+					SubTitle.Equals(input.SubTitle)
                 );
         }
 
@@ -249,40 +241,16 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Key != null)
-                {
-                    hashCode = (hashCode * 59) + this.Key.GetHashCode();
-                }
-                if (this.Title != null)
-                {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.MonetaryValue.GetHashCode();
-                if (this.CurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
-                }
-                if (this.CurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
-                if (this.CurrencySymbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencySymbol.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CurrencyDecimalPlaces.GetHashCode();
-                if (this.ValueParsed != null)
-                {
-                    hashCode = (hashCode * 59) + this.ValueParsed.GetHashCode();
-                }
-                if (this.LocalIcon != null)
-                {
-                    hashCode = (hashCode * 59) + this.LocalIcon.GetHashCode();
-                }
-                if (this.SubTitle != null)
-                {
-                    hashCode = (hashCode * 59) + this.SubTitle.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Key.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+                hashCode = (hashCode * 59) + MonetaryValue.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencySymbol.GetHashCode();
+                hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + ValueParsed.GetHashCode();
+				hashCode = (hashCode * 59) + LocalIcon.GetHashCode();
+				hashCode = (hashCode * 59) + SubTitle.GetHashCode();
                 return hashCode;
             }
         }
@@ -292,7 +260,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

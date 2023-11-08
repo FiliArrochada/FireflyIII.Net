@@ -36,7 +36,7 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name = "type", EmitDefaultValue = true)]
         public RecurrenceRepetitionType? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurrenceRepetitionUpdate" /> class.
@@ -47,10 +47,10 @@ namespace FireflyIIINet.Model
         /// <param name="weekend">How to respond when the recurring transaction falls in the weekend. Possible values: 1. Do nothing, just create it 2. Create no transaction. 3. Skip to the previous Friday. 4. Skip to the next Monday. .</param>
         public RecurrenceRepetitionUpdate(RecurrenceRepetitionType? type = default(RecurrenceRepetitionType?), string moment = default(string), int skip = default(int), int weekend = default(int))
         {
-            this.Type = type;
-            this.Moment = moment;
-            this.Skip = skip;
-            this.Weekend = weekend;
+            Type = type;
+            Moment = moment;
+            Skip = skip;
+            Weekend = weekend;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Information that defined the type of repetition. - For &#39;daily&#39;, this is empty. - For &#39;weekly&#39;, it is day of the week between 1 and 7 (Monday - Sunday). - For &#39;ndom&#39;, it is &#39;1,2&#39; or &#39;4,5&#39; or something else, where the first number is the week in the month, and the second number is the day in the week (between 1 and 7). &#39;2,3&#39; means: the 2nd Wednesday of the month - For &#39;monthly&#39; it is the day of the month (1 - 31) - For yearly, it is a full date, ie &#39;2018-09-17&#39;. The year you use does not matter. </value>
         /// <example>3</example>
-        [DataMember(Name = "moment", EmitDefaultValue = false)]
+        [DataMember(Name = "moment", EmitDefaultValue = true)]
         public string Moment { get; set; }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>How many occurrences to skip. 0 means skip nothing. 1 means every other.</value>
         /// <example>0</example>
-        [DataMember(Name = "skip", EmitDefaultValue = false)]
+        [DataMember(Name = "skip", EmitDefaultValue = true)]
         public int Skip { get; set; }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>How to respond when the recurring transaction falls in the weekend. Possible values: 1. Do nothing, just create it 2. Create no transaction. 3. Skip to the previous Friday. 4. Skip to the next Monday. </value>
         /// <example>1</example>
-        [DataMember(Name = "weekend", EmitDefaultValue = false)]
+        [DataMember(Name = "weekend", EmitDefaultValue = true)]
         public int Weekend { get; set; }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RecurrenceRepetitionUpdate);
+            return Equals(input as RecurrenceRepetitionUpdate);
         }
 
         /// <summary>
@@ -125,21 +125,20 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 ) && 
                 (
-                    this.Moment == input.Moment ||
-                    (this.Moment != null &&
-                    this.Moment.Equals(input.Moment))
+                    Moment == input.Moment ||
+					Moment.Equals(input.Moment)
                 ) && 
                 (
-                    this.Skip == input.Skip ||
-                    this.Skip.Equals(input.Skip)
+                    Skip == input.Skip ||
+                    Skip.Equals(input.Skip)
                 ) && 
                 (
-                    this.Weekend == input.Weekend ||
-                    this.Weekend.Equals(input.Weekend)
+                    Weekend == input.Weekend ||
+                    Weekend.Equals(input.Weekend)
                 );
         }
 
@@ -152,13 +151,10 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.Moment != null)
-                {
-                    hashCode = (hashCode * 59) + this.Moment.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Skip.GetHashCode();
-                hashCode = (hashCode * 59) + this.Weekend.GetHashCode();
+                hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + Moment.GetHashCode();
+                hashCode = (hashCode * 59) + Skip.GetHashCode();
+                hashCode = (hashCode * 59) + Weekend.GetHashCode();
                 return hashCode;
             }
         }
@@ -168,7 +164,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

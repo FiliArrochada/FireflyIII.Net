@@ -49,15 +49,15 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("name is a required property for Category and cannot be null");
             }
-            this.Name = name;
-            this.Notes = notes;
+            Name = name;
+            Notes = notes;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -94,13 +94,13 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some example notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
         /// Gets or Sets Spent
         /// </summary>
-        [DataMember(Name = "spent", EmitDefaultValue = false)]
+        [DataMember(Name = "spent", EmitDefaultValue = true)]
         public List<CategorySpent> Spent { get; private set; }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Earned
         /// </summary>
-        [DataMember(Name = "earned", EmitDefaultValue = false)]
+        [DataMember(Name = "earned", EmitDefaultValue = true)]
         public List<CategoryEarned> Earned { get; private set; }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Category);
+            return Equals(input as Category);
         }
 
         /// <summary>
@@ -175,36 +175,33 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.Spent == input.Spent ||
-                    this.Spent != null &&
+                    Spent == input.Spent ||
+                    Spent != null &&
                     input.Spent != null &&
-                    this.Spent.SequenceEqual(input.Spent)
+                    Spent.SequenceEqual(input.Spent)
                 ) && 
                 (
-                    this.Earned == input.Earned ||
-                    this.Earned != null &&
+                    Earned == input.Earned ||
+                    Earned != null &&
                     input.Earned != null &&
-                    this.Earned.SequenceEqual(input.Earned)
+                    Earned.SequenceEqual(input.Earned)
                 );
         }
 
@@ -217,30 +214,15 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
-                }
-                if (this.Spent != null)
-                {
-                    hashCode = (hashCode * 59) + this.Spent.GetHashCode();
-                }
-                if (this.Earned != null)
-                {
-                    hashCode = (hashCode * 59) + this.Earned.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Spent.GetHashCode();
+				hashCode = (hashCode * 59) + Earned.GetHashCode();
                 return hashCode;
             }
         }
@@ -250,7 +232,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -39,15 +39,15 @@ namespace FireflyIIINet.Model
         /// <param name="order">Order of the object group.</param>
         public ObjectGroupUpdate(string title = default(string), int order = default(int))
         {
-            this.Title = title;
-            this.Order = order;
+            Title = title;
+            Order = order;
         }
 
         /// <summary>
         /// Gets or Sets Title
         /// </summary>
         /// <example>My object group</example>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name = "title", EmitDefaultValue = true)]
         public string Title { get; set; }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the object group</value>
         /// <example>1</example>
-        [DataMember(Name = "order", EmitDefaultValue = false)]
+        [DataMember(Name = "order", EmitDefaultValue = true)]
         public int Order { get; set; }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ObjectGroupUpdate);
+            return Equals(input as ObjectGroupUpdate);
         }
 
         /// <summary>
@@ -104,13 +104,12 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    this.Order.Equals(input.Order)
+                    Order == input.Order ||
+                    Order.Equals(input.Order)
                 );
         }
 
@@ -123,11 +122,8 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Title != null)
-                {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Order.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+                hashCode = (hashCode * 59) + Order.GetHashCode();
                 return hashCode;
             }
         }
@@ -137,7 +133,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -49,13 +49,13 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("data is a required property for WebhookAttemptArray and cannot be null");
             }
-            this.Data = data;
+            Data = data;
             // to ensure "meta" is required (not null)
             if (meta == null)
             {
                 throw new ArgumentNullException("meta is a required property for WebhookAttemptArray and cannot be null");
             }
-            this.Meta = meta;
+            Meta = meta;
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebhookAttemptArray);
+            return Equals(input as WebhookAttemptArray);
         }
 
         /// <summary>
@@ -116,15 +116,14 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Data == input.Data ||
-                    this.Data != null &&
+                    Data == input.Data ||
+                    Data != null &&
                     input.Data != null &&
-                    this.Data.SequenceEqual(input.Data)
+                    Data.SequenceEqual(input.Data)
                 ) && 
                 (
-                    this.Meta == input.Meta ||
-                    (this.Meta != null &&
-                    this.Meta.Equals(input.Meta))
+                    Meta == input.Meta ||
+					Meta.Equals(input.Meta)
                 );
         }
 
@@ -137,14 +136,8 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Data != null)
-                {
-                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
-                }
-                if (this.Meta != null)
-                {
-                    hashCode = (hashCode * 59) + this.Meta.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Data.GetHashCode();
+				hashCode = (hashCode * 59) + Meta.GetHashCode();
                 return hashCode;
             }
         }
@@ -154,7 +147,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

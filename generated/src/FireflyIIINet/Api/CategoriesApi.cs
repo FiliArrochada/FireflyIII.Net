@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a category. Transactions will not be removed.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -47,7 +50,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a category. Transactions will not be removed.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -59,7 +62,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
@@ -74,7 +77,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
@@ -88,7 +91,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -102,7 +105,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -115,7 +118,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all categories.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -128,7 +131,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all categories.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -140,7 +143,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions in a category, optionally limited to the date ranges specified.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -157,7 +160,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions in a category, optionally limited to the date ranges specified.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -173,7 +176,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -186,7 +189,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -198,7 +201,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -212,7 +215,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -234,13 +237,13 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a category. Transactions will not be removed.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteCategoryAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteCategoryAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete a category.
@@ -248,20 +251,20 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a category. Transactions will not be removed.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get a single category.
         /// </summary>
         /// <remarks>
         /// Get a single category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
@@ -269,7 +272,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CategorySingle</returns>
-        System.Threading.Tasks.Task<CategorySingle> GetCategoryAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CategorySingle> GetCategoryAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get a single category.
@@ -277,7 +280,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
@@ -285,21 +288,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategorySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CategorySingle>> GetCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CategorySingle>> GetCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Lists all attachments.
         /// </summary>
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AttachmentArray> ListAttachmentByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Lists all attachments.
@@ -307,27 +310,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AttachmentArray>> ListAttachmentByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AttachmentArray>> ListAttachmentByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all categories.
         /// </summary>
         /// <remarks>
         /// List all categories.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CategoryArray</returns>
-        System.Threading.Tasks.Task<CategoryArray> ListCategoryAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CategoryArray> ListCategoryAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all categories.
@@ -335,20 +338,20 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all categories.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategoryArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CategoryArray>> ListCategoryWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CategoryArray>> ListCategoryWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all transactions in a category.
         /// </summary>
         /// <remarks>
         /// List all transactions in a category, optionally limited to the date ranges specified.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -358,7 +361,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all transactions in a category.
@@ -366,7 +369,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions in a category, optionally limited to the date ranges specified.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -376,20 +379,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Store a new category
         /// </summary>
         /// <remarks>
         /// Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CategorySingle</returns>
-        System.Threading.Tasks.Task<CategorySingle> StoreCategoryAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CategorySingle> StoreCategoryAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Store a new category
@@ -397,27 +400,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategorySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CategorySingle>> StoreCategoryWithHttpInfoAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CategorySingle>> StoreCategoryWithHttpInfoAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update existing category.
         /// </summary>
         /// <remarks>
         /// Update existing category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CategorySingle</returns>
-        System.Threading.Tasks.Task<CategorySingle> UpdateCategoryAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CategorySingle> UpdateCategoryAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update existing category.
@@ -425,14 +428,14 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing category.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategorySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CategorySingle>> UpdateCategoryWithHttpInfoAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CategorySingle>> UpdateCategoryWithHttpInfoAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -449,7 +452,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class CategoriesApi : ICategoriesApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoriesApi"/> class.
@@ -463,15 +466,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="CategoriesApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public CategoriesApi(string basePath)
+        public CategoriesApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -480,17 +476,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public CategoriesApi(FireflyIIINet.Client.Configuration configuration)
+        public CategoriesApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -500,27 +496,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public CategoriesApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public CategoriesApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -528,19 +524,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -554,9 +550,103 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteCategory(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->DeleteCategory");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CategoriesApi.DeleteCategory" ,operationIndex);
+
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Delete a category. Delete a category. Transactions will not be removed.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -569,91 +659,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a category. Delete a category. Transactions will not be removed.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->DeleteCategory");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CategoriesApi.DeleteCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteCategory(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/categories/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/categories/{id}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Delete a category. Delete a category. Transactions will not be removed.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteCategoryAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteCategoryAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteCategoryWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -661,88 +691,67 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a category. Delete a category. Transactions will not be removed.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteCategory(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/categories/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteCategory", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetCategory(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->DeleteCategory");
+                throw new ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->GetCategory");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CategoriesApi.GetCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (start != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CategoriesApi.DeleteCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/categories/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get a single category. Get a single category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
@@ -751,103 +760,34 @@ namespace FireflyIIINet.Api
         /// <returns>CategorySingle</returns>
         public CategorySingle GetCategory(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CategorySingle> localVarResponse = GetCategoryWithHttpInfo(id, xTraceId, start, end);
+            ApiResponse<CategorySingle> localVarResponse = GetCategoryWithHttpInfo(id, xTraceId, start, end);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single category. Get a single category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
         /// <param name="end">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CategorySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CategorySingle> GetCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+        public ApiResponse<CategorySingle> GetCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->GetCategory");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CategoriesApi.GetCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCategory(id, xTraceId, start, end, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, Configuration);
+            ValidateException("GetCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get a single category. Get a single category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
@@ -855,16 +795,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CategorySingle</returns>
-        public async System.Threading.Tasks.Task<CategorySingle> GetCategoryAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CategorySingle> GetCategoryAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CategorySingle> localVarResponse = await GetCategoryWithHttpInfoAsync(id, xTraceId, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CategorySingle> localVarResponse = await GetCategoryWithHttpInfoAsync(id, xTraceId, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single category. Get a single category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to show spent and earned info.  (optional)</param>
@@ -872,16 +812,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategorySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CategorySingle>> GetCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CategorySingle>> GetCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCategory(id, xTraceId, start, end, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetCategory", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListAttachmentByCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListAttachmentByCategory(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->GetCategory");
+                throw new ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->ListAttachmentByCategory");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -892,71 +842,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CategoriesApi.ListAttachmentByCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (page != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CategoriesApi.GetCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -964,131 +870,70 @@ namespace FireflyIIINet.Api
         /// <returns>AttachmentArray</returns>
         public AttachmentArray ListAttachmentByCategory(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByCategoryWithHttpInfo(id, xTraceId, page);
+            ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByCategoryWithHttpInfo(id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AttachmentArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AttachmentArray> ListAttachmentByCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<AttachmentArray> ListAttachmentByCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->ListAttachmentByCategory");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CategoriesApi.ListAttachmentByCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByCategory(id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AttachmentArray>("/v1/categories/{id}/attachments", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AttachmentArray>("/v1/categories/{id}/attachments", localVarRequestOptions, Configuration);
+            ValidateException("ListAttachmentByCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        public async System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AttachmentArray> ListAttachmentByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByCategoryWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByCategoryWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AttachmentArray>> ListAttachmentByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AttachmentArray>> ListAttachmentByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->ListAttachmentByCategory");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByCategory(id, xTraceId, page, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AttachmentArray>("/v1/categories/{id}/attachments", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListAttachmentByCategory", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListCategory(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1098,181 +943,98 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CategoriesApi.ListCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CategoriesApi.ListAttachmentByCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AttachmentArray>("/v1/categories/{id}/attachments", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all categories. List all categories.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CategoryArray</returns>
         public CategoryArray ListCategory(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CategoryArray> localVarResponse = ListCategoryWithHttpInfo(xTraceId, page);
+            ApiResponse<CategoryArray> localVarResponse = ListCategoryWithHttpInfo(xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all categories. List all categories.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CategoryArray</returns>
-        public FireflyIIINet.Client.ApiResponse<CategoryArray> ListCategoryWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<CategoryArray> ListCategoryWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CategoriesApi.ListCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListCategory(xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CategoryArray>("/v1/categories", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<CategoryArray>("/v1/categories", localVarRequestOptions, Configuration);
+            ValidateException("ListCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all categories. List all categories.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CategoryArray</returns>
-        public async System.Threading.Tasks.Task<CategoryArray> ListCategoryAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CategoryArray> ListCategoryAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CategoryArray> localVarResponse = await ListCategoryWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CategoryArray> localVarResponse = await ListCategoryWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all categories. List all categories.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategoryArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CategoryArray>> ListCategoryWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CategoryArray>> ListCategoryWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListCategory(xTraceId, page, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<CategoryArray>("/v1/categories", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListCategory", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionByCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionByCategory(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->ListTransactionByCategory");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -1283,66 +1045,39 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CategoriesApi.ListTransactionByCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CategoriesApi.ListCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<CategoryArray>("/v1/categories", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all transactions in a category. List all transactions in a category, optionally limited to the date ranges specified.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -1353,14 +1088,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransactionByCategory(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionByCategoryWithHttpInfo(id, xTraceId, page, start, end, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionByCategoryWithHttpInfo(id, xTraceId, page, start, end, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions in a category. List all transactions in a category, optionally limited to the date ranges specified.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -1369,97 +1104,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionByCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionByCategoryWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->ListTransactionByCategory");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CategoriesApi.ListTransactionByCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByCategory(id, xTraceId, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/categories/{id}/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/categories/{id}/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionByCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all transactions in a category. List all transactions in a category, optionally limited to the date ranges specified.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -1469,16 +1127,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionByCategoryAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionByCategoryWithHttpInfoAsync(id, xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionByCategoryWithHttpInfoAsync(id, xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions in a category. List all transactions in a category, optionally limited to the date ranges specified.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -1488,126 +1146,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionByCategoryWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->ListTransactionByCategory");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CategoriesApi.ListTransactionByCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByCategory(id, xTraceId, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/categories/{id}/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/categories/{id}/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionByCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
-        /// Store a new category Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
+        /// Provides a specific RequestOptions object for StoreCategory.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CategorySingle</returns>
-        public CategorySingle StoreCategory(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
-            FireflyIIINet.Client.ApiResponse<CategorySingle> localVarResponse = StoreCategoryWithHttpInfo(category, xTraceId);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Store a new category Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of CategorySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CategorySingle> StoreCategoryWithHttpInfo(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
+		private RequestOptions GetRequestOptionsStoreCategory(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'category' is set
             if (category == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'category' when calling CategoriesApi->StoreCategory");
+                throw new ApiException(400, "Missing required parameter 'category' when calling CategoriesApi->StoreCategory");
             }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -1620,95 +1178,104 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CategoriesApi.StoreCategory" ,operationIndex);
 
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
             localVarRequestOptions.Data = category;
 
-            localVarRequestOptions.Operation = "CategoriesApi.StoreCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<CategorySingle>("/v1/categories", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Store a new category Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CategorySingle</returns>
-        public async System.Threading.Tasks.Task<CategorySingle> StoreCategoryAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>CategorySingle</returns>
+        public CategorySingle StoreCategory(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CategorySingle> localVarResponse = await StoreCategoryWithHttpInfoAsync(category, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CategorySingle> localVarResponse = StoreCategoryWithHttpInfo(category, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Store a new category Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CategorySingle</returns>
+        public ApiResponse<CategorySingle> StoreCategoryWithHttpInfo(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreCategory(category, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Post<CategorySingle>("/v1/categories", localVarRequestOptions, Configuration);
+            ValidateException("StoreCategory", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Store a new category Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CategorySingle</returns>
+        public async Task<CategorySingle> StoreCategoryAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<CategorySingle> localVarResponse = await StoreCategoryWithHttpInfoAsync(category, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Store a new category Creates a new category. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="category">JSON array or key&#x3D;value pairs with the necessary category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategorySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CategorySingle>> StoreCategoryWithHttpInfoAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CategorySingle>> StoreCategoryWithHttpInfoAsync(Category category, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'category' is set
-            if (category == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreCategory(category, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<CategorySingle>("/v1/categories", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreCategory", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateCategory(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'category' when calling CategoriesApi->StoreCategory");
+                throw new ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->UpdateCategory");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'categoryUpdate' is set
+            if (categoryUpdate == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'categoryUpdate' when calling CategoriesApi->UpdateCategory");
+            }
 
             string[] _contentTypes = new string[] {
-                "application/json", 
+                "application/json",
                 "application/x-www-form-urlencoded"
             };
 
@@ -1718,63 +1285,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CategoriesApi.UpdateCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = category;
-
-            localVarRequestOptions.Operation = "CategoriesApi.StoreCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = categoryUpdate;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CategorySingle>("/v1/categories", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update existing category. Update existing category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1782,206 +1310,63 @@ namespace FireflyIIINet.Api
         /// <returns>CategorySingle</returns>
         public CategorySingle UpdateCategory(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CategorySingle> localVarResponse = UpdateCategoryWithHttpInfo(id, categoryUpdate, xTraceId);
+            ApiResponse<CategorySingle> localVarResponse = UpdateCategoryWithHttpInfo(id, categoryUpdate, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing category. Update existing category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CategorySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CategorySingle> UpdateCategoryWithHttpInfo(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<CategorySingle> UpdateCategoryWithHttpInfo(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->UpdateCategory");
-            }
-
-            // verify the required parameter 'categoryUpdate' is set
-            if (categoryUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'categoryUpdate' when calling CategoriesApi->UpdateCategory");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json",
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = categoryUpdate;
-
-            localVarRequestOptions.Operation = "CategoriesApi.UpdateCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateCategory(id, categoryUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Put<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Update existing category. Update existing category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CategorySingle</returns>
-        public async System.Threading.Tasks.Task<CategorySingle> UpdateCategoryAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CategorySingle> UpdateCategoryAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CategorySingle> localVarResponse = await UpdateCategoryWithHttpInfoAsync(id, categoryUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CategorySingle> localVarResponse = await UpdateCategoryWithHttpInfoAsync(id, categoryUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing category. Update existing category.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the category.</param>
         /// <param name="categoryUpdate">JSON array with updated category information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CategorySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CategorySingle>> UpdateCategoryWithHttpInfoAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CategorySingle>> UpdateCategoryWithHttpInfoAsync(string id, CategoryUpdate categoryUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling CategoriesApi->UpdateCategory");
-            }
-
-            // verify the required parameter 'categoryUpdate' is set
-            if (categoryUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'categoryUpdate' when calling CategoriesApi->UpdateCategory");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = categoryUpdate;
-
-            localVarRequestOptions.Operation = "CategoriesApi.UpdateCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateCategory(id, categoryUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.PutAsync<CategorySingle>("/v1/categories/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateCategory", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

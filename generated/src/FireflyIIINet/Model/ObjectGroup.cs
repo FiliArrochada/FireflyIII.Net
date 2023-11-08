@@ -49,15 +49,15 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("title is a required property for ObjectGroup and cannot be null");
             }
-            this.Title = title;
-            this.Order = order;
+            Title = title;
+            Order = order;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ObjectGroup);
+            return Equals(input as ObjectGroup);
         }
 
         /// <summary>
@@ -146,23 +146,20 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    this.Order.Equals(input.Order)
+                    Order == input.Order ||
+                    Order.Equals(input.Order)
                 );
         }
 
@@ -175,19 +172,10 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                if (this.Title != null)
-                {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Order.GetHashCode();
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+                hashCode = (hashCode * 59) + Order.GetHashCode();
                 return hashCode;
             }
         }
@@ -197,7 +185,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -47,7 +50,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -59,7 +62,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -72,7 +75,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -84,7 +87,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Disable a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -97,7 +100,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Disable a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -109,7 +112,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Enable a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -122,7 +125,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Enable a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -134,7 +137,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -147,7 +150,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -159,7 +162,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get the user&#39;s default currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CurrencySingle</returns>
@@ -171,7 +174,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get the user&#39;s default currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencySingle</returns>
@@ -182,7 +185,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all accounts with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -198,7 +201,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all accounts with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -213,7 +216,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all available budgets with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
@@ -227,7 +230,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all available budgets with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
@@ -240,7 +243,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all bills with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -254,7 +257,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all bills with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -267,7 +270,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all budget limits with this currency
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -283,7 +286,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all budget limits with this currency
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -298,7 +301,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all currencies.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -311,7 +314,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all currencies.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -323,7 +326,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all recurring transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -337,7 +340,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all recurring transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -350,7 +353,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all rules with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
@@ -364,7 +367,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all rules with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
@@ -377,7 +380,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -394,7 +397,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -410,7 +413,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -423,7 +426,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -435,7 +438,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -449,7 +452,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -471,13 +474,13 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        System.Threading.Tasks.Task<CurrencySingle> DefaultCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencySingle> DefaultCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Make currency default currency.
@@ -485,26 +488,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencySingle>> DefaultCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencySingle>> DefaultCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete a currency.
         /// </summary>
         /// <remarks>
         /// Delete a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete a currency.
@@ -512,26 +515,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Disable a currency.
         /// </summary>
         /// <remarks>
         /// Disable a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        System.Threading.Tasks.Task<CurrencySingle> DisableCurrencyAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencySingle> DisableCurrencyAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Disable a currency.
@@ -539,26 +542,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Disable a currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencySingle>> DisableCurrencyWithHttpInfoAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencySingle>> DisableCurrencyWithHttpInfoAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Enable a single currency.
         /// </summary>
         /// <remarks>
         /// Enable a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        System.Threading.Tasks.Task<CurrencySingle> EnableCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencySingle> EnableCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Enable a single currency.
@@ -566,26 +569,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Enable a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencySingle>> EnableCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencySingle>> EnableCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get a single currency.
         /// </summary>
         /// <remarks>
         /// Get a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        System.Threading.Tasks.Task<CurrencySingle> GetCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencySingle> GetCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get a single currency.
@@ -593,25 +596,25 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencySingle>> GetCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencySingle>> GetCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get the user&#39;s default currency.
         /// </summary>
         /// <remarks>
         /// Get the user&#39;s default currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        System.Threading.Tasks.Task<CurrencySingle> GetDefaultCurrencyAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencySingle> GetDefaultCurrencyAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get the user&#39;s default currency.
@@ -619,19 +622,19 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get the user&#39;s default currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencySingle>> GetDefaultCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencySingle>> GetDefaultCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all accounts with this currency.
         /// </summary>
         /// <remarks>
         /// List all accounts with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -640,7 +643,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountArray</returns>
-        System.Threading.Tasks.Task<AccountArray> ListAccountByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AccountArray> ListAccountByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all accounts with this currency.
@@ -648,7 +651,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all accounts with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -657,21 +660,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountArray>> ListAccountByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AccountArray>> ListAccountByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all available budgets with this currency.
         /// </summary>
         /// <remarks>
         /// List all available budgets with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AvailableBudgetArray</returns>
-        System.Threading.Tasks.Task<AvailableBudgetArray> ListAvailableBudgetByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AvailableBudgetArray> ListAvailableBudgetByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all available budgets with this currency.
@@ -679,28 +682,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all available budgets with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AvailableBudgetArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AvailableBudgetArray>> ListAvailableBudgetByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AvailableBudgetArray>> ListAvailableBudgetByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all bills with this currency.
         /// </summary>
         /// <remarks>
         /// List all bills with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BillArray</returns>
-        System.Threading.Tasks.Task<BillArray> ListBillByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BillArray> ListBillByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all bills with this currency.
@@ -708,21 +711,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all bills with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BillArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BillArray>> ListBillByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BillArray>> ListBillByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all budget limits with this currency
         /// </summary>
         /// <remarks>
         /// List all budget limits with this currency
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -731,7 +734,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitArray</returns>
-        System.Threading.Tasks.Task<BudgetLimitArray> ListBudgetLimitByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetLimitArray> ListBudgetLimitByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all budget limits with this currency
@@ -739,7 +742,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all budget limits with this currency
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -748,20 +751,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all currencies.
         /// </summary>
         /// <remarks>
         /// List all currencies.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencyArray</returns>
-        System.Threading.Tasks.Task<CurrencyArray> ListCurrencyAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencyArray> ListCurrencyAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all currencies.
@@ -769,27 +772,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all currencies.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencyArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencyArray>> ListCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencyArray>> ListCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all recurring transactions with this currency.
         /// </summary>
         /// <remarks>
         /// List all recurring transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RecurrenceArray</returns>
-        System.Threading.Tasks.Task<RecurrenceArray> ListRecurrenceByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<RecurrenceArray> ListRecurrenceByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all recurring transactions with this currency.
@@ -797,28 +800,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all recurring transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RecurrenceArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RecurrenceArray>> ListRecurrenceByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<RecurrenceArray>> ListRecurrenceByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all rules with this currency.
         /// </summary>
         /// <remarks>
         /// List all rules with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RuleArray</returns>
-        System.Threading.Tasks.Task<RuleArray> ListRuleByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<RuleArray> ListRuleByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all rules with this currency.
@@ -826,21 +829,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all rules with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RuleArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RuleArray>> ListRuleByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<RuleArray>> ListRuleByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all transactions with this currency.
         /// </summary>
         /// <remarks>
         /// List all transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -850,7 +853,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all transactions with this currency.
@@ -858,7 +861,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions with this currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -868,20 +871,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Store a new currency
         /// </summary>
         /// <remarks>
         /// Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        System.Threading.Tasks.Task<CurrencySingle> StoreCurrencyAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencySingle> StoreCurrencyAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Store a new currency
@@ -889,27 +892,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencySingle>> StoreCurrencyWithHttpInfoAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencySingle>> StoreCurrencyWithHttpInfoAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update existing currency.
         /// </summary>
         /// <remarks>
         /// Update existing currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        System.Threading.Tasks.Task<CurrencySingle> UpdateCurrencyAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<CurrencySingle> UpdateCurrencyAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update existing currency.
@@ -917,14 +920,14 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing currency.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CurrencySingle>> UpdateCurrencyWithHttpInfoAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<CurrencySingle>> UpdateCurrencyWithHttpInfoAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -941,7 +944,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class CurrenciesApi : ICurrenciesApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrenciesApi"/> class.
@@ -955,15 +958,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="CurrenciesApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public CurrenciesApi(string basePath)
+        public CurrenciesApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -972,17 +968,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public CurrenciesApi(FireflyIIINet.Client.Configuration configuration)
+        public CurrenciesApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -992,27 +988,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public CurrenciesApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public CurrenciesApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -1020,19 +1016,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -1046,199 +1042,202 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DefaultCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDefaultCurrency(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'code' is set
+            if (code == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->DefaultCurrency");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/vnd.api+json",
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.DefaultCurrency" ,operationIndex);
+
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Make currency default currency. Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CurrencySingle</returns>
         public CurrencySingle DefaultCurrency(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = DefaultCurrencyWithHttpInfo(code, xTraceId);
+            ApiResponse<CurrencySingle> localVarResponse = DefaultCurrencyWithHttpInfo(code, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Make currency default currency. Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencySingle> DefaultCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<CurrencySingle> DefaultCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->DefaultCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.DefaultCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDefaultCurrency(code, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CurrencySingle>("/v1/currencies/{code}/default", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DefaultCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Post<CurrencySingle>("/v1/currencies/{code}/default", localVarRequestOptions, Configuration);
+            ValidateException("DefaultCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Make currency default currency. Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        public async System.Threading.Tasks.Task<CurrencySingle> DefaultCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CurrencySingle> DefaultCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = await DefaultCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencySingle> localVarResponse = await DefaultCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Make currency default currency. Make this currency the default currency for the user. If the currency is not enabled, it will be enabled as well.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencySingle>> DefaultCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencySingle>> DefaultCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDefaultCurrency(code, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies/{code}/default", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DefaultCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteCurrency(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'code' is set
             if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->DefaultCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->DeleteCurrency");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.DeleteCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.DefaultCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies/{code}/default", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DefaultCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Delete a currency. Delete a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -1251,91 +1250,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a currency. Delete a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->DeleteCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.DeleteCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteCurrency(code, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/currencies/{code}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/currencies/{code}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Delete a currency. Delete a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -1343,199 +1282,125 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a currency. Delete a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->DeleteCurrency");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteCurrency(code, xTraceId, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/currencies/{code}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteCurrency", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for DisableCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDisableCurrency(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.DisableCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.DeleteCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/currencies/{code}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Disable a currency. Disable a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CurrencySingle</returns>
         public CurrencySingle DisableCurrency(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = DisableCurrencyWithHttpInfo(code, xTraceId);
+            ApiResponse<CurrencySingle> localVarResponse = DisableCurrencyWithHttpInfo(code, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Disable a currency. Disable a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencySingle> DisableCurrencyWithHttpInfo(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<CurrencySingle> DisableCurrencyWithHttpInfo(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.DisableCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDisableCurrency(code, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CurrencySingle>("/v1/currencies/{code}/disable", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DisableCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Post<CurrencySingle>("/v1/currencies/{code}/disable", localVarRequestOptions, Configuration);
+            ValidateException("DisableCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Disable a currency. Disable a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        public async System.Threading.Tasks.Task<CurrencySingle> DisableCurrencyAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CurrencySingle> DisableCurrencyAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = await DisableCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencySingle> localVarResponse = await DisableCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Disable a currency. Disable a currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencySingle>> DisableCurrencyWithHttpInfoAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencySingle>> DisableCurrencyWithHttpInfoAsync(int code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDisableCurrency(code, xTraceId, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies/{code}/disable", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DisableCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for EnableCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsEnableCurrency(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'code' is set
+            if (code == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->EnableCurrency");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -1546,186 +1411,95 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.EnableCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.DisableCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies/{code}/disable", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DisableCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Enable a single currency. Enable a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CurrencySingle</returns>
         public CurrencySingle EnableCurrency(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = EnableCurrencyWithHttpInfo(code, xTraceId);
+            ApiResponse<CurrencySingle> localVarResponse = EnableCurrencyWithHttpInfo(code, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Enable a single currency. Enable a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencySingle> EnableCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<CurrencySingle> EnableCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->EnableCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.EnableCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsEnableCurrency(code, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CurrencySingle>("/v1/currencies/{code}/enable", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("EnableCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Post<CurrencySingle>("/v1/currencies/{code}/enable", localVarRequestOptions, Configuration);
+            ValidateException("EnableCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Enable a single currency. Enable a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        public async System.Threading.Tasks.Task<CurrencySingle> EnableCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CurrencySingle> EnableCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = await EnableCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencySingle> localVarResponse = await EnableCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Enable a single currency. Enable a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencySingle>> EnableCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencySingle>> EnableCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsEnableCurrency(code, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies/{code}/enable", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("EnableCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetCurrency(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'code' is set
             if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->EnableCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->GetCurrency");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1736,423 +1510,221 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.GetCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.EnableCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies/{code}/enable", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("EnableCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get a single currency. Get a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CurrencySingle</returns>
         public CurrencySingle GetCurrency(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = GetCurrencyWithHttpInfo(code, xTraceId);
+            ApiResponse<CurrencySingle> localVarResponse = GetCurrencyWithHttpInfo(code, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single currency. Get a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencySingle> GetCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<CurrencySingle> GetCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->GetCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.GetCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCurrency(code, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, Configuration);
+            ValidateException("GetCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get a single currency. Get a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        public async System.Threading.Tasks.Task<CurrencySingle> GetCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CurrencySingle> GetCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = await GetCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencySingle> localVarResponse = await GetCurrencyWithHttpInfoAsync(code, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single currency. Get a single currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencySingle>> GetCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencySingle>> GetCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->GetCurrency");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCurrency(code, xTraceId, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetCurrency", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetDefaultCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetDefaultCurrency(Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.GetDefaultCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.GetCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get the user&#39;s default currency. Get the user&#39;s default currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CurrencySingle</returns>
         public CurrencySingle GetDefaultCurrency(Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = GetDefaultCurrencyWithHttpInfo(xTraceId);
+            ApiResponse<CurrencySingle> localVarResponse = GetDefaultCurrencyWithHttpInfo(xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get the user&#39;s default currency. Get the user&#39;s default currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencySingle> GetDefaultCurrencyWithHttpInfo(Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<CurrencySingle> GetDefaultCurrencyWithHttpInfo(Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.GetDefaultCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetDefaultCurrency(xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CurrencySingle>("/v1/currencies/default", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetDefaultCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<CurrencySingle>("/v1/currencies/default", localVarRequestOptions, Configuration);
+            ValidateException("GetDefaultCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get the user&#39;s default currency. Get the user&#39;s default currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        public async System.Threading.Tasks.Task<CurrencySingle> GetDefaultCurrencyAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CurrencySingle> GetDefaultCurrencyAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = await GetDefaultCurrencyWithHttpInfoAsync(xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencySingle> localVarResponse = await GetDefaultCurrencyWithHttpInfoAsync(xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get the user&#39;s default currency. Get the user&#39;s default currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencySingle>> GetDefaultCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencySingle>> GetDefaultCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetDefaultCurrency(xTraceId, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<CurrencySingle>("/v1/currencies/default", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetDefaultCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListAccountByCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListAccountByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+		{
+            // verify the required parameter 'code' is set
+            if (code == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListAccountByCurrency");
+            }
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListAccountByCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
+            if (page != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
-
+            if (date != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "date", date));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
+            }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.GetDefaultCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<CurrencySingle>("/v1/currencies/default", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetDefaultCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all accounts with this currency. List all accounts with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2162,14 +1734,14 @@ namespace FireflyIIINet.Api
         /// <returns>AccountArray</returns>
         public AccountArray ListAccountByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AccountArray> localVarResponse = ListAccountByCurrencyWithHttpInfo(code, xTraceId, page, date, type);
+            ApiResponse<AccountArray> localVarResponse = ListAccountByCurrencyWithHttpInfo(code, xTraceId, page, date, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all accounts with this currency. List all accounts with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2177,93 +1749,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the account type(s) returned (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AccountArray> ListAccountByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+        public ApiResponse<AccountArray> ListAccountByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListAccountByCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (date != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListAccountByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAccountByCurrency(code, xTraceId, page, date, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AccountArray>("/v1/currencies/{code}/accounts", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAccountByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AccountArray>("/v1/currencies/{code}/accounts", localVarRequestOptions, Configuration);
+            ValidateException("ListAccountByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all accounts with this currency. List all accounts with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2272,16 +1771,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountArray</returns>
-        public async System.Threading.Tasks.Task<AccountArray> ListAccountByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AccountArray> ListAccountByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AccountArray> localVarResponse = await ListAccountByCurrencyWithHttpInfoAsync(code, xTraceId, page, date, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AccountArray> localVarResponse = await ListAccountByCurrencyWithHttpInfoAsync(code, xTraceId, page, date, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all accounts with this currency. List all accounts with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2290,16 +1789,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AccountArray>> ListAccountByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AccountArray>> ListAccountByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAccountByCurrency(code, xTraceId, page, date, type, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AccountArray>("/v1/currencies/{code}/accounts", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListAccountByCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListAvailableBudgetByCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListAvailableBudgetByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'code' is set
             if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListAccountByCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListAvailableBudgetByCurrency");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2310,75 +1819,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListAvailableBudgetByCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (date != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListAccountByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AccountArray>("/v1/currencies/{code}/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAccountByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all available budgets with this currency. List all available budgets with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
@@ -2386,130 +1847,75 @@ namespace FireflyIIINet.Api
         /// <returns>AvailableBudgetArray</returns>
         public AvailableBudgetArray ListAvailableBudgetByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AvailableBudgetArray> localVarResponse = ListAvailableBudgetByCurrencyWithHttpInfo(code, xTraceId, page);
+            ApiResponse<AvailableBudgetArray> localVarResponse = ListAvailableBudgetByCurrencyWithHttpInfo(code, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all available budgets with this currency. List all available budgets with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AvailableBudgetArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AvailableBudgetArray> ListAvailableBudgetByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<AvailableBudgetArray> ListAvailableBudgetByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListAvailableBudgetByCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListAvailableBudgetByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAvailableBudgetByCurrency(code, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AvailableBudgetArray>("/v1/currencies/{code}/available-budgets", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAvailableBudgetByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AvailableBudgetArray>("/v1/currencies/{code}/available-budgets", localVarRequestOptions, Configuration);
+            ValidateException("ListAvailableBudgetByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all available budgets with this currency. List all available budgets with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AvailableBudgetArray</returns>
-        public async System.Threading.Tasks.Task<AvailableBudgetArray> ListAvailableBudgetByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AvailableBudgetArray> ListAvailableBudgetByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AvailableBudgetArray> localVarResponse = await ListAvailableBudgetByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AvailableBudgetArray> localVarResponse = await ListAvailableBudgetByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all available budgets with this currency. List all available budgets with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AvailableBudgetArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AvailableBudgetArray>> ListAvailableBudgetByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AvailableBudgetArray>> ListAvailableBudgetByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAvailableBudgetByCurrency(code, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AvailableBudgetArray>("/v1/currencies/{code}/available-budgets", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListAvailableBudgetByCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListBillByCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListBillByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'code' is set
             if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListAvailableBudgetByCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListBillByCurrency");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2520,67 +1926,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListBillByCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListAvailableBudgetByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AvailableBudgetArray>("/v1/currencies/{code}/available-budgets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAvailableBudgetByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all bills with this currency. List all bills with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2588,130 +1954,75 @@ namespace FireflyIIINet.Api
         /// <returns>BillArray</returns>
         public BillArray ListBillByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BillArray> localVarResponse = ListBillByCurrencyWithHttpInfo(code, xTraceId, page);
+            ApiResponse<BillArray> localVarResponse = ListBillByCurrencyWithHttpInfo(code, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all bills with this currency. List all bills with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BillArray</returns>
-        public FireflyIIINet.Client.ApiResponse<BillArray> ListBillByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<BillArray> ListBillByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListBillByCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListBillByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBillByCurrency(code, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BillArray>("/v1/currencies/{code}/bills", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBillByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BillArray>("/v1/currencies/{code}/bills", localVarRequestOptions, Configuration);
+            ValidateException("ListBillByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all bills with this currency. List all bills with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BillArray</returns>
-        public async System.Threading.Tasks.Task<BillArray> ListBillByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BillArray> ListBillByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BillArray> localVarResponse = await ListBillByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BillArray> localVarResponse = await ListBillByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all bills with this currency. List all bills with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BillArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BillArray>> ListBillByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BillArray>> ListBillByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBillByCurrency(code, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BillArray>("/v1/currencies/{code}/bills", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListBillByCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListBudgetLimitByCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListBudgetLimitByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+		{
             // verify the required parameter 'code' is set
             if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListBillByCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListBudgetLimitByCurrency");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2722,67 +2033,35 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListBudgetLimitByCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListBillByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BillArray>("/v1/currencies/{code}/bills", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBillByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all budget limits with this currency List all budget limits with this currency
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2792,14 +2071,14 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetLimitArray</returns>
         public BudgetLimitArray ListBudgetLimitByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitArray> localVarResponse = ListBudgetLimitByCurrencyWithHttpInfo(code, xTraceId, page, start, end);
+            ApiResponse<BudgetLimitArray> localVarResponse = ListBudgetLimitByCurrencyWithHttpInfo(code, xTraceId, page, start, end);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all budget limits with this currency List all budget limits with this currency
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2807,93 +2086,20 @@ namespace FireflyIIINet.Api
         /// <param name="end">End date for the budget limit list. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetLimitArray</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetLimitArray> ListBudgetLimitByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+        public ApiResponse<BudgetLimitArray> ListBudgetLimitByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListBudgetLimitByCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListBudgetLimitByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimitByCurrency(code, xTraceId, page, start, end, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetLimitArray>("/v1/currencies/{code}/budget_limits", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimitByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetLimitArray>("/v1/currencies/{code}/budget_limits", localVarRequestOptions, Configuration);
+            ValidateException("ListBudgetLimitByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all budget limits with this currency List all budget limits with this currency
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2902,16 +2108,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitArray</returns>
-        public async System.Threading.Tasks.Task<BudgetLimitArray> ListBudgetLimitByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetLimitArray> ListBudgetLimitByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitArray> localVarResponse = await ListBudgetLimitByCurrencyWithHttpInfoAsync(code, xTraceId, page, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetLimitArray> localVarResponse = await ListBudgetLimitByCurrencyWithHttpInfoAsync(code, xTraceId, page, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all budget limits with this currency List all budget limits with this currency
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2920,17 +2126,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetLimitArray>> ListBudgetLimitByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListBudgetLimitByCurrency");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimitByCurrency(code, xTraceId, page, start, end, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetLimitArray>("/v1/currencies/{code}/budget_limits", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListBudgetLimitByCurrency", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListCurrency(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2940,189 +2150,98 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListBudgetLimitByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetLimitArray>("/v1/currencies/{code}/budget_limits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimitByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all currencies. List all currencies.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CurrencyArray</returns>
         public CurrencyArray ListCurrency(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencyArray> localVarResponse = ListCurrencyWithHttpInfo(xTraceId, page);
+            ApiResponse<CurrencyArray> localVarResponse = ListCurrencyWithHttpInfo(xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all currencies. List all currencies.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencyArray</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencyArray> ListCurrencyWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<CurrencyArray> ListCurrencyWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListCurrency(xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CurrencyArray>("/v1/currencies", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<CurrencyArray>("/v1/currencies", localVarRequestOptions, Configuration);
+            ValidateException("ListCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all currencies. List all currencies.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencyArray</returns>
-        public async System.Threading.Tasks.Task<CurrencyArray> ListCurrencyAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CurrencyArray> ListCurrencyAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CurrencyArray> localVarResponse = await ListCurrencyWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencyArray> localVarResponse = await ListCurrencyWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all currencies. List all currencies.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencyArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencyArray>> ListCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencyArray>> ListCurrencyWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListCurrency(xTraceId, page, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<CurrencyArray>("/v1/currencies", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListRecurrenceByCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListRecurrenceByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
+            // verify the required parameter 'code' is set
+            if (code == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListRecurrenceByCurrency");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -3133,66 +2252,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListRecurrenceByCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<CurrencyArray>("/v1/currencies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all recurring transactions with this currency. List all recurring transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -3200,130 +2280,75 @@ namespace FireflyIIINet.Api
         /// <returns>RecurrenceArray</returns>
         public RecurrenceArray ListRecurrenceByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<RecurrenceArray> localVarResponse = ListRecurrenceByCurrencyWithHttpInfo(code, xTraceId, page);
+            ApiResponse<RecurrenceArray> localVarResponse = ListRecurrenceByCurrencyWithHttpInfo(code, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all recurring transactions with this currency. List all recurring transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of RecurrenceArray</returns>
-        public FireflyIIINet.Client.ApiResponse<RecurrenceArray> ListRecurrenceByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<RecurrenceArray> ListRecurrenceByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListRecurrenceByCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListRecurrenceByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListRecurrenceByCurrency(code, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<RecurrenceArray>("/v1/currencies/{code}/recurrences", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListRecurrenceByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<RecurrenceArray>("/v1/currencies/{code}/recurrences", localVarRequestOptions, Configuration);
+            ValidateException("ListRecurrenceByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all recurring transactions with this currency. List all recurring transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RecurrenceArray</returns>
-        public async System.Threading.Tasks.Task<RecurrenceArray> ListRecurrenceByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<RecurrenceArray> ListRecurrenceByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<RecurrenceArray> localVarResponse = await ListRecurrenceByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<RecurrenceArray> localVarResponse = await ListRecurrenceByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all recurring transactions with this currency. List all recurring transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RecurrenceArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<RecurrenceArray>> ListRecurrenceByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<RecurrenceArray>> ListRecurrenceByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListRecurrenceByCurrency(code, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<RecurrenceArray>("/v1/currencies/{code}/recurrences", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListRecurrenceByCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListRuleByCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListRuleByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'code' is set
             if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListRecurrenceByCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListRuleByCurrency");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -3334,67 +2359,27 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListRuleByCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListRecurrenceByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<RecurrenceArray>("/v1/currencies/{code}/recurrences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListRecurrenceByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all rules with this currency. List all rules with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
@@ -3402,130 +2387,75 @@ namespace FireflyIIINet.Api
         /// <returns>RuleArray</returns>
         public RuleArray ListRuleByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<RuleArray> localVarResponse = ListRuleByCurrencyWithHttpInfo(code, xTraceId, page);
+            ApiResponse<RuleArray> localVarResponse = ListRuleByCurrencyWithHttpInfo(code, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all rules with this currency. List all rules with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of RuleArray</returns>
-        public FireflyIIINet.Client.ApiResponse<RuleArray> ListRuleByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<RuleArray> ListRuleByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListRuleByCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListRuleByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListRuleByCurrency(code, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<RuleArray>("/v1/currencies/{code}/rules", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListRuleByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<RuleArray>("/v1/currencies/{code}/rules", localVarRequestOptions, Configuration);
+            ValidateException("ListRuleByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all rules with this currency. List all rules with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RuleArray</returns>
-        public async System.Threading.Tasks.Task<RuleArray> ListRuleByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<RuleArray> ListRuleByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<RuleArray> localVarResponse = await ListRuleByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<RuleArray> localVarResponse = await ListRuleByCurrencyWithHttpInfoAsync(code, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all rules with this currency. List all rules with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination per 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RuleArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<RuleArray>> ListRuleByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<RuleArray>> ListRuleByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListRuleByCurrency(code, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<RuleArray>("/v1/currencies/{code}/rules", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListRuleByCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionByCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
             // verify the required parameter 'code' is set
             if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListRuleByCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListTransactionByCurrency");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -3536,67 +2466,39 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.ListTransactionByCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListRuleByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<RuleArray>("/v1/currencies/{code}/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListRuleByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all transactions with this currency. List all transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -3607,14 +2509,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransactionByCurrency(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionByCurrencyWithHttpInfo(code, xTraceId, page, start, end, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionByCurrencyWithHttpInfo(code, xTraceId, page, start, end, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions with this currency. List all transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -3623,97 +2525,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionByCurrencyWithHttpInfo(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListTransactionByCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListTransactionByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByCurrency(code, xTraceId, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/currencies/{code}/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/currencies/{code}/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all transactions with this currency. List all transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -3723,16 +2548,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionByCurrencyAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionByCurrencyWithHttpInfoAsync(code, xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionByCurrencyWithHttpInfoAsync(code, xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions with this currency. List all transactions with this currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50. (optional)</param>
@@ -3742,126 +2567,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionByCurrencyWithHttpInfoAsync(string code, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->ListTransactionByCurrency");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "CurrenciesApi.ListTransactionByCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByCurrency(code, xTraceId, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/currencies/{code}/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/currencies/{code}/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionByCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
-        /// Store a new currency Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
+        /// Provides a specific RequestOptions object for StoreCurrency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CurrencySingle</returns>
-        public CurrencySingle StoreCurrency(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = StoreCurrencyWithHttpInfo(currencyStore, xTraceId);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Store a new currency Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of CurrencySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencySingle> StoreCurrencyWithHttpInfo(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
+		private RequestOptions GetRequestOptionsStoreCurrency(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'currencyStore' is set
             if (currencyStore == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'currencyStore' when calling CurrenciesApi->StoreCurrency");
+                throw new ApiException(400, "Missing required parameter 'currencyStore' when calling CurrenciesApi->StoreCurrency");
             }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -3874,161 +2599,130 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.StoreCurrency" ,operationIndex);
 
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
             localVarRequestOptions.Data = currencyStore;
 
-            localVarRequestOptions.Operation = "CurrenciesApi.StoreCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<CurrencySingle>("/v1/currencies", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Store a new currency Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CurrencySingle</returns>
-        public async System.Threading.Tasks.Task<CurrencySingle> StoreCurrencyAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>CurrencySingle</returns>
+        public CurrencySingle StoreCurrency(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = await StoreCurrencyWithHttpInfoAsync(currencyStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencySingle> localVarResponse = StoreCurrencyWithHttpInfo(currencyStore, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Store a new currency Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of CurrencySingle</returns>
+        public ApiResponse<CurrencySingle> StoreCurrencyWithHttpInfo(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreCurrency(currencyStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Post<CurrencySingle>("/v1/currencies", localVarRequestOptions, Configuration);
+            ValidateException("StoreCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Store a new currency Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CurrencySingle</returns>
+        public async Task<CurrencySingle> StoreCurrencyAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<CurrencySingle> localVarResponse = await StoreCurrencyWithHttpInfoAsync(currencyStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Store a new currency Creates a new currency. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="currencyStore">JSON array or key&#x3D;value pairs with the necessary currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencySingle>> StoreCurrencyWithHttpInfoAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencySingle>> StoreCurrencyWithHttpInfoAsync(CurrencyStore currencyStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'currencyStore' is set
-            if (currencyStore == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreCurrency(currencyStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreCurrency", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateCurrency.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateCurrency(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'code' is set
+            if (code == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'currencyStore' when calling CurrenciesApi->StoreCurrency");
+                throw new ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->UpdateCurrency");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'currencyUpdate' is set
+            if (currencyUpdate == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'currencyUpdate' when calling CurrenciesApi->UpdateCurrency");
+            }
 
             string[] _contentTypes = new string[] {
-                "application/json", 
+                "application/vnd.api+json",
                 "application/x-www-form-urlencoded"
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"CurrenciesApi.UpdateCurrency" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("code", ClientUtils.ParameterToString(code)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = currencyStore;
-
-            localVarRequestOptions.Operation = "CurrenciesApi.StoreCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = currencyUpdate;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CurrencySingle>("/v1/currencies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update existing currency. Update existing currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4036,204 +2730,63 @@ namespace FireflyIIINet.Api
         /// <returns>CurrencySingle</returns>
         public CurrencySingle UpdateCurrency(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = UpdateCurrencyWithHttpInfo(code, currencyUpdate, xTraceId);
+            ApiResponse<CurrencySingle> localVarResponse = UpdateCurrencyWithHttpInfo(code, currencyUpdate, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing currency. Update existing currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CurrencySingle</returns>
-        public FireflyIIINet.Client.ApiResponse<CurrencySingle> UpdateCurrencyWithHttpInfo(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<CurrencySingle> UpdateCurrencyWithHttpInfo(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->UpdateCurrency");
-            }
-
-            // verify the required parameter 'currencyUpdate' is set
-            if (currencyUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'currencyUpdate' when calling CurrenciesApi->UpdateCurrency");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/vnd.api+json",
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = currencyUpdate;
-
-            localVarRequestOptions.Operation = "CurrenciesApi.UpdateCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateCurrency(code, currencyUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Put<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateCurrency", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Update existing currency. Update existing currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CurrencySingle</returns>
-        public async System.Threading.Tasks.Task<CurrencySingle> UpdateCurrencyAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<CurrencySingle> UpdateCurrencyAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<CurrencySingle> localVarResponse = await UpdateCurrencyWithHttpInfoAsync(code, currencyUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CurrencySingle> localVarResponse = await UpdateCurrencyWithHttpInfoAsync(code, currencyUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing currency. Update existing currency.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">The currency code.</param>
         /// <param name="currencyUpdate">JSON array with updated currency information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CurrencySingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<CurrencySingle>> UpdateCurrencyWithHttpInfoAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<CurrencySingle>> UpdateCurrencyWithHttpInfoAsync(string code, CurrencyUpdate currencyUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'code' is set
-            if (code == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'code' when calling CurrenciesApi->UpdateCurrency");
-            }
-
-            // verify the required parameter 'currencyUpdate' is set
-            if (currencyUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'currencyUpdate' when calling CurrenciesApi->UpdateCurrency");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/vnd.api+json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("code", FireflyIIINet.Client.ClientUtils.ParameterToString(code)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = currencyUpdate;
-
-            localVarRequestOptions.Operation = "CurrenciesApi.UpdateCurrency";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateCurrency(code, currencyUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateCurrency", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.PutAsync<CurrencySingle>("/v1/currencies/{code}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateCurrency", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

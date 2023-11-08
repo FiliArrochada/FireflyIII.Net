@@ -58,16 +58,16 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("filename is a required property for AttachmentStore and cannot be null");
             }
-            this.Filename = filename;
-            this.AttachableType = attachableType;
+            Filename = filename;
+            AttachableType = attachableType;
             // to ensure "attachableId" is required (not null)
             if (attachableId == null)
             {
                 throw new ArgumentNullException("attachableId is a required property for AttachmentStore and cannot be null");
             }
-            this.AttachableId = attachableId;
-            this.Title = title;
-            this.Notes = notes;
+            AttachableId = attachableId;
+            Title = title;
+            Notes = notes;
         }
 
         /// <summary>
@@ -89,14 +89,14 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Title
         /// </summary>
         /// <example>Some PDF file</example>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name = "title", EmitDefaultValue = true)]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AttachmentStore);
+            return Equals(input as AttachmentStore);
         }
 
         /// <summary>
@@ -148,28 +148,25 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Filename == input.Filename ||
-                    (this.Filename != null &&
-                    this.Filename.Equals(input.Filename))
+                    Filename == input.Filename ||
+					Filename.Equals(input.Filename)
                 ) && 
                 (
-                    this.AttachableType == input.AttachableType ||
-                    this.AttachableType.Equals(input.AttachableType)
+                    AttachableType == input.AttachableType ||
+                    AttachableType.Equals(input.AttachableType)
                 ) && 
                 (
-                    this.AttachableId == input.AttachableId ||
-                    (this.AttachableId != null &&
-                    this.AttachableId.Equals(input.AttachableId))
+                    AttachableId == input.AttachableId ||
+					AttachableId.Equals(input.AttachableId)
                 ) && 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 );
         }
 
@@ -182,22 +179,13 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Filename != null)
+				hashCode = (hashCode * 59) + Filename.GetHashCode();
+                hashCode = (hashCode * 59) + AttachableType.GetHashCode();
+				hashCode = (hashCode * 59) + AttachableId.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.Filename.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.AttachableType.GetHashCode();
-                if (this.AttachableId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AttachableId.GetHashCode();
-                }
-                if (this.Title != null)
-                {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
-                }
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
                 return hashCode;
             }
@@ -208,7 +196,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

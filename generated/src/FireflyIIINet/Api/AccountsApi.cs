@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -47,7 +50,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -59,7 +62,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single account by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -73,7 +76,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single account by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -86,7 +89,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -101,7 +104,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -115,7 +118,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -129,7 +132,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -142,7 +145,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the piggy banks connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -156,7 +159,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the piggy banks connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -169,7 +172,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -187,7 +190,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -204,7 +207,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -222,7 +225,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -239,7 +242,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -252,7 +255,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -264,7 +267,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -278,7 +281,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -300,13 +303,13 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteAccountAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteAccountAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Permanently delete account.
@@ -314,27 +317,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get single account.
         /// </summary>
         /// <remarks>
         /// Returns a single account by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountSingle</returns>
-        System.Threading.Tasks.Task<AccountSingle> GetAccountAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AccountSingle> GetAccountAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get single account.
@@ -342,21 +345,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single account by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountSingle>> GetAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AccountSingle>> GetAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all accounts.
         /// </summary>
         /// <remarks>
         /// This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -364,7 +367,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountArray</returns>
-        System.Threading.Tasks.Task<AccountArray> ListAccountAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AccountArray> ListAccountAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all accounts.
@@ -372,7 +375,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -380,21 +383,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountArray>> ListAccountWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AccountArray>> ListAccountWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Lists all attachments.
         /// </summary>
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AttachmentArray> ListAttachmentByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Lists all attachments.
@@ -402,28 +405,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AttachmentArray>> ListAttachmentByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AttachmentArray>> ListAttachmentByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all piggy banks related to the account.
         /// </summary>
         /// <remarks>
         /// This endpoint returns a list of all the piggy banks connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PiggyBankArray</returns>
-        System.Threading.Tasks.Task<PiggyBankArray> ListPiggyBankByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<PiggyBankArray> ListPiggyBankByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all piggy banks related to the account.
@@ -431,21 +434,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the piggy banks connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PiggyBankArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PiggyBankArray>> ListPiggyBankByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<PiggyBankArray>> ListPiggyBankByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all transactions related to the account.
         /// </summary>
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -456,7 +459,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all transactions related to the account.
@@ -464,7 +467,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -475,14 +478,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all transactions related to the account.
         /// </summary>
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -493,7 +496,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionByAccountV2Async(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionByAccountV2Async(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all transactions related to the account.
@@ -501,7 +504,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint returns a list of all the transactions connected to the account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -512,20 +515,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionByAccountV2WithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionByAccountV2WithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Create new account.
         /// </summary>
         /// <remarks>
         /// Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountSingle</returns>
-        System.Threading.Tasks.Task<AccountSingle> StoreAccountAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AccountSingle> StoreAccountAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Create new account.
@@ -533,27 +536,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountSingle>> StoreAccountWithHttpInfoAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AccountSingle>> StoreAccountWithHttpInfoAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update existing account.
         /// </summary>
         /// <remarks>
         /// Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountSingle</returns>
-        System.Threading.Tasks.Task<AccountSingle> UpdateAccountAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AccountSingle> UpdateAccountAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update existing account.
@@ -561,14 +564,14 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountSingle>> UpdateAccountWithHttpInfoAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AccountSingle>> UpdateAccountWithHttpInfoAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -585,7 +588,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class AccountsApi : IAccountsApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountsApi"/> class.
@@ -599,15 +602,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="AccountsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public AccountsApi(string basePath)
+        public AccountsApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -616,17 +612,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public AccountsApi(FireflyIIINet.Client.Configuration configuration)
+        public AccountsApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -636,27 +632,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public AccountsApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public AccountsApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -664,19 +660,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -690,9 +686,103 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteAccount(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling AccountsApi->DeleteAccount");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.DeleteAccount" ,operationIndex);
+
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Permanently delete account. Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -705,91 +795,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Permanently delete account. Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->DeleteAccount");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AccountsApi.DeleteAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteAccount(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/accounts/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/accounts/{id}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Permanently delete account. Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteAccountAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteAccountAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteAccountWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -797,88 +827,63 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Permanently delete account. Will permanently delete an account. Any associated transactions and piggy banks are ALSO deleted. Cannot be recovered from. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteAccount(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/accounts/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteAccount", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetAccount(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->DeleteAccount");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AccountsApi->GetAccount");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.GetAccount" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (date != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "date", date));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AccountsApi.DeleteAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/accounts/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get single account. Returns a single account by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -886,131 +891,70 @@ namespace FireflyIIINet.Api
         /// <returns>AccountSingle</returns>
         public AccountSingle GetAccount(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AccountSingle> localVarResponse = GetAccountWithHttpInfo(id, xTraceId, date);
+            ApiResponse<AccountSingle> localVarResponse = GetAccountWithHttpInfo(id, xTraceId, date);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get single account. Returns a single account by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<AccountSingle> GetAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0)
+        public ApiResponse<AccountSingle> GetAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->GetAccount");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (date != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AccountsApi.GetAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetAccount(id, xTraceId, date, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, Configuration);
+            ValidateException("GetAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get single account. Returns a single account by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountSingle</returns>
-        public async System.Threading.Tasks.Task<AccountSingle> GetAccountAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AccountSingle> GetAccountAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AccountSingle> localVarResponse = await GetAccountWithHttpInfoAsync(id, xTraceId, date, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AccountSingle> localVarResponse = await GetAccountWithHttpInfoAsync(id, xTraceId, date, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get single account. Returns a single account by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AccountSingle>> GetAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AccountSingle>> GetAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? date = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->GetAccount");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetAccount(id, xTraceId, date, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetAccount", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListAccount(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1020,67 +964,34 @@ namespace FireflyIIINet.Api
                 "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.ListAccount" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            if (page != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (date != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "date", date));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AccountsApi.GetAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all accounts. This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -1089,100 +1000,34 @@ namespace FireflyIIINet.Api
         /// <returns>AccountArray</returns>
         public AccountArray ListAccount(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AccountArray> localVarResponse = ListAccountWithHttpInfo(xTraceId, page, date, type);
+            ApiResponse<AccountArray> localVarResponse = ListAccountWithHttpInfo(xTraceId, page, date, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all accounts. This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
         /// <param name="type">Optional filter on the account type(s) returned (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AccountArray> ListAccountWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+        public ApiResponse<AccountArray> ListAccountWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (date != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAccount(xTraceId, page, date, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AccountArray>("/v1/accounts", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AccountArray>("/v1/accounts", localVarRequestOptions, Configuration);
+            ValidateException("ListAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all accounts. This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -1190,16 +1035,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountArray</returns>
-        public async System.Threading.Tasks.Task<AccountArray> ListAccountAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AccountArray> ListAccountAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AccountArray> localVarResponse = await ListAccountWithHttpInfoAsync(xTraceId, page, date, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AccountArray> localVarResponse = await ListAccountWithHttpInfoAsync(xTraceId, page, date, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all accounts. This endpoint returns a list of all the accounts owned by the authenticated user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="date">A date formatted YYYY-MM-DD. When added to the request, Firefly III will show the account&#39;s balance on that day.  (optional)</param>
@@ -1207,10 +1052,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AccountArray>> ListAccountWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AccountArray>> ListAccountWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? date = default(DateTime?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAccount(xTraceId, page, date, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AccountArray>("/v1/accounts", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListAccount", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListAttachmentByAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListAttachmentByAccount(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListAttachmentByAccount");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -1221,74 +1082,27 @@ namespace FireflyIIINet.Api
                 "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.ListAttachmentByAccount" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (date != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AccountArray>("/v1/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -1296,130 +1110,75 @@ namespace FireflyIIINet.Api
         /// <returns>AttachmentArray</returns>
         public AttachmentArray ListAttachmentByAccount(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByAccountWithHttpInfo(id, xTraceId, page);
+            ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByAccountWithHttpInfo(id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AttachmentArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AttachmentArray> ListAttachmentByAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<AttachmentArray> ListAttachmentByAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListAttachmentByAccount");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListAttachmentByAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByAccount(id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AttachmentArray>("/v1/accounts/{id}/attachments", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AttachmentArray>("/v1/accounts/{id}/attachments", localVarRequestOptions, Configuration);
+            ValidateException("ListAttachmentByAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        public async System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AttachmentArray> ListAttachmentByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByAccountWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByAccountWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AttachmentArray>> ListAttachmentByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AttachmentArray>> ListAttachmentByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByAccount(id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AttachmentArray>("/v1/accounts/{id}/attachments", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListAttachmentByAccount", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListPiggyBankByAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListPiggyBankByAccount(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListAttachmentByAccount");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListPiggyBankByAccount");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1430,67 +1189,27 @@ namespace FireflyIIINet.Api
                 "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.ListPiggyBankByAccount" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListAttachmentByAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AttachmentArray>("/v1/accounts/{id}/attachments", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all piggy banks related to the account. This endpoint returns a list of all the piggy banks connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1498,130 +1217,75 @@ namespace FireflyIIINet.Api
         /// <returns>PiggyBankArray</returns>
         public PiggyBankArray ListPiggyBankByAccount(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<PiggyBankArray> localVarResponse = ListPiggyBankByAccountWithHttpInfo(id, xTraceId, page);
+            ApiResponse<PiggyBankArray> localVarResponse = ListPiggyBankByAccountWithHttpInfo(id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all piggy banks related to the account. This endpoint returns a list of all the piggy banks connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of PiggyBankArray</returns>
-        public FireflyIIINet.Client.ApiResponse<PiggyBankArray> ListPiggyBankByAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<PiggyBankArray> ListPiggyBankByAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListPiggyBankByAccount");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListPiggyBankByAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListPiggyBankByAccount(id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<PiggyBankArray>("/v1/accounts/{id}/piggy-banks", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListPiggyBankByAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<PiggyBankArray>("/v1/accounts/{id}/piggy-banks", localVarRequestOptions, Configuration);
+            ValidateException("ListPiggyBankByAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all piggy banks related to the account. This endpoint returns a list of all the piggy banks connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PiggyBankArray</returns>
-        public async System.Threading.Tasks.Task<PiggyBankArray> ListPiggyBankByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<PiggyBankArray> ListPiggyBankByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<PiggyBankArray> localVarResponse = await ListPiggyBankByAccountWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<PiggyBankArray> localVarResponse = await ListPiggyBankByAccountWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all piggy banks related to the account. This endpoint returns a list of all the piggy banks connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PiggyBankArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<PiggyBankArray>> ListPiggyBankByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<PiggyBankArray>> ListPiggyBankByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListPiggyBankByAccount(id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<PiggyBankArray>("/v1/accounts/{id}/piggy-banks", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListPiggyBankByAccount", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionByAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionByAccount(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListPiggyBankByAccount");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListTransactionByAccount");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1632,67 +1296,43 @@ namespace FireflyIIINet.Api
                 "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.ListTransactionByAccount" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListPiggyBankByAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<PiggyBankArray>("/v1/accounts/{id}/piggy-banks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListPiggyBankByAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1704,14 +1344,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransactionByAccount(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionByAccountWithHttpInfo(id, xTraceId, page, limit, start, end, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionByAccountWithHttpInfo(id, xTraceId, page, limit, start, end, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1721,101 +1361,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionByAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionByAccountWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListTransactionByAccount");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListTransactionByAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByAccount(id, xTraceId, page, limit, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/accounts/{id}/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/accounts/{id}/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionByAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1826,16 +1385,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionByAccountAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionByAccountWithHttpInfoAsync(id, xTraceId, page, limit, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionByAccountWithHttpInfoAsync(id, xTraceId, page, limit, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1846,16 +1405,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionByAccountWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByAccount(id, xTraceId, page, limit, start, end, type, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/accounts/{id}/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionByAccount", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionByAccountV2.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionByAccountV2(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListTransactionByAccount");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListTransactionByAccountV2");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1866,83 +1435,43 @@ namespace FireflyIIINet.Api
                 "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.ListTransactionByAccountV2" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (start != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
             }
             if (end != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             }
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListTransactionByAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/accounts/{id}/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1954,14 +1483,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransactionByAccountV2(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionByAccountV2WithHttpInfo(id, xTraceId, page, limit, start, end, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionByAccountV2WithHttpInfo(id, xTraceId, page, limit, start, end, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1971,101 +1500,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionByAccountV2WithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionByAccountV2WithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListTransactionByAccountV2");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListTransactionByAccountV2";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByAccountV2(id, xTraceId, page, limit, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v2/accounts/{id}/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByAccountV2", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v2/accounts/{id}/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionByAccountV2", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -2076,16 +1524,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionByAccountV2Async(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionByAccountV2Async(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionByAccountV2WithHttpInfoAsync(id, xTraceId, page, limit, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionByAccountV2WithHttpInfoAsync(id, xTraceId, page, limit, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions related to the account. This endpoint returns a list of all the transactions connected to the account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -2096,18 +1544,30 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionByAccountV2WithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionByAccountV2WithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int? limit = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByAccountV2(id, xTraceId, page, limit, start, end, type, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v2/accounts/{id}/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionByAccountV2", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for StoreAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsStoreAccount(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'accountStore' is set
+            if (accountStore == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->ListTransactionByAccountV2");
+                throw new ApiException(400, "Missing required parameter 'accountStore' when calling AccountsApi->StoreAccount");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
             string[] _contentTypes = new string[] {
+                "application/json",
+                "application/x-www-form-urlencoded"
             };
 
             // to determine the Accept header
@@ -2116,211 +1576,104 @@ namespace FireflyIIINet.Api
                 "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.StoreAccount" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AccountsApi.ListTransactionByAccountV2";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = accountStore;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v2/accounts/{id}/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByAccountV2", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Create new account. Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>AccountSingle</returns>
         public AccountSingle StoreAccount(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AccountSingle> localVarResponse = StoreAccountWithHttpInfo(accountStore, xTraceId);
+            ApiResponse<AccountSingle> localVarResponse = StoreAccountWithHttpInfo(accountStore, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create new account. Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<AccountSingle> StoreAccountWithHttpInfo(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<AccountSingle> StoreAccountWithHttpInfo(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'accountStore' is set
-            if (accountStore == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'accountStore' when calling AccountsApi->StoreAccount");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json",
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = accountStore;
-
-            localVarRequestOptions.Operation = "AccountsApi.StoreAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreAccount(accountStore, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<AccountSingle>("/v1/accounts", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Post<AccountSingle>("/v1/accounts", localVarRequestOptions, Configuration);
+            ValidateException("StoreAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Create new account. Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountSingle</returns>
-        public async System.Threading.Tasks.Task<AccountSingle> StoreAccountAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AccountSingle> StoreAccountAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AccountSingle> localVarResponse = await StoreAccountWithHttpInfoAsync(accountStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AccountSingle> localVarResponse = await StoreAccountWithHttpInfoAsync(accountStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create new account. Creates a new account. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountStore">JSON array with the necessary account information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AccountSingle>> StoreAccountWithHttpInfoAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AccountSingle>> StoreAccountWithHttpInfoAsync(AccountStore accountStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'accountStore' is set
-            if (accountStore == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreAccount(accountStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<AccountSingle>("/v1/accounts", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreAccount", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateAccount.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateAccount(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'accountStore' when calling AccountsApi->StoreAccount");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AccountsApi->UpdateAccount");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'accountUpdate' is set
+            if (accountUpdate == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'accountUpdate' when calling AccountsApi->UpdateAccount");
+            }
 
             string[] _contentTypes = new string[] {
-                "application/json", 
+                "application/json",
                 "application/x-www-form-urlencoded"
             };
 
@@ -2330,63 +1683,24 @@ namespace FireflyIIINet.Api
                 "application/vnd.api+json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AccountsApi.UpdateAccount" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = accountStore;
-
-            localVarRequestOptions.Operation = "AccountsApi.StoreAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = accountUpdate;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<AccountSingle>("/v1/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update existing account. Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2394,206 +1708,63 @@ namespace FireflyIIINet.Api
         /// <returns>AccountSingle</returns>
         public AccountSingle UpdateAccount(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AccountSingle> localVarResponse = UpdateAccountWithHttpInfo(id, accountUpdate, xTraceId);
+            ApiResponse<AccountSingle> localVarResponse = UpdateAccountWithHttpInfo(id, accountUpdate, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing account. Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<AccountSingle> UpdateAccountWithHttpInfo(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<AccountSingle> UpdateAccountWithHttpInfo(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->UpdateAccount");
-            }
-
-            // verify the required parameter 'accountUpdate' is set
-            if (accountUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'accountUpdate' when calling AccountsApi->UpdateAccount");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json",
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = accountUpdate;
-
-            localVarRequestOptions.Operation = "AccountsApi.UpdateAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateAccount(id, accountUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Put<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateAccount", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Update existing account. Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountSingle</returns>
-        public async System.Threading.Tasks.Task<AccountSingle> UpdateAccountAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AccountSingle> UpdateAccountAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AccountSingle> localVarResponse = await UpdateAccountWithHttpInfoAsync(id, accountUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AccountSingle> localVarResponse = await UpdateAccountWithHttpInfoAsync(id, accountUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing account. Used to update a single account. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the account.</param>
         /// <param name="accountUpdate">JSON array or formdata with updated account information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AccountSingle>> UpdateAccountWithHttpInfoAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AccountSingle>> UpdateAccountWithHttpInfoAsync(string id, AccountUpdate accountUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling AccountsApi->UpdateAccount");
-            }
-
-            // verify the required parameter 'accountUpdate' is set
-            if (accountUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'accountUpdate' when calling AccountsApi->UpdateAccount");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/vnd.api+json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = accountUpdate;
-
-            localVarRequestOptions.Operation = "AccountsApi.UpdateAccount";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateAccount(id, accountUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateAccount", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.PutAsync<AccountSingle>("/v1/accounts/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateAccount", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

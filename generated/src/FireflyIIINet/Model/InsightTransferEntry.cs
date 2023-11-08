@@ -47,16 +47,16 @@ namespace FireflyIIINet.Model
         /// <param name="currencyCode">The currency code of the expenses listed for this account..</param>
         public InsightTransferEntry(string id = default(string), string name = default(string), string difference = default(string), double differenceFloat = default(double), string varIn = default(string), double inFloat = default(double), string varOut = default(string), double outFloat = default(double), string currencyId = default(string), string currencyCode = default(string))
         {
-            this.Id = id;
-            this.Name = name;
-            this.Difference = difference;
-            this.DifferenceFloat = differenceFloat;
-            this.VarIn = varIn;
-            this.InFloat = inFloat;
-            this.VarOut = varOut;
-            this.OutFloat = outFloat;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
+            Id = id;
+            Name = name;
+            Difference = difference;
+            DifferenceFloat = differenceFloat;
+            VarIn = varIn;
+            InFloat = inFloat;
+            VarOut = varOut;
+            OutFloat = outFloat;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>This ID is a reference to the original object.</value>
         /// <example>123</example>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>This is the name of the object.</value>
         /// <example>Land lord</example>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The total amount transferred between start date and end date, a number defined as a string, for this asset account.</value>
         /// <example>-123.45</example>
-        [DataMember(Name = "difference", EmitDefaultValue = false)]
+        [DataMember(Name = "difference", EmitDefaultValue = true)]
         public string Difference { get; set; }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The total amount transferred between start date and end date, a number as a float, for this asset account. May have rounding errors.</value>
         /// <example>-123.45</example>
-        [DataMember(Name = "difference_float", EmitDefaultValue = false)]
+        [DataMember(Name = "difference_float", EmitDefaultValue = true)]
         public double DifferenceFloat { get; set; }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The total amount transferred TO this account between start date and end date, a number defined as a string, for this asset account.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "in", EmitDefaultValue = false)]
+        [DataMember(Name = "in", EmitDefaultValue = true)]
         public string VarIn { get; set; }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The total amount transferred FROM this account between start date and end date, a number as a float, for this asset account. May have rounding errors.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "in_float", EmitDefaultValue = false)]
+        [DataMember(Name = "in_float", EmitDefaultValue = true)]
         public double InFloat { get; set; }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The total amount transferred FROM this account between start date and end date, a number defined as a string, for this asset account.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "out", EmitDefaultValue = false)]
+        [DataMember(Name = "out", EmitDefaultValue = true)]
         public string VarOut { get; set; }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The total amount transferred TO this account between start date and end date, a number as a float, for this asset account. May have rounding errors.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "out_float", EmitDefaultValue = false)]
+        [DataMember(Name = "out_float", EmitDefaultValue = true)]
         public double OutFloat { get; set; }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency ID of the expenses listed for this account.</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency code of the expenses listed for this account.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as InsightTransferEntry);
+            return Equals(input as InsightTransferEntry);
         }
 
         /// <summary>
@@ -193,51 +193,44 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    Id == input.Id ||
+					Id.Equals(input.Id)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Difference == input.Difference ||
-                    (this.Difference != null &&
-                    this.Difference.Equals(input.Difference))
+                    Difference == input.Difference ||
+					Difference.Equals(input.Difference)
                 ) && 
                 (
-                    this.DifferenceFloat == input.DifferenceFloat ||
-                    this.DifferenceFloat.Equals(input.DifferenceFloat)
+                    DifferenceFloat == input.DifferenceFloat ||
+                    DifferenceFloat.Equals(input.DifferenceFloat)
                 ) && 
                 (
-                    this.VarIn == input.VarIn ||
-                    (this.VarIn != null &&
-                    this.VarIn.Equals(input.VarIn))
+                    VarIn == input.VarIn ||
+					VarIn.Equals(input.VarIn)
                 ) && 
                 (
-                    this.InFloat == input.InFloat ||
-                    this.InFloat.Equals(input.InFloat)
+                    InFloat == input.InFloat ||
+                    InFloat.Equals(input.InFloat)
                 ) && 
                 (
-                    this.VarOut == input.VarOut ||
-                    (this.VarOut != null &&
-                    this.VarOut.Equals(input.VarOut))
+                    VarOut == input.VarOut ||
+					VarOut.Equals(input.VarOut)
                 ) && 
                 (
-                    this.OutFloat == input.OutFloat ||
-                    this.OutFloat.Equals(input.OutFloat)
+                    OutFloat == input.OutFloat ||
+                    OutFloat.Equals(input.OutFloat)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 );
         }
 
@@ -250,37 +243,16 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Difference != null)
-                {
-                    hashCode = (hashCode * 59) + this.Difference.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.DifferenceFloat.GetHashCode();
-                if (this.VarIn != null)
-                {
-                    hashCode = (hashCode * 59) + this.VarIn.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.InFloat.GetHashCode();
-                if (this.VarOut != null)
-                {
-                    hashCode = (hashCode * 59) + this.VarOut.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.OutFloat.GetHashCode();
-                if (this.CurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
-                }
-                if (this.CurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Id.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + Difference.GetHashCode();
+                hashCode = (hashCode * 59) + DifferenceFloat.GetHashCode();
+				hashCode = (hashCode * 59) + VarIn.GetHashCode();
+                hashCode = (hashCode * 59) + InFloat.GetHashCode();
+				hashCode = (hashCode * 59) + VarOut.GetHashCode();
+                hashCode = (hashCode * 59) + OutFloat.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -290,7 +262,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

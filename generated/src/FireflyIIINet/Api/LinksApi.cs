@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -47,7 +50,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -59,7 +62,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete link. Transactions remain. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -72,7 +75,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete link. Transactions remain. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -84,7 +87,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single link type by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -97,7 +100,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single link type by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -109,7 +112,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single link by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -122,7 +125,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single link by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -134,7 +137,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the link types the system has. These include the default ones as well as any new ones. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -147,7 +150,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the link types the system has. These include the default ones as well as any new ones. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -159,7 +162,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions under this link type, both the inward and outward transactions. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -176,7 +179,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions under this link type, both the inward and outward transactions. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -192,7 +195,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the transaction links. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -205,7 +208,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the transaction links. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -217,7 +220,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -230,7 +233,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -242,7 +245,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Store a new link between two transactions. For this end point you need the journal_id from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -255,7 +258,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Store a new link between two transactions. For this end point you need the journal_id from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -267,7 +270,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -281,7 +284,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -294,7 +297,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single existing link. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -308,7 +311,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single existing link. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -330,13 +333,13 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Permanently delete link type.
@@ -344,26 +347,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Permanently delete link between transactions.
         /// </summary>
         /// <remarks>
         /// Will permanently delete link. Transactions remain. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Permanently delete link between transactions.
@@ -371,26 +374,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Will permanently delete link. Transactions remain. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get single a link type.
         /// </summary>
         /// <remarks>
         /// Returns a single link type by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LinkTypeSingle</returns>
-        System.Threading.Tasks.Task<LinkTypeSingle> GetLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<LinkTypeSingle> GetLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get single a link type.
@@ -398,26 +401,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single link type by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LinkTypeSingle>> GetLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<LinkTypeSingle>> GetLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get a single link.
         /// </summary>
         /// <remarks>
         /// Returns a single link by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkSingle</returns>
-        System.Threading.Tasks.Task<TransactionLinkSingle> GetTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionLinkSingle> GetTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get a single link.
@@ -425,26 +428,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns a single link by its ID. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionLinkSingle>> GetTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionLinkSingle>> GetTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all types of links.
         /// </summary>
         /// <remarks>
         /// List all the link types the system has. These include the default ones as well as any new ones. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LinkTypeArray</returns>
-        System.Threading.Tasks.Task<LinkTypeArray> ListLinkTypeAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<LinkTypeArray> ListLinkTypeAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all types of links.
@@ -452,20 +455,20 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the link types the system has. These include the default ones as well as any new ones. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LinkTypeArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LinkTypeArray>> ListLinkTypeWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<LinkTypeArray>> ListLinkTypeWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all transactions under this link type.
         /// </summary>
         /// <remarks>
         /// List all transactions under this link type, both the inward and outward transactions. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -475,7 +478,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionByLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionByLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all transactions under this link type.
@@ -483,7 +486,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all transactions under this link type, both the inward and outward transactions. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -493,20 +496,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionByLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionByLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all transaction links.
         /// </summary>
         /// <remarks>
         /// List all the transaction links. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkArray</returns>
-        System.Threading.Tasks.Task<TransactionLinkArray> ListTransactionLinkAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionLinkArray> ListTransactionLinkAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all transaction links.
@@ -514,26 +517,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the transaction links. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionLinkArray>> ListTransactionLinkWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionLinkArray>> ListTransactionLinkWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Create a new link type
         /// </summary>
         /// <remarks>
         /// Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LinkTypeSingle</returns>
-        System.Threading.Tasks.Task<LinkTypeSingle> StoreLinkTypeAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<LinkTypeSingle> StoreLinkTypeAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Create a new link type
@@ -541,26 +544,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LinkTypeSingle>> StoreLinkTypeWithHttpInfoAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<LinkTypeSingle>> StoreLinkTypeWithHttpInfoAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Create a new link between transactions
         /// </summary>
         /// <remarks>
         /// Store a new link between two transactions. For this end point you need the journal_id from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkSingle</returns>
-        System.Threading.Tasks.Task<TransactionLinkSingle> StoreTransactionLinkAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionLinkSingle> StoreTransactionLinkAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Create a new link between transactions
@@ -568,27 +571,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Store a new link between two transactions. For this end point you need the journal_id from a transaction.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionLinkSingle>> StoreTransactionLinkWithHttpInfoAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionLinkSingle>> StoreTransactionLinkWithHttpInfoAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update existing link type.
         /// </summary>
         /// <remarks>
         /// Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LinkTypeSingle</returns>
-        System.Threading.Tasks.Task<LinkTypeSingle> UpdateLinkTypeAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<LinkTypeSingle> UpdateLinkTypeAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update existing link type.
@@ -596,28 +599,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<LinkTypeSingle>> UpdateLinkTypeWithHttpInfoAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<LinkTypeSingle>> UpdateLinkTypeWithHttpInfoAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update an existing link between transactions.
         /// </summary>
         /// <remarks>
         /// Used to update a single existing link. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkSingle</returns>
-        System.Threading.Tasks.Task<TransactionLinkSingle> UpdateTransactionLinkAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionLinkSingle> UpdateTransactionLinkAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update an existing link between transactions.
@@ -625,14 +628,14 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Used to update a single existing link. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionLinkSingle>> UpdateTransactionLinkWithHttpInfoAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionLinkSingle>> UpdateTransactionLinkWithHttpInfoAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -649,7 +652,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class LinksApi : ILinksApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LinksApi"/> class.
@@ -663,15 +666,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="LinksApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public LinksApi(string basePath)
+        public LinksApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -680,17 +676,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public LinksApi(FireflyIIINet.Client.Configuration configuration)
+        public LinksApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -700,27 +696,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public LinksApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public LinksApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -728,19 +724,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -754,9 +750,103 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteLinkType.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteLinkType(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling LinksApi->DeleteLinkType");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.DeleteLinkType" ,operationIndex);
+
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Permanently delete link type. Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -769,91 +859,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Permanently delete link type. Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteLinkTypeWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteLinkTypeWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->DeleteLinkType");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "LinksApi.DeleteLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteLinkType(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/link-types/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/link-types/{id}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteLinkType", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Permanently delete link type. Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteLinkTypeWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -861,22 +891,32 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Permanently delete link type. Will permanently delete a link type. The links between transactions will be removed. The transactions themselves remain. You cannot delete some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteLinkType(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/link-types/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteLinkType", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteTransactionLink.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteTransactionLink(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->DeleteLinkType");
+                throw new ApiException(400, "Missing required parameter 'id' when calling LinksApi->DeleteTransactionLink");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -886,63 +926,23 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.DeleteTransactionLink" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "LinksApi.DeleteLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/link-types/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Permanently delete link between transactions. Will permanently delete link. Transactions remain. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -955,91 +955,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Permanently delete link between transactions. Will permanently delete link. Transactions remain. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteTransactionLinkWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteTransactionLinkWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->DeleteTransactionLink");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "LinksApi.DeleteTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteTransactionLink(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/transaction-links/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/transaction-links/{id}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteTransactionLink", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Permanently delete link between transactions. Will permanently delete link. Transactions remain. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteTransactionLinkWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -1047,211 +987,131 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Permanently delete link between transactions. Will permanently delete link. Transactions remain. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteTransactionLink(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/transaction-links/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteTransactionLink", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetLinkType.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetLinkType(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->DeleteTransactionLink");
+                throw new ApiException(400, "Missing required parameter 'id' when calling LinksApi->GetLinkType");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.GetLinkType" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "LinksApi.DeleteTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/transaction-links/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get single a link type. Returns a single link type by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LinkTypeSingle</returns>
         public LinkTypeSingle GetLinkType(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<LinkTypeSingle> localVarResponse = GetLinkTypeWithHttpInfo(id, xTraceId);
+            ApiResponse<LinkTypeSingle> localVarResponse = GetLinkTypeWithHttpInfo(id, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get single a link type. Returns a single link type by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LinkTypeSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<LinkTypeSingle> GetLinkTypeWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<LinkTypeSingle> GetLinkTypeWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->GetLinkType");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "LinksApi.GetLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetLinkType(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, Configuration);
+            ValidateException("GetLinkType", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get single a link type. Returns a single link type by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LinkTypeSingle</returns>
-        public async System.Threading.Tasks.Task<LinkTypeSingle> GetLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<LinkTypeSingle> GetLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<LinkTypeSingle> localVarResponse = await GetLinkTypeWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<LinkTypeSingle> localVarResponse = await GetLinkTypeWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get single a link type. Returns a single link type by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<LinkTypeSingle>> GetLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<LinkTypeSingle>> GetLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetLinkType(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetLinkType", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetTransactionLink.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetTransactionLink(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->GetLinkType");
+                throw new ApiException(400, "Missing required parameter 'id' when calling LinksApi->GetTransactionLink");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1262,187 +1122,90 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.GetTransactionLink" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "LinksApi.GetLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get a single link. Returns a single link by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TransactionLinkSingle</returns>
         public TransactionLinkSingle GetTransactionLink(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> localVarResponse = GetTransactionLinkWithHttpInfo(id, xTraceId);
+            ApiResponse<TransactionLinkSingle> localVarResponse = GetTransactionLinkWithHttpInfo(id, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single link. Returns a single link by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionLinkSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> GetTransactionLinkWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<TransactionLinkSingle> GetTransactionLinkWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->GetTransactionLink");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "LinksApi.GetTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionLink(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, Configuration);
+            ValidateException("GetTransactionLink", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get a single link. Returns a single link by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkSingle</returns>
-        public async System.Threading.Tasks.Task<TransactionLinkSingle> GetTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionLinkSingle> GetTransactionLinkAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> localVarResponse = await GetTransactionLinkWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionLinkSingle> localVarResponse = await GetTransactionLinkWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single link. Returns a single link by its ID. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionLinkSingle>> GetTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionLinkSingle>> GetTransactionLinkWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->GetTransactionLink");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionLink(id, xTraceId, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetTransactionLink", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListLinkType.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListLinkType(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1452,247 +1215,140 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.ListLinkType" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            if (page != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "LinksApi.GetTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all types of links. List all the link types the system has. These include the default ones as well as any new ones. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LinkTypeArray</returns>
         public LinkTypeArray ListLinkType(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<LinkTypeArray> localVarResponse = ListLinkTypeWithHttpInfo(xTraceId, page);
+            ApiResponse<LinkTypeArray> localVarResponse = ListLinkTypeWithHttpInfo(xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all types of links. List all the link types the system has. These include the default ones as well as any new ones. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LinkTypeArray</returns>
-        public FireflyIIINet.Client.ApiResponse<LinkTypeArray> ListLinkTypeWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<LinkTypeArray> ListLinkTypeWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "LinksApi.ListLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListLinkType(xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<LinkTypeArray>("/v1/link-types", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<LinkTypeArray>("/v1/link-types", localVarRequestOptions, Configuration);
+            ValidateException("ListLinkType", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all types of links. List all the link types the system has. These include the default ones as well as any new ones. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LinkTypeArray</returns>
-        public async System.Threading.Tasks.Task<LinkTypeArray> ListLinkTypeAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<LinkTypeArray> ListLinkTypeAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<LinkTypeArray> localVarResponse = await ListLinkTypeWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<LinkTypeArray> localVarResponse = await ListLinkTypeWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all types of links. List all the link types the system has. These include the default ones as well as any new ones. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LinkTypeArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<LinkTypeArray>> ListLinkTypeWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<LinkTypeArray>> ListLinkTypeWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListLinkType(xTraceId, page, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<LinkTypeArray>("/v1/link-types", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListLinkType", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionByLinkType.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionByLinkType(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling LinksApi->ListTransactionByLinkType");
+            }
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.ListTransactionByLinkType" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "LinksApi.ListLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<LinkTypeArray>("/v1/link-types", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all transactions under this link type. List all transactions under this link type, both the inward and outward transactions. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1703,14 +1359,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransactionByLinkType(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionByLinkTypeWithHttpInfo(id, xTraceId, page, start, end, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionByLinkTypeWithHttpInfo(id, xTraceId, page, start, end, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions under this link type. List all transactions under this link type, both the inward and outward transactions. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1719,96 +1375,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionByLinkTypeWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionByLinkTypeWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->ListTransactionByLinkType");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "LinksApi.ListTransactionByLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByLinkType(id, xTraceId, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/link-types/{id}/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/link-types/{id}/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionByLinkType", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all transactions under this link type. List all transactions under this link type, both the inward and outward transactions. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1818,16 +1398,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionByLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionByLinkTypeAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionByLinkTypeWithHttpInfoAsync(id, xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionByLinkTypeWithHttpInfoAsync(id, xTraceId, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions under this link type. List all transactions under this link type, both the inward and outward transactions. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
@@ -1837,214 +1417,126 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionByLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionByLinkTypeWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->ListTransactionByLinkType");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByLinkType(id, xTraceId, page, start, end, type, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/link-types/{id}/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionByLinkType", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionLink.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionLink(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.ListTransactionLink" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "LinksApi.ListTransactionByLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/link-types/{id}/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all transaction links. List all the transaction links. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TransactionLinkArray</returns>
         public TransactionLinkArray ListTransactionLink(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkArray> localVarResponse = ListTransactionLinkWithHttpInfo(xTraceId, page);
+            ApiResponse<TransactionLinkArray> localVarResponse = ListTransactionLinkWithHttpInfo(xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transaction links. List all the transaction links. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionLinkArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionLinkArray> ListTransactionLinkWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<TransactionLinkArray> ListTransactionLinkWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "LinksApi.ListTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionLink(xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionLinkArray>("/v1/transaction-links", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionLinkArray>("/v1/transaction-links", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionLink", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all transaction links. List all the transaction links. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkArray</returns>
-        public async System.Threading.Tasks.Task<TransactionLinkArray> ListTransactionLinkAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionLinkArray> ListTransactionLinkAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkArray> localVarResponse = await ListTransactionLinkWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionLinkArray> localVarResponse = await ListTransactionLinkWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transaction links. List all the transaction links. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionLinkArray>> ListTransactionLinkWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionLinkArray>> ListTransactionLinkWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionLink(xTraceId, page, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionLinkArray>("/v1/transaction-links", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionLink", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for StoreLinkType.
+        /// </summary>
+		private RequestOptions GetRequestOptionsStoreLinkType(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'linkType' is set
+            if (linkType == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'linkType' when calling LinksApi->StoreLinkType");
+            }
 
             string[] _contentTypes = new string[] {
+                "application/json",
+                "application/x-www-form-urlencoded"
             };
 
             // to determine the Accept header
@@ -2053,93 +1545,95 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.StoreLinkType" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "LinksApi.ListTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = linkType;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionLinkArray>("/v1/transaction-links", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Create a new link type Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LinkTypeSingle</returns>
         public LinkTypeSingle StoreLinkType(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<LinkTypeSingle> localVarResponse = StoreLinkTypeWithHttpInfo(linkType, xTraceId);
+            ApiResponse<LinkTypeSingle> localVarResponse = StoreLinkTypeWithHttpInfo(linkType, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create a new link type Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LinkTypeSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<LinkTypeSingle> StoreLinkTypeWithHttpInfo(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<LinkTypeSingle> StoreLinkTypeWithHttpInfo(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'linkType' is set
-            if (linkType == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'linkType' when calling LinksApi->StoreLinkType");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreLinkType(linkType, xTraceId, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = Client.Post<LinkTypeSingle>("/v1/link-types", localVarRequestOptions, Configuration);
+            ValidateException("StoreLinkType", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a new link type Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of LinkTypeSingle</returns>
+        public async Task<LinkTypeSingle> StoreLinkTypeAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<LinkTypeSingle> localVarResponse = await StoreLinkTypeWithHttpInfoAsync(linkType, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a new link type Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
+        public async Task<ApiResponse<LinkTypeSingle>> StoreLinkTypeWithHttpInfoAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreLinkType(linkType, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<LinkTypeSingle>("/v1/link-types", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreLinkType", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for StoreTransactionLink.
+        /// </summary>
+		private RequestOptions GetRequestOptionsStoreTransactionLink(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'transactionLinkStore' is set
+            if (transactionLinkStore == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'transactionLinkStore' when calling LinksApi->StoreTransactionLink");
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -2152,188 +1646,101 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.StoreTransactionLink" ,operationIndex);
 
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = linkType;
-
-            localVarRequestOptions.Operation = "LinksApi.StoreLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = transactionLinkStore;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<LinkTypeSingle>("/v1/link-types", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Create a new link type Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of LinkTypeSingle</returns>
-        public async System.Threading.Tasks.Task<LinkTypeSingle> StoreLinkTypeAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            FireflyIIINet.Client.ApiResponse<LinkTypeSingle> localVarResponse = await StoreLinkTypeWithHttpInfoAsync(linkType, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Create a new link type Creates a new link type. The data required can be submitted as a JSON body or as a list of parameters (in key&#x3D;value pairs, like a webform).
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="linkType">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<LinkTypeSingle>> StoreLinkTypeWithHttpInfoAsync(LinkType linkType, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'linkType' is set
-            if (linkType == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'linkType' when calling LinksApi->StoreLinkType");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = linkType;
-
-            localVarRequestOptions.Operation = "LinksApi.StoreLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<LinkTypeSingle>("/v1/link-types", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Create a new link between transactions Store a new link between two transactions. For this end point you need the journal_id from a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TransactionLinkSingle</returns>
         public TransactionLinkSingle StoreTransactionLink(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> localVarResponse = StoreTransactionLinkWithHttpInfo(transactionLinkStore, xTraceId);
+            ApiResponse<TransactionLinkSingle> localVarResponse = StoreTransactionLinkWithHttpInfo(transactionLinkStore, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create a new link between transactions Store a new link between two transactions. For this end point you need the journal_id from a transaction.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionLinkSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> StoreTransactionLinkWithHttpInfo(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<TransactionLinkSingle> StoreTransactionLinkWithHttpInfo(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'transactionLinkStore' is set
-            if (transactionLinkStore == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreTransactionLink(transactionLinkStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Post<TransactionLinkSingle>("/v1/transaction-links", localVarRequestOptions, Configuration);
+            ValidateException("StoreTransactionLink", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a new link between transactions Store a new link between two transactions. For this end point you need the journal_id from a transaction.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TransactionLinkSingle</returns>
+        public async Task<TransactionLinkSingle> StoreTransactionLinkAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<TransactionLinkSingle> localVarResponse = await StoreTransactionLinkWithHttpInfoAsync(transactionLinkStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a new link between transactions Store a new link between two transactions. For this end point you need the journal_id from a transaction.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TransactionLinkSingle)</returns>
+        public async Task<ApiResponse<TransactionLinkSingle>> StoreTransactionLinkWithHttpInfoAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreTransactionLink(transactionLinkStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<TransactionLinkSingle>("/v1/transaction-links", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreTransactionLink", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateLinkType.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateLinkType(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionLinkStore' when calling LinksApi->StoreTransactionLink");
+                throw new ApiException(400, "Missing required parameter 'id' when calling LinksApi->UpdateLinkType");
             }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'linkTypeUpdate' is set
+            if (linkTypeUpdate == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'linkTypeUpdate' when calling LinksApi->UpdateLinkType");
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -2346,161 +1753,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.UpdateLinkType" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = transactionLinkStore;
-
-            localVarRequestOptions.Operation = "LinksApi.StoreTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = linkTypeUpdate;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<TransactionLinkSingle>("/v1/transaction-links", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Create a new link between transactions Store a new link between two transactions. For this end point you need the journal_id from a transaction.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TransactionLinkSingle</returns>
-        public async System.Threading.Tasks.Task<TransactionLinkSingle> StoreTransactionLinkAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> localVarResponse = await StoreTransactionLinkWithHttpInfoAsync(transactionLinkStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Create a new link between transactions Store a new link between two transactions. For this end point you need the journal_id from a transaction.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="transactionLinkStore">JSON array with the necessary link type information or key&#x3D;value pairs. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (TransactionLinkSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionLinkSingle>> StoreTransactionLinkWithHttpInfoAsync(TransactionLinkStore transactionLinkStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'transactionLinkStore' is set
-            if (transactionLinkStore == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionLinkStore' when calling LinksApi->StoreTransactionLink");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = transactionLinkStore;
-
-            localVarRequestOptions.Operation = "LinksApi.StoreTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<TransactionLinkSingle>("/v1/transaction-links", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update existing link type. Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2508,34 +1778,81 @@ namespace FireflyIIINet.Api
         /// <returns>LinkTypeSingle</returns>
         public LinkTypeSingle UpdateLinkType(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<LinkTypeSingle> localVarResponse = UpdateLinkTypeWithHttpInfo(id, linkTypeUpdate, xTraceId);
+            ApiResponse<LinkTypeSingle> localVarResponse = UpdateLinkTypeWithHttpInfo(id, linkTypeUpdate, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing link type. Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the link type.</param>
         /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LinkTypeSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<LinkTypeSingle> UpdateLinkTypeWithHttpInfo(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<LinkTypeSingle> UpdateLinkTypeWithHttpInfo(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateLinkType(id, linkTypeUpdate, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Put<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateLinkType", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update existing link type. Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the link type.</param>
+        /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of LinkTypeSingle</returns>
+        public async Task<LinkTypeSingle> UpdateLinkTypeAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<LinkTypeSingle> localVarResponse = await UpdateLinkTypeWithHttpInfoAsync(id, linkTypeUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update existing link type. Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the link type.</param>
+        /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
+        public async Task<ApiResponse<LinkTypeSingle>> UpdateLinkTypeWithHttpInfoAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateLinkType(id, linkTypeUpdate, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PutAsync<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateLinkType", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateTransactionLink.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateTransactionLink(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->UpdateLinkType");
+                throw new ApiException(400, "Missing required parameter 'id' when calling LinksApi->UpdateTransactionLink");
             }
 
-            // verify the required parameter 'linkTypeUpdate' is set
-            if (linkTypeUpdate == null)
+            // verify the required parameter 'transactionLinkUpdate' is set
+            if (transactionLinkUpdate == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'linkTypeUpdate' when calling LinksApi->UpdateLinkType");
+                throw new ApiException(400, "Missing required parameter 'transactionLinkUpdate' when calling LinksApi->UpdateTransactionLink");
             }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -2548,171 +1865,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"LinksApi.UpdateTransactionLink" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = linkTypeUpdate;
-
-            localVarRequestOptions.Operation = "LinksApi.UpdateLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = transactionLinkUpdate;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Put<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Update existing link type. Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the link type.</param>
-        /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of LinkTypeSingle</returns>
-        public async System.Threading.Tasks.Task<LinkTypeSingle> UpdateLinkTypeAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            FireflyIIINet.Client.ApiResponse<LinkTypeSingle> localVarResponse = await UpdateLinkTypeWithHttpInfoAsync(id, linkTypeUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Update existing link type. Used to update a single link type. All fields that are not submitted will be cleared (set to NULL). The model will tell you which fields are mandatory. You cannot update some of the system provided link types, indicated by the editable&#x3D;false flag when you list it. 
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the link type.</param>
-        /// <param name="linkTypeUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (LinkTypeSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<LinkTypeSingle>> UpdateLinkTypeWithHttpInfoAsync(string id, LinkTypeUpdate linkTypeUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->UpdateLinkType");
-            }
-
-            // verify the required parameter 'linkTypeUpdate' is set
-            if (linkTypeUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'linkTypeUpdate' when calling LinksApi->UpdateLinkType");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = linkTypeUpdate;
-
-            localVarRequestOptions.Operation = "LinksApi.UpdateLinkType";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<LinkTypeSingle>("/v1/link-types/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateLinkType", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update an existing link between transactions. Used to update a single existing link. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2720,206 +1890,63 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionLinkSingle</returns>
         public TransactionLinkSingle UpdateTransactionLink(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> localVarResponse = UpdateTransactionLinkWithHttpInfo(id, transactionLinkUpdate, xTraceId);
+            ApiResponse<TransactionLinkSingle> localVarResponse = UpdateTransactionLinkWithHttpInfo(id, transactionLinkUpdate, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update an existing link between transactions. Used to update a single existing link. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionLinkSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> UpdateTransactionLinkWithHttpInfo(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<TransactionLinkSingle> UpdateTransactionLinkWithHttpInfo(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->UpdateTransactionLink");
-            }
-
-            // verify the required parameter 'transactionLinkUpdate' is set
-            if (transactionLinkUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionLinkUpdate' when calling LinksApi->UpdateTransactionLink");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json",
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = transactionLinkUpdate;
-
-            localVarRequestOptions.Operation = "LinksApi.UpdateTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateTransactionLink(id, transactionLinkUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Put<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateTransactionLink", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Update an existing link between transactions. Used to update a single existing link. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionLinkSingle</returns>
-        public async System.Threading.Tasks.Task<TransactionLinkSingle> UpdateTransactionLinkAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionLinkSingle> UpdateTransactionLinkAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionLinkSingle> localVarResponse = await UpdateTransactionLinkWithHttpInfoAsync(id, transactionLinkUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionLinkSingle> localVarResponse = await UpdateTransactionLinkWithHttpInfoAsync(id, transactionLinkUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update an existing link between transactions. Used to update a single existing link. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the transaction link.</param>
         /// <param name="transactionLinkUpdate">JSON array or formdata with updated link type information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionLinkSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionLinkSingle>> UpdateTransactionLinkWithHttpInfoAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionLinkSingle>> UpdateTransactionLinkWithHttpInfoAsync(string id, TransactionLinkUpdate transactionLinkUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling LinksApi->UpdateTransactionLink");
-            }
-
-            // verify the required parameter 'transactionLinkUpdate' is set
-            if (transactionLinkUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'transactionLinkUpdate' when calling LinksApi->UpdateTransactionLink");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = transactionLinkUpdate;
-
-            localVarRequestOptions.Operation = "LinksApi.UpdateTransactionLink";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateTransactionLink(id, transactionLinkUpdate, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateTransactionLink", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.PutAsync<TransactionLinkSingle>("/v1/transaction-links/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateTransactionLink", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

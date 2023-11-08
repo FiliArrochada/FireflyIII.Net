@@ -36,7 +36,7 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Trigger
         /// </summary>
-        [DataMember(Name = "trigger", EmitDefaultValue = false)]
+        [DataMember(Name = "trigger", EmitDefaultValue = true)]
         public RuleTriggerType? Trigger { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleUpdate" /> class.
@@ -53,30 +53,30 @@ namespace FireflyIIINet.Model
         /// <param name="actions">actions.</param>
         public RuleUpdate(string title = default(string), string description = default(string), string ruleGroupId = default(string), int order = default(int), RuleTriggerType? trigger = default(RuleTriggerType?), bool active = true, bool strict = default(bool), bool stopProcessing = false, List<RuleTriggerUpdate> triggers = default(List<RuleTriggerUpdate>), List<RuleActionUpdate> actions = default(List<RuleActionUpdate>))
         {
-            this.Title = title;
-            this.Description = description;
-            this.RuleGroupId = ruleGroupId;
-            this.Order = order;
-            this.Trigger = trigger;
-            this.Active = active;
-            this.Strict = strict;
-            this.StopProcessing = stopProcessing;
-            this.Triggers = triggers;
-            this.Actions = actions;
+            Title = title;
+            Description = description;
+            RuleGroupId = ruleGroupId;
+            Order = order;
+            Trigger = trigger;
+            Active = active;
+            Strict = strict;
+            StopProcessing = stopProcessing;
+            Triggers = triggers;
+            Actions = actions;
         }
 
         /// <summary>
         /// Gets or Sets Title
         /// </summary>
         /// <example>First rule title.</example>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name = "title", EmitDefaultValue = true)]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
         /// <example>First rule description</example>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -84,14 +84,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID of the rule group under which the rule must be stored. Either this field or rule_group_title is mandatory.</value>
         /// <example>81</example>
-        [DataMember(Name = "rule_group_id", EmitDefaultValue = false)]
+        [DataMember(Name = "rule_group_id", EmitDefaultValue = true)]
         public string RuleGroupId { get; set; }
 
         /// <summary>
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = false)]
+        [DataMember(Name = "order", EmitDefaultValue = true)]
         public int Order { get; set; }
 
         /// <summary>
@@ -121,13 +121,13 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Triggers
         /// </summary>
-        [DataMember(Name = "triggers", EmitDefaultValue = false)]
+        [DataMember(Name = "triggers", EmitDefaultValue = true)]
         public List<RuleTriggerUpdate> Triggers { get; set; }
 
         /// <summary>
         /// Gets or Sets Actions
         /// </summary>
-        [DataMember(Name = "actions", EmitDefaultValue = false)]
+        [DataMember(Name = "actions", EmitDefaultValue = true)]
         public List<RuleActionUpdate> Actions { get; set; }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RuleUpdate);
+            return Equals(input as RuleUpdate);
         }
 
         /// <summary>
@@ -184,51 +184,48 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+					Description.Equals(input.Description)
                 ) && 
                 (
-                    this.RuleGroupId == input.RuleGroupId ||
-                    (this.RuleGroupId != null &&
-                    this.RuleGroupId.Equals(input.RuleGroupId))
+                    RuleGroupId == input.RuleGroupId ||
+					RuleGroupId.Equals(input.RuleGroupId)
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    this.Order.Equals(input.Order)
+                    Order == input.Order ||
+                    Order.Equals(input.Order)
                 ) && 
                 (
-                    this.Trigger == input.Trigger ||
-                    this.Trigger.Equals(input.Trigger)
+                    Trigger == input.Trigger ||
+                    Trigger.Equals(input.Trigger)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Strict == input.Strict ||
-                    this.Strict.Equals(input.Strict)
+                    Strict == input.Strict ||
+                    Strict.Equals(input.Strict)
                 ) && 
                 (
-                    this.StopProcessing == input.StopProcessing ||
-                    this.StopProcessing.Equals(input.StopProcessing)
+                    StopProcessing == input.StopProcessing ||
+                    StopProcessing.Equals(input.StopProcessing)
                 ) && 
                 (
-                    this.Triggers == input.Triggers ||
-                    this.Triggers != null &&
+                    Triggers == input.Triggers ||
+                    Triggers != null &&
                     input.Triggers != null &&
-                    this.Triggers.SequenceEqual(input.Triggers)
+                    Triggers.SequenceEqual(input.Triggers)
                 ) && 
                 (
-                    this.Actions == input.Actions ||
-                    this.Actions != null &&
+                    Actions == input.Actions ||
+                    Actions != null &&
                     input.Actions != null &&
-                    this.Actions.SequenceEqual(input.Actions)
+                    Actions.SequenceEqual(input.Actions)
                 );
         }
 
@@ -241,31 +238,16 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Title != null)
-                {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
-                }
-                if (this.Description != null)
-                {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
-                if (this.RuleGroupId != null)
-                {
-                    hashCode = (hashCode * 59) + this.RuleGroupId.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Order.GetHashCode();
-                hashCode = (hashCode * 59) + this.Trigger.GetHashCode();
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                hashCode = (hashCode * 59) + this.Strict.GetHashCode();
-                hashCode = (hashCode * 59) + this.StopProcessing.GetHashCode();
-                if (this.Triggers != null)
-                {
-                    hashCode = (hashCode * 59) + this.Triggers.GetHashCode();
-                }
-                if (this.Actions != null)
-                {
-                    hashCode = (hashCode * 59) + this.Actions.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+				hashCode = (hashCode * 59) + Description.GetHashCode();
+				hashCode = (hashCode * 59) + RuleGroupId.GetHashCode();
+                hashCode = (hashCode * 59) + Order.GetHashCode();
+                hashCode = (hashCode * 59) + Trigger.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                hashCode = (hashCode * 59) + Strict.GetHashCode();
+                hashCode = (hashCode * 59) + StopProcessing.GetHashCode();
+				hashCode = (hashCode * 59) + Triggers.GetHashCode();
+				hashCode = (hashCode * 59) + Actions.GetHashCode();
                 return hashCode;
             }
         }
@@ -275,7 +257,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

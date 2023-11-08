@@ -71,17 +71,17 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("title is a required property for WebhookStore and cannot be null");
             }
-            this.Title = title;
-            this.Trigger = trigger;
-            this.Response = response;
-            this.Delivery = delivery;
+            Title = title;
+            Trigger = trigger;
+            Response = response;
+            Delivery = delivery;
             // to ensure "url" is required (not null)
             if (url == null)
             {
                 throw new ArgumentNullException("url is a required property for WebhookStore and cannot be null");
             }
-            this.Url = url;
-            this.Active = active;
+            Url = url;
+            Active = active;
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebhookStore);
+            return Equals(input as WebhookStore);
         }
 
         /// <summary>
@@ -158,30 +158,28 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Trigger == input.Trigger ||
-                    this.Trigger.Equals(input.Trigger)
+                    Trigger == input.Trigger ||
+                    Trigger.Equals(input.Trigger)
                 ) && 
                 (
-                    this.Response == input.Response ||
-                    this.Response.Equals(input.Response)
+                    Response == input.Response ||
+                    Response.Equals(input.Response)
                 ) && 
                 (
-                    this.Delivery == input.Delivery ||
-                    this.Delivery.Equals(input.Delivery)
+                    Delivery == input.Delivery ||
+                    Delivery.Equals(input.Delivery)
                 ) && 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
+                    Url == input.Url ||
+					Url.Equals(input.Url)
                 );
         }
 
@@ -194,18 +192,12 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                if (this.Title != null)
-                {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Trigger.GetHashCode();
-                hashCode = (hashCode * 59) + this.Response.GetHashCode();
-                hashCode = (hashCode * 59) + this.Delivery.GetHashCode();
-                if (this.Url != null)
-                {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+                hashCode = (hashCode * 59) + Trigger.GetHashCode();
+                hashCode = (hashCode * 59) + Response.GetHashCode();
+                hashCode = (hashCode * 59) + Delivery.GetHashCode();
+				hashCode = (hashCode * 59) + Url.GetHashCode();
                 return hashCode;
             }
         }
@@ -215,7 +207,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

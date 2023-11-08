@@ -50,19 +50,19 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("name is a required property for LinkTypeStore and cannot be null");
             }
-            this.Name = name;
+            Name = name;
             // to ensure "inward" is required (not null)
             if (inward == null)
             {
                 throw new ArgumentNullException("inward is a required property for LinkTypeStore and cannot be null");
             }
-            this.Inward = inward;
+            Inward = inward;
             // to ensure "outward" is required (not null)
             if (outward == null)
             {
                 throw new ArgumentNullException("outward is a required property for LinkTypeStore and cannot be null");
             }
-            this.Outward = outward;
+            Outward = outward;
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as LinkTypeStore);
+            return Equals(input as LinkTypeStore);
         }
 
         /// <summary>
@@ -133,19 +133,16 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Inward == input.Inward ||
-                    (this.Inward != null &&
-                    this.Inward.Equals(input.Inward))
+                    Inward == input.Inward ||
+					Inward.Equals(input.Inward)
                 ) && 
                 (
-                    this.Outward == input.Outward ||
-                    (this.Outward != null &&
-                    this.Outward.Equals(input.Outward))
+                    Outward == input.Outward ||
+					Outward.Equals(input.Outward)
                 );
         }
 
@@ -158,18 +155,9 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Inward != null)
-                {
-                    hashCode = (hashCode * 59) + this.Inward.GetHashCode();
-                }
-                if (this.Outward != null)
-                {
-                    hashCode = (hashCode * 59) + this.Outward.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + Inward.GetHashCode();
+				hashCode = (hashCode * 59) + Outward.GetHashCode();
                 return hashCode;
             }
         }
@@ -179,7 +167,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

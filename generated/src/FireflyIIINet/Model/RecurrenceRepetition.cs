@@ -52,22 +52,22 @@ namespace FireflyIIINet.Model
         /// <param name="weekend">How to respond when the recurring transaction falls in the weekend. Possible values: 1. Do nothing, just create it 2. Create no transaction. 3. Skip to the previous Friday. 4. Skip to the next Monday. .</param>
         public RecurrenceRepetition(RecurrenceRepetitionType type = default(RecurrenceRepetitionType), string moment = default(string), int skip = default(int), int weekend = default(int))
         {
-            this.Type = type;
+            Type = type;
             // to ensure "moment" is required (not null)
             if (moment == null)
             {
                 throw new ArgumentNullException("moment is a required property for RecurrenceRepetition and cannot be null");
             }
-            this.Moment = moment;
-            this.Skip = skip;
-            this.Weekend = weekend;
+            Moment = moment;
+            Skip = skip;
+            Weekend = weekend;
         }
 
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
         /// <example>2</example>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = true)]
         public string Id { get; private set; }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>How many occurrences to skip. 0 means skip nothing. 1 means every other.</value>
         /// <example>0</example>
-        [DataMember(Name = "skip", EmitDefaultValue = false)]
+        [DataMember(Name = "skip", EmitDefaultValue = true)]
         public int Skip { get; set; }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>How to respond when the recurring transaction falls in the weekend. Possible values: 1. Do nothing, just create it 2. Create no transaction. 3. Skip to the previous Friday. 4. Skip to the next Monday. </value>
         /// <example>1</example>
-        [DataMember(Name = "weekend", EmitDefaultValue = false)]
+        [DataMember(Name = "weekend", EmitDefaultValue = true)]
         public int Weekend { get; set; }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Auto-generated repetition description.</value>
         /// <example>Every week on Friday</example>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; private set; }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace FireflyIIINet.Model
         /// Array of future dates when the repetition will apply to. Auto generated.
         /// </summary>
         /// <value>Array of future dates when the repetition will apply to. Auto generated.</value>
-        [DataMember(Name = "occurrences", EmitDefaultValue = false)]
+        [DataMember(Name = "occurrences", EmitDefaultValue = true)]
         public List<DateTime> Occurrences { get; private set; }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RecurrenceRepetition);
+            return Equals(input as RecurrenceRepetition);
         }
 
         /// <summary>
@@ -216,47 +216,42 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    Id == input.Id ||
+					Id.Equals(input.Id)
                 ) && 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 ) && 
                 (
-                    this.Moment == input.Moment ||
-                    (this.Moment != null &&
-                    this.Moment.Equals(input.Moment))
+                    Moment == input.Moment ||
+					Moment.Equals(input.Moment)
                 ) && 
                 (
-                    this.Skip == input.Skip ||
-                    this.Skip.Equals(input.Skip)
+                    Skip == input.Skip ||
+                    Skip.Equals(input.Skip)
                 ) && 
                 (
-                    this.Weekend == input.Weekend ||
-                    this.Weekend.Equals(input.Weekend)
+                    Weekend == input.Weekend ||
+                    Weekend.Equals(input.Weekend)
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+					Description.Equals(input.Description)
                 ) && 
                 (
-                    this.Occurrences == input.Occurrences ||
-                    this.Occurrences != null &&
+                    Occurrences == input.Occurrences ||
+                    Occurrences != null &&
                     input.Occurrences != null &&
-                    this.Occurrences.SequenceEqual(input.Occurrences)
+                    Occurrences.SequenceEqual(input.Occurrences)
                 );
         }
 
@@ -269,33 +264,15 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.Moment != null)
-                {
-                    hashCode = (hashCode * 59) + this.Moment.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Skip.GetHashCode();
-                hashCode = (hashCode * 59) + this.Weekend.GetHashCode();
-                if (this.Description != null)
-                {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
-                if (this.Occurrences != null)
-                {
-                    hashCode = (hashCode * 59) + this.Occurrences.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Id.GetHashCode();
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + Moment.GetHashCode();
+                hashCode = (hashCode * 59) + Skip.GetHashCode();
+                hashCode = (hashCode * 59) + Weekend.GetHashCode();
+				hashCode = (hashCode * 59) + Description.GetHashCode();
+				hashCode = (hashCode * 59) + Occurrences.GetHashCode();
                 return hashCode;
             }
         }
@@ -305,7 +282,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

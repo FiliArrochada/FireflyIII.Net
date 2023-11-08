@@ -49,15 +49,15 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("transactions is a required property for Transaction and cannot be null");
             }
-            this.Transactions = transactions;
-            this.GroupTitle = groupTitle;
+            Transactions = transactions;
+            GroupTitle = groupTitle;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>User ID</value>
         /// <example>3</example>
-        [DataMember(Name = "user", EmitDefaultValue = false)]
+        [DataMember(Name = "user", EmitDefaultValue = true)]
         public string User { get; private set; }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Title of the transaction if it has been split in more than one piece. Empty otherwise.</value>
         /// <example>Split transaction title.</example>
-        [DataMember(Name = "group_title", EmitDefaultValue = true)]
+        [DataMember(Name = "group_title", EmitDefaultValue = false)]
         public string GroupTitle { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Transaction);
+            return Equals(input as Transaction);
         }
 
         /// <summary>
@@ -162,30 +162,27 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.User == input.User ||
-                    (this.User != null &&
-                    this.User.Equals(input.User))
+                    User == input.User ||
+					User.Equals(input.User)
                 ) && 
                 (
-                    this.GroupTitle == input.GroupTitle ||
-                    (this.GroupTitle != null &&
-                    this.GroupTitle.Equals(input.GroupTitle))
+                    GroupTitle == input.GroupTitle ||
+                    (GroupTitle != null &&
+                    GroupTitle.Equals(input.GroupTitle))
                 ) && 
                 (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions != null &&
+                    Transactions == input.Transactions ||
+                    Transactions != null &&
                     input.Transactions != null &&
-                    this.Transactions.SequenceEqual(input.Transactions)
+                    Transactions.SequenceEqual(input.Transactions)
                 );
         }
 
@@ -198,26 +195,14 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + User.GetHashCode();
+                if (GroupTitle != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + GroupTitle.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                if (this.User != null)
-                {
-                    hashCode = (hashCode * 59) + this.User.GetHashCode();
-                }
-                if (this.GroupTitle != null)
-                {
-                    hashCode = (hashCode * 59) + this.GroupTitle.GetHashCode();
-                }
-                if (this.Transactions != null)
-                {
-                    hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Transactions.GetHashCode();
                 return hashCode;
             }
         }
@@ -227,7 +212,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

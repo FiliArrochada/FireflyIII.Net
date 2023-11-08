@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a budget. Transactions will not be deleted.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -47,7 +50,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a budget. Transactions will not be deleted.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -59,7 +62,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -73,7 +76,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -86,7 +89,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
@@ -101,7 +104,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
@@ -112,7 +115,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Get single budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -126,7 +129,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -139,7 +142,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the budgeted amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -155,7 +158,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the budgeted amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -170,7 +173,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the budgeted amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -186,7 +189,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the budgeted amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -201,7 +204,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the spent amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -217,7 +220,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the spent amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -232,7 +235,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the spent amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -248,7 +251,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the spent amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -263,7 +266,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -277,7 +280,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -290,7 +293,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
@@ -305,7 +308,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
@@ -319,7 +322,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for for this date range. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -333,7 +336,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for for this date range. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -346,7 +349,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
@@ -361,7 +364,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
@@ -375,7 +378,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for this budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
@@ -390,7 +393,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for this budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
@@ -404,7 +407,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the budgets the user has made.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -417,7 +420,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the budgets the user has made.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -429,7 +432,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all transactions linked to a budget, possibly limited by start and end
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -447,7 +450,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all transactions linked to a budget, possibly limited by start and end
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -464,7 +467,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -480,7 +483,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -495,7 +498,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -508,7 +511,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -520,7 +523,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Store a new budget limit under this budget.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -534,7 +537,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Store a new budget limit under this budget.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -547,7 +550,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing budget. This endpoint cannot be used to set budget amount limits.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -561,7 +564,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing budget. This endpoint cannot be used to set budget amount limits.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -574,7 +577,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
@@ -589,7 +592,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
@@ -612,13 +615,13 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a budget. Transactions will not be deleted.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteBudgetAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteBudgetAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete a budget.
@@ -626,27 +629,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a budget. Transactions will not be deleted.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Delete a budget limit.
         /// </summary>
         /// <remarks>
         /// Delete a budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DeleteBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Delete a budget limit.
@@ -654,21 +657,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Delete a budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DeleteBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get a single budget.
         /// </summary>
         /// <remarks>
         /// Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
@@ -676,7 +679,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetSingle</returns>
-        System.Threading.Tasks.Task<BudgetSingle> GetBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetSingle> GetBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get a single budget.
@@ -684,7 +687,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
@@ -692,21 +695,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetSingle>> GetBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetSingle>> GetBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get single budget limit.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitSingle</returns>
-        System.Threading.Tasks.Task<BudgetLimitSingle> GetBudgetLimitAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetLimitSingle> GetBudgetLimitAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get single budget limit.
@@ -714,21 +717,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetLimitSingle>> GetBudgetLimitWithHttpInfoAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetLimitSingle>> GetBudgetLimitWithHttpInfoAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns the budgeted amount for the given budget in the given period.
         /// </summary>
         /// <remarks>
         /// Returns the budgeted amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -737,7 +740,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        System.Threading.Tasks.Task<List<TransactionSum>> GetBudgetedForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<TransactionSum>> GetBudgetedForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns the budgeted amount for the given budget in the given period.
@@ -745,7 +748,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the budgeted amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -754,14 +757,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns the budgeted amount for all budgets in the given period.
         /// </summary>
         /// <remarks>
         /// Returns the budgeted amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -770,7 +773,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        System.Threading.Tasks.Task<List<TransactionSum>> GetBudgetedForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<TransactionSum>> GetBudgetedForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns the budgeted amount for all budgets in the given period.
@@ -778,7 +781,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the budgeted amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -787,14 +790,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns the spent amount for the given budget in the given period.
         /// </summary>
         /// <remarks>
         /// Returns the spent amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -803,7 +806,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        System.Threading.Tasks.Task<List<TransactionSum>> GetSpentForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<TransactionSum>> GetSpentForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns the spent amount for the given budget in the given period.
@@ -811,7 +814,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the spent amount for the given budget in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -820,14 +823,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<TransactionSum>>> GetSpentForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<TransactionSum>>> GetSpentForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns the spent amount for all budgets in the given period.
         /// </summary>
         /// <remarks>
         /// Returns the spent amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -836,7 +839,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        System.Threading.Tasks.Task<List<TransactionSum>> GetSpentForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<TransactionSum>> GetSpentForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns the spent amount for all budgets in the given period.
@@ -844,7 +847,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Returns the spent amount for all budgets in the given period. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -853,21 +856,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<TransactionSum>>> GetSpentForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<TransactionSum>>> GetSpentForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Lists all attachments of a budget.
         /// </summary>
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<AttachmentArray> ListAttachmentByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Lists all attachments of a budget.
@@ -875,21 +878,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Lists all attachments.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AttachmentArray>> ListAttachmentByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<AttachmentArray>> ListAttachmentByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all budgets.
         /// </summary>
         /// <remarks>
         /// List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
@@ -897,7 +900,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetArray</returns>
-        System.Threading.Tasks.Task<BudgetArray> ListBudgetAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetArray> ListBudgetAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all budgets.
@@ -905,7 +908,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
@@ -913,21 +916,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetArray>> ListBudgetWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetArray>> ListBudgetWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get list of budget limits by date
         /// </summary>
         /// <remarks>
         /// Get all budget limits for for this date range. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitArray</returns>
-        System.Threading.Tasks.Task<BudgetLimitArray> ListBudgetLimitAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetLimitArray> ListBudgetLimitAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get list of budget limits by date
@@ -935,21 +938,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for for this date range. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get all limits for a budget.
         /// </summary>
         /// <remarks>
         /// Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
@@ -957,7 +960,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitArray</returns>
-        System.Threading.Tasks.Task<BudgetLimitArray> ListBudgetLimitByBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetLimitArray> ListBudgetLimitByBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get all limits for a budget.
@@ -965,7 +968,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
@@ -973,14 +976,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Get all limits for a budget.
         /// </summary>
         /// <remarks>
         /// Get all budget limits for this budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
@@ -988,7 +991,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitV2Array</returns>
-        System.Threading.Tasks.Task<BudgetLimitV2Array> ListBudgetLimitByBudgetV2Async(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetLimitV2Array> ListBudgetLimitByBudgetV2Async(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get all limits for a budget.
@@ -996,7 +999,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all budget limits for this budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
@@ -1004,20 +1007,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitV2Array)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetLimitV2Array>> ListBudgetLimitByBudgetV2WithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetLimitV2Array>> ListBudgetLimitByBudgetV2WithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all budgets.
         /// </summary>
         /// <remarks>
         /// List all the budgets the user has made.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetV2Array</returns>
-        System.Threading.Tasks.Task<BudgetV2Array> ListBudgetsAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetV2Array> ListBudgetsAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all budgets.
@@ -1025,20 +1028,20 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the budgets the user has made.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetV2Array)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetV2Array>> ListBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetV2Array>> ListBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// All transactions to a budget.
         /// </summary>
         /// <remarks>
         /// Get all transactions linked to a budget, possibly limited by start and end
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -1049,7 +1052,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// All transactions to a budget.
@@ -1057,7 +1060,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Get all transactions linked to a budget, possibly limited by start and end
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -1068,14 +1071,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all transactions by a budget limit ID.
         /// </summary>
         /// <remarks>
         /// List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1084,7 +1087,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        System.Threading.Tasks.Task<TransactionArray> ListTransactionByBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<TransactionArray> ListTransactionByBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List all transactions by a budget limit ID.
@@ -1092,7 +1095,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1101,20 +1104,20 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactionArray>> ListTransactionByBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<TransactionArray>> ListTransactionByBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Store a new budget
         /// </summary>
         /// <remarks>
         /// Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetSingle</returns>
-        System.Threading.Tasks.Task<BudgetSingle> StoreBudgetAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetSingle> StoreBudgetAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Store a new budget
@@ -1122,27 +1125,27 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetSingle>> StoreBudgetWithHttpInfoAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetSingle>> StoreBudgetWithHttpInfoAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Store new budget limit.
         /// </summary>
         /// <remarks>
         /// Store a new budget limit under this budget.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitSingle</returns>
-        System.Threading.Tasks.Task<BudgetLimitSingle> StoreBudgetLimitAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetLimitSingle> StoreBudgetLimitAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Store new budget limit.
@@ -1150,28 +1153,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Store a new budget limit under this budget.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetLimitSingle>> StoreBudgetLimitWithHttpInfoAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetLimitSingle>> StoreBudgetLimitWithHttpInfoAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update existing budget.
         /// </summary>
         /// <remarks>
         /// Update existing budget. This endpoint cannot be used to set budget amount limits.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetSingle</returns>
-        System.Threading.Tasks.Task<BudgetSingle> UpdateBudgetAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetSingle> UpdateBudgetAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update existing budget.
@@ -1179,21 +1182,21 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing budget. This endpoint cannot be used to set budget amount limits.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetSingle>> UpdateBudgetWithHttpInfoAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetSingle>> UpdateBudgetWithHttpInfoAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Update existing budget limit.
         /// </summary>
         /// <remarks>
         /// Update existing budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
@@ -1201,7 +1204,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitSingle</returns>
-        System.Threading.Tasks.Task<BudgetLimitSingle> UpdateBudgetLimitAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<BudgetLimitSingle> UpdateBudgetLimitAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Update existing budget limit.
@@ -1209,7 +1212,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Update existing budget limit.
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
@@ -1217,7 +1220,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitSingle)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BudgetLimitSingle>> UpdateBudgetLimitWithHttpInfoAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<BudgetLimitSingle>> UpdateBudgetLimitWithHttpInfoAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1234,7 +1237,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class BudgetsApi : IBudgetsApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BudgetsApi"/> class.
@@ -1248,15 +1251,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="BudgetsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public BudgetsApi(string basePath)
+        public BudgetsApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -1265,17 +1261,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public BudgetsApi(FireflyIIINet.Client.Configuration configuration)
+        public BudgetsApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -1285,27 +1281,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public BudgetsApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public BudgetsApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -1313,19 +1309,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -1339,9 +1335,103 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteBudget(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->DeleteBudget");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.DeleteBudget" ,operationIndex);
+
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Delete a budget. Delete a budget. Transactions will not be deleted.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -1354,91 +1444,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a budget. Delete a budget. Transactions will not be deleted.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->DeleteBudget");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.DeleteBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteBudget(id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/budgets/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/budgets/{id}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Delete a budget. Delete a budget. Transactions will not be deleted.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteBudgetAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteBudgetAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteBudgetWithHttpInfoAsync(id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -1446,22 +1476,38 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a budget. Delete a budget. Transactions will not be deleted.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteBudget(id, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/budgets/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DeleteBudgetLimit.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDeleteBudgetLimit(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->DeleteBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->DeleteBudgetLimit");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'limitId' is set
+            if (limitId == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->DeleteBudgetLimit");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -1471,63 +1517,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.DeleteBudgetLimit" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("limitId", ClientUtils.ParameterToString(limitId)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.DeleteBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/budgets/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Delete a budget limit. Delete a budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1541,100 +1548,33 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a budget limit. Delete a budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DeleteBudgetLimitWithHttpInfo(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DeleteBudgetLimitWithHttpInfo(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->DeleteBudgetLimit");
-            }
-
-            // verify the required parameter 'limitId' is set
-            if (limitId == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->DeleteBudgetLimit");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.DeleteBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteBudgetLimit(id, limitId, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, Configuration);
+            ValidateException("DeleteBudgetLimit", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Delete a budget limit. Delete a budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DeleteBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DeleteBudgetLimitWithHttpInfoAsync(id, limitId, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -1642,96 +1582,68 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Delete a budget limit. Delete a budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DeleteBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DeleteBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsDeleteBudgetLimit(id, limitId, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DeleteBudgetLimit", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetBudget(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->DeleteBudgetLimit");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudget");
             }
-
-            // verify the required parameter 'limitId' is set
-            if (limitId == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->DeleteBudgetLimit");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.GetBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (start != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.DeleteBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get a single budget. Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
@@ -1740,103 +1652,34 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetSingle</returns>
         public BudgetSingle GetBudget(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetSingle> localVarResponse = GetBudgetWithHttpInfo(id, xTraceId, start, end);
+            ApiResponse<BudgetSingle> localVarResponse = GetBudgetWithHttpInfo(id, xTraceId, start, end);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single budget. Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
         /// <param name="end">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetSingle> GetBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+        public ApiResponse<BudgetSingle> GetBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudget");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudget(id, xTraceId, start, end, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, Configuration);
+            ValidateException("GetBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get a single budget. Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
@@ -1844,16 +1687,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetSingle</returns>
-        public async System.Threading.Tasks.Task<BudgetSingle> GetBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetSingle> GetBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetSingle> localVarResponse = await GetBudgetWithHttpInfoAsync(id, xTraceId, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetSingle> localVarResponse = await GetBudgetWithHttpInfoAsync(id, xTraceId, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get a single budget. Get a single budget. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent.  (optional)</param>
@@ -1861,16 +1704,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetSingle>> GetBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetSingle>> GetBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudget(id, xTraceId, start, end, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetBudgetLimit.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetBudgetLimit(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetLimit");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1881,71 +1734,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.GetBudgetLimit" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("limitId", ClientUtils.ParameterToString(limitId)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get single budget limit. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1953,195 +1759,107 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetLimitSingle</returns>
         public BudgetLimitSingle GetBudgetLimit(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> localVarResponse = GetBudgetLimitWithHttpInfo(id, limitId, xTraceId);
+            ApiResponse<BudgetLimitSingle> localVarResponse = GetBudgetLimitWithHttpInfo(id, limitId, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get single budget limit. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetLimitSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> GetBudgetLimitWithHttpInfo(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<BudgetLimitSingle> GetBudgetLimitWithHttpInfo(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetLimit");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetLimit(id, limitId, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, Configuration);
+            ValidateException("GetBudgetLimit", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get single budget limit. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitSingle</returns>
-        public async System.Threading.Tasks.Task<BudgetLimitSingle> GetBudgetLimitAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetLimitSingle> GetBudgetLimitAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> localVarResponse = await GetBudgetLimitWithHttpInfoAsync(id, limitId, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetLimitSingle> localVarResponse = await GetBudgetLimitWithHttpInfoAsync(id, limitId, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get single budget limit. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetLimitSingle>> GetBudgetLimitWithHttpInfoAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetLimitSingle>> GetBudgetLimitWithHttpInfoAsync(string id, int limitId, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetLimit(id, limitId, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetBudgetLimit", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetBudgetedForBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetBudgetedForBudget(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetLimit");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetedForBudget");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.GetBudgetedForBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (page != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns the budgeted amount for the given budget in the given period. Returns the budgeted amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2151,14 +1869,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;TransactionSum&gt;</returns>
         public List<TransactionSum> GetBudgetedForBudget(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = GetBudgetedForBudgetWithHttpInfo(start, end, id, xTraceId, page);
+            ApiResponse<List<TransactionSum>> localVarResponse = GetBudgetedForBudgetWithHttpInfo(start, end, id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the budgeted amount for the given budget in the given period. Returns the budgeted amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2166,86 +1884,20 @@ namespace FireflyIIINet.Api
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;TransactionSum&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<TransactionSum>> GetBudgetedForBudgetWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<List<TransactionSum>> GetBudgetedForBudgetWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetedForBudget");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudgetedForBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetedForBudget(start, end, id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<TransactionSum>>("/v2/budgets/{id}/budgeted", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetedForBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<TransactionSum>>("/v2/budgets/{id}/budgeted", localVarRequestOptions, Configuration);
+            ValidateException("GetBudgetedForBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns the budgeted amount for the given budget in the given period. Returns the budgeted amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2254,16 +1906,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        public async System.Threading.Tasks.Task<List<TransactionSum>> GetBudgetedForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<TransactionSum>> GetBudgetedForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = await GetBudgetedForBudgetWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<TransactionSum>> localVarResponse = await GetBudgetedForBudgetWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the budgeted amount for the given budget in the given period. Returns the budgeted amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2272,16 +1924,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetedForBudget(start, end, id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/{id}/budgeted", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetBudgetedForBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetBudgetedForBudgets.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetBudgetedForBudgets(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetedForBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetedForBudgets");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2291,69 +1953,29 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.GetBudgetedForBudgets" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudgetedForBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/{id}/budgeted", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetedForBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns the budgeted amount for all budgets in the given period. Returns the budgeted amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2363,14 +1985,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;TransactionSum&gt;</returns>
         public List<TransactionSum> GetBudgetedForBudgets(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = GetBudgetedForBudgetsWithHttpInfo(start, end, id, xTraceId, page);
+            ApiResponse<List<TransactionSum>> localVarResponse = GetBudgetedForBudgetsWithHttpInfo(start, end, id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the budgeted amount for all budgets in the given period. Returns the budgeted amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2378,86 +2000,20 @@ namespace FireflyIIINet.Api
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;TransactionSum&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<TransactionSum>> GetBudgetedForBudgetsWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<List<TransactionSum>> GetBudgetedForBudgetsWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetedForBudgets");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudgetedForBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetedForBudgets(start, end, id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<TransactionSum>>("/v2/budgets/sum/budgeted", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetedForBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<TransactionSum>>("/v2/budgets/sum/budgeted", localVarRequestOptions, Configuration);
+            ValidateException("GetBudgetedForBudgets", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns the budgeted amount for all budgets in the given period. Returns the budgeted amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2466,16 +2022,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        public async System.Threading.Tasks.Task<List<TransactionSum>> GetBudgetedForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<TransactionSum>> GetBudgetedForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = await GetBudgetedForBudgetsWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<TransactionSum>> localVarResponse = await GetBudgetedForBudgetsWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the budgeted amount for all budgets in the given period. Returns the budgeted amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2484,16 +2040,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<TransactionSum>>> GetBudgetedForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetedForBudgets(start, end, id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/sum/budgeted", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetBudgetedForBudgets", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetSpentForBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetSpentForBudget(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetBudgetedForBudgets");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetSpentForBudget");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2503,69 +2069,29 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.GetSpentForBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetBudgetedForBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/sum/budgeted", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetedForBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns the spent amount for the given budget in the given period. Returns the spent amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2575,14 +2101,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;TransactionSum&gt;</returns>
         public List<TransactionSum> GetSpentForBudget(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = GetSpentForBudgetWithHttpInfo(start, end, id, xTraceId, page);
+            ApiResponse<List<TransactionSum>> localVarResponse = GetSpentForBudgetWithHttpInfo(start, end, id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the spent amount for the given budget in the given period. Returns the spent amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2590,86 +2116,20 @@ namespace FireflyIIINet.Api
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;TransactionSum&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<TransactionSum>> GetSpentForBudgetWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<List<TransactionSum>> GetSpentForBudgetWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetSpentForBudget");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetSpentForBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetSpentForBudget(start, end, id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<TransactionSum>>("/v2/budgets/{id}/spent", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetSpentForBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<TransactionSum>>("/v2/budgets/{id}/spent", localVarRequestOptions, Configuration);
+            ValidateException("GetSpentForBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns the spent amount for the given budget in the given period. Returns the spent amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2678,16 +2138,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        public async System.Threading.Tasks.Task<List<TransactionSum>> GetSpentForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<TransactionSum>> GetSpentForBudgetAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = await GetSpentForBudgetWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<TransactionSum>> localVarResponse = await GetSpentForBudgetWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the spent amount for the given budget in the given period. Returns the spent amount for the given budget in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2696,16 +2156,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<TransactionSum>>> GetSpentForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<TransactionSum>>> GetSpentForBudgetWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetSpentForBudget(start, end, id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/{id}/spent", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetSpentForBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetSpentForBudgets.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetSpentForBudgets(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetSpentForBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetSpentForBudgets");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2715,69 +2185,29 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.GetSpentForBudgets" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetSpentForBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/{id}/spent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetSpentForBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns the spent amount for all budgets in the given period. Returns the spent amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2787,14 +2217,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;TransactionSum&gt;</returns>
         public List<TransactionSum> GetSpentForBudgets(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = GetSpentForBudgetsWithHttpInfo(start, end, id, xTraceId, page);
+            ApiResponse<List<TransactionSum>> localVarResponse = GetSpentForBudgetsWithHttpInfo(start, end, id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the spent amount for all budgets in the given period. Returns the spent amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2802,86 +2232,20 @@ namespace FireflyIIINet.Api
         /// <param name="page">Page number. The default pagination is per 50 items. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;TransactionSum&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<TransactionSum>> GetSpentForBudgetsWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<List<TransactionSum>> GetSpentForBudgetsWithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetSpentForBudgets");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetSpentForBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetSpentForBudgets(start, end, id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<TransactionSum>>("/v2/budgets/sum/spent", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetSpentForBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<TransactionSum>>("/v2/budgets/sum/spent", localVarRequestOptions, Configuration);
+            ValidateException("GetSpentForBudgets", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns the spent amount for all budgets in the given period. Returns the spent amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2890,16 +2254,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;TransactionSum&gt;</returns>
-        public async System.Threading.Tasks.Task<List<TransactionSum>> GetSpentForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<TransactionSum>> GetSpentForBudgetsAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<TransactionSum>> localVarResponse = await GetSpentForBudgetsWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<TransactionSum>> localVarResponse = await GetSpentForBudgetsWithHttpInfoAsync(start, end, id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the spent amount for all budgets in the given period. Returns the spent amount for all budgets in the given period. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the budget.</param>
@@ -2908,88 +2272,57 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;TransactionSum&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<TransactionSum>>> GetSpentForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<TransactionSum>>> GetSpentForBudgetsWithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetSpentForBudgets(start, end, id, xTraceId, page, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/sum/spent", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetSpentForBudgets", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListAttachmentByBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListAttachmentByBudget(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->GetSpentForBudgets");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListAttachmentByBudget");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/vnd.api+json",
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListAttachmentByBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.GetSpentForBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<TransactionSum>>("/v2/budgets/sum/spent", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetSpentForBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Lists all attachments of a budget. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
@@ -2997,131 +2330,70 @@ namespace FireflyIIINet.Api
         /// <returns>AttachmentArray</returns>
         public AttachmentArray ListAttachmentByBudget(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByBudgetWithHttpInfo(id, xTraceId, page);
+            ApiResponse<AttachmentArray> localVarResponse = ListAttachmentByBudgetWithHttpInfo(id, xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments of a budget. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AttachmentArray</returns>
-        public FireflyIIINet.Client.ApiResponse<AttachmentArray> ListAttachmentByBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<AttachmentArray> ListAttachmentByBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListAttachmentByBudget");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListAttachmentByBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByBudget(id, xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<AttachmentArray>("/v1/budgets/{id}/attachments", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<AttachmentArray>("/v1/budgets/{id}/attachments", localVarRequestOptions, Configuration);
+            ValidateException("ListAttachmentByBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Lists all attachments of a budget. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AttachmentArray</returns>
-        public async System.Threading.Tasks.Task<AttachmentArray> ListAttachmentByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<AttachmentArray> ListAttachmentByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByBudgetWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<AttachmentArray> localVarResponse = await ListAttachmentByBudgetWithHttpInfoAsync(id, xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Lists all attachments of a budget. Lists all attachments.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AttachmentArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<AttachmentArray>> ListAttachmentByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<AttachmentArray>> ListAttachmentByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListAttachmentByBudget");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListAttachmentByBudget(id, xTraceId, page, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<AttachmentArray>("/v1/budgets/{id}/attachments", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListAttachmentByBudget", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListBudget(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3131,67 +2403,34 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListAttachmentByBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<AttachmentArray>("/v1/budgets/{id}/attachments", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListAttachmentByBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
@@ -3200,100 +2439,34 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetArray</returns>
         public BudgetArray ListBudget(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetArray> localVarResponse = ListBudgetWithHttpInfo(xTraceId, page, start, end);
+            ApiResponse<BudgetArray> localVarResponse = ListBudgetWithHttpInfo(xTraceId, page, start, end);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
         /// <param name="end">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetArray</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetArray> ListBudgetWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+        public ApiResponse<BudgetArray> ListBudgetWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudget(xTraceId, page, start, end, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetArray>("/v1/budgets", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetArray>("/v1/budgets", localVarRequestOptions, Configuration);
+            ValidateException("ListBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
@@ -3301,16 +2474,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetArray</returns>
-        public async System.Threading.Tasks.Task<BudgetArray> ListBudgetAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetArray> ListBudgetAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetArray> localVarResponse = await ListBudgetWithHttpInfoAsync(xTraceId, page, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetArray> localVarResponse = await ListBudgetWithHttpInfoAsync(xTraceId, page, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made. If the start date and end date are submitted as well, the \&quot;spent\&quot; array will be updated accordingly.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD, to get info on how much the user has spent. You must submit both start and end.  (optional)</param>
@@ -3318,11 +2491,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetArray>> ListBudgetWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetArray>> ListBudgetWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudget(xTraceId, page, start, end, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetArray>("/v1/budgets", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListBudget", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListBudgetLimit.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListBudgetLimit(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3332,74 +2515,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListBudgetLimit" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetArray>("/v1/budgets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get list of budget limits by date Get all budget limits for for this date range. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3407,115 +2540,75 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetLimitArray</returns>
         public BudgetLimitArray ListBudgetLimit(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitArray> localVarResponse = ListBudgetLimitWithHttpInfo(start, end, xTraceId);
+            ApiResponse<BudgetLimitArray> localVarResponse = ListBudgetLimitWithHttpInfo(start, end, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get list of budget limits by date Get all budget limits for for this date range. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetLimitArray</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetLimitArray> ListBudgetLimitWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<BudgetLimitArray> ListBudgetLimitWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimit(start, end, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetLimitArray>("/v1/budget-limits", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetLimitArray>("/v1/budget-limits", localVarRequestOptions, Configuration);
+            ValidateException("ListBudgetLimit", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get list of budget limits by date Get all budget limits for for this date range. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitArray</returns>
-        public async System.Threading.Tasks.Task<BudgetLimitArray> ListBudgetLimitAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetLimitArray> ListBudgetLimitAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitArray> localVarResponse = await ListBudgetLimitWithHttpInfoAsync(start, end, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetLimitArray> localVarResponse = await ListBudgetLimitWithHttpInfoAsync(start, end, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get list of budget limits by date Get all budget limits for for this date range. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetLimitArray>> ListBudgetLimitWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimit(start, end, xTraceId, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetLimitArray>("/v1/budget-limits", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListBudgetLimit", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListBudgetLimitByBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListBudgetLimitByBudget(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListBudgetLimitByBudget");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -3526,64 +2619,31 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListBudgetLimitByBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (start != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetLimitArray>("/v1/budget-limits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
@@ -3592,103 +2652,34 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetLimitArray</returns>
         public BudgetLimitArray ListBudgetLimitByBudget(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitArray> localVarResponse = ListBudgetLimitByBudgetWithHttpInfo(id, xTraceId, start, end);
+            ApiResponse<BudgetLimitArray> localVarResponse = ListBudgetLimitByBudgetWithHttpInfo(id, xTraceId, start, end);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
         /// <param name="end">A date formatted YYYY-MM-DD.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetLimitArray</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetLimitArray> ListBudgetLimitByBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
+        public ApiResponse<BudgetLimitArray> ListBudgetLimitByBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListBudgetLimitByBudget");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgetLimitByBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimitByBudget(id, xTraceId, start, end, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetLimitArray>("/v1/budgets/{id}/limits", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimitByBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetLimitArray>("/v1/budgets/{id}/limits", localVarRequestOptions, Configuration);
+            ValidateException("ListBudgetLimitByBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
@@ -3696,16 +2687,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitArray</returns>
-        public async System.Threading.Tasks.Task<BudgetLimitArray> ListBudgetLimitByBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetLimitArray> ListBudgetLimitByBudgetAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitArray> localVarResponse = await ListBudgetLimitByBudgetWithHttpInfoAsync(id, xTraceId, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetLimitArray> localVarResponse = await ListBudgetLimitByBudgetWithHttpInfoAsync(id, xTraceId, start, end, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget and the money spent, and money left. You can limit the list by submitting a date range as well. The \&quot;spent\&quot; array for each budget limit is NOT influenced by the start and end date of your query, but by the start and end date of the budget limit itself. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="start">A date formatted YYYY-MM-DD.  (optional)</param>
@@ -3713,16 +2704,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetLimitArray>> ListBudgetLimitByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetLimitArray>> ListBudgetLimitByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimitByBudget(id, xTraceId, start, end, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetLimitArray>("/v1/budgets/{id}/limits", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListBudgetLimitByBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListBudgetLimitByBudgetV2.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListBudgetLimitByBudgetV2(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListBudgetLimitByBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListBudgetLimitByBudgetV2");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -3733,71 +2734,25 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListBudgetLimitByBudgetV2" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgetLimitByBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetLimitArray>("/v1/budgets/{id}/limits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimitByBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
@@ -3806,97 +2761,34 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetLimitV2Array</returns>
         public BudgetLimitV2Array ListBudgetLimitByBudgetV2(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitV2Array> localVarResponse = ListBudgetLimitByBudgetV2WithHttpInfo(start, end, id, xTraceId);
+            ApiResponse<BudgetLimitV2Array> localVarResponse = ListBudgetLimitByBudgetV2WithHttpInfo(start, end, id, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetLimitV2Array</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetLimitV2Array> ListBudgetLimitByBudgetV2WithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<BudgetLimitV2Array> ListBudgetLimitByBudgetV2WithHttpInfo(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListBudgetLimitByBudgetV2");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgetLimitByBudgetV2";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimitByBudgetV2(start, end, id, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetLimitV2Array>("/v2/budgets/{id}/limits", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimitByBudgetV2", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetLimitV2Array>("/v2/budgets/{id}/limits", localVarRequestOptions, Configuration);
+            ValidateException("ListBudgetLimitByBudgetV2", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
@@ -3904,16 +2796,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitV2Array</returns>
-        public async System.Threading.Tasks.Task<BudgetLimitV2Array> ListBudgetLimitByBudgetV2Async(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetLimitV2Array> ListBudgetLimitByBudgetV2Async(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitV2Array> localVarResponse = await ListBudgetLimitByBudgetV2WithHttpInfoAsync(start, end, id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetLimitV2Array> localVarResponse = await ListBudgetLimitByBudgetV2WithHttpInfoAsync(start, end, id, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get all limits for a budget. Get all budget limits for this budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="id">The ID of the requested budget.</param>
@@ -3921,17 +2813,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitV2Array)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetLimitV2Array>> ListBudgetLimitByBudgetV2WithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetLimitV2Array>> ListBudgetLimitByBudgetV2WithHttpInfoAsync(DateTime start, DateTime end, string id, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListBudgetLimitByBudgetV2");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgetLimitByBudgetV2(start, end, id, xTraceId, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetLimitV2Array>("/v2/budgets/{id}/limits", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListBudgetLimitByBudgetV2", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListBudgets.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListBudgets(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3941,179 +2837,98 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListBudgets" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            if (page != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgetLimitByBudgetV2";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetLimitV2Array>("/v2/budgets/{id}/limits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgetLimitByBudgetV2", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>BudgetV2Array</returns>
         public BudgetV2Array ListBudgets(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetV2Array> localVarResponse = ListBudgetsWithHttpInfo(xTraceId, page);
+            ApiResponse<BudgetV2Array> localVarResponse = ListBudgetsWithHttpInfo(xTraceId, page);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetV2Array</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetV2Array> ListBudgetsWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
+        public ApiResponse<BudgetV2Array> ListBudgetsWithHttpInfo(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgets(xTraceId, page, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<BudgetV2Array>("/v2/budgets", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<BudgetV2Array>("/v2/budgets", localVarRequestOptions, Configuration);
+            ValidateException("ListBudgets", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetV2Array</returns>
-        public async System.Threading.Tasks.Task<BudgetV2Array> ListBudgetsAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetV2Array> ListBudgetsAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetV2Array> localVarResponse = await ListBudgetsWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetV2Array> localVarResponse = await ListBudgetsWithHttpInfoAsync(xTraceId, page, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all budgets. List all the budgets the user has made.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="page">Page number. The default pagination is 50. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetV2Array)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetV2Array>> ListBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetV2Array>> ListBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int? page = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListBudgets(xTraceId, page, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<BudgetV2Array>("/v2/budgets", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListBudgets", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionByBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionByBudget(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListTransactionByBudget");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -4124,66 +2939,43 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListTransactionByBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            if (limit != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (start != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            }
+            if (end != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<BudgetV2Array>("/v2/budgets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// All transactions to a budget. Get all transactions linked to a budget, possibly limited by start and end
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -4195,14 +2987,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransactionByBudget(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionByBudgetWithHttpInfo(id, xTraceId, limit, page, start, end, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionByBudgetWithHttpInfo(id, xTraceId, limit, page, start, end, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// All transactions to a budget. Get all transactions linked to a budget, possibly limited by start and end
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -4212,101 +3004,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionByBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionByBudgetWithHttpInfo(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListTransactionByBudget");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListTransactionByBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByBudget(id, xTraceId, limit, page, start, end, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/budgets/{id}/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/budgets/{id}/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionByBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// All transactions to a budget. Get all transactions linked to a budget, possibly limited by start and end
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -4317,16 +3028,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionByBudgetAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionByBudgetWithHttpInfoAsync(id, xTraceId, limit, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionByBudgetWithHttpInfoAsync(id, xTraceId, limit, page, start, end, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// All transactions to a budget. Get all transactions linked to a budget, possibly limited by start and end
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="limit">Limits the number of results on one page. (optional)</param>
@@ -4337,16 +3048,32 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionByBudgetWithHttpInfoAsync(string id, Guid? xTraceId = default(Guid?), int? limit = default(int?), int? page = default(int?), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByBudget(id, xTraceId, limit, page, start, end, type, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/budgets/{id}/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionByBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for ListTransactionByBudgetLimit.
+        /// </summary>
+		private RequestOptions GetRequestOptionsListTransactionByBudgetLimit(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListTransactionByBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListTransactionByBudgetLimit");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'limitId' is set
+            if (limitId == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->ListTransactionByBudgetLimit");
+            }
 
             string[] _contentTypes = new string[] {
             };
@@ -4357,83 +3084,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.ListTransactionByBudgetLimit" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("limitId", ClientUtils.ParameterToString(limitId)); // path parameter
             if (page != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (start != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            }
-            if (end != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page", page));
             }
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListTransactionByBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/budgets/{id}/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// List all transactions by a budget limit ID. List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4443,14 +3119,14 @@ namespace FireflyIIINet.Api
         /// <returns>TransactionArray</returns>
         public TransactionArray ListTransactionByBudgetLimit(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = ListTransactionByBudgetLimitWithHttpInfo(id, limitId, xTraceId, page, type);
+            ApiResponse<TransactionArray> localVarResponse = ListTransactionByBudgetLimitWithHttpInfo(id, limitId, xTraceId, page, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions by a budget limit ID. List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4458,96 +3134,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the transaction type(s) returned (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactionArray</returns>
-        public FireflyIIINet.Client.ApiResponse<TransactionArray> ListTransactionByBudgetLimitWithHttpInfo(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
+        public ApiResponse<TransactionArray> ListTransactionByBudgetLimitWithHttpInfo(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListTransactionByBudgetLimit");
-            }
-
-            // verify the required parameter 'limitId' is set
-            if (limitId == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->ListTransactionByBudgetLimit");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListTransactionByBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByBudgetLimit(id, limitId, xTraceId, page, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TransactionArray>("/v1/budgets/{id}/limits/{limitId}/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<TransactionArray>("/v1/budgets/{id}/limits/{limitId}/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ListTransactionByBudgetLimit", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// List all transactions by a budget limit ID. List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4556,16 +3156,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactionArray</returns>
-        public async System.Threading.Tasks.Task<TransactionArray> ListTransactionByBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<TransactionArray> ListTransactionByBudgetLimitAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<TransactionArray> localVarResponse = await ListTransactionByBudgetLimitWithHttpInfoAsync(id, limitId, xTraceId, page, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TransactionArray> localVarResponse = await ListTransactionByBudgetLimitWithHttpInfoAsync(id, limitId, xTraceId, page, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List all transactions by a budget limit ID. List all the transactions within one budget limit. The start and end date are dictated by the budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4574,125 +3174,26 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactionArray)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<TransactionArray>> ListTransactionByBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<TransactionArray>> ListTransactionByBudgetLimitWithHttpInfoAsync(string id, string limitId, Guid? xTraceId = default(Guid?), int? page = default(int?), TransactionTypeFilter? type = default(TransactionTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->ListTransactionByBudgetLimit");
-            }
-
-            // verify the required parameter 'limitId' is set
-            if (limitId == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->ListTransactionByBudgetLimit");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
-            if (page != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "page", page));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "BudgetsApi.ListTransactionByBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsListTransactionByBudgetLimit(id, limitId, xTraceId, page, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TransactionArray>("/v1/budgets/{id}/limits/{limitId}/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ListTransactionByBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.GetAsync<TransactionArray>("/v1/budgets/{id}/limits/{limitId}/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ListTransactionByBudgetLimit", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
-        /// Store a new budget Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
+        /// Provides a specific RequestOptions object for StoreBudget.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>BudgetSingle</returns>
-        public BudgetSingle StoreBudget(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
-            FireflyIIINet.Client.ApiResponse<BudgetSingle> localVarResponse = StoreBudgetWithHttpInfo(budgetStore, xTraceId);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Store a new budget Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of BudgetSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetSingle> StoreBudgetWithHttpInfo(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
-        {
+		private RequestOptions GetRequestOptionsStoreBudget(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'budgetStore' is set
             if (budgetStore == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetStore' when calling BudgetsApi->StoreBudget");
+                throw new ApiException(400, "Missing required parameter 'budgetStore' when calling BudgetsApi->StoreBudget");
             }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -4705,95 +3206,104 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.StoreBudget" ,operationIndex);
 
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
             localVarRequestOptions.Data = budgetStore;
 
-            localVarRequestOptions.Operation = "BudgetsApi.StoreBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<BudgetSingle>("/v1/budgets", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Store a new budget Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of BudgetSingle</returns>
-        public async System.Threading.Tasks.Task<BudgetSingle> StoreBudgetAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>BudgetSingle</returns>
+        public BudgetSingle StoreBudget(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetSingle> localVarResponse = await StoreBudgetWithHttpInfoAsync(budgetStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetSingle> localVarResponse = StoreBudgetWithHttpInfo(budgetStore, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Store a new budget Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of BudgetSingle</returns>
+        public ApiResponse<BudgetSingle> StoreBudgetWithHttpInfo(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreBudget(budgetStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Post<BudgetSingle>("/v1/budgets", localVarRequestOptions, Configuration);
+            ValidateException("StoreBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Store a new budget Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BudgetSingle</returns>
+        public async Task<BudgetSingle> StoreBudgetAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<BudgetSingle> localVarResponse = await StoreBudgetWithHttpInfoAsync(budgetStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Store a new budget Creates a new budget. The data required can be submitted as a JSON body or as a list of parameters.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="budgetStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetSingle>> StoreBudgetWithHttpInfoAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetSingle>> StoreBudgetWithHttpInfoAsync(BudgetStore budgetStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'budgetStore' is set
-            if (budgetStore == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreBudget(budgetStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<BudgetSingle>("/v1/budgets", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for StoreBudgetLimit.
+        /// </summary>
+		private RequestOptions GetRequestOptionsStoreBudgetLimit(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'id' is set
+            if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetStore' when calling BudgetsApi->StoreBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->StoreBudgetLimit");
             }
 
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'budgetLimitStore' is set
+            if (budgetLimitStore == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'budgetLimitStore' when calling BudgetsApi->StoreBudgetLimit");
+            }
 
             string[] _contentTypes = new string[] {
-                "application/json", 
+                "application/json",
                 "application/x-www-form-urlencoded"
             };
 
@@ -4803,63 +3313,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.StoreBudgetLimit" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = budgetStore;
-
-            localVarRequestOptions.Operation = "BudgetsApi.StoreBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = budgetLimitStore;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<BudgetSingle>("/v1/budgets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Store new budget limit. Store a new budget limit under this budget.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4867,34 +3338,81 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetLimitSingle</returns>
         public BudgetLimitSingle StoreBudgetLimit(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> localVarResponse = StoreBudgetLimitWithHttpInfo(id, budgetLimitStore, xTraceId);
+            ApiResponse<BudgetLimitSingle> localVarResponse = StoreBudgetLimitWithHttpInfo(id, budgetLimitStore, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Store new budget limit. Store a new budget limit under this budget.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetLimitSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> StoreBudgetLimitWithHttpInfo(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<BudgetLimitSingle> StoreBudgetLimitWithHttpInfo(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreBudgetLimit(id, budgetLimitStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Post<BudgetLimitSingle>("/v1/budgets/{id}/limits", localVarRequestOptions, Configuration);
+            ValidateException("StoreBudgetLimit", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Store new budget limit. Store a new budget limit under this budget.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the budget.</param>
+        /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BudgetLimitSingle</returns>
+        public async Task<BudgetLimitSingle> StoreBudgetLimitAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<BudgetLimitSingle> localVarResponse = await StoreBudgetLimitWithHttpInfoAsync(id, budgetLimitStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Store new budget limit. Store a new budget limit under this budget.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the budget.</param>
+        /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BudgetLimitSingle)</returns>
+        public async Task<ApiResponse<BudgetLimitSingle>> StoreBudgetLimitWithHttpInfoAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsStoreBudgetLimit(id, budgetLimitStore, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<BudgetLimitSingle>("/v1/budgets/{id}/limits", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("StoreBudgetLimit", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateBudget(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->StoreBudgetLimit");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->UpdateBudget");
             }
 
-            // verify the required parameter 'budgetLimitStore' is set
-            if (budgetLimitStore == null)
+            // verify the required parameter 'budgetUpdate' is set
+            if (budgetUpdate == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetLimitStore' when calling BudgetsApi->StoreBudgetLimit");
+                throw new ApiException(400, "Missing required parameter 'budgetUpdate' when calling BudgetsApi->UpdateBudget");
             }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -4907,171 +3425,24 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.UpdateBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = budgetLimitStore;
-
-            localVarRequestOptions.Operation = "BudgetsApi.StoreBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = budgetUpdate;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<BudgetLimitSingle>("/v1/budgets/{id}/limits", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Store new budget limit. Store a new budget limit under this budget.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the budget.</param>
-        /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of BudgetLimitSingle</returns>
-        public async System.Threading.Tasks.Task<BudgetLimitSingle> StoreBudgetLimitAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> localVarResponse = await StoreBudgetLimitWithHttpInfoAsync(id, budgetLimitStore, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Store new budget limit. Store a new budget limit under this budget.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the budget.</param>
-        /// <param name="budgetLimitStore">JSON array or key&#x3D;value pairs with the necessary budget information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (BudgetLimitSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetLimitSingle>> StoreBudgetLimitWithHttpInfoAsync(string id, BudgetLimitStore budgetLimitStore, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->StoreBudgetLimit");
-            }
-
-            // verify the required parameter 'budgetLimitStore' is set
-            if (budgetLimitStore == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetLimitStore' when calling BudgetsApi->StoreBudgetLimit");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = budgetLimitStore;
-
-            localVarRequestOptions.Operation = "BudgetsApi.StoreBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<BudgetLimitSingle>("/v1/budgets/{id}/limits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("StoreBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update existing budget. Update existing budget. This endpoint cannot be used to set budget amount limits.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5079,34 +3450,87 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetSingle</returns>
         public BudgetSingle UpdateBudget(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetSingle> localVarResponse = UpdateBudgetWithHttpInfo(id, budgetUpdate, xTraceId);
+            ApiResponse<BudgetSingle> localVarResponse = UpdateBudgetWithHttpInfo(id, budgetUpdate, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing budget. Update existing budget. This endpoint cannot be used to set budget amount limits.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget.</param>
         /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetSingle> UpdateBudgetWithHttpInfo(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<BudgetSingle> UpdateBudgetWithHttpInfo(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateBudget(id, budgetUpdate, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = Client.Put<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update existing budget. Update existing budget. This endpoint cannot be used to set budget amount limits.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the budget.</param>
+        /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BudgetSingle</returns>
+        public async Task<BudgetSingle> UpdateBudgetAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            ApiResponse<BudgetSingle> localVarResponse = await UpdateBudgetWithHttpInfoAsync(id, budgetUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update existing budget. Update existing budget. This endpoint cannot be used to set budget amount limits.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of the budget.</param>
+        /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
+        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BudgetSingle)</returns>
+        public async Task<ApiResponse<BudgetSingle>> UpdateBudgetWithHttpInfoAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateBudget(id, budgetUpdate, xTraceId, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PutAsync<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateBudget", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for UpdateBudgetLimit.
+        /// </summary>
+		private RequestOptions GetRequestOptionsUpdateBudgetLimit(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             // verify the required parameter 'id' is set
             if (id == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->UpdateBudget");
+                throw new ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->UpdateBudgetLimit");
             }
 
-            // verify the required parameter 'budgetUpdate' is set
-            if (budgetUpdate == null)
+            // verify the required parameter 'limitId' is set
+            if (limitId == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetUpdate' when calling BudgetsApi->UpdateBudget");
+                throw new ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->UpdateBudgetLimit");
             }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // verify the required parameter 'budgetLimit' is set
+            if (budgetLimit == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'budgetLimit' when calling BudgetsApi->UpdateBudgetLimit");
+            }
 
             string[] _contentTypes = new string[] {
                 "application/json",
@@ -5119,171 +3543,25 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"BudgetsApi.UpdateBudgetLimit" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.PathParameters.Add("limitId", ClientUtils.ParameterToString(limitId)); // path parameter
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-            localVarRequestOptions.Data = budgetUpdate;
-
-            localVarRequestOptions.Operation = "BudgetsApi.UpdateBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            localVarRequestOptions.Data = budgetLimit;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Put<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Update existing budget. Update existing budget. This endpoint cannot be used to set budget amount limits.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the budget.</param>
-        /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of BudgetSingle</returns>
-        public async System.Threading.Tasks.Task<BudgetSingle> UpdateBudgetAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            FireflyIIINet.Client.ApiResponse<BudgetSingle> localVarResponse = await UpdateBudgetWithHttpInfoAsync(id, budgetUpdate, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Update existing budget. Update existing budget. This endpoint cannot be used to set budget amount limits.
-        /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the budget.</param>
-        /// <param name="budgetUpdate">JSON array with updated budget information. See the model for the exact specifications.</param>
-        /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (BudgetSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetSingle>> UpdateBudgetWithHttpInfoAsync(string id, BudgetUpdate budgetUpdate, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->UpdateBudget");
-            }
-
-            // verify the required parameter 'budgetUpdate' is set
-            if (budgetUpdate == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetUpdate' when calling BudgetsApi->UpdateBudget");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = budgetUpdate;
-
-            localVarRequestOptions.Operation = "BudgetsApi.UpdateBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<BudgetSingle>("/v1/budgets/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Update existing budget limit. Update existing budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
@@ -5292,111 +3570,34 @@ namespace FireflyIIINet.Api
         /// <returns>BudgetLimitSingle</returns>
         public BudgetLimitSingle UpdateBudgetLimit(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> localVarResponse = UpdateBudgetLimitWithHttpInfo(id, limitId, budgetLimit, xTraceId);
+            ApiResponse<BudgetLimitSingle> localVarResponse = UpdateBudgetLimitWithHttpInfo(id, limitId, budgetLimit, xTraceId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing budget limit. Update existing budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of BudgetLimitSingle</returns>
-        public FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> UpdateBudgetLimitWithHttpInfo(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<BudgetLimitSingle> UpdateBudgetLimitWithHttpInfo(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->UpdateBudgetLimit");
-            }
-
-            // verify the required parameter 'limitId' is set
-            if (limitId == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->UpdateBudgetLimit");
-            }
-
-            // verify the required parameter 'budgetLimit' is set
-            if (budgetLimit == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetLimit' when calling BudgetsApi->UpdateBudgetLimit");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json",
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = budgetLimit;
-
-            localVarRequestOptions.Operation = "BudgetsApi.UpdateBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateBudgetLimit(id, limitId, budgetLimit, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Put<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, Configuration);
+            ValidateException("UpdateBudgetLimit", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Update existing budget limit. Update existing budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
@@ -5404,16 +3605,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BudgetLimitSingle</returns>
-        public async System.Threading.Tasks.Task<BudgetLimitSingle> UpdateBudgetLimitAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<BudgetLimitSingle> UpdateBudgetLimitAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<BudgetLimitSingle> localVarResponse = await UpdateBudgetLimitWithHttpInfoAsync(id, limitId, budgetLimit, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<BudgetLimitSingle> localVarResponse = await UpdateBudgetLimitWithHttpInfoAsync(id, limitId, budgetLimit, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update existing budget limit. Update existing budget limit.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The ID of the budget. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="limitId">The ID of the budget limit. The budget limit MUST be associated to the budget ID.</param>
         /// <param name="budgetLimit">JSON array with updated budget limit information. See the model for the exact specifications.</param>
@@ -5421,94 +3622,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BudgetLimitSingle)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<BudgetLimitSingle>> UpdateBudgetLimitWithHttpInfoAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<BudgetLimitSingle>> UpdateBudgetLimitWithHttpInfoAsync(string id, string limitId, BudgetLimit budgetLimit, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'id' when calling BudgetsApi->UpdateBudgetLimit");
-            }
-
-            // verify the required parameter 'limitId' is set
-            if (limitId == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'limitId' when calling BudgetsApi->UpdateBudgetLimit");
-            }
-
-            // verify the required parameter 'budgetLimit' is set
-            if (budgetLimit == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'budgetLimit' when calling BudgetsApi->UpdateBudgetLimit");
-            }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json", 
-                "application/x-www-form-urlencoded"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/vnd.api+json",
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("id", FireflyIIINet.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.PathParameters.Add("limitId", FireflyIIINet.Client.ClientUtils.ParameterToString(limitId)); // path parameter
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-            localVarRequestOptions.Data = budgetLimit;
-
-            localVarRequestOptions.Operation = "BudgetsApi.UpdateBudgetLimit";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsUpdateBudgetLimit(id, limitId, budgetLimit, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PutAsync<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("UpdateBudgetLimit", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.PutAsync<BudgetLimitSingle>("/v1/budgets/{id}/limits/{limitId}", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("UpdateBudgetLimit", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

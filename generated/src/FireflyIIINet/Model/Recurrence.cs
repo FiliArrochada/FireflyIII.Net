@@ -36,7 +36,7 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name = "type", EmitDefaultValue = true)]
         public RecurrenceTransactionType? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurrence" /> class.
@@ -54,24 +54,24 @@ namespace FireflyIIINet.Model
         /// <param name="transactions">transactions.</param>
         public Recurrence(RecurrenceTransactionType? type = default(RecurrenceTransactionType?), string title = default(string), string description = default(string), DateTime firstDate = default(DateTime), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetition> repetitions = default(List<RecurrenceRepetition>), List<RecurrenceTransaction> transactions = default(List<RecurrenceTransaction>))
         {
-            this.Type = type;
-            this.Title = title;
-            this.Description = description;
-            this.FirstDate = firstDate;
-            this.RepeatUntil = repeatUntil;
-            this.NrOfRepetitions = nrOfRepetitions;
-            this.ApplyRules = applyRules;
-            this.Active = active;
-            this.Notes = notes;
-            this.Repetitions = repetitions;
-            this.Transactions = transactions;
+            Type = type;
+            Title = title;
+            Description = description;
+            FirstDate = firstDate;
+            RepeatUntil = repeatUntil;
+            NrOfRepetitions = nrOfRepetitions;
+            ApplyRules = applyRules;
+            Active = active;
+            Notes = notes;
+            Repetitions = repetitions;
+            Transactions = transactions;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Title
         /// </summary>
         /// <example>Rent</example>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name = "title", EmitDefaultValue = true)]
         public string Title { get; set; }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Not to be confused with the description of the actual transaction(s) being created.</value>
         /// <example>Recurring transaction for the monthly rent</example>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>First time the recurring transaction will fire. Must be after today.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "first_date", EmitDefaultValue = false)]
+        [DataMember(Name = "first_date", EmitDefaultValue = true)]
         public DateTime FirstDate { get; set; }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Last time the recurring transaction has fired.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "latest_date", EmitDefaultValue = true)]
+        [DataMember(Name = "latest_date", EmitDefaultValue = false)]
         public DateTime? LatestDate { get; private set; }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Date until the recurring transaction can fire. Use either this field or repetitions.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "repeat_until", EmitDefaultValue = true)]
+        [DataMember(Name = "repeat_until", EmitDefaultValue = false)]
         public DateTime? RepeatUntil { get; set; }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Max number of created transactions. Use either this field or repeat_until.</value>
         /// <example>5</example>
-        [DataMember(Name = "nr_of_repetitions", EmitDefaultValue = true)]
+        [DataMember(Name = "nr_of_repetitions", EmitDefaultValue = false)]
         public int? NrOfRepetitions { get; set; }
 
         /// <summary>
@@ -172,19 +172,19 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
         /// Gets or Sets Repetitions
         /// </summary>
-        [DataMember(Name = "repetitions", EmitDefaultValue = false)]
+        [DataMember(Name = "repetitions", EmitDefaultValue = true)]
         public List<RecurrenceRepetition> Repetitions { get; set; }
 
         /// <summary>
         /// Gets or Sets Transactions
         /// </summary>
-        [DataMember(Name = "transactions", EmitDefaultValue = false)]
+        [DataMember(Name = "transactions", EmitDefaultValue = true)]
         public List<RecurrenceTransaction> Transactions { get; set; }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Recurrence);
+            return Equals(input as Recurrence);
         }
 
         /// <summary>
@@ -245,73 +245,68 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 ) && 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+					Description.Equals(input.Description)
                 ) && 
                 (
-                    this.FirstDate == input.FirstDate ||
-                    (this.FirstDate != null &&
-                    this.FirstDate.Equals(input.FirstDate))
+                    FirstDate == input.FirstDate ||
+					FirstDate.Equals(input.FirstDate)
                 ) && 
                 (
-                    this.LatestDate == input.LatestDate ||
-                    (this.LatestDate != null &&
-                    this.LatestDate.Equals(input.LatestDate))
+                    LatestDate == input.LatestDate ||
+                    (LatestDate != null &&
+                    LatestDate.Equals(input.LatestDate))
                 ) && 
                 (
-                    this.RepeatUntil == input.RepeatUntil ||
-                    (this.RepeatUntil != null &&
-                    this.RepeatUntil.Equals(input.RepeatUntil))
+                    RepeatUntil == input.RepeatUntil ||
+                    (RepeatUntil != null &&
+                    RepeatUntil.Equals(input.RepeatUntil))
                 ) && 
                 (
-                    this.NrOfRepetitions == input.NrOfRepetitions ||
-                    (this.NrOfRepetitions != null &&
-                    this.NrOfRepetitions.Equals(input.NrOfRepetitions))
+                    NrOfRepetitions == input.NrOfRepetitions ||
+                    (NrOfRepetitions != null &&
+                    NrOfRepetitions.Equals(input.NrOfRepetitions))
                 ) && 
                 (
-                    this.ApplyRules == input.ApplyRules ||
-                    this.ApplyRules.Equals(input.ApplyRules)
+                    ApplyRules == input.ApplyRules ||
+                    ApplyRules.Equals(input.ApplyRules)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.Repetitions == input.Repetitions ||
-                    this.Repetitions != null &&
+                    Repetitions == input.Repetitions ||
+                    Repetitions != null &&
                     input.Repetitions != null &&
-                    this.Repetitions.SequenceEqual(input.Repetitions)
+                    Repetitions.SequenceEqual(input.Repetitions)
                 ) && 
                 (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions != null &&
+                    Transactions == input.Transactions ||
+                    Transactions != null &&
                     input.Transactions != null &&
-                    this.Transactions.SequenceEqual(input.Transactions)
+                    Transactions.SequenceEqual(input.Transactions)
                 );
         }
 
@@ -324,53 +319,32 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+				hashCode = (hashCode * 59) + Description.GetHashCode();
+				hashCode = (hashCode * 59) + FirstDate.GetHashCode();
+                if (LatestDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + LatestDate.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
+                if (RepeatUntil != null)
                 {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + RepeatUntil.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.Title != null)
+                if (NrOfRepetitions != null)
                 {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
+                    hashCode = (hashCode * 59) + NrOfRepetitions.GetHashCode();
                 }
-                if (this.Description != null)
+                hashCode = (hashCode * 59) + ApplyRules.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.FirstDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.FirstDate.GetHashCode();
-                }
-                if (this.LatestDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.LatestDate.GetHashCode();
-                }
-                if (this.RepeatUntil != null)
-                {
-                    hashCode = (hashCode * 59) + this.RepeatUntil.GetHashCode();
-                }
-                if (this.NrOfRepetitions != null)
-                {
-                    hashCode = (hashCode * 59) + this.NrOfRepetitions.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.ApplyRules.GetHashCode();
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
-                }
-                if (this.Repetitions != null)
-                {
-                    hashCode = (hashCode * 59) + this.Repetitions.GetHashCode();
-                }
-                if (this.Transactions != null)
-                {
-                    hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Repetitions.GetHashCode();
+				hashCode = (hashCode * 59) + Transactions.GetHashCode();
                 return hashCode;
             }
         }
@@ -380,7 +354,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

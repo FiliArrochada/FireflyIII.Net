@@ -48,7 +48,7 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("data is a required property for PreferenceSingle and cannot be null");
             }
-            this.Data = data;
+            Data = data;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PreferenceSingle);
+            return Equals(input as PreferenceSingle);
         }
 
         /// <summary>
@@ -102,9 +102,8 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Data == input.Data ||
-                    (this.Data != null &&
-                    this.Data.Equals(input.Data))
+                    Data == input.Data ||
+					Data.Equals(input.Data)
                 );
         }
 
@@ -117,10 +116,7 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Data != null)
-                {
-                    hashCode = (hashCode * 59) + this.Data.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Data.GetHashCode();
                 return hashCode;
             }
         }
@@ -130,7 +126,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

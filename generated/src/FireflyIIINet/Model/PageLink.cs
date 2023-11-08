@@ -40,30 +40,30 @@ namespace FireflyIIINet.Model
         /// <param name="last">last.</param>
         public PageLink(string self = default(string), string first = default(string), string last = default(string))
         {
-            this.Self = self;
-            this.First = first;
-            this.Last = last;
+            Self = self;
+            First = first;
+            Last = last;
         }
 
         /// <summary>
         /// Gets or Sets Self
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;4</example>
-        [DataMember(Name = "self", EmitDefaultValue = false)]
+        [DataMember(Name = "self", EmitDefaultValue = true)]
         public string Self { get; set; }
 
         /// <summary>
         /// Gets or Sets First
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;1</example>
-        [DataMember(Name = "first", EmitDefaultValue = false)]
+        [DataMember(Name = "first", EmitDefaultValue = true)]
         public string First { get; set; }
 
         /// <summary>
         /// Gets or Sets Last
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;12</example>
-        [DataMember(Name = "last", EmitDefaultValue = false)]
+        [DataMember(Name = "last", EmitDefaultValue = true)]
         public string Last { get; set; }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PageLink);
+            return Equals(input as PageLink);
         }
 
         /// <summary>
@@ -113,19 +113,16 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Self == input.Self ||
-                    (this.Self != null &&
-                    this.Self.Equals(input.Self))
+                    Self == input.Self ||
+					Self.Equals(input.Self)
                 ) && 
                 (
-                    this.First == input.First ||
-                    (this.First != null &&
-                    this.First.Equals(input.First))
+                    First == input.First ||
+					First.Equals(input.First)
                 ) && 
                 (
-                    this.Last == input.Last ||
-                    (this.Last != null &&
-                    this.Last.Equals(input.Last))
+                    Last == input.Last ||
+					Last.Equals(input.Last)
                 );
         }
 
@@ -138,18 +135,9 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Self != null)
-                {
-                    hashCode = (hashCode * 59) + this.Self.GetHashCode();
-                }
-                if (this.First != null)
-                {
-                    hashCode = (hashCode * 59) + this.First.GetHashCode();
-                }
-                if (this.Last != null)
-                {
-                    hashCode = (hashCode * 59) + this.Last.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Self.GetHashCode();
+				hashCode = (hashCode * 59) + First.GetHashCode();
+				hashCode = (hashCode * 59) + Last.GetHashCode();
                 return hashCode;
             }
         }
@@ -159,7 +147,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -39,21 +39,21 @@ namespace FireflyIIINet.Model
         /// <param name="self">self.</param>
         public ObjectLink(ObjectLink0 var0 = default(ObjectLink0), string self = default(string))
         {
-            this.Var0 = var0;
-            this.Self = self;
+            Var0 = var0;
+            Self = self;
         }
 
         /// <summary>
         /// Gets or Sets Var0
         /// </summary>
-        [DataMember(Name = "0", EmitDefaultValue = false)]
+        [DataMember(Name = "0", EmitDefaultValue = true)]
         public ObjectLink0 Var0 { get; set; }
 
         /// <summary>
         /// Gets or Sets Self
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECTS/1</example>
-        [DataMember(Name = "self", EmitDefaultValue = false)]
+        [DataMember(Name = "self", EmitDefaultValue = true)]
         public string Self { get; set; }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ObjectLink);
+            return Equals(input as ObjectLink);
         }
 
         /// <summary>
@@ -102,14 +102,12 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Var0 == input.Var0 ||
-                    (this.Var0 != null &&
-                    this.Var0.Equals(input.Var0))
+                    Var0 == input.Var0 ||
+					Var0.Equals(input.Var0)
                 ) && 
                 (
-                    this.Self == input.Self ||
-                    (this.Self != null &&
-                    this.Self.Equals(input.Self))
+                    Self == input.Self ||
+					Self.Equals(input.Self)
                 );
         }
 
@@ -122,14 +120,8 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Var0 != null)
-                {
-                    hashCode = (hashCode * 59) + this.Var0.GetHashCode();
-                }
-                if (this.Self != null)
-                {
-                    hashCode = (hashCode * 59) + this.Self.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Var0.GetHashCode();
+				hashCode = (hashCode * 59) + Self.GetHashCode();
                 return hashCode;
             }
         }
@@ -139,7 +131,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

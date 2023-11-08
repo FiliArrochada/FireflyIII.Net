@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -31,7 +34,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all accounts of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -47,7 +50,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -59,7 +62,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all bills of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -73,7 +76,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -83,7 +86,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all budgets of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -97,7 +100,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -107,7 +110,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all categories of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -121,7 +124,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -131,7 +134,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -145,7 +148,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -155,7 +158,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -169,7 +172,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -179,7 +182,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all object groups of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -193,7 +196,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -203,7 +206,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -217,7 +220,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -227,7 +230,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -241,7 +244,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -251,7 +254,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all recurring transactions of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -265,7 +268,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -275,7 +278,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all rule groups of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -289,7 +292,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -299,7 +302,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all rules of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -313,7 +316,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -323,7 +326,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all tags of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -337,7 +340,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -347,7 +350,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all transaction types returned in a basic auto-complete array. English only.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -361,7 +364,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -371,7 +374,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all transaction descriptions of the user returned in a basic auto-complete array.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -385,7 +388,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -395,7 +398,7 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -409,7 +412,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -431,7 +434,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -440,7 +443,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteAccount&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteAccount>> GetAccountsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteAccount>> GetAccountsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all accounts of the user returned in a basic auto-complete array.
@@ -448,7 +451,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -457,21 +460,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteAccount&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteAccount>>> GetAccountsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteAccount>>> GetAccountsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all bills of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteBill&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteBill>> GetBillsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteBill>> GetBillsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all bills of the user returned in a basic auto-complete array.
@@ -479,28 +482,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteBill&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteBill>>> GetBillsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteBill>>> GetBillsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all budgets of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteBudget&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteBudget>> GetBudgetsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteBudget>> GetBudgetsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all budgets of the user returned in a basic auto-complete array.
@@ -508,28 +511,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteBudget&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteBudget>>> GetBudgetsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteBudget>>> GetBudgetsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all categories of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteCategory&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteCategory>> GetCategoriesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteCategory>> GetCategoriesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all categories of the user returned in a basic auto-complete array.
@@ -537,28 +540,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteCategory&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteCategory>>> GetCategoriesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteCategory>>> GetCategoriesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteCurrency&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteCurrency>> GetCurrenciesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteCurrency>> GetCurrenciesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array.
@@ -566,28 +569,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteCurrency&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteCurrency>>> GetCurrenciesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteCurrency>>> GetCurrenciesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteCurrencyCode&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteCurrencyCode>> GetCurrenciesCodeACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteCurrencyCode>> GetCurrenciesCodeACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
@@ -595,28 +598,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteCurrencyCode&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteCurrencyCode>>> GetCurrenciesCodeACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteCurrencyCode>>> GetCurrenciesCodeACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all object groups of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteObjectGroup&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteObjectGroup>> GetObjectGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteObjectGroup>> GetObjectGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all object groups of the user returned in a basic auto-complete array.
@@ -624,28 +627,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteObjectGroup&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteObjectGroup>>> GetObjectGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteObjectGroup>>> GetObjectGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompletePiggy&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompletePiggy>> GetPiggiesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompletePiggy>> GetPiggiesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array.
@@ -653,28 +656,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompletePiggy&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompletePiggy>>> GetPiggiesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompletePiggy>>> GetPiggiesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompletePiggyBalance&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompletePiggyBalance>> GetPiggiesBalanceACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompletePiggyBalance>> GetPiggiesBalanceACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information.
@@ -682,28 +685,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompletePiggyBalance&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompletePiggyBalance>>> GetPiggiesBalanceACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompletePiggyBalance>>> GetPiggiesBalanceACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all recurring transactions of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteRecurrence&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteRecurrence>> GetRecurringACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteRecurrence>> GetRecurringACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all recurring transactions of the user returned in a basic auto-complete array.
@@ -711,28 +714,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteRecurrence&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteRecurrence>>> GetRecurringACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteRecurrence>>> GetRecurringACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all rule groups of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteRuleGroup&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteRuleGroup>> GetRuleGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteRuleGroup>> GetRuleGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all rule groups of the user returned in a basic auto-complete array.
@@ -740,28 +743,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteRuleGroup&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteRuleGroup>>> GetRuleGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteRuleGroup>>> GetRuleGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all rules of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteRule&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteRule>> GetRulesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteRule>> GetRulesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all rules of the user returned in a basic auto-complete array.
@@ -769,28 +772,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteRule&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteRule>>> GetRulesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteRule>>> GetRulesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all tags of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTag&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteTag>> GetTagACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteTag>> GetTagACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all tags of the user returned in a basic auto-complete array.
@@ -798,28 +801,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTag&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteTag>>> GetTagACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteTag>>> GetTagACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all transaction types returned in a basic auto-complete array. English only.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTransactionType&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteTransactionType>> GetTransactionTypesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteTransactionType>> GetTransactionTypesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all transaction types returned in a basic auto-complete array. English only.
@@ -827,28 +830,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTransactionType&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteTransactionType>>> GetTransactionTypesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteTransactionType>>> GetTransactionTypesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all transaction descriptions of the user returned in a basic auto-complete array.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTransaction&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteTransaction>> GetTransactionsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteTransaction>> GetTransactionsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all transaction descriptions of the user returned in a basic auto-complete array.
@@ -856,28 +859,28 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTransaction&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteTransaction>>> GetTransactionsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteTransaction>>> GetTransactionsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTransactionID&gt;</returns>
-        System.Threading.Tasks.Task<List<AutocompleteTransactionID>> GetTransactionsIDACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<AutocompleteTransactionID>> GetTransactionsIDACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it.
@@ -885,14 +888,14 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTransactionID&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<AutocompleteTransactionID>>> GetTransactionsIDACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<AutocompleteTransactionID>>> GetTransactionsIDACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -909,7 +912,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class AutocompleteApi : IAutocompleteApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AutocompleteApi"/> class.
@@ -923,15 +926,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="AutocompleteApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public AutocompleteApi(string basePath)
+        public AutocompleteApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -940,17 +936,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public AutocompleteApi(FireflyIIINet.Client.Configuration configuration)
+        public AutocompleteApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -960,27 +956,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public AutocompleteApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public AutocompleteApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -988,19 +984,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -1014,9 +1010,112 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetAccountsAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetAccountsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+		{
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetAccountsAC" ,operationIndex);
+
+            if (query != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (date != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "date", date));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Returns all accounts of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1026,14 +1125,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteAccount&gt;</returns>
         public List<AutocompleteAccount> GetAccountsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteAccount>> localVarResponse = GetAccountsACWithHttpInfo(xTraceId, query, limit, date, type);
+            ApiResponse<List<AutocompleteAccount>> localVarResponse = GetAccountsACWithHttpInfo(xTraceId, query, limit, date, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all accounts of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1041,89 +1140,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">Optional filter on the account type(s) used in the autocomplete. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteAccount&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteAccount>> GetAccountsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteAccount>> GetAccountsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (date != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetAccountsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetAccountsAC(xTraceId, query, limit, date, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteAccount>>("/v1/autocomplete/accounts", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetAccountsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteAccount>>("/v1/autocomplete/accounts", localVarRequestOptions, Configuration);
+            ValidateException("GetAccountsAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all accounts of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1132,16 +1162,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteAccount&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteAccount>> GetAccountsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteAccount>> GetAccountsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteAccount>> localVarResponse = await GetAccountsACWithHttpInfoAsync(xTraceId, query, limit, date, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteAccount>> localVarResponse = await GetAccountsACWithHttpInfoAsync(xTraceId, query, limit, date, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all accounts of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1150,11 +1180,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteAccount&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteAccount>>> GetAccountsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteAccount>>> GetAccountsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), string? date = default(string?), AccountTypeFilter? type = default(AccountTypeFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetAccountsAC(xTraceId, query, limit, date, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteAccount>>("/v1/autocomplete/accounts", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetAccountsAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetBillsAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetBillsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1163,78 +1203,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetBillsAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (date != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "date", date));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetAccountsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteAccount>>("/v1/autocomplete/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetAccountsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all bills of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1242,121 +1234,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteBill&gt;</returns>
         public List<AutocompleteBill> GetBillsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteBill>> localVarResponse = GetBillsACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteBill>> localVarResponse = GetBillsACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all bills of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteBill&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteBill>> GetBillsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteBill>> GetBillsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetBillsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBillsAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteBill>>("/v1/autocomplete/bills", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBillsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteBill>>("/v1/autocomplete/bills", localVarRequestOptions, Configuration);
+            ValidateException("GetBillsAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all bills of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteBill&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteBill>> GetBillsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteBill>> GetBillsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteBill>> localVarResponse = await GetBillsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteBill>> localVarResponse = await GetBillsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all bills of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteBill&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteBill>>> GetBillsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteBill>>> GetBillsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBillsAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteBill>>("/v1/autocomplete/bills", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetBillsAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetBudgetsAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetBudgetsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1365,70 +1306,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetBudgetsAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetBillsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteBill>>("/v1/autocomplete/bills", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBillsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all budgets of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1436,121 +1337,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteBudget&gt;</returns>
         public List<AutocompleteBudget> GetBudgetsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteBudget>> localVarResponse = GetBudgetsACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteBudget>> localVarResponse = GetBudgetsACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all budgets of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteBudget&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteBudget>> GetBudgetsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteBudget>> GetBudgetsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetBudgetsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetsAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteBudget>>("/v1/autocomplete/budgets", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteBudget>>("/v1/autocomplete/budgets", localVarRequestOptions, Configuration);
+            ValidateException("GetBudgetsAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all budgets of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteBudget&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteBudget>> GetBudgetsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteBudget>> GetBudgetsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteBudget>> localVarResponse = await GetBudgetsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteBudget>> localVarResponse = await GetBudgetsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all budgets of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteBudget&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteBudget>>> GetBudgetsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteBudget>>> GetBudgetsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetBudgetsAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteBudget>>("/v1/autocomplete/budgets", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetBudgetsAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetCategoriesAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetCategoriesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1559,70 +1409,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetCategoriesAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetBudgetsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteBudget>>("/v1/autocomplete/budgets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetBudgetsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all categories of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1630,121 +1440,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteCategory&gt;</returns>
         public List<AutocompleteCategory> GetCategoriesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteCategory>> localVarResponse = GetCategoriesACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteCategory>> localVarResponse = GetCategoriesACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all categories of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteCategory&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteCategory>> GetCategoriesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteCategory>> GetCategoriesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetCategoriesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCategoriesAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteCategory>>("/v1/autocomplete/categories", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCategoriesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteCategory>>("/v1/autocomplete/categories", localVarRequestOptions, Configuration);
+            ValidateException("GetCategoriesAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all categories of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteCategory&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteCategory>> GetCategoriesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteCategory>> GetCategoriesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteCategory>> localVarResponse = await GetCategoriesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteCategory>> localVarResponse = await GetCategoriesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all categories of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteCategory&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteCategory>>> GetCategoriesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteCategory>>> GetCategoriesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCategoriesAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteCategory>>("/v1/autocomplete/categories", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetCategoriesAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetCurrenciesAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetCurrenciesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1753,70 +1512,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetCurrenciesAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetCategoriesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteCategory>>("/v1/autocomplete/categories", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCategoriesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -1824,121 +1543,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteCurrency&gt;</returns>
         public List<AutocompleteCurrency> GetCurrenciesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrency>> localVarResponse = GetCurrenciesACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteCurrency>> localVarResponse = GetCurrenciesACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteCurrency&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrency>> GetCurrenciesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteCurrency>> GetCurrenciesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetCurrenciesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCurrenciesAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteCurrency>>("/v1/autocomplete/currencies", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCurrenciesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteCurrency>>("/v1/autocomplete/currencies", localVarRequestOptions, Configuration);
+            ValidateException("GetCurrenciesAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteCurrency&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteCurrency>> GetCurrenciesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteCurrency>> GetCurrenciesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrency>> localVarResponse = await GetCurrenciesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteCurrency>> localVarResponse = await GetCurrenciesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteCurrency&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrency>>> GetCurrenciesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteCurrency>>> GetCurrenciesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCurrenciesAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteCurrency>>("/v1/autocomplete/currencies", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetCurrenciesAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetCurrenciesCodeAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetCurrenciesCodeAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1947,70 +1615,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetCurrenciesCodeAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetCurrenciesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteCurrency>>("/v1/autocomplete/currencies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCurrenciesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -2018,121 +1646,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteCurrencyCode&gt;</returns>
         public List<AutocompleteCurrencyCode> GetCurrenciesCodeAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrencyCode>> localVarResponse = GetCurrenciesCodeACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteCurrencyCode>> localVarResponse = GetCurrenciesCodeACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteCurrencyCode&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrencyCode>> GetCurrenciesCodeACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteCurrencyCode>> GetCurrenciesCodeACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetCurrenciesCodeAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCurrenciesCodeAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteCurrencyCode>>("/v1/autocomplete/currencies-with-code", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCurrenciesCodeAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteCurrencyCode>>("/v1/autocomplete/currencies-with-code", localVarRequestOptions, Configuration);
+            ValidateException("GetCurrenciesCodeAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteCurrencyCode&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteCurrencyCode>> GetCurrenciesCodeACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteCurrencyCode>> GetCurrenciesCodeACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrencyCode>> localVarResponse = await GetCurrenciesCodeACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteCurrencyCode>> localVarResponse = await GetCurrenciesCodeACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all currencies of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteCurrencyCode&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteCurrencyCode>>> GetCurrenciesCodeACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteCurrencyCode>>> GetCurrenciesCodeACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetCurrenciesCodeAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteCurrencyCode>>("/v1/autocomplete/currencies-with-code", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetCurrenciesCodeAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetObjectGroupsAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetObjectGroupsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2141,70 +1718,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetObjectGroupsAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetCurrenciesCodeAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteCurrencyCode>>("/v1/autocomplete/currencies-with-code", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetCurrenciesCodeAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all object groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -2212,121 +1749,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteObjectGroup&gt;</returns>
         public List<AutocompleteObjectGroup> GetObjectGroupsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteObjectGroup>> localVarResponse = GetObjectGroupsACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteObjectGroup>> localVarResponse = GetObjectGroupsACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all object groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteObjectGroup&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteObjectGroup>> GetObjectGroupsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteObjectGroup>> GetObjectGroupsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetObjectGroupsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetObjectGroupsAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteObjectGroup>>("/v1/autocomplete/object-groups", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetObjectGroupsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteObjectGroup>>("/v1/autocomplete/object-groups", localVarRequestOptions, Configuration);
+            ValidateException("GetObjectGroupsAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all object groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteObjectGroup&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteObjectGroup>> GetObjectGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteObjectGroup>> GetObjectGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteObjectGroup>> localVarResponse = await GetObjectGroupsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteObjectGroup>> localVarResponse = await GetObjectGroupsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all object groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteObjectGroup&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteObjectGroup>>> GetObjectGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteObjectGroup>>> GetObjectGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetObjectGroupsAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteObjectGroup>>("/v1/autocomplete/object-groups", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetObjectGroupsAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetPiggiesAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetPiggiesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2335,70 +1821,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetPiggiesAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetObjectGroupsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteObjectGroup>>("/v1/autocomplete/object-groups", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetObjectGroupsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -2406,121 +1852,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompletePiggy&gt;</returns>
         public List<AutocompletePiggy> GetPiggiesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompletePiggy>> localVarResponse = GetPiggiesACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompletePiggy>> localVarResponse = GetPiggiesACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompletePiggy&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompletePiggy>> GetPiggiesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompletePiggy>> GetPiggiesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetPiggiesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetPiggiesAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompletePiggy>>("/v1/autocomplete/piggy-banks", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPiggiesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompletePiggy>>("/v1/autocomplete/piggy-banks", localVarRequestOptions, Configuration);
+            ValidateException("GetPiggiesAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompletePiggy&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompletePiggy>> GetPiggiesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompletePiggy>> GetPiggiesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompletePiggy>> localVarResponse = await GetPiggiesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompletePiggy>> localVarResponse = await GetPiggiesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompletePiggy&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompletePiggy>>> GetPiggiesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompletePiggy>>> GetPiggiesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetPiggiesAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompletePiggy>>("/v1/autocomplete/piggy-banks", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetPiggiesAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetPiggiesBalanceAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetPiggiesBalanceAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2529,70 +1924,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetPiggiesBalanceAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetPiggiesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompletePiggy>>("/v1/autocomplete/piggy-banks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPiggiesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -2600,121 +1955,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompletePiggyBalance&gt;</returns>
         public List<AutocompletePiggyBalance> GetPiggiesBalanceAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompletePiggyBalance>> localVarResponse = GetPiggiesBalanceACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompletePiggyBalance>> localVarResponse = GetPiggiesBalanceACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompletePiggyBalance&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompletePiggyBalance>> GetPiggiesBalanceACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompletePiggyBalance>> GetPiggiesBalanceACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetPiggiesBalanceAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetPiggiesBalanceAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompletePiggyBalance>>("/v1/autocomplete/piggy-banks-with-balance", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPiggiesBalanceAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompletePiggyBalance>>("/v1/autocomplete/piggy-banks-with-balance", localVarRequestOptions, Configuration);
+            ValidateException("GetPiggiesBalanceAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompletePiggyBalance&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompletePiggyBalance>> GetPiggiesBalanceACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompletePiggyBalance>> GetPiggiesBalanceACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompletePiggyBalance>> localVarResponse = await GetPiggiesBalanceACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompletePiggyBalance>> localVarResponse = await GetPiggiesBalanceACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all piggy banks of the user returned in a basic auto-complete array complemented with balance information. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompletePiggyBalance&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompletePiggyBalance>>> GetPiggiesBalanceACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompletePiggyBalance>>> GetPiggiesBalanceACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetPiggiesBalanceAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompletePiggyBalance>>("/v1/autocomplete/piggy-banks-with-balance", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetPiggiesBalanceAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetRecurringAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetRecurringAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2723,70 +2027,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetRecurringAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetPiggiesBalanceAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompletePiggyBalance>>("/v1/autocomplete/piggy-banks-with-balance", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetPiggiesBalanceAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all recurring transactions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -2794,121 +2058,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteRecurrence&gt;</returns>
         public List<AutocompleteRecurrence> GetRecurringAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteRecurrence>> localVarResponse = GetRecurringACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteRecurrence>> localVarResponse = GetRecurringACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all recurring transactions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteRecurrence&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteRecurrence>> GetRecurringACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteRecurrence>> GetRecurringACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetRecurringAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetRecurringAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteRecurrence>>("/v1/autocomplete/recurring", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetRecurringAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteRecurrence>>("/v1/autocomplete/recurring", localVarRequestOptions, Configuration);
+            ValidateException("GetRecurringAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all recurring transactions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteRecurrence&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteRecurrence>> GetRecurringACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteRecurrence>> GetRecurringACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteRecurrence>> localVarResponse = await GetRecurringACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteRecurrence>> localVarResponse = await GetRecurringACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all recurring transactions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteRecurrence&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteRecurrence>>> GetRecurringACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteRecurrence>>> GetRecurringACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetRecurringAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteRecurrence>>("/v1/autocomplete/recurring", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetRecurringAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetRuleGroupsAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetRuleGroupsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2917,70 +2130,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetRuleGroupsAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetRecurringAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteRecurrence>>("/v1/autocomplete/recurring", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetRecurringAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all rule groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -2988,121 +2161,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteRuleGroup&gt;</returns>
         public List<AutocompleteRuleGroup> GetRuleGroupsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteRuleGroup>> localVarResponse = GetRuleGroupsACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteRuleGroup>> localVarResponse = GetRuleGroupsACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all rule groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteRuleGroup&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteRuleGroup>> GetRuleGroupsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteRuleGroup>> GetRuleGroupsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetRuleGroupsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetRuleGroupsAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteRuleGroup>>("/v1/autocomplete/rule-groups", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetRuleGroupsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteRuleGroup>>("/v1/autocomplete/rule-groups", localVarRequestOptions, Configuration);
+            ValidateException("GetRuleGroupsAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all rule groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteRuleGroup&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteRuleGroup>> GetRuleGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteRuleGroup>> GetRuleGroupsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteRuleGroup>> localVarResponse = await GetRuleGroupsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteRuleGroup>> localVarResponse = await GetRuleGroupsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all rule groups of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteRuleGroup&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteRuleGroup>>> GetRuleGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteRuleGroup>>> GetRuleGroupsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetRuleGroupsAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteRuleGroup>>("/v1/autocomplete/rule-groups", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetRuleGroupsAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetRulesAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetRulesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3111,70 +2233,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetRulesAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetRuleGroupsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteRuleGroup>>("/v1/autocomplete/rule-groups", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetRuleGroupsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all rules of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -3182,121 +2264,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteRule&gt;</returns>
         public List<AutocompleteRule> GetRulesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteRule>> localVarResponse = GetRulesACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteRule>> localVarResponse = GetRulesACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all rules of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteRule&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteRule>> GetRulesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteRule>> GetRulesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetRulesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetRulesAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteRule>>("/v1/autocomplete/rules", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetRulesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteRule>>("/v1/autocomplete/rules", localVarRequestOptions, Configuration);
+            ValidateException("GetRulesAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all rules of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteRule&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteRule>> GetRulesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteRule>> GetRulesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteRule>> localVarResponse = await GetRulesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteRule>> localVarResponse = await GetRulesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all rules of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteRule&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteRule>>> GetRulesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteRule>>> GetRulesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetRulesAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteRule>>("/v1/autocomplete/rules", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetRulesAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetTagAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetTagAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3305,70 +2336,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetTagAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetRulesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteRule>>("/v1/autocomplete/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetRulesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all tags of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -3376,121 +2367,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteTag&gt;</returns>
         public List<AutocompleteTag> GetTagAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTag>> localVarResponse = GetTagACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteTag>> localVarResponse = GetTagACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all tags of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteTag&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteTag>> GetTagACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteTag>> GetTagACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTagAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTagAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteTag>>("/v1/autocomplete/tags", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTagAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteTag>>("/v1/autocomplete/tags", localVarRequestOptions, Configuration);
+            ValidateException("GetTagAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all tags of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTag&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteTag>> GetTagACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteTag>> GetTagACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTag>> localVarResponse = await GetTagACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteTag>> localVarResponse = await GetTagACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all tags of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTag&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteTag>>> GetTagACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteTag>>> GetTagACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTagAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteTag>>("/v1/autocomplete/tags", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetTagAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetTransactionTypesAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetTransactionTypesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3499,70 +2439,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetTransactionTypesAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTagAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteTag>>("/v1/autocomplete/tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTagAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all transaction types returned in a basic auto-complete array. English only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -3570,121 +2470,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteTransactionType&gt;</returns>
         public List<AutocompleteTransactionType> GetTransactionTypesAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionType>> localVarResponse = GetTransactionTypesACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteTransactionType>> localVarResponse = GetTransactionTypesACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all transaction types returned in a basic auto-complete array. English only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteTransactionType&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionType>> GetTransactionTypesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteTransactionType>> GetTransactionTypesACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTransactionTypesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionTypesAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteTransactionType>>("/v1/autocomplete/transaction-types", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionTypesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteTransactionType>>("/v1/autocomplete/transaction-types", localVarRequestOptions, Configuration);
+            ValidateException("GetTransactionTypesAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all transaction types returned in a basic auto-complete array. English only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTransactionType&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteTransactionType>> GetTransactionTypesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteTransactionType>> GetTransactionTypesACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionType>> localVarResponse = await GetTransactionTypesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteTransactionType>> localVarResponse = await GetTransactionTypesACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all transaction types returned in a basic auto-complete array. English only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTransactionType&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionType>>> GetTransactionTypesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteTransactionType>>> GetTransactionTypesACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionTypesAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteTransactionType>>("/v1/autocomplete/transaction-types", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetTransactionTypesAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetTransactionsAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetTransactionsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3693,70 +2542,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetTransactionsAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTransactionTypesAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteTransactionType>>("/v1/autocomplete/transaction-types", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionTypesAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all transaction descriptions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -3764,121 +2573,70 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteTransaction&gt;</returns>
         public List<AutocompleteTransaction> GetTransactionsAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTransaction>> localVarResponse = GetTransactionsACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteTransaction>> localVarResponse = GetTransactionsACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all transaction descriptions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteTransaction&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteTransaction>> GetTransactionsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteTransaction>> GetTransactionsACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTransactionsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionsAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteTransaction>>("/v1/autocomplete/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteTransaction>>("/v1/autocomplete/transactions", localVarRequestOptions, Configuration);
+            ValidateException("GetTransactionsAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all transaction descriptions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTransaction&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteTransaction>> GetTransactionsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteTransaction>> GetTransactionsACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTransaction>> localVarResponse = await GetTransactionsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteTransaction>> localVarResponse = await GetTransactionsACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all transaction descriptions of the user returned in a basic auto-complete array. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTransaction&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteTransaction>>> GetTransactionsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteTransaction>>> GetTransactionsACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionsAC(xTraceId, query, limit, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteTransaction>>("/v1/autocomplete/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetTransactionsAC", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for GetTransactionsIDAC.
+        /// </summary>
+		private RequestOptions GetRequestOptionsGetTransactionsIDAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3887,70 +2645,30 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"AutocompleteApi.GetTransactionsIDAC" ,operationIndex);
 
             if (query != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
             }
             if (limit != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTransactionsAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteTransaction>>("/v1/autocomplete/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionsAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
@@ -3958,188 +2676,63 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;AutocompleteTransactionID&gt;</returns>
         public List<AutocompleteTransactionID> GetTransactionsIDAC(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionID>> localVarResponse = GetTransactionsIDACWithHttpInfo(xTraceId, query, limit);
+            ApiResponse<List<AutocompleteTransactionID>> localVarResponse = GetTransactionsIDACWithHttpInfo(xTraceId, query, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;AutocompleteTransactionID&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionID>> GetTransactionsIDACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
+        public ApiResponse<List<AutocompleteTransactionID>> GetTransactionsIDACWithHttpInfo(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTransactionsIDAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionsIDAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<AutocompleteTransactionID>>("/v1/autocomplete/transactions-with-id", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionsIDAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<AutocompleteTransactionID>>("/v1/autocomplete/transactions-with-id", localVarRequestOptions, Configuration);
+            ValidateException("GetTransactionsIDAC", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;AutocompleteTransactionID&gt;</returns>
-        public async System.Threading.Tasks.Task<List<AutocompleteTransactionID>> GetTransactionsIDACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<AutocompleteTransactionID>> GetTransactionsIDACAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionID>> localVarResponse = await GetTransactionsIDACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<AutocompleteTransactionID>> localVarResponse = await GetTransactionsIDACWithHttpInfoAsync(xTraceId, query, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns all transactions, complemented with their ID, of the user returned in a basic auto-complete array. This endpoint is DEPRECATED and I suggest you DO NOT use it. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="query">The autocomplete search query. (optional)</param>
         /// <param name="limit">The number of items returned. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;AutocompleteTransactionID&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<AutocompleteTransactionID>>> GetTransactionsIDACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<AutocompleteTransactionID>>> GetTransactionsIDACWithHttpInfoAsync(Guid? xTraceId = default(Guid?), string? query = default(string?), int? limit = default(int?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (query != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-            }
-            if (limit != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "AutocompleteApi.GetTransactionsIDAC";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsGetTransactionsIDAC(xTraceId, query, limit, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<AutocompleteTransactionID>>("/v1/autocomplete/transactions-with-id", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("GetTransactionsIDAC", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.GetAsync<List<AutocompleteTransactionID>>("/v1/autocomplete/transactions-with-id", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("GetTransactionsIDAC", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

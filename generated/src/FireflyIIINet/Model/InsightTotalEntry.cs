@@ -41,10 +41,10 @@ namespace FireflyIIINet.Model
         /// <param name="currencyCode">The currency code of the expenses listed for this expense account..</param>
         public InsightTotalEntry(string difference = default(string), double differenceFloat = default(double), string currencyId = default(string), string currencyCode = default(string))
         {
-            this.Difference = difference;
-            this.DifferenceFloat = differenceFloat;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
+            Difference = difference;
+            DifferenceFloat = differenceFloat;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The amount spent between start date and end date, defined as a string, for this expense account and all asset accounts.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "difference", EmitDefaultValue = false)]
+        [DataMember(Name = "difference", EmitDefaultValue = true)]
         public string Difference { get; set; }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The amount spent between start date and end date, defined as a string, for this expense account and all asset accounts. This number is a float (double) and may have rounding errors.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "difference_float", EmitDefaultValue = false)]
+        [DataMember(Name = "difference_float", EmitDefaultValue = true)]
         public double DifferenceFloat { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency ID of the expenses listed for this expense account.</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency code of the expenses listed for this expense account.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as InsightTotalEntry);
+            return Equals(input as InsightTotalEntry);
         }
 
         /// <summary>
@@ -127,23 +127,20 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Difference == input.Difference ||
-                    (this.Difference != null &&
-                    this.Difference.Equals(input.Difference))
+                    Difference == input.Difference ||
+					Difference.Equals(input.Difference)
                 ) && 
                 (
-                    this.DifferenceFloat == input.DifferenceFloat ||
-                    this.DifferenceFloat.Equals(input.DifferenceFloat)
+                    DifferenceFloat == input.DifferenceFloat ||
+                    DifferenceFloat.Equals(input.DifferenceFloat)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 );
         }
 
@@ -156,19 +153,10 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Difference != null)
-                {
-                    hashCode = (hashCode * 59) + this.Difference.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.DifferenceFloat.GetHashCode();
-                if (this.CurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
-                }
-                if (this.CurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Difference.GetHashCode();
+                hashCode = (hashCode * 59) + DifferenceFloat.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
                 return hashCode;
             }
         }
@@ -178,7 +166,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

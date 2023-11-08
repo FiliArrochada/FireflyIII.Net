@@ -39,22 +39,22 @@ namespace FireflyIIINet.Model
         /// <param name="exception">exception.</param>
         public BadRequest(string message = default(string), string exception = default(string))
         {
-            this.Message = message;
-            this.Exception = exception;
+            Message = message;
+            Exception = exception;
         }
 
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
         /// <example>Bad Request</example>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name = "message", EmitDefaultValue = true)]
         public string Message { get; set; }
 
         /// <summary>
         /// Gets or Sets Exception
         /// </summary>
         /// <example>BadRequestHttpException</example>
-        [DataMember(Name = "exception", EmitDefaultValue = false)]
+        [DataMember(Name = "exception", EmitDefaultValue = true)]
         public string Exception { get; set; }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BadRequest);
+            return Equals(input as BadRequest);
         }
 
         /// <summary>
@@ -103,14 +103,12 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    Message == input.Message ||
+					Message.Equals(input.Message)
                 ) && 
                 (
-                    this.Exception == input.Exception ||
-                    (this.Exception != null &&
-                    this.Exception.Equals(input.Exception))
+                    Exception == input.Exception ||
+					Exception.Equals(input.Exception)
                 );
         }
 
@@ -123,14 +121,8 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
-                if (this.Exception != null)
-                {
-                    hashCode = (hashCode * 59) + this.Exception.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Message.GetHashCode();
+				hashCode = (hashCode * 59) + Exception.GetHashCode();
                 return hashCode;
             }
         }
@@ -140,7 +132,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

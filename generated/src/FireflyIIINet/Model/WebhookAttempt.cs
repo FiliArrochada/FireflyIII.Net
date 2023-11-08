@@ -41,17 +41,17 @@ namespace FireflyIIINet.Model
         /// <param name="response">Webhook receiver response for this attempt, if any. May contain sensitive user data..</param>
         public WebhookAttempt(string webhookMessageId = default(string), int? statusCode = default(int?), string logs = default(string), string response = default(string))
         {
-            this.WebhookMessageId = webhookMessageId;
-            this.StatusCode = statusCode;
-            this.Logs = logs;
-            this.Response = response;
+            WebhookMessageId = webhookMessageId;
+            StatusCode = statusCode;
+            Logs = logs;
+            Response = response;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The ID of the webhook message this attempt belongs to.</value>
         /// <example>5</example>
-        [DataMember(Name = "webhook_message_id", EmitDefaultValue = false)]
+        [DataMember(Name = "webhook_message_id", EmitDefaultValue = true)]
         public string WebhookMessageId { get; set; }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The HTTP status code of the error, if any.</value>
         /// <example>404</example>
-        [DataMember(Name = "status_code", EmitDefaultValue = true)]
+        [DataMember(Name = "status_code", EmitDefaultValue = false)]
         public int? StatusCode { get; set; }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Internal log for this attempt. May contain sensitive user data.</value>
         /// <example>Page not found</example>
-        [DataMember(Name = "logs", EmitDefaultValue = true)]
+        [DataMember(Name = "logs", EmitDefaultValue = false)]
         public string Logs { get; set; }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Webhook receiver response for this attempt, if any. May contain sensitive user data.</value>
         /// <example>Page not found</example>
-        [DataMember(Name = "response", EmitDefaultValue = true)]
+        [DataMember(Name = "response", EmitDefaultValue = false)]
         public string Response { get; set; }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebhookAttempt);
+            return Equals(input as WebhookAttempt);
         }
 
         /// <summary>
@@ -159,34 +159,31 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.WebhookMessageId == input.WebhookMessageId ||
-                    (this.WebhookMessageId != null &&
-                    this.WebhookMessageId.Equals(input.WebhookMessageId))
+                    WebhookMessageId == input.WebhookMessageId ||
+					WebhookMessageId.Equals(input.WebhookMessageId)
                 ) && 
                 (
-                    this.StatusCode == input.StatusCode ||
-                    (this.StatusCode != null &&
-                    this.StatusCode.Equals(input.StatusCode))
+                    StatusCode == input.StatusCode ||
+                    (StatusCode != null &&
+                    StatusCode.Equals(input.StatusCode))
                 ) && 
                 (
-                    this.Logs == input.Logs ||
-                    (this.Logs != null &&
-                    this.Logs.Equals(input.Logs))
+                    Logs == input.Logs ||
+                    (Logs != null &&
+                    Logs.Equals(input.Logs))
                 ) && 
                 (
-                    this.Response == input.Response ||
-                    (this.Response != null &&
-                    this.Response.Equals(input.Response))
+                    Response == input.Response ||
+                    (Response != null &&
+                    Response.Equals(input.Response))
                 );
         }
 
@@ -199,29 +196,20 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + WebhookMessageId.GetHashCode();
+                if (StatusCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + StatusCode.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
+                if (Logs != null)
                 {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + Logs.GetHashCode();
                 }
-                if (this.WebhookMessageId != null)
+                if (Response != null)
                 {
-                    hashCode = (hashCode * 59) + this.WebhookMessageId.GetHashCode();
-                }
-                if (this.StatusCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.StatusCode.GetHashCode();
-                }
-                if (this.Logs != null)
-                {
-                    hashCode = (hashCode * 59) + this.Logs.GetHashCode();
-                }
-                if (this.Response != null)
-                {
-                    hashCode = (hashCode * 59) + this.Response.GetHashCode();
+                    hashCode = (hashCode * 59) + Response.GetHashCode();
                 }
                 return hashCode;
             }
@@ -232,7 +220,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

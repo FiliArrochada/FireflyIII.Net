@@ -47,76 +47,76 @@ namespace FireflyIIINet.Model
         /// <param name="date">date.</param>
         public ValidationErrorErrors(List<string> email = default(List<string>), List<string> blocked = default(List<string>), List<string> role = default(List<string>), List<string> blockedCode = default(List<string>), List<string> name = default(List<string>), List<string> type = default(List<string>), List<string> iban = default(List<string>), List<string> start = default(List<string>), List<string> end = default(List<string>), List<string> date = default(List<string>))
         {
-            this.Email = email;
-            this.Blocked = blocked;
-            this.Role = role;
-            this.BlockedCode = blockedCode;
-            this.Name = name;
-            this.Type = type;
-            this.Iban = iban;
-            this.Start = start;
-            this.End = end;
-            this.Date = date;
+            Email = email;
+            Blocked = blocked;
+            Role = role;
+            BlockedCode = blockedCode;
+            Name = name;
+            Type = type;
+            Iban = iban;
+            Start = start;
+            End = end;
+            Date = date;
         }
 
         /// <summary>
         /// Gets or Sets Email
         /// </summary>
-        [DataMember(Name = "email", EmitDefaultValue = false)]
+        [DataMember(Name = "email", EmitDefaultValue = true)]
         public List<string> Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Blocked
         /// </summary>
-        [DataMember(Name = "blocked", EmitDefaultValue = false)]
+        [DataMember(Name = "blocked", EmitDefaultValue = true)]
         public List<string> Blocked { get; set; }
 
         /// <summary>
         /// Gets or Sets Role
         /// </summary>
-        [DataMember(Name = "role", EmitDefaultValue = false)]
+        [DataMember(Name = "role", EmitDefaultValue = true)]
         public List<string> Role { get; set; }
 
         /// <summary>
         /// Gets or Sets BlockedCode
         /// </summary>
-        [DataMember(Name = "blocked_code", EmitDefaultValue = false)]
+        [DataMember(Name = "blocked_code", EmitDefaultValue = true)]
         public List<string> BlockedCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public List<string> Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name = "type", EmitDefaultValue = true)]
         public List<string> Type { get; set; }
 
         /// <summary>
         /// Gets or Sets Iban
         /// </summary>
-        [DataMember(Name = "iban", EmitDefaultValue = false)]
+        [DataMember(Name = "iban", EmitDefaultValue = true)]
         public List<string> Iban { get; set; }
 
         /// <summary>
         /// Gets or Sets Start
         /// </summary>
-        [DataMember(Name = "start", EmitDefaultValue = false)]
+        [DataMember(Name = "start", EmitDefaultValue = true)]
         public List<string> Start { get; set; }
 
         /// <summary>
         /// Gets or Sets End
         /// </summary>
-        [DataMember(Name = "end", EmitDefaultValue = false)]
+        [DataMember(Name = "end", EmitDefaultValue = true)]
         public List<string> End { get; set; }
 
         /// <summary>
         /// Gets or Sets Date
         /// </summary>
-        [DataMember(Name = "date", EmitDefaultValue = false)]
+        [DataMember(Name = "date", EmitDefaultValue = true)]
         public List<string> Date { get; set; }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ValidationErrorErrors);
+            return Equals(input as ValidationErrorErrors);
         }
 
         /// <summary>
@@ -173,64 +173,64 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Email == input.Email ||
-                    this.Email != null &&
+                    Email == input.Email ||
+                    Email != null &&
                     input.Email != null &&
-                    this.Email.SequenceEqual(input.Email)
+                    Email.SequenceEqual(input.Email)
                 ) && 
                 (
-                    this.Blocked == input.Blocked ||
-                    this.Blocked != null &&
+                    Blocked == input.Blocked ||
+                    Blocked != null &&
                     input.Blocked != null &&
-                    this.Blocked.SequenceEqual(input.Blocked)
+                    Blocked.SequenceEqual(input.Blocked)
                 ) && 
                 (
-                    this.Role == input.Role ||
-                    this.Role != null &&
+                    Role == input.Role ||
+                    Role != null &&
                     input.Role != null &&
-                    this.Role.SequenceEqual(input.Role)
+                    Role.SequenceEqual(input.Role)
                 ) && 
                 (
-                    this.BlockedCode == input.BlockedCode ||
-                    this.BlockedCode != null &&
+                    BlockedCode == input.BlockedCode ||
+                    BlockedCode != null &&
                     input.BlockedCode != null &&
-                    this.BlockedCode.SequenceEqual(input.BlockedCode)
+                    BlockedCode.SequenceEqual(input.BlockedCode)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    this.Name != null &&
+                    Name == input.Name ||
+                    Name != null &&
                     input.Name != null &&
-                    this.Name.SequenceEqual(input.Name)
+                    Name.SequenceEqual(input.Name)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    this.Type != null &&
+                    Type == input.Type ||
+                    Type != null &&
                     input.Type != null &&
-                    this.Type.SequenceEqual(input.Type)
+                    Type.SequenceEqual(input.Type)
                 ) && 
                 (
-                    this.Iban == input.Iban ||
-                    this.Iban != null &&
+                    Iban == input.Iban ||
+                    Iban != null &&
                     input.Iban != null &&
-                    this.Iban.SequenceEqual(input.Iban)
+                    Iban.SequenceEqual(input.Iban)
                 ) && 
                 (
-                    this.Start == input.Start ||
-                    this.Start != null &&
+                    Start == input.Start ||
+                    Start != null &&
                     input.Start != null &&
-                    this.Start.SequenceEqual(input.Start)
+                    Start.SequenceEqual(input.Start)
                 ) && 
                 (
-                    this.End == input.End ||
-                    this.End != null &&
+                    End == input.End ||
+                    End != null &&
                     input.End != null &&
-                    this.End.SequenceEqual(input.End)
+                    End.SequenceEqual(input.End)
                 ) && 
                 (
-                    this.Date == input.Date ||
-                    this.Date != null &&
+                    Date == input.Date ||
+                    Date != null &&
                     input.Date != null &&
-                    this.Date.SequenceEqual(input.Date)
+                    Date.SequenceEqual(input.Date)
                 );
         }
 
@@ -243,46 +243,16 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Email != null)
-                {
-                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
-                }
-                if (this.Blocked != null)
-                {
-                    hashCode = (hashCode * 59) + this.Blocked.GetHashCode();
-                }
-                if (this.Role != null)
-                {
-                    hashCode = (hashCode * 59) + this.Role.GetHashCode();
-                }
-                if (this.BlockedCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.BlockedCode.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
-                if (this.Iban != null)
-                {
-                    hashCode = (hashCode * 59) + this.Iban.GetHashCode();
-                }
-                if (this.Start != null)
-                {
-                    hashCode = (hashCode * 59) + this.Start.GetHashCode();
-                }
-                if (this.End != null)
-                {
-                    hashCode = (hashCode * 59) + this.End.GetHashCode();
-                }
-                if (this.Date != null)
-                {
-                    hashCode = (hashCode * 59) + this.Date.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Email.GetHashCode();
+				hashCode = (hashCode * 59) + Blocked.GetHashCode();
+				hashCode = (hashCode * 59) + Role.GetHashCode();
+				hashCode = (hashCode * 59) + BlockedCode.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + Iban.GetHashCode();
+				hashCode = (hashCode * 59) + Start.GetHashCode();
+				hashCode = (hashCode * 59) + End.GetHashCode();
+				hashCode = (hashCode * 59) + Date.GetHashCode();
                 return hashCode;
             }
         }
@@ -292,7 +262,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

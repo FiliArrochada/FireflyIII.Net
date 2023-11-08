@@ -42,18 +42,18 @@ namespace FireflyIIINet.Model
         /// <param name="varString">The actual message that is sent or will be sent as JSON string..</param>
         public WebhookMessage(bool sent = default(bool), bool errored = default(bool), string webhookId = default(string), string uuid = default(string), string varString = default(string))
         {
-            this.Sent = sent;
-            this.Errored = errored;
-            this.WebhookId = webhookId;
-            this.Uuid = uuid;
-            this.VarString = varString;
+            Sent = sent;
+            Errored = errored;
+            WebhookId = webhookId;
+            Uuid = uuid;
+            VarString = varString;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The ID of the webhook this message belongs to.</value>
         /// <example>5</example>
-        [DataMember(Name = "webhook_id", EmitDefaultValue = false)]
+        [DataMember(Name = "webhook_id", EmitDefaultValue = true)]
         public string WebhookId { get; set; }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Long UUID string for identification of this webhook message.</value>
         /// <example>7a344c02-5b52-46b1-90e6-a437431dcf07</example>
-        [DataMember(Name = "uuid", EmitDefaultValue = false)]
+        [DataMember(Name = "uuid", EmitDefaultValue = true)]
         public string Uuid { get; set; }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The actual message that is sent or will be sent as JSON string.</value>
         /// <example>{some:message}</example>
-        [DataMember(Name = "string", EmitDefaultValue = true)]
+        [DataMember(Name = "string", EmitDefaultValue = false)]
         public string VarString { get; set; }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WebhookMessage);
+            return Equals(input as WebhookMessage);
         }
 
         /// <summary>
@@ -170,37 +170,33 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Sent == input.Sent ||
-                    this.Sent.Equals(input.Sent)
+                    Sent == input.Sent ||
+                    Sent.Equals(input.Sent)
                 ) && 
                 (
-                    this.Errored == input.Errored ||
-                    this.Errored.Equals(input.Errored)
+                    Errored == input.Errored ||
+                    Errored.Equals(input.Errored)
                 ) && 
                 (
-                    this.WebhookId == input.WebhookId ||
-                    (this.WebhookId != null &&
-                    this.WebhookId.Equals(input.WebhookId))
+                    WebhookId == input.WebhookId ||
+					WebhookId.Equals(input.WebhookId)
                 ) && 
                 (
-                    this.Uuid == input.Uuid ||
-                    (this.Uuid != null &&
-                    this.Uuid.Equals(input.Uuid))
+                    Uuid == input.Uuid ||
+					Uuid.Equals(input.Uuid)
                 ) && 
                 (
-                    this.VarString == input.VarString ||
-                    (this.VarString != null &&
-                    this.VarString.Equals(input.VarString))
+                    VarString == input.VarString ||
+                    (VarString != null &&
+                    VarString.Equals(input.VarString))
                 );
         }
 
@@ -213,27 +209,15 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + Sent.GetHashCode();
+                hashCode = (hashCode * 59) + Errored.GetHashCode();
+				hashCode = (hashCode * 59) + WebhookId.GetHashCode();
+				hashCode = (hashCode * 59) + Uuid.GetHashCode();
+                if (VarString != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Sent.GetHashCode();
-                hashCode = (hashCode * 59) + this.Errored.GetHashCode();
-                if (this.WebhookId != null)
-                {
-                    hashCode = (hashCode * 59) + this.WebhookId.GetHashCode();
-                }
-                if (this.Uuid != null)
-                {
-                    hashCode = (hashCode * 59) + this.Uuid.GetHashCode();
-                }
-                if (this.VarString != null)
-                {
-                    hashCode = (hashCode * 59) + this.VarString.GetHashCode();
+                    hashCode = (hashCode * 59) + VarString.GetHashCode();
                 }
                 return hashCode;
             }
@@ -244,7 +228,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

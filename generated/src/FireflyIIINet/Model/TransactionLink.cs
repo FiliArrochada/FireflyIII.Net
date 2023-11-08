@@ -52,28 +52,28 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("linkTypeId is a required property for TransactionLink and cannot be null");
             }
-            this.LinkTypeId = linkTypeId;
+            LinkTypeId = linkTypeId;
             // to ensure "inwardId" is required (not null)
             if (inwardId == null)
             {
                 throw new ArgumentNullException("inwardId is a required property for TransactionLink and cannot be null");
             }
-            this.InwardId = inwardId;
+            InwardId = inwardId;
             // to ensure "outwardId" is required (not null)
             if (outwardId == null)
             {
                 throw new ArgumentNullException("outwardId is a required property for TransactionLink and cannot be null");
             }
-            this.OutwardId = outwardId;
-            this.LinkTypeName = linkTypeName;
-            this.Notes = notes;
+            OutwardId = outwardId;
+            LinkTypeName = linkTypeName;
+            Notes = notes;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The link type name to use. You can also use the link_type_id field.</value>
         /// <example>Is paid by</example>
-        [DataMember(Name = "link_type_name", EmitDefaultValue = false)]
+        [DataMember(Name = "link_type_name", EmitDefaultValue = true)]
         public string LinkTypeName { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Optional. Some notes.</value>
         /// <example>Some example notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionLink);
+            return Equals(input as TransactionLink);
         }
 
         /// <summary>
@@ -190,39 +190,33 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.LinkTypeId == input.LinkTypeId ||
-                    (this.LinkTypeId != null &&
-                    this.LinkTypeId.Equals(input.LinkTypeId))
+                    LinkTypeId == input.LinkTypeId ||
+					LinkTypeId.Equals(input.LinkTypeId)
                 ) && 
                 (
-                    this.LinkTypeName == input.LinkTypeName ||
-                    (this.LinkTypeName != null &&
-                    this.LinkTypeName.Equals(input.LinkTypeName))
+                    LinkTypeName == input.LinkTypeName ||
+					LinkTypeName.Equals(input.LinkTypeName)
                 ) && 
                 (
-                    this.InwardId == input.InwardId ||
-                    (this.InwardId != null &&
-                    this.InwardId.Equals(input.InwardId))
+                    InwardId == input.InwardId ||
+					InwardId.Equals(input.InwardId)
                 ) && 
                 (
-                    this.OutwardId == input.OutwardId ||
-                    (this.OutwardId != null &&
-                    this.OutwardId.Equals(input.OutwardId))
+                    OutwardId == input.OutwardId ||
+					OutwardId.Equals(input.OutwardId)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 );
         }
 
@@ -235,33 +229,15 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + LinkTypeId.GetHashCode();
+				hashCode = (hashCode * 59) + LinkTypeName.GetHashCode();
+				hashCode = (hashCode * 59) + InwardId.GetHashCode();
+				hashCode = (hashCode * 59) + OutwardId.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                if (this.LinkTypeId != null)
-                {
-                    hashCode = (hashCode * 59) + this.LinkTypeId.GetHashCode();
-                }
-                if (this.LinkTypeName != null)
-                {
-                    hashCode = (hashCode * 59) + this.LinkTypeName.GetHashCode();
-                }
-                if (this.InwardId != null)
-                {
-                    hashCode = (hashCode * 59) + this.InwardId.GetHashCode();
-                }
-                if (this.OutwardId != null)
-                {
-                    hashCode = (hashCode * 59) + this.OutwardId.GetHashCode();
-                }
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
                 return hashCode;
             }
@@ -272,7 +248,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

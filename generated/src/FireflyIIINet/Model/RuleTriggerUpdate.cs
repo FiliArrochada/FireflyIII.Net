@@ -36,7 +36,7 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name = "type", EmitDefaultValue = true)]
         public RuleTriggerKeyword? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleTriggerUpdate" /> class.
@@ -48,11 +48,11 @@ namespace FireflyIIINet.Model
         /// <param name="stopProcessing">When true, other triggers will not be checked if this trigger was triggered..</param>
         public RuleTriggerUpdate(RuleTriggerKeyword? type = default(RuleTriggerKeyword?), string value = default(string), int order = default(int), bool active = default(bool), bool stopProcessing = default(bool))
         {
-            this.Type = type;
-            this.Value = value;
-            this.Order = order;
-            this.Active = active;
-            this.StopProcessing = stopProcessing;
+            Type = type;
+            Value = value;
+            Order = order;
+            Active = active;
+            StopProcessing = stopProcessing;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The accompanying value the trigger responds to. This value is often mandatory, but this depends on the trigger.</value>
         /// <example>tag1</example>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
+        [DataMember(Name = "value", EmitDefaultValue = true)]
         public string Value { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the trigger</value>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = false)]
+        [DataMember(Name = "order", EmitDefaultValue = true)]
         public int Order { get; set; }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RuleTriggerUpdate);
+            return Equals(input as RuleTriggerUpdate);
         }
 
         /// <summary>
@@ -136,25 +136,24 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
+                    Value == input.Value ||
+					Value.Equals(input.Value)
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    this.Order.Equals(input.Order)
+                    Order == input.Order ||
+                    Order.Equals(input.Order)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.StopProcessing == input.StopProcessing ||
-                    this.StopProcessing.Equals(input.StopProcessing)
+                    StopProcessing == input.StopProcessing ||
+                    StopProcessing.Equals(input.StopProcessing)
                 );
         }
 
@@ -167,14 +166,11 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.Value != null)
-                {
-                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Order.GetHashCode();
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                hashCode = (hashCode * 59) + this.StopProcessing.GetHashCode();
+                hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + Value.GetHashCode();
+                hashCode = (hashCode * 59) + Order.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                hashCode = (hashCode * 59) + StopProcessing.GetHashCode();
                 return hashCode;
             }
         }
@@ -184,7 +180,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -56,50 +56,50 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("id is a required property for AutocompleteAccount and cannot be null");
             }
-            this.Id = id;
+            Id = id;
             // to ensure "name" is required (not null)
             if (name == null)
             {
                 throw new ArgumentNullException("name is a required property for AutocompleteAccount and cannot be null");
             }
-            this.Name = name;
+            Name = name;
             // to ensure "nameWithBalance" is required (not null)
             if (nameWithBalance == null)
             {
                 throw new ArgumentNullException("nameWithBalance is a required property for AutocompleteAccount and cannot be null");
             }
-            this.NameWithBalance = nameWithBalance;
+            NameWithBalance = nameWithBalance;
             // to ensure "type" is required (not null)
             if (type == null)
             {
                 throw new ArgumentNullException("type is a required property for AutocompleteAccount and cannot be null");
             }
-            this.Type = type;
+            Type = type;
             // to ensure "currencyId" is required (not null)
             if (currencyId == null)
             {
                 throw new ArgumentNullException("currencyId is a required property for AutocompleteAccount and cannot be null");
             }
-            this.CurrencyId = currencyId;
+            CurrencyId = currencyId;
             // to ensure "currencyName" is required (not null)
             if (currencyName == null)
             {
                 throw new ArgumentNullException("currencyName is a required property for AutocompleteAccount and cannot be null");
             }
-            this.CurrencyName = currencyName;
+            CurrencyName = currencyName;
             // to ensure "currencyCode" is required (not null)
             if (currencyCode == null)
             {
                 throw new ArgumentNullException("currencyCode is a required property for AutocompleteAccount and cannot be null");
             }
-            this.CurrencyCode = currencyCode;
+            CurrencyCode = currencyCode;
             // to ensure "currencySymbol" is required (not null)
             if (currencySymbol == null)
             {
                 throw new ArgumentNullException("currencySymbol is a required property for AutocompleteAccount and cannot be null");
             }
-            this.CurrencySymbol = currencySymbol;
-            this.CurrencyDecimalPlaces = currencyDecimalPlaces;
+            CurrencySymbol = currencySymbol;
+            CurrencyDecimalPlaces = currencyDecimalPlaces;
         }
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AutocompleteAccount);
+            return Equals(input as AutocompleteAccount);
         }
 
         /// <summary>
@@ -226,48 +226,40 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    Id == input.Id ||
+					Id.Equals(input.Id)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.NameWithBalance == input.NameWithBalance ||
-                    (this.NameWithBalance != null &&
-                    this.NameWithBalance.Equals(input.NameWithBalance))
+                    NameWithBalance == input.NameWithBalance ||
+					NameWithBalance.Equals(input.NameWithBalance)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    Type == input.Type ||
+					Type.Equals(input.Type)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyName == input.CurrencyName ||
-                    (this.CurrencyName != null &&
-                    this.CurrencyName.Equals(input.CurrencyName))
+                    CurrencyName == input.CurrencyName ||
+					CurrencyName.Equals(input.CurrencyName)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.CurrencySymbol == input.CurrencySymbol ||
-                    (this.CurrencySymbol != null &&
-                    this.CurrencySymbol.Equals(input.CurrencySymbol))
+                    CurrencySymbol == input.CurrencySymbol ||
+					CurrencySymbol.Equals(input.CurrencySymbol)
                 ) && 
                 (
-                    this.CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
-                    this.CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
+                    CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
+                    CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
                 );
         }
 
@@ -280,39 +272,15 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.NameWithBalance != null)
-                {
-                    hashCode = (hashCode * 59) + this.NameWithBalance.GetHashCode();
-                }
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
-                if (this.CurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
-                }
-                if (this.CurrencyName != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyName.GetHashCode();
-                }
-                if (this.CurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
-                if (this.CurrencySymbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencySymbol.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CurrencyDecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + Id.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + NameWithBalance.GetHashCode();
+				hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyName.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencySymbol.GetHashCode();
+                hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
                 return hashCode;
             }
         }
@@ -322,7 +290,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

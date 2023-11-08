@@ -42,46 +42,46 @@ namespace FireflyIIINet.Model
         /// <param name="totalPages">totalPages.</param>
         public MetaPagination(int total = default(int), int count = default(int), int perPage = default(int), int currentPage = default(int), int totalPages = default(int))
         {
-            this.Total = total;
-            this.Count = count;
-            this.PerPage = perPage;
-            this.CurrentPage = currentPage;
-            this.TotalPages = totalPages;
+            Total = total;
+            Count = count;
+            PerPage = perPage;
+            CurrentPage = currentPage;
+            TotalPages = totalPages;
         }
 
         /// <summary>
         /// Gets or Sets Total
         /// </summary>
         /// <example>3</example>
-        [DataMember(Name = "total", EmitDefaultValue = false)]
+        [DataMember(Name = "total", EmitDefaultValue = true)]
         public int Total { get; set; }
 
         /// <summary>
         /// Gets or Sets Count
         /// </summary>
         /// <example>20</example>
-        [DataMember(Name = "count", EmitDefaultValue = false)]
+        [DataMember(Name = "count", EmitDefaultValue = true)]
         public int Count { get; set; }
 
         /// <summary>
         /// Gets or Sets PerPage
         /// </summary>
         /// <example>100</example>
-        [DataMember(Name = "per_page", EmitDefaultValue = false)]
+        [DataMember(Name = "per_page", EmitDefaultValue = true)]
         public int PerPage { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrentPage
         /// </summary>
         /// <example>1</example>
-        [DataMember(Name = "current_page", EmitDefaultValue = false)]
+        [DataMember(Name = "current_page", EmitDefaultValue = true)]
         public int CurrentPage { get; set; }
 
         /// <summary>
         /// Gets or Sets TotalPages
         /// </summary>
         /// <example>1</example>
-        [DataMember(Name = "total_pages", EmitDefaultValue = false)]
+        [DataMember(Name = "total_pages", EmitDefaultValue = true)]
         public int TotalPages { get; set; }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as MetaPagination);
+            return Equals(input as MetaPagination);
         }
 
         /// <summary>
@@ -133,24 +133,24 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Total == input.Total ||
-                    this.Total.Equals(input.Total)
+                    Total == input.Total ||
+                    Total.Equals(input.Total)
                 ) && 
                 (
-                    this.Count == input.Count ||
-                    this.Count.Equals(input.Count)
+                    Count == input.Count ||
+                    Count.Equals(input.Count)
                 ) && 
                 (
-                    this.PerPage == input.PerPage ||
-                    this.PerPage.Equals(input.PerPage)
+                    PerPage == input.PerPage ||
+                    PerPage.Equals(input.PerPage)
                 ) && 
                 (
-                    this.CurrentPage == input.CurrentPage ||
-                    this.CurrentPage.Equals(input.CurrentPage)
+                    CurrentPage == input.CurrentPage ||
+                    CurrentPage.Equals(input.CurrentPage)
                 ) && 
                 (
-                    this.TotalPages == input.TotalPages ||
-                    this.TotalPages.Equals(input.TotalPages)
+                    TotalPages == input.TotalPages ||
+                    TotalPages.Equals(input.TotalPages)
                 );
         }
 
@@ -163,11 +163,11 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Total.GetHashCode();
-                hashCode = (hashCode * 59) + this.Count.GetHashCode();
-                hashCode = (hashCode * 59) + this.PerPage.GetHashCode();
-                hashCode = (hashCode * 59) + this.CurrentPage.GetHashCode();
-                hashCode = (hashCode * 59) + this.TotalPages.GetHashCode();
+                hashCode = (hashCode * 59) + Total.GetHashCode();
+                hashCode = (hashCode * 59) + Count.GetHashCode();
+                hashCode = (hashCode * 59) + PerPage.GetHashCode();
+                hashCode = (hashCode * 59) + CurrentPage.GetHashCode();
+                hashCode = (hashCode * 59) + TotalPages.GetHashCode();
                 return hashCode;
             }
         }
@@ -177,7 +177,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

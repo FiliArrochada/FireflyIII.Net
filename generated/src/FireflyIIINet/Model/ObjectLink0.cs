@@ -39,22 +39,22 @@ namespace FireflyIIINet.Model
         /// <param name="uri">uri.</param>
         public ObjectLink0(string rel = default(string), string uri = default(string))
         {
-            this.Rel = rel;
-            this.Uri = uri;
+            Rel = rel;
+            Uri = uri;
         }
 
         /// <summary>
         /// Gets or Sets Rel
         /// </summary>
         /// <example>self</example>
-        [DataMember(Name = "rel", EmitDefaultValue = false)]
+        [DataMember(Name = "rel", EmitDefaultValue = true)]
         public string Rel { get; set; }
 
         /// <summary>
         /// Gets or Sets Uri
         /// </summary>
         /// <example>/OBJECTS/1</example>
-        [DataMember(Name = "uri", EmitDefaultValue = false)]
+        [DataMember(Name = "uri", EmitDefaultValue = true)]
         public string Uri { get; set; }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ObjectLink0);
+            return Equals(input as ObjectLink0);
         }
 
         /// <summary>
@@ -103,14 +103,12 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Rel == input.Rel ||
-                    (this.Rel != null &&
-                    this.Rel.Equals(input.Rel))
+                    Rel == input.Rel ||
+					Rel.Equals(input.Rel)
                 ) && 
                 (
-                    this.Uri == input.Uri ||
-                    (this.Uri != null &&
-                    this.Uri.Equals(input.Uri))
+                    Uri == input.Uri ||
+					Uri.Equals(input.Uri)
                 );
         }
 
@@ -123,14 +121,8 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Rel != null)
-                {
-                    hashCode = (hashCode * 59) + this.Rel.GetHashCode();
-                }
-                if (this.Uri != null)
-                {
-                    hashCode = (hashCode * 59) + this.Uri.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Rel.GetHashCode();
+				hashCode = (hashCode * 59) + Uri.GetHashCode();
                 return hashCode;
             }
         }
@@ -140,7 +132,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

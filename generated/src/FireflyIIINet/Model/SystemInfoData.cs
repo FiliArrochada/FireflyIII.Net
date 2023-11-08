@@ -42,46 +42,46 @@ namespace FireflyIIINet.Model
         /// <param name="driver">driver.</param>
         public SystemInfoData(string varVersion = default(string), string apiVersion = default(string), string phpVersion = default(string), string os = default(string), string driver = default(string))
         {
-            this.VarVersion = varVersion;
-            this.ApiVersion = apiVersion;
-            this.PhpVersion = phpVersion;
-            this.Os = os;
-            this.Driver = driver;
+            VarVersion = varVersion;
+            ApiVersion = apiVersion;
+            PhpVersion = phpVersion;
+            Os = os;
+            Driver = driver;
         }
 
         /// <summary>
         /// Gets or Sets VarVersion
         /// </summary>
         /// <example>5.8.0-alpha.1</example>
-        [DataMember(Name = "version", EmitDefaultValue = false)]
+        [DataMember(Name = "version", EmitDefaultValue = true)]
         public string VarVersion { get; set; }
 
         /// <summary>
         /// Gets or Sets ApiVersion
         /// </summary>
         /// <example>2.0.0-alpha.1</example>
-        [DataMember(Name = "api_version", EmitDefaultValue = false)]
+        [DataMember(Name = "api_version", EmitDefaultValue = true)]
         public string ApiVersion { get; set; }
 
         /// <summary>
         /// Gets or Sets PhpVersion
         /// </summary>
         /// <example>8.1.5</example>
-        [DataMember(Name = "php_version", EmitDefaultValue = false)]
+        [DataMember(Name = "php_version", EmitDefaultValue = true)]
         public string PhpVersion { get; set; }
 
         /// <summary>
         /// Gets or Sets Os
         /// </summary>
         /// <example>Linux</example>
-        [DataMember(Name = "os", EmitDefaultValue = false)]
+        [DataMember(Name = "os", EmitDefaultValue = true)]
         public string Os { get; set; }
 
         /// <summary>
         /// Gets or Sets Driver
         /// </summary>
         /// <example>mysql</example>
-        [DataMember(Name = "driver", EmitDefaultValue = false)]
+        [DataMember(Name = "driver", EmitDefaultValue = true)]
         public string Driver { get; set; }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SystemInfoData);
+            return Equals(input as SystemInfoData);
         }
 
         /// <summary>
@@ -133,29 +133,24 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.VarVersion == input.VarVersion ||
-                    (this.VarVersion != null &&
-                    this.VarVersion.Equals(input.VarVersion))
+                    VarVersion == input.VarVersion ||
+					VarVersion.Equals(input.VarVersion)
                 ) && 
                 (
-                    this.ApiVersion == input.ApiVersion ||
-                    (this.ApiVersion != null &&
-                    this.ApiVersion.Equals(input.ApiVersion))
+                    ApiVersion == input.ApiVersion ||
+					ApiVersion.Equals(input.ApiVersion)
                 ) && 
                 (
-                    this.PhpVersion == input.PhpVersion ||
-                    (this.PhpVersion != null &&
-                    this.PhpVersion.Equals(input.PhpVersion))
+                    PhpVersion == input.PhpVersion ||
+					PhpVersion.Equals(input.PhpVersion)
                 ) && 
                 (
-                    this.Os == input.Os ||
-                    (this.Os != null &&
-                    this.Os.Equals(input.Os))
+                    Os == input.Os ||
+					Os.Equals(input.Os)
                 ) && 
                 (
-                    this.Driver == input.Driver ||
-                    (this.Driver != null &&
-                    this.Driver.Equals(input.Driver))
+                    Driver == input.Driver ||
+					Driver.Equals(input.Driver)
                 );
         }
 
@@ -168,26 +163,11 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.VarVersion != null)
-                {
-                    hashCode = (hashCode * 59) + this.VarVersion.GetHashCode();
-                }
-                if (this.ApiVersion != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiVersion.GetHashCode();
-                }
-                if (this.PhpVersion != null)
-                {
-                    hashCode = (hashCode * 59) + this.PhpVersion.GetHashCode();
-                }
-                if (this.Os != null)
-                {
-                    hashCode = (hashCode * 59) + this.Os.GetHashCode();
-                }
-                if (this.Driver != null)
-                {
-                    hashCode = (hashCode * 59) + this.Driver.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + VarVersion.GetHashCode();
+				hashCode = (hashCode * 59) + ApiVersion.GetHashCode();
+				hashCode = (hashCode * 59) + PhpVersion.GetHashCode();
+				hashCode = (hashCode * 59) + Os.GetHashCode();
+				hashCode = (hashCode * 59) + Driver.GetHashCode();
                 return hashCode;
             }
         }
@@ -197,7 +177,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

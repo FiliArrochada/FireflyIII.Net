@@ -46,64 +46,64 @@ namespace FireflyIIINet.Model
         /// <param name="transactionGroupId">The transaction group associated with the event..</param>
         public PiggyBankEvent(DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string amount = default(string), string transactionJournalId = default(string), string transactionGroupId = default(string))
         {
-            this.CreatedAt = createdAt;
-            this.UpdatedAt = updatedAt;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.CurrencySymbol = currencySymbol;
-            this.CurrencyDecimalPlaces = currencyDecimalPlaces;
-            this.Amount = amount;
-            this.TransactionJournalId = transactionJournalId;
-            this.TransactionGroupId = transactionGroupId;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            CurrencySymbol = currencySymbol;
+            CurrencyDecimalPlaces = currencyDecimalPlaces;
+            Amount = amount;
+            TransactionJournalId = transactionJournalId;
+            TransactionGroupId = transactionGroupId;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencyId
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencyCode
         /// </summary>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencyDecimalPlaces
         /// </summary>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         public int CurrencyDecimalPlaces { get; set; }
 
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        [DataMember(Name = "amount", EmitDefaultValue = true)]
         public string Amount { get; set; }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The journal associated with the event.</value>
         /// <example>4291</example>
-        [DataMember(Name = "transaction_journal_id", EmitDefaultValue = false)]
+        [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
         public string TransactionJournalId { get; set; }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The transaction group associated with the event.</value>
         /// <example>4291</example>
-        [DataMember(Name = "transaction_group_id", EmitDefaultValue = false)]
+        [DataMember(Name = "transaction_group_id", EmitDefaultValue = true)]
         public string TransactionGroupId { get; set; }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PiggyBankEvent);
+            return Equals(input as PiggyBankEvent);
         }
 
         /// <summary>
@@ -175,48 +175,40 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.CurrencySymbol == input.CurrencySymbol ||
-                    (this.CurrencySymbol != null &&
-                    this.CurrencySymbol.Equals(input.CurrencySymbol))
+                    CurrencySymbol == input.CurrencySymbol ||
+					CurrencySymbol.Equals(input.CurrencySymbol)
                 ) && 
                 (
-                    this.CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
-                    this.CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
+                    CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
+                    CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
                 ) && 
                 (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    Amount == input.Amount ||
+					Amount.Equals(input.Amount)
                 ) && 
                 (
-                    this.TransactionJournalId == input.TransactionJournalId ||
-                    (this.TransactionJournalId != null &&
-                    this.TransactionJournalId.Equals(input.TransactionJournalId))
+                    TransactionJournalId == input.TransactionJournalId ||
+					TransactionJournalId.Equals(input.TransactionJournalId)
                 ) && 
                 (
-                    this.TransactionGroupId == input.TransactionGroupId ||
-                    (this.TransactionGroupId != null &&
-                    this.TransactionGroupId.Equals(input.TransactionGroupId))
+                    TransactionGroupId == input.TransactionGroupId ||
+					TransactionGroupId.Equals(input.TransactionGroupId)
                 );
         }
 
@@ -229,39 +221,15 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
-                }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                if (this.CurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
-                }
-                if (this.CurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
-                if (this.CurrencySymbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencySymbol.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CurrencyDecimalPlaces.GetHashCode();
-                if (this.Amount != null)
-                {
-                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
-                }
-                if (this.TransactionJournalId != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransactionJournalId.GetHashCode();
-                }
-                if (this.TransactionGroupId != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransactionGroupId.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencySymbol.GetHashCode();
+                hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + Amount.GetHashCode();
+				hashCode = (hashCode * 59) + TransactionJournalId.GetHashCode();
+				hashCode = (hashCode * 59) + TransactionGroupId.GetHashCode();
                 return hashCode;
             }
         }
@@ -271,7 +239,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

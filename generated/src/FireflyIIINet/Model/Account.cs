@@ -42,31 +42,31 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets AccountRole
         /// </summary>
-        [DataMember(Name = "account_role", EmitDefaultValue = true)]
+        [DataMember(Name = "account_role", EmitDefaultValue = false)]
         public AccountRoleProperty? AccountRole { get; set; }
 
         /// <summary>
         /// Gets or Sets CreditCardType
         /// </summary>
-        [DataMember(Name = "credit_card_type", EmitDefaultValue = true)]
+        [DataMember(Name = "credit_card_type", EmitDefaultValue = false)]
         public CreditCardType? CreditCardType { get; set; }
 
         /// <summary>
         /// Gets or Sets LiabilityType
         /// </summary>
-        [DataMember(Name = "liability_type", EmitDefaultValue = true)]
+        [DataMember(Name = "liability_type", EmitDefaultValue = false)]
         public LiabilityType? LiabilityType { get; set; }
 
         /// <summary>
         /// Gets or Sets LiabilityDirection
         /// </summary>
-        [DataMember(Name = "liability_direction", EmitDefaultValue = true)]
+        [DataMember(Name = "liability_direction", EmitDefaultValue = false)]
         public LiabilityDirection? LiabilityDirection { get; set; }
 
         /// <summary>
         /// Gets or Sets InterestPeriod
         /// </summary>
-        [DataMember(Name = "interest_period", EmitDefaultValue = true)]
+        [DataMember(Name = "interest_period", EmitDefaultValue = false)]
         public InterestPeriod? InterestPeriod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Account" /> class.
@@ -108,38 +108,38 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("name is a required property for Account and cannot be null");
             }
-            this.Name = name;
-            this.Type = type;
-            this.Active = active;
-            this.Order = order;
-            this.AccountRole = accountRole;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.Iban = iban;
-            this.Bic = bic;
-            this.AccountNumber = accountNumber;
-            this.OpeningBalance = openingBalance;
-            this.CurrentDebt = currentDebt;
-            this.OpeningBalanceDate = openingBalanceDate;
-            this.VirtualBalance = virtualBalance;
-            this.IncludeNetWorth = includeNetWorth;
-            this.CreditCardType = creditCardType;
-            this.MonthlyPaymentDate = monthlyPaymentDate;
-            this.LiabilityType = liabilityType;
-            this.LiabilityDirection = liabilityDirection;
-            this.Interest = interest;
-            this.InterestPeriod = interestPeriod;
-            this.Notes = notes;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.ZoomLevel = zoomLevel;
+            Name = name;
+            Type = type;
+            Active = active;
+            Order = order;
+            AccountRole = accountRole;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            Iban = iban;
+            Bic = bic;
+            AccountNumber = accountNumber;
+            OpeningBalance = openingBalance;
+            CurrentDebt = currentDebt;
+            OpeningBalanceDate = openingBalanceDate;
+            VirtualBalance = virtualBalance;
+            IncludeNetWorth = includeNetWorth;
+            CreditCardType = creditCardType;
+            MonthlyPaymentDate = monthlyPaymentDate;
+            LiabilityType = liabilityType;
+            LiabilityDirection = liabilityDirection;
+            Interest = interest;
+            InterestPeriod = interestPeriod;
+            Notes = notes;
+            Latitude = latitude;
+            Longitude = longitude;
+            ZoomLevel = zoomLevel;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the account. Is NULL if account is not asset or liability.</value>
         /// <example>1</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         public int? Order { get; set; }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>12</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -201,14 +201,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencyDecimalPlaces
         /// </summary>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrentBalance
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "current_balance", EmitDefaultValue = false)]
+        [DataMember(Name = "current_balance", EmitDefaultValue = true)]
         public string CurrentBalance { get; private set; }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrentBalanceDate
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "current_balance_date", EmitDefaultValue = false)]
+        [DataMember(Name = "current_balance_date", EmitDefaultValue = true)]
         public DateTime CurrentBalanceDate { get; private set; }
 
         /// <summary>
@@ -268,21 +268,21 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Iban
         /// </summary>
         /// <example>GB98MIDL07009312345678</example>
-        [DataMember(Name = "iban", EmitDefaultValue = true)]
+        [DataMember(Name = "iban", EmitDefaultValue = false)]
         public string Iban { get; set; }
 
         /// <summary>
         /// Gets or Sets Bic
         /// </summary>
         /// <example>BOFAUS3N</example>
-        [DataMember(Name = "bic", EmitDefaultValue = true)]
+        [DataMember(Name = "bic", EmitDefaultValue = false)]
         public string Bic { get; set; }
 
         /// <summary>
         /// Gets or Sets AccountNumber
         /// </summary>
         /// <example>7009312345678</example>
-        [DataMember(Name = "account_number", EmitDefaultValue = true)]
+        [DataMember(Name = "account_number", EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Represents the opening balance, the initial amount this account holds.</value>
         /// <example>-1012.12</example>
-        [DataMember(Name = "opening_balance", EmitDefaultValue = false)]
+        [DataMember(Name = "opening_balance", EmitDefaultValue = true)]
         public string OpeningBalance { get; set; }
 
         /// <summary>
@@ -298,7 +298,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Represents the current debt for liabilities.</value>
         /// <example>1012.12</example>
-        [DataMember(Name = "current_debt", EmitDefaultValue = true)]
+        [DataMember(Name = "current_debt", EmitDefaultValue = false)]
         public string CurrentDebt { get; set; }
 
         /// <summary>
@@ -306,14 +306,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Represents the date of the opening balance.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "opening_balance_date", EmitDefaultValue = true)]
+        [DataMember(Name = "opening_balance_date", EmitDefaultValue = false)]
         public DateTime? OpeningBalanceDate { get; set; }
 
         /// <summary>
         /// Gets or Sets VirtualBalance
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "virtual_balance", EmitDefaultValue = false)]
+        [DataMember(Name = "virtual_balance", EmitDefaultValue = true)]
         public string VirtualBalance { get; set; }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Mandatory when the account_role is ccAsset. Moment at which CC payment installments are asked for by the bank.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "monthly_payment_date", EmitDefaultValue = true)]
+        [DataMember(Name = "monthly_payment_date", EmitDefaultValue = false)]
         public DateTime? MonthlyPaymentDate { get; set; }
 
         /// <summary>
@@ -337,14 +337,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Mandatory when type is liability. Interest percentage.</value>
         /// <example>5.3</example>
-        [DataMember(Name = "interest", EmitDefaultValue = true)]
+        [DataMember(Name = "interest", EmitDefaultValue = false)]
         public string Interest { get; set; }
 
         /// <summary>
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some example notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -352,7 +352,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Latitude of the accounts&#39;s location, if applicable. Can be used to draw a map.</value>
         /// <example>51.983333</example>
-        [DataMember(Name = "latitude", EmitDefaultValue = true)]
+        [DataMember(Name = "latitude", EmitDefaultValue = false)]
         public double? Latitude { get; set; }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Latitude of the accounts&#39;s location, if applicable. Can be used to draw a map.</value>
         /// <example>5.916667</example>
-        [DataMember(Name = "longitude", EmitDefaultValue = true)]
+        [DataMember(Name = "longitude", EmitDefaultValue = false)]
         public double? Longitude { get; set; }
 
         /// <summary>
@@ -368,7 +368,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Zoom level for the map, if drawn. This to set the box right. Unfortunately this is a proprietary value because each map provider has different zoom levels.</value>
         /// <example>6</example>
-        [DataMember(Name = "zoom_level", EmitDefaultValue = true)]
+        [DataMember(Name = "zoom_level", EmitDefaultValue = false)]
         public int? ZoomLevel { get; set; }
 
         /// <summary>
@@ -420,7 +420,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -430,7 +430,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Account);
+            return Equals(input as Account);
         }
 
         /// <summary>
@@ -446,150 +446,140 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    (this.Order != null &&
-                    this.Order.Equals(input.Order))
+                    Order == input.Order ||
+                    (Order != null &&
+                    Order.Equals(input.Order))
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 ) && 
                 (
-                    this.AccountRole == input.AccountRole ||
-                    this.AccountRole.Equals(input.AccountRole)
+                    AccountRole == input.AccountRole ||
+                    AccountRole.Equals(input.AccountRole)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.CurrencySymbol == input.CurrencySymbol ||
-                    (this.CurrencySymbol != null &&
-                    this.CurrencySymbol.Equals(input.CurrencySymbol))
+                    CurrencySymbol == input.CurrencySymbol ||
+					CurrencySymbol.Equals(input.CurrencySymbol)
                 ) && 
                 (
-                    this.CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
-                    this.CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
+                    CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
+                    CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
                 ) && 
                 (
-                    this.CurrentBalance == input.CurrentBalance ||
-                    (this.CurrentBalance != null &&
-                    this.CurrentBalance.Equals(input.CurrentBalance))
+                    CurrentBalance == input.CurrentBalance ||
+					CurrentBalance.Equals(input.CurrentBalance)
                 ) && 
                 (
-                    this.CurrentBalanceDate == input.CurrentBalanceDate ||
-                    (this.CurrentBalanceDate != null &&
-                    this.CurrentBalanceDate.Equals(input.CurrentBalanceDate))
+                    CurrentBalanceDate == input.CurrentBalanceDate ||
+					CurrentBalanceDate.Equals(input.CurrentBalanceDate)
                 ) && 
                 (
-                    this.Iban == input.Iban ||
-                    (this.Iban != null &&
-                    this.Iban.Equals(input.Iban))
+                    Iban == input.Iban ||
+                    (Iban != null &&
+                    Iban.Equals(input.Iban))
                 ) && 
                 (
-                    this.Bic == input.Bic ||
-                    (this.Bic != null &&
-                    this.Bic.Equals(input.Bic))
+                    Bic == input.Bic ||
+                    (Bic != null &&
+                    Bic.Equals(input.Bic))
                 ) && 
                 (
-                    this.AccountNumber == input.AccountNumber ||
-                    (this.AccountNumber != null &&
-                    this.AccountNumber.Equals(input.AccountNumber))
+                    AccountNumber == input.AccountNumber ||
+                    (AccountNumber != null &&
+                    AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
-                    this.OpeningBalance == input.OpeningBalance ||
-                    (this.OpeningBalance != null &&
-                    this.OpeningBalance.Equals(input.OpeningBalance))
+                    OpeningBalance == input.OpeningBalance ||
+					OpeningBalance.Equals(input.OpeningBalance)
                 ) && 
                 (
-                    this.CurrentDebt == input.CurrentDebt ||
-                    (this.CurrentDebt != null &&
-                    this.CurrentDebt.Equals(input.CurrentDebt))
+                    CurrentDebt == input.CurrentDebt ||
+                    (CurrentDebt != null &&
+                    CurrentDebt.Equals(input.CurrentDebt))
                 ) && 
                 (
-                    this.OpeningBalanceDate == input.OpeningBalanceDate ||
-                    (this.OpeningBalanceDate != null &&
-                    this.OpeningBalanceDate.Equals(input.OpeningBalanceDate))
+                    OpeningBalanceDate == input.OpeningBalanceDate ||
+                    (OpeningBalanceDate != null &&
+                    OpeningBalanceDate.Equals(input.OpeningBalanceDate))
                 ) && 
                 (
-                    this.VirtualBalance == input.VirtualBalance ||
-                    (this.VirtualBalance != null &&
-                    this.VirtualBalance.Equals(input.VirtualBalance))
+                    VirtualBalance == input.VirtualBalance ||
+					VirtualBalance.Equals(input.VirtualBalance)
                 ) && 
                 (
-                    this.IncludeNetWorth == input.IncludeNetWorth ||
-                    this.IncludeNetWorth.Equals(input.IncludeNetWorth)
+                    IncludeNetWorth == input.IncludeNetWorth ||
+                    IncludeNetWorth.Equals(input.IncludeNetWorth)
                 ) && 
                 (
-                    this.CreditCardType == input.CreditCardType ||
-                    this.CreditCardType.Equals(input.CreditCardType)
+                    CreditCardType == input.CreditCardType ||
+                    CreditCardType.Equals(input.CreditCardType)
                 ) && 
                 (
-                    this.MonthlyPaymentDate == input.MonthlyPaymentDate ||
-                    (this.MonthlyPaymentDate != null &&
-                    this.MonthlyPaymentDate.Equals(input.MonthlyPaymentDate))
+                    MonthlyPaymentDate == input.MonthlyPaymentDate ||
+                    (MonthlyPaymentDate != null &&
+                    MonthlyPaymentDate.Equals(input.MonthlyPaymentDate))
                 ) && 
                 (
-                    this.LiabilityType == input.LiabilityType ||
-                    this.LiabilityType.Equals(input.LiabilityType)
+                    LiabilityType == input.LiabilityType ||
+                    LiabilityType.Equals(input.LiabilityType)
                 ) && 
                 (
-                    this.LiabilityDirection == input.LiabilityDirection ||
-                    this.LiabilityDirection.Equals(input.LiabilityDirection)
+                    LiabilityDirection == input.LiabilityDirection ||
+                    LiabilityDirection.Equals(input.LiabilityDirection)
                 ) && 
                 (
-                    this.Interest == input.Interest ||
-                    (this.Interest != null &&
-                    this.Interest.Equals(input.Interest))
+                    Interest == input.Interest ||
+                    (Interest != null &&
+                    Interest.Equals(input.Interest))
                 ) && 
                 (
-                    this.InterestPeriod == input.InterestPeriod ||
-                    this.InterestPeriod.Equals(input.InterestPeriod)
+                    InterestPeriod == input.InterestPeriod ||
+                    InterestPeriod.Equals(input.InterestPeriod)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.Latitude == input.Latitude ||
-                    (this.Latitude != null &&
-                    this.Latitude.Equals(input.Latitude))
+                    Latitude == input.Latitude ||
+                    (Latitude != null &&
+                    Latitude.Equals(input.Latitude))
                 ) && 
                 (
-                    this.Longitude == input.Longitude ||
-                    (this.Longitude != null &&
-                    this.Longitude.Equals(input.Longitude))
+                    Longitude == input.Longitude ||
+                    (Longitude != null &&
+                    Longitude.Equals(input.Longitude))
                 ) && 
                 (
-                    this.ZoomLevel == input.ZoomLevel ||
-                    (this.ZoomLevel != null &&
-                    this.ZoomLevel.Equals(input.ZoomLevel))
+                    ZoomLevel == input.ZoomLevel ||
+                    (ZoomLevel != null &&
+                    ZoomLevel.Equals(input.ZoomLevel))
                 );
         }
 
@@ -602,102 +592,72 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                if (Order != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + Order.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+                hashCode = (hashCode * 59) + Type.GetHashCode();
+                hashCode = (hashCode * 59) + AccountRole.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencySymbol.GetHashCode();
+                hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + CurrentBalance.GetHashCode();
+				hashCode = (hashCode * 59) + CurrentBalanceDate.GetHashCode();
+                if (Iban != null)
                 {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + Iban.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                if (this.Order != null)
+                if (Bic != null)
                 {
-                    hashCode = (hashCode * 59) + this.Order.GetHashCode();
+                    hashCode = (hashCode * 59) + Bic.GetHashCode();
                 }
-                if (this.Name != null)
+                if (AccountNumber != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                    hashCode = (hashCode * 59) + AccountNumber.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                hashCode = (hashCode * 59) + this.AccountRole.GetHashCode();
-                if (this.CurrencyId != null)
+				hashCode = (hashCode * 59) + OpeningBalance.GetHashCode();
+                if (CurrentDebt != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
+                    hashCode = (hashCode * 59) + CurrentDebt.GetHashCode();
                 }
-                if (this.CurrencyCode != null)
+                if (OpeningBalanceDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                    hashCode = (hashCode * 59) + OpeningBalanceDate.GetHashCode();
                 }
-                if (this.CurrencySymbol != null)
+				hashCode = (hashCode * 59) + VirtualBalance.GetHashCode();
+                hashCode = (hashCode * 59) + IncludeNetWorth.GetHashCode();
+                hashCode = (hashCode * 59) + CreditCardType.GetHashCode();
+                if (MonthlyPaymentDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencySymbol.GetHashCode();
+                    hashCode = (hashCode * 59) + MonthlyPaymentDate.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CurrencyDecimalPlaces.GetHashCode();
-                if (this.CurrentBalance != null)
+                hashCode = (hashCode * 59) + LiabilityType.GetHashCode();
+                hashCode = (hashCode * 59) + LiabilityDirection.GetHashCode();
+                if (Interest != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrentBalance.GetHashCode();
+                    hashCode = (hashCode * 59) + Interest.GetHashCode();
                 }
-                if (this.CurrentBalanceDate != null)
+                hashCode = (hashCode * 59) + InterestPeriod.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrentBalanceDate.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.Iban != null)
+                if (Latitude != null)
                 {
-                    hashCode = (hashCode * 59) + this.Iban.GetHashCode();
+                    hashCode = (hashCode * 59) + Latitude.GetHashCode();
                 }
-                if (this.Bic != null)
+                if (Longitude != null)
                 {
-                    hashCode = (hashCode * 59) + this.Bic.GetHashCode();
+                    hashCode = (hashCode * 59) + Longitude.GetHashCode();
                 }
-                if (this.AccountNumber != null)
+                if (ZoomLevel != null)
                 {
-                    hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
-                }
-                if (this.OpeningBalance != null)
-                {
-                    hashCode = (hashCode * 59) + this.OpeningBalance.GetHashCode();
-                }
-                if (this.CurrentDebt != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrentDebt.GetHashCode();
-                }
-                if (this.OpeningBalanceDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.OpeningBalanceDate.GetHashCode();
-                }
-                if (this.VirtualBalance != null)
-                {
-                    hashCode = (hashCode * 59) + this.VirtualBalance.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.IncludeNetWorth.GetHashCode();
-                hashCode = (hashCode * 59) + this.CreditCardType.GetHashCode();
-                if (this.MonthlyPaymentDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.MonthlyPaymentDate.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.LiabilityType.GetHashCode();
-                hashCode = (hashCode * 59) + this.LiabilityDirection.GetHashCode();
-                if (this.Interest != null)
-                {
-                    hashCode = (hashCode * 59) + this.Interest.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.InterestPeriod.GetHashCode();
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
-                }
-                if (this.Latitude != null)
-                {
-                    hashCode = (hashCode * 59) + this.Latitude.GetHashCode();
-                }
-                if (this.Longitude != null)
-                {
-                    hashCode = (hashCode * 59) + this.Longitude.GetHashCode();
-                }
-                if (this.ZoomLevel != null)
-                {
-                    hashCode = (hashCode * 59) + this.ZoomLevel.GetHashCode();
+                    hashCode = (hashCode * 59) + ZoomLevel.GetHashCode();
                 }
                 return hashCode;
             }
@@ -708,7 +668,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

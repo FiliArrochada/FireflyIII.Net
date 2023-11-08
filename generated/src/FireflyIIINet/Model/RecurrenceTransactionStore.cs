@@ -60,34 +60,34 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("description is a required property for RecurrenceTransactionStore and cannot be null");
             }
-            this.Description = description;
+            Description = description;
             // to ensure "amount" is required (not null)
             if (amount == null)
             {
                 throw new ArgumentNullException("amount is a required property for RecurrenceTransactionStore and cannot be null");
             }
-            this.Amount = amount;
+            Amount = amount;
             // to ensure "sourceId" is required (not null)
             if (sourceId == null)
             {
                 throw new ArgumentNullException("sourceId is a required property for RecurrenceTransactionStore and cannot be null");
             }
-            this.SourceId = sourceId;
+            SourceId = sourceId;
             // to ensure "destinationId" is required (not null)
             if (destinationId == null)
             {
                 throw new ArgumentNullException("destinationId is a required property for RecurrenceTransactionStore and cannot be null");
             }
-            this.DestinationId = destinationId;
-            this.ForeignAmount = foreignAmount;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.ForeignCurrencyId = foreignCurrencyId;
-            this.ForeignCurrencyCode = foreignCurrencyCode;
-            this.BudgetId = budgetId;
-            this.CategoryId = categoryId;
-            this.Tags = tags;
-            this.PiggyBankId = piggyBankId;
+            DestinationId = destinationId;
+            ForeignAmount = foreignAmount;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            ForeignCurrencyId = foreignCurrencyId;
+            ForeignCurrencyCode = foreignCurrencyCode;
+            BudgetId = budgetId;
+            CategoryId = categoryId;
+            Tags = tags;
+            PiggyBankId = piggyBankId;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Foreign amount of the transaction.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "foreign_amount", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_amount", EmitDefaultValue = false)]
         public string ForeignAmount { get; set; }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>3</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a foreign_currency_id or a foreign_currency_code, or neither.</value>
         /// <example>17</example>
-        [DataMember(Name = "foreign_currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_currency_id", EmitDefaultValue = false)]
         public string ForeignCurrencyId { get; set; }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a foreign_currency_id or a foreign_currency_code, or neither.</value>
         /// <example>GBP</example>
-        [DataMember(Name = "foreign_currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_currency_code", EmitDefaultValue = false)]
         public string ForeignCurrencyCode { get; set; }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The budget ID for this transaction.</value>
         /// <example>4</example>
-        [DataMember(Name = "budget_id", EmitDefaultValue = false)]
+        [DataMember(Name = "budget_id", EmitDefaultValue = true)]
         public string BudgetId { get; set; }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Category ID for this transaction.</value>
         /// <example>211</example>
-        [DataMember(Name = "category_id", EmitDefaultValue = false)]
+        [DataMember(Name = "category_id", EmitDefaultValue = true)]
         public string CategoryId { get; set; }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace FireflyIIINet.Model
         /// Array of tags.
         /// </summary>
         /// <value>Array of tags.</value>
-        [DataMember(Name = "tags", EmitDefaultValue = true)]
+        [DataMember(Name = "tags", EmitDefaultValue = false)]
         public List<string> Tags { get; set; }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Optional.</value>
         /// <example>123</example>
-        [DataMember(Name = "piggy_bank_id", EmitDefaultValue = true)]
+        [DataMember(Name = "piggy_bank_id", EmitDefaultValue = false)]
         public string PiggyBankId { get; set; }
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RecurrenceTransactionStore);
+            return Equals(input as RecurrenceTransactionStore);
         }
 
         /// <summary>
@@ -249,70 +249,62 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+					Description.Equals(input.Description)
                 ) && 
                 (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    Amount == input.Amount ||
+					Amount.Equals(input.Amount)
                 ) && 
                 (
-                    this.ForeignAmount == input.ForeignAmount ||
-                    (this.ForeignAmount != null &&
-                    this.ForeignAmount.Equals(input.ForeignAmount))
+                    ForeignAmount == input.ForeignAmount ||
+                    (ForeignAmount != null &&
+                    ForeignAmount.Equals(input.ForeignAmount))
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.ForeignCurrencyId == input.ForeignCurrencyId ||
-                    (this.ForeignCurrencyId != null &&
-                    this.ForeignCurrencyId.Equals(input.ForeignCurrencyId))
+                    ForeignCurrencyId == input.ForeignCurrencyId ||
+                    (ForeignCurrencyId != null &&
+                    ForeignCurrencyId.Equals(input.ForeignCurrencyId))
                 ) && 
                 (
-                    this.ForeignCurrencyCode == input.ForeignCurrencyCode ||
-                    (this.ForeignCurrencyCode != null &&
-                    this.ForeignCurrencyCode.Equals(input.ForeignCurrencyCode))
+                    ForeignCurrencyCode == input.ForeignCurrencyCode ||
+                    (ForeignCurrencyCode != null &&
+                    ForeignCurrencyCode.Equals(input.ForeignCurrencyCode))
                 ) && 
                 (
-                    this.BudgetId == input.BudgetId ||
-                    (this.BudgetId != null &&
-                    this.BudgetId.Equals(input.BudgetId))
+                    BudgetId == input.BudgetId ||
+					BudgetId.Equals(input.BudgetId)
                 ) && 
                 (
-                    this.CategoryId == input.CategoryId ||
-                    (this.CategoryId != null &&
-                    this.CategoryId.Equals(input.CategoryId))
+                    CategoryId == input.CategoryId ||
+					CategoryId.Equals(input.CategoryId)
                 ) && 
                 (
-                    this.SourceId == input.SourceId ||
-                    (this.SourceId != null &&
-                    this.SourceId.Equals(input.SourceId))
+                    SourceId == input.SourceId ||
+					SourceId.Equals(input.SourceId)
                 ) && 
                 (
-                    this.DestinationId == input.DestinationId ||
-                    (this.DestinationId != null &&
-                    this.DestinationId.Equals(input.DestinationId))
+                    DestinationId == input.DestinationId ||
+					DestinationId.Equals(input.DestinationId)
                 ) && 
                 (
-                    this.Tags == input.Tags ||
-                    this.Tags != null &&
+                    Tags == input.Tags ||
+                    Tags != null &&
                     input.Tags != null &&
-                    this.Tags.SequenceEqual(input.Tags)
+                    Tags.SequenceEqual(input.Tags)
                 ) && 
                 (
-                    this.PiggyBankId == input.PiggyBankId ||
-                    (this.PiggyBankId != null &&
-                    this.PiggyBankId.Equals(input.PiggyBankId))
+                    PiggyBankId == input.PiggyBankId ||
+                    (PiggyBankId != null &&
+                    PiggyBankId.Equals(input.PiggyBankId))
                 );
         }
 
@@ -325,57 +317,33 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Description != null)
+				hashCode = (hashCode * 59) + Description.GetHashCode();
+				hashCode = (hashCode * 59) + Amount.GetHashCode();
+                if (ForeignAmount != null)
                 {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignAmount.GetHashCode();
                 }
-                if (this.Amount != null)
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+                if (ForeignCurrencyId != null)
                 {
-                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignCurrencyId.GetHashCode();
                 }
-                if (this.ForeignAmount != null)
+                if (ForeignCurrencyCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.ForeignAmount.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignCurrencyCode.GetHashCode();
                 }
-                if (this.CurrencyId != null)
+				hashCode = (hashCode * 59) + BudgetId.GetHashCode();
+				hashCode = (hashCode * 59) + CategoryId.GetHashCode();
+				hashCode = (hashCode * 59) + SourceId.GetHashCode();
+				hashCode = (hashCode * 59) + DestinationId.GetHashCode();
+                if (Tags != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
+                    hashCode = (hashCode * 59) + Tags.GetHashCode();
                 }
-                if (this.CurrencyCode != null)
+                if (PiggyBankId != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
-                if (this.ForeignCurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ForeignCurrencyId.GetHashCode();
-                }
-                if (this.ForeignCurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.ForeignCurrencyCode.GetHashCode();
-                }
-                if (this.BudgetId != null)
-                {
-                    hashCode = (hashCode * 59) + this.BudgetId.GetHashCode();
-                }
-                if (this.CategoryId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CategoryId.GetHashCode();
-                }
-                if (this.SourceId != null)
-                {
-                    hashCode = (hashCode * 59) + this.SourceId.GetHashCode();
-                }
-                if (this.DestinationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.DestinationId.GetHashCode();
-                }
-                if (this.Tags != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tags.GetHashCode();
-                }
-                if (this.PiggyBankId != null)
-                {
-                    hashCode = (hashCode * 59) + this.PiggyBankId.GetHashCode();
+                    hashCode = (hashCode * 59) + PiggyBankId.GetHashCode();
                 }
                 return hashCode;
             }
@@ -386,7 +354,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

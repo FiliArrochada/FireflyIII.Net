@@ -52,21 +52,21 @@ namespace FireflyIIINet.Model
         /// <param name="entries">The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value..</param>
         public ChartDataSetV2(string label = default(string), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string nativeId = default(string), string nativeCode = default(string), string nativeSymbol = default(string), int nativeDecimalPlaces = default(int), bool converted = default(bool), DateTime startDate = default(DateTime), DateTime endDate = default(DateTime), string type = default(string), int yAxisID = default(int), List<ChartDataPointV2> entries = default(List<ChartDataPointV2>))
         {
-            this.Label = label;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.CurrencySymbol = currencySymbol;
-            this.CurrencyDecimalPlaces = currencyDecimalPlaces;
-            this.NativeId = nativeId;
-            this.NativeCode = nativeCode;
-            this.NativeSymbol = nativeSymbol;
-            this.NativeDecimalPlaces = nativeDecimalPlaces;
-            this.Converted = converted;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.Type = type;
-            this.YAxisID = yAxisID;
-            this.Entries = entries;
+            Label = label;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            CurrencySymbol = currencySymbol;
+            CurrencyDecimalPlaces = currencyDecimalPlaces;
+            NativeId = nativeId;
+            NativeCode = nativeCode;
+            NativeSymbol = nativeSymbol;
+            NativeDecimalPlaces = nativeDecimalPlaces;
+            Converted = converted;
+            StartDate = startDate;
+            EndDate = endDate;
+            Type = type;
+            YAxisID = yAxisID;
+            Entries = entries;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>This is the title of the current set. It can refer to an account, a budget or another object (by name).</value>
         /// <example>Checking account</example>
-        [DataMember(Name = "label", EmitDefaultValue = false)]
+        [DataMember(Name = "label", EmitDefaultValue = true)]
         public string Label { get; set; }
 
         /// <summary>
@@ -82,21 +82,21 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency ID of the currency associated to the data in the entries.</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencyCode
         /// </summary>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimals for the currency associated to the data in the entries.</value>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         public int CurrencyDecimalPlaces { get; set; }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency ID of the user&#39;s native currency.</value>
         /// <example>5</example>
-        [DataMember(Name = "native_id", EmitDefaultValue = false)]
+        [DataMember(Name = "native_id", EmitDefaultValue = true)]
         public string NativeId { get; set; }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency code of the user&#39;s native currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "native_code", EmitDefaultValue = false)]
+        [DataMember(Name = "native_code", EmitDefaultValue = true)]
         public string NativeCode { get; set; }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency symbol of the user&#39;s native currency.</value>
         /// <example>$</example>
-        [DataMember(Name = "native_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "native_symbol", EmitDefaultValue = true)]
         public string NativeSymbol { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimals for the native currency of the user.</value>
         /// <example>2</example>
-        [DataMember(Name = "native_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "native_decimal_places", EmitDefaultValue = true)]
         public int NativeDecimalPlaces { get; set; }
 
         /// <summary>
@@ -151,14 +151,14 @@ namespace FireflyIIINet.Model
         /// Gets or Sets StartDate
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "start_date", EmitDefaultValue = false)]
+        [DataMember(Name = "start_date", EmitDefaultValue = true)]
         public DateTime StartDate { get; set; }
 
         /// <summary>
         /// Gets or Sets EndDate
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "end_date", EmitDefaultValue = false)]
+        [DataMember(Name = "end_date", EmitDefaultValue = true)]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Indicated the type of chart that is expected to be rendered. You can safely ignore this if you want.</value>
         /// <example>line</example>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name = "type", EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
@@ -174,14 +174,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Used to indicate the Y axis for this data set. Is usually between 0 and 1 (left and right side of the chart).</value>
         /// <example>0</example>
-        [DataMember(Name = "yAxisID", EmitDefaultValue = false)]
+        [DataMember(Name = "yAxisID", EmitDefaultValue = true)]
         public int YAxisID { get; set; }
 
         /// <summary>
         /// The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value.
         /// </summary>
         /// <value>The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value.</value>
-        [DataMember(Name = "entries", EmitDefaultValue = false)]
+        [DataMember(Name = "entries", EmitDefaultValue = true)]
         public List<ChartDataPointV2> Entries { get; set; }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ChartDataSetV2);
+            return Equals(input as ChartDataSetV2);
         }
 
         /// <summary>
@@ -243,76 +243,66 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Label == input.Label ||
-                    (this.Label != null &&
-                    this.Label.Equals(input.Label))
+                    Label == input.Label ||
+					Label.Equals(input.Label)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.CurrencySymbol == input.CurrencySymbol ||
-                    (this.CurrencySymbol != null &&
-                    this.CurrencySymbol.Equals(input.CurrencySymbol))
+                    CurrencySymbol == input.CurrencySymbol ||
+					CurrencySymbol.Equals(input.CurrencySymbol)
                 ) && 
                 (
-                    this.CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
-                    this.CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
+                    CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
+                    CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
                 ) && 
                 (
-                    this.NativeId == input.NativeId ||
-                    (this.NativeId != null &&
-                    this.NativeId.Equals(input.NativeId))
+                    NativeId == input.NativeId ||
+					NativeId.Equals(input.NativeId)
                 ) && 
                 (
-                    this.NativeCode == input.NativeCode ||
-                    (this.NativeCode != null &&
-                    this.NativeCode.Equals(input.NativeCode))
+                    NativeCode == input.NativeCode ||
+					NativeCode.Equals(input.NativeCode)
                 ) && 
                 (
-                    this.NativeSymbol == input.NativeSymbol ||
-                    (this.NativeSymbol != null &&
-                    this.NativeSymbol.Equals(input.NativeSymbol))
+                    NativeSymbol == input.NativeSymbol ||
+					NativeSymbol.Equals(input.NativeSymbol)
                 ) && 
                 (
-                    this.NativeDecimalPlaces == input.NativeDecimalPlaces ||
-                    this.NativeDecimalPlaces.Equals(input.NativeDecimalPlaces)
+                    NativeDecimalPlaces == input.NativeDecimalPlaces ||
+                    NativeDecimalPlaces.Equals(input.NativeDecimalPlaces)
                 ) && 
                 (
-                    this.Converted == input.Converted ||
-                    this.Converted.Equals(input.Converted)
+                    Converted == input.Converted ||
+                    Converted.Equals(input.Converted)
                 ) && 
                 (
-                    this.StartDate == input.StartDate ||
-                    (this.StartDate != null &&
-                    this.StartDate.Equals(input.StartDate))
+                    StartDate == input.StartDate ||
+					StartDate.Equals(input.StartDate)
                 ) && 
                 (
-                    this.EndDate == input.EndDate ||
-                    (this.EndDate != null &&
-                    this.EndDate.Equals(input.EndDate))
+                    EndDate == input.EndDate ||
+					EndDate.Equals(input.EndDate)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    Type == input.Type ||
+					Type.Equals(input.Type)
                 ) && 
                 (
-                    this.YAxisID == input.YAxisID ||
-                    this.YAxisID.Equals(input.YAxisID)
+                    YAxisID == input.YAxisID ||
+                    YAxisID.Equals(input.YAxisID)
                 ) && 
                 (
-                    this.Entries == input.Entries ||
-                    this.Entries != null &&
+                    Entries == input.Entries ||
+                    Entries != null &&
                     input.Entries != null &&
-                    this.Entries.SequenceEqual(input.Entries)
+                    Entries.SequenceEqual(input.Entries)
                 );
         }
 
@@ -325,54 +315,21 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Label != null)
-                {
-                    hashCode = (hashCode * 59) + this.Label.GetHashCode();
-                }
-                if (this.CurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
-                }
-                if (this.CurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
-                }
-                if (this.CurrencySymbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.CurrencySymbol.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CurrencyDecimalPlaces.GetHashCode();
-                if (this.NativeId != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeId.GetHashCode();
-                }
-                if (this.NativeCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeCode.GetHashCode();
-                }
-                if (this.NativeSymbol != null)
-                {
-                    hashCode = (hashCode * 59) + this.NativeSymbol.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.NativeDecimalPlaces.GetHashCode();
-                hashCode = (hashCode * 59) + this.Converted.GetHashCode();
-                if (this.StartDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.StartDate.GetHashCode();
-                }
-                if (this.EndDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.EndDate.GetHashCode();
-                }
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.YAxisID.GetHashCode();
-                if (this.Entries != null)
-                {
-                    hashCode = (hashCode * 59) + this.Entries.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Label.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencySymbol.GetHashCode();
+                hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + NativeId.GetHashCode();
+				hashCode = (hashCode * 59) + NativeCode.GetHashCode();
+				hashCode = (hashCode * 59) + NativeSymbol.GetHashCode();
+                hashCode = (hashCode * 59) + NativeDecimalPlaces.GetHashCode();
+                hashCode = (hashCode * 59) + Converted.GetHashCode();
+				hashCode = (hashCode * 59) + StartDate.GetHashCode();
+				hashCode = (hashCode * 59) + EndDate.GetHashCode();
+				hashCode = (hashCode * 59) + Type.GetHashCode();
+                hashCode = (hashCode * 59) + YAxisID.GetHashCode();
+				hashCode = (hashCode * 59) + Entries.GetHashCode();
                 return hashCode;
             }
         }
@@ -382,7 +339,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

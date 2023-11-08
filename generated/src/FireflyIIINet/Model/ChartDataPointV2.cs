@@ -38,7 +38,7 @@ namespace FireflyIIINet.Model
         /// <param name="key">The key is the label of the value, so for example: &#39;2018-01-01&#39; &#x3D;&gt; 13 or &#39;Groceries&#39; &#x3D;&gt; -123..</param>
         public ChartDataPointV2(string key = default(string))
         {
-            this.Key = key;
+            Key = key;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The key is the label of the value, so for example: &#39;2018-01-01&#39; &#x3D;&gt; 13 or &#39;Groceries&#39; &#x3D;&gt; -123.</value>
         /// <example>value</example>
-        [DataMember(Name = "key", EmitDefaultValue = false)]
+        [DataMember(Name = "key", EmitDefaultValue = true)]
         public string Key { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ChartDataPointV2);
+            return Equals(input as ChartDataPointV2);
         }
 
         /// <summary>
@@ -94,9 +94,8 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Key == input.Key ||
-                    (this.Key != null &&
-                    this.Key.Equals(input.Key))
+                    Key == input.Key ||
+					Key.Equals(input.Key)
                 );
         }
 
@@ -109,10 +108,7 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Key != null)
-                {
-                    hashCode = (hashCode * 59) + this.Key.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Key.GetHashCode();
                 return hashCode;
             }
         }
@@ -122,7 +118,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

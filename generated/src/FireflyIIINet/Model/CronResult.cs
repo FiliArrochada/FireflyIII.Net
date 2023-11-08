@@ -40,27 +40,27 @@ namespace FireflyIIINet.Model
         /// <param name="telemetry">telemetry.</param>
         public CronResult(CronResultRow recurringTransactions = default(CronResultRow), CronResultRow autoBudgets = default(CronResultRow), CronResultRow telemetry = default(CronResultRow))
         {
-            this.RecurringTransactions = recurringTransactions;
-            this.AutoBudgets = autoBudgets;
-            this.Telemetry = telemetry;
+            RecurringTransactions = recurringTransactions;
+            AutoBudgets = autoBudgets;
+            Telemetry = telemetry;
         }
 
         /// <summary>
         /// Gets or Sets RecurringTransactions
         /// </summary>
-        [DataMember(Name = "recurring_transactions", EmitDefaultValue = false)]
+        [DataMember(Name = "recurring_transactions", EmitDefaultValue = true)]
         public CronResultRow RecurringTransactions { get; set; }
 
         /// <summary>
         /// Gets or Sets AutoBudgets
         /// </summary>
-        [DataMember(Name = "auto_budgets", EmitDefaultValue = false)]
+        [DataMember(Name = "auto_budgets", EmitDefaultValue = true)]
         public CronResultRow AutoBudgets { get; set; }
 
         /// <summary>
         /// Gets or Sets Telemetry
         /// </summary>
-        [DataMember(Name = "telemetry", EmitDefaultValue = false)]
+        [DataMember(Name = "telemetry", EmitDefaultValue = true)]
         public CronResultRow Telemetry { get; set; }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CronResult);
+            return Equals(input as CronResult);
         }
 
         /// <summary>
@@ -110,19 +110,16 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.RecurringTransactions == input.RecurringTransactions ||
-                    (this.RecurringTransactions != null &&
-                    this.RecurringTransactions.Equals(input.RecurringTransactions))
+                    RecurringTransactions == input.RecurringTransactions ||
+					RecurringTransactions.Equals(input.RecurringTransactions)
                 ) && 
                 (
-                    this.AutoBudgets == input.AutoBudgets ||
-                    (this.AutoBudgets != null &&
-                    this.AutoBudgets.Equals(input.AutoBudgets))
+                    AutoBudgets == input.AutoBudgets ||
+					AutoBudgets.Equals(input.AutoBudgets)
                 ) && 
                 (
-                    this.Telemetry == input.Telemetry ||
-                    (this.Telemetry != null &&
-                    this.Telemetry.Equals(input.Telemetry))
+                    Telemetry == input.Telemetry ||
+					Telemetry.Equals(input.Telemetry)
                 );
         }
 
@@ -135,18 +132,9 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RecurringTransactions != null)
-                {
-                    hashCode = (hashCode * 59) + this.RecurringTransactions.GetHashCode();
-                }
-                if (this.AutoBudgets != null)
-                {
-                    hashCode = (hashCode * 59) + this.AutoBudgets.GetHashCode();
-                }
-                if (this.Telemetry != null)
-                {
-                    hashCode = (hashCode * 59) + this.Telemetry.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + RecurringTransactions.GetHashCode();
+				hashCode = (hashCode * 59) + AutoBudgets.GetHashCode();
+				hashCode = (hashCode * 59) + Telemetry.GetHashCode();
                 return hashCode;
             }
         }
@@ -156,7 +144,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

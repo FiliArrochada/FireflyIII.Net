@@ -59,37 +59,37 @@ namespace FireflyIIINet.Model
         /// <param name="transactions">transactions (required).</param>
         public RecurrenceStore(RecurrenceTransactionType type = default(RecurrenceTransactionType), string title = default(string), string description = default(string), DateTime firstDate = default(DateTime), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetitionStore> repetitions = default(List<RecurrenceRepetitionStore>), List<RecurrenceTransactionStore> transactions = default(List<RecurrenceTransactionStore>))
         {
-            this.Type = type;
+            Type = type;
             // to ensure "title" is required (not null)
             if (title == null)
             {
                 throw new ArgumentNullException("title is a required property for RecurrenceStore and cannot be null");
             }
-            this.Title = title;
-            this.FirstDate = firstDate;
+            Title = title;
+            FirstDate = firstDate;
             // to ensure "repeatUntil" is required (not null)
             if (repeatUntil == null)
             {
                 throw new ArgumentNullException("repeatUntil is a required property for RecurrenceStore and cannot be null");
             }
-            this.RepeatUntil = repeatUntil;
+            RepeatUntil = repeatUntil;
             // to ensure "repetitions" is required (not null)
             if (repetitions == null)
             {
                 throw new ArgumentNullException("repetitions is a required property for RecurrenceStore and cannot be null");
             }
-            this.Repetitions = repetitions;
+            Repetitions = repetitions;
             // to ensure "transactions" is required (not null)
             if (transactions == null)
             {
                 throw new ArgumentNullException("transactions is a required property for RecurrenceStore and cannot be null");
             }
-            this.Transactions = transactions;
-            this.Description = description;
-            this.NrOfRepetitions = nrOfRepetitions;
-            this.ApplyRules = applyRules;
-            this.Active = active;
-            this.Notes = notes;
+            Transactions = transactions;
+            Description = description;
+            NrOfRepetitions = nrOfRepetitions;
+            ApplyRules = applyRules;
+            Active = active;
+            Notes = notes;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Not to be confused with the description of the actual transaction(s) being created.</value>
         /// <example>Recurring transaction for the monthly rent</example>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Max number of created transactions. Use either this field or repeat_until.</value>
         /// <example>5</example>
-        [DataMember(Name = "nr_of_repetitions", EmitDefaultValue = true)]
+        [DataMember(Name = "nr_of_repetitions", EmitDefaultValue = false)]
         public int? NrOfRepetitions { get; set; }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RecurrenceStore);
+            return Equals(input as RecurrenceStore);
         }
 
         /// <summary>
@@ -223,58 +223,55 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 ) && 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+					Description.Equals(input.Description)
                 ) && 
                 (
-                    this.FirstDate == input.FirstDate ||
-                    (this.FirstDate != null &&
-                    this.FirstDate.Equals(input.FirstDate))
+                    FirstDate == input.FirstDate ||
+					FirstDate.Equals(input.FirstDate)
                 ) && 
                 (
-                    this.RepeatUntil == input.RepeatUntil ||
-                    (this.RepeatUntil != null &&
-                    this.RepeatUntil.Equals(input.RepeatUntil))
+                    RepeatUntil == input.RepeatUntil ||
+                    (RepeatUntil != null &&
+                    RepeatUntil.Equals(input.RepeatUntil))
                 ) && 
                 (
-                    this.NrOfRepetitions == input.NrOfRepetitions ||
-                    (this.NrOfRepetitions != null &&
-                    this.NrOfRepetitions.Equals(input.NrOfRepetitions))
+                    NrOfRepetitions == input.NrOfRepetitions ||
+                    (NrOfRepetitions != null &&
+                    NrOfRepetitions.Equals(input.NrOfRepetitions))
                 ) && 
                 (
-                    this.ApplyRules == input.ApplyRules ||
-                    this.ApplyRules.Equals(input.ApplyRules)
+                    ApplyRules == input.ApplyRules ||
+                    ApplyRules.Equals(input.ApplyRules)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.Repetitions == input.Repetitions ||
-                    this.Repetitions != null &&
+                    Repetitions == input.Repetitions ||
+                    Repetitions != null &&
                     input.Repetitions != null &&
-                    this.Repetitions.SequenceEqual(input.Repetitions)
+                    Repetitions.SequenceEqual(input.Repetitions)
                 ) && 
                 (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions != null &&
+                    Transactions == input.Transactions ||
+                    Transactions != null &&
                     input.Transactions != null &&
-                    this.Transactions.SequenceEqual(input.Transactions)
+                    Transactions.SequenceEqual(input.Transactions)
                 );
         }
 
@@ -287,41 +284,26 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.Title != null)
+                hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+				hashCode = (hashCode * 59) + Description.GetHashCode();
+				hashCode = (hashCode * 59) + FirstDate.GetHashCode();
+                if (RepeatUntil != null)
                 {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
+                    hashCode = (hashCode * 59) + RepeatUntil.GetHashCode();
                 }
-                if (this.Description != null)
+                if (NrOfRepetitions != null)
                 {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                    hashCode = (hashCode * 59) + NrOfRepetitions.GetHashCode();
                 }
-                if (this.FirstDate != null)
+                hashCode = (hashCode * 59) + ApplyRules.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.FirstDate.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.RepeatUntil != null)
-                {
-                    hashCode = (hashCode * 59) + this.RepeatUntil.GetHashCode();
-                }
-                if (this.NrOfRepetitions != null)
-                {
-                    hashCode = (hashCode * 59) + this.NrOfRepetitions.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.ApplyRules.GetHashCode();
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
-                }
-                if (this.Repetitions != null)
-                {
-                    hashCode = (hashCode * 59) + this.Repetitions.GetHashCode();
-                }
-                if (this.Transactions != null)
-                {
-                    hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Repetitions.GetHashCode();
+				hashCode = (hashCode * 59) + Transactions.GetHashCode();
                 return hashCode;
             }
         }
@@ -331,7 +313,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -49,7 +52,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -63,7 +66,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -79,7 +82,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -94,7 +97,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -110,7 +113,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -125,7 +128,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -141,7 +144,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -156,7 +159,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -171,7 +174,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -185,7 +188,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -200,7 +203,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -214,7 +217,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -229,7 +232,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -243,7 +246,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -258,7 +261,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -272,7 +275,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -287,7 +290,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -301,7 +304,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -317,7 +320,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -332,7 +335,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total expenses made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -347,7 +350,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total expenses made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -361,7 +364,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -376,7 +379,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -390,7 +393,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -406,7 +409,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -421,7 +424,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -436,7 +439,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -450,7 +453,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -465,7 +468,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -479,7 +482,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -494,7 +497,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -508,7 +511,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -524,7 +527,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -539,7 +542,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total income received by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -554,7 +557,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total income received by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -568,7 +571,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -584,7 +587,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -599,7 +602,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -614,7 +617,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -628,7 +631,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -643,7 +646,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -657,7 +660,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -673,7 +676,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -688,7 +691,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total amount transfers made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -703,7 +706,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total amount transfers made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -717,7 +720,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -732,7 +735,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -755,7 +758,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -763,7 +766,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightExpenseAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, grouped by asset account.
@@ -771,7 +774,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -779,14 +782,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, grouped by bill.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -795,7 +798,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightExpenseBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, grouped by bill.
@@ -803,7 +806,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -812,14 +815,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, grouped by budget.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -828,7 +831,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightExpenseBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, grouped by budget.
@@ -836,7 +839,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -845,14 +848,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, grouped by category.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -861,7 +864,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightExpenseCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, grouped by category.
@@ -869,7 +872,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -878,14 +881,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, grouped by expense account.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -893,7 +896,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseExpenseAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightExpenseExpenseAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, grouped by expense account.
@@ -901,7 +904,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -909,14 +912,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseExpenseWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseExpenseWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, without bill.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -924,7 +927,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightExpenseNoBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, without bill.
@@ -932,7 +935,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -940,14 +943,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, without budget.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -955,7 +958,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightExpenseNoBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, without budget.
@@ -963,7 +966,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -971,14 +974,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, without category.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -986,7 +989,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightExpenseNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, without category.
@@ -994,7 +997,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1002,14 +1005,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, without tag.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1017,7 +1020,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightExpenseNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, without tag.
@@ -1025,7 +1028,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1033,14 +1036,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, grouped by tag.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1049,7 +1052,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightExpenseTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, grouped by tag.
@@ -1057,7 +1060,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1066,14 +1069,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into total expenses.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a sum of the total expenses made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1081,7 +1084,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightExpenseTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into total expenses.
@@ -1089,7 +1092,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total expenses made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1097,14 +1100,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into income, grouped by asset account.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1112,7 +1115,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightIncomeAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into income, grouped by asset account.
@@ -1120,7 +1123,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1128,14 +1131,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into income, grouped by category.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1144,7 +1147,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightIncomeCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into income, grouped by category.
@@ -1152,7 +1155,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1161,14 +1164,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into income, without category.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1176,7 +1179,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightIncomeNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightIncomeNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into income, without category.
@@ -1184,7 +1187,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1192,14 +1195,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into income, without tag.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1207,7 +1210,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightIncomeNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightIncomeNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into income, without tag.
@@ -1215,7 +1218,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1223,14 +1226,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into income, grouped by revenue account.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1238,7 +1241,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeRevenueAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightIncomeRevenueAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into income, grouped by revenue account.
@@ -1246,7 +1249,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1254,14 +1257,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeRevenueWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeRevenueWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into income, grouped by tag.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1270,7 +1273,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightIncomeTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into income, grouped by tag.
@@ -1278,7 +1281,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1287,14 +1290,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into total income.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a sum of the total income received by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1302,7 +1305,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightIncomeTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightIncomeTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into total income.
@@ -1310,7 +1313,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total income received by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1318,14 +1321,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into transfers, grouped by category.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1334,7 +1337,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightTransferCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightTransferCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into transfers, grouped by category.
@@ -1342,7 +1345,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1351,14 +1354,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightTransferCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightTransferCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into transfers, without category.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1366,7 +1369,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightTransferNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightTransferNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into transfers, without category.
@@ -1374,7 +1377,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1382,14 +1385,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into expenses, without tag.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1397,7 +1400,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightTransferNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightTransferNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into expenses, without tag.
@@ -1405,7 +1408,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1413,14 +1416,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into transfers, grouped by tag.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1429,7 +1432,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightTransferTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightGroupEntry>> InsightTransferTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into transfers, grouped by tag.
@@ -1437,7 +1440,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1446,14 +1449,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightGroupEntry>>> InsightTransferTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightGroupEntry>>> InsightTransferTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into total transfers.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a sum of the total amount transfers made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1461,7 +1464,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightTransferTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTotalEntry>> InsightTransferTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into total transfers.
@@ -1469,7 +1472,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a sum of the total amount transfers made by the user. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1477,14 +1480,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Insight into transfers, grouped by account.
         /// </summary>
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1492,7 +1495,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTransferEntry&gt;</returns>
-        System.Threading.Tasks.Task<List<InsightTransferEntry>> InsightTransfersAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<List<InsightTransferEntry>> InsightTransfersAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Insight into transfers, grouped by account.
@@ -1500,7 +1503,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1508,7 +1511,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTransferEntry&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InsightTransferEntry>>> InsightTransfersWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<List<InsightTransferEntry>>> InsightTransfersWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1525,7 +1528,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class InsightApi : IInsightApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InsightApi"/> class.
@@ -1539,15 +1542,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="InsightApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public InsightApi(string basePath)
+        public InsightApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -1556,17 +1552,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public InsightApi(FireflyIIINet.Client.Configuration configuration)
+        public InsightApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -1576,27 +1572,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public InsightApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public InsightApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -1604,19 +1600,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -1630,9 +1626,102 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseAsset.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseAsset(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseAsset" ,operationIndex);
+
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (accounts != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+            }
+            if (xTraceId != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
+            }
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Insight into expenses, grouped by asset account. This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1641,93 +1730,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightExpenseAsset(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseAssetWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseAssetWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by asset account. This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightExpenseAssetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightExpenseAssetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseAsset";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseAsset(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/asset", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseAsset", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/asset", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseAsset", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by asset account. This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1735,16 +1765,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightExpenseAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseAssetWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseAssetWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by asset account. This endpoint gives a summary of the expenses made by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1752,11 +1782,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightExpenseAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseAsset(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/asset", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseAsset", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseBill.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseBill(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1765,68 +1805,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseBill" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (bills != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "bills[]", bills));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseAsset";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/asset", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseAsset", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, grouped by bill. This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1836,14 +1840,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightExpenseBill(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseBillWithHttpInfo(start, end, xTraceId, bills, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseBillWithHttpInfo(start, end, xTraceId, bills, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by bill. This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1851,83 +1855,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightExpenseBillWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightExpenseBillWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (bills != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "bills[]", bills));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseBill";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseBill(start, end, xTraceId, bills, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/bill", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseBill", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/bill", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseBill", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by bill. This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1936,16 +1877,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightExpenseBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseBillWithHttpInfoAsync(start, end, xTraceId, bills, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseBillWithHttpInfoAsync(start, end, xTraceId, bills, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by bill. This endpoint gives a summary of the expenses made by the user, grouped by (any) bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -1954,11 +1895,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightExpenseBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? bills = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseBill(start, end, xTraceId, bills, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/bill", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseBill", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseBudget(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1967,72 +1918,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (budgets != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (bills != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "bills[]", bills));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "budgets[]", budgets));
             }
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseBill";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/bill", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseBill", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, grouped by budget. This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2042,14 +1953,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightExpenseBudget(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseBudgetWithHttpInfo(start, end, xTraceId, budgets, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseBudgetWithHttpInfo(start, end, xTraceId, budgets, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by budget. This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2057,83 +1968,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightExpenseBudgetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightExpenseBudgetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (budgets != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "budgets[]", budgets));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseBudget(start, end, xTraceId, budgets, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/budget", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/budget", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by budget. This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2142,16 +1990,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightExpenseBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseBudgetWithHttpInfoAsync(start, end, xTraceId, budgets, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseBudgetWithHttpInfoAsync(start, end, xTraceId, budgets, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by budget. This endpoint gives a summary of the expenses made by the user, grouped by (any) budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2160,11 +2008,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightExpenseBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? budgets = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseBudget(start, end, xTraceId, budgets, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/budget", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseBudget", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2173,72 +2031,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (categories != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (budgets != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "budgets[]", budgets));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
             }
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/budget", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, grouped by category. This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2248,14 +2066,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightExpenseCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by category. This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2263,83 +2081,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightExpenseCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightExpenseCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (categories != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseCategory(start, end, xTraceId, categories, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/category", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/category", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by category. This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2348,16 +2103,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightExpenseCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseCategoryWithHttpInfoAsync(start, end, xTraceId, categories, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseCategoryWithHttpInfoAsync(start, end, xTraceId, categories, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by category. This endpoint gives a summary of the expenses made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2366,11 +2121,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightExpenseCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseCategory(start, end, xTraceId, categories, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/category", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseCategory", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseExpense.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseExpense(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2379,72 +2144,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseExpense" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (categories != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
-            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/category", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, grouped by expense account. This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2453,93 +2174,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightExpenseExpense(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseExpenseWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseExpenseWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by expense account. This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you add the accounts ID&#39;s of expense accounts, only those accounts are included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. You can combine both asset / liability and expense account ID&#39;s. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightExpenseExpenseWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightExpenseExpenseWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseExpense";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseExpense(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/expense", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseExpense", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/expense", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseExpense", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by expense account. This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2547,16 +2209,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseExpenseAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightExpenseExpenseAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseExpenseWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseExpenseWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by expense account. This endpoint gives a summary of the expenses made by the user, grouped by expense account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2564,11 +2226,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightExpenseExpenseWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseExpenseWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseExpense(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/expense", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseExpense", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseNoBill.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseNoBill(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2577,68 +2249,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseNoBill" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseExpense";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/expense", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseExpense", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, without bill. This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2647,93 +2279,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightExpenseNoBill(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoBillWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoBillWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without bill. This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightExpenseNoBillWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightExpenseNoBillWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoBill";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoBill(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-bill", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoBill", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-bill", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseNoBill", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, without bill. This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2741,16 +2314,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightExpenseNoBillAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoBillWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoBillWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without bill. This endpoint gives a summary of the expenses made by the user, including only expenses with no bill. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2758,11 +2331,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBillWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoBill(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-bill", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseNoBill", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseNoBudget.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseNoBudget(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2771,68 +2354,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseNoBudget" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoBill";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-bill", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoBill", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, without budget. This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2841,93 +2384,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightExpenseNoBudget(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoBudgetWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoBudgetWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without budget. This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightExpenseNoBudgetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightExpenseNoBudgetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoBudget(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-budget", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-budget", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseNoBudget", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, without budget. This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2935,16 +2419,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightExpenseNoBudgetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoBudgetWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoBudgetWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without budget. This endpoint gives a summary of the expenses made by the user, including only expenses with no budget. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2952,11 +2436,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoBudgetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoBudget(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-budget", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseNoBudget", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseNoCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseNoCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2965,68 +2459,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseNoCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoBudget";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-budget", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoBudget", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, without category. This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3035,93 +2489,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightExpenseNoCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without category. This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightExpenseNoCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightExpenseNoCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoCategory(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-category", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-category", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseNoCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, without category. This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3129,16 +2524,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightExpenseNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoCategoryWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoCategoryWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without category. This endpoint gives a summary of the expenses made by the user, including only expenses with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3146,11 +2541,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoCategory(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-category", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseNoCategory", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseNoTag.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseNoTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3159,68 +2564,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseNoTag" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-category", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3229,93 +2594,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightExpenseNoTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoTagWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseNoTagWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightExpenseNoTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightExpenseNoTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoTag(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-tag", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/no-tag", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseNoTag", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3323,16 +2629,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightExpenseNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoTagWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseNoTagWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the expenses made by the user, including only expenses with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3340,11 +2646,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseNoTag(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-tag", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseNoTag", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseTag.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3353,68 +2669,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseTag" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (tags != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseNoTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/no-tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseNoTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, grouped by tag. This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3424,14 +2704,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightExpenseTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseTagWithHttpInfo(start, end, xTraceId, tags, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightExpenseTagWithHttpInfo(start, end, xTraceId, tags, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by tag. This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3439,83 +2719,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightExpenseTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightExpenseTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (tags != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseTag(start, end, xTraceId, tags, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/tag", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/expense/tag", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseTag", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by tag. This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3524,16 +2741,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightExpenseTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightExpenseTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseTagWithHttpInfoAsync(start, end, xTraceId, tags, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightExpenseTagWithHttpInfoAsync(start, end, xTraceId, tags, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, grouped by tag. This endpoint gives a summary of the expenses made by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3542,11 +2759,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightExpenseTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightExpenseTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseTag(start, end, xTraceId, tags, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/tag", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseTag", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightExpenseTotal.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightExpenseTotal(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3555,72 +2782,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightExpenseTotal" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (tags != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
-            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/expense/tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into total expenses. This endpoint gives a sum of the total expenses made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3629,93 +2812,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightExpenseTotal(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseTotalWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightExpenseTotalWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into total expenses. This endpoint gives a sum of the total expenses made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only withdrawals from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightExpenseTotalWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightExpenseTotalWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseTotal";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseTotal(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/total", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseTotal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/expense/total", localVarRequestOptions, Configuration);
+            ValidateException("InsightExpenseTotal", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into total expenses. This endpoint gives a sum of the total expenses made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3723,16 +2847,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightExpenseTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightExpenseTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseTotalWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightExpenseTotalWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into total expenses. This endpoint gives a sum of the total expenses made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3740,11 +2864,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightExpenseTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightExpenseTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightExpenseTotal(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/total", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightExpenseTotal", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightIncomeAsset.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightIncomeAsset(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3753,68 +2887,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightIncomeAsset" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightExpenseTotal";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/expense/total", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightExpenseTotal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into income, grouped by asset account. This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3823,93 +2917,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightIncomeAsset(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeAssetWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeAssetWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by asset account. This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightIncomeAssetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightIncomeAssetWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeAsset";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeAsset(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/income/asset", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeAsset", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/income/asset", localVarRequestOptions, Configuration);
+            ValidateException("InsightIncomeAsset", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into income, grouped by asset account. This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3917,16 +2952,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightIncomeAssetAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeAssetWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeAssetWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by asset account. This endpoint gives a summary of the income received by the user, grouped by asset account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -3934,11 +2969,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightIncomeAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeAssetWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeAsset(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/asset", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightIncomeAsset", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightIncomeCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightIncomeCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -3947,68 +2992,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightIncomeCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (categories != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeAsset";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/asset", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeAsset", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into income, grouped by category. This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4018,14 +3027,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightIncomeCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by category. This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4033,83 +3042,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightIncomeCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightIncomeCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (categories != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeCategory(start, end, xTraceId, categories, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/income/category", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/income/category", localVarRequestOptions, Configuration);
+            ValidateException("InsightIncomeCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into income, grouped by category. This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4118,16 +3064,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightIncomeCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeCategoryWithHttpInfoAsync(start, end, xTraceId, categories, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeCategoryWithHttpInfoAsync(start, end, xTraceId, categories, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by category. This endpoint gives a summary of the income received by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4136,11 +3082,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightIncomeCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeCategory(start, end, xTraceId, categories, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/category", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightIncomeCategory", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightIncomeNoCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightIncomeNoCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -4149,72 +3105,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightIncomeNoCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (categories != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
-            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/category", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into income, without category. This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4223,93 +3135,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightIncomeNoCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightIncomeNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightIncomeNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, without category. This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightIncomeNoCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightIncomeNoCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeNoCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeNoCategory(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/income/no-category", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeNoCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/income/no-category", localVarRequestOptions, Configuration);
+            ValidateException("InsightIncomeNoCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into income, without category. This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4317,16 +3170,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightIncomeNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightIncomeNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightIncomeNoCategoryWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightIncomeNoCategoryWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, without category. This endpoint gives a summary of the income received by the user, including only income with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4334,11 +3187,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeNoCategory(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/income/no-category", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightIncomeNoCategory", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightIncomeNoTag.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightIncomeNoTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -4347,68 +3210,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightIncomeNoTag" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeNoCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/income/no-category", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeNoCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into income, without tag. This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4417,93 +3240,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightIncomeNoTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightIncomeNoTagWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightIncomeNoTagWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, without tag. This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightIncomeNoTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightIncomeNoTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeNoTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeNoTag(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/income/no-tag", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeNoTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/income/no-tag", localVarRequestOptions, Configuration);
+            ValidateException("InsightIncomeNoTag", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into income, without tag. This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4511,16 +3275,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightIncomeNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightIncomeNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightIncomeNoTagWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightIncomeNoTagWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, without tag. This endpoint gives a summary of the income received by the user, including only income with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4528,11 +3292,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeNoTag(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/income/no-tag", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightIncomeNoTag", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightIncomeRevenue.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightIncomeRevenue(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -4541,68 +3315,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightIncomeRevenue" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeNoTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/income/no-tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeNoTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into income, grouped by revenue account. This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4611,93 +3345,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightIncomeRevenue(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeRevenueWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeRevenueWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by revenue account. This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you add the accounts ID&#39;s of revenue accounts, only those accounts are included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. You can combine both asset / liability and deposit account ID&#39;s. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightIncomeRevenueWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightIncomeRevenueWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeRevenue";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeRevenue(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/income/revenue", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeRevenue", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/income/revenue", localVarRequestOptions, Configuration);
+            ValidateException("InsightIncomeRevenue", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into income, grouped by revenue account. This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4705,16 +3380,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeRevenueAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightIncomeRevenueAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeRevenueWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeRevenueWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by revenue account. This endpoint gives a summary of the income received by the user, grouped by revenue account. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4722,11 +3397,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightIncomeRevenueWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeRevenueWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeRevenue(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/revenue", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightIncomeRevenue", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightIncomeTag.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightIncomeTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -4735,68 +3420,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightIncomeTag" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (tags != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeRevenue";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/revenue", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeRevenue", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into income, grouped by tag. This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4806,14 +3455,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightIncomeTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeTagWithHttpInfo(start, end, xTraceId, tags, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightIncomeTagWithHttpInfo(start, end, xTraceId, tags, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by tag. This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4821,83 +3470,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightIncomeTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightIncomeTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (tags != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeTag(start, end, xTraceId, tags, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/income/tag", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/income/tag", localVarRequestOptions, Configuration);
+            ValidateException("InsightIncomeTag", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into income, grouped by tag. This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4906,16 +3492,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightIncomeTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightIncomeTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeTagWithHttpInfoAsync(start, end, xTraceId, tags, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightIncomeTagWithHttpInfoAsync(start, end, xTraceId, tags, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into income, grouped by tag. This endpoint gives a summary of the income received by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -4924,11 +3510,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightIncomeTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightIncomeTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeTag(start, end, xTraceId, tags, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/tag", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightIncomeTag", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightIncomeTotal.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightIncomeTotal(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -4937,72 +3533,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightIncomeTotal" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (tags != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
-            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/income/tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into total income. This endpoint gives a sum of the total income received by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5011,93 +3563,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightIncomeTotal(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightIncomeTotalWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightIncomeTotalWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into total income. This endpoint gives a sum of the total income received by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only deposits to those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightIncomeTotalWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightIncomeTotalWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeTotal";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeTotal(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/income/total", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeTotal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/income/total", localVarRequestOptions, Configuration);
+            ValidateException("InsightIncomeTotal", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into total income. This endpoint gives a sum of the total income received by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5105,16 +3598,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightIncomeTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightIncomeTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightIncomeTotalWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightIncomeTotalWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into total income. This endpoint gives a sum of the total income received by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5122,11 +3615,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightIncomeTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightIncomeTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightIncomeTotal(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/income/total", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightIncomeTotal", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightTransferCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightTransferCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -5135,68 +3638,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightTransferCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (categories != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightIncomeTotal";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/income/total", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightIncomeTotal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into transfers, grouped by category. This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5206,14 +3673,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightTransferCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightTransferCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightTransferCategoryWithHttpInfo(start, end, xTraceId, categories, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by category. This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5221,83 +3688,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightTransferCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightTransferCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (categories != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferCategory(start, end, xTraceId, categories, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/transfer/category", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/transfer/category", localVarRequestOptions, Configuration);
+            ValidateException("InsightTransferCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by category. This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5306,16 +3710,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightTransferCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightTransferCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightTransferCategoryWithHttpInfoAsync(start, end, xTraceId, categories, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightTransferCategoryWithHttpInfoAsync(start, end, xTraceId, categories, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by category. This endpoint gives a summary of the transfers made by the user, grouped by (any) category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5324,11 +3728,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightTransferCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightTransferCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? categories = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferCategory(start, end, xTraceId, categories, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/transfer/category", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightTransferCategory", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightTransferNoCategory.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightTransferNoCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -5337,72 +3751,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightTransferNoCategory" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (categories != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "categories[]", categories));
-            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/transfer/category", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into transfers, without category. This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5411,93 +3781,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightTransferNoCategory(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightTransferNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightTransferNoCategoryWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, without category. This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightTransferNoCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightTransferNoCategoryWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferNoCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferNoCategory(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/transfer/no-category", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferNoCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/transfer/no-category", localVarRequestOptions, Configuration);
+            ValidateException("InsightTransferNoCategory", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into transfers, without category. This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5505,16 +3816,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightTransferNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightTransferNoCategoryAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightTransferNoCategoryWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightTransferNoCategoryWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, without category. This endpoint gives a summary of the transfers made by the user, including only transfers with no category. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5522,11 +3833,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightTransferNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferNoCategoryWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferNoCategory(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/transfer/no-category", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightTransferNoCategory", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightTransferNoTag.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightTransferNoTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -5535,68 +3856,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightTransferNoTag" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferNoCategory";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/transfer/no-category", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferNoCategory", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5605,93 +3886,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightTransferNoTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightTransferNoTagWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightTransferNoTagWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers from those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightTransferNoTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightTransferNoTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferNoTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferNoTag(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/transfer/no-tag", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferNoTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/transfer/no-tag", localVarRequestOptions, Configuration);
+            ValidateException("InsightTransferNoTag", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5699,16 +3921,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightTransferNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightTransferNoTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightTransferNoTagWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightTransferNoTagWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into expenses, without tag. This endpoint gives a summary of the transfers made by the user, including only transfers with no tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5716,11 +3938,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightTransferNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferNoTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferNoTag(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/transfer/no-tag", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightTransferNoTag", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightTransferTag.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightTransferTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -5729,68 +3961,32 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightTransferTag" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (tags != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferNoTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/transfer/no-tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferNoTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into transfers, grouped by tag. This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5800,14 +3996,14 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightGroupEntry&gt;</returns>
         public List<InsightGroupEntry> InsightTransferTag(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightTransferTagWithHttpInfo(start, end, xTraceId, tags, accounts);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = InsightTransferTagWithHttpInfo(start, end, xTraceId, tags, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by tag. This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5815,83 +4011,20 @@ namespace FireflyIIINet.Api
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightGroupEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> InsightTransferTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightGroupEntry>> InsightTransferTagWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (tags != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
-            }
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferTag(start, end, xTraceId, tags, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightGroupEntry>>("/v1/insight/transfer/tag", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightGroupEntry>>("/v1/insight/transfer/tag", localVarRequestOptions, Configuration);
+            ValidateException("InsightTransferTag", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by tag. This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5900,16 +4033,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightGroupEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightGroupEntry>> InsightTransferTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightGroupEntry>> InsightTransferTagAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightTransferTagWithHttpInfoAsync(start, end, xTraceId, tags, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightGroupEntry>> localVarResponse = await InsightTransferTagWithHttpInfoAsync(start, end, xTraceId, tags, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by tag. This endpoint gives a summary of the transfers created by the user, grouped by (any) tag. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -5918,11 +4051,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightGroupEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightGroupEntry>>> InsightTransferTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightGroupEntry>>> InsightTransferTagWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? tags = default(List<long>?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferTag(start, end, xTraceId, tags, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/transfer/tag", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightTransferTag", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightTransferTotal.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightTransferTotal(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -5931,72 +4074,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightTransferTotal" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (tags != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "tags[]", tags));
-            }
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferTag";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightGroupEntry>>("/v1/insight/transfer/tag", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferTag", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into total transfers. This endpoint gives a sum of the total amount transfers made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -6005,93 +4104,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTotalEntry&gt;</returns>
         public List<InsightTotalEntry> InsightTransferTotal(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightTransferTotalWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = InsightTransferTotalWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into total transfers. This endpoint gives a sum of the total amount transfers made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTotalEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> InsightTransferTotalWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTotalEntry>> InsightTransferTotalWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferTotal";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferTotal(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTotalEntry>>("/v1/insight/transfer/total", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferTotal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTotalEntry>>("/v1/insight/transfer/total", localVarRequestOptions, Configuration);
+            ValidateException("InsightTransferTotal", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into total transfers. This endpoint gives a sum of the total amount transfers made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -6099,16 +4139,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTotalEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTotalEntry>> InsightTransferTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTotalEntry>> InsightTransferTotalAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightTransferTotalWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTotalEntry>> localVarResponse = await InsightTransferTotalWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into total transfers. This endpoint gives a sum of the total amount transfers made by the user. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -6116,11 +4156,21 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTotalEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTotalEntry>>> InsightTransferTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTotalEntry>>> InsightTransferTotalWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransferTotal(start, end, xTraceId, accounts, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/transfer/total", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightTransferTotal", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for InsightTransfers.
+        /// </summary>
+		private RequestOptions GetRequestOptionsInsightTransfers(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -6129,68 +4179,28 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"InsightApi.InsightTransfers" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
             if (accounts != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransferTotal";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTotalEntry>>("/v1/insight/transfer/total", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransferTotal", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Insight into transfers, grouped by account. This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -6199,93 +4209,34 @@ namespace FireflyIIINet.Api
         /// <returns>List&lt;InsightTransferEntry&gt;</returns>
         public List<InsightTransferEntry> InsightTransfers(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTransferEntry>> localVarResponse = InsightTransfersWithHttpInfo(start, end, xTraceId, accounts);
+            ApiResponse<List<InsightTransferEntry>> localVarResponse = InsightTransfersWithHttpInfo(start, end, xTraceId, accounts);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by account. This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="accounts">The accounts to be included in the results. If you include ID&#39;s of asset accounts or liabilities, only transfers between those asset accounts / liabilities will be included. Other account ID&#39;s will be ignored.  (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InsightTransferEntry&gt;</returns>
-        public FireflyIIINet.Client.ApiResponse<List<InsightTransferEntry>> InsightTransfersWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
+        public ApiResponse<List<InsightTransferEntry>> InsightTransfersWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransfers";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransfers(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<List<InsightTransferEntry>>("/v1/insight/transfer/asset", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransfers", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<List<InsightTransferEntry>>("/v1/insight/transfer/asset", localVarRequestOptions, Configuration);
+            ValidateException("InsightTransfers", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by account. This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -6293,16 +4244,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InsightTransferEntry&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InsightTransferEntry>> InsightTransfersAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<List<InsightTransferEntry>> InsightTransfersAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<List<InsightTransferEntry>> localVarResponse = await InsightTransfersWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<List<InsightTransferEntry>> localVarResponse = await InsightTransfersWithHttpInfoAsync(start, end, xTraceId, accounts, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Insight into transfers, grouped by account. This endpoint gives a summary of the transfers made by the user, grouped by asset account or lability. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -6310,76 +4261,14 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InsightTransferEntry&gt;)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<List<InsightTransferEntry>>> InsightTransfersWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<List<InsightTransferEntry>>> InsightTransfersWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), List<long>? accounts = default(List<long>?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("multi", "accounts[]", accounts));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "InsightApi.InsightTransfers";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsInsightTransfers(start, end, xTraceId, accounts, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<List<InsightTransferEntry>>("/v1/insight/transfer/asset", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("InsightTransfers", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.GetAsync<List<InsightTransferEntry>>("/v1/insight/transfer/asset", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("InsightTransfers", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

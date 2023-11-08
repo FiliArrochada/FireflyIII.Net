@@ -38,13 +38,13 @@ namespace FireflyIIINet.Model
         /// <param name="pagination">pagination.</param>
         public Meta(MetaPagination pagination = default(MetaPagination))
         {
-            this.Pagination = pagination;
+            Pagination = pagination;
         }
 
         /// <summary>
         /// Gets or Sets Pagination
         /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
+        [DataMember(Name = "pagination", EmitDefaultValue = true)]
         public MetaPagination Pagination { get; set; }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Meta);
+            return Equals(input as Meta);
         }
 
         /// <summary>
@@ -92,9 +92,8 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Pagination == input.Pagination ||
-                    (this.Pagination != null &&
-                    this.Pagination.Equals(input.Pagination))
+                    Pagination == input.Pagination ||
+					Pagination.Equals(input.Pagination)
                 );
         }
 
@@ -107,10 +106,7 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Pagination != null)
-                {
-                    hashCode = (hashCode * 59) + this.Pagination.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + Pagination.GetHashCode();
                 return hashCode;
             }
         }
@@ -120,7 +116,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

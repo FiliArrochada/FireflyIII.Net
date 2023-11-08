@@ -56,31 +56,31 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         public Attachment(AttachableType attachableType = default(AttachableType), string attachableId = default(string), string md5 = default(string), string filename = default(string), string downloadUrl = default(string), string uploadUrl = default(string), string title = default(string), string notes = default(string))
         {
-            this.AttachableType = attachableType;
+            AttachableType = attachableType;
             // to ensure "attachableId" is required (not null)
             if (attachableId == null)
             {
                 throw new ArgumentNullException("attachableId is a required property for Attachment and cannot be null");
             }
-            this.AttachableId = attachableId;
+            AttachableId = attachableId;
             // to ensure "filename" is required (not null)
             if (filename == null)
             {
                 throw new ArgumentNullException("filename is a required property for Attachment and cannot be null");
             }
-            this.Filename = filename;
-            this.Md5 = md5;
-            this.DownloadUrl = downloadUrl;
-            this.UploadUrl = uploadUrl;
-            this.Title = title;
-            this.Notes = notes;
+            Filename = filename;
+            Md5 = md5;
+            DownloadUrl = downloadUrl;
+            UploadUrl = uploadUrl;
+            Title = title;
+            Notes = notes;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>MD5 hash of the file for basic duplicate detection.</value>
         /// <example>0c3f95f34370baa88f9fd9a671fea305</example>
-        [DataMember(Name = "md5", EmitDefaultValue = false)]
+        [DataMember(Name = "md5", EmitDefaultValue = true)]
         public string Md5 { get; set; }
 
         /// <summary>
@@ -133,35 +133,35 @@ namespace FireflyIIINet.Model
         /// Gets or Sets DownloadUrl
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/attachments/191/download</example>
-        [DataMember(Name = "download_url", EmitDefaultValue = false)]
+        [DataMember(Name = "download_url", EmitDefaultValue = true)]
         public string DownloadUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets UploadUrl
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/attachments/191/download</example>
-        [DataMember(Name = "upload_url", EmitDefaultValue = false)]
+        [DataMember(Name = "upload_url", EmitDefaultValue = true)]
         public string UploadUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Title
         /// </summary>
         /// <example>Some PDF file</example>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name = "title", EmitDefaultValue = true)]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
         /// Gets or Sets Mime
         /// </summary>
         /// <example>application/pdf</example>
-        [DataMember(Name = "mime", EmitDefaultValue = false)]
+        [DataMember(Name = "mime", EmitDefaultValue = true)]
         public string Mime { get; private set; }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Size
         /// </summary>
         /// <example>48211</example>
-        [DataMember(Name = "size", EmitDefaultValue = false)]
+        [DataMember(Name = "size", EmitDefaultValue = true)]
         public int Size { get; private set; }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Attachment);
+            return Equals(input as Attachment);
         }
 
         /// <summary>
@@ -243,62 +243,53 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.AttachableType == input.AttachableType ||
-                    this.AttachableType.Equals(input.AttachableType)
+                    AttachableType == input.AttachableType ||
+                    AttachableType.Equals(input.AttachableType)
                 ) && 
                 (
-                    this.AttachableId == input.AttachableId ||
-                    (this.AttachableId != null &&
-                    this.AttachableId.Equals(input.AttachableId))
+                    AttachableId == input.AttachableId ||
+					AttachableId.Equals(input.AttachableId)
                 ) && 
                 (
-                    this.Md5 == input.Md5 ||
-                    (this.Md5 != null &&
-                    this.Md5.Equals(input.Md5))
+                    Md5 == input.Md5 ||
+					Md5.Equals(input.Md5)
                 ) && 
                 (
-                    this.Filename == input.Filename ||
-                    (this.Filename != null &&
-                    this.Filename.Equals(input.Filename))
+                    Filename == input.Filename ||
+					Filename.Equals(input.Filename)
                 ) && 
                 (
-                    this.DownloadUrl == input.DownloadUrl ||
-                    (this.DownloadUrl != null &&
-                    this.DownloadUrl.Equals(input.DownloadUrl))
+                    DownloadUrl == input.DownloadUrl ||
+					DownloadUrl.Equals(input.DownloadUrl)
                 ) && 
                 (
-                    this.UploadUrl == input.UploadUrl ||
-                    (this.UploadUrl != null &&
-                    this.UploadUrl.Equals(input.UploadUrl))
+                    UploadUrl == input.UploadUrl ||
+					UploadUrl.Equals(input.UploadUrl)
                 ) && 
                 (
-                    this.Title == input.Title ||
-                    (this.Title != null &&
-                    this.Title.Equals(input.Title))
+                    Title == input.Title ||
+					Title.Equals(input.Title)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.Mime == input.Mime ||
-                    (this.Mime != null &&
-                    this.Mime.Equals(input.Mime))
+                    Mime == input.Mime ||
+					Mime.Equals(input.Mime)
                 ) && 
                 (
-                    this.Size == input.Size ||
-                    this.Size.Equals(input.Size)
+                    Size == input.Size ||
+                    Size.Equals(input.Size)
                 );
         }
 
@@ -311,48 +302,21 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + AttachableType.GetHashCode();
+				hashCode = (hashCode * 59) + AttachableId.GetHashCode();
+				hashCode = (hashCode * 59) + Md5.GetHashCode();
+				hashCode = (hashCode * 59) + Filename.GetHashCode();
+				hashCode = (hashCode * 59) + DownloadUrl.GetHashCode();
+				hashCode = (hashCode * 59) + UploadUrl.GetHashCode();
+				hashCode = (hashCode * 59) + Title.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
-                {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.AttachableType.GetHashCode();
-                if (this.AttachableId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AttachableId.GetHashCode();
-                }
-                if (this.Md5 != null)
-                {
-                    hashCode = (hashCode * 59) + this.Md5.GetHashCode();
-                }
-                if (this.Filename != null)
-                {
-                    hashCode = (hashCode * 59) + this.Filename.GetHashCode();
-                }
-                if (this.DownloadUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.DownloadUrl.GetHashCode();
-                }
-                if (this.UploadUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.UploadUrl.GetHashCode();
-                }
-                if (this.Title != null)
-                {
-                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
-                }
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
-                }
-                if (this.Mime != null)
-                {
-                    hashCode = (hashCode * 59) + this.Mime.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Size.GetHashCode();
+				hashCode = (hashCode * 59) + Mime.GetHashCode();
+                hashCode = (hashCode * 59) + Size.GetHashCode();
                 return hashCode;
             }
         }
@@ -362,7 +326,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -36,7 +36,7 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name = "type", EmitDefaultValue = true)]
         public TransactionTypeProperty? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionSplitUpdate" /> class.
@@ -86,49 +86,49 @@ namespace FireflyIIINet.Model
         /// <param name="invoiceDate">invoiceDate.</param>
         public TransactionSplitUpdate(string transactionJournalId = default(string), TransactionTypeProperty? type = default(TransactionTypeProperty?), DateTime date = default(DateTime), string amount = default(string), string description = default(string), int? order = default(int?), string currencyId = default(string), string currencyCode = default(string), string foreignAmount = default(string), string foreignCurrencyId = default(string), string foreignCurrencyCode = default(string), string budgetId = default(string), string categoryId = default(string), string categoryName = default(string), string sourceId = default(string), string sourceName = default(string), string sourceIban = default(string), string destinationId = default(string), string destinationName = default(string), string destinationIban = default(string), bool reconciled = default(bool), string billId = default(string), string billName = default(string), List<string> tags = default(List<string>), string notes = default(string), string internalReference = default(string), string externalId = default(string), string externalUrl = default(string), string bunqPaymentId = default(string), string sepaCc = default(string), string sepaCtOp = default(string), string sepaCtId = default(string), string sepaDb = default(string), string sepaCountry = default(string), string sepaEp = default(string), string sepaCi = default(string), string sepaBatchId = default(string), DateTime? interestDate = default(DateTime?), DateTime? bookDate = default(DateTime?), DateTime? processDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paymentDate = default(DateTime?), DateTime? invoiceDate = default(DateTime?))
         {
-            this.TransactionJournalId = transactionJournalId;
-            this.Type = type;
-            this.Date = date;
-            this.Amount = amount;
-            this.Description = description;
-            this.Order = order;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.ForeignAmount = foreignAmount;
-            this.ForeignCurrencyId = foreignCurrencyId;
-            this.ForeignCurrencyCode = foreignCurrencyCode;
-            this.BudgetId = budgetId;
-            this.CategoryId = categoryId;
-            this.CategoryName = categoryName;
-            this.SourceId = sourceId;
-            this.SourceName = sourceName;
-            this.SourceIban = sourceIban;
-            this.DestinationId = destinationId;
-            this.DestinationName = destinationName;
-            this.DestinationIban = destinationIban;
-            this.Reconciled = reconciled;
-            this.BillId = billId;
-            this.BillName = billName;
-            this.Tags = tags;
-            this.Notes = notes;
-            this.InternalReference = internalReference;
-            this.ExternalId = externalId;
-            this.ExternalUrl = externalUrl;
-            this.BunqPaymentId = bunqPaymentId;
-            this.SepaCc = sepaCc;
-            this.SepaCtOp = sepaCtOp;
-            this.SepaCtId = sepaCtId;
-            this.SepaDb = sepaDb;
-            this.SepaCountry = sepaCountry;
-            this.SepaEp = sepaEp;
-            this.SepaCi = sepaCi;
-            this.SepaBatchId = sepaBatchId;
-            this.InterestDate = interestDate;
-            this.BookDate = bookDate;
-            this.ProcessDate = processDate;
-            this.DueDate = dueDate;
-            this.PaymentDate = paymentDate;
-            this.InvoiceDate = invoiceDate;
+            TransactionJournalId = transactionJournalId;
+            Type = type;
+            Date = date;
+            Amount = amount;
+            Description = description;
+            Order = order;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            ForeignAmount = foreignAmount;
+            ForeignCurrencyId = foreignCurrencyId;
+            ForeignCurrencyCode = foreignCurrencyCode;
+            BudgetId = budgetId;
+            CategoryId = categoryId;
+            CategoryName = categoryName;
+            SourceId = sourceId;
+            SourceName = sourceName;
+            SourceIban = sourceIban;
+            DestinationId = destinationId;
+            DestinationName = destinationName;
+            DestinationIban = destinationIban;
+            Reconciled = reconciled;
+            BillId = billId;
+            BillName = billName;
+            Tags = tags;
+            Notes = notes;
+            InternalReference = internalReference;
+            ExternalId = externalId;
+            ExternalUrl = externalUrl;
+            BunqPaymentId = bunqPaymentId;
+            SepaCc = sepaCc;
+            SepaCtOp = sepaCtOp;
+            SepaCtId = sepaCtId;
+            SepaDb = sepaDb;
+            SepaCountry = sepaCountry;
+            SepaEp = sepaEp;
+            SepaCi = sepaCi;
+            SepaBatchId = sepaBatchId;
+            InterestDate = interestDate;
+            BookDate = bookDate;
+            ProcessDate = processDate;
+            DueDate = dueDate;
+            PaymentDate = paymentDate;
+            InvoiceDate = invoiceDate;
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Transaction journal ID of current transaction (split).</value>
         /// <example>123</example>
-        [DataMember(Name = "transaction_journal_id", EmitDefaultValue = false)]
+        [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
         public string TransactionJournalId { get; set; }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Date of the transaction</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "date", EmitDefaultValue = false)]
+        [DataMember(Name = "date", EmitDefaultValue = true)]
         public DateTime Date { get; set; }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Amount of the transaction.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        [DataMember(Name = "amount", EmitDefaultValue = true)]
         public string Amount { get; set; }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Description of the transaction.</value>
         /// <example>Vegetables</example>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of this entry in the list of transactions.</value>
         /// <example>0</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         public int? Order { get; set; }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency ID. Default is the source account&#39;s currency, or the user&#39;s default currency. Can be used instead of currency_code.</value>
         /// <example>12</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -184,14 +184,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency code. Default is the source account&#39;s currency, or the user&#39;s default currency. Can be used instead of currency_id.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencyName
         /// </summary>
         /// <example>Euro</example>
-        [DataMember(Name = "currency_name", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         public string CurrencyName { get; private set; }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimals used in this currency.</value>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The amount in a foreign currency.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "foreign_amount", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_amount", EmitDefaultValue = false)]
         public string ForeignAmount { get; set; }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency ID of the foreign currency. Default is null. Is required when you submit a foreign amount.</value>
         /// <example>17</example>
-        [DataMember(Name = "foreign_currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_currency_id", EmitDefaultValue = false)]
         public string ForeignCurrencyId { get; set; }
 
         /// <summary>
@@ -254,14 +254,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Currency code of the foreign currency. Default is NULL. Can be used instead of the foreign_currency_id, but this or the ID is required when submitting a foreign amount.</value>
         /// <example>USD</example>
-        [DataMember(Name = "foreign_currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_currency_code", EmitDefaultValue = false)]
         public string ForeignCurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets ForeignCurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "foreign_currency_symbol", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_currency_symbol", EmitDefaultValue = false)]
         public string ForeignCurrencySymbol { get; private set; }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimals in the currency</value>
         /// <example>2</example>
-        [DataMember(Name = "foreign_currency_decimal_places", EmitDefaultValue = true)]
+        [DataMember(Name = "foreign_currency_decimal_places", EmitDefaultValue = false)]
         public int? ForeignCurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The budget ID for this transaction.</value>
         /// <example>4</example>
-        [DataMember(Name = "budget_id", EmitDefaultValue = true)]
+        [DataMember(Name = "budget_id", EmitDefaultValue = false)]
         public string BudgetId { get; set; }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The name of the budget to be used. If the budget name is unknown, the ID will be used or the value will be ignored.</value>
         /// <example>Groceries</example>
-        [DataMember(Name = "budget_name", EmitDefaultValue = true)]
+        [DataMember(Name = "budget_name", EmitDefaultValue = false)]
         public string BudgetName { get; private set; }
 
         /// <summary>
@@ -317,7 +317,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The category ID for this transaction.</value>
         /// <example>43</example>
-        [DataMember(Name = "category_id", EmitDefaultValue = true)]
+        [DataMember(Name = "category_id", EmitDefaultValue = false)]
         public string CategoryId { get; set; }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The name of the category to be used. If the category is unknown, it will be created. If the ID and the name point to different categories, the ID overrules the name.</value>
         /// <example>Groceries</example>
-        [DataMember(Name = "category_name", EmitDefaultValue = true)]
+        [DataMember(Name = "category_name", EmitDefaultValue = false)]
         public string CategoryName { get; set; }
 
         /// <summary>
@@ -333,7 +333,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID of the source account. For a withdrawal or a transfer, this must always be an asset account. For deposits, this must be a revenue account.</value>
         /// <example>2</example>
-        [DataMember(Name = "source_id", EmitDefaultValue = true)]
+        [DataMember(Name = "source_id", EmitDefaultValue = false)]
         public string SourceId { get; set; }
 
         /// <summary>
@@ -341,14 +341,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Name of the source account. For a withdrawal or a transfer, this must always be an asset account. For deposits, this must be a revenue account. Can be used instead of the source_id. If the transaction is a deposit, the source_name can be filled in freely: the account will be created based on the name.</value>
         /// <example>Checking account</example>
-        [DataMember(Name = "source_name", EmitDefaultValue = true)]
+        [DataMember(Name = "source_name", EmitDefaultValue = false)]
         public string SourceName { get; set; }
 
         /// <summary>
         /// Gets or Sets SourceIban
         /// </summary>
         /// <example>NL02ABNA0123456789</example>
-        [DataMember(Name = "source_iban", EmitDefaultValue = true)]
+        [DataMember(Name = "source_iban", EmitDefaultValue = false)]
         public string SourceIban { get; set; }
 
         /// <summary>
@@ -356,7 +356,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID of the destination account. For a deposit or a transfer, this must always be an asset account. For withdrawals this must be an expense account.</value>
         /// <example>2</example>
-        [DataMember(Name = "destination_id", EmitDefaultValue = true)]
+        [DataMember(Name = "destination_id", EmitDefaultValue = false)]
         public string DestinationId { get; set; }
 
         /// <summary>
@@ -364,14 +364,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Name of the destination account. You can submit the name instead of the ID. For everything except transfers, the account will be auto-generated if unknown, so submitting a name is enough.</value>
         /// <example>Buy and Large</example>
-        [DataMember(Name = "destination_name", EmitDefaultValue = true)]
+        [DataMember(Name = "destination_name", EmitDefaultValue = false)]
         public string DestinationName { get; set; }
 
         /// <summary>
         /// Gets or Sets DestinationIban
         /// </summary>
         /// <example>NL02ABNA0123456789</example>
-        [DataMember(Name = "destination_iban", EmitDefaultValue = true)]
+        [DataMember(Name = "destination_iban", EmitDefaultValue = false)]
         public string DestinationIban { get; set; }
 
         /// <summary>
@@ -387,7 +387,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Optional. Use either this or the bill_name</value>
         /// <example>111</example>
-        [DataMember(Name = "bill_id", EmitDefaultValue = true)]
+        [DataMember(Name = "bill_id", EmitDefaultValue = false)]
         public string BillId { get; set; }
 
         /// <summary>
@@ -395,141 +395,141 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Optional. Use either this or the bill_id</value>
         /// <example>Monthly rent</example>
-        [DataMember(Name = "bill_name", EmitDefaultValue = true)]
+        [DataMember(Name = "bill_name", EmitDefaultValue = false)]
         public string BillName { get; set; }
 
         /// <summary>
         /// Array of tags.
         /// </summary>
         /// <value>Array of tags.</value>
-        [DataMember(Name = "tags", EmitDefaultValue = true)]
+        [DataMember(Name = "tags", EmitDefaultValue = false)]
         public List<string> Tags { get; set; }
 
         /// <summary>
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some example notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
         /// Reference to internal reference of other systems.
         /// </summary>
         /// <value>Reference to internal reference of other systems.</value>
-        [DataMember(Name = "internal_reference", EmitDefaultValue = true)]
+        [DataMember(Name = "internal_reference", EmitDefaultValue = false)]
         public string InternalReference { get; set; }
 
         /// <summary>
         /// Reference to external ID in other systems.
         /// </summary>
         /// <value>Reference to external ID in other systems.</value>
-        [DataMember(Name = "external_id", EmitDefaultValue = true)]
+        [DataMember(Name = "external_id", EmitDefaultValue = false)]
         public string ExternalId { get; set; }
 
         /// <summary>
         /// External, custom URL for this transaction.
         /// </summary>
         /// <value>External, custom URL for this transaction.</value>
-        [DataMember(Name = "external_url", EmitDefaultValue = true)]
+        [DataMember(Name = "external_url", EmitDefaultValue = false)]
         public string ExternalUrl { get; set; }
 
         /// <summary>
         /// Internal ID of bunq transaction.
         /// </summary>
         /// <value>Internal ID of bunq transaction.</value>
-        [DataMember(Name = "bunq_payment_id", EmitDefaultValue = true)]
+        [DataMember(Name = "bunq_payment_id", EmitDefaultValue = false)]
         public string BunqPaymentId { get; set; }
 
         /// <summary>
         /// SEPA Clearing Code
         /// </summary>
         /// <value>SEPA Clearing Code</value>
-        [DataMember(Name = "sepa_cc", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_cc", EmitDefaultValue = false)]
         public string SepaCc { get; set; }
 
         /// <summary>
         /// SEPA Opposing Account Identifier
         /// </summary>
         /// <value>SEPA Opposing Account Identifier</value>
-        [DataMember(Name = "sepa_ct_op", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_ct_op", EmitDefaultValue = false)]
         public string SepaCtOp { get; set; }
 
         /// <summary>
         /// SEPA end-to-end Identifier
         /// </summary>
         /// <value>SEPA end-to-end Identifier</value>
-        [DataMember(Name = "sepa_ct_id", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_ct_id", EmitDefaultValue = false)]
         public string SepaCtId { get; set; }
 
         /// <summary>
         /// SEPA mandate identifier
         /// </summary>
         /// <value>SEPA mandate identifier</value>
-        [DataMember(Name = "sepa_db", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_db", EmitDefaultValue = false)]
         public string SepaDb { get; set; }
 
         /// <summary>
         /// SEPA Country
         /// </summary>
         /// <value>SEPA Country</value>
-        [DataMember(Name = "sepa_country", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_country", EmitDefaultValue = false)]
         public string SepaCountry { get; set; }
 
         /// <summary>
         /// SEPA External Purpose indicator
         /// </summary>
         /// <value>SEPA External Purpose indicator</value>
-        [DataMember(Name = "sepa_ep", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_ep", EmitDefaultValue = false)]
         public string SepaEp { get; set; }
 
         /// <summary>
         /// SEPA Creditor Identifier
         /// </summary>
         /// <value>SEPA Creditor Identifier</value>
-        [DataMember(Name = "sepa_ci", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_ci", EmitDefaultValue = false)]
         public string SepaCi { get; set; }
 
         /// <summary>
         /// SEPA Batch ID
         /// </summary>
         /// <value>SEPA Batch ID</value>
-        [DataMember(Name = "sepa_batch_id", EmitDefaultValue = true)]
+        [DataMember(Name = "sepa_batch_id", EmitDefaultValue = false)]
         public string SepaBatchId { get; set; }
 
         /// <summary>
         /// Gets or Sets InterestDate
         /// </summary>
-        [DataMember(Name = "interest_date", EmitDefaultValue = true)]
+        [DataMember(Name = "interest_date", EmitDefaultValue = false)]
         public DateTime? InterestDate { get; set; }
 
         /// <summary>
         /// Gets or Sets BookDate
         /// </summary>
-        [DataMember(Name = "book_date", EmitDefaultValue = true)]
+        [DataMember(Name = "book_date", EmitDefaultValue = false)]
         public DateTime? BookDate { get; set; }
 
         /// <summary>
         /// Gets or Sets ProcessDate
         /// </summary>
-        [DataMember(Name = "process_date", EmitDefaultValue = true)]
+        [DataMember(Name = "process_date", EmitDefaultValue = false)]
         public DateTime? ProcessDate { get; set; }
 
         /// <summary>
         /// Gets or Sets DueDate
         /// </summary>
-        [DataMember(Name = "due_date", EmitDefaultValue = true)]
+        [DataMember(Name = "due_date", EmitDefaultValue = false)]
         public DateTime? DueDate { get; set; }
 
         /// <summary>
         /// Gets or Sets PaymentDate
         /// </summary>
-        [DataMember(Name = "payment_date", EmitDefaultValue = true)]
+        [DataMember(Name = "payment_date", EmitDefaultValue = false)]
         public DateTime? PaymentDate { get; set; }
 
         /// <summary>
         /// Gets or Sets InvoiceDate
         /// </summary>
-        [DataMember(Name = "invoice_date", EmitDefaultValue = true)]
+        [DataMember(Name = "invoice_date", EmitDefaultValue = false)]
         public DateTime? InvoiceDate { get; set; }
 
         /// <summary>
@@ -599,7 +599,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -609,7 +609,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransactionSplitUpdate);
+            return Equals(input as TransactionSplitUpdate);
         }
 
         /// <summary>
@@ -625,247 +625,241 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.TransactionJournalId == input.TransactionJournalId ||
-                    (this.TransactionJournalId != null &&
-                    this.TransactionJournalId.Equals(input.TransactionJournalId))
+                    TransactionJournalId == input.TransactionJournalId ||
+					TransactionJournalId.Equals(input.TransactionJournalId)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    Type == input.Type ||
+                    Type.Equals(input.Type)
                 ) && 
                 (
-                    this.Date == input.Date ||
-                    (this.Date != null &&
-                    this.Date.Equals(input.Date))
+                    Date == input.Date ||
+					Date.Equals(input.Date)
                 ) && 
                 (
-                    this.Amount == input.Amount ||
-                    (this.Amount != null &&
-                    this.Amount.Equals(input.Amount))
+                    Amount == input.Amount ||
+					Amount.Equals(input.Amount)
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+					Description.Equals(input.Description)
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    (this.Order != null &&
-                    this.Order.Equals(input.Order))
+                    Order == input.Order ||
+                    (Order != null &&
+                    Order.Equals(input.Order))
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+                    (CurrencyId != null &&
+                    CurrencyId.Equals(input.CurrencyId))
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+                    (CurrencyCode != null &&
+                    CurrencyCode.Equals(input.CurrencyCode))
                 ) && 
                 (
-                    this.CurrencySymbol == input.CurrencySymbol ||
-                    (this.CurrencySymbol != null &&
-                    this.CurrencySymbol.Equals(input.CurrencySymbol))
+                    CurrencySymbol == input.CurrencySymbol ||
+					CurrencySymbol.Equals(input.CurrencySymbol)
                 ) && 
                 (
-                    this.CurrencyName == input.CurrencyName ||
-                    (this.CurrencyName != null &&
-                    this.CurrencyName.Equals(input.CurrencyName))
+                    CurrencyName == input.CurrencyName ||
+					CurrencyName.Equals(input.CurrencyName)
                 ) && 
                 (
-                    this.CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
-                    this.CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
+                    CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
+                    CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
                 ) && 
                 (
-                    this.ForeignAmount == input.ForeignAmount ||
-                    (this.ForeignAmount != null &&
-                    this.ForeignAmount.Equals(input.ForeignAmount))
+                    ForeignAmount == input.ForeignAmount ||
+                    (ForeignAmount != null &&
+                    ForeignAmount.Equals(input.ForeignAmount))
                 ) && 
                 (
-                    this.ForeignCurrencyId == input.ForeignCurrencyId ||
-                    (this.ForeignCurrencyId != null &&
-                    this.ForeignCurrencyId.Equals(input.ForeignCurrencyId))
+                    ForeignCurrencyId == input.ForeignCurrencyId ||
+                    (ForeignCurrencyId != null &&
+                    ForeignCurrencyId.Equals(input.ForeignCurrencyId))
                 ) && 
                 (
-                    this.ForeignCurrencyCode == input.ForeignCurrencyCode ||
-                    (this.ForeignCurrencyCode != null &&
-                    this.ForeignCurrencyCode.Equals(input.ForeignCurrencyCode))
+                    ForeignCurrencyCode == input.ForeignCurrencyCode ||
+                    (ForeignCurrencyCode != null &&
+                    ForeignCurrencyCode.Equals(input.ForeignCurrencyCode))
                 ) && 
                 (
-                    this.ForeignCurrencySymbol == input.ForeignCurrencySymbol ||
-                    (this.ForeignCurrencySymbol != null &&
-                    this.ForeignCurrencySymbol.Equals(input.ForeignCurrencySymbol))
+                    ForeignCurrencySymbol == input.ForeignCurrencySymbol ||
+                    (ForeignCurrencySymbol != null &&
+                    ForeignCurrencySymbol.Equals(input.ForeignCurrencySymbol))
                 ) && 
                 (
-                    this.ForeignCurrencyDecimalPlaces == input.ForeignCurrencyDecimalPlaces ||
-                    (this.ForeignCurrencyDecimalPlaces != null &&
-                    this.ForeignCurrencyDecimalPlaces.Equals(input.ForeignCurrencyDecimalPlaces))
+                    ForeignCurrencyDecimalPlaces == input.ForeignCurrencyDecimalPlaces ||
+                    (ForeignCurrencyDecimalPlaces != null &&
+                    ForeignCurrencyDecimalPlaces.Equals(input.ForeignCurrencyDecimalPlaces))
                 ) && 
                 (
-                    this.BudgetId == input.BudgetId ||
-                    (this.BudgetId != null &&
-                    this.BudgetId.Equals(input.BudgetId))
+                    BudgetId == input.BudgetId ||
+                    (BudgetId != null &&
+                    BudgetId.Equals(input.BudgetId))
                 ) && 
                 (
-                    this.BudgetName == input.BudgetName ||
-                    (this.BudgetName != null &&
-                    this.BudgetName.Equals(input.BudgetName))
+                    BudgetName == input.BudgetName ||
+                    (BudgetName != null &&
+                    BudgetName.Equals(input.BudgetName))
                 ) && 
                 (
-                    this.CategoryId == input.CategoryId ||
-                    (this.CategoryId != null &&
-                    this.CategoryId.Equals(input.CategoryId))
+                    CategoryId == input.CategoryId ||
+                    (CategoryId != null &&
+                    CategoryId.Equals(input.CategoryId))
                 ) && 
                 (
-                    this.CategoryName == input.CategoryName ||
-                    (this.CategoryName != null &&
-                    this.CategoryName.Equals(input.CategoryName))
+                    CategoryName == input.CategoryName ||
+                    (CategoryName != null &&
+                    CategoryName.Equals(input.CategoryName))
                 ) && 
                 (
-                    this.SourceId == input.SourceId ||
-                    (this.SourceId != null &&
-                    this.SourceId.Equals(input.SourceId))
+                    SourceId == input.SourceId ||
+                    (SourceId != null &&
+                    SourceId.Equals(input.SourceId))
                 ) && 
                 (
-                    this.SourceName == input.SourceName ||
-                    (this.SourceName != null &&
-                    this.SourceName.Equals(input.SourceName))
+                    SourceName == input.SourceName ||
+                    (SourceName != null &&
+                    SourceName.Equals(input.SourceName))
                 ) && 
                 (
-                    this.SourceIban == input.SourceIban ||
-                    (this.SourceIban != null &&
-                    this.SourceIban.Equals(input.SourceIban))
+                    SourceIban == input.SourceIban ||
+                    (SourceIban != null &&
+                    SourceIban.Equals(input.SourceIban))
                 ) && 
                 (
-                    this.DestinationId == input.DestinationId ||
-                    (this.DestinationId != null &&
-                    this.DestinationId.Equals(input.DestinationId))
+                    DestinationId == input.DestinationId ||
+                    (DestinationId != null &&
+                    DestinationId.Equals(input.DestinationId))
                 ) && 
                 (
-                    this.DestinationName == input.DestinationName ||
-                    (this.DestinationName != null &&
-                    this.DestinationName.Equals(input.DestinationName))
+                    DestinationName == input.DestinationName ||
+                    (DestinationName != null &&
+                    DestinationName.Equals(input.DestinationName))
                 ) && 
                 (
-                    this.DestinationIban == input.DestinationIban ||
-                    (this.DestinationIban != null &&
-                    this.DestinationIban.Equals(input.DestinationIban))
+                    DestinationIban == input.DestinationIban ||
+                    (DestinationIban != null &&
+                    DestinationIban.Equals(input.DestinationIban))
                 ) && 
                 (
-                    this.Reconciled == input.Reconciled ||
-                    this.Reconciled.Equals(input.Reconciled)
+                    Reconciled == input.Reconciled ||
+                    Reconciled.Equals(input.Reconciled)
                 ) && 
                 (
-                    this.BillId == input.BillId ||
-                    (this.BillId != null &&
-                    this.BillId.Equals(input.BillId))
+                    BillId == input.BillId ||
+                    (BillId != null &&
+                    BillId.Equals(input.BillId))
                 ) && 
                 (
-                    this.BillName == input.BillName ||
-                    (this.BillName != null &&
-                    this.BillName.Equals(input.BillName))
+                    BillName == input.BillName ||
+                    (BillName != null &&
+                    BillName.Equals(input.BillName))
                 ) && 
                 (
-                    this.Tags == input.Tags ||
-                    this.Tags != null &&
+                    Tags == input.Tags ||
+                    Tags != null &&
                     input.Tags != null &&
-                    this.Tags.SequenceEqual(input.Tags)
+                    Tags.SequenceEqual(input.Tags)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.InternalReference == input.InternalReference ||
-                    (this.InternalReference != null &&
-                    this.InternalReference.Equals(input.InternalReference))
+                    InternalReference == input.InternalReference ||
+                    (InternalReference != null &&
+                    InternalReference.Equals(input.InternalReference))
                 ) && 
                 (
-                    this.ExternalId == input.ExternalId ||
-                    (this.ExternalId != null &&
-                    this.ExternalId.Equals(input.ExternalId))
+                    ExternalId == input.ExternalId ||
+                    (ExternalId != null &&
+                    ExternalId.Equals(input.ExternalId))
                 ) && 
                 (
-                    this.ExternalUrl == input.ExternalUrl ||
-                    (this.ExternalUrl != null &&
-                    this.ExternalUrl.Equals(input.ExternalUrl))
+                    ExternalUrl == input.ExternalUrl ||
+                    (ExternalUrl != null &&
+                    ExternalUrl.Equals(input.ExternalUrl))
                 ) && 
                 (
-                    this.BunqPaymentId == input.BunqPaymentId ||
-                    (this.BunqPaymentId != null &&
-                    this.BunqPaymentId.Equals(input.BunqPaymentId))
+                    BunqPaymentId == input.BunqPaymentId ||
+                    (BunqPaymentId != null &&
+                    BunqPaymentId.Equals(input.BunqPaymentId))
                 ) && 
                 (
-                    this.SepaCc == input.SepaCc ||
-                    (this.SepaCc != null &&
-                    this.SepaCc.Equals(input.SepaCc))
+                    SepaCc == input.SepaCc ||
+                    (SepaCc != null &&
+                    SepaCc.Equals(input.SepaCc))
                 ) && 
                 (
-                    this.SepaCtOp == input.SepaCtOp ||
-                    (this.SepaCtOp != null &&
-                    this.SepaCtOp.Equals(input.SepaCtOp))
+                    SepaCtOp == input.SepaCtOp ||
+                    (SepaCtOp != null &&
+                    SepaCtOp.Equals(input.SepaCtOp))
                 ) && 
                 (
-                    this.SepaCtId == input.SepaCtId ||
-                    (this.SepaCtId != null &&
-                    this.SepaCtId.Equals(input.SepaCtId))
+                    SepaCtId == input.SepaCtId ||
+                    (SepaCtId != null &&
+                    SepaCtId.Equals(input.SepaCtId))
                 ) && 
                 (
-                    this.SepaDb == input.SepaDb ||
-                    (this.SepaDb != null &&
-                    this.SepaDb.Equals(input.SepaDb))
+                    SepaDb == input.SepaDb ||
+                    (SepaDb != null &&
+                    SepaDb.Equals(input.SepaDb))
                 ) && 
                 (
-                    this.SepaCountry == input.SepaCountry ||
-                    (this.SepaCountry != null &&
-                    this.SepaCountry.Equals(input.SepaCountry))
+                    SepaCountry == input.SepaCountry ||
+                    (SepaCountry != null &&
+                    SepaCountry.Equals(input.SepaCountry))
                 ) && 
                 (
-                    this.SepaEp == input.SepaEp ||
-                    (this.SepaEp != null &&
-                    this.SepaEp.Equals(input.SepaEp))
+                    SepaEp == input.SepaEp ||
+                    (SepaEp != null &&
+                    SepaEp.Equals(input.SepaEp))
                 ) && 
                 (
-                    this.SepaCi == input.SepaCi ||
-                    (this.SepaCi != null &&
-                    this.SepaCi.Equals(input.SepaCi))
+                    SepaCi == input.SepaCi ||
+                    (SepaCi != null &&
+                    SepaCi.Equals(input.SepaCi))
                 ) && 
                 (
-                    this.SepaBatchId == input.SepaBatchId ||
-                    (this.SepaBatchId != null &&
-                    this.SepaBatchId.Equals(input.SepaBatchId))
+                    SepaBatchId == input.SepaBatchId ||
+                    (SepaBatchId != null &&
+                    SepaBatchId.Equals(input.SepaBatchId))
                 ) && 
                 (
-                    this.InterestDate == input.InterestDate ||
-                    (this.InterestDate != null &&
-                    this.InterestDate.Equals(input.InterestDate))
+                    InterestDate == input.InterestDate ||
+                    (InterestDate != null &&
+                    InterestDate.Equals(input.InterestDate))
                 ) && 
                 (
-                    this.BookDate == input.BookDate ||
-                    (this.BookDate != null &&
-                    this.BookDate.Equals(input.BookDate))
+                    BookDate == input.BookDate ||
+                    (BookDate != null &&
+                    BookDate.Equals(input.BookDate))
                 ) && 
                 (
-                    this.ProcessDate == input.ProcessDate ||
-                    (this.ProcessDate != null &&
-                    this.ProcessDate.Equals(input.ProcessDate))
+                    ProcessDate == input.ProcessDate ||
+                    (ProcessDate != null &&
+                    ProcessDate.Equals(input.ProcessDate))
                 ) && 
                 (
-                    this.DueDate == input.DueDate ||
-                    (this.DueDate != null &&
-                    this.DueDate.Equals(input.DueDate))
+                    DueDate == input.DueDate ||
+                    (DueDate != null &&
+                    DueDate.Equals(input.DueDate))
                 ) && 
                 (
-                    this.PaymentDate == input.PaymentDate ||
-                    (this.PaymentDate != null &&
-                    this.PaymentDate.Equals(input.PaymentDate))
+                    PaymentDate == input.PaymentDate ||
+                    (PaymentDate != null &&
+                    PaymentDate.Equals(input.PaymentDate))
                 ) && 
                 (
-                    this.InvoiceDate == input.InvoiceDate ||
-                    (this.InvoiceDate != null &&
-                    this.InvoiceDate.Equals(input.InvoiceDate))
+                    InvoiceDate == input.InvoiceDate ||
+                    (InvoiceDate != null &&
+                    InvoiceDate.Equals(input.InvoiceDate))
                 );
         }
 
@@ -878,192 +872,174 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TransactionJournalId != null)
+				hashCode = (hashCode * 59) + TransactionJournalId.GetHashCode();
+                hashCode = (hashCode * 59) + Type.GetHashCode();
+				hashCode = (hashCode * 59) + Date.GetHashCode();
+				hashCode = (hashCode * 59) + Amount.GetHashCode();
+				hashCode = (hashCode * 59) + Description.GetHashCode();
+                if (Order != null)
                 {
-                    hashCode = (hashCode * 59) + this.TransactionJournalId.GetHashCode();
+                    hashCode = (hashCode * 59) + Order.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.Date != null)
+                if (CurrencyId != null)
                 {
-                    hashCode = (hashCode * 59) + this.Date.GetHashCode();
+                    hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
                 }
-                if (this.Amount != null)
+                if (CurrencyCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                    hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
                 }
-                if (this.Description != null)
+				hashCode = (hashCode * 59) + CurrencySymbol.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyName.GetHashCode();
+                hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
+                if (ForeignAmount != null)
                 {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignAmount.GetHashCode();
                 }
-                if (this.Order != null)
+                if (ForeignCurrencyId != null)
                 {
-                    hashCode = (hashCode * 59) + this.Order.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignCurrencyId.GetHashCode();
                 }
-                if (this.CurrencyId != null)
+                if (ForeignCurrencyCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignCurrencyCode.GetHashCode();
                 }
-                if (this.CurrencyCode != null)
+                if (ForeignCurrencySymbol != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignCurrencySymbol.GetHashCode();
                 }
-                if (this.CurrencySymbol != null)
+                if (ForeignCurrencyDecimalPlaces != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencySymbol.GetHashCode();
+                    hashCode = (hashCode * 59) + ForeignCurrencyDecimalPlaces.GetHashCode();
                 }
-                if (this.CurrencyName != null)
+                if (BudgetId != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyName.GetHashCode();
+                    hashCode = (hashCode * 59) + BudgetId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CurrencyDecimalPlaces.GetHashCode();
-                if (this.ForeignAmount != null)
+                if (BudgetName != null)
                 {
-                    hashCode = (hashCode * 59) + this.ForeignAmount.GetHashCode();
+                    hashCode = (hashCode * 59) + BudgetName.GetHashCode();
                 }
-                if (this.ForeignCurrencyId != null)
+                if (CategoryId != null)
                 {
-                    hashCode = (hashCode * 59) + this.ForeignCurrencyId.GetHashCode();
+                    hashCode = (hashCode * 59) + CategoryId.GetHashCode();
                 }
-                if (this.ForeignCurrencyCode != null)
+                if (CategoryName != null)
                 {
-                    hashCode = (hashCode * 59) + this.ForeignCurrencyCode.GetHashCode();
+                    hashCode = (hashCode * 59) + CategoryName.GetHashCode();
                 }
-                if (this.ForeignCurrencySymbol != null)
+                if (SourceId != null)
                 {
-                    hashCode = (hashCode * 59) + this.ForeignCurrencySymbol.GetHashCode();
+                    hashCode = (hashCode * 59) + SourceId.GetHashCode();
                 }
-                if (this.ForeignCurrencyDecimalPlaces != null)
+                if (SourceName != null)
                 {
-                    hashCode = (hashCode * 59) + this.ForeignCurrencyDecimalPlaces.GetHashCode();
+                    hashCode = (hashCode * 59) + SourceName.GetHashCode();
                 }
-                if (this.BudgetId != null)
+                if (SourceIban != null)
                 {
-                    hashCode = (hashCode * 59) + this.BudgetId.GetHashCode();
+                    hashCode = (hashCode * 59) + SourceIban.GetHashCode();
                 }
-                if (this.BudgetName != null)
+                if (DestinationId != null)
                 {
-                    hashCode = (hashCode * 59) + this.BudgetName.GetHashCode();
+                    hashCode = (hashCode * 59) + DestinationId.GetHashCode();
                 }
-                if (this.CategoryId != null)
+                if (DestinationName != null)
                 {
-                    hashCode = (hashCode * 59) + this.CategoryId.GetHashCode();
+                    hashCode = (hashCode * 59) + DestinationName.GetHashCode();
                 }
-                if (this.CategoryName != null)
+                if (DestinationIban != null)
                 {
-                    hashCode = (hashCode * 59) + this.CategoryName.GetHashCode();
+                    hashCode = (hashCode * 59) + DestinationIban.GetHashCode();
                 }
-                if (this.SourceId != null)
+                hashCode = (hashCode * 59) + Reconciled.GetHashCode();
+                if (BillId != null)
                 {
-                    hashCode = (hashCode * 59) + this.SourceId.GetHashCode();
+                    hashCode = (hashCode * 59) + BillId.GetHashCode();
                 }
-                if (this.SourceName != null)
+                if (BillName != null)
                 {
-                    hashCode = (hashCode * 59) + this.SourceName.GetHashCode();
+                    hashCode = (hashCode * 59) + BillName.GetHashCode();
                 }
-                if (this.SourceIban != null)
+                if (Tags != null)
                 {
-                    hashCode = (hashCode * 59) + this.SourceIban.GetHashCode();
+                    hashCode = (hashCode * 59) + Tags.GetHashCode();
                 }
-                if (this.DestinationId != null)
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.DestinationId.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.DestinationName != null)
+                if (InternalReference != null)
                 {
-                    hashCode = (hashCode * 59) + this.DestinationName.GetHashCode();
+                    hashCode = (hashCode * 59) + InternalReference.GetHashCode();
                 }
-                if (this.DestinationIban != null)
+                if (ExternalId != null)
                 {
-                    hashCode = (hashCode * 59) + this.DestinationIban.GetHashCode();
+                    hashCode = (hashCode * 59) + ExternalId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Reconciled.GetHashCode();
-                if (this.BillId != null)
+                if (ExternalUrl != null)
                 {
-                    hashCode = (hashCode * 59) + this.BillId.GetHashCode();
+                    hashCode = (hashCode * 59) + ExternalUrl.GetHashCode();
                 }
-                if (this.BillName != null)
+                if (BunqPaymentId != null)
                 {
-                    hashCode = (hashCode * 59) + this.BillName.GetHashCode();
+                    hashCode = (hashCode * 59) + BunqPaymentId.GetHashCode();
                 }
-                if (this.Tags != null)
+                if (SepaCc != null)
                 {
-                    hashCode = (hashCode * 59) + this.Tags.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaCc.GetHashCode();
                 }
-                if (this.Notes != null)
+                if (SepaCtOp != null)
                 {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaCtOp.GetHashCode();
                 }
-                if (this.InternalReference != null)
+                if (SepaCtId != null)
                 {
-                    hashCode = (hashCode * 59) + this.InternalReference.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaCtId.GetHashCode();
                 }
-                if (this.ExternalId != null)
+                if (SepaDb != null)
                 {
-                    hashCode = (hashCode * 59) + this.ExternalId.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaDb.GetHashCode();
                 }
-                if (this.ExternalUrl != null)
+                if (SepaCountry != null)
                 {
-                    hashCode = (hashCode * 59) + this.ExternalUrl.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaCountry.GetHashCode();
                 }
-                if (this.BunqPaymentId != null)
+                if (SepaEp != null)
                 {
-                    hashCode = (hashCode * 59) + this.BunqPaymentId.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaEp.GetHashCode();
                 }
-                if (this.SepaCc != null)
+                if (SepaCi != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaCc.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaCi.GetHashCode();
                 }
-                if (this.SepaCtOp != null)
+                if (SepaBatchId != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaCtOp.GetHashCode();
+                    hashCode = (hashCode * 59) + SepaBatchId.GetHashCode();
                 }
-                if (this.SepaCtId != null)
+                if (InterestDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaCtId.GetHashCode();
+                    hashCode = (hashCode * 59) + InterestDate.GetHashCode();
                 }
-                if (this.SepaDb != null)
+                if (BookDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaDb.GetHashCode();
+                    hashCode = (hashCode * 59) + BookDate.GetHashCode();
                 }
-                if (this.SepaCountry != null)
+                if (ProcessDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaCountry.GetHashCode();
+                    hashCode = (hashCode * 59) + ProcessDate.GetHashCode();
                 }
-                if (this.SepaEp != null)
+                if (DueDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaEp.GetHashCode();
+                    hashCode = (hashCode * 59) + DueDate.GetHashCode();
                 }
-                if (this.SepaCi != null)
+                if (PaymentDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaCi.GetHashCode();
+                    hashCode = (hashCode * 59) + PaymentDate.GetHashCode();
                 }
-                if (this.SepaBatchId != null)
+                if (InvoiceDate != null)
                 {
-                    hashCode = (hashCode * 59) + this.SepaBatchId.GetHashCode();
-                }
-                if (this.InterestDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.InterestDate.GetHashCode();
-                }
-                if (this.BookDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.BookDate.GetHashCode();
-                }
-                if (this.ProcessDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.ProcessDate.GetHashCode();
-                }
-                if (this.DueDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.DueDate.GetHashCode();
-                }
-                if (this.PaymentDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.PaymentDate.GetHashCode();
-                }
-                if (this.InvoiceDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.InvoiceDate.GetHashCode();
+                    hashCode = (hashCode * 59) + InvoiceDate.GetHashCode();
                 }
                 return hashCode;
             }
@@ -1074,7 +1050,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

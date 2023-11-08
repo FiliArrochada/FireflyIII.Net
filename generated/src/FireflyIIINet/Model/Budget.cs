@@ -36,13 +36,13 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets AutoBudgetType
         /// </summary>
-        [DataMember(Name = "auto_budget_type", EmitDefaultValue = true)]
+        [DataMember(Name = "auto_budget_type", EmitDefaultValue = false)]
         public AutoBudgetType? AutoBudgetType { get; set; }
 
         /// <summary>
         /// Gets or Sets AutoBudgetPeriod
         /// </summary>
-        [DataMember(Name = "auto_budget_period", EmitDefaultValue = true)]
+        [DataMember(Name = "auto_budget_period", EmitDefaultValue = false)]
         public AutoBudgetPeriod? AutoBudgetPeriod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Budget" /> class.
@@ -67,21 +67,21 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("name is a required property for Budget and cannot be null");
             }
-            this.Name = name;
-            this.Active = active;
-            this.Notes = notes;
-            this.AutoBudgetType = autoBudgetType;
-            this.AutoBudgetCurrencyId = autoBudgetCurrencyId;
-            this.AutoBudgetCurrencyCode = autoBudgetCurrencyCode;
-            this.AutoBudgetAmount = autoBudgetAmount;
-            this.AutoBudgetPeriod = autoBudgetPeriod;
+            Name = name;
+            Active = active;
+            Notes = notes;
+            AutoBudgetType = autoBudgetType;
+            AutoBudgetCurrencyId = autoBudgetCurrencyId;
+            AutoBudgetCurrencyCode = autoBudgetCurrencyCode;
+            AutoBudgetAmount = autoBudgetAmount;
+            AutoBudgetPeriod = autoBudgetPeriod;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -125,14 +125,14 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = false)]
+        [DataMember(Name = "order", EmitDefaultValue = true)]
         public int Order { get; private set; }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>12</example>
-        [DataMember(Name = "auto_budget_currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "auto_budget_currency_id", EmitDefaultValue = false)]
         public string AutoBudgetCurrencyId { get; set; }
 
         /// <summary>
@@ -156,21 +156,21 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "auto_budget_currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "auto_budget_currency_code", EmitDefaultValue = false)]
         public string AutoBudgetCurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets AutoBudgetAmount
         /// </summary>
         /// <example>-1012.12</example>
-        [DataMember(Name = "auto_budget_amount", EmitDefaultValue = true)]
+        [DataMember(Name = "auto_budget_amount", EmitDefaultValue = false)]
         public string AutoBudgetAmount { get; set; }
 
         /// <summary>
         /// Information on how much was spent in this budget. Is only filled in when the start and end date are submitted.
         /// </summary>
         /// <value>Information on how much was spent in this budget. Is only filled in when the start and end date are submitted.</value>
-        [DataMember(Name = "spent", EmitDefaultValue = false)]
+        [DataMember(Name = "spent", EmitDefaultValue = true)]
         public List<BudgetSpent> Spent { get; private set; }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Budget);
+            return Equals(input as Budget);
         }
 
         /// <summary>
@@ -237,61 +237,58 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    this.Order.Equals(input.Order)
+                    Order == input.Order ||
+                    Order.Equals(input.Order)
                 ) && 
                 (
-                    this.AutoBudgetType == input.AutoBudgetType ||
-                    this.AutoBudgetType.Equals(input.AutoBudgetType)
+                    AutoBudgetType == input.AutoBudgetType ||
+                    AutoBudgetType.Equals(input.AutoBudgetType)
                 ) && 
                 (
-                    this.AutoBudgetCurrencyId == input.AutoBudgetCurrencyId ||
-                    (this.AutoBudgetCurrencyId != null &&
-                    this.AutoBudgetCurrencyId.Equals(input.AutoBudgetCurrencyId))
+                    AutoBudgetCurrencyId == input.AutoBudgetCurrencyId ||
+                    (AutoBudgetCurrencyId != null &&
+                    AutoBudgetCurrencyId.Equals(input.AutoBudgetCurrencyId))
                 ) && 
                 (
-                    this.AutoBudgetCurrencyCode == input.AutoBudgetCurrencyCode ||
-                    (this.AutoBudgetCurrencyCode != null &&
-                    this.AutoBudgetCurrencyCode.Equals(input.AutoBudgetCurrencyCode))
+                    AutoBudgetCurrencyCode == input.AutoBudgetCurrencyCode ||
+                    (AutoBudgetCurrencyCode != null &&
+                    AutoBudgetCurrencyCode.Equals(input.AutoBudgetCurrencyCode))
                 ) && 
                 (
-                    this.AutoBudgetAmount == input.AutoBudgetAmount ||
-                    (this.AutoBudgetAmount != null &&
-                    this.AutoBudgetAmount.Equals(input.AutoBudgetAmount))
+                    AutoBudgetAmount == input.AutoBudgetAmount ||
+                    (AutoBudgetAmount != null &&
+                    AutoBudgetAmount.Equals(input.AutoBudgetAmount))
                 ) && 
                 (
-                    this.AutoBudgetPeriod == input.AutoBudgetPeriod ||
-                    this.AutoBudgetPeriod.Equals(input.AutoBudgetPeriod)
+                    AutoBudgetPeriod == input.AutoBudgetPeriod ||
+                    AutoBudgetPeriod.Equals(input.AutoBudgetPeriod)
                 ) && 
                 (
-                    this.Spent == input.Spent ||
-                    this.Spent != null &&
+                    Spent == input.Spent ||
+                    Spent != null &&
                     input.Spent != null &&
-                    this.Spent.SequenceEqual(input.Spent)
+                    Spent.SequenceEqual(input.Spent)
                 );
         }
 
@@ -304,42 +301,30 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
+                hashCode = (hashCode * 59) + Order.GetHashCode();
+                hashCode = (hashCode * 59) + AutoBudgetType.GetHashCode();
+                if (AutoBudgetCurrencyId != null)
                 {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + AutoBudgetCurrencyId.GetHashCode();
                 }
-                if (this.Name != null)
+                if (AutoBudgetCurrencyCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                    hashCode = (hashCode * 59) + AutoBudgetCurrencyCode.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                if (this.Notes != null)
+                if (AutoBudgetAmount != null)
                 {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
+                    hashCode = (hashCode * 59) + AutoBudgetAmount.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Order.GetHashCode();
-                hashCode = (hashCode * 59) + this.AutoBudgetType.GetHashCode();
-                if (this.AutoBudgetCurrencyId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AutoBudgetCurrencyId.GetHashCode();
-                }
-                if (this.AutoBudgetCurrencyCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.AutoBudgetCurrencyCode.GetHashCode();
-                }
-                if (this.AutoBudgetAmount != null)
-                {
-                    hashCode = (hashCode * 59) + this.AutoBudgetAmount.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.AutoBudgetPeriod.GetHashCode();
-                if (this.Spent != null)
-                {
-                    hashCode = (hashCode * 59) + this.Spent.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + AutoBudgetPeriod.GetHashCode();
+				hashCode = (hashCode * 59) + Spent.GetHashCode();
                 return hashCode;
             }
         }
@@ -349,7 +334,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

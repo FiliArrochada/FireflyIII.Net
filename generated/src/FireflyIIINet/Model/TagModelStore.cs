@@ -53,12 +53,12 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("tag is a required property for TagModelStore and cannot be null");
             }
-            this.Tag = tag;
-            this.Date = date;
-            this.Description = description;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.ZoomLevel = zoomLevel;
+            Tag = tag;
+            Date = date;
+            Description = description;
+            Latitude = latitude;
+            Longitude = longitude;
+            ZoomLevel = zoomLevel;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date to which the tag is applicable.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
-        [DataMember(Name = "date", EmitDefaultValue = true)]
+        [DataMember(Name = "date", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime? Date { get; set; }
 
@@ -82,7 +82,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Description
         /// </summary>
         /// <example>Tag for expensive stuff</example>
-        [DataMember(Name = "description", EmitDefaultValue = true)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Latitude of the tag&#39;s location, if applicable. Can be used to draw a map.</value>
         /// <example>51.983333</example>
-        [DataMember(Name = "latitude", EmitDefaultValue = true)]
+        [DataMember(Name = "latitude", EmitDefaultValue = false)]
         public double? Latitude { get; set; }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Latitude of the tag&#39;s location, if applicable. Can be used to draw a map.</value>
         /// <example>5.916667</example>
-        [DataMember(Name = "longitude", EmitDefaultValue = true)]
+        [DataMember(Name = "longitude", EmitDefaultValue = false)]
         public double? Longitude { get; set; }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Zoom level for the map, if drawn. This to set the box right. Unfortunately this is a proprietary value because each map provider has different zoom levels.</value>
         /// <example>6</example>
-        [DataMember(Name = "zoom_level", EmitDefaultValue = true)]
+        [DataMember(Name = "zoom_level", EmitDefaultValue = false)]
         public int? ZoomLevel { get; set; }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TagModelStore);
+            return Equals(input as TagModelStore);
         }
 
         /// <summary>
@@ -159,34 +159,33 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
+                    Tag == input.Tag ||
+					Tag.Equals(input.Tag)
                 ) && 
                 (
-                    this.Date == input.Date ||
-                    (this.Date != null &&
-                    this.Date.Equals(input.Date))
+                    Date == input.Date ||
+                    (Date != null &&
+                    Date.Equals(input.Date))
                 ) && 
                 (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
+                    Description == input.Description ||
+                    (Description != null &&
+                    Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Latitude == input.Latitude ||
-                    (this.Latitude != null &&
-                    this.Latitude.Equals(input.Latitude))
+                    Latitude == input.Latitude ||
+                    (Latitude != null &&
+                    Latitude.Equals(input.Latitude))
                 ) && 
                 (
-                    this.Longitude == input.Longitude ||
-                    (this.Longitude != null &&
-                    this.Longitude.Equals(input.Longitude))
+                    Longitude == input.Longitude ||
+                    (Longitude != null &&
+                    Longitude.Equals(input.Longitude))
                 ) && 
                 (
-                    this.ZoomLevel == input.ZoomLevel ||
-                    (this.ZoomLevel != null &&
-                    this.ZoomLevel.Equals(input.ZoomLevel))
+                    ZoomLevel == input.ZoomLevel ||
+                    (ZoomLevel != null &&
+                    ZoomLevel.Equals(input.ZoomLevel))
                 );
         }
 
@@ -199,29 +198,26 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Tag != null)
+				hashCode = (hashCode * 59) + Tag.GetHashCode();
+                if (Date != null)
                 {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
+                    hashCode = (hashCode * 59) + Date.GetHashCode();
                 }
-                if (this.Date != null)
+                if (Description != null)
                 {
-                    hashCode = (hashCode * 59) + this.Date.GetHashCode();
+                    hashCode = (hashCode * 59) + Description.GetHashCode();
                 }
-                if (this.Description != null)
+                if (Latitude != null)
                 {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                    hashCode = (hashCode * 59) + Latitude.GetHashCode();
                 }
-                if (this.Latitude != null)
+                if (Longitude != null)
                 {
-                    hashCode = (hashCode * 59) + this.Latitude.GetHashCode();
+                    hashCode = (hashCode * 59) + Longitude.GetHashCode();
                 }
-                if (this.Longitude != null)
+                if (ZoomLevel != null)
                 {
-                    hashCode = (hashCode * 59) + this.Longitude.GetHashCode();
-                }
-                if (this.ZoomLevel != null)
-                {
-                    hashCode = (hashCode * 59) + this.ZoomLevel.GetHashCode();
+                    hashCode = (hashCode * 59) + ZoomLevel.GetHashCode();
                 }
                 return hashCode;
             }
@@ -232,7 +228,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -15,9 +15,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
 using FireflyIIINet.Client;
 using FireflyIIINet.Client.Auth;
 using FireflyIIINet.Model;
+using ConfigurationClient = FireflyIIINet.Client.Configuration;
 
 namespace FireflyIIINet.Api
 {
@@ -34,7 +37,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Allows you to update transactions in bulk. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -46,7 +49,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Allows you to update transactions in bulk. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -57,7 +60,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -70,7 +73,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -82,7 +85,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -95,7 +98,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -107,7 +110,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -120,7 +123,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -132,7 +135,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -145,7 +148,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -157,7 +160,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -170,7 +173,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -182,7 +185,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -195,7 +198,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -207,7 +210,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -220,7 +223,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -232,7 +235,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -245,7 +248,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -257,7 +260,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -270,7 +273,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -282,7 +285,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -298,7 +301,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -313,7 +316,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -325,7 +328,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -345,12 +348,12 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Allows you to update transactions in bulk. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task BulkUpdateTransactionsAsync(string query, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task BulkUpdateTransactionsAsync(string query, int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials
@@ -358,25 +361,25 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// Allows you to update transactions in bulk. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> BulkUpdateTransactionsWithHttpInfoAsync(string query, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> BulkUpdateTransactionsWithHttpInfoAsync(string query, int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Endpoint to destroy user data
         /// </summary>
         /// <remarks>
         /// A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DestroyDataAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task DestroyDataAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Endpoint to destroy user data
@@ -384,26 +387,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DestroyDataWithHttpInfoAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> DestroyDataWithHttpInfoAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export account data from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportAccountsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportAccountsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export account data from Firefly III
@@ -411,26 +414,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportAccountsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportAccountsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export bills from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportBillsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportBillsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export bills from Firefly III
@@ -438,26 +441,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportBillsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportBillsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export budgets and budget amount data from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportBudgetsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportBudgetsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export budgets and budget amount data from Firefly III
@@ -465,26 +468,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export category data from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportCategoriesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportCategoriesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export category data from Firefly III
@@ -492,26 +495,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportCategoriesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportCategoriesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export piggy banks from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportPiggiesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportPiggiesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export piggy banks from Firefly III
@@ -519,26 +522,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportPiggiesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportPiggiesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export recurring transaction data from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportRecurringAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportRecurringAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export recurring transaction data from Firefly III
@@ -546,26 +549,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportRecurringWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportRecurringWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export rule groups and rule data from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportRulesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportRulesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export rule groups and rule data from Firefly III
@@ -573,26 +576,26 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportRulesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportRulesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export tag data from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportTagsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportTagsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export tag data from Firefly III
@@ -600,20 +603,20 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportTagsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportTagsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Export transaction data from Firefly III
         /// </summary>
         /// <remarks>
         /// This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -622,7 +625,7 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ExportTransactionsAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<System.IO.Stream> ExportTransactionsAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Export transaction data from Firefly III
@@ -630,7 +633,7 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -639,19 +642,19 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ExportTransactionsWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<System.IO.Stream>> ExportTransactionsWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Endpoint to purge user data
         /// </summary>
         /// <remarks>
         /// A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task PurgeDataAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task PurgeDataAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Endpoint to purge user data
@@ -659,12 +662,12 @@ namespace FireflyIIINet.Api
         /// <remarks>
         /// A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </remarks>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> PurgeDataWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        Task<ApiResponse<Object>> PurgeDataWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -681,7 +684,7 @@ namespace FireflyIIINet.Api
     /// </summary>
     public partial class DataApi : IDataApi
     {
-        private FireflyIIINet.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataApi"/> class.
@@ -695,15 +698,8 @@ namespace FireflyIIINet.Api
         /// Initializes a new instance of the <see cref="DataApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public DataApi(string basePath)
+        public DataApi(string basePath) : this(new ConfigurationClient { BasePath = basePath })
         {
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
-                new FireflyIIINet.Client.Configuration { BasePath = basePath }
-            );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -712,17 +708,17 @@ namespace FireflyIIINet.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public DataApi(FireflyIIINet.Client.Configuration configuration)
+        public DataApi(ConfigurationClient configuration)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Configuration = FireflyIIINet.Client.Configuration.MergeConfigurations(
-                FireflyIIINet.Client.GlobalConfiguration.Instance,
+            Configuration = ConfigurationClient.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new FireflyIIINet.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = new ApiClient(Configuration.BasePath);
+            AsynchronousClient = new ApiClient(Configuration.BasePath);
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -732,27 +728,27 @@ namespace FireflyIIINet.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
-        public DataApi(FireflyIIINet.Client.ISynchronousClient client, FireflyIIINet.Client.IAsynchronousClient asyncClient, FireflyIIINet.Client.IReadableConfiguration configuration)
+        public DataApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
-            if (client == null) throw new ArgumentNullException("client");
-            if (asyncClient == null) throw new ArgumentNullException("asyncClient");
-            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            if (asyncClient == null) throw new ArgumentNullException(nameof(asyncClient));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
-            this.Client = client;
-            this.AsynchronousClient = asyncClient;
-            this.Configuration = configuration;
-            this.ExceptionFactory = FireflyIIINet.Client.Configuration.DefaultExceptionFactory;
+            Client = client;
+            AsynchronousClient = asyncClient;
+            Configuration = configuration;
+            ExceptionFactory = ConfigurationClient.DefaultExceptionFactory;
         }
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public FireflyIIINet.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public FireflyIIINet.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -760,19 +756,19 @@ namespace FireflyIIINet.Api
         /// <value>The base path</value>
         public string GetBasePath()
         {
-            return this.Configuration.BasePath;
+            return Configuration.BasePath;
         }
 
         /// <summary>
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public FireflyIIINet.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public FireflyIIINet.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -786,9 +782,99 @@ namespace FireflyIIINet.Api
         }
 
         /// <summary>
+        /// Provides a common RequestOptions object for all operations.
+        /// </summary>
+		private RequestOptions GetRequestOptions(string[] _contentTypes, string[] _accepts, string operationId, int operationIndex)
+		{
+            RequestOptions localVarRequestOptions = new RequestOptions();
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.Operation = operationId;
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Sets RequestOptions Authorization headers with bearer or oauth.
+        /// </summary>
+        private RequestOptions SetAuthorization(RequestOptions localVarRequestOptions)
+        {
+			// oauth required
+            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                if (!string.IsNullOrEmpty(Configuration.AccessToken))
+                {
+                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + Configuration.AccessToken);
+                }
+                else if (!string.IsNullOrEmpty(Configuration.OAuthTokenUrl) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientId) &&
+                         !string.IsNullOrEmpty(Configuration.OAuthClientSecret) &&
+                         Configuration.OAuthFlow != null)
+                {
+                    localVarRequestOptions.OAuth = true;
+                }
+            }
+            return localVarRequestOptions;
+		}
+
+        /// <summary>
+        /// Validates if operation has an exception and rethrows it.
+        /// </summary>
+        private void ValidateException(string operationName, IApiResponse localVarResponse)
+        {
+            if (ExceptionFactory != null)
+            {
+                Exception _exception = ExceptionFactory(operationName, localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+		}
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for BulkUpdateTransactions.
+        /// </summary>
+		private RequestOptions GetRequestOptionsBulkUpdateTransactions(string query, int operationIndex = 0)
+		{
+            // verify the required parameter 'query' is set
+            if (query == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'query' when calling DataApi->BulkUpdateTransactions");
+            }
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.BulkUpdateTransactions" ,operationIndex);
+
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "query", query));
+
+            // authentication (firefly_iii_auth) required
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
+
+        /// <summary>
         /// Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Allows you to update transactions in bulk. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -800,85 +886,29 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Allows you to update transactions in bulk. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> BulkUpdateTransactionsWithHttpInfo(string query, int operationIndex = 0)
+        public ApiResponse<Object> BulkUpdateTransactionsWithHttpInfo(string query, int operationIndex = 0)
         {
-            // verify the required parameter 'query' is set
-            if (query == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'query' when calling DataApi->BulkUpdateTransactions");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-
-            localVarRequestOptions.Operation = "DataApi.BulkUpdateTransactions";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsBulkUpdateTransactions(query, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/data/bulk/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("BulkUpdateTransactions", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Post<Object>("/v1/data/bulk/transactions", localVarRequestOptions, Configuration);
+            ValidateException("BulkUpdateTransactions", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Allows you to update transactions in bulk. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task BulkUpdateTransactionsAsync(string query, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task BulkUpdateTransactionsAsync(string query, int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await BulkUpdateTransactionsWithHttpInfoAsync(query, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -886,21 +916,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Bulk update transaction properties. For more information, see https://docs.firefly-iii.org/firefly-iii/api/specials Allows you to update transactions in bulk. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="query">The JSON query.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> BulkUpdateTransactionsWithHttpInfoAsync(string query, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> BulkUpdateTransactionsWithHttpInfoAsync(string query, int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'query' is set
-            if (query == null)
+            RequestOptions localVarRequestOptions = GetRequestOptionsBulkUpdateTransactions(query, operationIndex);
+
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.PostAsync<Object>("/v1/data/bulk/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("BulkUpdateTransactions", localVarResponse);
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Provides a specific RequestOptions object for DestroyData.
+        /// </summary>
+		private RequestOptions GetRequestOptionsDestroyData(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
+            // verify the required parameter 'objects' is set
+            if (objects == null)
             {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'query' when calling DataApi->BulkUpdateTransactions");
+                throw new ApiException(400, "Missing required parameter 'objects' when calling DataApi->DestroyData");
             }
-
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -910,59 +950,23 @@ namespace FireflyIIINet.Api
                 "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.DestroyData" ,operationIndex);
+
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "objects", objects));
+            if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "query", query));
-
-            localVarRequestOptions.Operation = "DataApi.BulkUpdateTransactions";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/data/bulk/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("BulkUpdateTransactions", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Endpoint to destroy user data A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -975,91 +979,31 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Endpoint to destroy user data A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> DestroyDataWithHttpInfo(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> DestroyDataWithHttpInfo(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            // verify the required parameter 'objects' is set
-            if (objects == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'objects' when calling DataApi->DestroyData");
-            }
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "objects", objects));
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.DestroyData";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDestroyData(objects, xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/data/destroy", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DestroyData", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/data/destroy", localVarRequestOptions, Configuration);
+            ValidateException("DestroyData", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Endpoint to destroy user data A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DestroyDataAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task DestroyDataAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await DestroyDataWithHttpInfoAsync(objects, xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -1067,203 +1011,123 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Endpoint to destroy user data A call to this endpoint deletes the requested data type. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="objects">The type of data that you wish to destroy. You can only use one at a time.</param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> DestroyDataWithHttpInfoAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> DestroyDataWithHttpInfoAsync(DataDestroyObject objects, Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'objects' is set
-            if (objects == null)
-            {
-                throw new FireflyIIINet.Client.ApiException(400, "Missing required parameter 'objects' when calling DataApi->DestroyData");
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsDestroyData(objects, xTraceId, operationIndex);
 
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/data/destroy", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("DestroyData", localVarResponse);
+            return localVarResponse;
+        }
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportAccounts.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportAccounts(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json"
+                "application/json",
+                "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportAccounts" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            if (type != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "objects", objects));
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.DestroyData";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/data/destroy", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DestroyData", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export account data from Firefly III This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportAccounts(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportAccountsWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportAccountsWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export account data from Firefly III This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportAccountsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportAccountsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportAccounts";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportAccounts(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/accounts", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportAccounts", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/accounts", localVarRequestOptions, Configuration);
+            ValidateException("ExportAccounts", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export account data from Firefly III This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportAccountsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportAccountsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportAccountsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportAccountsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export account data from Firefly III This endpoint allows you to export your accounts from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportAccountsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportAccountsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportAccounts(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/accounts", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportAccounts", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportBills.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportBills(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1273,181 +1137,93 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportBills" ,operationIndex);
 
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportAccounts";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportAccounts", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export bills from Firefly III This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportBills(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportBillsWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportBillsWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export bills from Firefly III This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportBillsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportBillsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportBills";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportBills(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/bills", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportBills", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/bills", localVarRequestOptions, Configuration);
+            ValidateException("ExportBills", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export bills from Firefly III This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportBillsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportBillsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportBillsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportBillsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export bills from Firefly III This endpoint allows you to export your bills from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportBillsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportBillsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportBills(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/bills", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportBills", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportBudgets.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportBudgets(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1457,181 +1233,93 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportBudgets" ,operationIndex);
 
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportBills";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/bills", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportBills", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export budgets and budget amount data from Firefly III This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportBudgets(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportBudgetsWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportBudgetsWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export budgets and budget amount data from Firefly III This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportBudgetsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportBudgetsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportBudgets(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/budgets", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/budgets", localVarRequestOptions, Configuration);
+            ValidateException("ExportBudgets", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export budgets and budget amount data from Firefly III This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportBudgetsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportBudgetsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportBudgetsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportBudgetsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export budgets and budget amount data from Firefly III This endpoint allows you to export your budgets and associated budget data from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportBudgetsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportBudgets(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/budgets", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportBudgets", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportCategories.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportCategories(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1641,181 +1329,93 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportCategories" ,operationIndex);
 
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportBudgets";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/budgets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportBudgets", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export category data from Firefly III This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportCategories(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportCategoriesWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportCategoriesWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export category data from Firefly III This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportCategoriesWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportCategoriesWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportCategories";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportCategories(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/categories", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportCategories", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/categories", localVarRequestOptions, Configuration);
+            ValidateException("ExportCategories", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export category data from Firefly III This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportCategoriesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportCategoriesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportCategoriesWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportCategoriesWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export category data from Firefly III This endpoint allows you to export your categories from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportCategoriesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportCategoriesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportCategories(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/categories", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportCategories", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportPiggies.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportPiggies(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -1825,181 +1425,93 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportPiggies" ,operationIndex);
 
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportCategories";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/categories", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportCategories", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export piggy banks from Firefly III This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportPiggies(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportPiggiesWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportPiggiesWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export piggy banks from Firefly III This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportPiggiesWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportPiggiesWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportPiggies";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportPiggies(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/piggy-banks", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportPiggies", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/piggy-banks", localVarRequestOptions, Configuration);
+            ValidateException("ExportPiggies", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export piggy banks from Firefly III This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportPiggiesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportPiggiesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportPiggiesWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportPiggiesWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export piggy banks from Firefly III This endpoint allows you to export your piggy banks from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportPiggiesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportPiggiesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportPiggies(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/piggy-banks", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportPiggies", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportRecurring.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportRecurring(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2009,181 +1521,93 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportRecurring" ,operationIndex);
 
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportPiggies";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/piggy-banks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportPiggies", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export recurring transaction data from Firefly III This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportRecurring(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportRecurringWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportRecurringWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export recurring transaction data from Firefly III This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportRecurringWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportRecurringWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportRecurring";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportRecurring(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/recurring", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportRecurring", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/recurring", localVarRequestOptions, Configuration);
+            ValidateException("ExportRecurring", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export recurring transaction data from Firefly III This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportRecurringAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportRecurringAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportRecurringWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportRecurringWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export recurring transaction data from Firefly III This endpoint allows you to export your recurring transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportRecurringWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportRecurringWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportRecurring(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/recurring", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportRecurring", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportRules.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportRules(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2193,181 +1617,93 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportRules" ,operationIndex);
 
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportRecurring";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/recurring", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportRecurring", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export rule groups and rule data from Firefly III This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportRules(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportRulesWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportRulesWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export rule groups and rule data from Firefly III This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportRulesWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportRulesWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportRules";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportRules(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/rules", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportRules", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/rules", localVarRequestOptions, Configuration);
+            ValidateException("ExportRules", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export rule groups and rule data from Firefly III This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportRulesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportRulesAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportRulesWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportRulesWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export rule groups and rule data from Firefly III This endpoint allows you to export your rules and rule groups from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportRulesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportRulesWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportRules(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/rules", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportRules", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportTags.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportTags(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2377,181 +1713,93 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportTags" ,operationIndex);
 
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportRules";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportRules", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export tag data from Firefly III This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportTags(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportTagsWithHttpInfo(xTraceId, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportTagsWithHttpInfo(xTraceId, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export tag data from Firefly III This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportTagsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportTagsWithHttpInfo(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportTags";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportTags(xTraceId, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/tags", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportTags", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/tags", localVarRequestOptions, Configuration);
+            ValidateException("ExportTags", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export tag data from Firefly III This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportTagsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportTagsAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportTagsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportTagsWithHttpInfoAsync(xTraceId, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export tag data from Firefly III This endpoint allows you to export your tags from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportTagsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportTagsWithHttpInfoAsync(Guid? xTraceId = default(Guid?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportTags(xTraceId, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/tags", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportTags", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for ExportTransactions.
+        /// </summary>
+		private RequestOptions GetRequestOptionsExportTransactions(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
@@ -2561,66 +1809,32 @@ namespace FireflyIIINet.Api
                 "application/octet-stream"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.ExportTransactions" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "start", start));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "end", end));
+            if (accounts != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "accounts", accounts));
             }
-
             if (type != null)
             {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "type", type));
             }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportTags";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportTags", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Export transaction data from Firefly III This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2630,14 +1844,14 @@ namespace FireflyIIINet.Api
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream ExportTransactions(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = ExportTransactionsWithHttpInfo(start, end, xTraceId, accounts, type);
+            ApiResponse<System.IO.Stream> localVarResponse = ExportTransactionsWithHttpInfo(start, end, xTraceId, accounts, type);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export transaction data from Firefly III This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2645,84 +1859,20 @@ namespace FireflyIIINet.Api
         /// <param name="type">The file type the export file (CSV is currently the only option). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public FireflyIIINet.Client.ApiResponse<System.IO.Stream> ExportTransactionsWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
+        public ApiResponse<System.IO.Stream> ExportTransactionsWithHttpInfo(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "accounts", accounts));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.ExportTransactions";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportTransactions(start, end, xTraceId, accounts, type, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/v1/data/export/transactions", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportTransactions", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Get<System.IO.Stream>("/v1/data/export/transactions", localVarRequestOptions, Configuration);
+            ValidateException("ExportTransactions", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Export transaction data from Firefly III This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2731,16 +1881,16 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ExportTransactionsAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<System.IO.Stream> ExportTransactionsAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-            FireflyIIINet.Client.ApiResponse<System.IO.Stream> localVarResponse = await ExportTransactionsWithHttpInfoAsync(start, end, xTraceId, accounts, type, operationIndex, cancellationToken).ConfigureAwait(false);
+            ApiResponse<System.IO.Stream> localVarResponse = await ExportTransactionsWithHttpInfoAsync(start, end, xTraceId, accounts, type, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Export transaction data from Firefly III This endpoint allows you to export transactions from Firefly III into a file. Currently supports CSV exports only. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="start">A date formatted YYYY-MM-DD. </param>
         /// <param name="end">A date formatted YYYY-MM-DD. </param>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
@@ -2749,86 +1899,45 @@ namespace FireflyIIINet.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<System.IO.Stream>> ExportTransactionsWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<System.IO.Stream>> ExportTransactionsWithHttpInfoAsync(DateTime start, DateTime end, Guid? xTraceId = default(Guid?), string? accounts = default(string?), ExportFileFilter? type = default(ExportFileFilter?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
+            RequestOptions localVarRequestOptions = GetRequestOptionsExportTransactions(start, end, xTraceId, accounts, type, operationIndex);
 
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
+            // make the HTTP request
+            var localVarResponse = await AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/transactions", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("ExportTransactions", localVarResponse);
+            return localVarResponse;
+        }
 
+        /// <summary>
+        /// Provides a specific RequestOptions object for PurgeData.
+        /// </summary>
+		private RequestOptions GetRequestOptionsPurgeData(Guid? xTraceId = default(Guid?), int operationIndex = 0)
+		{
             string[] _contentTypes = new string[] {
             };
 
             // to determine the Accept header
             string[] _accepts = new string[] {
-                "application/json",
-                "application/octet-stream"
+                "application/json"
             };
 
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptions(_contentTypes, _accepts,"DataApi.PurgeData" ,operationIndex);
 
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "start", start));
-            localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "end", end));
-            if (accounts != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "accounts", accounts));
-            }
-            if (type != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(FireflyIIINet.Client.ClientUtils.ParameterToMultiMap("", "type", type));
-            }
             if (xTraceId != null)
             {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
+                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", ClientUtils.ParameterToString(xTraceId)); // header parameter
             }
-
-            localVarRequestOptions.Operation = "DataApi.ExportTransactions";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/v1/data/export/transactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ExportTransactions", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
+            localVarRequestOptions = SetAuthorization(localVarRequestOptions);
+			return localVarRequestOptions;
+		}
 
         /// <summary>
         /// Endpoint to purge user data A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -2840,82 +1949,29 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Endpoint to purge user data A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public FireflyIIINet.Client.ApiResponse<Object> PurgeDataWithHttpInfo(Guid? xTraceId = default(Guid?), int operationIndex = 0)
+        public ApiResponse<Object> PurgeDataWithHttpInfo(Guid? xTraceId = default(Guid?), int operationIndex = 0)
         {
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.PurgeData";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsPurgeData(xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/data/purge", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("PurgeData", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = Client.Delete<Object>("/v1/data/purge", localVarRequestOptions, Configuration);
+            ValidateException("PurgeData", localVarResponse);
             return localVarResponse;
         }
 
         /// <summary>
         /// Endpoint to purge user data A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task PurgeDataAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task PurgeDataAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await PurgeDataWithHttpInfoAsync(xTraceId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -2923,75 +1979,19 @@ namespace FireflyIIINet.Api
         /// <summary>
         /// Endpoint to purge user data A call to this endpoint purges all previously deleted data. Use it with care and always with user permission. The demo user is incapable of using this endpoint. 
         /// </summary>
-        /// <exception cref="FireflyIIINet.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="xTraceId">Unique identifier associated with this request. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<FireflyIIINet.Client.ApiResponse<Object>> PurgeDataWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async Task<ApiResponse<Object>> PurgeDataWithHttpInfoAsync(Guid? xTraceId = default(Guid?), int operationIndex = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
-
-            FireflyIIINet.Client.RequestOptions localVarRequestOptions = new FireflyIIINet.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = FireflyIIINet.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = FireflyIIINet.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            if (xTraceId != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("X-Trace-Id", FireflyIIINet.Client.ClientUtils.ParameterToString(xTraceId)); // header parameter
-            }
-
-            localVarRequestOptions.Operation = "DataApi.PurgeData";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (firefly_iii_auth) required
-            // oauth required
-            if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                if (!string.IsNullOrEmpty(this.Configuration.AccessToken))
-                {
-                    localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-                }
-                else if (!string.IsNullOrEmpty(this.Configuration.OAuthTokenUrl) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientId) &&
-                         !string.IsNullOrEmpty(this.Configuration.OAuthClientSecret) &&
-                         this.Configuration.OAuthFlow != null)
-                {
-                    localVarRequestOptions.OAuth = true;
-                }
-            }
+            RequestOptions localVarRequestOptions = GetRequestOptionsPurgeData(xTraceId, operationIndex);
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/data/purge", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("PurgeData", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
+            var localVarResponse = await AsynchronousClient.DeleteAsync<Object>("/v1/data/purge", localVarRequestOptions, Configuration, cancellationToken).ConfigureAwait(false);
+            ValidateException("PurgeData", localVarResponse);
             return localVarResponse;
         }
-
     }
 }

@@ -68,38 +68,38 @@ namespace FireflyIIINet.Model
             {
                 throw new ArgumentNullException("name is a required property for Bill and cannot be null");
             }
-            this.Name = name;
+            Name = name;
             // to ensure "amountMin" is required (not null)
             if (amountMin == null)
             {
                 throw new ArgumentNullException("amountMin is a required property for Bill and cannot be null");
             }
-            this.AmountMin = amountMin;
+            AmountMin = amountMin;
             // to ensure "amountMax" is required (not null)
             if (amountMax == null)
             {
                 throw new ArgumentNullException("amountMax is a required property for Bill and cannot be null");
             }
-            this.AmountMax = amountMax;
-            this.Date = date;
-            this.RepeatFreq = repeatFreq;
-            this.CurrencyId = currencyId;
-            this.CurrencyCode = currencyCode;
-            this.EndDate = endDate;
-            this.ExtensionDate = extensionDate;
-            this.Skip = skip;
-            this.Active = active;
-            this.Order = order;
-            this.Notes = notes;
-            this.ObjectGroupId = objectGroupId;
-            this.ObjectGroupTitle = objectGroupTitle;
+            AmountMax = amountMax;
+            Date = date;
+            RepeatFreq = repeatFreq;
+            CurrencyId = currencyId;
+            CurrencyCode = currencyCode;
+            EndDate = endDate;
+            ExtensionDate = extensionDate;
+            Skip = skip;
+            Active = active;
+            Order = order;
+            Notes = notes;
+            ObjectGroupId = objectGroupId;
+            ObjectGroupTitle = objectGroupTitle;
         }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -138,14 +138,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencyDecimalPlaces
         /// </summary>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date after which this bill is no longer valid or applicable</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "end_date", EmitDefaultValue = false)]
+        [DataMember(Name = "end_date", EmitDefaultValue = true)]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date before which the bill must be renewed (or cancelled)</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "extension_date", EmitDefaultValue = false)]
+        [DataMember(Name = "extension_date", EmitDefaultValue = true)]
         public DateTime ExtensionDate { get; set; }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>How often the bill must be skipped. 1 means a bi-monthly bill.</value>
         /// <example>0</example>
-        [DataMember(Name = "skip", EmitDefaultValue = false)]
+        [DataMember(Name = "skip", EmitDefaultValue = true)]
         public int Skip { get; set; }
 
         /// <summary>
@@ -236,14 +236,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the bill.</value>
         /// <example>1</example>
-        [DataMember(Name = "order", EmitDefaultValue = false)]
+        [DataMember(Name = "order", EmitDefaultValue = true)]
         public int Order { get; set; }
 
         /// <summary>
         /// Gets or Sets Notes
         /// </summary>
         /// <example>Some example notes</example>
-        [DataMember(Name = "notes", EmitDefaultValue = true)]
+        [DataMember(Name = "notes", EmitDefaultValue = false)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>When the bill is expected to be due.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "next_expected_match", EmitDefaultValue = true)]
+        [DataMember(Name = "next_expected_match", EmitDefaultValue = false)]
         public DateTime? NextExpectedMatch { get; private set; }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Formatted (locally) when the bill is due.</value>
         /// <example>today</example>
-        [DataMember(Name = "next_expected_match_diff", EmitDefaultValue = true)]
+        [DataMember(Name = "next_expected_match_diff", EmitDefaultValue = false)]
         public string NextExpectedMatchDiff { get; private set; }
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The group ID of the group this object is part of. NULL if no group.</value>
         /// <example>5</example>
-        [DataMember(Name = "object_group_id", EmitDefaultValue = true)]
+        [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -291,7 +291,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The order of the group. At least 1, for the highest sorting.</value>
         /// <example>5</example>
-        [DataMember(Name = "object_group_order", EmitDefaultValue = true)]
+        [DataMember(Name = "object_group_order", EmitDefaultValue = false)]
         public int? ObjectGroupOrder { get; private set; }
 
         /// <summary>
@@ -307,14 +307,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The name of the group. NULL if no group.</value>
         /// <example>Example Group</example>
-        [DataMember(Name = "object_group_title", EmitDefaultValue = true)]
+        [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>
         /// Array of future dates when the bill is expected to be paid. Autogenerated.
         /// </summary>
         /// <value>Array of future dates when the bill is expected to be paid. Autogenerated.</value>
-        [DataMember(Name = "pay_dates", EmitDefaultValue = false)]
+        [DataMember(Name = "pay_dates", EmitDefaultValue = true)]
         public List<DateTime> PayDates { get; private set; }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace FireflyIIINet.Model
         /// Array of past transactions when the bill was paid.
         /// </summary>
         /// <value>Array of past transactions when the bill was paid.</value>
-        [DataMember(Name = "paid_dates", EmitDefaultValue = false)]
+        [DataMember(Name = "paid_dates", EmitDefaultValue = true)]
         public List<BillPaidDatesInner> PaidDates { get; private set; }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         /// <summary>
@@ -392,7 +392,7 @@ namespace FireflyIIINet.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Bill);
+            return Equals(input as Bill);
         }
 
         /// <summary>
@@ -408,121 +408,110 @@ namespace FireflyIIINet.Model
             }
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    CreatedAt == input.CreatedAt ||
+					CreatedAt.Equals(input.CreatedAt)
                 ) && 
                 (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    UpdatedAt == input.UpdatedAt ||
+					UpdatedAt.Equals(input.UpdatedAt)
                 ) && 
                 (
-                    this.CurrencyId == input.CurrencyId ||
-                    (this.CurrencyId != null &&
-                    this.CurrencyId.Equals(input.CurrencyId))
+                    CurrencyId == input.CurrencyId ||
+					CurrencyId.Equals(input.CurrencyId)
                 ) && 
                 (
-                    this.CurrencyCode == input.CurrencyCode ||
-                    (this.CurrencyCode != null &&
-                    this.CurrencyCode.Equals(input.CurrencyCode))
+                    CurrencyCode == input.CurrencyCode ||
+					CurrencyCode.Equals(input.CurrencyCode)
                 ) && 
                 (
-                    this.CurrencySymbol == input.CurrencySymbol ||
-                    (this.CurrencySymbol != null &&
-                    this.CurrencySymbol.Equals(input.CurrencySymbol))
+                    CurrencySymbol == input.CurrencySymbol ||
+					CurrencySymbol.Equals(input.CurrencySymbol)
                 ) && 
                 (
-                    this.CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
-                    this.CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
+                    CurrencyDecimalPlaces == input.CurrencyDecimalPlaces ||
+                    CurrencyDecimalPlaces.Equals(input.CurrencyDecimalPlaces)
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    Name == input.Name ||
+					Name.Equals(input.Name)
                 ) && 
                 (
-                    this.AmountMin == input.AmountMin ||
-                    (this.AmountMin != null &&
-                    this.AmountMin.Equals(input.AmountMin))
+                    AmountMin == input.AmountMin ||
+					AmountMin.Equals(input.AmountMin)
                 ) && 
                 (
-                    this.AmountMax == input.AmountMax ||
-                    (this.AmountMax != null &&
-                    this.AmountMax.Equals(input.AmountMax))
+                    AmountMax == input.AmountMax ||
+					AmountMax.Equals(input.AmountMax)
                 ) && 
                 (
-                    this.Date == input.Date ||
-                    (this.Date != null &&
-                    this.Date.Equals(input.Date))
+                    Date == input.Date ||
+					Date.Equals(input.Date)
                 ) && 
                 (
-                    this.EndDate == input.EndDate ||
-                    (this.EndDate != null &&
-                    this.EndDate.Equals(input.EndDate))
+                    EndDate == input.EndDate ||
+					EndDate.Equals(input.EndDate)
                 ) && 
                 (
-                    this.ExtensionDate == input.ExtensionDate ||
-                    (this.ExtensionDate != null &&
-                    this.ExtensionDate.Equals(input.ExtensionDate))
+                    ExtensionDate == input.ExtensionDate ||
+					ExtensionDate.Equals(input.ExtensionDate)
                 ) && 
                 (
-                    this.RepeatFreq == input.RepeatFreq ||
-                    this.RepeatFreq.Equals(input.RepeatFreq)
+                    RepeatFreq == input.RepeatFreq ||
+                    RepeatFreq.Equals(input.RepeatFreq)
                 ) && 
                 (
-                    this.Skip == input.Skip ||
-                    this.Skip.Equals(input.Skip)
+                    Skip == input.Skip ||
+                    Skip.Equals(input.Skip)
                 ) && 
                 (
-                    this.Active == input.Active ||
-                    this.Active.Equals(input.Active)
+                    Active == input.Active ||
+                    Active.Equals(input.Active)
                 ) && 
                 (
-                    this.Order == input.Order ||
-                    this.Order.Equals(input.Order)
+                    Order == input.Order ||
+                    Order.Equals(input.Order)
                 ) && 
                 (
-                    this.Notes == input.Notes ||
-                    (this.Notes != null &&
-                    this.Notes.Equals(input.Notes))
+                    Notes == input.Notes ||
+                    (Notes != null &&
+                    Notes.Equals(input.Notes))
                 ) && 
                 (
-                    this.NextExpectedMatch == input.NextExpectedMatch ||
-                    (this.NextExpectedMatch != null &&
-                    this.NextExpectedMatch.Equals(input.NextExpectedMatch))
+                    NextExpectedMatch == input.NextExpectedMatch ||
+                    (NextExpectedMatch != null &&
+                    NextExpectedMatch.Equals(input.NextExpectedMatch))
                 ) && 
                 (
-                    this.NextExpectedMatchDiff == input.NextExpectedMatchDiff ||
-                    (this.NextExpectedMatchDiff != null &&
-                    this.NextExpectedMatchDiff.Equals(input.NextExpectedMatchDiff))
+                    NextExpectedMatchDiff == input.NextExpectedMatchDiff ||
+                    (NextExpectedMatchDiff != null &&
+                    NextExpectedMatchDiff.Equals(input.NextExpectedMatchDiff))
                 ) && 
                 (
-                    this.ObjectGroupId == input.ObjectGroupId ||
-                    (this.ObjectGroupId != null &&
-                    this.ObjectGroupId.Equals(input.ObjectGroupId))
+                    ObjectGroupId == input.ObjectGroupId ||
+                    (ObjectGroupId != null &&
+                    ObjectGroupId.Equals(input.ObjectGroupId))
                 ) && 
                 (
-                    this.ObjectGroupOrder == input.ObjectGroupOrder ||
-                    (this.ObjectGroupOrder != null &&
-                    this.ObjectGroupOrder.Equals(input.ObjectGroupOrder))
+                    ObjectGroupOrder == input.ObjectGroupOrder ||
+                    (ObjectGroupOrder != null &&
+                    ObjectGroupOrder.Equals(input.ObjectGroupOrder))
                 ) && 
                 (
-                    this.ObjectGroupTitle == input.ObjectGroupTitle ||
-                    (this.ObjectGroupTitle != null &&
-                    this.ObjectGroupTitle.Equals(input.ObjectGroupTitle))
+                    ObjectGroupTitle == input.ObjectGroupTitle ||
+                    (ObjectGroupTitle != null &&
+                    ObjectGroupTitle.Equals(input.ObjectGroupTitle))
                 ) && 
                 (
-                    this.PayDates == input.PayDates ||
-                    this.PayDates != null &&
+                    PayDates == input.PayDates ||
+                    PayDates != null &&
                     input.PayDates != null &&
-                    this.PayDates.SequenceEqual(input.PayDates)
+                    PayDates.SequenceEqual(input.PayDates)
                 ) && 
                 (
-                    this.PaidDates == input.PaidDates ||
-                    this.PaidDates != null &&
+                    PaidDates == input.PaidDates ||
+                    PaidDates != null &&
                     input.PaidDates != null &&
-                    this.PaidDates.SequenceEqual(input.PaidDates)
+                    PaidDates.SequenceEqual(input.PaidDates)
                 );
         }
 
@@ -535,87 +524,48 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
+				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyId.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencyCode.GetHashCode();
+				hashCode = (hashCode * 59) + CurrencySymbol.GetHashCode();
+                hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
+				hashCode = (hashCode * 59) + Name.GetHashCode();
+				hashCode = (hashCode * 59) + AmountMin.GetHashCode();
+				hashCode = (hashCode * 59) + AmountMax.GetHashCode();
+				hashCode = (hashCode * 59) + Date.GetHashCode();
+				hashCode = (hashCode * 59) + EndDate.GetHashCode();
+				hashCode = (hashCode * 59) + ExtensionDate.GetHashCode();
+                hashCode = (hashCode * 59) + RepeatFreq.GetHashCode();
+                hashCode = (hashCode * 59) + Skip.GetHashCode();
+                hashCode = (hashCode * 59) + Active.GetHashCode();
+                hashCode = (hashCode * 59) + Order.GetHashCode();
+                if (Notes != null)
                 {
-                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + Notes.GetHashCode();
                 }
-                if (this.UpdatedAt != null)
+                if (NextExpectedMatch != null)
                 {
-                    hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+                    hashCode = (hashCode * 59) + NextExpectedMatch.GetHashCode();
                 }
-                if (this.CurrencyId != null)
+                if (NextExpectedMatchDiff != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyId.GetHashCode();
+                    hashCode = (hashCode * 59) + NextExpectedMatchDiff.GetHashCode();
                 }
-                if (this.CurrencyCode != null)
+                if (ObjectGroupId != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
+                    hashCode = (hashCode * 59) + ObjectGroupId.GetHashCode();
                 }
-                if (this.CurrencySymbol != null)
+                if (ObjectGroupOrder != null)
                 {
-                    hashCode = (hashCode * 59) + this.CurrencySymbol.GetHashCode();
+                    hashCode = (hashCode * 59) + ObjectGroupOrder.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.CurrencyDecimalPlaces.GetHashCode();
-                if (this.Name != null)
+                if (ObjectGroupTitle != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                    hashCode = (hashCode * 59) + ObjectGroupTitle.GetHashCode();
                 }
-                if (this.AmountMin != null)
-                {
-                    hashCode = (hashCode * 59) + this.AmountMin.GetHashCode();
-                }
-                if (this.AmountMax != null)
-                {
-                    hashCode = (hashCode * 59) + this.AmountMax.GetHashCode();
-                }
-                if (this.Date != null)
-                {
-                    hashCode = (hashCode * 59) + this.Date.GetHashCode();
-                }
-                if (this.EndDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.EndDate.GetHashCode();
-                }
-                if (this.ExtensionDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.ExtensionDate.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.RepeatFreq.GetHashCode();
-                hashCode = (hashCode * 59) + this.Skip.GetHashCode();
-                hashCode = (hashCode * 59) + this.Active.GetHashCode();
-                hashCode = (hashCode * 59) + this.Order.GetHashCode();
-                if (this.Notes != null)
-                {
-                    hashCode = (hashCode * 59) + this.Notes.GetHashCode();
-                }
-                if (this.NextExpectedMatch != null)
-                {
-                    hashCode = (hashCode * 59) + this.NextExpectedMatch.GetHashCode();
-                }
-                if (this.NextExpectedMatchDiff != null)
-                {
-                    hashCode = (hashCode * 59) + this.NextExpectedMatchDiff.GetHashCode();
-                }
-                if (this.ObjectGroupId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ObjectGroupId.GetHashCode();
-                }
-                if (this.ObjectGroupOrder != null)
-                {
-                    hashCode = (hashCode * 59) + this.ObjectGroupOrder.GetHashCode();
-                }
-                if (this.ObjectGroupTitle != null)
-                {
-                    hashCode = (hashCode * 59) + this.ObjectGroupTitle.GetHashCode();
-                }
-                if (this.PayDates != null)
-                {
-                    hashCode = (hashCode * 59) + this.PayDates.GetHashCode();
-                }
-                if (this.PaidDates != null)
-                {
-                    hashCode = (hashCode * 59) + this.PaidDates.GetHashCode();
-                }
+				hashCode = (hashCode * 59) + PayDates.GetHashCode();
+				hashCode = (hashCode * 59) + PaidDates.GetHashCode();
                 return hashCode;
             }
         }
@@ -625,7 +575,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
