@@ -307,7 +307,7 @@ namespace FireflyIIINet.Model
         /// Optional. Use either this or the piggy_bank_id
         /// </summary>
         /// <value>Optional. Use either this or the piggy_bank_id</value>
-        [DataMember(Name = "piggy_bank_name", EmitDefaultValue = true)]
+        [DataMember(Name = "piggy_bank_name", EmitDefaultValue = false)]
         public string PiggyBankName { get; set; }
 
         /// <summary>
