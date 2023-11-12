@@ -219,7 +219,7 @@ void (empty response body)
 
 <a id="disablecurrency"></a>
 # **DisableCurrency**
-> CurrencySingle DisableCurrency (int code, Guid? xTraceId = null)
+> CurrencySingle DisableCurrency (string code, Guid? xTraceId = null)
 
 Disable a currency.
 
@@ -245,7 +245,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CurrenciesApi(config);
-            var code = 56;  // int | The currency code.
+            var code = GBP;  // string | The currency code.
             var xTraceId = "xTraceId_example";  // Guid? | Unique identifier associated with this request. (optional) 
 
             try
@@ -289,7 +289,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **code** | **int** | The currency code. |  |
+| **code** | **string** | The currency code. |  |
 | **xTraceId** | **Guid?** | Unique identifier associated with this request. | [optional]  |
 
 ### Return type
