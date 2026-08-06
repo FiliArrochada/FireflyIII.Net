@@ -2,12 +2,12 @@
 
 This is a .NET client for the [Firefly III](https://firefly-iii.org) personal finance manager API.
 
-This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification (`api/openapi.yaml`) manually — updates are applied directly to the source.
+This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
 - API version: 2.0.2 (v1 and v2 endpoints)
 - SDK version: 2.0.2.2 (tracks the API version; the 4th revision component denotes client-only changes)
-- Source specification: [api/openapi.yaml](api/openapi.yaml)
-- Historical specifications: [api-yaml/](api-yaml/)
+- Source specifications: [api/firefly-iii-2.0.2-v1.yaml](api/firefly-iii-2.0.2-v1.yaml) and [api/firefly-iii-2.0.2-v2.yaml](api/firefly-iii-2.0.2-v2.yaml)
+- All released specifications (0.10.4 – 6.6.6): [api/](api/)
 
 ## Frameworks supported
 - .NET 8.0
@@ -62,7 +62,7 @@ foreach (var account in list.Data)
     Console.WriteLine($"{account.Id}: {account.Attributes.Name}");
 ```
 
-A runnable end-to-end example (create + delete a transaction) lives in [example/](example/).
+A runnable end-to-end example (create + delete a transaction) lives in [src/Example/](src/Example/).
 
 ## Errors
 
@@ -83,7 +83,7 @@ available via `ex.Content` and can be deserialized to the spec's error models
 
 There is no code generator in this repo. When the spec changes, edit the Refit interfaces under
 `src/FireflyIIINet/Api` and the models under `src/FireflyIIINet/Model` directly, and keep
-`api/openapi.yaml` in sync.
+the spec copy under `api/` in sync.
 
 ```bash
 dotnet build FireflyIIINet.sln

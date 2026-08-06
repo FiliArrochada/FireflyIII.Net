@@ -6,6 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\FireflyIIINet\FireflyIIINet.csproj" />
+    <ProjectReference Include="..\FireflyIIINet\FireflyIIINet.csproj" />
   </ItemGroup>
 </Project>

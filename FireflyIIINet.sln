@@ -1,10 +1,86 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-VisualStudioVersion = 12.0.0.0
-MinimumVisualStudioVersion = 10.0.0.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36930.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9A7E2940-A2E8-4C61-A525-19D163C42BF3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireflyIIINet", "src\FireflyIIINet\FireflyIIINet.csproj", "{1EC38C04-469A-4023-8620-A07B3FC40372}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireflyIIINet.Test", "src\FireflyIIINet.Test\FireflyIIINet.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "src\Example\example.csproj", "{B7A5E3D8-6C14-4A9B-8F2E-D91C47A05E36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{3C9E8B71-2D45-4F0A-B8E6-7A1F5C24D983}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{6F2B4A8D-91C3-4E57-A0D2-8B5E63F17C40}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\release-nuget.yml = .github\workflows\release-nuget.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution-items", ".solution-items", "{5D3F76F2-86B0-4E44-BAB1-0E4E9E6D7C61}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{E8B44FBA-4F2C-4CDA-9A61-2C8F7B3D91A4}"
+	ProjectSection(SolutionItems) = preProject
+		api\firefly-iii-0.10.4.yaml = api\firefly-iii-0.10.4.yaml
+		api\firefly-iii-1.0.0.yaml = api\firefly-iii-1.0.0.yaml
+		api\firefly-iii-1.0.1.yaml = api\firefly-iii-1.0.1.yaml
+		api\firefly-iii-1.0.2.yaml = api\firefly-iii-1.0.2.yaml
+		api\firefly-iii-1.1.0.yaml = api\firefly-iii-1.1.0.yaml
+		api\firefly-iii-1.2.0.yaml = api\firefly-iii-1.2.0.yaml
+		api\firefly-iii-1.3.0.yaml = api\firefly-iii-1.3.0.yaml
+		api\firefly-iii-1.4.0.yaml = api\firefly-iii-1.4.0.yaml
+		api\firefly-iii-1.5.0.yaml = api\firefly-iii-1.5.0.yaml
+		api\firefly-iii-1.5.1.yaml = api\firefly-iii-1.5.1.yaml
+		api\firefly-iii-1.5.2.yaml = api\firefly-iii-1.5.2.yaml
+		api\firefly-iii-1.5.3.yaml = api\firefly-iii-1.5.3.yaml
+		api\firefly-iii-1.5.4.yaml = api\firefly-iii-1.5.4.yaml
+		api\firefly-iii-1.5.5.yaml = api\firefly-iii-1.5.5.yaml
+		api\firefly-iii-1.5.6.yaml = api\firefly-iii-1.5.6.yaml
+		api\firefly-iii-2.0.0-v1.yaml = api\firefly-iii-2.0.0-v1.yaml
+		api\firefly-iii-2.0.0-v2.yaml = api\firefly-iii-2.0.0-v2.yaml
+		api\firefly-iii-2.0.2-v1.yaml = api\firefly-iii-2.0.2-v1.yaml
+		api\firefly-iii-2.0.2-v2.yaml = api\firefly-iii-2.0.2-v2.yaml
+		api\firefly-iii-6.1.22-v1.yaml = api\firefly-iii-6.1.22-v1.yaml
+		api\firefly-iii-6.1.22-v2.yaml = api\firefly-iii-6.1.22-v2.yaml
+		api\firefly-iii-6.1.24-v1.yaml = api\firefly-iii-6.1.24-v1.yaml
+		api\firefly-iii-6.1.24-v2.yaml = api\firefly-iii-6.1.24-v2.yaml
+		api\firefly-iii-6.2.0-v1.yaml = api\firefly-iii-6.2.0-v1.yaml
+		api\firefly-iii-6.2.0-v2.yaml = api\firefly-iii-6.2.0-v2.yaml
+		api\firefly-iii-6.2.1-v1.yaml = api\firefly-iii-6.2.1-v1.yaml
+		api\firefly-iii-6.2.1-v2.yaml = api\firefly-iii-6.2.1-v2.yaml
+		api\firefly-iii-6.2.10-v1.yaml = api\firefly-iii-6.2.10-v1.yaml
+		api\firefly-iii-6.2.10-v2.yaml = api\firefly-iii-6.2.10-v2.yaml
+		api\firefly-iii-6.2.13-v1.yaml = api\firefly-iii-6.2.13-v1.yaml
+		api\firefly-iii-6.2.13-v2.yaml = api\firefly-iii-6.2.13-v2.yaml
+		api\firefly-iii-6.2.2-v1.yaml = api\firefly-iii-6.2.2-v1.yaml
+		api\firefly-iii-6.2.2-v2.yaml = api\firefly-iii-6.2.2-v2.yaml
+		api\firefly-iii-6.2.21-v1.yaml = api\firefly-iii-6.2.21-v1.yaml
+		api\firefly-iii-6.2.21-v2.yaml = api\firefly-iii-6.2.21-v2.yaml
+		api\firefly-iii-6.2.7-v1.yaml = api\firefly-iii-6.2.7-v1.yaml
+		api\firefly-iii-6.2.7-v2.yaml = api\firefly-iii-6.2.7-v2.yaml
+		api\firefly-iii-6.2.8-v1.yaml = api\firefly-iii-6.2.8-v1.yaml
+		api\firefly-iii-6.2.8-v2.yaml = api\firefly-iii-6.2.8-v2.yaml
+		api\firefly-iii-6.2.9-v1.yaml = api\firefly-iii-6.2.9-v1.yaml
+		api\firefly-iii-6.2.9-v2.yaml = api\firefly-iii-6.2.9-v2.yaml
+		api\firefly-iii-6.3.0-v1.yaml = api\firefly-iii-6.3.0-v1.yaml
+		api\firefly-iii-6.4.0-v1.yaml = api\firefly-iii-6.4.0-v1.yaml
+		api\firefly-iii-6.4.14-v1.yaml = api\firefly-iii-6.4.14-v1.yaml
+		api\firefly-iii-6.4.16-v1.yaml = api\firefly-iii-6.4.16-v1.yaml
+		api\firefly-iii-6.4.17-v1.yaml = api\firefly-iii-6.4.17-v1.yaml
+		api\firefly-iii-6.4.2-v1.yaml = api\firefly-iii-6.4.2-v1.yaml
+		api\firefly-iii-6.4.3-v1.yaml = api\firefly-iii-6.4.3-v1.yaml
+		api\firefly-iii-6.4.4-v1.yaml = api\firefly-iii-6.4.4-v1.yaml
+		api\firefly-iii-6.4.8-v1.yaml = api\firefly-iii-6.4.8-v1.yaml
+		api\firefly-iii-6.5.1-v1.yaml = api\firefly-iii-6.5.1-v1.yaml
+		api\firefly-iii-6.5.5-v1.yaml = api\firefly-iii-6.5.5-v1.yaml
+		api\firefly-iii-v6.6.2-v1.yaml = api\firefly-iii-v6.6.2-v1.yaml
+		api\firefly-iii-v6.6.6-v1.yaml = api\firefly-iii-v6.6.6-v1.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,8 +96,18 @@ Global
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A5E3D8-6C14-4A9B-8F2E-D91C47A05E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A5E3D8-6C14-4A9B-8F2E-D91C47A05E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A5E3D8-6C14-4A9B-8F2E-D91C47A05E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A5E3D8-6C14-4A9B-8F2E-D91C47A05E36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1EC38C04-469A-4023-8620-A07B3FC40372} = {9A7E2940-A2E8-4C61-A525-19D163C42BF3}
+		{19F1DEBC-DE5E-4517-8062-F000CD499087} = {9A7E2940-A2E8-4C61-A525-19D163C42BF3}
+		{B7A5E3D8-6C14-4A9B-8F2E-D91C47A05E36} = {9A7E2940-A2E8-4C61-A525-19D163C42BF3}
+		{6F2B4A8D-91C3-4E57-A0D2-8B5E63F17C40} = {3C9E8B71-2D45-4F0A-B8E6-7A1F5C24D983}
 	EndGlobalSection
 EndGlobal
