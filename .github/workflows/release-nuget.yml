@@ -1,26 +1,48 @@
 name: Release to NuGet
 
+# Publishes the FireflyIIINet package to nuget.org.
+#
+# The package version is always the <Version> from FireflyIIINet.csproj — bump it there
+# before releasing. Trigger by publishing a GitHub Release (the tag is just a marker;
+# it does not set the version).
+#
+# Authentication uses the nuget_api_key repository secret. To move to nuget.org
+# Trusted Publishing (OIDC, no long-lived key) later, see MangaDex.NET's release.yml.
+
 on:
   release:
     types: [published]
-    
+
+permissions:
+  contents: read
+
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    defaults:
-      run:
-        working-directory: generated
+    timeout-minutes: 10
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v1
-    - name: Build
-      run: dotnet build -c Release
-    - name: Test
-      run: dotnet test -c Release --no-build
-    - name: Pack nugets
-      run: dotnet pack -c Release --no-build -p:PackageLicenseExpression=MIT --output .
-    - name: Push to NuGet
-      run: dotnet nuget push "*.nupkg" --api-key ${{secrets.nuget_api_key}} --source https://api.nuget.org/v3/index.json
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore FireflyIIINet.sln
+
+      - name: Build
+        run: dotnet build FireflyIIINet.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test FireflyIIINet.sln -c Release --no-build
+
+      - name: Pack
+        run: dotnet pack src/FireflyIIINet/FireflyIIINet.csproj -c Release --no-build -p:PackageLicenseExpression=MIT -o artifacts
+
+      - name: Push to NuGet
+        run: >
+          dotnet nuget push "artifacts/*.nupkg"
+          --api-key "${{ secrets.nuget_api_key }}"
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
