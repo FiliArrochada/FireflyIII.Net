@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -46,6 +45,7 @@ namespace FireflyIIINet.Model
         /// <value>Transaction group ID of the paid bill.</value>
         /// <example>123</example>
         [DataMember(Name = "transaction_group_id", EmitDefaultValue = true)]
+        [JsonPropertyName("transaction_group_id")]
         public string TransactionGroupId { get; private set; }
 
         /// <summary>
@@ -62,6 +62,7 @@ namespace FireflyIIINet.Model
         /// <value>Transaction journal ID of the paid bill.</value>
         /// <example>123</example>
         [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
+        [JsonPropertyName("transaction_journal_id")]
         public string TransactionJournalId { get; private set; }
 
         /// <summary>
@@ -78,6 +79,7 @@ namespace FireflyIIINet.Model
         /// <value>Date the bill was paid.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "date", EmitDefaultValue = true)]
+        [JsonPropertyName("date")]
         public DateTime Date { get; private set; }
 
         /// <summary>
@@ -109,7 +111,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

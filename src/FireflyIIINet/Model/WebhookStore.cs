@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,18 +36,21 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Trigger
         /// </summary>
         [DataMember(Name = "trigger", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("trigger")]
         public WebhookTrigger Trigger { get; set; }
 
         /// <summary>
         /// Gets or Sets Response
         /// </summary>
         [DataMember(Name = "response", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("response")]
         public WebhookResponse Response { get; set; }
 
         /// <summary>
         /// Gets or Sets Delivery
         /// </summary>
         [DataMember(Name = "delivery", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("delivery")]
         public WebhookDelivery Delivery { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookStore" /> class.
@@ -90,6 +92,7 @@ namespace FireflyIIINet.Model
         /// <value>Boolean to indicate if the webhook is active</value>
         /// <example>false</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
+        [JsonPropertyName("active")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -98,6 +101,7 @@ namespace FireflyIIINet.Model
         /// <value>A title for the webhook for easy recognition.</value>
         /// <example>Update magic mirror on new transaction</example>
         [DataMember(Name = "title", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         /// <summary>
@@ -106,6 +110,7 @@ namespace FireflyIIINet.Model
         /// <value>The URL of the webhook. Has to start with &#x60;https&#x60;.</value>
         /// <example>https://example.com</example>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
         /// <summary>
@@ -132,7 +137,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

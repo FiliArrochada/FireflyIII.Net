@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,6 +36,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("type")]
         public RuleTriggerKeyword Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleTriggerStore" /> class.
@@ -71,6 +71,7 @@ namespace FireflyIIINet.Model
         /// <value>The accompanying value the trigger responds to. This value is often mandatory, but this depends on the trigger.</value>
         /// <example>tag1</example>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("value")]
         public string Value { get; set; }
 
         /// <summary>
@@ -79,6 +80,7 @@ namespace FireflyIIINet.Model
         /// <value>Order of the trigger</value>
         /// <example>5</example>
         [DataMember(Name = "order", EmitDefaultValue = true)]
+        [JsonPropertyName("order")]
         public int Order { get; set; }
 
         /// <summary>
@@ -87,6 +89,7 @@ namespace FireflyIIINet.Model
         /// <value>If the trigger is active. Defaults to true.</value>
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
+        [JsonPropertyName("active")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -95,6 +98,7 @@ namespace FireflyIIINet.Model
         /// <value>When true, other triggers will not be checked if this trigger was triggered. Defaults to false.</value>
         /// <example>false</example>
         [DataMember(Name = "stop_processing", EmitDefaultValue = true)]
+        [JsonPropertyName("stop_processing")]
         public bool StopProcessing { get; set; }
 
         /// <summary>
@@ -120,7 +124,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

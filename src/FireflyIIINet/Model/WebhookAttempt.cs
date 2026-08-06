@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -52,6 +51,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -67,6 +67,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -83,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <value>The ID of the webhook message this attempt belongs to.</value>
         /// <example>5</example>
         [DataMember(Name = "webhook_message_id", EmitDefaultValue = true)]
+        [JsonPropertyName("webhook_message_id")]
         public string WebhookMessageId { get; set; }
 
         /// <summary>
@@ -91,6 +93,8 @@ namespace FireflyIIINet.Model
         /// <value>The HTTP status code of the error, if any.</value>
         /// <example>404</example>
         [DataMember(Name = "status_code", EmitDefaultValue = false)]
+        [JsonPropertyName("status_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? StatusCode { get; set; }
 
         /// <summary>
@@ -99,6 +103,8 @@ namespace FireflyIIINet.Model
         /// <value>Internal log for this attempt. May contain sensitive user data.</value>
         /// <example>Page not found</example>
         [DataMember(Name = "logs", EmitDefaultValue = false)]
+        [JsonPropertyName("logs")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Logs { get; set; }
 
         /// <summary>
@@ -107,6 +113,8 @@ namespace FireflyIIINet.Model
         /// <value>Webhook receiver response for this attempt, if any. May contain sensitive user data.</value>
         /// <example>Page not found</example>
         [DataMember(Name = "response", EmitDefaultValue = false)]
+        [JsonPropertyName("response")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Response { get; set; }
 
         /// <summary>
@@ -133,7 +141,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

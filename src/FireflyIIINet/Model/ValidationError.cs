@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -48,12 +47,14 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>The given data was invalid.</example>
         [DataMember(Name = "message", EmitDefaultValue = true)]
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
         /// <summary>
         /// Gets or Sets Errors
         /// </summary>
         [DataMember(Name = "errors", EmitDefaultValue = true)]
+        [JsonPropertyName("errors")]
         public ValidationErrorErrors Errors { get; set; }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

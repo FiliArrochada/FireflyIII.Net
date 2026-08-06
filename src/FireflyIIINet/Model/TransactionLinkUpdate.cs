@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -55,6 +54,7 @@ namespace FireflyIIINet.Model
         /// <value>The link type ID to use. Use this field OR use the link_type_name field.</value>
         /// <example>5</example>
         [DataMember(Name = "link_type_id", EmitDefaultValue = true)]
+        [JsonPropertyName("link_type_id")]
         public string LinkTypeId { get; set; }
 
         /// <summary>
@@ -63,6 +63,7 @@ namespace FireflyIIINet.Model
         /// <value>The link type name to use. Use this field OR use the link_type_id field.</value>
         /// <example>Is paid by</example>
         [DataMember(Name = "link_type_name", EmitDefaultValue = true)]
+        [JsonPropertyName("link_type_name")]
         public string LinkTypeName { get; set; }
 
         /// <summary>
@@ -71,6 +72,7 @@ namespace FireflyIIINet.Model
         /// <value>The inward transaction transaction_journal_id for the link. This becomes the &#39;is paid by&#39; transaction of the set.</value>
         /// <example>131</example>
         [DataMember(Name = "inward_id", EmitDefaultValue = true)]
+        [JsonPropertyName("inward_id")]
         public string InwardId { get; set; }
 
         /// <summary>
@@ -79,6 +81,7 @@ namespace FireflyIIINet.Model
         /// <value>The outward transaction transaction_journal_id for the link. This becomes the &#39;pays for&#39; transaction of the set.</value>
         /// <example>131</example>
         [DataMember(Name = "outward_id", EmitDefaultValue = true)]
+        [JsonPropertyName("outward_id")]
         public string OutwardId { get; set; }
 
         /// <summary>
@@ -87,6 +90,8 @@ namespace FireflyIIINet.Model
         /// <value>Optional. Some notes. If you submit an empty string the current notes will be removed</value>
         /// <example>Some example notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -112,7 +117,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

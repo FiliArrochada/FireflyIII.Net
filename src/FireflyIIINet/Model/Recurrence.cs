@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,6 +36,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = true)]
+        [JsonPropertyName("type")]
         public RecurrenceTransactionType? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurrence" /> class.
@@ -72,6 +72,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -87,6 +88,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -102,6 +104,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Rent</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         /// <summary>
@@ -110,6 +113,7 @@ namespace FireflyIIINet.Model
         /// <value>Not to be confused with the description of the actual transaction(s) being created.</value>
         /// <example>Recurring transaction for the monthly rent</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
         /// <summary>
@@ -118,6 +122,7 @@ namespace FireflyIIINet.Model
         /// <value>First time the recurring transaction will fire. Must be after today.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
         [DataMember(Name = "first_date", EmitDefaultValue = true)]
+        [JsonPropertyName("first_date")]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime FirstDate { get; set; }
 
@@ -127,6 +132,8 @@ namespace FireflyIIINet.Model
         /// <value>Last time the recurring transaction has fired.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
         [DataMember(Name = "latest_date", EmitDefaultValue = false)]
+        [JsonPropertyName("latest_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime? LatestDate { get; private set; }
 
@@ -144,6 +151,8 @@ namespace FireflyIIINet.Model
         /// <value>Date until the recurring transaction can fire. Use either this field or repetitions.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
         [DataMember(Name = "repeat_until", EmitDefaultValue = false)]
+        [JsonPropertyName("repeat_until")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime? RepeatUntil { get; set; }
 
@@ -153,6 +162,8 @@ namespace FireflyIIINet.Model
         /// <value>Max number of created transactions. Use either this field or repeat_until.</value>
         /// <example>5</example>
         [DataMember(Name = "nr_of_repetitions", EmitDefaultValue = false)]
+        [JsonPropertyName("nr_of_repetitions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? NrOfRepetitions { get; set; }
 
         /// <summary>
@@ -161,6 +172,7 @@ namespace FireflyIIINet.Model
         /// <value>Whether or not to fire the rules after the creation of a transaction.</value>
         /// <example>true</example>
         [DataMember(Name = "apply_rules", EmitDefaultValue = true)]
+        [JsonPropertyName("apply_rules")]
         public bool ApplyRules { get; set; }
 
         /// <summary>
@@ -169,6 +181,7 @@ namespace FireflyIIINet.Model
         /// <value>If the recurrence is even active.</value>
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
+        [JsonPropertyName("active")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -176,18 +189,22 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
         /// Gets or Sets Repetitions
         /// </summary>
         [DataMember(Name = "repetitions", EmitDefaultValue = true)]
+        [JsonPropertyName("repetitions")]
         public List<RecurrenceRepetition> Repetitions { get; set; }
 
         /// <summary>
         /// Gets or Sets Transactions
         /// </summary>
         [DataMember(Name = "transactions", EmitDefaultValue = true)]
+        [JsonPropertyName("transactions")]
         public List<RecurrenceTransaction> Transactions { get; set; }
 
         /// <summary>
@@ -222,7 +239,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

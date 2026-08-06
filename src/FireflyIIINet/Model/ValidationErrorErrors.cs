@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -63,60 +62,70 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Email
         /// </summary>
         [DataMember(Name = "email", EmitDefaultValue = true)]
+        [JsonPropertyName("email")]
         public List<string> Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Blocked
         /// </summary>
         [DataMember(Name = "blocked", EmitDefaultValue = true)]
+        [JsonPropertyName("blocked")]
         public List<string> Blocked { get; set; }
 
         /// <summary>
         /// Gets or Sets Role
         /// </summary>
         [DataMember(Name = "role", EmitDefaultValue = true)]
+        [JsonPropertyName("role")]
         public List<string> Role { get; set; }
 
         /// <summary>
         /// Gets or Sets BlockedCode
         /// </summary>
         [DataMember(Name = "blocked_code", EmitDefaultValue = true)]
+        [JsonPropertyName("blocked_code")]
         public List<string> BlockedCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
         [DataMember(Name = "name", EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public List<string> Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = true)]
+        [JsonPropertyName("type")]
         public List<string> Type { get; set; }
 
         /// <summary>
         /// Gets or Sets Iban
         /// </summary>
         [DataMember(Name = "iban", EmitDefaultValue = true)]
+        [JsonPropertyName("iban")]
         public List<string> Iban { get; set; }
 
         /// <summary>
         /// Gets or Sets Start
         /// </summary>
         [DataMember(Name = "start", EmitDefaultValue = true)]
+        [JsonPropertyName("start")]
         public List<string> Start { get; set; }
 
         /// <summary>
         /// Gets or Sets End
         /// </summary>
         [DataMember(Name = "end", EmitDefaultValue = true)]
+        [JsonPropertyName("end")]
         public List<string> End { get; set; }
 
         /// <summary>
         /// Gets or Sets Date
         /// </summary>
         [DataMember(Name = "date", EmitDefaultValue = true)]
+        [JsonPropertyName("date")]
         public List<string> Date { get; set; }
 
         /// <summary>
@@ -147,7 +156,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

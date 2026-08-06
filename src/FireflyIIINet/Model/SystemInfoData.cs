@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -54,6 +53,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>5.8.0-alpha.1</example>
         [DataMember(Name = "version", EmitDefaultValue = true)]
+        [JsonPropertyName("version")]
         public string VarVersion { get; set; }
 
         /// <summary>
@@ -61,6 +61,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2.0.0-alpha.1</example>
         [DataMember(Name = "api_version", EmitDefaultValue = true)]
+        [JsonPropertyName("api_version")]
         public string ApiVersion { get; set; }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>8.1.5</example>
         [DataMember(Name = "php_version", EmitDefaultValue = true)]
+        [JsonPropertyName("php_version")]
         public string PhpVersion { get; set; }
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Linux</example>
         [DataMember(Name = "os", EmitDefaultValue = true)]
+        [JsonPropertyName("os")]
         public string Os { get; set; }
 
         /// <summary>
@@ -82,6 +85,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>mysql</example>
         [DataMember(Name = "driver", EmitDefaultValue = true)]
+        [JsonPropertyName("driver")]
         public string Driver { get; set; }
 
         /// <summary>
@@ -107,7 +111,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

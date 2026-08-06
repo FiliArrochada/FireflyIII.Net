@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -77,6 +76,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2</example>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         /// <summary>
@@ -85,6 +85,7 @@ namespace FireflyIIINet.Model
         /// <value>Name of the piggy bank found by an auto-complete search.</value>
         /// <example>New couch</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -93,6 +94,7 @@ namespace FireflyIIINet.Model
         /// <value>Name of the piggy bank found by an auto-complete search with the current balance formatted nicely.</value>
         /// <example>New couch ($ 12.34)</example>
         [DataMember(Name = "name_with_balance", EmitDefaultValue = true)]
+        [JsonPropertyName("name_with_balance")]
         public string NameWithBalance { get; set; }
 
         /// <summary>
@@ -101,6 +103,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency ID for this piggy bank.</value>
         /// <example>12</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -109,6 +112,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency code for this piggy bank.</value>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -116,6 +120,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_symbol")]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -123,6 +128,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_decimal_places")]
         public int CurrencyDecimalPlaces { get; set; }
 
         /// <summary>
@@ -131,6 +137,8 @@ namespace FireflyIIINet.Model
         /// <value>The group ID of the group this object is part of. NULL if no group.</value>
         /// <example>5</example>
         [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
+        [JsonPropertyName("object_group_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -139,6 +147,8 @@ namespace FireflyIIINet.Model
         /// <value>The name of the group. NULL if no group.</value>
         /// <example>Example Group</example>
         [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
+        [JsonPropertyName("object_group_title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>
@@ -168,7 +178,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

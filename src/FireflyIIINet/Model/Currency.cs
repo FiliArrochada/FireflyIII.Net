@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -76,6 +75,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -91,6 +91,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -107,6 +108,7 @@ namespace FireflyIIINet.Model
         /// <value>Defaults to true</value>
         /// <example>true</example>
         [DataMember(Name = "enabled", EmitDefaultValue = true)]
+        [JsonPropertyName("enabled")]
         public bool Enabled { get; set; }
 
         /// <summary>
@@ -115,6 +117,7 @@ namespace FireflyIIINet.Model
         /// <value>Make this currency the default currency.</value>
         /// <example>false</example>
         [DataMember(Name = "default", EmitDefaultValue = true)]
+        [JsonPropertyName("default")]
         public bool VarDefault { get; set; }
 
         /// <summary>
@@ -122,6 +125,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>AMS</example>
         [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
         /// <summary>
@@ -129,6 +133,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Ankh-Morpork dollar</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -136,6 +141,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>AM$</example>
         [DataMember(Name = "symbol", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
 
         /// <summary>
@@ -144,6 +150,7 @@ namespace FireflyIIINet.Model
         /// <value>Supports 0-16 decimals.</value>
         /// <example>2</example>
         [DataMember(Name = "decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("decimal_places")]
         public int DecimalPlaces { get; set; }
 
         /// <summary>
@@ -172,7 +179,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

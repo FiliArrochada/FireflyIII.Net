@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -30,7 +29,7 @@ namespace FireflyIIINet.Model
     /// The trigger for the webhook.
     /// </summary>
     /// <value>The trigger for the webhook.</value>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(FireflyIIINet.Client.StringEnumMemberConverter))]
     public enum WebhookTrigger
     {
         /// <summary>

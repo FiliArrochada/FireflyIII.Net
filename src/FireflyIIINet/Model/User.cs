@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,12 +36,16 @@ namespace FireflyIIINet.Model
         /// Gets or Sets BlockedCode
         /// </summary>
         [DataMember(Name = "blocked_code", EmitDefaultValue = false)]
+        [JsonPropertyName("blocked_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public UserBlockedCodeProperty? BlockedCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Role
         /// </summary>
         [DataMember(Name = "role", EmitDefaultValue = false)]
+        [JsonPropertyName("role")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public UserRoleProperty? Role { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="User" /> class.
@@ -74,6 +77,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -89,6 +93,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -105,6 +110,7 @@ namespace FireflyIIINet.Model
         /// <value>The new users email address.</value>
         /// <example>james@firefly-iii.org</example>
         [DataMember(Name = "email", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
 
         /// <summary>
@@ -113,6 +119,7 @@ namespace FireflyIIINet.Model
         /// <value>Boolean to indicate if the user is blocked.</value>
         /// <example>false</example>
         [DataMember(Name = "blocked", EmitDefaultValue = true)]
+        [JsonPropertyName("blocked")]
         public bool Blocked { get; set; }
 
         /// <summary>
@@ -139,7 +146,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

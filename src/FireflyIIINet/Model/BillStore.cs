@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,6 +36,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets RepeatFreq
         /// </summary>
         [DataMember(Name = "repeat_freq", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("repeat_freq")]
         public BillRepeatFrequency RepeatFreq { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BillStore" /> class.
@@ -99,6 +99,7 @@ namespace FireflyIIINet.Model
         /// <value>Use either currency_id or currency_code</value>
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -107,6 +108,7 @@ namespace FireflyIIINet.Model
         /// <value>Use either currency_id or currency_code</value>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -114,6 +116,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Rent</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -121,6 +124,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>123.45</example>
         [DataMember(Name = "amount_min", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("amount_min")]
         public string AmountMin { get; set; }
 
         /// <summary>
@@ -128,6 +132,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>123.45</example>
         [DataMember(Name = "amount_max", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("amount_max")]
         public string AmountMax { get; set; }
 
         /// <summary>
@@ -135,6 +140,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "date", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("date")]
         public DateTime Date { get; set; }
 
         /// <summary>
@@ -143,6 +149,7 @@ namespace FireflyIIINet.Model
         /// <value>The date after which this bill is no longer valid or applicable</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "end_date", EmitDefaultValue = true)]
+        [JsonPropertyName("end_date")]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -151,6 +158,7 @@ namespace FireflyIIINet.Model
         /// <value>The date before which the bill must be renewed (or cancelled)</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "extension_date", EmitDefaultValue = true)]
+        [JsonPropertyName("extension_date")]
         public DateTime ExtensionDate { get; set; }
 
         /// <summary>
@@ -159,6 +167,7 @@ namespace FireflyIIINet.Model
         /// <value>How often the bill must be skipped. 1 means a bi-monthly bill.</value>
         /// <example>0</example>
         [DataMember(Name = "skip", EmitDefaultValue = true)]
+        [JsonPropertyName("skip")]
         public int Skip { get; set; }
 
         /// <summary>
@@ -167,6 +176,7 @@ namespace FireflyIIINet.Model
         /// <value>If the bill is active.</value>
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
+        [JsonPropertyName("active")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -174,6 +184,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some example notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -182,6 +194,8 @@ namespace FireflyIIINet.Model
         /// <value>The group ID of the group this object is part of. NULL if no group.</value>
         /// <example>5</example>
         [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
+        [JsonPropertyName("object_group_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -190,6 +204,8 @@ namespace FireflyIIINet.Model
         /// <value>The name of the group. NULL if no group.</value>
         /// <example>Example Group</example>
         [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
+        [JsonPropertyName("object_group_title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>
@@ -224,7 +240,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

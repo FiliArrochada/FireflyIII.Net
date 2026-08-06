@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -65,6 +64,7 @@ namespace FireflyIIINet.Model
         /// <value>This is a reference to the type of info shared, not influenced by translations or user preferences. The EUR value is a reference to the currency code. Possibilities are: balance-in-ABC, spent-in-ABC, earned-in-ABC, bills-paid-in-ABC, bills-unpaid-in-ABC, left-to-spend-in-ABC and net-worth-in-ABC.</value>
         /// <example>balance-in-EUR</example>
         [DataMember(Name = "key", EmitDefaultValue = true)]
+        [JsonPropertyName("key")]
         public string Key { get; set; }
 
         /// <summary>
@@ -73,6 +73,7 @@ namespace FireflyIIINet.Model
         /// <value>A translated title for the information shared.</value>
         /// <example>Balance ($)</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace FireflyIIINet.Model
         /// <value>The amount as a float.</value>
         /// <example>123.45</example>
         [DataMember(Name = "monetary_value", EmitDefaultValue = true)]
+        [JsonPropertyName("monetary_value")]
         public double MonetaryValue { get; set; }
 
         /// <summary>
@@ -89,6 +91,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency ID of the associated currency.</value>
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -96,6 +99,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -103,6 +107,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_symbol")]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -111,6 +116,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimals for the associated currency.</value>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_decimal_places")]
         public int CurrencyDecimalPlaces { get; set; }
 
         /// <summary>
@@ -119,6 +125,7 @@ namespace FireflyIIINet.Model
         /// <value>The amount formatted according to the users locale</value>
         /// <example>$ 12.45</example>
         [DataMember(Name = "value_parsed", EmitDefaultValue = true)]
+        [JsonPropertyName("value_parsed")]
         public string ValueParsed { get; set; }
 
         /// <summary>
@@ -127,6 +134,7 @@ namespace FireflyIIINet.Model
         /// <value>Reference to a font-awesome icon without the fa- part.</value>
         /// <example>balance-scale</example>
         [DataMember(Name = "local_icon", EmitDefaultValue = true)]
+        [JsonPropertyName("local_icon")]
         public string LocalIcon { get; set; }
 
         /// <summary>
@@ -135,6 +143,7 @@ namespace FireflyIIINet.Model
         /// <value>A short explanation of the amounts origin. Already formatted according to the locale of the user or translated, if relevant.</value>
         /// <example>$20 + $-40</example>
         [DataMember(Name = "sub_title", EmitDefaultValue = true)]
+        [JsonPropertyName("sub_title")]
         public string SubTitle { get; set; }
 
         /// <summary>
@@ -165,7 +174,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

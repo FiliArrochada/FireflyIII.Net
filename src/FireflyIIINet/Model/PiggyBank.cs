@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -84,6 +83,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -99,6 +99,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -115,6 +116,7 @@ namespace FireflyIIINet.Model
         /// <value>The ID of the asset account this piggy bank is connected to.</value>
         /// <example>13</example>
         [DataMember(Name = "account_id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("account_id")]
         public string AccountId { get; set; }
 
         /// <summary>
@@ -123,6 +125,7 @@ namespace FireflyIIINet.Model
         /// <value>The name of the asset account this piggy bank is connected to.</value>
         /// <example>Savings account</example>
         [DataMember(Name = "account_name", EmitDefaultValue = true)]
+        [JsonPropertyName("account_name")]
         public string AccountName { get; private set; }
 
         /// <summary>
@@ -138,6 +141,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>New digital camera</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -145,6 +149,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; private set; }
 
         /// <summary>
@@ -160,6 +165,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>USD</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; private set; }
 
         /// <summary>
@@ -175,6 +181,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_symbol")]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -191,6 +198,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimals supported by the currency</value>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_decimal_places")]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -206,6 +214,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>123.45</example>
         [DataMember(Name = "target_amount", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("target_amount")]
         public string TargetAmount { get; set; }
 
         /// <summary>
@@ -213,6 +222,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>12.5</example>
         [DataMember(Name = "percentage", EmitDefaultValue = false)]
+        [JsonPropertyName("percentage")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public float? Percentage { get; private set; }
 
         /// <summary>
@@ -228,6 +239,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>123.45</example>
         [DataMember(Name = "current_amount", EmitDefaultValue = true)]
+        [JsonPropertyName("current_amount")]
         public string CurrentAmount { get; set; }
 
         /// <summary>
@@ -235,6 +247,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>700.00</example>
         [DataMember(Name = "left_to_save", EmitDefaultValue = false)]
+        [JsonPropertyName("left_to_save")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string LeftToSave { get; private set; }
 
         /// <summary>
@@ -250,6 +264,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>12.45</example>
         [DataMember(Name = "save_per_month", EmitDefaultValue = false)]
+        [JsonPropertyName("save_per_month")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SavePerMonth { get; private set; }
 
         /// <summary>
@@ -266,6 +282,7 @@ namespace FireflyIIINet.Model
         /// <value>The date you started with this piggy bank.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
         [DataMember(Name = "start_date", EmitDefaultValue = true)]
+        [JsonPropertyName("start_date")]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime StartDate { get; set; }
 
@@ -275,6 +292,8 @@ namespace FireflyIIINet.Model
         /// <value>The date you intend to finish saving money.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
         [DataMember(Name = "target_date", EmitDefaultValue = false)]
+        [JsonPropertyName("target_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime? TargetDate { get; set; }
 
@@ -283,6 +302,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>5</example>
         [DataMember(Name = "order", EmitDefaultValue = true)]
+        [JsonPropertyName("order")]
         public int Order { get; set; }
 
         /// <summary>
@@ -290,6 +310,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
+        [JsonPropertyName("active")]
         public bool Active { get; private set; }
 
         /// <summary>
@@ -305,6 +326,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -313,6 +336,8 @@ namespace FireflyIIINet.Model
         /// <value>The group ID of the group this object is part of. NULL if no group.</value>
         /// <example>5</example>
         [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
+        [JsonPropertyName("object_group_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -321,6 +346,8 @@ namespace FireflyIIINet.Model
         /// <value>The order of the group. At least 1, for the highest sorting.</value>
         /// <example>5</example>
         [DataMember(Name = "object_group_order", EmitDefaultValue = false)]
+        [JsonPropertyName("object_group_order")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? ObjectGroupOrder { get; private set; }
 
         /// <summary>
@@ -337,6 +364,8 @@ namespace FireflyIIINet.Model
         /// <value>The name of the group. NULL if no group.</value>
         /// <example>Example Group</example>
         [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
+        [JsonPropertyName("object_group_title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>
@@ -379,7 +408,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

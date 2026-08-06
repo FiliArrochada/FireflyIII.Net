@@ -18,7 +18,6 @@ using System.Collections.Generic;
 using FireflyIIINet.Model;
 using FireflyIIINet.Client;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace FireflyIIINet.Test.Model
 {

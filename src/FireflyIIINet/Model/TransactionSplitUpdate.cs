@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,6 +36,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = true)]
+        [JsonPropertyName("type")]
         public TransactionTypeProperty? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionSplitUpdate" /> class.
@@ -137,6 +137,7 @@ namespace FireflyIIINet.Model
         /// <value>Transaction journal ID of current transaction (split).</value>
         /// <example>123</example>
         [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
+        [JsonPropertyName("transaction_journal_id")]
         public string TransactionJournalId { get; set; }
 
         /// <summary>
@@ -145,6 +146,7 @@ namespace FireflyIIINet.Model
         /// <value>Date of the transaction</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "date", EmitDefaultValue = true)]
+        [JsonPropertyName("date")]
         public DateTime Date { get; set; }
 
         /// <summary>
@@ -153,6 +155,7 @@ namespace FireflyIIINet.Model
         /// <value>Amount of the transaction.</value>
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
+        [JsonPropertyName("amount")]
         public string Amount { get; set; }
 
         /// <summary>
@@ -161,6 +164,7 @@ namespace FireflyIIINet.Model
         /// <value>Description of the transaction.</value>
         /// <example>Vegetables</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
         /// <summary>
@@ -169,6 +173,8 @@ namespace FireflyIIINet.Model
         /// <value>Order of this entry in the list of transactions.</value>
         /// <example>0</example>
         [DataMember(Name = "order", EmitDefaultValue = false)]
+        [JsonPropertyName("order")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? Order { get; set; }
 
         /// <summary>
@@ -177,6 +183,8 @@ namespace FireflyIIINet.Model
         /// <value>Currency ID. Default is the source account&#39;s currency, or the user&#39;s default currency. Can be used instead of currency_code.</value>
         /// <example>12</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = false)]
+        [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -185,6 +193,8 @@ namespace FireflyIIINet.Model
         /// <value>Currency code. Default is the source account&#39;s currency, or the user&#39;s default currency. Can be used instead of currency_id.</value>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = false)]
+        [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -192,6 +202,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_symbol")]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -207,6 +218,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_name")]
         public string CurrencyName { get; private set; }
 
         /// <summary>
@@ -223,6 +235,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimals used in this currency.</value>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_decimal_places")]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -239,6 +252,8 @@ namespace FireflyIIINet.Model
         /// <value>The amount in a foreign currency.</value>
         /// <example>123.45</example>
         [DataMember(Name = "foreign_amount", EmitDefaultValue = false)]
+        [JsonPropertyName("foreign_amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ForeignAmount { get; set; }
 
         /// <summary>
@@ -247,6 +262,8 @@ namespace FireflyIIINet.Model
         /// <value>Currency ID of the foreign currency. Default is null. Is required when you submit a foreign amount.</value>
         /// <example>17</example>
         [DataMember(Name = "foreign_currency_id", EmitDefaultValue = false)]
+        [JsonPropertyName("foreign_currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ForeignCurrencyId { get; set; }
 
         /// <summary>
@@ -255,6 +272,8 @@ namespace FireflyIIINet.Model
         /// <value>Currency code of the foreign currency. Default is NULL. Can be used instead of the foreign_currency_id, but this or the ID is required when submitting a foreign amount.</value>
         /// <example>USD</example>
         [DataMember(Name = "foreign_currency_code", EmitDefaultValue = false)]
+        [JsonPropertyName("foreign_currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ForeignCurrencyCode { get; set; }
 
         /// <summary>
@@ -262,6 +281,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>$</example>
         [DataMember(Name = "foreign_currency_symbol", EmitDefaultValue = false)]
+        [JsonPropertyName("foreign_currency_symbol")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ForeignCurrencySymbol { get; private set; }
 
         /// <summary>
@@ -278,6 +299,8 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimals in the currency</value>
         /// <example>2</example>
         [DataMember(Name = "foreign_currency_decimal_places", EmitDefaultValue = false)]
+        [JsonPropertyName("foreign_currency_decimal_places")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? ForeignCurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -294,6 +317,8 @@ namespace FireflyIIINet.Model
         /// <value>The budget ID for this transaction.</value>
         /// <example>4</example>
         [DataMember(Name = "budget_id", EmitDefaultValue = false)]
+        [JsonPropertyName("budget_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string BudgetId { get; set; }
 
         /// <summary>
@@ -302,6 +327,8 @@ namespace FireflyIIINet.Model
         /// <value>The name of the budget to be used. If the budget name is unknown, the ID will be used or the value will be ignored.</value>
         /// <example>Groceries</example>
         [DataMember(Name = "budget_name", EmitDefaultValue = false)]
+        [JsonPropertyName("budget_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string BudgetName { get; private set; }
 
         /// <summary>
@@ -318,6 +345,8 @@ namespace FireflyIIINet.Model
         /// <value>The category ID for this transaction.</value>
         /// <example>43</example>
         [DataMember(Name = "category_id", EmitDefaultValue = false)]
+        [JsonPropertyName("category_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CategoryId { get; set; }
 
         /// <summary>
@@ -326,6 +355,8 @@ namespace FireflyIIINet.Model
         /// <value>The name of the category to be used. If the category is unknown, it will be created. If the ID and the name point to different categories, the ID overrules the name.</value>
         /// <example>Groceries</example>
         [DataMember(Name = "category_name", EmitDefaultValue = false)]
+        [JsonPropertyName("category_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string CategoryName { get; set; }
 
         /// <summary>
@@ -334,6 +365,8 @@ namespace FireflyIIINet.Model
         /// <value>ID of the source account. For a withdrawal or a transfer, this must always be an asset account. For deposits, this must be a revenue account.</value>
         /// <example>2</example>
         [DataMember(Name = "source_id", EmitDefaultValue = false)]
+        [JsonPropertyName("source_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SourceId { get; set; }
 
         /// <summary>
@@ -342,6 +375,8 @@ namespace FireflyIIINet.Model
         /// <value>Name of the source account. For a withdrawal or a transfer, this must always be an asset account. For deposits, this must be a revenue account. Can be used instead of the source_id. If the transaction is a deposit, the source_name can be filled in freely: the account will be created based on the name.</value>
         /// <example>Checking account</example>
         [DataMember(Name = "source_name", EmitDefaultValue = false)]
+        [JsonPropertyName("source_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SourceName { get; set; }
 
         /// <summary>
@@ -349,6 +384,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>NL02ABNA0123456789</example>
         [DataMember(Name = "source_iban", EmitDefaultValue = false)]
+        [JsonPropertyName("source_iban")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SourceIban { get; set; }
 
         /// <summary>
@@ -357,6 +394,8 @@ namespace FireflyIIINet.Model
         /// <value>ID of the destination account. For a deposit or a transfer, this must always be an asset account. For withdrawals this must be an expense account.</value>
         /// <example>2</example>
         [DataMember(Name = "destination_id", EmitDefaultValue = false)]
+        [JsonPropertyName("destination_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string DestinationId { get; set; }
 
         /// <summary>
@@ -365,6 +404,8 @@ namespace FireflyIIINet.Model
         /// <value>Name of the destination account. You can submit the name instead of the ID. For everything except transfers, the account will be auto-generated if unknown, so submitting a name is enough.</value>
         /// <example>Buy and Large</example>
         [DataMember(Name = "destination_name", EmitDefaultValue = false)]
+        [JsonPropertyName("destination_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string DestinationName { get; set; }
 
         /// <summary>
@@ -372,6 +413,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>NL02ABNA0123456789</example>
         [DataMember(Name = "destination_iban", EmitDefaultValue = false)]
+        [JsonPropertyName("destination_iban")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string DestinationIban { get; set; }
 
         /// <summary>
@@ -380,6 +423,7 @@ namespace FireflyIIINet.Model
         /// <value>If the transaction has been reconciled already. When you set this, the amount can no longer be edited by the user.</value>
         /// <example>false</example>
         [DataMember(Name = "reconciled", EmitDefaultValue = true)]
+        [JsonPropertyName("reconciled")]
         public bool Reconciled { get; set; }
 
         /// <summary>
@@ -388,6 +432,8 @@ namespace FireflyIIINet.Model
         /// <value>Optional. Use either this or the bill_name</value>
         /// <example>111</example>
         [DataMember(Name = "bill_id", EmitDefaultValue = false)]
+        [JsonPropertyName("bill_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string BillId { get; set; }
 
         /// <summary>
@@ -396,6 +442,8 @@ namespace FireflyIIINet.Model
         /// <value>Optional. Use either this or the bill_id</value>
         /// <example>Monthly rent</example>
         [DataMember(Name = "bill_name", EmitDefaultValue = false)]
+        [JsonPropertyName("bill_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string BillName { get; set; }
 
         /// <summary>
@@ -403,6 +451,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Array of tags.</value>
         [DataMember(Name = "tags", EmitDefaultValue = false)]
+        [JsonPropertyName("tags")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public List<string> Tags { get; set; }
 
         /// <summary>
@@ -410,6 +460,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some example notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -417,6 +469,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Reference to internal reference of other systems.</value>
         [DataMember(Name = "internal_reference", EmitDefaultValue = false)]
+        [JsonPropertyName("internal_reference")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string InternalReference { get; set; }
 
         /// <summary>
@@ -424,6 +478,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Reference to external ID in other systems.</value>
         [DataMember(Name = "external_id", EmitDefaultValue = false)]
+        [JsonPropertyName("external_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ExternalId { get; set; }
 
         /// <summary>
@@ -431,6 +487,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>External, custom URL for this transaction.</value>
         [DataMember(Name = "external_url", EmitDefaultValue = false)]
+        [JsonPropertyName("external_url")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ExternalUrl { get; set; }
 
         /// <summary>
@@ -438,6 +496,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Internal ID of bunq transaction.</value>
         [DataMember(Name = "bunq_payment_id", EmitDefaultValue = false)]
+        [JsonPropertyName("bunq_payment_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string BunqPaymentId { get; set; }
 
         /// <summary>
@@ -445,6 +505,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA Clearing Code</value>
         [DataMember(Name = "sepa_cc", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_cc")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaCc { get; set; }
 
         /// <summary>
@@ -452,6 +514,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA Opposing Account Identifier</value>
         [DataMember(Name = "sepa_ct_op", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_ct_op")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaCtOp { get; set; }
 
         /// <summary>
@@ -459,6 +523,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA end-to-end Identifier</value>
         [DataMember(Name = "sepa_ct_id", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_ct_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaCtId { get; set; }
 
         /// <summary>
@@ -466,6 +532,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA mandate identifier</value>
         [DataMember(Name = "sepa_db", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_db")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaDb { get; set; }
 
         /// <summary>
@@ -473,6 +541,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA Country</value>
         [DataMember(Name = "sepa_country", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_country")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaCountry { get; set; }
 
         /// <summary>
@@ -480,6 +550,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA External Purpose indicator</value>
         [DataMember(Name = "sepa_ep", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_ep")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaEp { get; set; }
 
         /// <summary>
@@ -487,6 +559,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA Creditor Identifier</value>
         [DataMember(Name = "sepa_ci", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_ci")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaCi { get; set; }
 
         /// <summary>
@@ -494,42 +568,56 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>SEPA Batch ID</value>
         [DataMember(Name = "sepa_batch_id", EmitDefaultValue = false)]
+        [JsonPropertyName("sepa_batch_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string SepaBatchId { get; set; }
 
         /// <summary>
         /// Gets or Sets InterestDate
         /// </summary>
         [DataMember(Name = "interest_date", EmitDefaultValue = false)]
+        [JsonPropertyName("interest_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime? InterestDate { get; set; }
 
         /// <summary>
         /// Gets or Sets BookDate
         /// </summary>
         [DataMember(Name = "book_date", EmitDefaultValue = false)]
+        [JsonPropertyName("book_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime? BookDate { get; set; }
 
         /// <summary>
         /// Gets or Sets ProcessDate
         /// </summary>
         [DataMember(Name = "process_date", EmitDefaultValue = false)]
+        [JsonPropertyName("process_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime? ProcessDate { get; set; }
 
         /// <summary>
         /// Gets or Sets DueDate
         /// </summary>
         [DataMember(Name = "due_date", EmitDefaultValue = false)]
+        [JsonPropertyName("due_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime? DueDate { get; set; }
 
         /// <summary>
         /// Gets or Sets PaymentDate
         /// </summary>
         [DataMember(Name = "payment_date", EmitDefaultValue = false)]
+        [JsonPropertyName("payment_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime? PaymentDate { get; set; }
 
         /// <summary>
         /// Gets or Sets InvoiceDate
         /// </summary>
         [DataMember(Name = "invoice_date", EmitDefaultValue = false)]
+        [JsonPropertyName("invoice_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime? InvoiceDate { get; set; }
 
         /// <summary>
@@ -599,7 +687,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

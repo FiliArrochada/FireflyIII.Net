@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -53,6 +52,7 @@ namespace FireflyIIINet.Model
         /// <value>This value tells you if this specific cron job actually fired. It may not fire. Some cron jobs only fire every 24 hours, for example. </value>
         /// <example>true</example>
         [DataMember(Name = "job_fired", EmitDefaultValue = true)]
+        [JsonPropertyName("job_fired")]
         public bool? JobFired { get; set; }
 
         /// <summary>
@@ -61,6 +61,7 @@ namespace FireflyIIINet.Model
         /// <value>This value tells you if this specific cron job actually did something. The job may fire but not change anything. </value>
         /// <example>true</example>
         [DataMember(Name = "job_succeeded", EmitDefaultValue = true)]
+        [JsonPropertyName("job_succeeded")]
         public bool? JobSucceeded { get; set; }
 
         /// <summary>
@@ -69,6 +70,7 @@ namespace FireflyIIINet.Model
         /// <value>If the cron job ran into some kind of an error, this value will be true.</value>
         /// <example>false</example>
         [DataMember(Name = "job_errored", EmitDefaultValue = true)]
+        [JsonPropertyName("job_errored")]
         public bool? JobErrored { get; set; }
 
         /// <summary>
@@ -77,6 +79,8 @@ namespace FireflyIIINet.Model
         /// <value>If the cron job ran into some kind of an error, this value will be the error message. The success message if the job actually ran OK. </value>
         /// <example>Cron result message</example>
         [DataMember(Name = "message", EmitDefaultValue = false)]
+        [JsonPropertyName("message")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Message { get; set; }
 
         /// <summary>
@@ -101,7 +105,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

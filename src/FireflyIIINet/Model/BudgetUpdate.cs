@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,12 +36,16 @@ namespace FireflyIIINet.Model
         /// Gets or Sets AutoBudgetType
         /// </summary>
         [DataMember(Name = "auto_budget_type", EmitDefaultValue = false)]
+        [JsonPropertyName("auto_budget_type")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public AutoBudgetType? AutoBudgetType { get; set; }
 
         /// <summary>
         /// Gets or Sets AutoBudgetPeriod
         /// </summary>
         [DataMember(Name = "auto_budget_period", EmitDefaultValue = false)]
+        [JsonPropertyName("auto_budget_period")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public AutoBudgetPeriod? AutoBudgetPeriod { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BudgetUpdate" /> class.
@@ -74,6 +77,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Bills</example>
         [DataMember(Name = "name", EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -81,6 +85,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>false</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
+        [JsonPropertyName("active")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -88,6 +93,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>5</example>
         [DataMember(Name = "order", EmitDefaultValue = true)]
+        [JsonPropertyName("order")]
         public int Order { get; set; }
 
         /// <summary>
@@ -95,6 +101,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -103,6 +111,8 @@ namespace FireflyIIINet.Model
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>12</example>
         [DataMember(Name = "auto_budget_currency_id", EmitDefaultValue = false)]
+        [JsonPropertyName("auto_budget_currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string AutoBudgetCurrencyId { get; set; }
 
         /// <summary>
@@ -111,6 +121,8 @@ namespace FireflyIIINet.Model
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>EUR</example>
         [DataMember(Name = "auto_budget_currency_code", EmitDefaultValue = false)]
+        [JsonPropertyName("auto_budget_currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string AutoBudgetCurrencyCode { get; set; }
 
         /// <summary>
@@ -118,6 +130,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>-1012.12</example>
         [DataMember(Name = "auto_budget_amount", EmitDefaultValue = false)]
+        [JsonPropertyName("auto_budget_amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string AutoBudgetAmount { get; set; }
 
         /// <summary>
@@ -147,7 +161,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

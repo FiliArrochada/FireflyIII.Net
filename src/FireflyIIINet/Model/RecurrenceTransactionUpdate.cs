@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -68,6 +67,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Rent for the current month</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
         /// <summary>
@@ -76,6 +76,7 @@ namespace FireflyIIINet.Model
         /// <value>Amount of the transaction.</value>
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
+        [JsonPropertyName("amount")]
         public string Amount { get; set; }
 
         /// <summary>
@@ -84,6 +85,8 @@ namespace FireflyIIINet.Model
         /// <value>Foreign amount of the transaction.</value>
         /// <example>123.45</example>
         [DataMember(Name = "foreign_amount", EmitDefaultValue = false)]
+        [JsonPropertyName("foreign_amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ForeignAmount { get; set; }
 
         /// <summary>
@@ -92,6 +95,7 @@ namespace FireflyIIINet.Model
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>3</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -100,6 +104,7 @@ namespace FireflyIIINet.Model
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -108,6 +113,8 @@ namespace FireflyIIINet.Model
         /// <value>Submit either a foreign_currency_id or a foreign_currency_code, or neither.</value>
         /// <example>17</example>
         [DataMember(Name = "foreign_currency_id", EmitDefaultValue = false)]
+        [JsonPropertyName("foreign_currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string ForeignCurrencyId { get; set; }
 
         /// <summary>
@@ -116,6 +123,7 @@ namespace FireflyIIINet.Model
         /// <value>The budget ID for this transaction.</value>
         /// <example>4</example>
         [DataMember(Name = "budget_id", EmitDefaultValue = true)]
+        [JsonPropertyName("budget_id")]
         public string BudgetId { get; set; }
 
         /// <summary>
@@ -124,6 +132,7 @@ namespace FireflyIIINet.Model
         /// <value>Category ID for this transaction.</value>
         /// <example>211</example>
         [DataMember(Name = "category_id", EmitDefaultValue = true)]
+        [JsonPropertyName("category_id")]
         public string CategoryId { get; set; }
 
         /// <summary>
@@ -132,6 +141,7 @@ namespace FireflyIIINet.Model
         /// <value>ID of the source account. Submit either this or source_name.</value>
         /// <example>913</example>
         [DataMember(Name = "source_id", EmitDefaultValue = true)]
+        [JsonPropertyName("source_id")]
         public string SourceId { get; set; }
 
         /// <summary>
@@ -140,6 +150,7 @@ namespace FireflyIIINet.Model
         /// <value>ID of the destination account. Submit either this or destination_name.</value>
         /// <example>258</example>
         [DataMember(Name = "destination_id", EmitDefaultValue = true)]
+        [JsonPropertyName("destination_id")]
         public string DestinationId { get; set; }
 
         /// <summary>
@@ -147,6 +158,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Array of tags.</value>
         [DataMember(Name = "tags", EmitDefaultValue = false)]
+        [JsonPropertyName("tags")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public List<string> Tags { get; set; }
 
         /// <summary>
@@ -154,6 +167,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>123</example>
         [DataMember(Name = "piggy_bank_id", EmitDefaultValue = false)]
+        [JsonPropertyName("piggy_bank_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string PiggyBankId { get; set; }
 
         /// <summary>
@@ -186,7 +201,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -107,6 +106,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2</example>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         /// <summary>
@@ -115,6 +115,7 @@ namespace FireflyIIINet.Model
         /// <value>Name of the account found by an auto-complete search.</value>
         /// <example>Checking Account</example>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -123,6 +124,7 @@ namespace FireflyIIINet.Model
         /// <value>Asset accounts and liabilities have a second field with the given date&#39;s account balance.</value>
         /// <example>Checking Account ($123.45)</example>
         [DataMember(Name = "name_with_balance", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("name_with_balance")]
         public string NameWithBalance { get; set; }
 
         /// <summary>
@@ -131,6 +133,7 @@ namespace FireflyIIINet.Model
         /// <value>Account type of the account found by the auto-complete search.</value>
         /// <example>Asset account</example>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
         /// <summary>
@@ -139,6 +142,7 @@ namespace FireflyIIINet.Model
         /// <value>ID for the currency used by this account.</value>
         /// <example>12</example>
         [DataMember(Name = "currency_id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -147,6 +151,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency name for the currency used by this account.</value>
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("currency_name")]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -155,6 +160,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency code for the currency used by this account.</value>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -163,6 +169,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency symbol for the currency used by this account.</value>
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("currency_symbol")]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -171,6 +178,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimal places for the currency used by this account.</value>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("currency_decimal_places")]
         public int CurrencyDecimalPlaces { get; set; }
 
         /// <summary>
@@ -200,7 +208,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,6 +36,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Trigger
         /// </summary>
         [DataMember(Name = "trigger", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("trigger")]
         public RuleTriggerType Trigger { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleStore" /> class.
@@ -97,6 +97,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>First rule title.</example>
         [DataMember(Name = "title", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         /// <summary>
@@ -104,6 +105,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>First rule description</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
         /// <summary>
@@ -112,6 +114,7 @@ namespace FireflyIIINet.Model
         /// <value>ID of the rule group under which the rule must be stored. Either this field or rule_group_title is mandatory.</value>
         /// <example>81</example>
         [DataMember(Name = "rule_group_id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("rule_group_id")]
         public string RuleGroupId { get; set; }
 
         /// <summary>
@@ -120,6 +123,7 @@ namespace FireflyIIINet.Model
         /// <value>Title of the rule group under which the rule must be stored. Either this field or rule_group_id is mandatory.</value>
         /// <example>New rule group</example>
         [DataMember(Name = "rule_group_title", EmitDefaultValue = true)]
+        [JsonPropertyName("rule_group_title")]
         public string RuleGroupTitle { get; set; }
 
         /// <summary>
@@ -127,6 +131,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>5</example>
         [DataMember(Name = "order", EmitDefaultValue = true)]
+        [JsonPropertyName("order")]
         public int Order { get; set; }
 
         /// <summary>
@@ -135,6 +140,7 @@ namespace FireflyIIINet.Model
         /// <value>Whether or not the rule is even active. Default is true.</value>
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
+        [JsonPropertyName("active")]
         public bool Active { get; set; }
 
         /// <summary>
@@ -143,6 +149,7 @@ namespace FireflyIIINet.Model
         /// <value>If the rule is set to be strict, ALL triggers must hit in order for the rule to fire. Otherwise, just one is enough. Default value is true.</value>
         /// <example>true</example>
         [DataMember(Name = "strict", EmitDefaultValue = true)]
+        [JsonPropertyName("strict")]
         public bool Strict { get; set; }
 
         /// <summary>
@@ -151,18 +158,21 @@ namespace FireflyIIINet.Model
         /// <value>If this value is true and the rule is triggered, other rules  after this one in the group will be skipped. Default value is false.</value>
         /// <example>false</example>
         [DataMember(Name = "stop_processing", EmitDefaultValue = true)]
+        [JsonPropertyName("stop_processing")]
         public bool StopProcessing { get; set; }
 
         /// <summary>
         /// Gets or Sets Triggers
         /// </summary>
         [DataMember(Name = "triggers", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("triggers")]
         public List<RuleTriggerStore> Triggers { get; set; }
 
         /// <summary>
         /// Gets or Sets Actions
         /// </summary>
         [DataMember(Name = "actions", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("actions")]
         public List<RuleActionStore> Actions { get; set; }
 
         /// <summary>
@@ -194,7 +204,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

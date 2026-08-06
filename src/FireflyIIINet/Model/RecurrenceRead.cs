@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -78,6 +77,7 @@ namespace FireflyIIINet.Model
         /// <value>Immutable value</value>
         /// <example>recurrences</example>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
         /// <summary>
@@ -85,18 +85,21 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2</example>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Attributes
         /// </summary>
         [DataMember(Name = "attributes", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("attributes")]
         public Recurrence Attributes { get; set; }
 
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
         [DataMember(Name = "links", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("links")]
         public ObjectLink Links { get; set; }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

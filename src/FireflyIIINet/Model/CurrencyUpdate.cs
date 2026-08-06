@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -57,6 +56,7 @@ namespace FireflyIIINet.Model
         /// <value>If the currency is enabled</value>
         /// <example>true</example>
         [DataMember(Name = "enabled", EmitDefaultValue = true)]
+        [JsonPropertyName("enabled")]
         public bool Enabled { get; set; }
 
         /// <summary>
@@ -65,6 +65,7 @@ namespace FireflyIIINet.Model
         /// <value>If the currency must be the default for the user. You can only submit TRUE.</value>
         /// <example>true</example>
         [DataMember(Name = "default", EmitDefaultValue = true)]
+        [JsonPropertyName("default")]
         public bool VarDefault { get; set; }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency code</value>
         /// <example>AMS</example>
         [DataMember(Name = "code", EmitDefaultValue = true)]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
         /// <summary>
@@ -81,6 +83,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency name</value>
         /// <example>Ankh-Morpork dollar</example>
         [DataMember(Name = "name", EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -89,6 +92,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency symbol</value>
         /// <example>AM$</example>
         [DataMember(Name = "symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
 
         /// <summary>
@@ -97,6 +101,7 @@ namespace FireflyIIINet.Model
         /// <value>How many decimals to use when displaying this currency. Between 0 and 16.</value>
         /// <example>2</example>
         [DataMember(Name = "decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("decimal_places")]
         public int DecimalPlaces { get; set; }
 
         /// <summary>
@@ -123,7 +128,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

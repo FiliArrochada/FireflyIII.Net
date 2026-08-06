@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -64,6 +63,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -79,6 +79,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -95,6 +96,7 @@ namespace FireflyIIINet.Model
         /// <value>Use either currency_id or currency_code.</value>
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -103,6 +105,7 @@ namespace FireflyIIINet.Model
         /// <value>Use either currency_id or currency_code.</value>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -110,6 +113,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_symbol")]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -125,6 +129,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_decimal_places")]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -140,6 +145,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>123.45</example>
         [DataMember(Name = "amount", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("amount")]
         public string Amount { get; set; }
 
         /// <summary>
@@ -148,6 +154,7 @@ namespace FireflyIIINet.Model
         /// <value>Start date of the available budget.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "start", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("start")]
         public DateTime Start { get; set; }
 
         /// <summary>
@@ -156,12 +163,14 @@ namespace FireflyIIINet.Model
         /// <value>End date of the available budget.</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "end", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("end")]
         public DateTime End { get; set; }
 
         /// <summary>
         /// Gets or Sets SpentInBudgets
         /// </summary>
         [DataMember(Name = "spent_in_budgets", EmitDefaultValue = true)]
+        [JsonPropertyName("spent_in_budgets")]
         public List<BudgetSpent> SpentInBudgets { get; private set; }
 
         /// <summary>
@@ -176,6 +185,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets SpentOutsideBudget
         /// </summary>
         [DataMember(Name = "spent_outside_budget", EmitDefaultValue = true)]
+        [JsonPropertyName("spent_outside_budget")]
         public List<BudgetSpent> SpentOutsideBudget { get; private set; }
 
         /// <summary>
@@ -215,7 +225,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

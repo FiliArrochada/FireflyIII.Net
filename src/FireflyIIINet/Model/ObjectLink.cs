@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -47,6 +46,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Var0
         /// </summary>
         [DataMember(Name = "0", EmitDefaultValue = true)]
+        [JsonPropertyName("0")]
         public ObjectLink0 Var0 { get; set; }
 
         /// <summary>
@@ -54,6 +54,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECTS/1</example>
         [DataMember(Name = "self", EmitDefaultValue = true)]
+        [JsonPropertyName("self")]
         public string Self { get; set; }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

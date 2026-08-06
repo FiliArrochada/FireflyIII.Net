@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -57,6 +56,7 @@ namespace FireflyIIINet.Model
         /// <value>This ID is a reference to the original object.</value>
         /// <example>123</example>
         [DataMember(Name = "id", EmitDefaultValue = true)]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         /// <summary>
@@ -65,6 +65,7 @@ namespace FireflyIIINet.Model
         /// <value>This is the name of the object.</value>
         /// <example>Land lord</example>
         [DataMember(Name = "name", EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace FireflyIIINet.Model
         /// <value>The amount spent or earned between start date and end date, a number defined as a string, for this object and all asset accounts.</value>
         /// <example>-123.45</example>
         [DataMember(Name = "difference", EmitDefaultValue = true)]
+        [JsonPropertyName("difference")]
         public string Difference { get; set; }
 
         /// <summary>
@@ -81,6 +83,7 @@ namespace FireflyIIINet.Model
         /// <value>The amount spent or earned between start date and end date, a number as a float, for this object and all asset accounts. May have rounding errors.</value>
         /// <example>-123.45</example>
         [DataMember(Name = "difference_float", EmitDefaultValue = true)]
+        [JsonPropertyName("difference_float")]
         public double DifferenceFloat { get; set; }
 
         /// <summary>
@@ -89,6 +92,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency ID of the expenses listed for this account.</value>
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -97,6 +101,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency code of the expenses listed for this account.</value>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -123,7 +128,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

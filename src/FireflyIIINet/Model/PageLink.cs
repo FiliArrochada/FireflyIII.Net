@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -50,6 +49,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;4</example>
         [DataMember(Name = "self", EmitDefaultValue = true)]
+        [JsonPropertyName("self")]
         public string Self { get; set; }
 
         /// <summary>
@@ -57,6 +57,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;1</example>
         [DataMember(Name = "first", EmitDefaultValue = true)]
+        [JsonPropertyName("first")]
         public string First { get; set; }
 
         /// <summary>
@@ -64,6 +65,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;12</example>
         [DataMember(Name = "last", EmitDefaultValue = true)]
+        [JsonPropertyName("last")]
         public string Last { get; set; }
 
         /// <summary>
@@ -87,7 +89,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

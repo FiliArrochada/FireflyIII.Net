@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -71,6 +70,7 @@ namespace FireflyIIINet.Model
         /// <value>ID of the currency of this sum.</value>
         /// <example>12</example>
         [DataMember(Name = "id", EmitDefaultValue = true)]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         /// <summary>
@@ -79,6 +79,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency name associated with this sum.</value>
         /// <example>Euro</example>
         [DataMember(Name = "name", EmitDefaultValue = true)]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -87,6 +88,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency symbol associated with this sum.</value>
         /// <example>$</example>
         [DataMember(Name = "symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
 
         /// <summary>
@@ -95,6 +97,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency code associated with this sum.</value>
         /// <example>EUR</example>
         [DataMember(Name = "code", EmitDefaultValue = true)]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
         /// <summary>
@@ -103,6 +106,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimal places for the currency associated with this sum.</value>
         /// <example>2</example>
         [DataMember(Name = "decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("decimal_places")]
         public int DecimalPlaces { get; set; }
 
         /// <summary>
@@ -111,6 +115,7 @@ namespace FireflyIIINet.Model
         /// <value>Sum as a string. Can also be negative</value>
         /// <example>12.34</example>
         [DataMember(Name = "sum", EmitDefaultValue = true)]
+        [JsonPropertyName("sum")]
         public string Sum { get; set; }
 
         /// <summary>
@@ -119,6 +124,7 @@ namespace FireflyIIINet.Model
         /// <value>Indicates if this sum was converted to the user&#39;s native (default) currency. When false, the native_* fields will still be present and filled.</value>
         /// <example>false</example>
         [DataMember(Name = "converted", EmitDefaultValue = true)]
+        [JsonPropertyName("converted")]
         public bool Converted { get; set; }
 
         /// <summary>
@@ -127,6 +133,7 @@ namespace FireflyIIINet.Model
         /// <value>Sum as a string, expressed in the user&#39;s native (default) currency. Can also be negative</value>
         /// <example>12.34</example>
         [DataMember(Name = "native_sum", EmitDefaultValue = true)]
+        [JsonPropertyName("native_sum")]
         public string NativeSum { get; set; }
 
         /// <summary>
@@ -135,6 +142,7 @@ namespace FireflyIIINet.Model
         /// <value>The ID of the user&#39;s native (default) currency.</value>
         /// <example>1</example>
         [DataMember(Name = "native_id", EmitDefaultValue = true)]
+        [JsonPropertyName("native_id")]
         public string NativeId { get; set; }
 
         /// <summary>
@@ -143,6 +151,7 @@ namespace FireflyIIINet.Model
         /// <value>The name of the user&#39;s native (default) currency</value>
         /// <example>US Dollar</example>
         [DataMember(Name = "native_name", EmitDefaultValue = true)]
+        [JsonPropertyName("native_name")]
         public string NativeName { get; set; }
 
         /// <summary>
@@ -151,6 +160,7 @@ namespace FireflyIIINet.Model
         /// <value>Currency symbol associated with this amount.</value>
         /// <example>$</example>
         [DataMember(Name = "native_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("native_symbol")]
         public string NativeSymbol { get; set; }
 
         /// <summary>
@@ -159,6 +169,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency code of the user&#39;s native (default) currency.</value>
         /// <example>EUR</example>
         [DataMember(Name = "native_code", EmitDefaultValue = true)]
+        [JsonPropertyName("native_code")]
         public string NativeCode { get; set; }
 
         /// <summary>
@@ -167,6 +178,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimal places for this currency.</value>
         /// <example>2</example>
         [DataMember(Name = "native_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("native_decimal_places")]
         public int NativeDecimalPlaces { get; set; }
 
         /// <summary>
@@ -200,7 +212,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

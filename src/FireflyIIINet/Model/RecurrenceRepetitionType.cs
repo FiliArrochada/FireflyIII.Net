@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -30,7 +29,7 @@ namespace FireflyIIINet.Model
     /// The type of the repetition. ndom means: the n-th weekday of the month, where you can also specify which day of the week.
     /// </summary>
     /// <value>The type of the repetition. ndom means: the n-th weekday of the month, where you can also specify which day of the week.</value>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(FireflyIIINet.Client.StringEnumMemberConverter))]
     public enum RecurrenceRepetitionType
     {
         /// <summary>

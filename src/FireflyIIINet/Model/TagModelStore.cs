@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -67,6 +66,7 @@ namespace FireflyIIINet.Model
         /// <value>The tag</value>
         /// <example>expensive</example>
         [DataMember(Name = "tag", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("tag")]
         public string Tag { get; set; }
 
         /// <summary>
@@ -75,6 +75,8 @@ namespace FireflyIIINet.Model
         /// <value>The date to which the tag is applicable.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
         [DataMember(Name = "date", EmitDefaultValue = false)]
+        [JsonPropertyName("date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime? Date { get; set; }
 
@@ -83,6 +85,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Tag for expensive stuff</example>
         [DataMember(Name = "description", EmitDefaultValue = false)]
+        [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Description { get; set; }
 
         /// <summary>
@@ -91,6 +95,8 @@ namespace FireflyIIINet.Model
         /// <value>Latitude of the tag&#39;s location, if applicable. Can be used to draw a map.</value>
         /// <example>51.983333</example>
         [DataMember(Name = "latitude", EmitDefaultValue = false)]
+        [JsonPropertyName("latitude")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public double? Latitude { get; set; }
 
         /// <summary>
@@ -99,6 +105,8 @@ namespace FireflyIIINet.Model
         /// <value>Latitude of the tag&#39;s location, if applicable. Can be used to draw a map.</value>
         /// <example>5.916667</example>
         [DataMember(Name = "longitude", EmitDefaultValue = false)]
+        [JsonPropertyName("longitude")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public double? Longitude { get; set; }
 
         /// <summary>
@@ -107,6 +115,8 @@ namespace FireflyIIINet.Model
         /// <value>Zoom level for the map, if drawn. This to set the box right. Unfortunately this is a proprietary value because each map provider has different zoom levels.</value>
         /// <example>6</example>
         [DataMember(Name = "zoom_level", EmitDefaultValue = false)]
+        [JsonPropertyName("zoom_level")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int? ZoomLevel { get; set; }
 
         /// <summary>
@@ -133,7 +143,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

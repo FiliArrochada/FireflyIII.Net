@@ -1,34 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
-    <TargetFramework>net6.0</TargetFramework>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <AssemblyName>FireflyIIINet</AssemblyName>
     <PackageId>FireflyIIINet</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>OpenAPI</Authors>
-    <Company>OpenAPI</Company>
-    <AssemblyTitle>OpenAPI Library</AssemblyTitle>
-    <Description>A library generated from a OpenAPI doc</Description>
-    <Copyright>No Copyright</Copyright>
+    <Authors>FireflyIII.Net</Authors>
+    <Company>FireflyIII.Net</Company>
+    <AssemblyTitle>Firefly III API Client</AssemblyTitle>
+    <Description>A .NET client library for the Firefly III API.</Description>
     <RootNamespace>FireflyIIINet</RootNamespace>
-    <Version>2.0.2.1</Version>
+    <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
+         the 4th revision component is bumped for client-only changes against the same API version. -->
+    <Version>2.0.2.2</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
-    <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
+    <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
+    <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Minor update</PackageReleaseNotes>
+    <PackageReleaseNotes>First Refit-native release: typed Refit interfaces over the Firefly III API with System.Text.Json serialization.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JsonSubTypes" Version="2.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="RestSharp" Version="112.1.0" />
-    <PackageReference Include="Polly" Version="8.5.2" />
+    <PackageReference Include="Refit" Version="14.0.1" />
+    <PackageReference Include="System.Text.Json" Version="10.0.10" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>

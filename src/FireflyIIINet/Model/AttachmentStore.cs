@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,6 +36,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets AttachableType
         /// </summary>
         [DataMember(Name = "attachable_type", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("attachable_type")]
         public AttachableType AttachableType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AttachmentStore" /> class.
@@ -75,6 +75,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>file.pdf</example>
         [DataMember(Name = "filename", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("filename")]
         public string Filename { get; set; }
 
         /// <summary>
@@ -83,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <value>ID of the model this attachment is linked to.</value>
         /// <example>134</example>
         [DataMember(Name = "attachable_id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("attachable_id")]
         public string AttachableId { get; set; }
 
         /// <summary>
@@ -90,6 +92,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some PDF file</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         /// <summary>
@@ -97,6 +100,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -122,7 +127,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -30,7 +29,7 @@ namespace FireflyIIINet.Model
     /// &#39;credit&#39; indicates somebody owes you the liability. &#39;debit&#39; Indicates you owe this debt yourself. Works only for liabiltiies.
     /// </summary>
     /// <value>&#39;credit&#39; indicates somebody owes you the liability. &#39;debit&#39; Indicates you owe this debt yourself. Works only for liabiltiies.</value>
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(FireflyIIINet.Client.StringEnumMemberConverter))]
     public enum LiabilityDirection
     {
         /// <summary>

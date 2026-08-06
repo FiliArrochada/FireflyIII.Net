@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -75,6 +74,7 @@ namespace FireflyIIINet.Model
         /// <value>This is the title of the current set. It can refer to an account, a budget or another object (by name).</value>
         /// <example>Checking account</example>
         [DataMember(Name = "label", EmitDefaultValue = true)]
+        [JsonPropertyName("label")]
         public string Label { get; set; }
 
         /// <summary>
@@ -83,6 +83,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency ID of the currency associated to the data in the entries.</value>
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_id")]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -90,6 +91,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_code")]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -97,6 +99,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_symbol")]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -105,6 +108,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimals for the currency associated to the data in the entries.</value>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("currency_decimal_places")]
         public int CurrencyDecimalPlaces { get; set; }
 
         /// <summary>
@@ -113,6 +117,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency ID of the user&#39;s native currency.</value>
         /// <example>5</example>
         [DataMember(Name = "native_id", EmitDefaultValue = true)]
+        [JsonPropertyName("native_id")]
         public string NativeId { get; set; }
 
         /// <summary>
@@ -121,6 +126,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency code of the user&#39;s native currency.</value>
         /// <example>EUR</example>
         [DataMember(Name = "native_code", EmitDefaultValue = true)]
+        [JsonPropertyName("native_code")]
         public string NativeCode { get; set; }
 
         /// <summary>
@@ -129,6 +135,7 @@ namespace FireflyIIINet.Model
         /// <value>The currency symbol of the user&#39;s native currency.</value>
         /// <example>$</example>
         [DataMember(Name = "native_symbol", EmitDefaultValue = true)]
+        [JsonPropertyName("native_symbol")]
         public string NativeSymbol { get; set; }
 
         /// <summary>
@@ -137,6 +144,7 @@ namespace FireflyIIINet.Model
         /// <value>Number of decimals for the native currency of the user.</value>
         /// <example>2</example>
         [DataMember(Name = "native_decimal_places", EmitDefaultValue = true)]
+        [JsonPropertyName("native_decimal_places")]
         public int NativeDecimalPlaces { get; set; }
 
         /// <summary>
@@ -145,6 +153,7 @@ namespace FireflyIIINet.Model
         /// <value>This variable holds whether or not the values in the &#39;entries&#39;-array are converted to the user&#39;s native currency.</value>
         /// <example>true</example>
         [DataMember(Name = "converted", EmitDefaultValue = true)]
+        [JsonPropertyName("converted")]
         public bool Converted { get; set; }
 
         /// <summary>
@@ -152,6 +161,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "start_date", EmitDefaultValue = true)]
+        [JsonPropertyName("start_date")]
         public DateTime StartDate { get; set; }
 
         /// <summary>
@@ -159,6 +169,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "end_date", EmitDefaultValue = true)]
+        [JsonPropertyName("end_date")]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -167,6 +178,7 @@ namespace FireflyIIINet.Model
         /// <value>Indicated the type of chart that is expected to be rendered. You can safely ignore this if you want.</value>
         /// <example>line</example>
         [DataMember(Name = "type", EmitDefaultValue = true)]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
         /// <summary>
@@ -175,6 +187,7 @@ namespace FireflyIIINet.Model
         /// <value>Used to indicate the Y axis for this data set. Is usually between 0 and 1 (left and right side of the chart).</value>
         /// <example>0</example>
         [DataMember(Name = "yAxisID", EmitDefaultValue = true)]
+        [JsonPropertyName("yAxisID")]
         public int YAxisID { get; set; }
 
         /// <summary>
@@ -182,6 +195,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value.</value>
         [DataMember(Name = "entries", EmitDefaultValue = true)]
+        [JsonPropertyName("entries")]
         public List<ChartDataPointV2> Entries { get; set; }
 
         /// <summary>
@@ -217,7 +231,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

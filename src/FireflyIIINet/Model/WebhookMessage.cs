@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -54,6 +53,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -69,6 +69,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -85,6 +86,7 @@ namespace FireflyIIINet.Model
         /// <value>If this message is sent yet.</value>
         /// <example>false</example>
         [DataMember(Name = "sent", EmitDefaultValue = true)]
+        [JsonPropertyName("sent")]
         public bool Sent { get; set; }
 
         /// <summary>
@@ -93,6 +95,7 @@ namespace FireflyIIINet.Model
         /// <value>If this message has errored out.</value>
         /// <example>false</example>
         [DataMember(Name = "errored", EmitDefaultValue = true)]
+        [JsonPropertyName("errored")]
         public bool Errored { get; set; }
 
         /// <summary>
@@ -101,6 +104,7 @@ namespace FireflyIIINet.Model
         /// <value>The ID of the webhook this message belongs to.</value>
         /// <example>5</example>
         [DataMember(Name = "webhook_id", EmitDefaultValue = true)]
+        [JsonPropertyName("webhook_id")]
         public string WebhookId { get; set; }
 
         /// <summary>
@@ -109,6 +113,7 @@ namespace FireflyIIINet.Model
         /// <value>Long UUID string for identification of this webhook message.</value>
         /// <example>7a344c02-5b52-46b1-90e6-a437431dcf07</example>
         [DataMember(Name = "uuid", EmitDefaultValue = true)]
+        [JsonPropertyName("uuid")]
         public string Uuid { get; set; }
 
         /// <summary>
@@ -117,6 +122,8 @@ namespace FireflyIIINet.Model
         /// <value>The actual message that is sent or will be sent as JSON string.</value>
         /// <example>{some:message}</example>
         [DataMember(Name = "string", EmitDefaultValue = false)]
+        [JsonPropertyName("string")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string VarString { get; set; }
 
         /// <summary>
@@ -144,7 +151,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

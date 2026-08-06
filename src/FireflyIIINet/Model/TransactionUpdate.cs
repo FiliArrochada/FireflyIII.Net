@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -53,6 +52,7 @@ namespace FireflyIIINet.Model
         /// <value>Whether or not to apply rules when submitting transaction.</value>
         /// <example>false</example>
         [DataMember(Name = "apply_rules", EmitDefaultValue = true)]
+        [JsonPropertyName("apply_rules")]
         public bool ApplyRules { get; set; }
 
         /// <summary>
@@ -61,6 +61,7 @@ namespace FireflyIIINet.Model
         /// <value>Whether or not to fire the webhooks that are related to this event.</value>
         /// <example>true</example>
         [DataMember(Name = "fire_webhooks", EmitDefaultValue = true)]
+        [JsonPropertyName("fire_webhooks")]
         public bool FireWebhooks { get; set; }
 
         /// <summary>
@@ -69,12 +70,15 @@ namespace FireflyIIINet.Model
         /// <value>Title of the transaction if it has been split in more than one piece. Empty otherwise.</value>
         /// <example>Split transaction title.</example>
         [DataMember(Name = "group_title", EmitDefaultValue = false)]
+        [JsonPropertyName("group_title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string GroupTitle { get; set; }
 
         /// <summary>
         /// Gets or Sets Transactions
         /// </summary>
         [DataMember(Name = "transactions", EmitDefaultValue = true)]
+        [JsonPropertyName("transactions")]
         public List<TransactionSplitUpdate> Transactions { get; set; }
 
         /// <summary>
@@ -99,7 +103,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>

@@ -3,7 +3,8 @@
   <PropertyGroup>
     <AssemblyName>FireflyIIINet.Test</AssemblyName>
     <RootNamespace>FireflyIIINet.Test</RootNamespace>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
     <Nullable>annotations</Nullable>
   </PropertyGroup>

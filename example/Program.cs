@@ -1,41 +1,44 @@
-﻿using System;
-using System.Linq;
+using System;
 using System.Collections.Generic;
-using FireflyIII.Api;
-using FireflyIII.Model;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using FireflyIIINet.Api;
+using FireflyIIINet.Client;
+using FireflyIIINet.Model;
+using Refit;
 
 namespace example
 {
     class Program
     {
-        private static string ff3_demo_url = "https://demo.firefly-iii.org/";
+        private static string ff3_demo_url = "https://demo.firefly-iii.org/api";
         private static string ff3_demo_pat = "<FF3 personal access token>";
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            var txn_client = new TransactionsApi(new FireflyIII.Client.Configuration()
-            {
-                BasePath = ff3_demo_url,
-                AccessToken = ff3_demo_pat,
-            });
+            var http = new HttpClient { BaseAddress = new Uri(ff3_demo_url) };
+            http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ff3_demo_pat);
 
-            var txn = new FireflyIII.Model.TransactionSplit(
+            var txn_client = RestService.For<ITransactionsApi>(http, FireflyRefitSettings.Create());
+
+            var txn = new TransactionSplitStore(
+                type: TransactionTypeProperty.Withdrawal,
                 date: DateTime.Now,
+                amount: "12.54",
                 description: "Test FireflyIII .Net Transaction",
-                amount: 12.54,
                 currencyCode: "EUR",
-                type: TransactionSplit.TypeEnum.Withdrawal,
                 // Can set source/dest by account ID or name
-                // sourceId: 1,
+                // sourceId: "1",
                 sourceName: "Checking Account",
-                destinationId: 7
+                destinationId: "7"
             );
 
-            var txn_rsp = txn_client.StoreTransaction(new FireflyIII.Model.Transaction(new[] { txn }.ToList()));
+            var txn_rsp = await txn_client.StoreTransaction(new TransactionStore(transactions: new List<TransactionSplitStore> { txn }));
             Console.WriteLine($"Created transaction {txn_rsp.Data.Id}");
 
             // Set a breakpoint here:
-            txn_client.DeleteTransaction(txn_rsp.Data.Id);
+            await txn_client.DeleteTransaction(txn_rsp.Data.Id);
             Console.WriteLine($"Deleted transaction");
         }
     }

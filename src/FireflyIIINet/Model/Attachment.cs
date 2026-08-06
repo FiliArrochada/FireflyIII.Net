@@ -18,9 +18,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 
@@ -37,6 +36,7 @@ namespace FireflyIIINet.Model
         /// Gets or Sets AttachableType
         /// </summary>
         [DataMember(Name = "attachable_type", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("attachable_type")]
         public AttachableType AttachableType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Attachment" /> class.
@@ -81,6 +81,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -96,6 +97,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -112,6 +114,7 @@ namespace FireflyIIINet.Model
         /// <value>ID of the model this attachment is linked to.</value>
         /// <example>134</example>
         [DataMember(Name = "attachable_id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("attachable_id")]
         public string AttachableId { get; set; }
 
         /// <summary>
@@ -120,6 +123,7 @@ namespace FireflyIIINet.Model
         /// <value>MD5 hash of the file for basic duplicate detection.</value>
         /// <example>0c3f95f34370baa88f9fd9a671fea305</example>
         [DataMember(Name = "md5", EmitDefaultValue = true)]
+        [JsonPropertyName("md5")]
         public string Md5 { get; set; }
 
         /// <summary>
@@ -127,6 +131,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>file.pdf</example>
         [DataMember(Name = "filename", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("filename")]
         public string Filename { get; set; }
 
         /// <summary>
@@ -134,6 +139,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/attachments/191/download</example>
         [DataMember(Name = "download_url", EmitDefaultValue = true)]
+        [JsonPropertyName("download_url")]
         public string DownloadUrl { get; set; }
 
         /// <summary>
@@ -141,6 +147,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>https://demo.firefly-iii.org/api/v1/attachments/191/download</example>
         [DataMember(Name = "upload_url", EmitDefaultValue = true)]
+        [JsonPropertyName("upload_url")]
         public string UploadUrl { get; set; }
 
         /// <summary>
@@ -148,6 +155,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some PDF file</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         /// <summary>
@@ -155,6 +163,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>Some notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
+        [JsonPropertyName("notes")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Notes { get; set; }
 
         /// <summary>
@@ -162,6 +172,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>application/pdf</example>
         [DataMember(Name = "mime", EmitDefaultValue = true)]
+        [JsonPropertyName("mime")]
         public string Mime { get; private set; }
 
         /// <summary>
@@ -177,6 +188,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <example>48211</example>
         [DataMember(Name = "size", EmitDefaultValue = true)]
+        [JsonPropertyName("size")]
         public int Size { get; private set; }
 
         /// <summary>
@@ -217,7 +229,7 @@ namespace FireflyIIINet.Model
         /// <returns>JSON string presentation of the object</returns>
         public virtual string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            return System.Text.Json.JsonSerializer.Serialize(this, FireflyIIINet.Client.SerializerOptions.Indented);
         }
 
         /// <summary>
