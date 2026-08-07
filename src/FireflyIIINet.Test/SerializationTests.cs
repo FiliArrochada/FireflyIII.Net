@@ -138,6 +138,19 @@ namespace FireflyIIINet.Test
             Assert.Equal(new DateTime(2023, 5, 1), budget.Start);
         }
 
+        // ---------- Read-only (server-computed) fields ----------
+
+        [Fact]
+        public void ReadOnly_Properties_Are_Populated_On_Deserialization()
+        {
+            // Spec readOnly fields map to { get; private set; } properties. Newtonsoft set
+            // private setters by default; STJ needs the [JsonInclude] the models now carry.
+            var json = "{\"name\":\"Checking\",\"type\":\"asset\",\"created_at\":\"2018-09-17T12:46:47+01:00\",\"currency_symbol\":\"$\"}";
+            var account = JsonSerializer.Deserialize<Account>(json, Options);
+            Assert.Equal(new DateTime(2018, 9, 17, 11, 46, 47, DateTimeKind.Utc), account.CreatedAt.ToUniversalTime());
+            Assert.Equal("$", account.CurrencySymbol);
+        }
+
         // ---------- Response envelope round-trip ----------
 
         [Fact]

@@ -64,6 +64,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
         [JsonPropertyName("created_at")]
+        [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -80,6 +81,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         [JsonPropertyName("updated_at")]
+        [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -132,6 +134,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [JsonInclude]
         public string CurrencyName { get; private set; }
 
         /// <summary>
@@ -148,6 +151,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [JsonInclude]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -164,6 +168,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         [JsonPropertyName("currency_decimal_places")]
+        [JsonInclude]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -181,6 +186,7 @@ namespace FireflyIIINet.Model
         /// <example>23</example>
         [DataMember(Name = "budget_id", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("budget_id")]
+        [JsonInclude]
         public string BudgetId { get; private set; }
 
         /// <summary>
@@ -199,6 +205,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "period", EmitDefaultValue = false)]
         [JsonPropertyName("period")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string Period { get; private set; }
 
         /// <summary>

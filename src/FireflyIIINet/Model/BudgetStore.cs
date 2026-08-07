@@ -102,6 +102,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "order", EmitDefaultValue = true)]
         [JsonPropertyName("order")]
+        [JsonInclude]
         public int Order { get; private set; }
 
         /// <summary>

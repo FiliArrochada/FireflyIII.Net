@@ -94,6 +94,7 @@ namespace FireflyIIINet.Model
         /// <example>false</example>
         [DataMember(Name = "editable", EmitDefaultValue = true)]
         [JsonPropertyName("editable")]
+        [JsonInclude]
         public bool Editable { get; private set; }
 
         /// <summary>

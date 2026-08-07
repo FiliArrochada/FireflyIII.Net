@@ -82,6 +82,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
         [JsonPropertyName("created_at")]
+        [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -98,6 +99,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         [JsonPropertyName("updated_at")]
+        [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -173,6 +175,7 @@ namespace FireflyIIINet.Model
         /// <example>application/pdf</example>
         [DataMember(Name = "mime", EmitDefaultValue = true)]
         [JsonPropertyName("mime")]
+        [JsonInclude]
         public string Mime { get; private set; }
 
         /// <summary>
@@ -189,6 +192,7 @@ namespace FireflyIIINet.Model
         /// <example>48211</example>
         [DataMember(Name = "size", EmitDefaultValue = true)]
         [JsonPropertyName("size")]
+        [JsonInclude]
         public int Size { get; private set; }
 
         /// <summary>

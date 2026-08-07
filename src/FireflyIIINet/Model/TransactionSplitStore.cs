@@ -249,6 +249,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "budget_name", EmitDefaultValue = false)]
         [JsonPropertyName("budget_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string BudgetName { get; private set; }
 
         /// <summary>

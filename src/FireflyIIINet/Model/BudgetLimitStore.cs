@@ -83,6 +83,7 @@ namespace FireflyIIINet.Model
         /// <example>23</example>
         [DataMember(Name = "budget_id", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("budget_id")]
+        [JsonInclude]
         public string BudgetId { get; private set; }
 
         /// <summary>
@@ -111,6 +112,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "period", EmitDefaultValue = false)]
         [JsonPropertyName("period")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string Period { get; private set; }
 
         /// <summary>

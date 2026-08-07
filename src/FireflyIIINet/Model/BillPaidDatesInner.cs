@@ -46,6 +46,7 @@ namespace FireflyIIINet.Model
         /// <example>123</example>
         [DataMember(Name = "transaction_group_id", EmitDefaultValue = true)]
         [JsonPropertyName("transaction_group_id")]
+        [JsonInclude]
         public string TransactionGroupId { get; private set; }
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace FireflyIIINet.Model
         /// <example>123</example>
         [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
         [JsonPropertyName("transaction_journal_id")]
+        [JsonInclude]
         public string TransactionJournalId { get; private set; }
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "date", EmitDefaultValue = true)]
         [JsonPropertyName("date")]
+        [JsonInclude]
         public DateTime Date { get; private set; }
 
         /// <summary>

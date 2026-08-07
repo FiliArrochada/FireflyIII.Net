@@ -183,6 +183,7 @@ namespace FireflyIIINet.Model
         /// <example>3</example>
         [DataMember(Name = "user", EmitDefaultValue = true)]
         [JsonPropertyName("user")]
+        [JsonInclude]
         public string User { get; private set; }
 
         /// <summary>
@@ -200,6 +201,7 @@ namespace FireflyIIINet.Model
         /// <example>10421</example>
         [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
         [JsonPropertyName("transaction_journal_id")]
+        [JsonInclude]
         public string TransactionJournalId { get; private set; }
 
         /// <summary>
@@ -255,6 +257,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [JsonInclude]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -271,6 +274,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [JsonInclude]
         public string CurrencyName { get; private set; }
 
         /// <summary>
@@ -288,6 +292,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         [JsonPropertyName("currency_decimal_places")]
+        [JsonInclude]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -325,6 +330,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_symbol", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_symbol")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string ForeignCurrencySymbol { get; private set; }
 
         /// <summary>
@@ -343,6 +349,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_decimal_places", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_decimal_places")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public int? ForeignCurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -407,6 +414,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "source_iban", EmitDefaultValue = false)]
         [JsonPropertyName("source_iban")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string SourceIban { get; private set; }
 
         /// <summary>
@@ -443,6 +451,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "destination_iban", EmitDefaultValue = false)]
         [JsonPropertyName("destination_iban")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string DestinationIban { get; private set; }
 
         /// <summary>
@@ -471,6 +480,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "budget_name", EmitDefaultValue = false)]
         [JsonPropertyName("budget_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string BudgetName { get; private set; }
 
         /// <summary>
@@ -582,6 +592,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "original_source", EmitDefaultValue = false)]
         [JsonPropertyName("original_source")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string OriginalSource { get; private set; }
 
         /// <summary>
@@ -599,6 +610,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "recurrence_id", EmitDefaultValue = false)]
         [JsonPropertyName("recurrence_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public int? RecurrenceId { get; private set; }
 
         /// <summary>
@@ -617,6 +629,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "recurrence_total", EmitDefaultValue = false)]
         [JsonPropertyName("recurrence_total")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public int? RecurrenceTotal { get; private set; }
 
         /// <summary>
@@ -635,6 +648,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "recurrence_count", EmitDefaultValue = false)]
         [JsonPropertyName("recurrence_count")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public int? RecurrenceCount { get; private set; }
 
         /// <summary>
@@ -661,6 +675,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "import_hash_v2", EmitDefaultValue = false)]
         [JsonPropertyName("import_hash_v2")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string ImportHashV2 { get; private set; }
 
         /// <summary>

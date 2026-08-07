@@ -156,6 +156,7 @@ namespace FireflyIIINet.Model
         /// <example>€</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [JsonInclude]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -173,6 +174,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         [JsonPropertyName("currency_decimal_places")]
+        [JsonInclude]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -210,6 +212,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_symbol", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_symbol")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string ForeignCurrencySymbol { get; private set; }
 
         /// <summary>
@@ -228,6 +231,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_decimal_places", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_decimal_places")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public int? ForeignCurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -255,6 +259,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "budget_name", EmitDefaultValue = false)]
         [JsonPropertyName("budget_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string BudgetName { get; private set; }
 
         /// <summary>
@@ -308,6 +313,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "source_iban", EmitDefaultValue = false)]
         [JsonPropertyName("source_iban")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string SourceIban { get; private set; }
 
         /// <summary>
@@ -343,6 +349,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "destination_iban", EmitDefaultValue = false)]
         [JsonPropertyName("destination_iban")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string DestinationIban { get; private set; }
 
         /// <summary>

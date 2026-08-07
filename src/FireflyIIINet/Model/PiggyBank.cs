@@ -84,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
         [JsonPropertyName("created_at")]
+        [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -100,6 +101,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         [JsonPropertyName("updated_at")]
+        [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -126,6 +128,7 @@ namespace FireflyIIINet.Model
         /// <example>Savings account</example>
         [DataMember(Name = "account_name", EmitDefaultValue = true)]
         [JsonPropertyName("account_name")]
+        [JsonInclude]
         public string AccountName { get; private set; }
 
         /// <summary>
@@ -150,6 +153,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [JsonInclude]
         public string CurrencyId { get; private set; }
 
         /// <summary>
@@ -166,6 +170,7 @@ namespace FireflyIIINet.Model
         /// <example>USD</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [JsonInclude]
         public string CurrencyCode { get; private set; }
 
         /// <summary>
@@ -182,6 +187,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [JsonInclude]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -199,6 +205,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         [JsonPropertyName("currency_decimal_places")]
+        [JsonInclude]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -224,6 +231,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "percentage", EmitDefaultValue = false)]
         [JsonPropertyName("percentage")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public float? Percentage { get; private set; }
 
         /// <summary>
@@ -249,6 +257,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "left_to_save", EmitDefaultValue = false)]
         [JsonPropertyName("left_to_save")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string LeftToSave { get; private set; }
 
         /// <summary>
@@ -266,6 +275,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "save_per_month", EmitDefaultValue = false)]
         [JsonPropertyName("save_per_month")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public string SavePerMonth { get; private set; }
 
         /// <summary>
@@ -311,6 +321,7 @@ namespace FireflyIIINet.Model
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
         [JsonPropertyName("active")]
+        [JsonInclude]
         public bool Active { get; private set; }
 
         /// <summary>
@@ -348,6 +359,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_order", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_order")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonInclude]
         public int? ObjectGroupOrder { get; private set; }
 
         /// <summary>

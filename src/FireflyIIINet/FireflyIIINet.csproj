@@ -18,13 +18,23 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/filipe-silva/FireflyIII.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>First Refit-native release: typed Refit interfaces over the Firefly III API with System.Text.Json serialization.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Refit" Version="14.0.1" />
+    <!-- Ship the repo README as the package readme (referenced by PackageReadmeFile above).
+         Path is relative to this project (repo root is two levels up). -->
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="15.0.0" />
     <PackageReference Include="System.Text.Json" Version="10.0.10" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>

@@ -81,6 +81,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [JsonInclude]
         public string CurrencyId { get; private set; }
 
         /// <summary>
@@ -97,6 +98,7 @@ namespace FireflyIIINet.Model
         /// <example>USD</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [JsonInclude]
         public string CurrencyCode { get; private set; }
 
         /// <summary>
@@ -159,6 +161,7 @@ namespace FireflyIIINet.Model
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
         [JsonPropertyName("active")]
+        [JsonInclude]
         public bool Active { get; private set; }
 
         /// <summary>

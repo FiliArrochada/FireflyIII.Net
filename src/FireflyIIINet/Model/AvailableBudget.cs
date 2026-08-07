@@ -64,6 +64,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
         [JsonPropertyName("created_at")]
+        [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -80,6 +81,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         [JsonPropertyName("updated_at")]
+        [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -114,6 +116,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [JsonInclude]
         public string CurrencySymbol { get; private set; }
 
         /// <summary>
@@ -130,6 +133,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         [JsonPropertyName("currency_decimal_places")]
+        [JsonInclude]
         public int CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
@@ -171,6 +175,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "spent_in_budgets", EmitDefaultValue = true)]
         [JsonPropertyName("spent_in_budgets")]
+        [JsonInclude]
         public List<BudgetSpent> SpentInBudgets { get; private set; }
 
         /// <summary>
@@ -186,6 +191,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "spent_outside_budget", EmitDefaultValue = true)]
         [JsonPropertyName("spent_outside_budget")]
+        [JsonInclude]
         public List<BudgetSpent> SpentOutsideBudget { get; private set; }
 
         /// <summary>

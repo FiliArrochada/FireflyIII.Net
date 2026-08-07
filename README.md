@@ -1,5 +1,8 @@
 # FireflyIIINet - the C# library for the Firefly III API
 
+[![CI](https://github.com/filipe-silva/FireflyIII.Net/actions/workflows/ci.yml/badge.svg)](https://github.com/filipe-silva/FireflyIII.Net/actions/workflows/ci.yml)
+[![NuGet](https://img.shields.io/nuget/v/FireflyIIINet.svg)](https://www.nuget.org/packages/FireflyIIINet/)
+
 This is a .NET client for the [Firefly III](https://firefly-iii.org) personal finance manager API.
 
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
@@ -14,7 +17,7 @@ This C# SDK is a hand-maintained client for the Firefly III API, built on Refit 
 
 ## Dependencies
 
-- [Refit](https://www.nuget.org/packages/Refit/) - 14.0.1 or later
+- [Refit](https://www.nuget.org/packages/Refit/) - 15.0.0 or later
 - [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/) - 10.0.10 or later
 - [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
 

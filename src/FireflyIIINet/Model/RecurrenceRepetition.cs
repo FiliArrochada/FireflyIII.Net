@@ -69,6 +69,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "id", EmitDefaultValue = true)]
         [JsonPropertyName("id")]
+        [JsonInclude]
         public string Id { get; private set; }
 
         /// <summary>
@@ -85,6 +86,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
         [JsonPropertyName("created_at")]
+        [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -101,6 +103,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         [JsonPropertyName("updated_at")]
+        [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -145,6 +148,7 @@ namespace FireflyIIINet.Model
         /// <example>Every week on Friday</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         [JsonPropertyName("description")]
+        [JsonInclude]
         public string Description { get; private set; }
 
         /// <summary>
@@ -161,6 +165,7 @@ namespace FireflyIIINet.Model
         /// <value>Array of future dates when the repetition will apply to. Auto generated.</value>
         [DataMember(Name = "occurrences", EmitDefaultValue = true)]
         [JsonPropertyName("occurrences")]
+        [JsonInclude]
         public List<DateTime> Occurrences { get; private set; }
 
         /// <summary>

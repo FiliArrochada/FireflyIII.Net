@@ -2,9 +2,10 @@ name: Release to NuGet
 
 # Publishes the FireflyIIINet package to nuget.org.
 #
-# The package version is always the <Version> from FireflyIIINet.csproj — bump it there
-# before releasing. Trigger by publishing a GitHub Release (the tag is just a marker;
-# it does not set the version).
+# The package version is always the <Version> from FireflyIIINet.csproj — bump it there before releasing.
+# Manual trigger only (workflow_dispatch): run it from the Actions tab. After a successful push
+# it creates the matching v<version> GitHub release/tag (if it doesn't already exist), so the
+# release history stays in sync with nuget.org.
 #
 # Publishing uses nuget.org Trusted Publishing (OIDC) — no long-lived API key.
 # nuget.org side: create a Trusted Publishing policy under your profile with
@@ -12,15 +13,14 @@ name: Release to NuGet
 #   Repository: FireflyIII.Net
 #   Workflow File: release-nuget.yml
 # Leave Environment blank unless you add `environment:` to the job below.
-# GitHub side: the only secret needed is NUGET_USER = your nuget.org profile name
-# (the account username, NOT your email). The job requests a short-lived key at run time.
+# GitHub side: the only secret needed is NUGET_USER = your nuget.org profile name (the account username, NOT your email).
+# The job requests a short-lived key at run time.
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write   # write: creates the v<version> release/tag after publishing
   id-token: write   # required for Trusted Publishing: lets the job request a GitHub OIDC token
 
 jobs:
@@ -45,7 +45,7 @@ jobs:
         run: dotnet test FireflyIIINet.sln -c Release --no-build
 
       - name: Pack
-        run: dotnet pack src/FireflyIIINet/FireflyIIINet.csproj -c Release --no-build -p:PackageLicenseExpression=MIT -o artifacts
+        run: dotnet pack src/FireflyIIINet/FireflyIIINet.csproj -c Release --no-build -o artifacts
 
       # Exchange the GitHub OIDC token for a short-lived nuget.org API key.
       # Done right before push: the key is valid for only 1 hour.
@@ -61,3 +61,17 @@ jobs:
           --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
           --source https://api.nuget.org/v3/index.json
           --skip-duplicate
+
+      # Create the matching v<version> release/tag so the repo's release history
+      # stays in sync with what was just published (skipped if it already exists).
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's:.*<Version>\(.*\)</Version>.*:\1:p' src/FireflyIIINet/FireflyIIINet.csproj)
+          tag="v$version"
+          if gh release view "$tag" > /dev/null 2>&1; then
+            echo "Release $tag already exists - nothing to do."
+          else
+            gh release create "$tag" --title "$tag" --generate-notes
+          fi

@@ -58,6 +58,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
         [JsonPropertyName("created_at")]
+        [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
@@ -74,6 +75,7 @@ namespace FireflyIIINet.Model
         /// <example>2018-09-17T12:46:47+01:00</example>
         [DataMember(Name = "updated_at", EmitDefaultValue = true)]
         [JsonPropertyName("updated_at")]
+        [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 
         /// <summary>
@@ -106,6 +108,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "spent", EmitDefaultValue = true)]
         [JsonPropertyName("spent")]
+        [JsonInclude]
         public List<CategorySpent> Spent { get; private set; }
 
         /// <summary>
@@ -121,6 +124,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "earned", EmitDefaultValue = true)]
         [JsonPropertyName("earned")]
+        [JsonInclude]
         public List<CategoryEarned> Earned { get; private set; }
 
         /// <summary>

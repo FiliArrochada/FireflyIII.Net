@@ -146,6 +146,7 @@ namespace FireflyIIINet.Model
         /// <example>true</example>
         [DataMember(Name = "active", EmitDefaultValue = true)]
         [JsonPropertyName("active")]
+        [JsonInclude]
         public bool Active { get; private set; }
 
         /// <summary>
