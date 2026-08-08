@@ -1,0 +1,35 @@
+name: Spec check
+
+# Weekly check for newly published Firefly III API specs that are not yet vendored in api/.
+# Runs scripts/check-spec-version.cs (a .NET 10 file-based app). The job fails when upstream
+# has specs we don't have — the failure notification is the alert; the log lists the missing
+# files with their download URLs.
+#
+# Runs WITHOUT --diff on purpose: the SDK deliberately pins API 2.0.2, so the path diff
+# against the newest upstream spec always reports drift. Run the script locally with
+# `dotnet run scripts/check-spec-version.cs -- --diff` to size that gap when planning a bump.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  spec-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Check for new upstream specs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}   # avoids anonymous API rate limits
+        run: dotnet run scripts/check-spec-version.cs

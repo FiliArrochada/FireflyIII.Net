@@ -91,4 +91,12 @@ the spec copy under `api/` in sync.
 ```bash
 dotnet build FireflyIIINet.sln
 dotnet test  FireflyIIINet.sln
+
+# Check whether upstream has published API specs not yet vendored in api/,
+# and (--diff) how far the pinned SDK spec is behind the newest upstream v1.
+# This is a .NET 10 file-based app (needs the .NET 10 SDK; the library targets net8.0).
+dotnet run scripts/check-spec-version.cs -- --diff
 ```
+
+A scheduled workflow (`spec-check.yml`) runs the same check weekly and fails when new
+upstream specs appear.

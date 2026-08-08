@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\release-nuget.yml = .github\workflows\release-nuget.yml
+		.github\workflows\spec-check.yml = .github\workflows\spec-check.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution-items", ".solution-items", "{5D3F76F2-86B0-4E44-BAB1-0E4E9E6D7C61}"
@@ -23,6 +24,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution-items", ".solutio
 		.gitignore = .gitignore
 		LICENSE = LICENSE
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{D4A91E27-5B83-4C6F-9E12-3F8A70B5C614}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\check-spec-version.cs = scripts\check-spec-version.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{E8B44FBA-4F2C-4CDA-9A61-2C8F7B3D91A4}"
