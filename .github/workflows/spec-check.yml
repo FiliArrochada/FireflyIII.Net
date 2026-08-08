@@ -2,8 +2,9 @@ name: Spec check
 
 # Weekly check for newly published Firefly III API specs that are not yet vendored in api/.
 # Runs scripts/check-spec-version.cs (a .NET 10 file-based app). The job fails when upstream
-# has specs we don't have — the failure notification is the alert; the log lists the missing
-# files with their download URLs.
+# has specs we don't have, and opens a 'spec-check'-labeled issue with the checker's output
+# (skipped when such an issue is already open, so repeated weekly failures don't pile up).
+# Script errors (exit 2: network, API changes) fail the job but do NOT open an issue.
 #
 # Runs WITHOUT --diff on purpose: the SDK deliberately pins API 2.0.2, so the path diff
 # against the newest upstream spec always reports drift. Run the script locally with
@@ -16,6 +17,7 @@ on:
 
 permissions:
   contents: read
+  issues: write   # the failure step opens/updates the spec-check issue
 
 jobs:
   spec-check:
@@ -30,6 +32,35 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Check for new upstream specs
+        id: check
         env:
           GITHUB_TOKEN: ${{ github.token }}   # avoids anonymous API rate limits
-        run: dotnet run scripts/check-spec-version.cs
+        run: |
+          set +e
+          dotnet run scripts/check-spec-version.cs | tee spec-check.log
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit $code
+
+      # Only for exit code 1 (new specs found) — not for script errors (exit 2).
+      - name: Open issue for new specs (no duplicates)
+        if: failure() && steps.check.outputs.exit_code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create spec-check --description "New upstream API specs to vendor" --color D93F0B --force
+          open=$(gh issue list --state open --label spec-check --json number --jq 'length')
+          if [ "$open" -gt 0 ]; then
+            echo "An open spec-check issue already exists — not creating a duplicate."
+            exit 0
+          fi
+          {
+            echo "The weekly spec check found upstream specs that are not vendored in \`api/\`."
+            echo
+            echo '```'
+            cat spec-check.log
+            echo '```'
+            echo
+            echo "_Opened automatically by the spec-check workflow. It will not open another issue while this one is open._"
+          } > issue-body.md
+          gh issue create --title "New upstream Firefly III API specs available" --label spec-check --body-file issue-body.md

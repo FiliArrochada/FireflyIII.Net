@@ -98,5 +98,6 @@ dotnet test  FireflyIIINet.sln
 dotnet run scripts/check-spec-version.cs -- --diff
 ```
 
-A scheduled workflow (`spec-check.yml`) runs the same check weekly and fails when new
-upstream specs appear.
+A scheduled workflow (`spec-check.yml`) runs the same check weekly; when new upstream
+specs appear it fails the run and opens a `spec-check`-labeled issue (one at a time —
+no duplicates while an issue is open).
