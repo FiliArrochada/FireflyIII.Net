@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>2.0.10</Version>
+    <Version>2.0.12</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 2.0.10: limit query parameter on 50 v1 list endpoints and /v2/budgets; page removed from v2 budgeted/spent endpoints (breaking); dead models AvailableBudgetStore/AvailableBudgetUpdate/CategoryStore/LinkTypeStore removed (breaking).</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 2.0.12: v2 API expansion (subscriptions, v2 accounts/currencies/piggy-banks/transactions/summary/autocomplete/charts, TransactionV2 models); v1 error/property schemas renamed (BadRequest to BadRequestResponse etc., breaking); webhook trigger-transaction endpoint; WebhookMessage.string renamed to message; BasicSummary is now a map.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 

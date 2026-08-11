@@ -55,5 +55,11 @@ namespace FireflyIIINet.Api
 
         [Get("/v1/autocomplete/transactions-with-id")]
         Task<List<AutocompleteTransactionID>> GetTransactionsIDAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
+
+        [Get("/v2/autocomplete/accounts")]
+        Task<List<AutocompleteAccountV2>> GetAccountsACV2([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null, string date = null, [Query(CollectionFormat.Csv)] List<AccountTypeFilter> types = null);
+
+        [Get("/v2/autocomplete/transaction-descriptions")]
+        Task<List<AutocompleteTD>> GetTransactionDescriptionsACV2([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
     }
 }

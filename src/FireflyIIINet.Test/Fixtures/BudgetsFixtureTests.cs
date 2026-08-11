@@ -1,6 +1,6 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-2.0.10-v1.yaml,
- * v2: firefly-iii-2.0.10-v2.yaml), asserting the wire format maps onto the generated models.
+ * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-2.0.12-v1.yaml,
+ * v2: firefly-iii-2.0.12-v2.yaml), asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, order, budget_id, period, spent, ...)
  * are generated with private setters and are therefore NOT populated by System.Text.Json
@@ -173,7 +173,7 @@ namespace FireflyIIINet.Test.Fixtures
         [Fact]
         public void BudgetLimitReadV2_Deserializes_V2_Spec_Example()
         {
-            var read = JsonSerializer.Deserialize<BudgetLimitReadV2>(BudgetLimitReadV2Json, SerializerOptions.Default);
+            var read = JsonSerializer.Deserialize<BudgetLimitV2Read>(BudgetLimitReadV2Json, SerializerOptions.Default);
 
             Assert.Equal("budget_limits", read.Type);
             Assert.Equal("2", read.Id);

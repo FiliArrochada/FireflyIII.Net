@@ -1,6 +1,6 @@
 /*
  * Fixture tests: deserialization of realistic Attachment payloads built from the
- * example values in api/firefly-iii-2.0.10-v1.yaml (Attachment / AttachmentRead schemas).
+ * example values in api/firefly-iii-2.0.12-v1.yaml (Attachment / AttachmentRead schemas).
  *
  * Note: the only date-time properties of Attachment (created_at/updated_at) are
  * generated read-only (private setters), as are mime and size. They are included in

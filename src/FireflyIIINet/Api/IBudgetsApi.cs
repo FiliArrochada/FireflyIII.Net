@@ -50,6 +50,9 @@ namespace FireflyIIINet.Api
         [Get("/v2/budgets")]
         Task<BudgetV2Array> ListBudgets([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
+        [Get("/v2/budgets/{id}")]
+        Task<BudgetV2Single> GetBudgetV2([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
         [Get("/v1/budgets/{id}/transactions")]
         Task<TransactionArray> ListTransactionByBudget(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 

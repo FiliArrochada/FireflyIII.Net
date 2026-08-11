@@ -41,6 +41,9 @@ namespace FireflyIIINet.Api
         [Get("/v1/currencies")]
         Task<CurrencyArray> ListCurrency([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
+        [Get("/v2/currencies")]
+        Task<CurrencyV2Array> ListCurrencyV2([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
+
         [Get("/v1/currencies/{code}/recurrences")]
         Task<RecurrenceArray> ListRecurrenceByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 

@@ -9,6 +9,6 @@ namespace FireflyIIINet.Api
     public interface INetWorthApi
     {
         [Get("/v2/net-worth")]
-        Task<List<TransactionSum>> GetNetWorth([Query(Format = "yyyy-MM-dd")] DateTime date, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        Task<Dictionary<string, NetWorthItem>> GetNetWorth([Query(Format = "yyyy-MM-dd")] DateTime date, [Header("X-Trace-Id")] Guid? xTraceId = null);
     }
 }

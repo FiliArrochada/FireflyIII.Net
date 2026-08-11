@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Webhooks area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-2.0.10-v1.yaml, Webhook / WebhookMessage /
+ * Firefly III OpenAPI spec (api/firefly-iii-2.0.12-v1.yaml, Webhook / WebhookMessage /
  * WebhookAttempt schemas).
  *
  * Note: read-only spec fields (created_at, updated_at, secret) map onto private-setter
@@ -95,7 +95,7 @@ namespace FireflyIIINet.Test.Fixtures
                   "errored": false,
                   "webhook_id": "5",
                   "uuid": "7a344c02-5b52-46b1-90e6-a437431dcf07",
-                  "string": "{some:message}"
+                  "message": "{some:message}"
                 }
               }
             }
@@ -111,8 +111,8 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.False(message.Errored);
             Assert.Equal("5", message.WebhookId);
             Assert.Equal("7a344c02-5b52-46b1-90e6-a437431dcf07", message.Uuid);
-            // wire name "string" maps onto the VarString property
-            Assert.Equal("{some:message}", message.VarString);
+            // wire name "message" (renamed from "string" in 2.0.12) maps onto the Message property
+            Assert.Equal("{some:message}", message.Message);
         }
 
         [Fact]

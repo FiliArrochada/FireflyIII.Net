@@ -9,6 +9,9 @@ namespace FireflyIIINet.Api
     public interface ISummaryApi
     {
         [Get("/v1/summary/basic")]
-        Task<List<BasicSummaryEntry>> GetBasicSummary([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, [AliasAs("currency_code")] string currencyCode = null);
+        Task<Dictionary<string, BasicSummaryEntry>> GetBasicSummary([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, [AliasAs("currency_code")] string currencyCode = null);
+
+        [Get("/v2/summary/basic")]
+        Task<Dictionary<string, BasicSummaryV2Entry>> GetBasicSummaryV2([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
     }
 }

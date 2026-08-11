@@ -33,5 +33,11 @@ namespace FireflyIIINet.Api
         [Put("/v1/bills/{id}")]
         [Headers("Content-Type: application/json")]
         Task<BillSingle> UpdateBill(string id, [Body] BillUpdate billUpdate, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
+        [Get("/v2/subscriptions/{id}")]
+        Task<SubscriptionSingle> GetSubscription(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
+
+        [Get("/v2/subscriptions")]
+        Task<SubscriptionArray> ListSubscriptions([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
     }
 }

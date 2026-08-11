@@ -36,6 +36,13 @@ namespace FireflyIIINet.Api
         [Headers("Content-Type: application/json")]
         Task<TransactionSingle> StoreTransaction([Body] TransactionStore transactionStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        [Get("/v2/transactions")]
+        Task<TransactionV2Array> ListTransactionV2([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
+
+        [Post("/v2/transactions")]
+        [Headers("Content-Type: application/json")]
+        Task<TransactionV2Single> StoreTransactionV2([Body] TransactionV2Store transactionV2Store, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
         [Put("/v1/transactions/{id}")]
         [Headers("Content-Type: application/json")]
         Task<TransactionSingle> UpdateTransaction(string id, [Body] TransactionUpdate transactionUpdate, [Header("X-Trace-Id")] Guid? xTraceId = null);

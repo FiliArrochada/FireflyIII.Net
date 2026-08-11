@@ -1,5 +1,5 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-2.0.10-v1.yaml),
+ * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-2.0.12-v1.yaml),
  * asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, currency_symbol, next_expected_match,
@@ -153,7 +153,7 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal(BillRepeatFrequency.Monthly, bill.RepeatFreq);
             // RFC3339 values with an offset are adjusted; compare in UTC to stay timezone-agnostic.
             Assert.Equal(new DateTime(2018, 9, 17, 11, 46, 47, DateTimeKind.Utc), bill.Date.ToUniversalTime());
-            Assert.Equal(new DateTime(2019, 9, 17, 11, 46, 47, DateTimeKind.Utc), bill.EndDate.ToUniversalTime());
+            Assert.Equal(new DateTime(2019, 9, 17, 11, 46, 47, DateTimeKind.Utc), bill.EndDate.Value.ToUniversalTime());
             Assert.Equal(0, bill.Skip);
             Assert.True(bill.Active);
             Assert.Equal(1, bill.Order);

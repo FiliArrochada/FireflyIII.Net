@@ -1,6 +1,6 @@
 /*
  * Fixture tests: deserialization of realistic Account payloads built from the
- * example values in api/firefly-iii-2.0.10-v1.yaml (Account / AccountRead schemas).
+ * example values in api/firefly-iii-2.0.12-v1.yaml (Account / AccountRead schemas).
  *
  * Note: properties generated as read-only (private setters, e.g. created_at,
  * currency_symbol, current_balance) are included in the payloads for realism but
@@ -145,10 +145,10 @@ namespace FireflyIIINet.Test.Fixtures
             var single = JsonSerializer.Deserialize<AccountSingle>(AccountSingleJson, SerializerOptions.Default);
 
             var account = single.Data.Attributes;
-            Assert.Null(account.CreditCardType);
-            Assert.Null(account.LiabilityType);
-            Assert.Null(account.LiabilityDirection);
-            Assert.Null(account.InterestPeriod);
+            Assert.Null(account.CreditCardTypeProperty);
+            Assert.Null(account.LiabilityTypeProperty);
+            Assert.Null(account.LiabilityDirectionProperty);
+            Assert.Null(account.InterestPeriodProperty);
             Assert.Null(account.MonthlyPaymentDate);
             Assert.Null(account.CurrentDebt);
             Assert.Null(account.Notes);
