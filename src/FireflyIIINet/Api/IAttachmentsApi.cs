@@ -19,7 +19,7 @@ namespace FireflyIIINet.Api
         Task<AttachmentSingle> GetAttachment(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/attachments")]
-        Task<AttachmentArray> ListAttachment([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AttachmentArray> ListAttachment([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Post("/v1/attachments")]
         [Headers("Content-Type: application/json")]

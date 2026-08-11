@@ -21,22 +21,22 @@ namespace FireflyIIINet.Api
         Task<BudgetLimitSingle> GetBudgetLimit(string id, int limitId, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v2/budgets/{id}/budgeted")]
-        Task<List<TransactionSum>> GetBudgetedForBudget([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<List<TransactionSum>> GetBudgetedForBudget([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v2/budgets/sum/budgeted")]
-        Task<List<TransactionSum>> GetBudgetedForBudgets([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<List<TransactionSum>> GetBudgetedForBudgets([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v2/budgets/{id}/spent")]
-        Task<List<TransactionSum>> GetSpentForBudget([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<List<TransactionSum>> GetSpentForBudget([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v2/budgets/sum/spent")]
-        Task<List<TransactionSum>> GetSpentForBudgets([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<List<TransactionSum>> GetSpentForBudgets([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/budgets/{id}/attachments")]
-        Task<AttachmentArray> ListAttachmentByBudget(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AttachmentArray> ListAttachmentByBudget(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/budgets")]
-        Task<BudgetArray> ListBudget([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
+        Task<BudgetArray> ListBudget([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
 
         [Get("/v1/budget-limits")]
         Task<BudgetLimitArray> ListBudgetLimit([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
@@ -48,13 +48,13 @@ namespace FireflyIIINet.Api
         Task<BudgetLimitV2Array> ListBudgetLimitByBudgetV2([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v2/budgets")]
-        Task<BudgetV2Array> ListBudgets([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<BudgetV2Array> ListBudgets([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/budgets/{id}/transactions")]
         Task<TransactionArray> ListTransactionByBudget(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 
         [Get("/v1/budgets/{id}/limits/{limitId}/transactions")]
-        Task<TransactionArray> ListTransactionByBudgetLimit(string id, string limitId, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, TransactionTypeFilter? type = null);
+        Task<TransactionArray> ListTransactionByBudgetLimit(string id, string limitId, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, TransactionTypeFilter? type = null);
 
         [Post("/v1/budgets")]
         [Headers("Content-Type: application/json")]

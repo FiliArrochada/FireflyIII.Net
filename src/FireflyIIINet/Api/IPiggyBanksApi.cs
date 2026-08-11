@@ -15,13 +15,13 @@ namespace FireflyIIINet.Api
         Task<PiggyBankSingle> GetPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/piggy-banks/{id}/attachments")]
-        Task<AttachmentArray> ListAttachmentByPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AttachmentArray> ListAttachmentByPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/piggy-banks/{id}/events")]
-        Task<PiggyBankEventArray> ListEventByPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<PiggyBankEventArray> ListEventByPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/piggy-banks")]
-        Task<PiggyBankArray> ListPiggyBank([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<PiggyBankArray> ListPiggyBank([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Post("/v1/piggy-banks")]
         [Headers("Content-Type: application/json")]

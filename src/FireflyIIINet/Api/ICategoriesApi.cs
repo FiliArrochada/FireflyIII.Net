@@ -15,13 +15,13 @@ namespace FireflyIIINet.Api
         Task<CategorySingle> GetCategory(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
 
         [Get("/v1/categories/{id}/attachments")]
-        Task<AttachmentArray> ListAttachmentByCategory(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AttachmentArray> ListAttachmentByCategory(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/categories")]
-        Task<CategoryArray> ListCategory([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<CategoryArray> ListCategory([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/categories/{id}/transactions")]
-        Task<TransactionArray> ListTransactionByCategory(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
+        Task<TransactionArray> ListTransactionByCategory(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 
         [Post("/v1/categories")]
         [Headers("Content-Type: application/json")]

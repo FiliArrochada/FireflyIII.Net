@@ -12,16 +12,16 @@ namespace FireflyIIINet.Api
         Task DeleteTag(string tag, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/tags/{tag}")]
-        Task<TagSingle> GetTag(string tag, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<TagSingle> GetTag(string tag, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/tags/{tag}/attachments")]
-        Task<AttachmentArray> ListAttachmentByTag(string tag, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AttachmentArray> ListAttachmentByTag(string tag, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/tags")]
-        Task<TagArray> ListTag([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<TagArray> ListTag([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/tags/{tag}/transactions")]
-        Task<TransactionArray> ListTransactionByTag(string tag, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
+        Task<TransactionArray> ListTransactionByTag(string tag, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 
         [Post("/v1/tags")]
         [Headers("Content-Type: application/json")]

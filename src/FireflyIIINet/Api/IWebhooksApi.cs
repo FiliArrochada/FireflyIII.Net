@@ -27,13 +27,13 @@ namespace FireflyIIINet.Api
         Task<WebhookSingle> GetWebhook(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/webhooks/{id}/messages/{messageId}/attempts")]
-        Task<WebhookAttemptArray> GetWebhookMessageAttempts(string id, int messageId, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<WebhookAttemptArray> GetWebhookMessageAttempts(string id, int messageId, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/webhooks/{id}/messages")]
         Task<WebhookMessageArray> GetWebhookMessages(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/webhooks")]
-        Task<WebhookArray> ListWebhook([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<WebhookArray> ListWebhook([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Post("/v1/webhooks")]
         [Headers("Content-Type: application/json")]

@@ -15,13 +15,13 @@ namespace FireflyIIINet.Api
         Task<AccountSingle> GetAccount(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null);
 
         [Get("/v1/accounts")]
-        Task<AccountArray> ListAccount([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, AccountTypeFilter? type = null);
+        Task<AccountArray> ListAccount([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, AccountTypeFilter? type = null);
 
         [Get("/v1/accounts/{id}/attachments")]
-        Task<AttachmentArray> ListAttachmentByAccount(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AttachmentArray> ListAttachmentByAccount(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/accounts/{id}/piggy-banks")]
-        Task<PiggyBankArray> ListPiggyBankByAccount(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<PiggyBankArray> ListPiggyBankByAccount(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/accounts/{id}/transactions")]
         Task<TransactionArray> ListTransactionByAccount(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, int? limit = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);

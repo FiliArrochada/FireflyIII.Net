@@ -121,21 +121,21 @@ namespace FireflyIIINet.Test
         [Fact]
         public void DateOnly_Fields_Serialize_As_yyyy_MM_dd()
         {
-            var budget = new AvailableBudgetStore(
-                amount: "100.00",
-                start: new DateTime(2023, 5, 1),
-                end: new DateTime(2023, 5, 31));
-            var json = JsonSerializer.Serialize(budget, Options);
-            Assert.Contains("\"start\":\"2023-05-01\"", json);
-            Assert.Contains("\"end\":\"2023-05-31\"", json);
+            var piggy = new PiggyBankUpdate(
+                name: "New digital camera",
+                startDate: new DateTime(2023, 5, 1),
+                targetDate: new DateTime(2023, 5, 31));
+            var json = JsonSerializer.Serialize(piggy, Options);
+            Assert.Contains("\"start_date\":\"2023-05-01\"", json);
+            Assert.Contains("\"target_date\":\"2023-05-31\"", json);
         }
 
         [Fact]
         public void DateOnly_Fields_Deserialize_From_yyyy_MM_dd()
         {
-            var budget = JsonSerializer.Deserialize<AvailableBudgetStore>(
-                "{\"amount\":\"100.00\",\"start\":\"2023-05-01\",\"end\":\"2023-05-31\"}", Options);
-            Assert.Equal(new DateTime(2023, 5, 1), budget.Start);
+            var piggy = JsonSerializer.Deserialize<PiggyBankUpdate>(
+                "{\"name\":\"New digital camera\",\"start_date\":\"2023-05-01\",\"target_date\":\"2023-05-31\"}", Options);
+            Assert.Equal(new DateTime(2023, 5, 1), piggy.StartDate);
         }
 
         // ---------- Read-only (server-computed) fields ----------

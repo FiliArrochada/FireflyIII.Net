@@ -15,10 +15,10 @@ namespace FireflyIIINet.Api
         Task<BillSingle> GetBill(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
 
         [Get("/v1/bills/{id}/attachments")]
-        Task<AttachmentArray> ListAttachmentByBill(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AttachmentArray> ListAttachmentByBill(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/bills")]
-        Task<BillArray> ListBill([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
+        Task<BillArray> ListBill([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
 
         [Get("/v1/bills/{id}/rules")]
         Task<RuleArray> ListRuleByBill(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);

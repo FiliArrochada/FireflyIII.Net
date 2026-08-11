@@ -18,17 +18,17 @@ namespace FireflyIIINet.Api
         Task<RuleGroupSingle> GetRuleGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/rule-groups/{id}/rules")]
-        Task<RuleArray> ListRuleByGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<RuleArray> ListRuleByGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/rule-groups")]
-        Task<RuleGroupArray> ListRuleGroup([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<RuleGroupArray> ListRuleGroup([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Post("/v1/rule-groups")]
         [Headers("Content-Type: application/json")]
         Task<RuleGroupSingle> StoreRuleGroup([Body] RuleGroupStore ruleGroupStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/rule-groups/{id}/test")]
-        Task<TransactionArray> TestRuleGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, [AliasAs("search_limit")] int? searchLimit = null, [AliasAs("triggered_limit")] int? triggeredLimit = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long> accounts = null);
+        Task<TransactionArray> TestRuleGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, [AliasAs("search_limit")] int? searchLimit = null, [AliasAs("triggered_limit")] int? triggeredLimit = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long> accounts = null);
 
         [Put("/v1/rule-groups/{id}")]
         [Headers("Content-Type: application/json")]

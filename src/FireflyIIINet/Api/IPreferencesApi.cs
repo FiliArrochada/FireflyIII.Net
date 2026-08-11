@@ -15,7 +15,7 @@ namespace FireflyIIINet.Api
         Task<PreferenceSingle> GetPreferenceV2(string name, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/preferences")]
-        Task<PreferenceArray> ListPreference([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<PreferenceArray> ListPreference([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Post("/v1/preferences")]
         [Headers("Content-Type: application/json")]

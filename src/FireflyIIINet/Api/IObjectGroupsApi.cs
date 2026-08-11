@@ -15,13 +15,13 @@ namespace FireflyIIINet.Api
         Task<ObjectGroupSingle> GetObjectGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/object-groups/{id}/bills")]
-        Task<BillArray> ListBillByObjectGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<BillArray> ListBillByObjectGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/object-groups")]
-        Task<ObjectGroupArray> ListObjectGroups([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<ObjectGroupArray> ListObjectGroups([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/object-groups/{id}/piggy-banks")]
-        Task<PiggyBankArray> ListPiggyBankByObjectGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<PiggyBankArray> ListPiggyBankByObjectGroup(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Put("/v1/object-groups/{id}")]
         [Headers("Content-Type: application/json")]

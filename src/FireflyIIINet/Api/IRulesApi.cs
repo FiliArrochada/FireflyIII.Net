@@ -18,7 +18,7 @@ namespace FireflyIIINet.Api
         Task<RuleSingle> GetRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/rules")]
-        Task<RuleArray> ListRule([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<RuleArray> ListRule([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Post("/v1/rules")]
         [Headers("Content-Type: application/json")]

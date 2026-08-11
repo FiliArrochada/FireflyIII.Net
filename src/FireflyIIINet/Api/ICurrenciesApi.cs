@@ -27,28 +27,28 @@ namespace FireflyIIINet.Api
         Task<CurrencySingle> GetDefaultCurrency([Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/currencies/{code}/accounts")]
-        Task<AccountArray> ListAccountByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, AccountTypeFilter? type = null);
+        Task<AccountArray> ListAccountByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, AccountTypeFilter? type = null);
 
         [Get("/v1/currencies/{code}/available-budgets")]
-        Task<AvailableBudgetArray> ListAvailableBudgetByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<AvailableBudgetArray> ListAvailableBudgetByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/currencies/{code}/bills")]
-        Task<BillArray> ListBillByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<BillArray> ListBillByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/currencies/{code}/budget_limits")]
-        Task<BudgetLimitArray> ListBudgetLimitByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
+        Task<BudgetLimitArray> ListBudgetLimitByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
 
         [Get("/v1/currencies")]
-        Task<CurrencyArray> ListCurrency([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<CurrencyArray> ListCurrency([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/currencies/{code}/recurrences")]
-        Task<RecurrenceArray> ListRecurrenceByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<RecurrenceArray> ListRecurrenceByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/currencies/{code}/rules")]
-        Task<RuleArray> ListRuleByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<RuleArray> ListRuleByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/currencies/{code}/transactions")]
-        Task<TransactionArray> ListTransactionByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
+        Task<TransactionArray> ListTransactionByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 
         [Post("/v1/currencies")]
         [Headers("Content-Type: application/json")]

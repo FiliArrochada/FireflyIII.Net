@@ -12,6 +12,6 @@ namespace FireflyIIINet.Api
         Task<AvailableBudgetSingle> GetAvailableBudget(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/available-budgets")]
-        Task<AvailableBudgetArray> ListAvailableBudget([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
+        Task<AvailableBudgetArray> ListAvailableBudget([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
     }
 }

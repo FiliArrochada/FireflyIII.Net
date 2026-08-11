@@ -21,13 +21,13 @@ namespace FireflyIIINet.Api
         Task<TransactionLinkSingle> GetTransactionLink(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/link-types")]
-        Task<LinkTypeArray> ListLinkType([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<LinkTypeArray> ListLinkType([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Get("/v1/link-types/{id}/transactions")]
-        Task<TransactionArray> ListTransactionByLinkType(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
+        Task<TransactionArray> ListTransactionByLinkType(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 
         [Get("/v1/transaction-links")]
-        Task<TransactionLinkArray> ListTransactionLink([Header("X-Trace-Id")] Guid? xTraceId = null, int? page = null);
+        Task<TransactionLinkArray> ListTransactionLink([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
         [Post("/v1/link-types")]
         [Headers("Content-Type: application/json")]
