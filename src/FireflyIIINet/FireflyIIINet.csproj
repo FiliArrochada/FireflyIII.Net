@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>2.1.0</Version>
+    <Version>6.1.21</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 2.1.0: v2 API reduced upstream to two endpoints (accounts autocomplete, balance chart) - all other v2 endpoints and models removed (breaking); accounts autocomplete reworked (AutocompleteObject response, size/page/user_group_id params); balance chart gains preselected; v1 bill transactions gain limit/page.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.1.21: upstream realigned the API docs version with the app version; identical API surface to 2.1.0.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 

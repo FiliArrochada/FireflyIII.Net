@@ -1,9 +1,9 @@
 /*
- * Firefly III API v2.1.0
+ * Firefly III API v6.1.21
  *
- * This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the \"Authorize\" button to try the API below. This file was last generated on 2024-10-20T15:47:33+00:00
+ * This is the documentation of the Firefly III API. You can find accompanying documentation on the website of Firefly III itself (see below). Please report any bugs or issues. You may use the \"Authorize\" button to try the API below. This file was last generated on 2024-11-06T11:33:39+00:00
  *
- * The version of the OpenAPI document: 2.1.0
+ * The version of the OpenAPI document: 6.1.21
  * Contact: james@firefly-iii.org
  */
 

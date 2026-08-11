@@ -1,5 +1,5 @@
 /*
- * Firefly III API v2.1.0
+ * Firefly III API v6.1.21
  *
  * Refit glue: URL parameter formatting quirks of the Firefly III API and the
  * RefitSettings factory wiring them together with the shared STJ options.

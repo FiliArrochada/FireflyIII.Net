@@ -7,9 +7,9 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
-- API version: 2.1.0 (v1 and v2 endpoints)
-- SDK version: 2.1.0 (tracks the API version; the 4th revision component denotes client-only changes)
-- Source specifications: [api/firefly-iii-2.1.0-v1.yaml](api/firefly-iii-2.1.0-v1.yaml) and [api/firefly-iii-2.1.0-v2.yaml](api/firefly-iii-2.1.0-v2.yaml)
+- API version: 6.1.21 (v1 and v2 endpoints)
+- SDK version: 6.1.21 (tracks the API version; the 4th revision component denotes client-only changes)
+- Source specifications: [api/firefly-iii-6.1.21-v1.yaml](api/firefly-iii-6.1.21-v1.yaml) and [api/firefly-iii-6.1.21-v2.yaml](api/firefly-iii-6.1.21-v2.yaml)
 - All released specifications (0.10.4 – 6.6.6): [api/](api/)
 
 ## Frameworks supported
