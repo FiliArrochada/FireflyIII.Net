@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>2.0.5</Version>
+    <Version>2.0.6</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 2.0.5: new v2 balance chart endpoint (GetBalanceChartV2); ChartDataSetV2 reshaped (start/end/period/native_entries replace start_date/end_date/converted/type/yAxisID, breaking); RecurrenceTransactionUpdate.id now required.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 2.0.6: PageLink gains next and prev links (v1 and v2).</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
