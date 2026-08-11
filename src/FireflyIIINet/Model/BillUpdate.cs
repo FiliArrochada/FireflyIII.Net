@@ -41,6 +41,11 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BillUpdate" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected BillUpdate() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillUpdate" /> class.
+        /// </summary>
         /// <param name="currencyId">Use either currency_id or currency_code.</param>
         /// <param name="currencyCode">Use either currency_id or currency_code.</param>
         /// <param name="name">name.</param>
@@ -55,16 +60,16 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public BillUpdate(string currencyId = default(string), string currencyCode = default(string), string name = default(string), string amountMin = default(string), string amountMax = default(string), DateTime date = default(DateTime), DateTime endDate = default(DateTime), DateTime extensionDate = default(DateTime), BillRepeatFrequency? repeatFreq = default(BillRepeatFrequency?), int skip = default(int), bool active = default(bool), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
+        public BillUpdate(string currencyId = default(string), string currencyCode = default(string), string name = default(string), string amountMin = default(string), string amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency? repeatFreq = default(BillRepeatFrequency?), int skip = default(int), bool active = default(bool), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
         {
             CurrencyId = currencyId;
             CurrencyCode = currencyCode;
             Name = name;
             AmountMin = amountMin;
             AmountMax = amountMax;
-            Date = date;
-            EndDate = endDate;
-            ExtensionDate = extensionDate;
+            Date = date ?? default(DateTime);
+            EndDate = endDate ?? default(DateTime);
+            ExtensionDate = extensionDate ?? default(DateTime);
             RepeatFreq = repeatFreq;
             Skip = skip;
             Active = active;

@@ -44,10 +44,10 @@ namespace FireflyIIINet.Model
         /// <param name="start">Start date of the budget limit. (required).</param>
         /// <param name="end">End date of the budget limit. (required).</param>
         /// <param name="amount">amount (required).</param>
-        public BudgetLimitStore(string currencyId = default(string), string currencyCode = default(string), DateTime start = default(DateTime), DateTime end = default(DateTime), string amount = default(string))
+        public BudgetLimitStore(string currencyId = default(string), string currencyCode = default(string), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string amount = default(string))
         {
-            Start = start;
-            End = end;
+            Start = start ?? default(DateTime);
+            End = end ?? default(DateTime);
             // to ensure "amount" is required (not null)
             if (amount == null)
             {

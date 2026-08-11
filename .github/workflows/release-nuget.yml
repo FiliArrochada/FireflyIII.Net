@@ -25,15 +25,17 @@ permissions:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # windows-latest: the library multi-targets net10.0;net48, and the net48
+    # build/tests need the .NET Framework targeting pack + runtime.
+    runs-on: windows-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore
         run: dotnet restore FireflyIIINet.sln
@@ -65,6 +67,7 @@ jobs:
       # Create the matching v<version> release/tag so the repo's release history
       # stays in sync with what was just published (skipped if it already exists).
       - name: Create GitHub release
+        shell: bash   # the job runs on windows-latest, where the default shell is pwsh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

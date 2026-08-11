@@ -44,10 +44,10 @@ namespace FireflyIIINet.Model
         /// <param name="currencyId">Use either currency_id or currency_code. Defaults to the user&#39;s default currency..</param>
         /// <param name="currencyCode">Use either currency_id or currency_code. Defaults to the user&#39;s default currency..</param>
         /// <param name="amount">amount (required).</param>
-        public BudgetLimit(DateTime start = default(DateTime), DateTime end = default(DateTime), string currencyId = default(string), string currencyCode = default(string), string amount = default(string))
+        public BudgetLimit(DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string currencyId = default(string), string currencyCode = default(string), string amount = default(string))
         {
-            Start = start;
-            End = end;
+            Start = start ?? default(DateTime);
+            End = end ?? default(DateTime);
             // to ensure "amount" is required (not null)
             if (amount == null)
             {

@@ -41,6 +41,11 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurrence" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected Recurrence() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Recurrence" /> class.
+        /// </summary>
         /// <param name="type">type.</param>
         /// <param name="title">title.</param>
         /// <param name="description">Not to be confused with the description of the actual transaction(s) being created..</param>
@@ -52,12 +57,12 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="repetitions">repetitions.</param>
         /// <param name="transactions">transactions.</param>
-        public Recurrence(RecurrenceTransactionType? type = default(RecurrenceTransactionType?), string title = default(string), string description = default(string), DateTime firstDate = default(DateTime), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetition> repetitions = default(List<RecurrenceRepetition>), List<RecurrenceTransaction> transactions = default(List<RecurrenceTransaction>))
+        public Recurrence(RecurrenceTransactionType? type = default(RecurrenceTransactionType?), string title = default(string), string description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetition> repetitions = default(List<RecurrenceRepetition>), List<RecurrenceTransaction> transactions = default(List<RecurrenceTransaction>))
         {
             Type = type;
             Title = title;
             Description = description;
-            FirstDate = firstDate;
+            FirstDate = firstDate ?? default(DateTime);
             RepeatUntil = repeatUntil;
             NrOfRepetitions = nrOfRepetitions;
             ApplyRules = applyRules;

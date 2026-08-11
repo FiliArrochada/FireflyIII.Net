@@ -56,7 +56,11 @@ namespace FireflyIIINet.Test.RefitSlice
         {
             LastRequest = request;
             // read the body eagerly: Refit disposes the content after sending
+#if NET5_0_OR_GREATER
             LastRequestBody = request.Content == null ? null : await request.Content.ReadAsStringAsync(ct);
+#else
+            LastRequestBody = request.Content == null ? null : await request.Content.ReadAsStringAsync();
+#endif
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent(_json, Encoding.UTF8, "application/json"),

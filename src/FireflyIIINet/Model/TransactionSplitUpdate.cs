@@ -41,6 +41,11 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionSplitUpdate" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TransactionSplitUpdate() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionSplitUpdate" /> class.
+        /// </summary>
         /// <param name="transactionJournalId">Transaction journal ID of current transaction (split)..</param>
         /// <param name="type">type.</param>
         /// <param name="date">Date of the transaction.</param>
@@ -84,11 +89,11 @@ namespace FireflyIIINet.Model
         /// <param name="dueDate">dueDate.</param>
         /// <param name="paymentDate">paymentDate.</param>
         /// <param name="invoiceDate">invoiceDate.</param>
-        public TransactionSplitUpdate(string transactionJournalId = default(string), TransactionTypeProperty? type = default(TransactionTypeProperty?), DateTime date = default(DateTime), string amount = default(string), string description = default(string), int? order = default(int?), string currencyId = default(string), string currencyCode = default(string), string foreignAmount = default(string), string foreignCurrencyId = default(string), string foreignCurrencyCode = default(string), string budgetId = default(string), string categoryId = default(string), string categoryName = default(string), string sourceId = default(string), string sourceName = default(string), string sourceIban = default(string), string destinationId = default(string), string destinationName = default(string), string destinationIban = default(string), bool reconciled = default(bool), string billId = default(string), string billName = default(string), List<string> tags = default(List<string>), string notes = default(string), string internalReference = default(string), string externalId = default(string), string externalUrl = default(string), string bunqPaymentId = default(string), string sepaCc = default(string), string sepaCtOp = default(string), string sepaCtId = default(string), string sepaDb = default(string), string sepaCountry = default(string), string sepaEp = default(string), string sepaCi = default(string), string sepaBatchId = default(string), DateTime? interestDate = default(DateTime?), DateTime? bookDate = default(DateTime?), DateTime? processDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paymentDate = default(DateTime?), DateTime? invoiceDate = default(DateTime?))
+        public TransactionSplitUpdate(string transactionJournalId = default(string), TransactionTypeProperty? type = default(TransactionTypeProperty?), DateTime? date = default(DateTime?), string amount = default(string), string description = default(string), int? order = default(int?), string currencyId = default(string), string currencyCode = default(string), string foreignAmount = default(string), string foreignCurrencyId = default(string), string foreignCurrencyCode = default(string), string budgetId = default(string), string categoryId = default(string), string categoryName = default(string), string sourceId = default(string), string sourceName = default(string), string sourceIban = default(string), string destinationId = default(string), string destinationName = default(string), string destinationIban = default(string), bool reconciled = default(bool), string billId = default(string), string billName = default(string), List<string> tags = default(List<string>), string notes = default(string), string internalReference = default(string), string externalId = default(string), string externalUrl = default(string), string bunqPaymentId = default(string), string sepaCc = default(string), string sepaCtOp = default(string), string sepaCtId = default(string), string sepaDb = default(string), string sepaCountry = default(string), string sepaEp = default(string), string sepaCi = default(string), string sepaBatchId = default(string), DateTime? interestDate = default(DateTime?), DateTime? bookDate = default(DateTime?), DateTime? processDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paymentDate = default(DateTime?), DateTime? invoiceDate = default(DateTime?))
         {
             TransactionJournalId = transactionJournalId;
             Type = type;
-            Date = date;
+            Date = date ?? default(DateTime);
             Amount = amount;
             Description = description;
             Order = order;

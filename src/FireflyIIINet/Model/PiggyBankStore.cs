@@ -49,7 +49,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public PiggyBankStore(string name = default(string), string accountId = default(string), string targetAmount = default(string), string currentAmount = default(string), DateTime startDate = default(DateTime), DateTime? targetDate = default(DateTime?), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
+        public PiggyBankStore(string name = default(string), string accountId = default(string), string targetAmount = default(string), string currentAmount = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -70,7 +70,7 @@ namespace FireflyIIINet.Model
             }
             TargetAmount = targetAmount;
             CurrentAmount = currentAmount;
-            StartDate = startDate;
+            StartDate = startDate ?? default(DateTime);
             TargetDate = targetDate;
             Order = order;
             Notes = notes;

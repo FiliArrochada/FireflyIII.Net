@@ -34,6 +34,11 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PiggyBankEvent" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected PiggyBankEvent() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PiggyBankEvent" /> class.
+        /// </summary>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
         /// <param name="currencyId">currencyId.</param>
@@ -43,10 +48,10 @@ namespace FireflyIIINet.Model
         /// <param name="amount">amount.</param>
         /// <param name="transactionJournalId">The journal associated with the event..</param>
         /// <param name="transactionGroupId">The transaction group associated with the event..</param>
-        public PiggyBankEvent(DateTime createdAt = default(DateTime), DateTime updatedAt = default(DateTime), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string amount = default(string), string transactionJournalId = default(string), string transactionGroupId = default(string))
+        public PiggyBankEvent(DateTime? createdAt = default(DateTime?), DateTime? updatedAt = default(DateTime?), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string amount = default(string), string transactionJournalId = default(string), string transactionGroupId = default(string))
         {
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
+            CreatedAt = createdAt ?? default(DateTime);
+            UpdatedAt = updatedAt ?? default(DateTime);
             CurrencyId = currencyId;
             CurrencyCode = currencyCode;
             CurrencySymbol = currencySymbol;

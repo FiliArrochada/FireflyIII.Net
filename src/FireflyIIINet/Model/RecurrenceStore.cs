@@ -57,7 +57,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="repetitions">repetitions (required).</param>
         /// <param name="transactions">transactions (required).</param>
-        public RecurrenceStore(RecurrenceTransactionType type = default(RecurrenceTransactionType), string title = default(string), string description = default(string), DateTime firstDate = default(DateTime), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetitionStore> repetitions = default(List<RecurrenceRepetitionStore>), List<RecurrenceTransactionStore> transactions = default(List<RecurrenceTransactionStore>))
+        public RecurrenceStore(RecurrenceTransactionType type = default(RecurrenceTransactionType), string title = default(string), string description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetitionStore> repetitions = default(List<RecurrenceRepetitionStore>), List<RecurrenceTransactionStore> transactions = default(List<RecurrenceTransactionStore>))
         {
             Type = type;
             // to ensure "title" is required (not null)
@@ -66,7 +66,7 @@ namespace FireflyIIINet.Model
                 throw new ArgumentNullException("title is a required property for RecurrenceStore and cannot be null");
             }
             Title = title;
-            FirstDate = firstDate;
+            FirstDate = firstDate ?? default(DateTime);
             // to ensure "repeatUntil" is required (not null)
             if (repeatUntil == null)
             {

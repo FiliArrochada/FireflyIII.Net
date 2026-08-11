@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net10.0;net48</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <AssemblyName>FireflyIIINet</AssemblyName>
     <PackageId>FireflyIIINet</PackageId>
@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>2.0.2.4</Version>
+    <Version>2.0.2.5</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>First Refit-native release: typed Refit interfaces over the Firefly III API with System.Text.Json serialization.</PackageReleaseNotes>
+    <PackageReleaseNotes>Multi-targets net10.0 and net48. Same Firefly III API surface (2.0.2).</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
@@ -34,9 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Refit" Version="15.0.0" />
-    <PackageReference Include="System.Text.Json" Version="10.0.10" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="Refit" />
+    <!-- Since Refit 14 the reflection request builder is a separate package; referenced here so
+         RestService.For<T> works everywhere (on net48 the source-generated stubs are not resolved,
+         so reflection is the only path). Keep version-locked to Refit. -->
+    <PackageReference Include="Refit.Reflection" />
+    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="System.ComponentModel.Annotations" />
   </ItemGroup>
 
 </Project>

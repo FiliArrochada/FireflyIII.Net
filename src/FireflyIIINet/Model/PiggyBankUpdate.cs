@@ -34,6 +34,11 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PiggyBankUpdate" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected PiggyBankUpdate() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PiggyBankUpdate" /> class.
+        /// </summary>
         /// <param name="name">name.</param>
         /// <param name="accountId">The ID of the asset account this piggy bank is connected to..</param>
         /// <param name="targetAmount">targetAmount.</param>
@@ -44,13 +49,13 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public PiggyBankUpdate(string name = default(string), string accountId = default(string), string targetAmount = default(string), string currentAmount = default(string), DateTime startDate = default(DateTime), DateTime? targetDate = default(DateTime?), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
+        public PiggyBankUpdate(string name = default(string), string accountId = default(string), string targetAmount = default(string), string currentAmount = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
         {
             Name = name;
             AccountId = accountId;
             TargetAmount = targetAmount;
             CurrentAmount = currentAmount;
-            StartDate = startDate;
+            StartDate = startDate ?? default(DateTime);
             TargetDate = targetDate;
             Order = order;
             Notes = notes;

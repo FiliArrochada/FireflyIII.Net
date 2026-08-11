@@ -61,7 +61,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public Bill(string currencyId = default(string), string currencyCode = default(string), string name = default(string), string amountMin = default(string), string amountMax = default(string), DateTime date = default(DateTime), DateTime endDate = default(DateTime), DateTime extensionDate = default(DateTime), BillRepeatFrequency repeatFreq = default(BillRepeatFrequency), int skip = default(int), bool active = default(bool), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
+        public Bill(string currencyId = default(string), string currencyCode = default(string), string name = default(string), string amountMin = default(string), string amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency repeatFreq = default(BillRepeatFrequency), int skip = default(int), bool active = default(bool), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -81,12 +81,12 @@ namespace FireflyIIINet.Model
                 throw new ArgumentNullException("amountMax is a required property for Bill and cannot be null");
             }
             AmountMax = amountMax;
-            Date = date;
+            Date = date ?? default(DateTime);
             RepeatFreq = repeatFreq;
             CurrencyId = currencyId;
             CurrencyCode = currencyCode;
-            EndDate = endDate;
-            ExtensionDate = extensionDate;
+            EndDate = endDate ?? default(DateTime);
+            ExtensionDate = extensionDate ?? default(DateTime);
             Skip = skip;
             Active = active;
             Order = order;

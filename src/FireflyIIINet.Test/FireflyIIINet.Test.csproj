@@ -3,16 +3,18 @@
   <PropertyGroup>
     <AssemblyName>FireflyIIINet.Test</AssemblyName>
     <RootNamespace>FireflyIIINet.Test</RootNamespace>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net10.0;net48</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+    <!-- xunit.v3 test projects are executables (in-process runner) -->
+    <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
-    <PackageReference Include="xunit" Version="2.5.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
   </ItemGroup>
 
   <ItemGroup>

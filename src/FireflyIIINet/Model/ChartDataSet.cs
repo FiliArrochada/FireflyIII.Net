@@ -34,6 +34,11 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartDataSet" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ChartDataSet() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartDataSet" /> class.
+        /// </summary>
         /// <param name="label">This is the title of the current set. It can refer to an account, a budget or another object (by name)..</param>
         /// <param name="currencyId">The currency ID of the currency associated to the data in the entries..</param>
         /// <param name="currencyCode">currencyCode.</param>
@@ -44,15 +49,15 @@ namespace FireflyIIINet.Model
         /// <param name="type">Indicated the type of chart that is expected to be rendered. You can safely ignore this if you want..</param>
         /// <param name="yAxisID">Used to indicate the Y axis for this data set. Is usually between 0 and 1 (left and right side of the chart)..</param>
         /// <param name="entries">The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value..</param>
-        public ChartDataSet(string label = default(string), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), DateTime startDate = default(DateTime), DateTime endDate = default(DateTime), string type = default(string), int yAxisID = default(int), List<ChartDataPoint> entries = default(List<ChartDataPoint>))
+        public ChartDataSet(string label = default(string), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), string type = default(string), int yAxisID = default(int), List<ChartDataPoint> entries = default(List<ChartDataPoint>))
         {
             Label = label;
             CurrencyId = currencyId;
             CurrencyCode = currencyCode;
             CurrencySymbol = currencySymbol;
             CurrencyDecimalPlaces = currencyDecimalPlaces;
-            StartDate = startDate;
-            EndDate = endDate;
+            StartDate = startDate ?? default(DateTime);
+            EndDate = endDate ?? default(DateTime);
             Type = type;
             YAxisID = yAxisID;
             Entries = entries;

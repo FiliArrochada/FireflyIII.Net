@@ -1,0 +1,21 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:recommended"
+	],
+	"timezone": "Europe/Lisbon",
+	"schedule": ["* 0-4 1-7,15-21 * 1"],
+	"packageRules": [
+		{
+			"description": "Group all non-major NuGet updates into a single PR",
+			"matchManagers": ["nuget"],
+			"matchUpdateTypes": ["minor", "patch"],
+			"groupName": "nuget non-major dependencies"
+		},
+		{
+			"description": "Refit.Reflection must stay version-locked to Refit — always bump together",
+			"matchPackageNames": ["Refit", "Refit.Reflection"],
+			"groupName": "refit"
+		}
+	]
+}

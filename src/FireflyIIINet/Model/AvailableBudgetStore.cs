@@ -44,7 +44,7 @@ namespace FireflyIIINet.Model
         /// <param name="amount">amount (required).</param>
         /// <param name="start">Start date of the available budget. (required).</param>
         /// <param name="end">End date of the available budget. (required).</param>
-        public AvailableBudgetStore(string currencyId = default(string), string currencyCode = default(string), string amount = default(string), DateTime start = default(DateTime), DateTime end = default(DateTime))
+        public AvailableBudgetStore(string currencyId = default(string), string currencyCode = default(string), string amount = default(string), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?))
         {
             // to ensure "amount" is required (not null)
             if (amount == null)
@@ -52,8 +52,8 @@ namespace FireflyIIINet.Model
                 throw new ArgumentNullException("amount is a required property for AvailableBudgetStore and cannot be null");
             }
             Amount = amount;
-            Start = start;
-            End = end;
+            Start = start ?? default(DateTime);
+            End = end ?? default(DateTime);
             CurrencyId = currencyId;
             CurrencyCode = currencyCode;
         }

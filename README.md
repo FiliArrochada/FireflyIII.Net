@@ -8,16 +8,18 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
 - API version: 2.0.2 (v1 and v2 endpoints)
-- SDK version: 2.0.2.2 (tracks the API version; the 4th revision component denotes client-only changes)
+- SDK version: 2.0.2.5 (tracks the API version; the 4th revision component denotes client-only changes)
 - Source specifications: [api/firefly-iii-2.0.2-v1.yaml](api/firefly-iii-2.0.2-v1.yaml) and [api/firefly-iii-2.0.2-v2.yaml](api/firefly-iii-2.0.2-v2.yaml)
 - All released specifications (0.10.4 – 6.6.6): [api/](api/)
 
 ## Frameworks supported
-- .NET 8.0
+- .NET 10.0
+- .NET Framework 4.8
 
 ## Dependencies
 
 - [Refit](https://www.nuget.org/packages/Refit/) - 15.0.0 or later
+- [Refit.Reflection](https://www.nuget.org/packages/Refit.Reflection/) - version-locked to Refit (keeps `RestService.For<T>` working on all targets)
 - [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/) - 10.0.10 or later
 - [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
 

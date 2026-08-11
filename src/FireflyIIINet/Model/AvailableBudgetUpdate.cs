@@ -34,18 +34,23 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AvailableBudgetUpdate" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected AvailableBudgetUpdate() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AvailableBudgetUpdate" /> class.
+        /// </summary>
         /// <param name="currencyId">Use either currency_id or currency_code..</param>
         /// <param name="currencyCode">Use either currency_id or currency_code..</param>
         /// <param name="amount">amount.</param>
         /// <param name="start">Start date of the available budget..</param>
         /// <param name="end">End date of the available budget..</param>
-        public AvailableBudgetUpdate(string currencyId = default(string), string currencyCode = default(string), string amount = default(string), DateTime start = default(DateTime), DateTime end = default(DateTime))
+        public AvailableBudgetUpdate(string currencyId = default(string), string currencyCode = default(string), string amount = default(string), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?))
         {
             CurrencyId = currencyId;
             CurrencyCode = currencyCode;
             Amount = amount;
-            Start = start;
-            End = end;
+            Start = start ?? default(DateTime);
+            End = end ?? default(DateTime);
         }
 
         /// <summary>
