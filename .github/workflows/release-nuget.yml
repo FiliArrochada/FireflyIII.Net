@@ -58,8 +58,10 @@ jobs:
           user: ${{ secrets.NUGET_USER }}
 
       - name: Push to NuGet
+        # Backslash on purpose: on Windows runners, dotnet nuget push does not expand
+        # wildcards in forward-slash paths ("File does not exist (artifacts/*.nupkg)").
         run: >
-          dotnet nuget push "artifacts/*.nupkg"
+          dotnet nuget push "artifacts\*.nupkg"
           --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
           --source https://api.nuget.org/v3/index.json
           --skip-duplicate
