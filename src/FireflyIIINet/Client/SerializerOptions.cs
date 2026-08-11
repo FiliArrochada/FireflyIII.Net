@@ -1,5 +1,5 @@
 /*
- * Firefly III API v2.0.7
+ * Firefly III API v2.0.8
  *
  * Shared System.Text.Json serialization options used across the client.
  */
