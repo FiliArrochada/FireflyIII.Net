@@ -1,6 +1,6 @@
 /*
  * Fixture tests: deserialization of realistic Category payloads built from the
- * example values in api/firefly-iii-2.0.6-v1.yaml (Category / CategorySpent /
+ * example values in api/firefly-iii-2.0.7-v1.yaml (Category / CategorySpent /
  * CategoryEarned schemas).
  *
  * Notes:

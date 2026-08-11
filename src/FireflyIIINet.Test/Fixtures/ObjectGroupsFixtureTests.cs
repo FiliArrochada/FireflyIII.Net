@@ -1,5 +1,5 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-2.0.6-v1.yaml),
+ * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-2.0.7-v1.yaml),
  * asserting the wire format maps onto the generated models.
  *
  * Note: created_at/updated_at are readOnly in the spec and generated with private setters, so

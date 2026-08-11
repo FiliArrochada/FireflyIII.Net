@@ -1,6 +1,6 @@
 /*
  * Fixture tests: deserialization of realistic Tag payloads built from the
- * example values in api/firefly-iii-2.0.6-v1.yaml (TagModel / TagRead schemas).
+ * example values in api/firefly-iii-2.0.7-v1.yaml (TagModel / TagRead schemas).
  *
  * Notes:
  *  - TagModel has no enum property; the date-only "date" field (yyyy-MM-dd via

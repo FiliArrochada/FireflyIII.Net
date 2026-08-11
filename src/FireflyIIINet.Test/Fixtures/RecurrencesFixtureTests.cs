@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Recurrences area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-2.0.6-v1.yaml, Recurrence* schemas).
+ * Firefly III OpenAPI spec (api/firefly-iii-2.0.7-v1.yaml, Recurrence* schemas).
  *
  * Note: read-only spec fields (created_at, updated_at, latest_date, repetition id /
  * description / occurrences, currency_symbol, ...) map onto private-setter properties
