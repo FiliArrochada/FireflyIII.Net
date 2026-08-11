@@ -1,4 +1,7 @@
 name: Release to NuGet
+# Run title: shows the version when one is typed at dispatch; the "Check version" step
+# fails the run if it doesn't match <Version> in the csproj, so the title can't lie.
+run-name: ${{ inputs.version && format('Release v{0} to NuGet', inputs.version) || 'Release to NuGet' }}
 
 # Publishes the FireflyIIINet package to nuget.org.
 #
@@ -18,6 +21,10 @@ name: Release to NuGet
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Display only: the version being released (must match <Version> in FireflyIIINet.csproj)"
+        required: false
 
 permissions:
   contents: write   # write: creates the v<version> release/tag after publishing
@@ -31,6 +38,18 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+
+      # Surface the real csproj version on the run page, and guard the run title:
+      # if a version was typed at dispatch, it must match the csproj.
+      - name: Check version
+        shell: bash
+        run: |
+          version=$(sed -n 's:.*<Version>\(.*\)</Version>.*:\1:p' src/FireflyIIINet/FireflyIIINet.csproj)
+          echo "Releasing **FireflyIIINet $version**" >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "${{ inputs.version }}" ] && [ "${{ inputs.version }}" != "$version" ]; then
+            echo "::error::Dispatch input version '${{ inputs.version }}' does not match csproj <Version> '$version'."
+            exit 1
+          fi
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
