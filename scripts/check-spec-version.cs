@@ -46,7 +46,7 @@ if (dir == null) return Fail("could not find the repo root (no api/ folder with 
 string apiDir = Path.Combine(dir.FullName, "api");
 
 string pinnedSpec = Environment.GetEnvironmentVariable("PINNED_SPEC")
-                    ?? Path.Combine(apiDir, "firefly-iii-2.0.12-v1.yaml");
+                    ?? Path.Combine(apiDir, "firefly-iii-2.0.14-v1.yaml");
 
 var local = Directory.EnumerateFiles(apiDir, "firefly-iii-*.yaml")
     .Select(Path.GetFileName)
