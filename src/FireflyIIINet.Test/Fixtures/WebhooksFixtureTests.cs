@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Webhooks area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-2.0.2-v1.yaml, Webhook / WebhookMessage /
+ * Firefly III OpenAPI spec (api/firefly-iii-2.0.3-v1.yaml, Webhook / WebhookMessage /
  * WebhookAttempt schemas).
  *
  * Note: read-only spec fields (created_at, updated_at, secret) map onto private-setter

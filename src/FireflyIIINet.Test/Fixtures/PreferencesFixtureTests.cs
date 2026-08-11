@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Preferences area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-2.0.2-v1.yaml, Preference schema).
+ * Firefly III OpenAPI spec (api/firefly-iii-2.0.3-v1.yaml, Preference schema).
  *
  * The "data" attribute is the PolymorphicProperty oneOf (bool | string | object |
  * string[]); these fixtures exercise the string and string-array branches through
