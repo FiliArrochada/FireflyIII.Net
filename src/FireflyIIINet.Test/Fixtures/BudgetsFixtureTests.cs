@@ -1,6 +1,6 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-2.0.14-v1.yaml,
- * v2: firefly-iii-2.0.14-v2.yaml), asserting the wire format maps onto the generated models.
+ * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-2.1.0-v1.yaml,
+ * v2: firefly-iii-2.1.0-v2.yaml), asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, order, budget_id, period, spent, ...)
  * are generated with private setters and are therefore NOT populated by System.Text.Json
@@ -95,28 +95,6 @@ namespace FireflyIIINet.Test.Fixtures
         }
         """;
 
-        // v2 spec shape: BudgetLimitV2 wrapped in its read envelope (type/id/attributes).
-        private const string BudgetLimitReadV2Json = """
-        {
-          "type": "budget_limits",
-          "id": "2",
-          "attributes": {
-            "created_at": "2018-09-17T12:46:47+01:00",
-            "updated_at": "2018-09-17T12:46:47+01:00",
-            "start": "2018-09-17T12:46:47+01:00",
-            "end": "2018-09-17T12:46:47+01:00",
-            "currency_id": "5",
-            "currency_code": "EUR",
-            "currency_name": "Euro",
-            "currency_symbol": "$",
-            "currency_decimal_places": 2,
-            "budget_id": "23",
-            "period": null,
-            "amount": "123.45"
-          }
-        }
-        """;
-
         [Fact]
         public void BudgetSingle_Deserializes_Spec_Example()
         {
@@ -168,22 +146,6 @@ namespace FireflyIIINet.Test.Fixtures
             // RFC3339 values with an offset are adjusted; compare in UTC to stay timezone-agnostic.
             Assert.Equal(new DateTime(2018, 8, 31, 23, 0, 0, DateTimeKind.Utc), limit.Start.ToUniversalTime());
             Assert.Equal(new DateTime(2018, 9, 30, 22, 59, 59, DateTimeKind.Utc), limit.End.ToUniversalTime());
-        }
-
-        [Fact]
-        public void BudgetLimitReadV2_Deserializes_V2_Spec_Example()
-        {
-            var read = JsonSerializer.Deserialize<BudgetLimitV2Read>(BudgetLimitReadV2Json, SerializerOptions.Default);
-
-            Assert.Equal("budget_limits", read.Type);
-            Assert.Equal("2", read.Id);
-
-            var limit = read.Attributes;
-            Assert.Equal("123.45", limit.Amount);
-            Assert.Equal("5", limit.CurrencyId);
-            Assert.Equal("EUR", limit.CurrencyCode);
-            Assert.Equal(new DateTime(2018, 9, 17, 11, 46, 47, DateTimeKind.Utc), limit.Start.ToUniversalTime());
-            Assert.Equal(new DateTime(2018, 9, 17, 11, 46, 47, DateTimeKind.Utc), limit.End.ToUniversalTime());
         }
     }
 }

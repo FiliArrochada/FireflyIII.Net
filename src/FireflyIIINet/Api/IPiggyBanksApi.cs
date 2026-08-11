@@ -23,9 +23,6 @@ namespace FireflyIIINet.Api
         [Get("/v1/piggy-banks")]
         Task<PiggyBankArray> ListPiggyBank([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
-        [Get("/v2/piggy-banks")]
-        Task<PiggyBankV2Array> ListPiggyBankV2([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
-
         [Post("/v1/piggy-banks")]
         [Headers("Content-Type: application/json")]
         Task<PiggyBankSingle> StorePiggyBank([Body] PiggyBankStore piggyBankStore, [Header("X-Trace-Id")] Guid? xTraceId = null);

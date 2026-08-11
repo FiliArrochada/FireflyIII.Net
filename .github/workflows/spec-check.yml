@@ -6,7 +6,7 @@ name: Spec check
 # (skipped when such an issue is already open, so repeated weekly failures don't pile up).
 # Script errors (exit 2: network, API changes) fail the job but do NOT open an issue.
 #
-# Runs WITHOUT --diff on purpose: the SDK deliberately pins API 2.0.14, so the path diff
+# Runs WITHOUT --diff on purpose: the SDK deliberately pins API 2.1.0, so the path diff
 # against the newest upstream spec always reports drift. Run the script locally with
 # `dotnet run scripts/check-spec-version.cs -- --diff` to size that gap when planning a bump.
 

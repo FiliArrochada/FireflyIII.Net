@@ -24,7 +24,7 @@ namespace FireflyIIINet.Api
         Task<RuleArray> ListRuleByBill(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/bills/{id}/transactions")]
-        Task<TransactionArray> ListTransactionByBill(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
+        Task<TransactionArray> ListTransactionByBill(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 
         [Post("/v1/bills")]
         [Headers("Content-Type: application/json")]
@@ -33,11 +33,5 @@ namespace FireflyIIINet.Api
         [Put("/v1/bills/{id}")]
         [Headers("Content-Type: application/json")]
         Task<BillSingle> UpdateBill(string id, [Body] BillUpdate billUpdate, [Header("X-Trace-Id")] Guid? xTraceId = null);
-
-        [Get("/v2/subscriptions/{id}")]
-        Task<SubscriptionSingle> GetSubscription(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
-
-        [Get("/v2/subscriptions")]
-        Task<SubscriptionArray> ListSubscriptions([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
     }
 }

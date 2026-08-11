@@ -57,9 +57,6 @@ namespace FireflyIIINet.Api
         Task<List<AutocompleteTransactionID>> GetTransactionsIDAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
         [Get("/v2/autocomplete/accounts")]
-        Task<List<AutocompleteAccountV2>> GetAccountsACV2([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null, string date = null, [Query(CollectionFormat.Csv)] List<AccountTypeFilter> types = null);
-
-        [Get("/v2/autocomplete/transaction-descriptions")]
-        Task<List<AutocompleteTD>> GetTransactionDescriptionsACV2([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
+        Task<List<AutocompleteObject>> GetAccountsACV2([Header("X-Trace-Id")] Guid? xTraceId = null, [AliasAs("user_group_id")] int? userGroupId = null, string query = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, int? size = null, int? page = null);
     }
 }

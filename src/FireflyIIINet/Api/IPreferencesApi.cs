@@ -11,9 +11,6 @@ namespace FireflyIIINet.Api
         [Get("/v1/preferences/{name}")]
         Task<PreferenceSingle> GetPreference(string name, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
-        [Get("/v2/preferences/{name}")]
-        Task<PreferenceSingle> GetPreferenceV2(string name, [Header("X-Trace-Id")] Guid? xTraceId = null);
-
         [Get("/v1/preferences")]
         Task<PreferenceArray> ListPreference([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
