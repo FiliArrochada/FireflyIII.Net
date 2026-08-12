@@ -1,5 +1,5 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-6.2.10-v1.yaml),
+ * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-6.2.13-v1.yaml),
  * asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, currency_symbol, next_expected_match,

@@ -1,6 +1,6 @@
 /*
  * Fixture tests: deserialization of realistic Account payloads built from the
- * example values in api/firefly-iii-6.2.10-v1.yaml (Account / AccountRead schemas).
+ * example values in api/firefly-iii-6.2.13-v1.yaml (Account / AccountRead schemas).
  *
  * Note: properties generated as read-only (private setters, e.g. created_at,
  * currency_symbol, current_balance) are included in the payloads for realism but
