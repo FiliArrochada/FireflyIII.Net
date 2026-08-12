@@ -23,6 +23,10 @@ namespace FireflyIIINet.Api
         [Get("/v1/exchange-rates/rates/{from}/{to}")]
         Task<CurrencyExchangeRateArray> ListSpecificCurrencyExchangeRates(string from, string to, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
+        [Post("/v1/exchange-rates")]
+        [Headers("Content-Type: application/json")]
+        Task<CurrencyExchangeRateSingle> StoreCurrencyExchangeRate([Body] CurrencyExchangeRateStore currencyExchangeRateStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
         [Put("/v1/exchange-rates/{id}")]
         [Headers("Content-Type: application/json")]
         Task<CurrencyExchangeRateSingle> UpdateCurrencyExchangeRate(string id, [Body] CurrencyExchangeRateUpdate currencyExchangeRateUpdate, [Header("X-Trace-Id")] Guid? xTraceId = null);

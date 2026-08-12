@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Currencies area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-6.2.0-v1.yaml, Currency schema:
+ * Firefly III OpenAPI spec (api/firefly-iii-6.2.1-v1.yaml, Currency schema:
  * code "AMS", name "Ankh-Morpork dollar", symbol "AM$").
  *
  * Note: created_at/updated_at map onto private-setter properties and are present in

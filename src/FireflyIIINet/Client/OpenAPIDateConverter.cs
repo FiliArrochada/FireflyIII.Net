@@ -1,5 +1,5 @@
 /*
- * Firefly III API v6.2.0
+ * Firefly III API v6.2.1
  *
  * System.Text.Json converter for 'date' openapi formats (full-date, RFC3339).
  */

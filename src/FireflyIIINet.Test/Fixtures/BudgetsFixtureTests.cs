@@ -1,6 +1,6 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-6.2.0-v1.yaml,
- * v2: firefly-iii-6.2.0-v2.yaml), asserting the wire format maps onto the generated models.
+ * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-6.2.1-v1.yaml,
+ * v2: firefly-iii-6.2.1-v2.yaml), asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, order, budget_id, period, spent, ...)
  * are generated with private setters and are therefore NOT populated by System.Text.Json

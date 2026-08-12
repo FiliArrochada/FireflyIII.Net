@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.2.0</Version>
+    <Version>6.2.1</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.2.0: new exchange-rates and user-groups APIs; piggy banks support multiple accounts (accounts[] replaces account_id, breaking); Budget currency fields reworked (breaking); native_* currency fields on Account/AvailableBudget/Bill/BudgetLimit/Category; currencies/native and budget-limits route renames (breaking).</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.2.1: adds POST /v1/exchange-rates (StoreCurrencyExchangeRate); upstream fixed the transactions-without-budget path typo.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
