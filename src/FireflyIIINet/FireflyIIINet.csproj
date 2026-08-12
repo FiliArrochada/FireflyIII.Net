@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.2.2</Version>
+    <Version>6.2.7</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.2.2: upstream spec fixes only (updateUserGroup operationId, CurrencyExchangeRateStore schema name) which the SDK already modelled; no API surface changes.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.2.7: TransactionSplitStore.budget_name is now writable; otherwise version-only (6.2.3-6.2.6 were not published).</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
