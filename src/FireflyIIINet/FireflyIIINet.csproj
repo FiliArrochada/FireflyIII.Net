@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.2.13</Version>
+    <Version>6.2.21</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.2.13: BasicSummaryEntry gains no_available_budgets; otherwise version-only (6.2.11/6.2.12 were not published).</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.2.21: PiggyBankAccountUpdate.id renamed to account_id (breaking); otherwise version-only (6.2.14-6.2.20 were not published). Last version with a v2 API spec.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
