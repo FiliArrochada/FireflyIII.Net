@@ -200,10 +200,10 @@ namespace FireflyIIINet.Model
         NotesContains = 28,
 
         /// <summary>
-        /// Enum NotesStart for value: notes_start
+        /// Enum NotesStarts for value: notes_starts
         /// </summary>
-        [EnumMember(Value = "notes_start")]
-        NotesStart = 29,
+        [EnumMember(Value = "notes_starts")]
+        NotesStarts = 29,
 
         /// <summary>
         /// Enum NotesEnd for value: notes_end

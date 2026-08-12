@@ -32,40 +32,46 @@ namespace FireflyIIINet.Model
     public enum InterestPeriodProperty
     {
         /// <summary>
+        /// Enum Daily for value: daily
+        /// </summary>
+        [EnumMember(Value = "daily")]
+        Daily = 1,
+
+        /// <summary>
         /// Enum Weekly for value: weekly
         /// </summary>
         [EnumMember(Value = "weekly")]
-        Weekly = 1,
+        Weekly = 2,
 
         /// <summary>
         /// Enum Monthly for value: monthly
         /// </summary>
         [EnumMember(Value = "monthly")]
-        Monthly = 2,
+        Monthly = 3,
 
         /// <summary>
         /// Enum Quarterly for value: quarterly
         /// </summary>
         [EnumMember(Value = "quarterly")]
-        Quarterly = 3,
+        Quarterly = 4,
 
         /// <summary>
         /// Enum HalfYear for value: half-year
         /// </summary>
         [EnumMember(Value = "half-year")]
-        HalfYear = 4,
+        HalfYear = 5,
 
         /// <summary>
         /// Enum Yearly for value: yearly
         /// </summary>
         [EnumMember(Value = "yearly")]
-        Yearly = 5,
+        Yearly = 6,
 
         /// <summary>
         /// Enum Null for value: null
         /// </summary>
         [EnumMember(Value = "null")]
-        Null = 6
+        Null = 7
     }
 
 }
