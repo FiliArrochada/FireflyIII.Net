@@ -20,7 +20,7 @@ namespace FireflyIIINet.Test.Model
     {
         public static IEnumerable<object[]> EnumTypes()
         {
-            var assembly = typeof(FireflyIIINet.Model.Account).Assembly;
+            var assembly = typeof(FireflyIIINet.Model.AccountProperties).Assembly;
             var top = assembly.GetTypes()
                 .Where(t => t.IsEnum && t.Namespace == "FireflyIIINet.Model");
             var nested = assembly.GetTypes()

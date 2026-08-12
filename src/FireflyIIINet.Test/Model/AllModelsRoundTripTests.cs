@@ -24,7 +24,7 @@ namespace FireflyIIINet.Test.Model
     {
         public static IEnumerable<object[]> ModelTypes()
         {
-            return typeof(Account).Assembly.GetTypes()
+            return typeof(AccountProperties).Assembly.GetTypes()
                 .Where(t => t.Namespace == "FireflyIIINet.Model"
                             && t.IsClass
                             && !t.IsAbstract

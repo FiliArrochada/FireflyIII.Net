@@ -29,7 +29,7 @@ namespace FireflyIIINet.Test
         [Fact]
         public void Enum_Serializes_Using_EnumMember_Value()
         {
-            var account = new Account(name: "Checking", type: ShortAccountTypeProperty.Asset);
+            var account = new AccountProperties(name: "Checking", type: ShortAccountTypeProperty.Asset);
             var json = JsonSerializer.Serialize(account, Options);
             Assert.Contains("\"type\":\"asset\"", json);
             Assert.DoesNotContain("\"type\":1", json); // not the numeric underlying value
@@ -39,7 +39,7 @@ namespace FireflyIIINet.Test
         public void Enum_Deserializes_From_EnumMember_Value()
         {
             var json = "{\"name\":\"Checking\",\"type\":\"asset\",\"account_role\":\"defaultAsset\"}";
-            var account = JsonSerializer.Deserialize<Account>(json, Options);
+            var account = JsonSerializer.Deserialize<AccountProperties>(json, Options);
             Assert.Equal(ShortAccountTypeProperty.Asset, account.Type);
             Assert.Equal(AccountRoleProperty.DefaultAsset, account.AccountRole);
         }
@@ -65,7 +65,7 @@ namespace FireflyIIINet.Test
         [Fact]
         public void EmitDefaultValueFalse_Omits_Null_Properties()
         {
-            var account = new Account(name: "Checking", type: ShortAccountTypeProperty.Asset);
+            var account = new AccountProperties(name: "Checking", type: ShortAccountTypeProperty.Asset);
             var json = JsonSerializer.Serialize(account, Options);
             Assert.DoesNotContain("\"account_role\"", json); // EmitDefaultValue=false, unset
             Assert.DoesNotContain("\"iban\"", json);
@@ -146,7 +146,7 @@ namespace FireflyIIINet.Test
             // Spec readOnly fields map to { get; private set; } properties. Newtonsoft set
             // private setters by default; STJ needs the [JsonInclude] the models now carry.
             var json = "{\"name\":\"Checking\",\"type\":\"asset\",\"created_at\":\"2018-09-17T12:46:47+01:00\",\"currency_symbol\":\"$\"}";
-            var account = JsonSerializer.Deserialize<Account>(json, Options);
+            var account = JsonSerializer.Deserialize<AccountProperties>(json, Options);
             Assert.Equal(new DateTime(2018, 9, 17, 11, 46, 47, DateTimeKind.Utc), account.CreatedAt.ToUniversalTime());
             Assert.Equal("$", account.CurrencySymbol);
         }

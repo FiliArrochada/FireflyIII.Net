@@ -106,6 +106,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{E8B44FBA-4F2
 		api\firefly-iii-6.2.9-v1.yaml = api\firefly-iii-6.2.9-v1.yaml
 		api\firefly-iii-6.2.9-v2.yaml = api\firefly-iii-6.2.9-v2.yaml
 		api\firefly-iii-6.3.0-v1.yaml = api\firefly-iii-6.3.0-v1.yaml
+		api\firefly-iii-6.3.0-v1.yaml = api\firefly-iii-6.3.0-v1.yaml
 		api\firefly-iii-6.4.0-v1.yaml = api\firefly-iii-6.4.0-v1.yaml
 		api\firefly-iii-6.4.14-v1.yaml = api\firefly-iii-6.4.14-v1.yaml
 		api\firefly-iii-6.4.16-v1.yaml = api\firefly-iii-6.4.16-v1.yaml

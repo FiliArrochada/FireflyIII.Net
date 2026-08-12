@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Currencies area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-6.2.21-v1.yaml, Currency schema:
+ * Firefly III OpenAPI spec (api/firefly-iii-6.3.0-v1.yaml, CurrencyProperties schema:
  * code "AMS", name "Ankh-Morpork dollar", symbol "AM$").
  *
  * Note: created_at/updated_at map onto private-setter properties and are present in
@@ -29,7 +29,7 @@ namespace FireflyIIINet.Test.Fixtures
                   "created_at": "2018-09-17T12:46:47+01:00",
                   "updated_at": "2018-09-17T12:46:47+01:00",
                   "enabled": true,
-                  "default": false,
+                  "primary": false,
                   "code": "AMS",
                   "name": "Ankh-Morpork dollar",
                   "symbol": "AM$",
@@ -50,8 +50,8 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal("AM$", currency.Symbol);
             Assert.Equal(2, currency.DecimalPlaces);
             Assert.True(currency.Enabled);
-            // wire name "default" maps onto the VarDefault property
-            Assert.False(currency.VarDefault);
+            // wire name "primary" (replaced "default"/"native" in 6.3.0)
+            Assert.False(currency.Primary);
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace FireflyIIINet.Test.Fixtures
                     "created_at": "2018-09-17T12:46:47+01:00",
                     "updated_at": "2018-09-17T12:46:47+01:00",
                     "enabled": true,
-                    "default": true,
+                    "primary": true,
                     "code": "EUR",
                     "name": "Euro",
                     "symbol": "€",
@@ -81,7 +81,7 @@ namespace FireflyIIINet.Test.Fixtures
                     "created_at": "2018-09-17T12:46:47+01:00",
                     "updated_at": "2018-09-17T12:46:47+01:00",
                     "enabled": true,
-                    "default": false,
+                    "primary": false,
                     "code": "AMS",
                     "name": "Ankh-Morpork dollar",
                     "symbol": "AM$",
@@ -111,7 +111,7 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal(2, array.Data.Count);
             Assert.Equal("1", array.Data[0].Id);
             Assert.Equal("EUR", array.Data[0].Attributes.Code);
-            Assert.True(array.Data[0].Attributes.VarDefault);
+            Assert.True(array.Data[0].Attributes.Primary);
             Assert.Equal("Ankh-Morpork dollar", array.Data[1].Attributes.Name);
 
             Assert.Equal(2, array.Meta.Pagination.Total);

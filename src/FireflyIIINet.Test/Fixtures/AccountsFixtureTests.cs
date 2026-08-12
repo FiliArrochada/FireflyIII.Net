@@ -1,6 +1,6 @@
 /*
- * Fixture tests: deserialization of realistic Account payloads built from the
- * example values in api/firefly-iii-6.2.21-v1.yaml (Account / AccountRead schemas).
+ * Fixture tests: deserialization of realistic AccountProperties payloads built from the
+ * example values in api/firefly-iii-6.3.0-v1.yaml (AccountProperties / AccountRead schemas).
  *
  * Note: properties generated as read-only (private setters, e.g. created_at,
  * currency_symbol, current_balance) are included in the payloads for realism but
@@ -41,7 +41,7 @@ namespace FireflyIIINet.Test.Fixtures
               "bic": "BOFAUS3N",
               "account_number": "7009312345678",
               "opening_balance": "-1012.12",
-              "current_debt": null,
+              "debt_amount": null,
               "opening_balance_date": "2018-09-17T12:46:47+01:00",
               "virtual_balance": "123.45",
               "include_net_worth": true,
@@ -150,7 +150,7 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Null(account.LiabilityDirectionProperty);
             Assert.Null(account.InterestPeriodProperty);
             Assert.Null(account.MonthlyPaymentDate);
-            Assert.Null(account.CurrentDebt);
+            Assert.Null(account.DebtAmount);
             Assert.Null(account.Notes);
         }
 

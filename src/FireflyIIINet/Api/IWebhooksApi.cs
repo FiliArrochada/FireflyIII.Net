@@ -43,7 +43,7 @@ namespace FireflyIIINet.Api
         Task TriggerTransactionWebhook(string id, string transactionId, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Post("/v1/webhooks/{id}/submit")]
-        Task SubmitWebook(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        Task SubmitWebhook(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Put("/v1/webhooks/{id}")]
         [Headers("Content-Type: application/json")]

@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Rules area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-6.2.21-v1.yaml, Rule / RuleTrigger /
+ * Firefly III OpenAPI spec (api/firefly-iii-6.3.0-v1.yaml, Rule / RuleTrigger /
  * RuleAction / RuleGroup schemas).
  *
  * Note: read-only spec fields (created_at, updated_at, trigger/action id, order on

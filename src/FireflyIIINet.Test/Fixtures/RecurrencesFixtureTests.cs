@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Recurrences area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-6.2.21-v1.yaml, Recurrence* schemas).
+ * Firefly III OpenAPI spec (api/firefly-iii-6.3.0-v1.yaml, RecurrenceProperties* schemas).
  *
  * Note: read-only spec fields (created_at, updated_at, latest_date, repetition id /
  * description / occurrences, currency_symbol, ...) map onto private-setter properties
@@ -144,7 +144,7 @@ namespace FireflyIIINet.Test.Fixtures
             }
             """;
 
-            var recurrence = JsonSerializer.Deserialize<Recurrence>(json, SerializerOptions.Default);
+            var recurrence = JsonSerializer.Deserialize<RecurrenceProperties>(json, SerializerOptions.Default);
 
             Assert.Equal(RecurrenceTransactionType.Transfer, recurrence.Type);
             Assert.Equal(new DateTime(2021, 9, 17), recurrence.RepeatUntil);

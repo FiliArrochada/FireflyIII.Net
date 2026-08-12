@@ -1,10 +1,10 @@
 /*
- * Fixture tests: deserialization of realistic Category payloads built from the
- * example values in api/firefly-iii-6.2.21-v1.yaml (Category / CategorySpent /
+ * Fixture tests: deserialization of realistic CategoryProperties payloads built from the
+ * example values in api/firefly-iii-6.3.0-v1.yaml (CategoryProperties / CategorySpent /
  * CategoryEarned schemas).
  *
  * Notes:
- *  - Category has no enum and no publicly-settable date-time property; created_at
+ *  - CategoryProperties has no enum and no publicly-settable date-time property; created_at
  *    and updated_at are generated read-only (private setters).
  *  - The spent/earned lists are generated read-only (`private set`) and carry
  *    [JsonInclude] so System.Text.Json populates them on deserialization, matching

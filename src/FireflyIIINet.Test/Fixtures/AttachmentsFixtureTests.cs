@@ -1,8 +1,8 @@
 /*
- * Fixture tests: deserialization of realistic Attachment payloads built from the
- * example values in api/firefly-iii-6.2.21-v1.yaml (Attachment / AttachmentRead schemas).
+ * Fixture tests: deserialization of realistic AttachmentProperties payloads built from the
+ * example values in api/firefly-iii-6.3.0-v1.yaml (AttachmentProperties / AttachmentRead schemas).
  *
- * Note: the only date-time properties of Attachment (created_at/updated_at) are
+ * Note: the only date-time properties of AttachmentProperties (created_at/updated_at) are
  * generated read-only (private setters), as are mime and size. They are included in
  * the payloads for realism but not asserted: System.Text.Json does not populate
  * non-public setters without [JsonInclude].
@@ -124,7 +124,7 @@ namespace FireflyIIINet.Test.Fixtures
 
             var second = array.Data[1];
             Assert.Equal("192", second.Id);
-            Assert.Equal(AttachableType.Bill, second.Attributes.AttachableType);
+            Assert.Equal(AttachableType.BillProperties, second.Attributes.AttachableType);
             Assert.Equal("invoice.pdf", second.Attributes.Filename);
             Assert.Null(second.Attributes.Notes); // explicit null deserializes without error
 

@@ -55,6 +55,6 @@ namespace FireflyIIINet.Api
 
         [Put("/v1/budgets/{id}/limits/{limitId}")]
         [Headers("Content-Type: application/json")]
-        Task<BudgetLimitSingle> UpdateBudgetLimit(string id, string limitId, [Body] BudgetLimit budgetLimit, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        Task<BudgetLimitSingle> UpdateBudgetLimit(string id, string limitId, [Body] BudgetLimitUpdate budgetLimitUpdate, [Header("X-Trace-Id")] Guid? xTraceId = null);
     }
 }

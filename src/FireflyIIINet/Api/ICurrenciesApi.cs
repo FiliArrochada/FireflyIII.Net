@@ -8,8 +8,8 @@ namespace FireflyIIINet.Api
 {
     public interface ICurrenciesApi
     {
-        [Post("/v1/currencies/{code}/default")]
-        Task<CurrencySingle> DefaultCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        [Post("/v1/currencies/{code}/primary")]
+        Task<CurrencySingle> PrimaryCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Delete("/v1/currencies/{code}")]
         Task DeleteCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null);
@@ -23,8 +23,8 @@ namespace FireflyIIINet.Api
         [Get("/v1/currencies/{code}")]
         Task<CurrencySingle> GetCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
-        [Get("/v1/currencies/native")]
-        Task<CurrencySingle> GetNativeCurrency([Header("X-Trace-Id")] Guid? xTraceId = null);
+        [Get("/v1/currencies/primary")]
+        Task<CurrencySingle> GetPrimaryCurrency([Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/currencies/{code}/accounts")]
         Task<AccountArray> ListAccountByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, AccountTypeFilter? type = null);

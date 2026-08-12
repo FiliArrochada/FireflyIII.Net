@@ -1,6 +1,6 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-6.2.21-v1.yaml,
- * v2: firefly-iii-6.2.21-v2.yaml), asserting the wire format maps onto the generated models.
+ * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-6.3.0-v1.yaml,
+ * v2: firefly-iii-6.2.21-v2.yaml (v2 specs end there)), asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, order, budget_id, period, spent, ...)
  * are generated with private setters and are therefore NOT populated by System.Text.Json
@@ -89,7 +89,15 @@ namespace FireflyIIINet.Test.Fixtures
               "budget_id": "23",
               "period": "monthly",
               "amount": "123.45",
-              "spent": "-1012.12"
+              "spent": [
+                {
+                  "currency_id": "5",
+                  "currency_code": "EUR",
+                  "currency_symbol": "$",
+                  "currency_decimal_places": 2,
+                  "sum": "-1012.12"
+                }
+              ]
             }
           }
         }

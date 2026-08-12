@@ -25,7 +25,7 @@ namespace FireflyIIINet.Api
 
         [Post("/v1/categories")]
         [Headers("Content-Type: application/json")]
-        Task<CategorySingle> StoreCategory([Body] Category category, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        Task<CategorySingle> StoreCategory([Body] CategoryStore categoryStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Put("/v1/categories/{id}")]
         [Headers("Content-Type: application/json")]

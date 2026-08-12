@@ -1,5 +1,5 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-6.2.21-v1.yaml),
+ * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-6.3.0-v1.yaml),
  * asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (percentage, left_to_save, save_per_month,
@@ -33,7 +33,7 @@ namespace FireflyIIINet.Test.Fixtures
                   "id": "13",
                   "name": "Savings account",
                   "current_amount": "123.45",
-                  "native_current_amount": "123.45"
+                  "pc_current_amount": "123.45"
                 }
               ],
               "currency_id": "5",
@@ -41,7 +41,7 @@ namespace FireflyIIINet.Test.Fixtures
               "currency_symbol": "$",
               "currency_decimal_places": 2,
               "target_amount": "123.45",
-              "percentage": 12.5,
+              "percentage": 12,
               "current_amount": "123.45",
               "left_to_save": "700.00",
               "save_per_month": "12.45",
@@ -172,7 +172,7 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Single(piggy.Accounts);
             // accounts[].id and name are readOnly (private setters) and are not populated.
             Assert.Equal("123.45", piggy.Accounts[0].CurrentAmount);
-            Assert.Equal("123.45", piggy.Accounts[0].NativeCurrentAmount);
+            Assert.Equal("123.45", piggy.Accounts[0].PcCurrentAmount);
             Assert.Equal("New digital camera", piggy.Name);
             Assert.Equal("123.45", piggy.TargetAmount);
             Assert.Equal("123.45", piggy.CurrentAmount);
