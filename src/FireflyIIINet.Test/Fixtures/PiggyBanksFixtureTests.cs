@@ -1,9 +1,9 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-6.1.24-v1.yaml),
+ * Fixture tests built from the Firefly III OpenAPI spec examples (firefly-iii-6.2.0-v1.yaml),
  * asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (percentage, left_to_save, save_per_month,
- * currency_*, account_name, active, created_at, ...) are generated with private setters and are
+ * currency_*, accounts[].id/name, active, created_at, ...) are generated with private setters and are
  * therefore NOT populated by System.Text.Json deserialization. They are kept in the payloads to
  * prove they parse without error, but their values are not asserted. The piggy bank area has no
  * enum-typed model property, so no enum assertion is possible here.
@@ -27,9 +27,15 @@ namespace FireflyIIINet.Test.Fixtures
             "attributes": {
               "created_at": "2018-09-17T12:46:47+01:00",
               "updated_at": "2018-09-17T12:46:47+01:00",
-              "account_id": "13",
-              "account_name": "Savings account",
               "name": "New digital camera",
+              "accounts": [
+                {
+                  "id": "13",
+                  "name": "Savings account",
+                  "current_amount": "123.45",
+                  "native_current_amount": "123.45"
+                }
+              ],
               "currency_id": "5",
               "currency_code": "USD",
               "currency_symbol": "$",
@@ -65,8 +71,13 @@ namespace FireflyIIINet.Test.Fixtures
             "type": "piggy_banks",
             "id": "9",
             "attributes": {
-              "account_id": "13",
               "name": "Rainy day fund",
+              "accounts": [
+                {
+                  "id": "13",
+                  "current_amount": "50.00"
+                }
+              ],
               "target_amount": null,
               "percentage": null,
               "current_amount": "50.00",
@@ -158,7 +169,10 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal("2", single.Data.Id);
 
             var piggy = single.Data.Attributes;
-            Assert.Equal("13", piggy.AccountId);
+            Assert.Single(piggy.Accounts);
+            // accounts[].id and name are readOnly (private setters) and are not populated.
+            Assert.Equal("123.45", piggy.Accounts[0].CurrentAmount);
+            Assert.Equal("123.45", piggy.Accounts[0].NativeCurrentAmount);
             Assert.Equal("New digital camera", piggy.Name);
             Assert.Equal("123.45", piggy.TargetAmount);
             Assert.Equal("123.45", piggy.CurrentAmount);

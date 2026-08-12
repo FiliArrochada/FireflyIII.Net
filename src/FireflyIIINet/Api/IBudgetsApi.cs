@@ -32,6 +32,11 @@ namespace FireflyIIINet.Api
         [Get("/v1/budgets/{id}/limits")]
         Task<BudgetLimitArray> ListBudgetLimitByBudget(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
 
+        // The 6.2.0 spec writes this path with a double slash (/v1/budgets//transactions-without-budget);
+        // that is an upstream typo — the real route has a single slash.
+        [Get("/v1/budgets/transactions-without-budget")]
+        Task<TransactionArray> ListTransactionWithoutBudget([Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
+
         [Get("/v1/budgets/{id}/transactions")]
         Task<TransactionArray> ListTransactionByBudget(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, TransactionTypeFilter? type = null);
 

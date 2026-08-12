@@ -23,8 +23,8 @@ namespace FireflyIIINet.Api
         [Get("/v1/currencies/{code}")]
         Task<CurrencySingle> GetCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
-        [Get("/v1/currencies/default")]
-        Task<CurrencySingle> GetDefaultCurrency([Header("X-Trace-Id")] Guid? xTraceId = null);
+        [Get("/v1/currencies/native")]
+        Task<CurrencySingle> GetNativeCurrency([Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/currencies/{code}/accounts")]
         Task<AccountArray> ListAccountByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, AccountTypeFilter? type = null);
@@ -35,7 +35,7 @@ namespace FireflyIIINet.Api
         [Get("/v1/currencies/{code}/bills")]
         Task<BillArray> ListBillByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
-        [Get("/v1/currencies/{code}/budget_limits")]
+        [Get("/v1/currencies/{code}/budget-limits")]
         Task<BudgetLimitArray> ListBudgetLimitByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null);
 
         [Get("/v1/currencies")]

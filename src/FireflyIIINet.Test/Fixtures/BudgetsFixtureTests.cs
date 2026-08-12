@@ -1,6 +1,6 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-6.1.24-v1.yaml,
- * v2: firefly-iii-6.1.24-v2.yaml), asserting the wire format maps onto the generated models.
+ * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-6.2.0-v1.yaml,
+ * v2: firefly-iii-6.2.0-v2.yaml), asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, order, budget_id, period, spent, ...)
  * are generated with private setters and are therefore NOT populated by System.Text.Json
@@ -31,8 +31,8 @@ namespace FireflyIIINet.Test.Fixtures
               "notes": "Some notes",
               "order": 5,
               "auto_budget_type": "reset",
-              "auto_budget_currency_id": "12",
-              "auto_budget_currency_code": "EUR",
+              "currency_id": "12",
+              "currency_code": "EUR",
               "auto_budget_amount": "-1012.12",
               "auto_budget_period": "monthly",
               "spent": [
@@ -62,8 +62,8 @@ namespace FireflyIIINet.Test.Fixtures
               "notes": null,
               "order": 1,
               "auto_budget_type": null,
-              "auto_budget_currency_id": null,
-              "auto_budget_currency_code": null,
+              "currency_id": null,
+              "currency_code": null,
               "auto_budget_amount": null,
               "auto_budget_period": null
             }
@@ -110,8 +110,8 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal("Some notes", budget.Notes);
             Assert.Equal(AutoBudgetType.Reset, budget.AutoBudgetType);
             Assert.Equal(AutoBudgetPeriod.Monthly, budget.AutoBudgetPeriod);
-            Assert.Equal("12", budget.AutoBudgetCurrencyId);
-            Assert.Equal("EUR", budget.AutoBudgetCurrencyCode);
+            Assert.Equal("12", budget.CurrencyId);
+            Assert.Equal("EUR", budget.CurrencyCode);
             Assert.Equal("-1012.12", budget.AutoBudgetAmount);
         }
 
@@ -126,8 +126,8 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Null(budget.Notes);
             Assert.Null(budget.AutoBudgetType);
             Assert.Null(budget.AutoBudgetPeriod);
-            Assert.Null(budget.AutoBudgetCurrencyId);
-            Assert.Null(budget.AutoBudgetCurrencyCode);
+            Assert.Null(budget.CurrencyId);
+            Assert.Null(budget.CurrencyCode);
             Assert.Null(budget.AutoBudgetAmount);
         }
 

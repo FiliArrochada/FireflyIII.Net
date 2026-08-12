@@ -1,10 +1,10 @@
 /*
  * Fixture tests: deserialization of realistic Transaction payloads built from the
- * example values in api/firefly-iii-6.1.24-v1.yaml (Transaction / TransactionSplit /
+ * example values in api/firefly-iii-6.2.0-v1.yaml (Transaction / TransactionSplit /
  * TransactionSplitStore schemas).
  *
  * Notes:
- *  - The read-side TransactionSplit schema in 6.1.24 has NO piggy_bank_id property;
+ *  - The read-side TransactionSplit schema in 6.2.0 has NO piggy_bank_id property;
  *    piggy_bank_id only exists on TransactionSplitStore/TransactionSplitUpdate.
  *    The explicit-null piggy bank coverage therefore targets TransactionSplitStore.
  *  - Read-only (private setter) properties such as user, transaction_journal_id and
