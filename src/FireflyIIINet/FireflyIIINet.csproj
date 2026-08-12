@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.4.0</Version>
+    <Version>6.4.2</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.4.0: webhooks support multiple triggers/responses/deliveries (Webhook renamed WebhookProperties, breaking) with new trigger/response enum values; account balance_difference fields with start/end params; chart period/preselected/accounts params; subscriptions autocomplete; recurrence trigger endpoint; PiggyBankStore.start_date required.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.4.2: fire_webhooks flag on budget and budget-limit store/update models; RuleTriggerType gains manual-activation; ConfigValueFilter gains 8 values (cer/webhook/search settings).</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
