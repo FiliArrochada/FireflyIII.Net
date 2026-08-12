@@ -28,7 +28,7 @@ namespace FireflyIIINet.Model
     /// CurrencyExchangeRateStore
     /// </summary>
     /// <remarks>
-    /// The 6.3.0 spec lists &quot;rates&quot; in this schema&#39;s required list, but no such property is defined (upstream defect);
+    /// The spec lists &quot;rates&quot; in this schema&#39;s required list, but no such property is defined (upstream defect);
     /// the schema only defines &quot;rate&quot;, which is therefore modeled here as an optional property.
     /// </remarks>
     [DataContract(Name = "CurrencyExchangeRateStore")]
@@ -42,11 +42,13 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrencyExchangeRateStore" /> class.
         /// </summary>
+        /// <param name="date">The date to which the exchange rate is applicable. (required).</param>
         /// <param name="from">The base currency code. (required).</param>
         /// <param name="to">The destination currency code. (required).</param>
         /// <param name="rate">The exchange rate from the base currency to the destination currency..</param>
-        public CurrencyExchangeRateStore(string from = default(string), string to = default(string), string rate = default(string))
+        public CurrencyExchangeRateStore(DateTime? date = default(DateTime?), string from = default(string), string to = default(string), string rate = default(string))
         {
+            Date = date ?? default(DateTime);
             // to ensure "from" is required (not null)
             if (from == null)
             {
@@ -61,6 +63,16 @@ namespace FireflyIIINet.Model
             To = to;
             Rate = rate;
         }
+
+        /// <summary>
+        /// The date to which the exchange rate is applicable.
+        /// </summary>
+        /// <value>The date to which the exchange rate is applicable.</value>
+        /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
+        [DataMember(Name = "date", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("date")]
+        [JsonConverter(typeof(OpenAPIDateConverter))]
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// The base currency code.
@@ -97,6 +109,7 @@ namespace FireflyIIINet.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CurrencyExchangeRateStore {\n");
+            sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("  From: ").Append(From).Append("\n");
             sb.Append("  To: ").Append(To).Append("\n");
             sb.Append("  Rate: ").Append(Rate).Append("\n");
@@ -136,6 +149,10 @@ namespace FireflyIIINet.Model
             }
             return
                 (
+                    Date == input.Date ||
+					Date.Equals(input.Date)
+                ) &&
+                (
                     From == input.From ||
 					From.Equals(input.From)
                 ) &&
@@ -159,6 +176,7 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+				hashCode = (hashCode * 59) + Date.GetHashCode();
 				hashCode = (hashCode * 59) + From.GetHashCode();
 				hashCode = (hashCode * 59) + To.GetHashCode();
                 if (Rate != null)
