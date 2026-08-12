@@ -8,6 +8,10 @@ namespace FireflyIIINet.Api
 {
     public interface IAboutApi
     {
+        // The spec tags this batch endpoint "about".
+        [Post("/v1/batch/finish")]
+        Task FinishBatch([Header("X-Trace-Id")] Guid? xTraceId = null);
+
         [Get("/v1/about")]
         Task<SystemInfo> GetAbout([Header("X-Trace-Id")] Guid? xTraceId = null);
 
