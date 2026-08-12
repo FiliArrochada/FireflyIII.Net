@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.6.2</Version>
+    <Version>6.6.6</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.6.2: version-only upstream spec release; no API surface changes (6.6.0/6.6.1 were not published).</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.6.6: full /v1/subscriptions alias family for bills (list/get/store/update/delete, attachments, rules, transactions) and subscriptions CSV export; reuses the Bill models.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 

@@ -24,6 +24,9 @@ namespace FireflyIIINet.Api
         [Get("/v1/data/export/budgets")]
         Task<Stream> ExportBudgets([Header("X-Trace-Id")] Guid? xTraceId = null, ExportFileFilter? type = null);
 
+        [Get("/v1/data/export/subscriptions")]
+        Task<Stream> ExportSubscriptions([Header("X-Trace-Id")] Guid? xTraceId = null, ExportFileFilter? type = null);
+
         [Get("/v1/data/export/categories")]
         Task<Stream> ExportCategories([Header("X-Trace-Id")] Guid? xTraceId = null, ExportFileFilter? type = null);
 
