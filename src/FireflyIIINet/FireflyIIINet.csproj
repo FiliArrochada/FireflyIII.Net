@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.4.8</Version>
+    <Version>6.4.14</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.4.8: CurrencyExchangeRateStore regains its required date field; otherwise documentation-only (6.4.5-6.4.7 were not published). Source headers are now version-neutral.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.4.14: spec cleanup only (format:boolean removal, percentage formally integer); no SDK surface changes (6.4.9-6.4.13 were not published).</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
