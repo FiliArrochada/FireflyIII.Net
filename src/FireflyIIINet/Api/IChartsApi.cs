@@ -9,10 +9,10 @@ namespace FireflyIIINet.Api
     public interface IChartsApi
     {
         [Get("/v1/chart/account/overview")]
-        Task<List<ChartDataSet>> GetChartAccountOverview([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        Task<List<ChartDataSet>> GetChartAccountOverview([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, string period = null, string preselected = null);
 
         [Get("/v1/chart/balance/balance")]
-        Task<List<ChartDataSet>> GetChartBalance([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        Task<List<ChartDataSet>> GetChartBalance([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, string period = null, string preselected = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long> accounts = null);
 
         [Get("/v1/chart/budget/overview")]
         Task<List<ChartDataSet>> GetChartBudgetOverview([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);

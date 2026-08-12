@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.3.0</Version>
+    <Version>6.4.0</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.3.0: attribute models renamed to *Properties (breaking); native_* fields replaced by primary_currency_*/pc_* across the API (breaking); new v1 chart endpoints; exchange-rates routes reworked; currencies default/native become primary; CategoryStore/BudgetLimitUpdate request models. Upstream no longer publishes v2 specs.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.4.0: webhooks support multiple triggers/responses/deliveries (Webhook renamed WebhookProperties, breaking) with new trigger/response enum values; account balance_difference fields with start/end params; chart period/preselected/accounts params; subscriptions autocomplete; recurrence trigger endpoint; PiggyBankStore.start_date required.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 

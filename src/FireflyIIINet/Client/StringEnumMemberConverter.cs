@@ -1,5 +1,5 @@
 /*
- * Firefly III API v6.3.0
+ * Firefly III API v6.4.0
  *
  * System.Text.Json converter for enums, preserving the behaviour of the previous
  * Newtonsoft.Json StringEnumConverter: enum values are (de)serialized using their

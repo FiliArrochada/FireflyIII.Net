@@ -24,6 +24,9 @@ namespace FireflyIIINet.Api
         [Headers("Content-Type: application/json")]
         Task<RecurrenceSingle> StoreRecurrence([Body] RecurrenceStore recurrenceStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        [Post("/v1/recurrences/{id}/trigger")]
+        Task<TransactionArray> TriggerRecurrenceRecurrence(string id, [Query(Format = "yyyy-MM-dd")] DateTime date, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
         [Put("/v1/recurrences/{id}")]
         [Headers("Content-Type: application/json")]
         Task<RecurrenceSingle> UpdateRecurrence(string id, [Body] RecurrenceUpdate recurrenceUpdate, [Header("X-Trace-Id")] Guid? xTraceId = null);

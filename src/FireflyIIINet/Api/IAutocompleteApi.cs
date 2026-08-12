@@ -44,6 +44,9 @@ namespace FireflyIIINet.Api
         [Get("/v1/autocomplete/rules")]
         Task<List<AutocompleteRule>> GetRulesAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
+        [Get("/v1/autocomplete/subscriptions")]
+        Task<List<AutocompleteBill>> GetSubscriptionsAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
+
         [Get("/v1/autocomplete/tags")]
         Task<List<AutocompleteTag>> GetTagAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 

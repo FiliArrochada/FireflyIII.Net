@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the Webhooks area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-6.3.0-v1.yaml, Webhook / WebhookMessage /
+ * Firefly III OpenAPI spec (api/firefly-iii-6.4.0-v1.yaml, WebhookProperties / WebhookMessage /
  * WebhookAttempt schemas).
  *
  * Note: read-only spec fields (created_at, updated_at, secret) map onto private-setter
@@ -31,9 +31,9 @@ namespace FireflyIIINet.Test.Fixtures
                   "active": false,
                   "title": "Update magic mirror on new transaction",
                   "secret": "iMLZLtLx2JHWhK9Dtyuoqyir",
-                  "trigger": "STORE_TRANSACTION",
-                  "response": "TRANSACTIONS",
-                  "delivery": "JSON",
+                  "triggers": ["STORE_TRANSACTION", "UPDATE_TRANSACTION"],
+                  "responses": ["TRANSACTIONS"],
+                  "deliveries": ["JSON"],
                   "url": "https://example.com"
                 },
                 "links": {
@@ -52,9 +52,9 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal("Update magic mirror on new transaction", webhook.Title);
             Assert.Equal("https://example.com", webhook.Url);
             Assert.False(webhook.Active);
-            Assert.Equal(WebhookTrigger.STORETRANSACTION, webhook.Trigger);
-            Assert.Equal(WebhookResponse.TRANSACTIONS, webhook.Response);
-            Assert.Equal(WebhookDelivery.JSON, webhook.Delivery);
+            Assert.Equal(new[] { WebhookTrigger.STORETRANSACTION, WebhookTrigger.UPDATETRANSACTION }, webhook.Triggers);
+            Assert.Equal(new[] { WebhookResponse.TRANSACTIONS }, webhook.Responses);
+            Assert.Equal(new[] { WebhookDelivery.JSON }, webhook.Deliveries);
         }
 
         [Theory]
@@ -68,16 +68,16 @@ namespace FireflyIIINet.Test.Fixtures
             {
               "active": true,
               "title": "A webhook",
-              "trigger": "{{triggerWire}}",
-              "response": "{{responseWire}}",
-              "delivery": "JSON",
+              "triggers": ["{{triggerWire}}"],
+              "responses": ["{{responseWire}}"],
+              "deliveries": ["JSON"],
               "url": "https://example.com"
             }
             """;
 
-            var webhook = JsonSerializer.Deserialize<Webhook>(json, SerializerOptions.Default);
-            Assert.Equal(expectedTrigger, webhook.Trigger);
-            Assert.Equal(expectedResponse, webhook.Response);
+            var webhook = JsonSerializer.Deserialize<WebhookProperties>(json, SerializerOptions.Default);
+            Assert.Equal(expectedTrigger, Assert.Single(webhook.Triggers));
+            Assert.Equal(expectedResponse, Assert.Single(webhook.Responses));
         }
 
         [Fact]
