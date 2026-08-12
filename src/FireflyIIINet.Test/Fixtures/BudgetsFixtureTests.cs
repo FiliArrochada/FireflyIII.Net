@@ -1,5 +1,5 @@
 /*
- * Fixture tests built from the Firefly III OpenAPI spec examples (v1: firefly-iii-6.4.4-v1.yaml,
+ * Fixture tests built from the Firefly III OpenAPI spec examples (v1: the pinned spec in api/,
  * v2: firefly-iii-6.2.21-v2.yaml (v2 specs end there)), asserting the wire format maps onto the generated models.
  *
  * Note: properties the spec marks readOnly (created_at, order, budget_id, period, spent, ...)

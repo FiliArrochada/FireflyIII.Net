@@ -1,6 +1,6 @@
 /*
  * Fixture tests for the System/About area, fed by the example payloads from the
- * Firefly III OpenAPI spec (api/firefly-iii-6.4.4-v1.yaml):
+ * Firefly III OpenAPI spec (the pinned v1 spec in api/):
  *   - SystemInfo   (GET /v1/about)
  *   - UserSingle   (GET /v1/about/user)
  *   - CronResult   (GET /v1/cron/{cliToken})
