@@ -45,6 +45,12 @@ namespace FireflyIIINet.Client
             private readonly Dictionary<string, T> _read = new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase);
             private readonly Dictionary<T, string> _write = new Dictionary<T, string>();
 
+            // Set only for enums that declare a member literally named "Unknown". Those are the
+            // open sets, where the API accepts more values than the specification lists (rule
+            // trigger keywords being the worst offender), and one unlisted value must not fail
+            // the whole response. Closed sets declare no such member and keep throwing.
+            private readonly T? _fallback;
+
             public EnumMemberConverter()
             {
                 foreach (var name in Enum.GetNames(typeof(T)))
@@ -57,6 +63,8 @@ namespace FireflyIIINet.Client
                     _read[serialized] = value;
                     if (!_read.ContainsKey(name)) _read[name] = value;
                     if (!_write.ContainsKey(value)) _write[value] = serialized;
+
+                    if (string.Equals(name, "Unknown", StringComparison.Ordinal)) _fallback = value;
                 }
             }
 
@@ -73,6 +81,11 @@ namespace FireflyIIINet.Client
                     if (Enum.TryParse<T>(s, true, out var parsed))
                     {
                         return parsed;
+                    }
+
+                    if (_fallback.HasValue)
+                    {
+                        return _fallback.Value;
                     }
 
                     throw new JsonException($"Unable to convert \"{s}\" to enum {typeof(T)}.");

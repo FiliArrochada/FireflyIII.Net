@@ -146,6 +146,87 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal(expected, rule.Trigger);
         }
 
+        /// <summary>
+        /// Rule triggers are Firefly III's search operators (config/search.php), of which the
+        /// OpenAPI spec lists only 36. A real server returns the rest verbatim - "amount_is"
+        /// broke a live client once - so they must map to members, not blow up the response.
+        /// </summary>
+        [Theory]
+        [InlineData("amount_is", RuleTriggerKeyword.AmountIs)]
+        [InlineData("date_on", RuleTriggerKeyword.DateOn)]
+        [InlineData("journal_id", RuleTriggerKeyword.JournalId)]
+        [InlineData("tag_is_not", RuleTriggerKeyword.TagIsNot)]
+        [InlineData("has_no_bill", RuleTriggerKeyword.HasNoBill)]
+        [InlineData("description_is", RuleTriggerKeyword.DescriptionIs)]
+        public void RuleTriggerKeyword_Maps_Operators_Beyond_The_Spec(string wireValue, RuleTriggerKeyword expected)
+        {
+            var rule = JsonSerializer.Deserialize<Rule>(RuleWithTrigger(wireValue), SerializerOptions.Default);
+            Assert.Equal(expected, rule.Triggers[0].Type);
+        }
+
+        [Fact]
+        public void RuleTriggerKeyword_Falls_Back_To_Unknown_Instead_Of_Throwing()
+        {
+            var rule = JsonSerializer.Deserialize<Rule>(RuleWithTrigger("trigger_from_a_future_release"), SerializerOptions.Default);
+
+            Assert.Equal(RuleTriggerKeyword.Unknown, rule.Triggers[0].Type);
+            Assert.Equal("100", rule.Triggers[0].Value); // the rest of the payload survives
+        }
+
+        [Theory]
+        [InlineData("set_amount", RuleActionKeyword.SetAmount)]
+        [InlineData("update_piggy", RuleActionKeyword.UpdatePiggy)]
+        [InlineData("switch_accounts", RuleActionKeyword.SwitchAccounts)]
+        public void RuleActionKeyword_Maps_Actions_Beyond_The_Spec(string wireValue, RuleActionKeyword expected)
+        {
+            var rule = JsonSerializer.Deserialize<Rule>(RuleWithAction(wireValue), SerializerOptions.Default);
+            Assert.Equal(expected, rule.Actions[0].Type);
+        }
+
+        [Fact]
+        public void RuleActionKeyword_Falls_Back_To_Unknown_Instead_Of_Throwing()
+        {
+            var rule = JsonSerializer.Deserialize<Rule>(RuleWithAction("action_from_a_future_release"), SerializerOptions.Default);
+            Assert.Equal(RuleActionKeyword.Unknown, rule.Actions[0].Type);
+        }
+
+        /// <summary>A closed enum keeps failing loudly - the fallback is opt-in per enum.</summary>
+        [Fact]
+        public void Enum_Without_An_Unknown_Member_Still_Throws()
+        {
+            const string json = """
+            {
+              "title": "Rule",
+              "rule_group_id": "81",
+              "trigger": "not-a-trigger-type",
+              "triggers": [],
+              "actions": []
+            }
+            """;
+
+            Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Rule>(json, SerializerOptions.Default));
+        }
+
+        private static string RuleWithTrigger(string wireValue) => $$"""
+        {
+          "title": "Rule",
+          "rule_group_id": "81",
+          "trigger": "store-journal",
+          "triggers": [ { "type": "{{wireValue}}", "value": "100" } ],
+          "actions": []
+        }
+        """;
+
+        private static string RuleWithAction(string wireValue) => $$"""
+        {
+          "title": "Rule",
+          "rule_group_id": "81",
+          "trigger": "store-journal",
+          "triggers": [],
+          "actions": [ { "type": "{{wireValue}}", "value": "100" } ]
+        }
+        """;
+
         [Fact]
         public void RuleGroupSingle_Deserializes_Spec_Example()
         {

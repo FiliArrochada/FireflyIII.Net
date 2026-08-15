@@ -27,6 +27,11 @@ namespace FireflyIIINet.Model
     /// <summary>
     /// The type of thing this action will do. A limited set is possible.
     /// </summary>
+    /// <remarks>
+    /// The members past <see cref="DeleteTransaction"/> are actions Firefly III supports
+    /// (config/firefly.php, 'rule-actions') that the OpenAPI specification does not list.
+    /// Unrecognised wire values deserialize to <see cref="Unknown"/> rather than throwing.
+    /// </remarks>
     /// <value>The type of thing this action will do. A limited set is possible.</value>
     [JsonConverter(typeof(FireflyIIINet.Client.StringEnumMemberConverter))]
     public enum RuleActionKeyword
@@ -161,7 +166,45 @@ namespace FireflyIIINet.Model
         /// Enum DeleteTransaction for value: delete_transaction
         /// </summary>
         [EnumMember(Value = "delete_transaction")]
-        DeleteTransaction = 22
+        DeleteTransaction = 22,
+
+        /// <summary>
+        /// Enum SwitchAccounts for value: switch_accounts
+        /// </summary>
+        [EnumMember(Value = "switch_accounts")]
+        SwitchAccounts = 23,
+
+        /// <summary>
+        /// Enum UpdatePiggy for value: update_piggy
+        /// </summary>
+        [EnumMember(Value = "update_piggy")]
+        UpdatePiggy = 24,
+
+        /// <summary>
+        /// Enum SetSourceToCash for value: set_source_to_cash
+        /// </summary>
+        [EnumMember(Value = "set_source_to_cash")]
+        SetSourceToCash = 25,
+
+        /// <summary>
+        /// Enum SetDestinationToCash for value: set_destination_to_cash
+        /// </summary>
+        [EnumMember(Value = "set_destination_to_cash")]
+        SetDestinationToCash = 26,
+
+        /// <summary>
+        /// Enum SetAmount for value: set_amount
+        /// </summary>
+        [EnumMember(Value = "set_amount")]
+        SetAmount = 27,
+
+        /// <summary>
+        /// Enum Unknown: an action keyword this SDK does not know. Same open-set problem as
+        /// <see cref="RuleTriggerKeyword.Unknown"/> - the rule endpoints return whatever the
+        /// server supports, which outgrows the specification. Do not send it back to the API.
+        /// </summary>
+        [EnumMember(Value = "unknown")]
+        Unknown = 0
     }
 
 }
