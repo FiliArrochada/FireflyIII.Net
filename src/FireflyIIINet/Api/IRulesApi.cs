@@ -11,7 +11,11 @@ namespace FireflyIIINet.Api
         [Delete("/v1/rules/{id}")]
         Task DeleteRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        // Body-less POST, but Firefly III's AcceptHeaders middleware answers 415 to any
+        // POST/PUT without a Content-Type header; the attribute makes Refit attach empty
+        // JSON content so the header exists.
         [Post("/v1/rules/{id}/trigger")]
+        [Headers("Content-Type: application/json")]
         Task FireRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long> accounts = null);
 
         [Get("/v1/rules/{id}")]

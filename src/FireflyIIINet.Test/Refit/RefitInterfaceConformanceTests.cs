@@ -3,6 +3,8 @@
  *   - exactly one HTTP verb attribute, with a /v1/ or /v2/ route
  *   - every {placeholder} in the route has a matching parameter (name or [AliasAs])
  *   - a [Body] parameter implies a Content-Type [Headers] attribute (and at most one body)
+ *   - every POST/PUT declares a Content-Type header, body or not (Firefly III returns 415
+ *     otherwise), except the two routes its middleware exempts
  *   - the return type is Task or Task<T>
  * These invariants are what the hand-maintained conversion could get wrong silently
  * the sweep makes adding a new endpoint self-checking.
@@ -65,6 +67,19 @@ namespace FireflyIIINet.Test.RefitConformance
                     var headers = method.GetCustomAttribute<HeadersAttribute>();
                     Assert.True(headers != null && headers.Headers.Any(h => h.StartsWith("Content-Type:")),
                         $"{id}: [Body] parameter without a Content-Type [Headers] attribute");
+                }
+
+                // Every POST/PUT needs a Content-Type header, body or not: Firefly III's
+                // AcceptHeaders middleware answers 415 to any that arrives without one, and a
+                // body-less Refit method sends no content at all unless [Headers] forces it.
+                // The middleware exempts two routes (bulk transactions, attachment upload).
+                var exemptFromContentType = new[] { "/v1/data/bulk/transactions", "/v1/attachments/{id}/upload" };
+                if ((http[0].Method == System.Net.Http.HttpMethod.Post || http[0].Method == System.Net.Http.HttpMethod.Put)
+                    && !exemptFromContentType.Contains(route))
+                {
+                    var headers = method.GetCustomAttribute<HeadersAttribute>();
+                    Assert.True(headers != null && headers.Headers.Any(h => h.StartsWith("Content-Type:")),
+                        $"{id}: {http[0].Method} without a Content-Type [Headers] attribute (Firefly III answers 415)");
                 }
 
                 // Task or Task<T> only

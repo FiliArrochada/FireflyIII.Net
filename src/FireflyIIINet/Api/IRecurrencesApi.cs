@@ -24,7 +24,9 @@ namespace FireflyIIINet.Api
         [Headers("Content-Type: application/json")]
         Task<RecurrenceSingle> StoreRecurrence([Body] RecurrenceStore recurrenceStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        // Body-less POST: Content-Type is mandatory anyway, see IRulesApi.FireRule.
         [Post("/v1/recurrences/{id}/trigger")]
+        [Headers("Content-Type: application/json")]
         Task<TransactionArray> TriggerRecurrenceRecurrence(string id, [Query(Format = "yyyy-MM-dd")] DateTime date, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Put("/v1/recurrences/{id}")]

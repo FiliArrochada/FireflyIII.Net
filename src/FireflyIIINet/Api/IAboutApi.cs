@@ -9,7 +9,9 @@ namespace FireflyIIINet.Api
     public interface IAboutApi
     {
         // The spec tags this batch endpoint "about".
+        // Body-less POST: Content-Type is mandatory anyway, see IRulesApi.FireRule.
         [Post("/v1/batch/finish")]
+        [Headers("Content-Type: application/json")]
         Task FinishBatch([Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/about")]

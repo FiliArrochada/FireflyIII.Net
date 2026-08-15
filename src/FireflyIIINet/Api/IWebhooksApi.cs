@@ -39,10 +39,13 @@ namespace FireflyIIINet.Api
         [Headers("Content-Type: application/json")]
         Task<WebhookSingle> StoreWebhook([Body] WebhookStore webhookStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        // Body-less POSTs: Content-Type is mandatory anyway, see IRulesApi.FireRule.
         [Post("/v1/webhooks/{id}/trigger-transaction/{transactionId}")]
+        [Headers("Content-Type: application/json")]
         Task TriggerTransactionWebhook(string id, string transactionId, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Post("/v1/webhooks/{id}/submit")]
+        [Headers("Content-Type: application/json")]
         Task SubmitWebhook(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Put("/v1/webhooks/{id}")]

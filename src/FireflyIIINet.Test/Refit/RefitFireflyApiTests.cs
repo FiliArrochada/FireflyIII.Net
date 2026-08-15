@@ -82,6 +82,23 @@ namespace FireflyIIINet.Test
             Assert.Contains("search_limit=10", q);   // AliasAs "search_limit"
         }
 
+        /// <summary>
+        /// Firefly III's AcceptHeaders middleware answers 415 to any POST/PUT that arrives
+        /// without a Content-Type header, body or no body. Body-less POSTs must therefore
+        /// still declare one.
+        /// </summary>
+        [Fact]
+        public async Task FireRule_Posts_With_A_Content_Type_Header()
+        {
+            var (api, cap) = Build<IRulesApi>("");
+
+            await api.FireRule("1", start: new DateTime(2026, 8, 1), end: new DateTime(2026, 8, 15));
+
+            Assert.Equal(HttpMethod.Post, cap.LastRequest.Method);
+            Assert.NotNull(cap.LastRequest.Content);
+            Assert.Equal("application/json", cap.LastRequest.Content.Headers.ContentType?.MediaType);
+        }
+
         [Fact]
         public async Task StoreAccount_Posts_Snake_Case_Json_Body()
         {
