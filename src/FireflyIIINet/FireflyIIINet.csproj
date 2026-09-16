@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.7.1</Version>
+    <Version>6.7.2</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.7.1. The 6.7.1 spec differs from 6.7.0 only in version strings; no client change. Changes since 6.6.6 (all arrived in 6.7.0). New: ISearchApi.CountTransactions (/v1/search/transactions/count), IRulesApi.ValidateActionExpression (/v1/rules/validate-expression), IPiggyBanksApi.ListAccountByPiggyBank, ICurrenciesApi.GetDefaultCurrency and ListExchangeRatesByCurrency (/v1/currencies/{code}/cer), IAutocompleteApi.GetTransactionsWithMeta. Removed upstream and now [Obsolete] (server answers 404): GetCurrenciesCodeAC, GetPiggiesBalanceAC, GetTransactionsIDAC. Breaking: CronResult jobs are now lists of CronResultRow (one per user, with User), Telemetry is gone and ExchangeRates/BillNotifications/Webhooks were added; BasicSummaryEntry.LocalIcon was removed. AutocompleteAccount.AccountCurrency* and Autocomplete{Account,Bill,Budget}.Active are now required.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.7.2. The 6.7.1 and 6.7.2 specs differ from 6.7.0 only in version strings; no client change. Changes since 6.6.6 (all arrived in 6.7.0). New: ISearchApi.CountTransactions (/v1/search/transactions/count), IRulesApi.ValidateActionExpression (/v1/rules/validate-expression), IPiggyBanksApi.ListAccountByPiggyBank, ICurrenciesApi.GetDefaultCurrency and ListExchangeRatesByCurrency (/v1/currencies/{code}/cer), IAutocompleteApi.GetTransactionsWithMeta. Removed upstream and now [Obsolete] (server answers 404): GetCurrenciesCodeAC, GetPiggiesBalanceAC, GetTransactionsIDAC. Breaking: CronResult jobs are now lists of CronResultRow (one per user, with User), Telemetry is gone and ExchangeRates/BillNotifications/Webhooks were added; BasicSummaryEntry.LocalIcon was removed. AutocompleteAccount.AccountCurrency* and Autocomplete{Account,Bill,Budget}.Active are now required.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
