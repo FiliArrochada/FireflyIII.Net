@@ -34,5 +34,10 @@ namespace FireflyIIINet.Api
         [Put("/v1/rules/{id}")]
         [Headers("Content-Type: application/json")]
         Task<RuleSingle> UpdateRule(string id, [Body] RuleUpdate ruleUpdate, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
+        // 6.7.0. A valid expression answers 200 { "valid": true }; an invalid one is a 422
+        // ValidationErrorResponse (surfaces as Refit.ApiException), not a { "valid": false }.
+        [Get("/v1/rules/validate-expression")]
+        Task<ActionExpressionValidationResult> ValidateActionExpression(string expression, [Header("X-Trace-Id")] Guid? xTraceId = null);
     }
 }

@@ -52,7 +52,7 @@ namespace FireflyIIINet.Model
         /// <param name="accountCurrencyCode">Code for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency code is displayed here..</param>
         /// <param name="accountCurrencySymbol">Code for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency code is displayed here..</param>
         /// <param name="accountCurrencyDecimalPlaces">Number of decimal places for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency code is displayed here..</param>
-        /// <param name="active">Is the bill active or not?.</param>
+        /// <param name="active">Is the account active or not?.</param>
         public AutocompleteAccount(string id = default(string), string name = default(string), string nameWithBalance = default(string), string type = default(string), string currencyId = default(string), string currencyName = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string accountCurrencyId = default(string), string accountCurrencyName = default(string), string accountCurrencyCode = default(string), string accountCurrencySymbol = default(string), int accountCurrencyDecimalPlaces = default(int), bool active = default(bool))
         {
             // to ensure "id" is required (not null)
@@ -104,9 +104,30 @@ namespace FireflyIIINet.Model
             }
             CurrencySymbol = currencySymbol;
             CurrencyDecimalPlaces = currencyDecimalPlaces;
+            // account_currency_* and active became required in 6.7.0
+            // to ensure "accountCurrencyId" is required (not null)
+            if (accountCurrencyId == null)
+            {
+                throw new ArgumentNullException("accountCurrencyId is a required property for AutocompleteAccount and cannot be null");
+            }
             AccountCurrencyId = accountCurrencyId;
+            // to ensure "accountCurrencyName" is required (not null)
+            if (accountCurrencyName == null)
+            {
+                throw new ArgumentNullException("accountCurrencyName is a required property for AutocompleteAccount and cannot be null");
+            }
             AccountCurrencyName = accountCurrencyName;
+            // to ensure "accountCurrencyCode" is required (not null)
+            if (accountCurrencyCode == null)
+            {
+                throw new ArgumentNullException("accountCurrencyCode is a required property for AutocompleteAccount and cannot be null");
+            }
             AccountCurrencyCode = accountCurrencyCode;
+            // to ensure "accountCurrencySymbol" is required (not null)
+            if (accountCurrencySymbol == null)
+            {
+                throw new ArgumentNullException("accountCurrencySymbol is a required property for AutocompleteAccount and cannot be null");
+            }
             AccountCurrencySymbol = accountCurrencySymbol;
             AccountCurrencyDecimalPlaces = accountCurrencyDecimalPlaces;
             Active = active;
@@ -139,11 +160,11 @@ namespace FireflyIIINet.Model
         public string NameWithBalance { get; set; }
 
         /// <summary>
-        /// Is the bill active or not?
+        /// Is the account active or not?
         /// </summary>
-        /// <value>Is the bill active or not?</value>
+        /// <value>Is the account active or not?</value>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("active")]
         public bool Active { get; set; }
 
@@ -206,7 +227,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency ID is displayed here.</value>
         /// <example>2</example>
-        [DataMember(Name = "account_currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "account_currency_id", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("account_currency_id")]
         public string AccountCurrencyId { get; set; }
 
@@ -215,7 +236,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Name for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency name is displayed here.</value>
         /// <example>US Dollar</example>
-        [DataMember(Name = "account_currency_name", EmitDefaultValue = true)]
+        [DataMember(Name = "account_currency_name", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("account_currency_name")]
         public string AccountCurrencyName { get; set; }
 
@@ -224,7 +245,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Code for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency code is displayed here.</value>
         /// <example>USD</example>
-        [DataMember(Name = "account_currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "account_currency_code", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("account_currency_code")]
         public string AccountCurrencyCode { get; set; }
 
@@ -233,7 +254,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Code for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency code is displayed here.</value>
         /// <example>$</example>
-        [DataMember(Name = "account_currency_symbol", EmitDefaultValue = true)]
+        [DataMember(Name = "account_currency_symbol", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("account_currency_symbol")]
         public string AccountCurrencySymbol { get; set; }
 
@@ -242,7 +263,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimal places for the currency used by this account. Even if &quot;convertToNative&quot; is on, the account currency code is displayed here.</value>
         /// <example>2</example>
-        [DataMember(Name = "account_currency_decimal_places", EmitDefaultValue = true)]
+        [DataMember(Name = "account_currency_decimal_places", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("account_currency_decimal_places")]
         public int AccountCurrencyDecimalPlaces { get; set; }
 

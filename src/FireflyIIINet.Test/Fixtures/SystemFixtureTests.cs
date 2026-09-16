@@ -97,45 +97,67 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal(UserRoleProperty.Demo, user.Role);
         }
 
+        /// <summary>
+        /// 6.7.0 shape: the cron endpoint may run for every user (static cron token), so each job
+        /// is a list with one row per user, each row naming its user. The exchange_rates list is
+        /// empty when external rate downloads are disabled.
+        /// </summary>
         [Fact]
-        public void CronResult_Deserializes_Spec_Example_With_Nullable_Rows()
+        public void CronResult_Deserializes_Per_User_Rows_With_Nullable_Fields()
         {
             const string json = """
             {
-              "recurring_transactions": {
-                "job_fired": true,
-                "job_succeeded": true,
-                "job_errored": false,
-                "message": "The cron job fired successfully."
-              },
-              "auto_budgets": {
-                "job_fired": false,
-                "job_succeeded": null,
-                "job_errored": null,
-                "message": null
-              },
-              "telemetry": {
-                "job_fired": true,
-                "job_succeeded": true,
-                "job_errored": false,
-                "message": "The cron job fired successfully."
-              }
+              "recurring_transactions": [
+                {
+                  "job_fired": true,
+                  "job_succeeded": true,
+                  "job_errored": false,
+                  "message": "The cron job fired successfully.",
+                  "user": "1"
+                },
+                {
+                  "job_fired": false,
+                  "job_succeeded": null,
+                  "job_errored": null,
+                  "message": null,
+                  "user": "2"
+                }
+              ],
+              "auto_budgets": [
+                { "job_fired": false, "job_succeeded": false, "job_errored": false, "message": "Nothing to do.", "user": "1" },
+                { "job_fired": false, "job_succeeded": false, "job_errored": false, "message": "Nothing to do.", "user": "2" }
+              ],
+              "exchange_rates": [],
+              "bill_notifications": [
+                { "job_fired": true, "job_succeeded": true, "job_errored": false, "message": "OK", "user": "1" }
+              ],
+              "webhooks": [
+                { "job_fired": true, "job_succeeded": true, "job_errored": false, "message": "OK", "user": "1" }
+              ]
             }
             """;
 
             var result = JsonSerializer.Deserialize<CronResult>(json, SerializerOptions.Default);
 
-            Assert.True(result.RecurringTransactions.JobFired);
-            Assert.True(result.RecurringTransactions.JobSucceeded);
-            Assert.False(result.RecurringTransactions.JobErrored);
-            Assert.Equal("The cron job fired successfully.", result.RecurringTransactions.Message);
+            Assert.Equal(2, result.RecurringTransactions.Count);
+            var first = result.RecurringTransactions[0];
+            Assert.True(first.JobFired);
+            Assert.True(first.JobSucceeded);
+            Assert.False(first.JobErrored);
+            Assert.Equal("The cron job fired successfully.", first.Message);
+            Assert.Equal("1", first.User);
 
-            Assert.False(result.AutoBudgets.JobFired);
-            Assert.Null(result.AutoBudgets.JobSucceeded); // nullable per spec, explicit null
-            Assert.Null(result.AutoBudgets.JobErrored);
-            Assert.Null(result.AutoBudgets.Message);
+            var second = result.RecurringTransactions[1];
+            Assert.False(second.JobFired);
+            Assert.Null(second.JobSucceeded); // nullable per spec, explicit null
+            Assert.Null(second.JobErrored);
+            Assert.Null(second.Message);
+            Assert.Equal("2", second.User);
 
-            Assert.True(result.Telemetry.JobFired);
+            Assert.Equal(2, result.AutoBudgets.Count);
+            Assert.Empty(result.ExchangeRates);
+            Assert.Equal("1", Assert.Single(result.BillNotifications).User);
+            Assert.True(Assert.Single(result.Webhooks).JobSucceeded);
         }
     }
 }

@@ -42,9 +42,8 @@ namespace FireflyIIINet.Model
         /// <param name="currencyDecimalPlaces">Number of decimals for the associated currency..</param>
         /// <param name="noAvailableBudgets">True if there are no available budgets available..</param>
         /// <param name="valueParsed">The amount formatted according to the users locale.</param>
-        /// <param name="localIcon">Reference to a font-awesome icon without the fa- part..</param>
         /// <param name="subTitle">A short explanation of the amounts origin. Already formatted according to the locale of the user or translated, if relevant..</param>
-        public BasicSummaryEntry(string key = default(string), string title = default(string), double monetaryValue = default(double), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), bool noAvailableBudgets = default(bool), string valueParsed = default(string), string localIcon = default(string), string subTitle = default(string))
+        public BasicSummaryEntry(string key = default(string), string title = default(string), double monetaryValue = default(double), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), bool noAvailableBudgets = default(bool), string valueParsed = default(string), string subTitle = default(string))
         {
             Key = key;
             Title = title;
@@ -55,7 +54,6 @@ namespace FireflyIIINet.Model
             CurrencyDecimalPlaces = currencyDecimalPlaces;
             NoAvailableBudgets = noAvailableBudgets;
             ValueParsed = valueParsed;
-            LocalIcon = localIcon;
             SubTitle = subTitle;
         }
 
@@ -139,15 +137,6 @@ namespace FireflyIIINet.Model
         public string ValueParsed { get; set; }
 
         /// <summary>
-        /// Reference to a font-awesome icon without the fa- part.
-        /// </summary>
-        /// <value>Reference to a font-awesome icon without the fa- part.</value>
-        /// <example>balance-scale</example>
-        [DataMember(Name = "local_icon", EmitDefaultValue = true)]
-        [JsonPropertyName("local_icon")]
-        public string LocalIcon { get; set; }
-
-        /// <summary>
         /// A short explanation of the amounts origin. Already formatted according to the locale of the user or translated, if relevant.
         /// </summary>
         /// <value>A short explanation of the amounts origin. Already formatted according to the locale of the user or translated, if relevant.</value>
@@ -173,7 +162,6 @@ namespace FireflyIIINet.Model
             sb.Append("  CurrencyDecimalPlaces: ").Append(CurrencyDecimalPlaces).Append("\n");
             sb.Append("  NoAvailableBudgets: ").Append(NoAvailableBudgets).Append("\n");
             sb.Append("  ValueParsed: ").Append(ValueParsed).Append("\n");
-            sb.Append("  LocalIcon: ").Append(LocalIcon).Append("\n");
             sb.Append("  SubTitle: ").Append(SubTitle).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -247,10 +235,6 @@ namespace FireflyIIINet.Model
 					ValueParsed.Equals(input.ValueParsed)
                 ) && 
                 (
-                    LocalIcon == input.LocalIcon ||
-					LocalIcon.Equals(input.LocalIcon)
-                ) && 
-                (
                     SubTitle == input.SubTitle ||
 					SubTitle.Equals(input.SubTitle)
                 );
@@ -274,7 +258,6 @@ namespace FireflyIIINet.Model
                 hashCode = (hashCode * 59) + CurrencyDecimalPlaces.GetHashCode();
                 hashCode = (hashCode * 59) + NoAvailableBudgets.GetHashCode();
 				hashCode = (hashCode * 59) + ValueParsed.GetHashCode();
-				hashCode = (hashCode * 59) + LocalIcon.GetHashCode();
 				hashCode = (hashCode * 59) + SubTitle.GetHashCode();
                 return hashCode;
             }

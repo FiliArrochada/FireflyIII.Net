@@ -37,12 +37,14 @@ namespace FireflyIIINet.Model
         /// <param name="jobSucceeded">This value tells you if this specific cron job actually did something. The job may fire but not change anything. .</param>
         /// <param name="jobErrored">If the cron job ran into some kind of an error, this value will be true..</param>
         /// <param name="message">If the cron job ran into some kind of an error, this value will be the error message. The success message if the job actually ran OK. .</param>
-        public CronResultRow(bool? jobFired = default(bool?), bool? jobSucceeded = default(bool?), bool? jobErrored = default(bool?), string message = default(string))
+        /// <param name="user">The user for which this particular job result is. (6.7.0).</param>
+        public CronResultRow(bool? jobFired = default(bool?), bool? jobSucceeded = default(bool?), bool? jobErrored = default(bool?), string message = default(string), string user = default(string))
         {
             JobFired = jobFired;
             JobSucceeded = jobSucceeded;
             JobErrored = jobErrored;
             Message = message;
+            User = user;
         }
 
         /// <summary>
@@ -83,6 +85,16 @@ namespace FireflyIIINet.Model
         public string Message { get; set; }
 
         /// <summary>
+        /// The user for which this particular job result is.
+        /// </summary>
+        /// <value>The user for which this particular job result is.</value>
+        /// <example>1</example>
+        [DataMember(Name = "user", EmitDefaultValue = false)]
+        [JsonPropertyName("user")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public string User { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -94,6 +106,7 @@ namespace FireflyIIINet.Model
             sb.Append("  JobSucceeded: ").Append(JobSucceeded).Append("\n");
             sb.Append("  JobErrored: ").Append(JobErrored).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  User: ").Append(User).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -148,6 +161,11 @@ namespace FireflyIIINet.Model
                     Message == input.Message ||
                     (Message != null &&
                     Message.Equals(input.Message))
+                ) &&
+                (
+                    User == input.User ||
+                    (User != null &&
+                    User.Equals(input.User))
                 );
         }
 
@@ -175,6 +193,10 @@ namespace FireflyIIINet.Model
                 if (Message != null)
                 {
                     hashCode = (hashCode * 59) + Message.GetHashCode();
+                }
+                if (User != null)
+                {
+                    hashCode = (hashCode * 59) + User.GetHashCode();
                 }
                 return hashCode;
             }

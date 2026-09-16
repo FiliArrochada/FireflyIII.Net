@@ -80,7 +80,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Is the budget active or not?</value>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("active")]
         public bool Active { get; set; }
 

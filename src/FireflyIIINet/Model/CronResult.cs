@@ -25,7 +25,10 @@ using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 namespace FireflyIIINet.Model
 {
     /// <summary>
-    /// CronResult
+    /// CronResult — the body of GET /v1/cron/{cliToken}. Since Firefly III 6.7.0 the cron endpoint
+    /// can run for every user (static cron token), so each job reports one CronResultRow per user
+    /// instead of a single row; the telemetry job is gone and exchange rates, bill notifications
+    /// and webhooks were added.
     /// </summary>
     [DataContract(Name = "CronResult")]
     public partial class CronResult : IEquatable<CronResult>, IValidatableObject
@@ -35,12 +38,16 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="recurringTransactions">recurringTransactions.</param>
         /// <param name="autoBudgets">autoBudgets.</param>
-        /// <param name="telemetry">telemetry.</param>
-        public CronResult(CronResultRow recurringTransactions = default(CronResultRow), CronResultRow autoBudgets = default(CronResultRow), CronResultRow telemetry = default(CronResultRow))
+        /// <param name="exchangeRates">exchangeRates.</param>
+        /// <param name="billNotifications">billNotifications.</param>
+        /// <param name="webhooks">webhooks.</param>
+        public CronResult(List<CronResultRow> recurringTransactions = default(List<CronResultRow>), List<CronResultRow> autoBudgets = default(List<CronResultRow>), List<CronResultRow> exchangeRates = default(List<CronResultRow>), List<CronResultRow> billNotifications = default(List<CronResultRow>), List<CronResultRow> webhooks = default(List<CronResultRow>))
         {
             RecurringTransactions = recurringTransactions;
             AutoBudgets = autoBudgets;
-            Telemetry = telemetry;
+            ExchangeRates = exchangeRates;
+            BillNotifications = billNotifications;
+            Webhooks = webhooks;
         }
 
         /// <summary>
@@ -48,21 +55,35 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "recurring_transactions", EmitDefaultValue = true)]
         [JsonPropertyName("recurring_transactions")]
-        public CronResultRow RecurringTransactions { get; set; }
+        public List<CronResultRow> RecurringTransactions { get; set; }
 
         /// <summary>
         /// Gets or Sets AutoBudgets
         /// </summary>
         [DataMember(Name = "auto_budgets", EmitDefaultValue = true)]
         [JsonPropertyName("auto_budgets")]
-        public CronResultRow AutoBudgets { get; set; }
+        public List<CronResultRow> AutoBudgets { get; set; }
 
         /// <summary>
-        /// Gets or Sets Telemetry
+        /// Gets or Sets ExchangeRates
         /// </summary>
-        [DataMember(Name = "telemetry", EmitDefaultValue = true)]
-        [JsonPropertyName("telemetry")]
-        public CronResultRow Telemetry { get; set; }
+        [DataMember(Name = "exchange_rates", EmitDefaultValue = true)]
+        [JsonPropertyName("exchange_rates")]
+        public List<CronResultRow> ExchangeRates { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BillNotifications
+        /// </summary>
+        [DataMember(Name = "bill_notifications", EmitDefaultValue = true)]
+        [JsonPropertyName("bill_notifications")]
+        public List<CronResultRow> BillNotifications { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Webhooks
+        /// </summary>
+        [DataMember(Name = "webhooks", EmitDefaultValue = true)]
+        [JsonPropertyName("webhooks")]
+        public List<CronResultRow> Webhooks { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,7 +95,9 @@ namespace FireflyIIINet.Model
             sb.Append("class CronResult {\n");
             sb.Append("  RecurringTransactions: ").Append(RecurringTransactions).Append("\n");
             sb.Append("  AutoBudgets: ").Append(AutoBudgets).Append("\n");
-            sb.Append("  Telemetry: ").Append(Telemetry).Append("\n");
+            sb.Append("  ExchangeRates: ").Append(ExchangeRates).Append("\n");
+            sb.Append("  BillNotifications: ").Append(BillNotifications).Append("\n");
+            sb.Append("  Webhooks: ").Append(Webhooks).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -109,18 +132,36 @@ namespace FireflyIIINet.Model
             {
                 return false;
             }
-            return 
+            return
                 (
                     RecurringTransactions == input.RecurringTransactions ||
-					RecurringTransactions.Equals(input.RecurringTransactions)
-                ) && 
+                    RecurringTransactions != null &&
+                    input.RecurringTransactions != null &&
+                    RecurringTransactions.SequenceEqual(input.RecurringTransactions)
+                ) &&
                 (
                     AutoBudgets == input.AutoBudgets ||
-					AutoBudgets.Equals(input.AutoBudgets)
-                ) && 
+                    AutoBudgets != null &&
+                    input.AutoBudgets != null &&
+                    AutoBudgets.SequenceEqual(input.AutoBudgets)
+                ) &&
                 (
-                    Telemetry == input.Telemetry ||
-					Telemetry.Equals(input.Telemetry)
+                    ExchangeRates == input.ExchangeRates ||
+                    ExchangeRates != null &&
+                    input.ExchangeRates != null &&
+                    ExchangeRates.SequenceEqual(input.ExchangeRates)
+                ) &&
+                (
+                    BillNotifications == input.BillNotifications ||
+                    BillNotifications != null &&
+                    input.BillNotifications != null &&
+                    BillNotifications.SequenceEqual(input.BillNotifications)
+                ) &&
+                (
+                    Webhooks == input.Webhooks ||
+                    Webhooks != null &&
+                    input.Webhooks != null &&
+                    Webhooks.SequenceEqual(input.Webhooks)
                 );
         }
 
@@ -133,9 +174,26 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-				hashCode = (hashCode * 59) + RecurringTransactions.GetHashCode();
-				hashCode = (hashCode * 59) + AutoBudgets.GetHashCode();
-				hashCode = (hashCode * 59) + Telemetry.GetHashCode();
+                if (RecurringTransactions != null)
+                {
+                    hashCode = (hashCode * 59) + RecurringTransactions.GetHashCode();
+                }
+                if (AutoBudgets != null)
+                {
+                    hashCode = (hashCode * 59) + AutoBudgets.GetHashCode();
+                }
+                if (ExchangeRates != null)
+                {
+                    hashCode = (hashCode * 59) + ExchangeRates.GetHashCode();
+                }
+                if (BillNotifications != null)
+                {
+                    hashCode = (hashCode * 59) + BillNotifications.GetHashCode();
+                }
+                if (Webhooks != null)
+                {
+                    hashCode = (hashCode * 59) + Webhooks.GetHashCode();
+                }
                 return hashCode;
             }
         }

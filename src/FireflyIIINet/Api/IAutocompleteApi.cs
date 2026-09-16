@@ -23,6 +23,9 @@ namespace FireflyIIINet.Api
         [Get("/v1/autocomplete/currencies")]
         Task<List<AutocompleteCurrency>> GetCurrenciesAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
+        // Removed from the API in Firefly III 6.7.0 (it was deprecated before that). Kept so
+        // existing callers still compile; the server answers 404. The model stays in the spec.
+        [Obsolete("Removed in Firefly III 6.7.0. Use GetCurrenciesAC; the currency code is in AutocompleteCurrency.Code.")]
         [Get("/v1/autocomplete/currencies-with-code")]
         Task<List<AutocompleteCurrencyCode>> GetCurrenciesCodeAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
@@ -32,6 +35,8 @@ namespace FireflyIIINet.Api
         [Get("/v1/autocomplete/piggy-banks")]
         Task<List<AutocompletePiggy>> GetPiggiesAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
+        // Removed from the API in Firefly III 6.7.0; see GetCurrenciesCodeAC.
+        [Obsolete("Removed in Firefly III 6.7.0. Use GetPiggiesAC.")]
         [Get("/v1/autocomplete/piggy-banks-with-balance")]
         Task<List<AutocompletePiggyBalance>> GetPiggiesBalanceAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
@@ -56,8 +61,14 @@ namespace FireflyIIINet.Api
         [Get("/v1/autocomplete/transactions")]
         Task<List<AutocompleteTransaction>> GetTransactionsAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
+        // Replaced in Firefly III 6.7.0 by transactions-with-meta (GetTransactionsWithMeta), whose
+        // rows carry the same id/name/description plus date, currency_code and amount.
+        [Obsolete("Removed in Firefly III 6.7.0. Use GetTransactionsWithMeta.")]
         [Get("/v1/autocomplete/transactions-with-id")]
         Task<List<AutocompleteTransactionID>> GetTransactionsIDAC([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
+
+        [Get("/v1/autocomplete/transactions-with-meta")]
+        Task<List<AutocompleteTransactionWithMeta>> GetTransactionsWithMeta([Header("X-Trace-Id")] Guid? xTraceId = null, string query = null, int? limit = null);
 
         [Get("/v2/autocomplete/accounts")]
         Task<List<AutocompleteObject>> GetAccountsACV2([Header("X-Trace-Id")] Guid? xTraceId = null, [AliasAs("user_group_id")] int? userGroupId = null, string query = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, int? size = null, int? page = null);

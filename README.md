@@ -7,10 +7,10 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
-- API version: 6.6.6 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
-- SDK version: 6.6.6.2 (tracks the API version; the 4th revision component denotes client-only changes)
-- Source specification: [api/firefly-iii-v6.6.6-v1.yaml](api/firefly-iii-v6.6.6-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
-- All released specifications (0.10.4 – 6.6.6): [api/](api/)
+- API version: 6.7.0 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
+- SDK version: 6.7.0 (tracks the API version; a 4th revision component denotes client-only changes)
+- Source specification: [api/firefly-iii-v6.7.0-v1.yaml](api/firefly-iii-v6.7.0-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
+- All released specifications (0.10.4 – 6.7.2): [api/](api/)
 
 > **Rule triggers and actions go beyond the specification.** The spec's `RuleTriggerKeyword`
 > enum lists 36 values, but Firefly III accepts every search operator as a rule trigger

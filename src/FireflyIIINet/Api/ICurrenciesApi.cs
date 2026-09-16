@@ -30,6 +30,14 @@ namespace FireflyIIINet.Api
         [Get("/v1/currencies/primary")]
         Task<CurrencySingle> GetPrimaryCurrency([Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        // 6.7.0: alias of /v1/currencies/primary.
+        [Get("/v1/currencies/default")]
+        Task<CurrencySingle> GetDefaultCurrency([Header("X-Trace-Id")] Guid? xTraceId = null);
+
+        // 6.7.0: exchange rates that have this currency as source or destination.
+        [Get("/v1/currencies/{code}/cer")]
+        Task<CurrencyExchangeRateArray> ListExchangeRatesByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
+
         [Get("/v1/currencies/{code}/accounts")]
         Task<AccountArray> ListAccountByCurrency(string code, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null, [Query(Format = "yyyy-MM-dd")] DateTime? date = null, AccountTypeFilter? type = null);
 

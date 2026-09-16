@@ -114,6 +114,105 @@ namespace FireflyIIINet.Test
             Assert.Equal("9", result.Data.Id);
         }
 
+        // ---- endpoints added in Firefly III 6.7.0 ----
+
+        [Fact]
+        public async Task CountTransactions_Aliases_Snake_Case_Filters_And_Lowercases_Bool()
+        {
+            var (api, cap) = Build<ISearchApi>("{\"count\":42}");
+
+            var result = await api.CountTransactions(externalIdentifier: "abcd-1234", internalReference: "INV-998", notes: "groceries", description: "Monthly rent", includeDeleted: false);
+
+            var q = Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query);
+            Assert.Equal(HttpMethod.Get, cap.LastRequest.Method);
+            Assert.Equal("/api/v1/search/transactions/count", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Contains("external_identifier=abcd-1234", q);   // AliasAs
+            Assert.Contains("internal_reference=INV-998", q);      // AliasAs
+            Assert.Contains("notes=groceries", q);
+            Assert.Contains("description=Monthly rent", q);
+            Assert.Contains("include_deleted=false", q);           // AliasAs + lowercase bool
+            Assert.Equal(42, result.Count);
+        }
+
+        [Fact]
+        public async Task CountTransactions_Omits_Unset_Filters()
+        {
+            var (api, cap) = Build<ISearchApi>("{\"count\":0}");
+
+            var result = await api.CountTransactions(externalIdentifier: "x");
+
+            var q = Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query);
+            Assert.Equal("?external_identifier=x", q);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task ValidateActionExpression_Sends_Expression_Query()
+        {
+            var (api, cap) = Build<IRulesApi>("{\"valid\":true}");
+
+            var result = await api.ValidateActionExpression("{{ description | upper }}");
+
+            var q = Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query);
+            Assert.Equal("/api/v1/rules/validate-expression", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Equal("?expression={{ description | upper }}", q);
+            Assert.True(result.Valid);
+        }
+
+        [Fact]
+        public async Task GetTransactionsWithMeta_Parses_Rows()
+        {
+            var (api, cap) = Build<IAutocompleteApi>("[{\"id\":\"2\",\"transaction_group_id\":\"2\",\"name\":\"#12: Transaction\",\"description\":\"#12: Transaction\",\"date\":\"2026-09-01T00:00:00+00:00\",\"currency_code\":\"EUR\",\"amount\":\"123.45\"}]");
+
+            var rows = await api.GetTransactionsWithMeta(query: "Trans", limit: 5);
+
+            var q = Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query);
+            Assert.Equal("/api/v1/autocomplete/transactions-with-meta", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Contains("query=Trans", q);
+            Assert.Contains("limit=5", q);
+            var row = Assert.Single(rows);
+            Assert.Equal("2", row.Id);
+            Assert.Equal("EUR", row.CurrencyCode);
+            Assert.Equal("123.45", row.Amount);
+            Assert.Equal(new DateTime(2026, 9, 1, 0, 0, 0, DateTimeKind.Utc), row.Date.Value.ToUniversalTime());
+        }
+
+        [Fact]
+        public async Task ListAccountByPiggyBank_Templates_Path_And_Pages()
+        {
+            var (api, cap) = Build<IPiggyBanksApi>("{\"data\":[]}");
+
+            await api.ListAccountByPiggyBank("7", limit: 10, page: 2);
+
+            var q = Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query);
+            Assert.Equal("/api/v1/piggy-banks/7/accounts", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Contains("limit=10", q);
+            Assert.Contains("page=2", q);
+        }
+
+        [Fact]
+        public async Task ListExchangeRatesByCurrency_Templates_Cer_Route()
+        {
+            var (api, cap) = Build<ICurrenciesApi>("{\"data\":[]}");
+
+            var result = await api.ListExchangeRatesByCurrency("USD", page: 1);
+
+            Assert.Equal("/api/v1/currencies/USD/cer", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Contains("page=1", cap.LastRequest.RequestUri.Query);
+            Assert.NotNull(result.Data);
+        }
+
+        [Fact]
+        public async Task GetDefaultCurrency_Is_Alias_Of_Primary()
+        {
+            var (api, cap) = Build<ICurrenciesApi>("{\"data\":{\"type\":\"currencies\",\"id\":\"1\",\"attributes\":{\"code\":\"EUR\",\"name\":\"Euro\",\"symbol\":\"€\"}}}");
+
+            var result = await api.GetDefaultCurrency();
+
+            Assert.Equal("/api/v1/currencies/default", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Equal("EUR", result.Data.Attributes.Code);
+        }
+
         [Fact]
         public async Task BearerHandler_Attaches_Authorization()
         {

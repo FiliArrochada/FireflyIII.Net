@@ -14,6 +14,10 @@ namespace FireflyIIINet.Api
         [Get("/v1/piggy-banks/{id}")]
         Task<PiggyBankSingle> GetPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        // 6.7.0: a piggy bank can be linked to several accounts.
+        [Get("/v1/piggy-banks/{id}/accounts")]
+        Task<AccountArray> ListAccountByPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
+
         [Get("/v1/piggy-banks/{id}/attachments")]
         Task<AttachmentArray> ListAttachmentByPiggyBank(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, int? limit = null, int? page = null);
 
