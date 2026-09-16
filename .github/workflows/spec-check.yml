@@ -38,7 +38,7 @@ jobs:
         run: |
           set +e
           dotnet run scripts/check-spec-version.cs | tee spec-check.log
-          code=$?
+          code=${PIPESTATUS[0]}   # exit code of dotnet, not of tee
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit $code
 
