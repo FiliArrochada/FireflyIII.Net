@@ -1,32 +1,34 @@
 name: Spec check
 
 # Weekly check for newly published Firefly III API specs that are not yet vendored in api/.
-# Runs scripts/check-spec-version.cs (a .NET 10 file-based app). The job fails when upstream
-# has specs we don't have, and opens a 'spec-check'-labeled issue with the checker's output
-# (skipped when such an issue is already open, so repeated weekly failures don't pile up).
-# Script errors (exit 2: network, API changes) fail the job but do NOT open an issue.
+# When upstream has specs we don't have, it opens (or comments on) an issue labeled
+# 'spec-check'; once every published spec is vendored again it closes the issue.
 #
-# Runs WITHOUT --diff on purpose: the SDK deliberately pins API version, so the path diff
-# against the newest upstream spec always reports drift. Run the script locally with
+# The checker is scripts/check-spec-version.cs, a .NET 10 file-based app.
+# Exit codes: 0 = up to date, 1 = new upstream specs, 2 = could not complete (fails this job,
+# does not touch the issue).
+#
+# Runs WITHOUT --diff on purpose: the SDK deliberately pins its API version, so the path diff
+# against the newest upstream spec would always report drift. Run the script locally with
 # `dotnet run scripts/check-spec-version.cs -- --diff` to size that gap when planning a bump.
 
 on:
   schedule:
-    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+    - cron: '0 6 * * 1'   # Mondays 06:00 UTC
   workflow_dispatch:
 
 permissions:
   contents: read
-  issues: write   # the failure step opens/updates the spec-check issue
+  issues: write
 
 jobs:
-  spec-check:
+  check:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET 10 (file-based apps)
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
@@ -34,33 +36,47 @@ jobs:
       - name: Check for new upstream specs
         id: check
         env:
-          GITHUB_TOKEN: ${{ github.token }}   # avoids anonymous API rate limits
+          GITHUB_TOKEN: ${{ github.token }}   # the checker scans every upstream branch; avoids anonymous API rate limits
         run: |
           set +e
           dotnet run scripts/check-spec-version.cs | tee spec-check.log
-          code=${PIPESTATUS[0]}   # exit code of dotnet, not of tee
+          code=${PIPESTATUS[0]}
+          set -e
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
-          exit $code
+          # 2 = network/parse failure: fail loudly so the run shows red instead of silently passing.
+          if [ "$code" -eq 2 ]; then exit 2; fi
 
-      # Only for exit code 1 (new specs found) — not for script errors (exit 2).
-      - name: Open issue for new specs (no duplicates)
-        if: failure() && steps.check.outputs.exit_code == '1'
+      - name: Open, update, or close spec-check issue
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh label create spec-check --description "New upstream API specs to vendor" --color D93F0B --force
-          open=$(gh issue list --state open --label spec-check --json number --jq 'length')
-          if [ "$open" -gt 0 ]; then
-            echo "An open spec-check issue already exists — not creating a duplicate."
-            exit 0
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --label spec-check --state open \
+            --json number --jq '.[0].number // empty' || true)
+
+          if [ "${{ steps.check.outputs.exit_code }}" = "1" ]; then
+            {
+              echo "Upstream has published Firefly III API specs that are not vendored in \`api/\` (checked $(date -u +%F))."
+              echo
+              echo '```'
+              cat spec-check.log
+              echo '```'
+              echo
+              echo "To vendor them:"
+              echo "1. Download each file listed above (the raw URLs are in the report) into \`api/\`, keeping the upstream file name (keep the old files — api/ is the version history)"
+              echo "2. The SDK keeps pinning its spec; run \`dotnet run scripts/check-spec-version.cs -- --diff\` to size the gap before deciding on a bump (see README.md)"
+            } > issue-body.md
+
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body-file issue-body.md
+            else
+              gh label create spec-check --repo "$GITHUB_REPOSITORY" \
+                --description "New upstream Firefly III API specs to vendor" \
+                --color D93F0B 2>/dev/null || true
+              gh issue create --repo "$GITHUB_REPOSITORY" \
+                --title "New upstream Firefly III API specs available" \
+                --label spec-check --body-file issue-body.md
+            fi
+          elif [ -n "$existing" ]; then
+            gh issue close "$existing" --repo "$GITHUB_REPOSITORY" \
+              --comment "Every published upstream spec is vendored again — closing."
           fi
-          {
-            echo "The weekly spec check found upstream specs that are not vendored in \`api/\`."
-            echo
-            echo '```'
-            cat spec-check.log
-            echo '```'
-            echo
-            echo "_Opened automatically by the spec-check workflow. It will not open another issue while this one is open._"
-          } > issue-body.md
-          gh issue create --title "New upstream Firefly III API specs available" --label spec-check --body-file issue-body.md

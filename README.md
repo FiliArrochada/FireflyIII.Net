@@ -110,6 +110,6 @@ dotnet test  FireflyIIINet.sln
 dotnet run scripts/check-spec-version.cs -- --diff
 ```
 
-A scheduled workflow (`spec-check.yml`) runs the same check weekly; when new upstream
-specs appear it fails the run and opens a `spec-check`-labeled issue (one at a time —
-no duplicates while an issue is open).
+A scheduled workflow (`spec-check.yml`) runs the same check weekly (without `--diff`); when
+new upstream specs appear it opens a `spec-check`-labeled issue, comments on that issue on
+later runs while they stay unvendored, and closes it once `api/` is complete again.
