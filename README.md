@@ -105,6 +105,8 @@ dotnet test  FireflyIIINet.sln
 # Check whether upstream has published API specs not yet vendored in api/,
 # and (--diff) how far the pinned SDK spec is behind the newest upstream v1.
 # This is a .NET 10 file-based app (needs the .NET 10 SDK; the library targets net8.0).
+# Upstream publishes one branch per release, so the check scans every branch (~22 GitHub API
+# requests); set GITHUB_TOKEN or GH_TOKEN to stay clear of the 60/h anonymous limit.
 dotnet run scripts/check-spec-version.cs -- --diff
 ```
 
