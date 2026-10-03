@@ -67,6 +67,9 @@ jobs:
             } > issue-body.md
 
             if [ -n "$existing" ]; then
+              # Assigning is what notifies the owner: an issue opened by github-actions[bot] reaches nobody
+              # who is not watching the repo for issues. Re-applied here for issues opened before this.
+              gh issue edit "$existing" --repo "$GITHUB_REPOSITORY" --add-assignee "$GITHUB_REPOSITORY_OWNER" || true
               gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body-file issue-body.md
             else
               gh label create spec-check --repo "$GITHUB_REPOSITORY" \
@@ -74,7 +77,8 @@ jobs:
                 --color D93F0B 2>/dev/null || true
               gh issue create --repo "$GITHUB_REPOSITORY" \
                 --title "New upstream Firefly III API specs available" \
-                --label spec-check --body-file issue-body.md
+                --label spec-check --body-file issue-body.md \
+                --assignee "$GITHUB_REPOSITORY_OWNER"
             fi
           elif [ -n "$existing" ]; then
             gh issue close "$existing" --repo "$GITHUB_REPOSITORY" \
