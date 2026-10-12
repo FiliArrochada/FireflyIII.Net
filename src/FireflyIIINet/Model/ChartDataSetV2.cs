@@ -59,7 +59,7 @@ namespace FireflyIIINet.Model
         /// <param name="period">period.</param>
         /// <param name="entries">The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value..</param>
         /// <param name="nativeEntries">The entries for this data set converted to the user&#39;s native (default) currency..</param>
-        public ChartDataSetV2(string label = default(string), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string nativeCurrencyId = default(string), string nativeCurrencyCode = default(string), string nativeCurrencySymbol = default(string), int nativeCurrencyDecimalPlaces = default(int), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), PeriodProperty? period = default(PeriodProperty?), List<ChartDataPointV2> entries = default(List<ChartDataPointV2>), List<ChartDataPointV2> nativeEntries = default(List<ChartDataPointV2>))
+        public ChartDataSetV2(string? label = default(string), string? currencyId = default(string), string? currencyCode = default(string), string? currencySymbol = default(string), int currencyDecimalPlaces = default(int), string? nativeCurrencyId = default(string), string? nativeCurrencyCode = default(string), string? nativeCurrencySymbol = default(string), int nativeCurrencyDecimalPlaces = default(int), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), PeriodProperty? period = default(PeriodProperty?), List<ChartDataPointV2>? entries = default(List<ChartDataPointV2>), List<ChartDataPointV2>? nativeEntries = default(List<ChartDataPointV2>))
         {
             Label = label;
             CurrencyId = currencyId;
@@ -84,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <example>earned-EUR</example>
         [DataMember(Name = "label", EmitDefaultValue = true)]
         [JsonPropertyName("label")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Label { get; set; }
 
         /// <summary>
@@ -93,6 +94,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -101,6 +103,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -109,6 +112,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -127,6 +131,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "native_currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("native_currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string NativeCurrencyId { get; set; }
 
         /// <summary>
@@ -136,6 +141,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "native_currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("native_currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string NativeCurrencyCode { get; set; }
 
         /// <summary>
@@ -145,6 +151,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "native_currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("native_currency_symbol")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string NativeCurrencySymbol { get; set; }
 
         /// <summary>
@@ -180,6 +187,8 @@ namespace FireflyIIINet.Model
         /// <value>The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value.</value>
         [DataMember(Name = "entries", EmitDefaultValue = true)]
         [JsonPropertyName("entries")]
+        [JsonConverter(typeof(FireflyIIINet.Client.ChartDataPointV2ListConverter))]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<ChartDataPointV2> Entries { get; set; }
 
         /// <summary>
@@ -188,6 +197,8 @@ namespace FireflyIIINet.Model
         /// <value>The entries for this data set converted to the user&#39;s native (default) currency. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value.</value>
         [DataMember(Name = "native_entries", EmitDefaultValue = true)]
         [JsonPropertyName("native_entries")]
+        [JsonConverter(typeof(FireflyIIINet.Client.ChartDataPointV2ListConverter))]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<ChartDataPointV2> NativeEntries { get; set; }
 
         /// <summary>

@@ -57,7 +57,7 @@ namespace FireflyIIINet.Model
         /// <param name="yAxisID">Used to indicate the Y axis for this data set. Is usually between 0 and 1 (left and right side of the chart)..</param>
         /// <param name="entries">The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value..</param>
         /// <param name="pcEntries">The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value..</param>
-        public ChartDataSet(string label = default(string), string currencyId = default(string), string currencyName = default(string), string currencyCode = default(string), DateTime? date = default(DateTime?), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), string type = default(string), ChartDatasetPeriodProperty? period = default(ChartDatasetPeriodProperty?), int yAxisID = default(int), List<ChartDataPoint> entries = default(List<ChartDataPoint>), List<ChartDataPoint> pcEntries = default(List<ChartDataPoint>))
+        public ChartDataSet(string? label = default(string), string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), DateTime? date = default(DateTime?), DateTime? startDate = default(DateTime?), DateTime? endDate = default(DateTime?), string? type = default(string), ChartDatasetPeriodProperty? period = default(ChartDatasetPeriodProperty?), int yAxisID = default(int), List<ChartDataPoint>? entries = default(List<ChartDataPoint>), List<ChartDataPoint>? pcEntries = default(List<ChartDataPoint>))
         {
             Label = label;
             CurrencyId = currencyId;
@@ -80,6 +80,7 @@ namespace FireflyIIINet.Model
         /// <example>Checking account</example>
         [DataMember(Name = "label", EmitDefaultValue = true)]
         [JsonPropertyName("label")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Label { get; set; }
 
         /// <summary>
@@ -89,6 +90,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -98,6 +100,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -107,6 +110,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -264,6 +268,7 @@ namespace FireflyIIINet.Model
         /// <example>line</example>
         [DataMember(Name = "type", EmitDefaultValue = true)]
         [JsonPropertyName("type")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Type { get; set; }
 
         /// <summary>
@@ -281,6 +286,8 @@ namespace FireflyIIINet.Model
         /// <value>The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value.</value>
         [DataMember(Name = "entries", EmitDefaultValue = true)]
         [JsonPropertyName("entries")]
+        [JsonConverter(typeof(FireflyIIINet.Client.ChartDataPointListConverter))]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<ChartDataPoint> Entries { get; set; }
 
         /// <summary>
@@ -289,6 +296,8 @@ namespace FireflyIIINet.Model
         /// <value>The actual entries for this data set. They &#39;key&#39; value is the label for the data point. The value is the actual (numerical) value.</value>
         [DataMember(Name = "pc_entries", EmitDefaultValue = true)]
         [JsonPropertyName("pc_entries")]
+        [JsonConverter(typeof(FireflyIIINet.Client.ChartDataPointListConverter))]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<ChartDataPoint> PcEntries { get; set; }
 
         /// <summary>

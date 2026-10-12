@@ -45,7 +45,7 @@ namespace FireflyIIINet.Model
         /// <param name="pcAmount">The amount that was paid for this subscription in the administration&#39;s primary currency..</param>
         /// <param name="foreignAmount">The foreign amount that was paid for this subscription in the subscription&#39;s currency..</param>
         /// <param name="pcForeignAmount">The foreign amount that was paid for this subscription in the administration&#39;s primary currency..</param>
-        public BillPaidDatesInner(string currencyId = default(string), string currencyName = default(string), string currencyCode = default(string), string amount = default(string), string pcAmount = default(string), string foreignAmount = default(string), string pcForeignAmount = default(string))
+        public BillPaidDatesInner(string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), string? amount = default(string), string? pcAmount = default(string), string? foreignAmount = default(string), string? pcForeignAmount = default(string))
         {
             CurrencyId = currencyId;
             CurrencyName = currencyName;
@@ -135,6 +135,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -144,6 +145,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -153,6 +155,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -286,6 +289,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
         [JsonPropertyName("amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
         /// <summary>
@@ -295,6 +299,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcAmount { get; set; }
 
         /// <summary>
@@ -304,6 +309,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "foreign_amount", EmitDefaultValue = true)]
         [JsonPropertyName("foreign_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignAmount { get; set; }
 
         /// <summary>
@@ -313,6 +319,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_foreign_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_foreign_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcForeignAmount { get; set; }
 
         /// <summary>

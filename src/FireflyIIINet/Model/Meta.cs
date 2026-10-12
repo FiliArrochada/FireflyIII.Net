@@ -34,7 +34,7 @@ namespace FireflyIIINet.Model
         /// Initializes a new instance of the <see cref="Meta" /> class.
         /// </summary>
         /// <param name="pagination">pagination.</param>
-        public Meta(MetaPagination pagination = default(MetaPagination))
+        public Meta(MetaPagination? pagination = default(MetaPagination))
         {
             Pagination = pagination;
         }
@@ -44,6 +44,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "pagination", EmitDefaultValue = true)]
         [JsonPropertyName("pagination")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public MetaPagination Pagination { get; set; }
 
         /// <summary>

@@ -45,7 +45,7 @@ namespace FireflyIIINet.Model
         /// <param name="order">Order of the trigger.</param>
         /// <param name="active">If the trigger is active..</param>
         /// <param name="stopProcessing">When true, other triggers will not be checked if this trigger was triggered..</param>
-        public RuleTriggerUpdate(RuleTriggerKeyword? type = default(RuleTriggerKeyword?), string value = default(string), int order = default(int), bool active = default(bool), bool stopProcessing = default(bool))
+        public RuleTriggerUpdate(RuleTriggerKeyword? type = default(RuleTriggerKeyword?), string? value = default(string), int order = default(int), bool active = default(bool), bool stopProcessing = default(bool))
         {
             Type = type;
             Value = value;
@@ -61,6 +61,7 @@ namespace FireflyIIINet.Model
         /// <example>tag1</example>
         [DataMember(Name = "value", EmitDefaultValue = true)]
         [JsonPropertyName("value")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Value { get; set; }
 
         /// <summary>

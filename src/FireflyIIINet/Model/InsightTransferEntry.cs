@@ -43,7 +43,7 @@ namespace FireflyIIINet.Model
         /// <param name="outFloat">The total amount transferred TO this account between start date and end date, a number as a float, for this asset account. May have rounding errors..</param>
         /// <param name="currencyId">The currency ID of the expenses listed for this account..</param>
         /// <param name="currencyCode">The currency code of the expenses listed for this account..</param>
-        public InsightTransferEntry(string id = default(string), string name = default(string), string difference = default(string), double differenceFloat = default(double), string varIn = default(string), double inFloat = default(double), string varOut = default(string), double outFloat = default(double), string currencyId = default(string), string currencyCode = default(string))
+        public InsightTransferEntry(string? id = default(string), string? name = default(string), string? difference = default(string), double differenceFloat = default(double), string? varIn = default(string), double inFloat = default(double), string? varOut = default(string), double outFloat = default(double), string? currencyId = default(string), string? currencyCode = default(string))
         {
             Id = id;
             Name = name;
@@ -64,6 +64,7 @@ namespace FireflyIIINet.Model
         /// <example>123</example>
         [DataMember(Name = "id", EmitDefaultValue = true)]
         [JsonPropertyName("id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Id { get; set; }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace FireflyIIINet.Model
         /// <example>Land lord</example>
         [DataMember(Name = "name", EmitDefaultValue = true)]
         [JsonPropertyName("name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Name { get; set; }
 
         /// <summary>
@@ -82,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <example>-123.45</example>
         [DataMember(Name = "difference", EmitDefaultValue = true)]
         [JsonPropertyName("difference")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Difference { get; set; }
 
         /// <summary>
@@ -100,6 +103,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "in", EmitDefaultValue = true)]
         [JsonPropertyName("in")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string VarIn { get; set; }
 
         /// <summary>
@@ -118,6 +122,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "out", EmitDefaultValue = true)]
         [JsonPropertyName("out")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string VarOut { get; set; }
 
         /// <summary>
@@ -136,6 +141,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -145,6 +151,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>

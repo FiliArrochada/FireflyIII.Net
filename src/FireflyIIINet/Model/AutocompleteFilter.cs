@@ -40,7 +40,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="query">query.</param>
         /// <param name="accountTypes">accountTypes.</param>
-        public AutocompleteFilter(string query = default(string), List<AccountTypeFilter> accountTypes = default(List<AccountTypeFilter>))
+        public AutocompleteFilter(string? query = default(string), List<AccountTypeFilter>? accountTypes = default(List<AccountTypeFilter>))
         {
             Query = query;
             AccountTypes = accountTypes;
@@ -51,6 +51,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "query", EmitDefaultValue = true)]
         [JsonPropertyName("query")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Query { get; set; }
 
         /// <summary>
@@ -58,6 +59,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "account_types", EmitDefaultValue = true)]
         [JsonPropertyName("account_types")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<AccountTypeFilter> AccountTypes { get; set; }
 
         /// <summary>

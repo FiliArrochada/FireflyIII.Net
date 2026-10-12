@@ -16,7 +16,7 @@ namespace FireflyIIINet.Api
         // JSON content so the header exists.
         [Post("/v1/rules/{id}/trigger")]
         [Headers("Content-Type: application/json")]
-        Task FireRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long> accounts = null);
+        Task FireRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long>? accounts = null);
 
         [Get("/v1/rules/{id}")]
         Task<RuleSingle> GetRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null);
@@ -29,7 +29,7 @@ namespace FireflyIIINet.Api
         Task<RuleSingle> StoreRule([Body] RuleStore ruleStore, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
         [Get("/v1/rules/{id}/test")]
-        Task<TransactionArray> TestRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long> accounts = null);
+        Task<TransactionArray> TestRule(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Query(Format = "yyyy-MM-dd")] DateTime? start = null, [Query(Format = "yyyy-MM-dd")] DateTime? end = null, [Query(CollectionFormat.Multi), AliasAs("accounts[]")] List<long>? accounts = null);
 
         [Put("/v1/rules/{id}")]
         [Headers("Content-Type: application/json")]

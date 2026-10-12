@@ -38,7 +38,7 @@ namespace FireflyIIINet.Model
         /// <param name="last">last.</param>
         /// <param name="next">next.</param>
         /// <param name="prev">prev.</param>
-        public PageLink(string self = default(string), string first = default(string), string last = default(string), string next = default(string), string prev = default(string))
+        public PageLink(string? self = default(string), string? first = default(string), string? last = default(string), string? next = default(string), string? prev = default(string))
         {
             Self = self;
             First = first;
@@ -53,6 +53,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;4</example>
         [DataMember(Name = "self", EmitDefaultValue = true)]
         [JsonPropertyName("self")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Self { get; set; }
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;1</example>
         [DataMember(Name = "first", EmitDefaultValue = true)]
         [JsonPropertyName("first")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string First { get; set; }
 
         /// <summary>
@@ -69,6 +71,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;3</example>
         [DataMember(Name = "next", EmitDefaultValue = true)]
         [JsonPropertyName("next")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Next { get; set; }
 
         /// <summary>
@@ -77,6 +80,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;2</example>
         [DataMember(Name = "prev", EmitDefaultValue = true)]
         [JsonPropertyName("prev")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Prev { get; set; }
 
         /// <summary>
@@ -85,6 +89,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECT?&amp;page&#x3D;12</example>
         [DataMember(Name = "last", EmitDefaultValue = true)]
         [JsonPropertyName("last")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Last { get; set; }
 
         /// <summary>

@@ -109,7 +109,7 @@ namespace FireflyIIINet.Model
         /// <param name="latitude">Latitude of the accounts&#39;s location, if applicable. Can be used to draw a map..</param>
         /// <param name="longitude">Latitude of the accounts&#39;s location, if applicable. Can be used to draw a map..</param>
         /// <param name="zoomLevel">Zoom level for the map, if drawn. This to set the box right. Unfortunately this is a proprietary value because each map provider has different zoom levels..</param>
-        public AccountStore(string name = default(string), ShortAccountTypeProperty type = default(ShortAccountTypeProperty), string iban = default(string), string bic = default(string), string accountNumber = default(string), string openingBalance = default(string), DateTime? openingBalanceDate = default(DateTime?), string virtualBalance = default(string), string currencyId = default(string), string currencyCode = default(string), bool active = true, int order = default(int), bool includeNetWorth = true, AccountRoleProperty? accountRole = default(AccountRoleProperty?), CreditCardTypeProperty? creditCardType = default(CreditCardTypeProperty?), DateTime? monthlyPaymentDate = default(DateTime?), LiabilityTypeProperty? liabilityType = default(LiabilityTypeProperty?), LiabilityDirectionProperty? liabilityDirection = default(LiabilityDirectionProperty?), string interest = @"0", InterestPeriodProperty? interestPeriod = default(InterestPeriodProperty?), string notes = default(string), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?))
+        public AccountStore(string name = default(string), ShortAccountTypeProperty type = default(ShortAccountTypeProperty), string? iban = default(string), string? bic = default(string), string? accountNumber = default(string), string? openingBalance = default(string), DateTime? openingBalanceDate = default(DateTime?), string? virtualBalance = default(string), string? currencyId = default(string), string? currencyCode = default(string), bool active = true, int order = default(int), bool includeNetWorth = true, AccountRoleProperty? accountRole = default(AccountRoleProperty?), CreditCardTypeProperty? creditCardType = default(CreditCardTypeProperty?), DateTime? monthlyPaymentDate = default(DateTime?), LiabilityTypeProperty? liabilityType = default(LiabilityTypeProperty?), LiabilityDirectionProperty? liabilityDirection = default(LiabilityDirectionProperty?), string? interest = @"0", InterestPeriodProperty? interestPeriod = default(InterestPeriodProperty?), string? notes = default(string), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -158,6 +158,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "iban", EmitDefaultValue = false)]
         [JsonPropertyName("iban")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Iban { get; set; }
 
         /// <summary>
@@ -167,6 +168,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "bic", EmitDefaultValue = false)]
         [JsonPropertyName("bic")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Bic { get; set; }
 
         /// <summary>
@@ -176,6 +178,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "account_number", EmitDefaultValue = false)]
         [JsonPropertyName("account_number")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AccountNumber { get; set; }
 
         /// <summary>
@@ -185,6 +188,7 @@ namespace FireflyIIINet.Model
         /// <example>-1012.12</example>
         [DataMember(Name = "opening_balance", EmitDefaultValue = true)]
         [JsonPropertyName("opening_balance")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string OpeningBalance { get; set; }
 
         /// <summary>
@@ -203,6 +207,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "virtual_balance", EmitDefaultValue = true)]
         [JsonPropertyName("virtual_balance")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string VirtualBalance { get; set; }
 
         /// <summary>
@@ -212,6 +217,7 @@ namespace FireflyIIINet.Model
         /// <example>12</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -221,6 +227,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -268,6 +275,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "interest", EmitDefaultValue = false)]
         [JsonPropertyName("interest")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Interest { get; set; }
 
         /// <summary>
@@ -277,6 +285,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

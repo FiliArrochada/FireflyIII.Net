@@ -47,7 +47,7 @@ namespace FireflyIIINet.Model
         /// <param name="currencyDecimalPlaces">currencyDecimalPlaces.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public AutocompletePiggy(string id = default(string), string name = default(string), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), string currencyName = default(string), int currencyDecimalPlaces = default(int), string objectGroupId = default(string), string objectGroupTitle = default(string))
+        public AutocompletePiggy(string id = default(string), string name = default(string), string? currencyId = default(string), string? currencyCode = default(string), string? currencySymbol = default(string), string? currencyName = default(string), int currencyDecimalPlaces = default(int), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -94,6 +94,7 @@ namespace FireflyIIINet.Model
         /// <example>12</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -103,6 +104,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -111,6 +113,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -120,6 +123,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -138,6 +142,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -148,6 +153,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>

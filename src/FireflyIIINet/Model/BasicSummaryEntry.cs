@@ -43,7 +43,7 @@ namespace FireflyIIINet.Model
         /// <param name="noAvailableBudgets">True if there are no available budgets available..</param>
         /// <param name="valueParsed">The amount formatted according to the users locale.</param>
         /// <param name="subTitle">A short explanation of the amounts origin. Already formatted according to the locale of the user or translated, if relevant..</param>
-        public BasicSummaryEntry(string key = default(string), string title = default(string), double monetaryValue = default(double), string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), bool noAvailableBudgets = default(bool), string valueParsed = default(string), string subTitle = default(string))
+        public BasicSummaryEntry(string? key = default(string), string? title = default(string), double monetaryValue = default(double), string? currencyId = default(string), string? currencyCode = default(string), string? currencySymbol = default(string), int currencyDecimalPlaces = default(int), bool noAvailableBudgets = default(bool), string? valueParsed = default(string), string? subTitle = default(string))
         {
             Key = key;
             Title = title;
@@ -64,6 +64,7 @@ namespace FireflyIIINet.Model
         /// <example>balance-in-EUR</example>
         [DataMember(Name = "key", EmitDefaultValue = true)]
         [JsonPropertyName("key")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Key { get; set; }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace FireflyIIINet.Model
         /// <example>Balance ($)</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -91,6 +93,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -99,6 +102,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -107,6 +111,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -134,6 +139,7 @@ namespace FireflyIIINet.Model
         /// <example>$ 12.45</example>
         [DataMember(Name = "value_parsed", EmitDefaultValue = true)]
         [JsonPropertyName("value_parsed")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ValueParsed { get; set; }
 
         /// <summary>
@@ -143,6 +149,7 @@ namespace FireflyIIINet.Model
         /// <example>$20 + $-40</example>
         [DataMember(Name = "sub_title", EmitDefaultValue = true)]
         [JsonPropertyName("sub_title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SubTitle { get; set; }
 
         /// <summary>

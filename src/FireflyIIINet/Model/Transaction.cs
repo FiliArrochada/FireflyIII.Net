@@ -40,7 +40,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="groupTitle">Title of the transaction if it has been split in more than one piece. Empty otherwise..</param>
         /// <param name="transactions">transactions (required).</param>
-        public Transaction(string groupTitle = default(string), List<TransactionSplit> transactions = default(List<TransactionSplit>))
+        public Transaction(string? groupTitle = default(string), List<TransactionSplit> transactions = default(List<TransactionSplit>))
         {
             // to ensure "transactions" is required (not null)
             if (transactions == null)
@@ -111,6 +111,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "group_title", EmitDefaultValue = false)]
         [JsonPropertyName("group_title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string GroupTitle { get; set; }
 
         /// <summary>

@@ -78,7 +78,7 @@ namespace FireflyIIINet.Model
         /// <param name="foreignCurrencyName">foreignCurrencyName.</param>
         /// <param name="pcAmount">Amount of the transaction in primary currency..</param>
         /// <param name="pcForeignAmount">Foreign amount of the transaction..</param>
-        public RecurrenceTransaction(string description = default(string), string amount = default(string), string foreignAmount = default(string), string currencyId = default(string), string currencyCode = default(string), string foreignCurrencyId = default(string), string foreignCurrencyCode = default(string), string budgetId = default(string), string categoryId = default(string), string categoryName = default(string), string sourceId = default(string), string sourceName = default(string), AccountTypeProperty? sourceType = default(AccountTypeProperty?), string destinationId = default(string), string destinationName = default(string), AccountTypeProperty? destinationType = default(AccountTypeProperty?), List<string> tags = default(List<string>), string piggyBankId = default(string), string piggyBankName = default(string), string subscriptionId = default(string), string subscriptionName = default(string), string id = default(string), string currencyName = default(string), string foreignCurrencyName = default(string), string pcAmount = default(string), string pcForeignAmount = default(string))
+        public RecurrenceTransaction(string description = default(string), string amount = default(string), string? foreignAmount = default(string), string? currencyId = default(string), string? currencyCode = default(string), string? foreignCurrencyId = default(string), string? foreignCurrencyCode = default(string), string? budgetId = default(string), string? categoryId = default(string), string? categoryName = default(string), string? sourceId = default(string), string? sourceName = default(string), AccountTypeProperty? sourceType = default(AccountTypeProperty?), string? destinationId = default(string), string? destinationName = default(string), AccountTypeProperty? destinationType = default(AccountTypeProperty?), List<string>? tags = default(List<string>), string? piggyBankId = default(string), string? piggyBankName = default(string), string? subscriptionId = default(string), string? subscriptionName = default(string), string? id = default(string), string? currencyName = default(string), string? foreignCurrencyName = default(string), string? pcAmount = default(string), string? pcForeignAmount = default(string))
         {
             // to ensure "description" is required (not null)
             if (description == null)
@@ -124,6 +124,7 @@ namespace FireflyIIINet.Model
         /// <value>ID of the recurring transaction. Not to be confused with the ID of the recurrence itself.</value>
         [DataMember(Name = "id", EmitDefaultValue = true)]
         [JsonPropertyName("id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Id { get; set; }
 
         /// <summary>
@@ -169,6 +170,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcAmount { get; set; }
 
         /// <summary>
@@ -179,6 +181,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_amount", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_amount")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignAmount { get; set; }
 
         /// <summary>
@@ -189,6 +192,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "pc_foreign_amount", EmitDefaultValue = false)]
         [JsonPropertyName("pc_foreign_amount")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcForeignAmount { get; set; }
 
         /// <summary>
@@ -198,6 +202,7 @@ namespace FireflyIIINet.Model
         /// <example>3</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -207,6 +212,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -216,6 +222,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -351,6 +358,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignCurrencyId { get; set; }
 
         /// <summary>
@@ -360,6 +368,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_name", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignCurrencyName { get; set; }
 
         /// <summary>
@@ -370,6 +379,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_code")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignCurrencyCode { get; set; }
 
         /// <summary>
@@ -416,6 +426,7 @@ namespace FireflyIIINet.Model
         /// <example>4</example>
         [DataMember(Name = "budget_id", EmitDefaultValue = true)]
         [JsonPropertyName("budget_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string BudgetId { get; set; }
 
         /// <summary>
@@ -444,6 +455,7 @@ namespace FireflyIIINet.Model
         /// <example>211</example>
         [DataMember(Name = "category_id", EmitDefaultValue = true)]
         [JsonPropertyName("category_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CategoryId { get; set; }
 
         /// <summary>
@@ -453,6 +465,7 @@ namespace FireflyIIINet.Model
         /// <example>Bills</example>
         [DataMember(Name = "category_name", EmitDefaultValue = true)]
         [JsonPropertyName("category_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CategoryName { get; set; }
 
         /// <summary>
@@ -462,6 +475,7 @@ namespace FireflyIIINet.Model
         /// <example>913</example>
         [DataMember(Name = "source_id", EmitDefaultValue = true)]
         [JsonPropertyName("source_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SourceId { get; set; }
 
         /// <summary>
@@ -471,6 +485,7 @@ namespace FireflyIIINet.Model
         /// <example>Checking account</example>
         [DataMember(Name = "source_name", EmitDefaultValue = true)]
         [JsonPropertyName("source_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SourceName { get; set; }
 
         /// <summary>
@@ -498,6 +513,7 @@ namespace FireflyIIINet.Model
         /// <example>258</example>
         [DataMember(Name = "destination_id", EmitDefaultValue = true)]
         [JsonPropertyName("destination_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string DestinationId { get; set; }
 
         /// <summary>
@@ -507,6 +523,7 @@ namespace FireflyIIINet.Model
         /// <example>Buy and Large</example>
         [DataMember(Name = "destination_name", EmitDefaultValue = true)]
         [JsonPropertyName("destination_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string DestinationName { get; set; }
 
         /// <summary>
@@ -534,6 +551,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "tags", EmitDefaultValue = false)]
         [JsonPropertyName("tags")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Tags { get; set; }
 
         /// <summary>
@@ -544,6 +562,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "piggy_bank_id", EmitDefaultValue = false)]
         [JsonPropertyName("piggy_bank_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PiggyBankId { get; set; }
 
         /// <summary>
@@ -553,6 +572,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "piggy_bank_name", EmitDefaultValue = false)]
         [JsonPropertyName("piggy_bank_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PiggyBankName { get; set; }
 
         /// <summary>
@@ -562,6 +582,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "subscription_id", EmitDefaultValue = false)]
         [JsonPropertyName("subscription_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SubscriptionId { get; set; }
 
         /// <summary>
@@ -570,6 +591,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "subscription_name", EmitDefaultValue = false)]
         [JsonPropertyName("subscription_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SubscriptionName { get; set; }
 
         /// <summary>

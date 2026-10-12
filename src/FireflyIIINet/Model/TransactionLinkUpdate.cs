@@ -38,7 +38,7 @@ namespace FireflyIIINet.Model
         /// <param name="inwardId">The inward transaction transaction_journal_id for the link. This becomes the &#39;is paid by&#39; transaction of the set..</param>
         /// <param name="outwardId">The outward transaction transaction_journal_id for the link. This becomes the &#39;pays for&#39; transaction of the set..</param>
         /// <param name="notes">Optional. Some notes. If you submit an empty string the current notes will be removed.</param>
-        public TransactionLinkUpdate(string linkTypeId = default(string), string linkTypeName = default(string), string inwardId = default(string), string outwardId = default(string), string notes = default(string))
+        public TransactionLinkUpdate(string? linkTypeId = default(string), string? linkTypeName = default(string), string? inwardId = default(string), string? outwardId = default(string), string? notes = default(string))
         {
             LinkTypeId = linkTypeId;
             LinkTypeName = linkTypeName;
@@ -54,6 +54,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "link_type_id", EmitDefaultValue = true)]
         [JsonPropertyName("link_type_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string LinkTypeId { get; set; }
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace FireflyIIINet.Model
         /// <example>Is paid by</example>
         [DataMember(Name = "link_type_name", EmitDefaultValue = true)]
         [JsonPropertyName("link_type_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string LinkTypeName { get; set; }
 
         /// <summary>
@@ -72,6 +74,7 @@ namespace FireflyIIINet.Model
         /// <example>131</example>
         [DataMember(Name = "inward_id", EmitDefaultValue = true)]
         [JsonPropertyName("inward_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string InwardId { get; set; }
 
         /// <summary>
@@ -81,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <example>131</example>
         [DataMember(Name = "outward_id", EmitDefaultValue = true)]
         [JsonPropertyName("outward_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string OutwardId { get; set; }
 
         /// <summary>
@@ -91,6 +95,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

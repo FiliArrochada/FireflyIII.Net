@@ -55,7 +55,7 @@ namespace FireflyIIINet.Model
         /// <param name="pcCurrentAmount">The current amount in the primary currency of the administration..</param>
         /// <param name="leftToSave">leftToSave.</param>
         /// <param name="pcLeftToSave">pcLeftToSave.</param>
-        public PiggyBankProperties(string name = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string), List<PiggyBankAccountRead> accounts = default(List<PiggyBankAccountRead>), string currencyId = default(string), string currencyName = default(string), string currencyCode = default(string), string targetAmount = default(string), string pcTargetAmount = default(string), string currentAmount = default(string), string pcCurrentAmount = default(string), string leftToSave = default(string), string pcLeftToSave = default(string))
+        public PiggyBankProperties(string name = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string), List<PiggyBankAccountRead>? accounts = default(List<PiggyBankAccountRead>), string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), string? targetAmount = default(string), string? pcTargetAmount = default(string), string? currentAmount = default(string), string? pcCurrentAmount = default(string), string? leftToSave = default(string), string? pcLeftToSave = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -63,11 +63,6 @@ namespace FireflyIIINet.Model
                 throw new ArgumentNullException("name is a required property for PiggyBankProperties and cannot be null");
             }
             Name = name;
-            // to ensure "targetAmount" is required (not null)
-            if (targetAmount == null)
-            {
-                throw new ArgumentNullException("targetAmount is a required property for PiggyBankProperties and cannot be null");
-            }
             TargetAmount = targetAmount;
             StartDate = startDate ?? default(DateTime);
             TargetDate = targetDate;
@@ -198,6 +193,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>
@@ -208,6 +204,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -237,6 +234,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>
@@ -244,6 +242,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "accounts", EmitDefaultValue = true)]
         [JsonPropertyName("accounts")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<PiggyBankAccountRead> Accounts { get; set; }
 
         /// <summary>
@@ -271,6 +270,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -280,6 +280,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -289,6 +290,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -421,6 +423,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "target_amount", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("target_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string TargetAmount { get; set; }
 
         /// <summary>
@@ -431,6 +434,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "pc_target_amount", EmitDefaultValue = false)]
         [JsonPropertyName("pc_target_amount")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcTargetAmount { get; set; }
 
         /// <summary>
@@ -439,6 +443,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "current_amount", EmitDefaultValue = true)]
         [JsonPropertyName("current_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrentAmount { get; set; }
 
         /// <summary>
@@ -448,6 +453,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_current_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_current_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcCurrentAmount { get; set; }
 
         /// <summary>
@@ -457,6 +463,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "left_to_save", EmitDefaultValue = false)]
         [JsonPropertyName("left_to_save")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string LeftToSave { get; set; }
 
         /// <summary>
@@ -466,6 +473,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "pc_left_to_save", EmitDefaultValue = false)]
         [JsonPropertyName("pc_left_to_save")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcLeftToSave { get; set; }
 
         /// <summary>

@@ -37,7 +37,7 @@ namespace FireflyIIINet.Model
         /// <param name="statusCode">The HTTP status code of the error, if any..</param>
         /// <param name="logs">Internal log for this attempt. May contain sensitive user data..</param>
         /// <param name="response">WebhookProperties receiver response for this attempt, if any. May contain sensitive user data..</param>
-        public WebhookAttempt(string webhookMessageId = default(string), int? statusCode = default(int?), string logs = default(string), string response = default(string))
+        public WebhookAttempt(string? webhookMessageId = default(string), int? statusCode = default(int?), string? logs = default(string), string? response = default(string))
         {
             WebhookMessageId = webhookMessageId;
             StatusCode = statusCode;
@@ -86,6 +86,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "webhook_message_id", EmitDefaultValue = true)]
         [JsonPropertyName("webhook_message_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string WebhookMessageId { get; set; }
 
         /// <summary>
@@ -106,6 +107,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "logs", EmitDefaultValue = false)]
         [JsonPropertyName("logs")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Logs { get; set; }
 
         /// <summary>
@@ -116,6 +118,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "response", EmitDefaultValue = false)]
         [JsonPropertyName("response")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Response { get; set; }
 
         /// <summary>

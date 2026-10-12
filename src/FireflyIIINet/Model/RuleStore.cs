@@ -56,7 +56,7 @@ namespace FireflyIIINet.Model
         /// <param name="stopProcessing">If this value is true and the rule is triggered, other rules  after this one in the group will be skipped. Default value is false..</param>
         /// <param name="triggers">triggers (required).</param>
         /// <param name="actions">actions (required).</param>
-        public RuleStore(string title = default(string), string description = default(string), string ruleGroupId = default(string), string ruleGroupTitle = default(string), int order = default(int), RuleTriggerType trigger = default(RuleTriggerType), bool active = true, bool strict = true, bool stopProcessing = default(bool), List<RuleTriggerStore> triggers = default(List<RuleTriggerStore>), List<RuleActionStore> actions = default(List<RuleActionStore>))
+        public RuleStore(string title = default(string), string? description = default(string), string ruleGroupId = default(string), string? ruleGroupTitle = default(string), int order = default(int), RuleTriggerType trigger = default(RuleTriggerType), bool active = true, bool strict = true, bool stopProcessing = default(bool), List<RuleTriggerStore> triggers = default(List<RuleTriggerStore>), List<RuleActionStore> actions = default(List<RuleActionStore>))
         {
             // to ensure "title" is required (not null)
             if (title == null)
@@ -105,6 +105,7 @@ namespace FireflyIIINet.Model
         /// <example>First rule description</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         [JsonPropertyName("description")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>
@@ -123,6 +124,7 @@ namespace FireflyIIINet.Model
         /// <example>New rule group</example>
         [DataMember(Name = "rule_group_title", EmitDefaultValue = true)]
         [JsonPropertyName("rule_group_title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string RuleGroupTitle { get; set; }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace FireflyIIINet.Model
         /// <param name="name">Name of the rule group found by an auto-complete search. (required).</param>
         /// <param name="description">Description of the rule group found by auto-complete..</param>
         /// <param name="active">Is the bill active or not?.</param>
-        public AutocompleteRuleGroup(string id = default(string), string name = default(string), string description = default(string), bool active = default(bool))
+        public AutocompleteRuleGroup(string id = default(string), string name = default(string), string? description = default(string), bool active = default(bool))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -84,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <example>Some rule group.</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         [JsonPropertyName("description")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>

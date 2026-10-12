@@ -45,7 +45,7 @@ namespace FireflyIIINet.Model
         /// <param name="date">date.</param>
         /// <param name="force">force.</param>
         /// <param name="field">field.</param>
-        public ValidationErrorErrors(List<string> email = default(List<string>), List<string> blocked = default(List<string>), List<string> role = default(List<string>), List<string> blockedCode = default(List<string>), List<string> name = default(List<string>), List<string> type = default(List<string>), List<string> iban = default(List<string>), List<string> start = default(List<string>), List<string> end = default(List<string>), List<string> date = default(List<string>), List<string> force = default(List<string>), List<string> field = default(List<string>))
+        public ValidationErrorErrors(List<string>? email = default(List<string>), List<string>? blocked = default(List<string>), List<string>? role = default(List<string>), List<string>? blockedCode = default(List<string>), List<string>? name = default(List<string>), List<string>? type = default(List<string>), List<string>? iban = default(List<string>), List<string>? start = default(List<string>), List<string>? end = default(List<string>), List<string>? date = default(List<string>), List<string>? force = default(List<string>), List<string>? field = default(List<string>))
         {
             Email = email;
             Force = force;
@@ -66,6 +66,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "email", EmitDefaultValue = true)]
         [JsonPropertyName("email")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Email { get; set; }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "force", EmitDefaultValue = true)]
         [JsonPropertyName("force")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Force { get; set; }
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "blocked", EmitDefaultValue = true)]
         [JsonPropertyName("blocked")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Blocked { get; set; }
 
         /// <summary>
@@ -87,6 +90,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "field", EmitDefaultValue = true)]
         [JsonPropertyName("field")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Field { get; set; }
 
         /// <summary>
@@ -94,6 +98,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "role", EmitDefaultValue = true)]
         [JsonPropertyName("role")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Role { get; set; }
 
         /// <summary>
@@ -101,6 +106,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "blocked_code", EmitDefaultValue = true)]
         [JsonPropertyName("blocked_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> BlockedCode { get; set; }
 
         /// <summary>
@@ -108,6 +114,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "name", EmitDefaultValue = true)]
         [JsonPropertyName("name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Name { get; set; }
 
         /// <summary>
@@ -115,6 +122,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = true)]
         [JsonPropertyName("type")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Type { get; set; }
 
         /// <summary>
@@ -122,6 +130,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "iban", EmitDefaultValue = true)]
         [JsonPropertyName("iban")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Iban { get; set; }
 
         /// <summary>
@@ -129,6 +138,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "start", EmitDefaultValue = true)]
         [JsonPropertyName("start")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Start { get; set; }
 
         /// <summary>
@@ -136,6 +146,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "end", EmitDefaultValue = true)]
         [JsonPropertyName("end")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> End { get; set; }
 
         /// <summary>
@@ -143,6 +154,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "date", EmitDefaultValue = true)]
         [JsonPropertyName("date")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Date { get; set; }
 
         /// <summary>

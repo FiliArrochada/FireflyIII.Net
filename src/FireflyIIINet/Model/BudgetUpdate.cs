@@ -64,7 +64,7 @@ namespace FireflyIIINet.Model
         /// <param name="autoBudgetAmount">autoBudgetAmount.</param>
         /// <param name="autoBudgetPeriod">autoBudgetPeriod.</param>
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
-        public BudgetUpdate(string name = default(string), bool active = default(bool), int order = default(int), string notes = default(string), AutoBudgetType? autoBudgetType = default(AutoBudgetType?), string autoBudgetCurrencyId = default(string), string autoBudgetCurrencyCode = default(string), string autoBudgetAmount = default(string), AutoBudgetPeriod? autoBudgetPeriod = default(AutoBudgetPeriod?), bool fireWebhooks = true)
+        public BudgetUpdate(string name = default(string), bool active = default(bool), int order = default(int), string? notes = default(string), AutoBudgetType? autoBudgetType = default(AutoBudgetType?), string? autoBudgetCurrencyId = default(string), string? autoBudgetCurrencyCode = default(string), string? autoBudgetAmount = default(string), AutoBudgetPeriod? autoBudgetPeriod = default(AutoBudgetPeriod?), bool fireWebhooks = true)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -114,6 +114,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>
@@ -124,6 +125,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "auto_budget_currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("auto_budget_currency_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AutoBudgetCurrencyId { get; set; }
 
         /// <summary>
@@ -134,6 +136,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "auto_budget_currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("auto_budget_currency_code")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AutoBudgetCurrencyCode { get; set; }
 
         /// <summary>
@@ -143,6 +146,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "auto_budget_amount", EmitDefaultValue = false)]
         [JsonPropertyName("auto_budget_amount")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AutoBudgetAmount { get; set; }
 
         /// <summary>

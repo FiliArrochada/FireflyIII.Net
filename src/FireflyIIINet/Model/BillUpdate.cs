@@ -59,7 +59,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public BillUpdate(string currencyId = default(string), string currencyCode = default(string), string name = default(string), string amountMin = default(string), string amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency? repeatFreq = default(BillRepeatFrequency?), int skip = default(int), bool active = default(bool), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
+        public BillUpdate(string? currencyId = default(string), string? currencyCode = default(string), string name = default(string), string? amountMin = default(string), string? amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency? repeatFreq = default(BillRepeatFrequency?), int skip = default(int), bool active = default(bool), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -89,6 +89,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -98,6 +99,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -114,6 +116,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount_min", EmitDefaultValue = true)]
         [JsonPropertyName("amount_min")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AmountMin { get; set; }
 
         /// <summary>
@@ -122,6 +125,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount_max", EmitDefaultValue = true)]
         [JsonPropertyName("amount_max")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AmountMax { get; set; }
 
         /// <summary>
@@ -175,6 +179,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>
@@ -185,6 +190,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -195,6 +201,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>

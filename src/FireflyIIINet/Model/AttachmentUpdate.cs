@@ -36,7 +36,7 @@ namespace FireflyIIINet.Model
         /// <param name="filename">filename.</param>
         /// <param name="title">title.</param>
         /// <param name="notes">notes.</param>
-        public AttachmentUpdate(string filename = default(string), string title = default(string), string notes = default(string))
+        public AttachmentUpdate(string? filename = default(string), string? title = default(string), string? notes = default(string))
         {
             Filename = filename;
             Title = title;
@@ -49,6 +49,7 @@ namespace FireflyIIINet.Model
         /// <example>file.pdf</example>
         [DataMember(Name = "filename", EmitDefaultValue = true)]
         [JsonPropertyName("filename")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Filename { get; set; }
 
         /// <summary>
@@ -57,6 +58,7 @@ namespace FireflyIIINet.Model
         /// <example>Some PDF file</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -66,6 +68,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

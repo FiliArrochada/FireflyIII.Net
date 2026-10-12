@@ -55,7 +55,7 @@ namespace FireflyIIINet.Model
         /// <param name="stopProcessing">If this value is true and the rule is triggered, other rules  after this one in the group will be skipped. Default value is false. (default to false).</param>
         /// <param name="triggers">triggers (required).</param>
         /// <param name="actions">actions (required).</param>
-        public Rule(string title = default(string), string description = default(string), string ruleGroupId = default(string), string ruleGroupTitle = default(string), RuleTriggerType trigger = default(RuleTriggerType), bool active = true, bool strict = default(bool), bool stopProcessing = false, List<RuleTrigger> triggers = default(List<RuleTrigger>), List<RuleAction> actions = default(List<RuleAction>))
+        public Rule(string title = default(string), string? description = default(string), string ruleGroupId = default(string), string? ruleGroupTitle = default(string), RuleTriggerType trigger = default(RuleTriggerType), bool active = true, bool strict = default(bool), bool stopProcessing = false, List<RuleTrigger> triggers = default(List<RuleTrigger>), List<RuleAction> actions = default(List<RuleAction>))
         {
             // to ensure "title" is required (not null)
             if (title == null)
@@ -137,6 +137,7 @@ namespace FireflyIIINet.Model
         /// <example>First rule description</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         [JsonPropertyName("description")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>
@@ -155,6 +156,7 @@ namespace FireflyIIINet.Model
         /// <example>New rule group</example>
         [DataMember(Name = "rule_group_title", EmitDefaultValue = true)]
         [JsonPropertyName("rule_group_title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string RuleGroupTitle { get; set; }
 
         /// <summary>

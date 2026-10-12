@@ -38,7 +38,7 @@ namespace FireflyIIINet.Model
         /// <param name="currencySymbol">currencySymbol.</param>
         /// <param name="currencyDecimalPlaces">Number of decimals supported by the currency.</param>
         /// <param name="sum">The amount earned, spent or transferred..</param>
-        public ArrayEntryWithCurrencyAndSum(string currencyId = default(string), string currencyCode = default(string), string currencySymbol = default(string), int currencyDecimalPlaces = default(int), string sum = default(string))
+        public ArrayEntryWithCurrencyAndSum(string? currencyId = default(string), string? currencyCode = default(string), string? currencySymbol = default(string), int currencyDecimalPlaces = default(int), string? sum = default(string))
         {
             CurrencyId = currencyId;
             CurrencyCode = currencyCode;
@@ -53,6 +53,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace FireflyIIINet.Model
         /// <example>USD</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -69,6 +71,7 @@ namespace FireflyIIINet.Model
         /// <example>$</example>
         [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
         [JsonPropertyName("currency_symbol")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencySymbol { get; set; }
 
         /// <summary>
@@ -87,6 +90,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "sum", EmitDefaultValue = true)]
         [JsonPropertyName("sum")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Sum { get; set; }
 
         /// <summary>

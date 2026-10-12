@@ -50,14 +50,9 @@ namespace FireflyIIINet.Model
         /// <param name="order">Order of the action.</param>
         /// <param name="active">If the action is active. Defaults to true. (default to true).</param>
         /// <param name="stopProcessing">When true, other actions will not be fired after this action has fired. Defaults to false. (default to false).</param>
-        public RuleAction(RuleActionKeyword type = default(RuleActionKeyword), string value = default(string), int order = default(int), bool active = true, bool stopProcessing = false)
+        public RuleAction(RuleActionKeyword type = default(RuleActionKeyword), string? value = default(string), int order = default(int), bool active = true, bool stopProcessing = false)
         {
             Type = type;
-            // to ensure "value" is required (not null)
-            if (value == null)
-            {
-                throw new ArgumentNullException("value is a required property for RuleAction and cannot be null");
-            }
             Value = value;
             Order = order;
             Active = active;
@@ -122,6 +117,7 @@ namespace FireflyIIINet.Model
         /// <example>Daily groceries</example>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("value")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Value { get; set; }
 
         /// <summary>

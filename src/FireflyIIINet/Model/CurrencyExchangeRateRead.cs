@@ -40,7 +40,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="attributes">attributes.</param>
         /// <param name="links">links.</param>
-        public CurrencyExchangeRateRead(CurrencyExchangeProperties attributes = default(CurrencyExchangeProperties), ObjectLink links = default(ObjectLink))
+        public CurrencyExchangeRateRead(CurrencyExchangeProperties? attributes = default(CurrencyExchangeProperties), ObjectLink? links = default(ObjectLink))
         {
             Attributes = attributes;
             Links = links;
@@ -86,6 +86,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "attributes", EmitDefaultValue = true)]
         [JsonPropertyName("attributes")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public CurrencyExchangeProperties Attributes { get; set; }
 
         /// <summary>
@@ -93,6 +94,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "links", EmitDefaultValue = true)]
         [JsonPropertyName("links")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public ObjectLink Links { get; set; }
 
         /// <summary>

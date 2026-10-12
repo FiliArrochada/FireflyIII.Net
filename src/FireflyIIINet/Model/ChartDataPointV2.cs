@@ -34,9 +34,11 @@ namespace FireflyIIINet.Model
         /// Initializes a new instance of the <see cref="ChartDataPointV2" /> class.
         /// </summary>
         /// <param name="key">The key is the label of the value, so for example: &#39;2018-01-01&#39; &#x3D;&gt; 13 or &#39;Groceries&#39; &#x3D;&gt; -123..</param>
-        public ChartDataPointV2(string key = default(string))
+        /// <param name="value">The value of the point, 13 or -123 in the examples of <paramref name="key"/>.</param>
+        public ChartDataPointV2(string? key = default(string), decimal? value = default(decimal?))
         {
             Key = key;
+            Value = value;
         }
 
         /// <summary>
@@ -46,7 +48,17 @@ namespace FireflyIIINet.Model
         /// <example>value</example>
         [DataMember(Name = "key", EmitDefaultValue = true)]
         [JsonPropertyName("key")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Key { get; set; }
+
+        /// <summary>
+        /// The value of the point. Not a property of its own on the wire: a data set's entries
+        /// arrive as an object of key and value pairs, which <see cref="FireflyIIINet.Client.ChartEntriesConverter{TPoint}"/>
+        /// reads into points. Null when the server sends a null or a value that is not a number.
+        /// </summary>
+        [DataMember(Name = "value", EmitDefaultValue = true)]
+        [JsonPropertyName("value")]
+        public decimal? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -94,7 +106,11 @@ namespace FireflyIIINet.Model
             return 
                 (
                     Key == input.Key ||
+					Key != null &&
 					Key.Equals(input.Key)
+                ) && 
+                (
+                    Value == input.Value
                 );
         }
 
@@ -107,7 +123,11 @@ namespace FireflyIIINet.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-				hashCode = (hashCode * 59) + Key.GetHashCode();
+				if (Key != null)
+				{
+					hashCode = (hashCode * 59) + Key.GetHashCode();
+				}
+				hashCode = (hashCode * 59) + Value.GetHashCode();
                 return hashCode;
             }
         }

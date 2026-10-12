@@ -45,7 +45,7 @@ namespace FireflyIIINet.Model
         /// <param name="amount">amount (required).</param>
         /// <param name="notes">Some notes for this specific budget limit..</param>
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
-        public BudgetLimitStore(string currencyId = default(string), string currencyCode = default(string), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string amount = default(string), string notes = default(string), bool fireWebhooks = true)
+        public BudgetLimitStore(string? currencyId = default(string), string? currencyCode = default(string), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string amount = default(string), string? notes = default(string), bool fireWebhooks = true)
         {
             Start = start ?? default(DateTime);
             End = end ?? default(DateTime);
@@ -68,6 +68,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -77,6 +78,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -152,6 +154,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

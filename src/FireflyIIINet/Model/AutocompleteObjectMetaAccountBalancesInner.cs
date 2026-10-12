@@ -40,7 +40,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="nativeAmount">The account balance in the user&#39;s default currency..</param>
         /// <param name="amount">The account balance..</param>
-        public AutocompleteObjectMetaAccountBalancesInner(string nativeAmount = default(string), string amount = default(string))
+        public AutocompleteObjectMetaAccountBalancesInner(string? nativeAmount = default(string), string? amount = default(string))
         {
             NativeAmount = nativeAmount;
             Amount = amount;
@@ -53,6 +53,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "native_amount", EmitDefaultValue = true)]
         [JsonPropertyName("native_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string NativeAmount { get; set; }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
         [JsonPropertyName("amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
         /// <summary>

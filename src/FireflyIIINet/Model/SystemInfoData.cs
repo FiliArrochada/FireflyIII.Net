@@ -38,7 +38,7 @@ namespace FireflyIIINet.Model
         /// <param name="phpVersion">phpVersion.</param>
         /// <param name="os">os.</param>
         /// <param name="driver">driver.</param>
-        public SystemInfoData(string varVersion = default(string), string apiVersion = default(string), string phpVersion = default(string), string os = default(string), string driver = default(string))
+        public SystemInfoData(string? varVersion = default(string), string? apiVersion = default(string), string? phpVersion = default(string), string? os = default(string), string? driver = default(string))
         {
             VarVersion = varVersion;
             ApiVersion = apiVersion;
@@ -53,6 +53,7 @@ namespace FireflyIIINet.Model
         /// <example>5.8.0-alpha.1</example>
         [DataMember(Name = "version", EmitDefaultValue = true)]
         [JsonPropertyName("version")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string VarVersion { get; set; }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace FireflyIIINet.Model
         /// <example>5.8.0-alpha.1</example>
         [DataMember(Name = "api_version", EmitDefaultValue = true)]
         [JsonPropertyName("api_version")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ApiVersion { get; set; }
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace FireflyIIINet.Model
         /// <example>8.1.5</example>
         [DataMember(Name = "php_version", EmitDefaultValue = true)]
         [JsonPropertyName("php_version")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PhpVersion { get; set; }
 
         /// <summary>
@@ -78,6 +81,7 @@ namespace FireflyIIINet.Model
         /// <example>Linux</example>
         [DataMember(Name = "os", EmitDefaultValue = true)]
         [JsonPropertyName("os")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Os { get; set; }
 
         /// <summary>
@@ -86,6 +90,7 @@ namespace FireflyIIINet.Model
         /// <example>mysql</example>
         [DataMember(Name = "driver", EmitDefaultValue = true)]
         [JsonPropertyName("driver")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Driver { get; set; }
 
         /// <summary>

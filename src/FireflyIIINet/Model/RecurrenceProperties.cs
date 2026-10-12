@@ -56,7 +56,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="repetitions">repetitions.</param>
         /// <param name="transactions">transactions.</param>
-        public RecurrenceProperties(RecurrenceTransactionType? type = default(RecurrenceTransactionType?), string title = default(string), string description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetition> repetitions = default(List<RecurrenceRepetition>), List<RecurrenceTransaction> transactions = default(List<RecurrenceTransaction>))
+        public RecurrenceProperties(RecurrenceTransactionType? type = default(RecurrenceTransactionType?), string? title = default(string), string? description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string? notes = default(string), List<RecurrenceRepetition>? repetitions = default(List<RecurrenceRepetition>), List<RecurrenceTransaction>? transactions = default(List<RecurrenceTransaction>))
         {
             Type = type;
             Title = title;
@@ -111,6 +111,7 @@ namespace FireflyIIINet.Model
         /// <example>Rent</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -120,6 +121,7 @@ namespace FireflyIIINet.Model
         /// <example>Recurring transaction for the monthly rent</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         [JsonPropertyName("description")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>
@@ -198,6 +200,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>
@@ -205,6 +208,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "repetitions", EmitDefaultValue = true)]
         [JsonPropertyName("repetitions")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RecurrenceRepetition> Repetitions { get; set; }
 
         /// <summary>
@@ -212,6 +216,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "transactions", EmitDefaultValue = true)]
         [JsonPropertyName("transactions")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RecurrenceTransaction> Transactions { get; set; }
 
         /// <summary>

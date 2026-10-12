@@ -46,7 +46,7 @@ namespace FireflyIIINet.Model
         /// <param name="from">The base currency code. (required).</param>
         /// <param name="to">The destination currency code. (required).</param>
         /// <param name="rate">The exchange rate from the base currency to the destination currency..</param>
-        public CurrencyExchangeRateStore(DateTime? date = default(DateTime?), string from = default(string), string to = default(string), string rate = default(string))
+        public CurrencyExchangeRateStore(DateTime? date = default(DateTime?), string from = default(string), string to = default(string), string? rate = default(string))
         {
             Date = date ?? default(DateTime);
             // to ensure "from" is required (not null)
@@ -99,6 +99,7 @@ namespace FireflyIIINet.Model
         /// <example>2.3456</example>
         [DataMember(Name = "rate", EmitDefaultValue = true)]
         [JsonPropertyName("rate")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Rate { get; set; }
 
         /// <summary>

@@ -48,7 +48,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public PiggyBankStore(string name = default(string), List<PiggyBankAccountStore> accounts = default(List<PiggyBankAccountStore>), string targetAmount = default(string), string currentAmount = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string notes = default(string), string objectGroupId = default(string), string objectGroupTitle = default(string))
+        public PiggyBankStore(string name = default(string), List<PiggyBankAccountStore>? accounts = default(List<PiggyBankAccountStore>), string? targetAmount = default(string), string? currentAmount = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -57,11 +57,6 @@ namespace FireflyIIINet.Model
             }
             Name = name;
             Accounts = accounts;
-            // to ensure "targetAmount" is required (not null)
-            if (targetAmount == null)
-            {
-                throw new ArgumentNullException("targetAmount is a required property for PiggyBankStore and cannot be null");
-            }
             TargetAmount = targetAmount;
             CurrentAmount = currentAmount;
             StartDate = startDate ?? default(DateTime);
@@ -86,6 +81,7 @@ namespace FireflyIIINet.Model
         /// <value>The accounts connected to this piggy bank.</value>
         [DataMember(Name = "accounts", EmitDefaultValue = true)]
         [JsonPropertyName("accounts")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<PiggyBankAccountStore> Accounts { get; set; }
 
         /// <summary>
@@ -94,6 +90,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "target_amount", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("target_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string TargetAmount { get; set; }
 
         /// <summary>
@@ -102,6 +99,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "current_amount", EmitDefaultValue = true)]
         [JsonPropertyName("current_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrentAmount { get; set; }
 
         /// <summary>
@@ -157,6 +155,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>
@@ -167,6 +166,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_id", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupId { get; set; }
 
         /// <summary>
@@ -177,6 +177,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "object_group_title", EmitDefaultValue = false)]
         [JsonPropertyName("object_group_title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>

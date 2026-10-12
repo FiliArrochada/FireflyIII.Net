@@ -50,7 +50,7 @@ namespace FireflyIIINet.Model
         /// <param name="stopProcessing">If this value is true and the rule is triggered, other rules  after this one in the group will be skipped. Default value is false. (default to false).</param>
         /// <param name="triggers">triggers.</param>
         /// <param name="actions">actions.</param>
-        public RuleUpdate(string title = default(string), string description = default(string), string ruleGroupId = default(string), int order = default(int), RuleTriggerType? trigger = default(RuleTriggerType?), bool active = true, bool strict = default(bool), bool stopProcessing = false, List<RuleTriggerUpdate> triggers = default(List<RuleTriggerUpdate>), List<RuleActionUpdate> actions = default(List<RuleActionUpdate>))
+        public RuleUpdate(string? title = default(string), string? description = default(string), string? ruleGroupId = default(string), int order = default(int), RuleTriggerType? trigger = default(RuleTriggerType?), bool active = true, bool strict = default(bool), bool stopProcessing = false, List<RuleTriggerUpdate>? triggers = default(List<RuleTriggerUpdate>), List<RuleActionUpdate>? actions = default(List<RuleActionUpdate>))
         {
             Title = title;
             Description = description;
@@ -70,6 +70,7 @@ namespace FireflyIIINet.Model
         /// <example>First rule title.</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -78,6 +79,7 @@ namespace FireflyIIINet.Model
         /// <example>First rule description</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         [JsonPropertyName("description")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>
@@ -87,6 +89,7 @@ namespace FireflyIIINet.Model
         /// <example>81</example>
         [DataMember(Name = "rule_group_id", EmitDefaultValue = true)]
         [JsonPropertyName("rule_group_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string RuleGroupId { get; set; }
 
         /// <summary>
@@ -129,6 +132,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "triggers", EmitDefaultValue = true)]
         [JsonPropertyName("triggers")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RuleTriggerUpdate> Triggers { get; set; }
 
         /// <summary>
@@ -136,6 +140,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "actions", EmitDefaultValue = true)]
         [JsonPropertyName("actions")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RuleActionUpdate> Actions { get; set; }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="repetitions">repetitions (required).</param>
         /// <param name="transactions">transactions (required).</param>
-        public RecurrenceStore(RecurrenceTransactionType type = default(RecurrenceTransactionType), string title = default(string), string description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string notes = default(string), List<RecurrenceRepetitionStore> repetitions = default(List<RecurrenceRepetitionStore>), List<RecurrenceTransactionStore> transactions = default(List<RecurrenceTransactionStore>))
+        public RecurrenceStore(RecurrenceTransactionType type = default(RecurrenceTransactionType), string title = default(string), string? description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string? notes = default(string), List<RecurrenceRepetitionStore> repetitions = default(List<RecurrenceRepetitionStore>), List<RecurrenceTransactionStore> transactions = default(List<RecurrenceTransactionStore>))
         {
             Type = type;
             // to ensure "title" is required (not null)
@@ -66,11 +66,6 @@ namespace FireflyIIINet.Model
             }
             Title = title;
             FirstDate = firstDate ?? default(DateTime);
-            // to ensure "repeatUntil" is required (not null)
-            if (repeatUntil == null)
-            {
-                throw new ArgumentNullException("repeatUntil is a required property for RecurrenceStore and cannot be null");
-            }
             RepeatUntil = repeatUntil;
             // to ensure "repetitions" is required (not null)
             if (repetitions == null)
@@ -106,6 +101,7 @@ namespace FireflyIIINet.Model
         /// <example>Recurring transaction for the monthly rent</example>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         [JsonPropertyName("description")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>
@@ -163,6 +159,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

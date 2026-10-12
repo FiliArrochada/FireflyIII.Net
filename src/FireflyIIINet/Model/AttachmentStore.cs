@@ -50,7 +50,7 @@ namespace FireflyIIINet.Model
         /// <param name="attachableId">ID of the model this attachment is linked to. (required).</param>
         /// <param name="title">title.</param>
         /// <param name="notes">notes.</param>
-        public AttachmentStore(string filename = default(string), AttachableType attachableType = default(AttachableType), string attachableId = default(string), string title = default(string), string notes = default(string))
+        public AttachmentStore(string filename = default(string), AttachableType attachableType = default(AttachableType), string attachableId = default(string), string? title = default(string), string? notes = default(string))
         {
             // to ensure "filename" is required (not null)
             if (filename == null)
@@ -92,6 +92,7 @@ namespace FireflyIIINet.Model
         /// <example>Some PDF file</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -101,6 +102,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

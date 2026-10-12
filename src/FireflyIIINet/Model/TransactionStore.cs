@@ -43,7 +43,7 @@ namespace FireflyIIINet.Model
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
         /// <param name="groupTitle">Title of the transaction if it has been split in more than one piece. Empty otherwise..</param>
         /// <param name="transactions">transactions (required).</param>
-        public TransactionStore(bool errorIfDuplicateHash = default(bool), bool applyRules = default(bool), bool fireWebhooks = true, string groupTitle = default(string), List<TransactionSplitStore> transactions = default(List<TransactionSplitStore>))
+        public TransactionStore(bool errorIfDuplicateHash = default(bool), bool applyRules = default(bool), bool fireWebhooks = true, string? groupTitle = default(string), List<TransactionSplitStore> transactions = default(List<TransactionSplitStore>))
         {
             // to ensure "transactions" is required (not null)
             if (transactions == null)
@@ -92,6 +92,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "group_title", EmitDefaultValue = false)]
         [JsonPropertyName("group_title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string GroupTitle { get; set; }
 
         /// <summary>

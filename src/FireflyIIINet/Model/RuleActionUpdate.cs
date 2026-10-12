@@ -45,7 +45,7 @@ namespace FireflyIIINet.Model
         /// <param name="order">Order of the action.</param>
         /// <param name="active">If the action is active..</param>
         /// <param name="stopProcessing">When true, other actions will not be fired after this action has fired..</param>
-        public RuleActionUpdate(RuleActionKeyword? type = default(RuleActionKeyword?), string value = default(string), int order = default(int), bool active = default(bool), bool stopProcessing = default(bool))
+        public RuleActionUpdate(RuleActionKeyword? type = default(RuleActionKeyword?), string? value = default(string), int order = default(int), bool active = default(bool), bool stopProcessing = default(bool))
         {
             Type = type;
             Value = value;
@@ -62,6 +62,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "value", EmitDefaultValue = false)]
         [JsonPropertyName("value")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Value { get; set; }
 
         /// <summary>

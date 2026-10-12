@@ -42,7 +42,7 @@ namespace FireflyIIINet.Model
         /// <param name="transactionGroupId">The ID of the underlying transaction group..</param>
         /// <param name="name">Transaction description (required).</param>
         /// <param name="description">Transaction description (required).</param>
-        public AutocompleteTransaction(string id = default(string), string transactionGroupId = default(string), string name = default(string), string description = default(string))
+        public AutocompleteTransaction(string id = default(string), string? transactionGroupId = default(string), string name = default(string), string description = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -81,6 +81,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "transaction_group_id", EmitDefaultValue = true)]
         [JsonPropertyName("transaction_group_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string TransactionGroupId { get; set; }
 
         /// <summary>

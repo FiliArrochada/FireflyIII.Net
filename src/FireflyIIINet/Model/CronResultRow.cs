@@ -38,7 +38,7 @@ namespace FireflyIIINet.Model
         /// <param name="jobErrored">If the cron job ran into some kind of an error, this value will be true..</param>
         /// <param name="message">If the cron job ran into some kind of an error, this value will be the error message. The success message if the job actually ran OK. .</param>
         /// <param name="user">The user for which this particular job result is. (6.7.0).</param>
-        public CronResultRow(bool? jobFired = default(bool?), bool? jobSucceeded = default(bool?), bool? jobErrored = default(bool?), string message = default(string), string user = default(string))
+        public CronResultRow(bool? jobFired = default(bool?), bool? jobSucceeded = default(bool?), bool? jobErrored = default(bool?), string? message = default(string), string? user = default(string))
         {
             JobFired = jobFired;
             JobSucceeded = jobSucceeded;
@@ -82,6 +82,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "message", EmitDefaultValue = false)]
         [JsonPropertyName("message")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Message { get; set; }
 
         /// <summary>
@@ -92,6 +93,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "user", EmitDefaultValue = false)]
         [JsonPropertyName("user")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string User { get; set; }
 
         /// <summary>

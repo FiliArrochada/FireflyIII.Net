@@ -41,7 +41,7 @@ namespace FireflyIIINet.Model
         /// <param name="name">name (required).</param>
         /// <param name="notes">notes.</param>
         /// <param name="objectHasCurrencySetting">This object never has its own currency setting, so this value is always false..</param>
-        public CategoryProperties(string name = default(string), string notes = default(string), bool objectHasCurrencySetting = default(bool))
+        public CategoryProperties(string name = default(string), string? notes = default(string), bool objectHasCurrencySetting = default(bool))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -102,6 +102,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

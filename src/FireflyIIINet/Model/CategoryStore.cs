@@ -40,7 +40,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="name">name (required).</param>
         /// <param name="notes">notes.</param>
-        public CategoryStore(string name = default(string), string notes = default(string))
+        public CategoryStore(string name = default(string), string? notes = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -66,6 +66,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

@@ -54,7 +54,7 @@ namespace FireflyIIINet.Model
         /// <param name="title">title.</param>
         /// <param name="notes">notes.</param>
         /// <param name="hash">Hash of the file for basic duplicate detection. It&#39;s still md5 lol..</param>
-        public AttachmentProperties(AttachableType attachableType = default(AttachableType), string attachableId = default(string), string md5 = default(string), string filename = default(string), string downloadUrl = default(string), string uploadUrl = default(string), string title = default(string), string notes = default(string), string hash = default(string))
+        public AttachmentProperties(AttachableType attachableType = default(AttachableType), string attachableId = default(string), string? md5 = default(string), string filename = default(string), string? downloadUrl = default(string), string? uploadUrl = default(string), string? title = default(string), string? notes = default(string), string? hash = default(string))
         {
             AttachableType = attachableType;
             // to ensure "attachableId" is required (not null)
@@ -127,6 +127,7 @@ namespace FireflyIIINet.Model
         /// <example>0c3f95f34370baa88f9fd9a671fea305</example>
         [DataMember(Name = "md5", EmitDefaultValue = true)]
         [JsonPropertyName("md5")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Md5 { get; set; }
 
         /// <summary>
@@ -136,6 +137,7 @@ namespace FireflyIIINet.Model
         /// <example>0c3f95f34370baa88f9fd9a671fea305</example>
         [DataMember(Name = "hash", EmitDefaultValue = true)]
         [JsonPropertyName("hash")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Hash { get; set; }
 
         /// <summary>
@@ -152,6 +154,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/attachments/191/download</example>
         [DataMember(Name = "download_url", EmitDefaultValue = true)]
         [JsonPropertyName("download_url")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string DownloadUrl { get; set; }
 
         /// <summary>
@@ -160,6 +163,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/attachments/191/download</example>
         [DataMember(Name = "upload_url", EmitDefaultValue = true)]
         [JsonPropertyName("upload_url")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string UploadUrl { get; set; }
 
         /// <summary>
@@ -168,6 +172,7 @@ namespace FireflyIIINet.Model
         /// <example>Some PDF file</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -177,6 +182,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

@@ -8,7 +8,7 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
 - API version: 6.7.2 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
-- SDK version: 6.7.2 (tracks the API version; a 4th revision component denotes client-only changes)
+- SDK version: 6.7.2.1 (tracks the API version; a 4th revision component denotes client-only changes)
 - Source specification: [api/firefly-iii-v6.7.2-v1.yaml](api/firefly-iii-v6.7.2-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
 - All released specifications (0.10.4 – 6.7.2): [api/](api/)
 
@@ -87,6 +87,18 @@ available via `ex.Content` and can be deserialized to the spec's error models
 
 - `Transaction`/`TransactionSplitStore` piggy bank properties intentionally serialize explicit
   `null` values (`piggy_bank_id`, `piggy_bank_name`) — the API distinguishes absent from null.
+- Chart data sets (`ChartDataSet`, `ChartDataSetV2`) carry `entries` as the server sends them, an
+  object of label to value, which the spec mis-declares as an object with `items`.
+  `ChartEntriesConverter` reads it (and PHP's `[]` for an empty set) into a list of points in
+  the server's order, each with `Key` and `Value`.
+- Optional inputs are nullable: Refit parameters that default to `null`, model constructor
+  parameters that are not required, and `[AllowNull]` on optional model properties, so a
+  nullable-enabled consumer can pass and assign `null` ("leave unset") without warnings. The
+  library itself compiles with `<Nullable>annotations</Nullable>`; getters keep their declared
+  types, so reading an optional field still needs the caller's own null check.
+- Fields the spec marks both required and `nullable: true` (a piggy bank's `target_amount`, a
+  recurrence's `repeat_until`, a rule action's `value`, ...) take `null` in their constructors
+  and always send the key, `null` included.
 - Date-only fields use the `yyyy-MM-dd` wire format via `OpenAPIDateConverter`; date-time fields
   use RFC 3339.
 - The test suite never hits the network — Refit slice tests use a capturing handler that records

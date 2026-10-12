@@ -36,6 +36,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "triggers", EmitDefaultValue = true)]
         [JsonPropertyName("triggers")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<WebhookTrigger> Triggers { get; set; }
 
         /// <summary>
@@ -43,6 +44,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "responses", EmitDefaultValue = true)]
         [JsonPropertyName("responses")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<WebhookResponse> Responses { get; set; }
 
         /// <summary>
@@ -50,6 +52,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "deliveries", EmitDefaultValue = true)]
         [JsonPropertyName("deliveries")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<WebhookDelivery> Deliveries { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookUpdate" /> class.
@@ -61,7 +64,7 @@ namespace FireflyIIINet.Model
         /// <param name="responses">responses.</param>
         /// <param name="deliveries">deliveries.</param>
         /// <param name="url">The URL of the webhook. Has to start with &#x60;https&#x60;..</param>
-        public WebhookUpdate(bool active = default(bool), string title = default(string), string secret = default(string), List<WebhookTrigger> triggers = default(List<WebhookTrigger>), List<WebhookResponse> responses = default(List<WebhookResponse>), List<WebhookDelivery> deliveries = default(List<WebhookDelivery>), string url = default(string))
+        public WebhookUpdate(bool active = default(bool), string? title = default(string), string? secret = default(string), List<WebhookTrigger>? triggers = default(List<WebhookTrigger>), List<WebhookResponse>? responses = default(List<WebhookResponse>), List<WebhookDelivery>? deliveries = default(List<WebhookDelivery>), string? url = default(string))
         {
             Active = active;
             Title = title;
@@ -88,6 +91,7 @@ namespace FireflyIIINet.Model
         /// <example>Update magic mirror on new transaction</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -97,6 +101,7 @@ namespace FireflyIIINet.Model
         /// <example>iMLZLtLx2JHWhK9Dtyuoqyir</example>
         [DataMember(Name = "secret", EmitDefaultValue = true)]
         [JsonPropertyName("secret")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Secret { get; set; }
 
         /// <summary>
@@ -106,6 +111,7 @@ namespace FireflyIIINet.Model
         /// <example>https://example.com</example>
         [DataMember(Name = "url", EmitDefaultValue = true)]
         [JsonPropertyName("url")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Url { get; set; }
 
         /// <summary>

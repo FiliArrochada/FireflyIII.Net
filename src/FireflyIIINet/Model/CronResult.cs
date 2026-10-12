@@ -41,7 +41,7 @@ namespace FireflyIIINet.Model
         /// <param name="exchangeRates">exchangeRates.</param>
         /// <param name="billNotifications">billNotifications.</param>
         /// <param name="webhooks">webhooks.</param>
-        public CronResult(List<CronResultRow> recurringTransactions = default(List<CronResultRow>), List<CronResultRow> autoBudgets = default(List<CronResultRow>), List<CronResultRow> exchangeRates = default(List<CronResultRow>), List<CronResultRow> billNotifications = default(List<CronResultRow>), List<CronResultRow> webhooks = default(List<CronResultRow>))
+        public CronResult(List<CronResultRow>? recurringTransactions = default(List<CronResultRow>), List<CronResultRow>? autoBudgets = default(List<CronResultRow>), List<CronResultRow>? exchangeRates = default(List<CronResultRow>), List<CronResultRow>? billNotifications = default(List<CronResultRow>), List<CronResultRow>? webhooks = default(List<CronResultRow>))
         {
             RecurringTransactions = recurringTransactions;
             AutoBudgets = autoBudgets;
@@ -55,6 +55,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "recurring_transactions", EmitDefaultValue = true)]
         [JsonPropertyName("recurring_transactions")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<CronResultRow> RecurringTransactions { get; set; }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "auto_budgets", EmitDefaultValue = true)]
         [JsonPropertyName("auto_budgets")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<CronResultRow> AutoBudgets { get; set; }
 
         /// <summary>
@@ -69,6 +71,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "exchange_rates", EmitDefaultValue = true)]
         [JsonPropertyName("exchange_rates")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<CronResultRow> ExchangeRates { get; set; }
 
         /// <summary>
@@ -76,6 +79,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "bill_notifications", EmitDefaultValue = true)]
         [JsonPropertyName("bill_notifications")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<CronResultRow> BillNotifications { get; set; }
 
         /// <summary>
@@ -83,6 +87,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "webhooks", EmitDefaultValue = true)]
         [JsonPropertyName("webhooks")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<CronResultRow> Webhooks { get; set; }
 
         /// <summary>

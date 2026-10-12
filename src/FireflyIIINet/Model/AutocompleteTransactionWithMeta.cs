@@ -46,7 +46,7 @@ namespace FireflyIIINet.Model
         /// <param name="date">Date of the transaction..</param>
         /// <param name="currencyCode">Currency code..</param>
         /// <param name="amount">The amount of the transaction, in the transaction&#39;s currency..</param>
-        public AutocompleteTransactionWithMeta(string id = default(string), string transactionGroupId = default(string), string name = default(string), string description = default(string), DateTime? date = default(DateTime?), string currencyCode = default(string), string amount = default(string))
+        public AutocompleteTransactionWithMeta(string id = default(string), string? transactionGroupId = default(string), string name = default(string), string description = default(string), DateTime? date = default(DateTime?), string? currencyCode = default(string), string? amount = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -88,6 +88,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "transaction_group_id", EmitDefaultValue = true)]
         [JsonPropertyName("transaction_group_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string TransactionGroupId { get; set; }
 
         /// <summary>
@@ -124,6 +125,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -133,6 +135,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
         [JsonPropertyName("amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
         /// <summary>

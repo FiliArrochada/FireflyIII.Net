@@ -47,7 +47,7 @@ namespace FireflyIIINet.Model
         /// <param name="currencyCode">The currency code of the currency associated with this object..</param>
         /// <param name="transactionJournalId">The journal associated with the event..</param>
         /// <param name="transactionGroupId">The transaction group associated with the event..</param>
-        public PiggyBankEventProperties(DateTime? createdAt = default(DateTime?), DateTime? updatedAt = default(DateTime?), string amount = default(string), string pcAmount = default(string), string currencyId = default(string), string currencyName = default(string), string currencyCode = default(string), string transactionJournalId = default(string), string transactionGroupId = default(string))
+        public PiggyBankEventProperties(DateTime? createdAt = default(DateTime?), DateTime? updatedAt = default(DateTime?), string? amount = default(string), string? pcAmount = default(string), string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), string? transactionJournalId = default(string), string? transactionGroupId = default(string))
         {
             CreatedAt = createdAt ?? default(DateTime);
             UpdatedAt = updatedAt ?? default(DateTime);
@@ -82,6 +82,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
         [JsonPropertyName("amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
         /// <summary>
@@ -90,6 +91,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcAmount { get; set; }
 
         /// <summary>
@@ -117,6 +119,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -126,6 +129,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -135,6 +139,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -268,6 +273,7 @@ namespace FireflyIIINet.Model
         /// <example>4291</example>
         [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
         [JsonPropertyName("transaction_journal_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string TransactionJournalId { get; set; }
 
         /// <summary>
@@ -277,6 +283,7 @@ namespace FireflyIIINet.Model
         /// <example>4291</example>
         [DataMember(Name = "transaction_group_id", EmitDefaultValue = true)]
         [JsonPropertyName("transaction_group_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string TransactionGroupId { get; set; }
 
         /// <summary>

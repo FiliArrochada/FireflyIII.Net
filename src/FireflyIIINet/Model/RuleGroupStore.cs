@@ -42,7 +42,7 @@ namespace FireflyIIINet.Model
         /// <param name="description">description.</param>
         /// <param name="order">order.</param>
         /// <param name="active">active.</param>
-        public RuleGroupStore(string title = default(string), string description = default(string), int order = default(int), bool active = default(bool))
+        public RuleGroupStore(string title = default(string), string? description = default(string), int order = default(int), bool active = default(bool))
         {
             // to ensure "title" is required (not null)
             if (title == null)
@@ -70,6 +70,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>

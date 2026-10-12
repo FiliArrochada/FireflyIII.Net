@@ -37,7 +37,7 @@ namespace FireflyIIINet.Model
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
         /// <param name="groupTitle">Title of the transaction if it has been split in more than one piece. Empty otherwise..</param>
         /// <param name="transactions">transactions.</param>
-        public TransactionUpdate(bool applyRules = default(bool), bool fireWebhooks = true, string groupTitle = default(string), List<TransactionSplitUpdate> transactions = default(List<TransactionSplitUpdate>))
+        public TransactionUpdate(bool applyRules = default(bool), bool fireWebhooks = true, string? groupTitle = default(string), List<TransactionSplitUpdate>? transactions = default(List<TransactionSplitUpdate>))
         {
             ApplyRules = applyRules;
             FireWebhooks = fireWebhooks;
@@ -71,6 +71,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "group_title", EmitDefaultValue = false)]
         [JsonPropertyName("group_title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string GroupTitle { get; set; }
 
         /// <summary>
@@ -78,6 +79,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "transactions", EmitDefaultValue = true)]
         [JsonPropertyName("transactions")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<TransactionSplitUpdate> Transactions { get; set; }
 
         /// <summary>

@@ -37,7 +37,7 @@ namespace FireflyIIINet.Model
         /// <param name="description">description.</param>
         /// <param name="order">order.</param>
         /// <param name="active">active.</param>
-        public RuleGroupUpdate(string title = default(string), string description = default(string), int order = default(int), bool active = default(bool))
+        public RuleGroupUpdate(string? title = default(string), string? description = default(string), int order = default(int), bool active = default(bool))
         {
             Title = title;
             Description = description;
@@ -51,6 +51,7 @@ namespace FireflyIIINet.Model
         /// <example>Default rule group</example>
         [DataMember(Name = "title", EmitDefaultValue = true)]
         [JsonPropertyName("title")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -60,6 +61,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>

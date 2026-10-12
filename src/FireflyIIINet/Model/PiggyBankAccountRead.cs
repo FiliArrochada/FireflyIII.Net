@@ -40,7 +40,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="currentAmount">currentAmount.</param>
         /// <param name="pcCurrentAmount">If convertToPrimary is on, this will show the amount in the primary currency..</param>
-        public PiggyBankAccountRead(string currentAmount = default(string), string pcCurrentAmount = default(string))
+        public PiggyBankAccountRead(string? currentAmount = default(string), string? pcCurrentAmount = default(string))
         {
             CurrentAmount = currentAmount;
             PcCurrentAmount = pcCurrentAmount;
@@ -87,6 +87,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "current_amount", EmitDefaultValue = true)]
         [JsonPropertyName("current_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrentAmount { get; set; }
 
         /// <summary>
@@ -96,6 +97,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_current_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_current_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcCurrentAmount { get; set; }
 
         /// <summary>

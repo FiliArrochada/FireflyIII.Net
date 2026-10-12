@@ -43,7 +43,7 @@ namespace FireflyIIINet.Api
         Task<Stream> ExportTags([Header("X-Trace-Id")] Guid? xTraceId = null, ExportFileFilter? type = null);
 
         [Get("/v1/data/export/transactions")]
-        Task<Stream> ExportTransactions([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, string accounts = null, ExportFileFilter? type = null);
+        Task<Stream> ExportTransactions([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null, string? accounts = null, ExportFileFilter? type = null);
 
         [Delete("/v1/data/purge")]
         Task PurgeData([Header("X-Trace-Id")] Guid? xTraceId = null);

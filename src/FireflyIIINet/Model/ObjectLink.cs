@@ -35,7 +35,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="var0">var0.</param>
         /// <param name="self">self.</param>
-        public ObjectLink(ObjectLink0 var0 = default(ObjectLink0), string self = default(string))
+        public ObjectLink(ObjectLink0? var0 = default(ObjectLink0), string? self = default(string))
         {
             Var0 = var0;
             Self = self;
@@ -46,6 +46,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "0", EmitDefaultValue = true)]
         [JsonPropertyName("0")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public ObjectLink0 Var0 { get; set; }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace FireflyIIINet.Model
         /// <example>https://demo.firefly-iii.org/api/v1/OBJECTS/1</example>
         [DataMember(Name = "self", EmitDefaultValue = true)]
         [JsonPropertyName("self")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Self { get; set; }
 
         /// <summary>

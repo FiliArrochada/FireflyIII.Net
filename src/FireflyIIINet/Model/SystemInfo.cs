@@ -34,7 +34,7 @@ namespace FireflyIIINet.Model
         /// Initializes a new instance of the <see cref="SystemInfo" /> class.
         /// </summary>
         /// <param name="data">data.</param>
-        public SystemInfo(SystemInfoData data = default(SystemInfoData))
+        public SystemInfo(SystemInfoData? data = default(SystemInfoData))
         {
             Data = data;
         }
@@ -44,6 +44,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "data", EmitDefaultValue = true)]
         [JsonPropertyName("data")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public SystemInfoData Data { get; set; }
 
         /// <summary>

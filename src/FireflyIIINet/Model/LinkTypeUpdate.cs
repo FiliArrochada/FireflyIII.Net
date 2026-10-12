@@ -36,7 +36,7 @@ namespace FireflyIIINet.Model
         /// <param name="name">name.</param>
         /// <param name="inward">inward.</param>
         /// <param name="outward">outward.</param>
-        public LinkTypeUpdate(string name = default(string), string inward = default(string), string outward = default(string))
+        public LinkTypeUpdate(string? name = default(string), string? inward = default(string), string? outward = default(string))
         {
             Name = name;
             Inward = inward;
@@ -49,6 +49,7 @@ namespace FireflyIIINet.Model
         /// <example>Paid</example>
         [DataMember(Name = "name", EmitDefaultValue = true)]
         [JsonPropertyName("name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Name { get; set; }
 
         /// <summary>
@@ -57,6 +58,7 @@ namespace FireflyIIINet.Model
         /// <example>is (partially) paid for by</example>
         [DataMember(Name = "inward", EmitDefaultValue = true)]
         [JsonPropertyName("inward")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Inward { get; set; }
 
         /// <summary>
@@ -65,6 +67,7 @@ namespace FireflyIIINet.Model
         /// <example>(partially) pays for</example>
         [DataMember(Name = "outward", EmitDefaultValue = true)]
         [JsonPropertyName("outward")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Outward { get; set; }
 
         /// <summary>

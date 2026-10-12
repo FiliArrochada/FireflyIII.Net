@@ -39,7 +39,7 @@ namespace FireflyIIINet.Model
         /// <param name="name">The currency name.</param>
         /// <param name="symbol">The currency symbol.</param>
         /// <param name="decimalPlaces">How many decimals to use when displaying this currency. Between 0 and 16..</param>
-        public CurrencyUpdate(bool enabled = default(bool), bool varDefault = default(bool), string code = default(string), string name = default(string), string symbol = default(string), int decimalPlaces = default(int))
+        public CurrencyUpdate(bool enabled = default(bool), bool varDefault = default(bool), string? code = default(string), string? name = default(string), string? symbol = default(string), int decimalPlaces = default(int))
         {
             Enabled = enabled;
             VarDefault = varDefault;
@@ -74,6 +74,7 @@ namespace FireflyIIINet.Model
         /// <example>AMS</example>
         [DataMember(Name = "code", EmitDefaultValue = true)]
         [JsonPropertyName("code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Code { get; set; }
 
         /// <summary>
@@ -83,6 +84,7 @@ namespace FireflyIIINet.Model
         /// <example>Ankh-Morpork dollar</example>
         [DataMember(Name = "name", EmitDefaultValue = true)]
         [JsonPropertyName("name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Name { get; set; }
 
         /// <summary>
@@ -92,6 +94,7 @@ namespace FireflyIIINet.Model
         /// <example>AM$</example>
         [DataMember(Name = "symbol", EmitDefaultValue = true)]
         [JsonPropertyName("symbol")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Symbol { get; set; }
 
         /// <summary>

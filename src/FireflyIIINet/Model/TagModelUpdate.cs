@@ -39,7 +39,7 @@ namespace FireflyIIINet.Model
         /// <param name="latitude">Latitude of the tag&#39;s location, if applicable. Can be used to draw a map..</param>
         /// <param name="longitude">Latitude of the tag&#39;s location, if applicable. Can be used to draw a map..</param>
         /// <param name="zoomLevel">Zoom level for the map, if drawn. This to set the box right. Unfortunately this is a proprietary value because each map provider has different zoom levels..</param>
-        public TagModelUpdate(string tag = default(string), DateTime? date = default(DateTime?), string description = default(string), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?))
+        public TagModelUpdate(string? tag = default(string), DateTime? date = default(DateTime?), string? description = default(string), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?))
         {
             Tag = tag;
             Date = date;
@@ -56,6 +56,7 @@ namespace FireflyIIINet.Model
         /// <example>expensive</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         [JsonPropertyName("tag")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Tag { get; set; }
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
         /// <summary>

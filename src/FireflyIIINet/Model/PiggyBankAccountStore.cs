@@ -41,13 +41,8 @@ namespace FireflyIIINet.Model
         /// <param name="id">The ID of the account. (required).</param>
         /// <param name="name">The name of the account..</param>
         /// <param name="currentAmount">The amount saved currently..</param>
-        public PiggyBankAccountStore(string id = default(string), string name = default(string), string currentAmount = default(string))
+        public PiggyBankAccountStore(string? id = default(string), string? name = default(string), string? currentAmount = default(string))
         {
-            // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new ArgumentNullException("id is a required property for PiggyBankAccountStore and cannot be null");
-            }
             Id = id;
             Name = name;
             CurrentAmount = currentAmount;
@@ -60,6 +55,7 @@ namespace FireflyIIINet.Model
         /// <example>3</example>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Id { get; set; }
 
         /// <summary>
@@ -70,6 +66,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "name", EmitDefaultValue = false)]
         [JsonPropertyName("name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Name { get; set; }
 
         /// <summary>
@@ -79,6 +76,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "current_amount", EmitDefaultValue = true)]
         [JsonPropertyName("current_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrentAmount { get; set; }
 
         /// <summary>

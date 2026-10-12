@@ -41,7 +41,7 @@ namespace FireflyIIINet.Model
         /// <param name="title">Title of the user group. By default, it is the same as the user&#39;s email address..</param>
         /// <param name="primaryCurrencyCode">Returns the primary currency code of the user group..</param>
         /// <param name="members">members.</param>
-        public UserGroupReadAttributes(string title = default(string), string primaryCurrencyCode = default(string), List<UserGroupReadMembers> members = default(List<UserGroupReadMembers>))
+        public UserGroupReadAttributes(string? title = default(string), string? primaryCurrencyCode = default(string), List<UserGroupReadMembers>? members = default(List<UserGroupReadMembers>))
         {
             Title = title;
             PrimaryCurrencyCode = primaryCurrencyCode;
@@ -126,6 +126,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "title", EmitDefaultValue = false)]
         [JsonPropertyName("title")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
         /// <summary>
@@ -154,6 +155,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "primary_currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_code")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PrimaryCurrencyCode { get; set; }
 
         /// <summary>
@@ -198,6 +200,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "members", EmitDefaultValue = false)]
         [JsonPropertyName("members")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<UserGroupReadMembers> Members { get; set; }
 
         /// <summary>

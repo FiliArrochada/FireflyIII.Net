@@ -65,7 +65,7 @@ namespace FireflyIIINet.Model
         /// <param name="responses">responses (required).</param>
         /// <param name="deliveries">deliveries (required).</param>
         /// <param name="url">The URL of the webhook. Has to start with &#x60;https&#x60;. (required).</param>
-        public WebhookStore(bool active = default(bool), string title = default(string), List<WebhookTrigger> triggers = default(List<WebhookTrigger>), List<WebhookResponse> responses = default(List<WebhookResponse>), List<WebhookDelivery> deliveries = default(List<WebhookDelivery>), string url = default(string))
+        public WebhookStore(bool active = default(bool), string title = default(string), List<WebhookTrigger>? triggers = default(List<WebhookTrigger>), List<WebhookResponse>? responses = default(List<WebhookResponse>), List<WebhookDelivery>? deliveries = default(List<WebhookDelivery>), string url = default(string))
         {
             // to ensure "title" is required (not null)
             if (title == null)

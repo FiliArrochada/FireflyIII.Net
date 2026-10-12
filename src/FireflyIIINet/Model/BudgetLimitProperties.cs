@@ -45,7 +45,7 @@ namespace FireflyIIINet.Model
         /// <param name="currencyCode">The currency code of the currency associated with this object..</param>
         /// <param name="amount">amount.</param>
         /// <param name="notes">Some notes for this specific budget limit..</param>
-        public BudgetLimitProperties(DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string currencyId = default(string), string currencyName = default(string), string currencyCode = default(string), string amount = default(string), string notes = default(string))
+        public BudgetLimitProperties(DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), string? amount = default(string), string? notes = default(string))
         {
             Start = start ?? default(DateTime);
             End = end ?? default(DateTime);
@@ -151,6 +151,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -160,6 +161,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -169,6 +171,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -301,6 +304,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
         [JsonPropertyName("amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
         /// <summary>
@@ -383,6 +387,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>

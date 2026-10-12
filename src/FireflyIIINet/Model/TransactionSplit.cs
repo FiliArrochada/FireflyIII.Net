@@ -115,7 +115,7 @@ namespace FireflyIIINet.Model
         /// <param name="pcDestinationBalanceAfter">The balance of the destination account in the primary currency of this administration. The &#96;primary_currency_*&#96; fields reflect the currency used. This field is NULL if the user does have &#39;convert to primary&#39; set to true in their settings..</param>
         /// <param name="subscriptionId">The associated subscription ID for this transaction..</param>
         /// <param name="subscriptionName">The associated subscription name for this transaction..</param>
-        public TransactionSplit(TransactionTypeProperty type = default(TransactionTypeProperty), DateTime? date = default(DateTime?), int? order = default(int?), string currencyId = default(string), string currencyCode = default(string), string foreignCurrencyId = default(string), string foreignCurrencyCode = default(string), string amount = default(string), string foreignAmount = default(string), string description = default(string), string sourceId = default(string), string sourceName = default(string), AccountTypeProperty? sourceType = default(AccountTypeProperty?), string destinationId = default(string), string destinationName = default(string), AccountTypeProperty? destinationType = default(AccountTypeProperty?), string budgetId = default(string), string categoryId = default(string), string categoryName = default(string), string billId = default(string), string billName = default(string), bool reconciled = default(bool), string notes = default(string), List<string> tags = default(List<string>), string internalReference = default(string), string externalId = default(string), string externalUrl = default(string), string sepaCc = default(string), string sepaCtOp = default(string), string sepaCtId = default(string), string sepaDb = default(string), string sepaCountry = default(string), string sepaEp = default(string), string sepaCi = default(string), string sepaBatchId = default(string), DateTime? interestDate = default(DateTime?), DateTime? bookDate = default(DateTime?), DateTime? processDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paymentDate = default(DateTime?), DateTime? invoiceDate = default(DateTime?), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?), bool hasAttachments = default(bool), string currencyName = default(string), int currencyDecimalPlaces = default(int), string primaryCurrencyCode = default(string), string pcAmount = default(string), string pcForeignAmount = default(string), string sourceBalanceAfter = default(string), string pcSourceBalanceAfter = default(string), string destinationBalanceAfter = default(string), string pcDestinationBalanceAfter = default(string), string subscriptionId = default(string), string subscriptionName = default(string))
+        public TransactionSplit(TransactionTypeProperty type = default(TransactionTypeProperty), DateTime? date = default(DateTime?), int? order = default(int?), string? currencyId = default(string), string? currencyCode = default(string), string? foreignCurrencyId = default(string), string? foreignCurrencyCode = default(string), string amount = default(string), string? foreignAmount = default(string), string description = default(string), string? sourceId = default(string), string? sourceName = default(string), AccountTypeProperty? sourceType = default(AccountTypeProperty?), string? destinationId = default(string), string? destinationName = default(string), AccountTypeProperty? destinationType = default(AccountTypeProperty?), string? budgetId = default(string), string? categoryId = default(string), string? categoryName = default(string), string? billId = default(string), string? billName = default(string), bool reconciled = default(bool), string? notes = default(string), List<string>? tags = default(List<string>), string? internalReference = default(string), string? externalId = default(string), string? externalUrl = default(string), string? sepaCc = default(string), string? sepaCtOp = default(string), string? sepaCtId = default(string), string? sepaDb = default(string), string? sepaCountry = default(string), string? sepaEp = default(string), string? sepaCi = default(string), string? sepaBatchId = default(string), DateTime? interestDate = default(DateTime?), DateTime? bookDate = default(DateTime?), DateTime? processDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paymentDate = default(DateTime?), DateTime? invoiceDate = default(DateTime?), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?), bool hasAttachments = default(bool), string? currencyName = default(string), int currencyDecimalPlaces = default(int), string? primaryCurrencyCode = default(string), string? pcAmount = default(string), string? pcForeignAmount = default(string), string? sourceBalanceAfter = default(string), string? pcSourceBalanceAfter = default(string), string? destinationBalanceAfter = default(string), string? pcDestinationBalanceAfter = default(string), string? subscriptionId = default(string), string? subscriptionName = default(string))
         {
             Type = type;
             Date = date ?? default(DateTime);
@@ -131,17 +131,7 @@ namespace FireflyIIINet.Model
                 throw new ArgumentNullException("description is a required property for TransactionSplit and cannot be null");
             }
             Description = description;
-            // to ensure "sourceId" is required (not null)
-            if (sourceId == null)
-            {
-                throw new ArgumentNullException("sourceId is a required property for TransactionSplit and cannot be null");
-            }
             SourceId = sourceId;
-            // to ensure "destinationId" is required (not null)
-            if (destinationId == null)
-            {
-                throw new ArgumentNullException("destinationId is a required property for TransactionSplit and cannot be null");
-            }
             DestinationId = destinationId;
             Order = order;
             CurrencyId = currencyId;
@@ -275,6 +265,7 @@ namespace FireflyIIINet.Model
         /// <example>12</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -284,6 +275,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -310,6 +302,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -329,6 +322,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignCurrencyId { get; set; }
 
         /// <summary>
@@ -339,6 +333,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_currency_code")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignCurrencyCode { get; set; }
 
         /// <summary>
@@ -405,6 +400,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "primary_currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_code")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PrimaryCurrencyCode { get; set; }
 
         /// <summary>
@@ -461,6 +457,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcAmount { get; set; }
 
         /// <summary>
@@ -471,6 +468,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "foreign_amount", EmitDefaultValue = false)]
         [JsonPropertyName("foreign_amount")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ForeignAmount { get; set; }
 
         /// <summary>
@@ -480,6 +478,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_foreign_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_foreign_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcForeignAmount { get; set; }
 
         /// <summary>
@@ -490,6 +489,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "source_balance_after", EmitDefaultValue = false)]
         [JsonPropertyName("source_balance_after")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SourceBalanceAfter { get; set; }
 
         /// <summary>
@@ -500,6 +500,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "pc_source_balance_after", EmitDefaultValue = false)]
         [JsonPropertyName("pc_source_balance_after")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcSourceBalanceAfter { get; set; }
 
         /// <summary>
@@ -510,6 +511,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "destination_balance_after", EmitDefaultValue = false)]
         [JsonPropertyName("destination_balance_after")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string DestinationBalanceAfter { get; set; }
 
         /// <summary>
@@ -520,6 +522,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "pc_destination_balance_after", EmitDefaultValue = false)]
         [JsonPropertyName("pc_destination_balance_after")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcDestinationBalanceAfter { get; set; }
 
         /// <summary>
@@ -538,6 +541,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "source_id", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("source_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SourceId { get; set; }
 
         /// <summary>
@@ -548,6 +552,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "source_name", EmitDefaultValue = false)]
         [JsonPropertyName("source_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SourceName { get; set; }
 
         /// <summary>
@@ -575,6 +580,7 @@ namespace FireflyIIINet.Model
         /// <example>2</example>
         [DataMember(Name = "destination_id", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("destination_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string DestinationId { get; set; }
 
         /// <summary>
@@ -585,6 +591,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "destination_name", EmitDefaultValue = false)]
         [JsonPropertyName("destination_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string DestinationName { get; set; }
 
         /// <summary>
@@ -613,6 +620,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "budget_id", EmitDefaultValue = false)]
         [JsonPropertyName("budget_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string BudgetId { get; set; }
 
         /// <summary>
@@ -642,6 +650,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "category_id", EmitDefaultValue = false)]
         [JsonPropertyName("category_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CategoryId { get; set; }
 
         /// <summary>
@@ -652,6 +661,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "category_name", EmitDefaultValue = false)]
         [JsonPropertyName("category_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CategoryName { get; set; }
 
         /// <summary>
@@ -662,6 +672,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "bill_id", EmitDefaultValue = false)]
         [JsonPropertyName("bill_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string BillId { get; set; }
 
         /// <summary>
@@ -672,6 +683,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "bill_name", EmitDefaultValue = false)]
         [JsonPropertyName("bill_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string BillName { get; set; }
 
         /// <summary>
@@ -682,6 +694,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "subscription_id", EmitDefaultValue = false)]
         [JsonPropertyName("subscription_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SubscriptionId { get; set; }
 
         /// <summary>
@@ -692,6 +705,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "subscription_name", EmitDefaultValue = false)]
         [JsonPropertyName("subscription_name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SubscriptionName { get; set; }
 
         /// <summary>
@@ -710,6 +724,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "notes", EmitDefaultValue = false)]
         [JsonPropertyName("notes")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Notes { get; set; }
 
         /// <summary>
@@ -719,6 +734,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "tags", EmitDefaultValue = false)]
         [JsonPropertyName("tags")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<string> Tags { get; set; }
 
         /// <summary>
@@ -728,6 +744,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "internal_reference", EmitDefaultValue = false)]
         [JsonPropertyName("internal_reference")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string InternalReference { get; set; }
 
         /// <summary>
@@ -737,6 +754,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "external_id", EmitDefaultValue = false)]
         [JsonPropertyName("external_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ExternalId { get; set; }
 
         /// <summary>
@@ -746,6 +764,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "external_url", EmitDefaultValue = false)]
         [JsonPropertyName("external_url")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string ExternalUrl { get; set; }
 
         /// <summary>
@@ -847,6 +866,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_cc", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_cc")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaCc { get; set; }
 
         /// <summary>
@@ -856,6 +876,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_ct_op", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_ct_op")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaCtOp { get; set; }
 
         /// <summary>
@@ -865,6 +886,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_ct_id", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_ct_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaCtId { get; set; }
 
         /// <summary>
@@ -874,6 +896,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_db", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_db")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaDb { get; set; }
 
         /// <summary>
@@ -883,6 +906,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_country", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_country")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaCountry { get; set; }
 
         /// <summary>
@@ -892,6 +916,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_ep", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_ep")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaEp { get; set; }
 
         /// <summary>
@@ -901,6 +926,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_ci", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_ci")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaCi { get; set; }
 
         /// <summary>
@@ -910,6 +936,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "sepa_batch_id", EmitDefaultValue = false)]
         [JsonPropertyName("sepa_batch_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SepaBatchId { get; set; }
 
         /// <summary>

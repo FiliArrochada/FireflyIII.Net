@@ -35,7 +35,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="rel">rel.</param>
         /// <param name="uri">uri.</param>
-        public ObjectLink0(string rel = default(string), string uri = default(string))
+        public ObjectLink0(string? rel = default(string), string? uri = default(string))
         {
             Rel = rel;
             Uri = uri;
@@ -47,6 +47,7 @@ namespace FireflyIIINet.Model
         /// <example>self</example>
         [DataMember(Name = "rel", EmitDefaultValue = true)]
         [JsonPropertyName("rel")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Rel { get; set; }
 
         /// <summary>
@@ -55,6 +56,7 @@ namespace FireflyIIINet.Model
         /// <example>/OBJECTS/1</example>
         [DataMember(Name = "uri", EmitDefaultValue = true)]
         [JsonPropertyName("uri")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Uri { get; set; }
 
         /// <summary>

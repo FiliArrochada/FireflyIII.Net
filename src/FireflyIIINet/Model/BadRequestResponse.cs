@@ -35,7 +35,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="message">message.</param>
         /// <param name="exception">exception.</param>
-        public BadRequestResponse(string message = default(string), string exception = default(string))
+        public BadRequestResponse(string? message = default(string), string? exception = default(string))
         {
             Message = message;
             Exception = exception;
@@ -47,6 +47,7 @@ namespace FireflyIIINet.Model
         /// <example>Bad Request</example>
         [DataMember(Name = "message", EmitDefaultValue = true)]
         [JsonPropertyName("message")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Message { get; set; }
 
         /// <summary>
@@ -55,6 +56,7 @@ namespace FireflyIIINet.Model
         /// <example>BadRequestHttpException</example>
         [DataMember(Name = "exception", EmitDefaultValue = true)]
         [JsonPropertyName("exception")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Exception { get; set; }
 
         /// <summary>

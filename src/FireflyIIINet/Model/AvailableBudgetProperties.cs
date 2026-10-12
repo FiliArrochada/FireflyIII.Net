@@ -45,7 +45,7 @@ namespace FireflyIIINet.Model
         /// <param name="pcAmount">The amount of this available budget in the primary currency (pc) of this administration..</param>
         /// <param name="start">Start date of the available budget..</param>
         /// <param name="end">End date of the available budget..</param>
-        public AvailableBudgetProperties(string currencyId = default(string), string currencyName = default(string), string currencyCode = default(string), string amount = default(string), string pcAmount = default(string), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?))
+        public AvailableBudgetProperties(string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), string? amount = default(string), string? pcAmount = default(string), DateTime? start = default(DateTime?), DateTime? end = default(DateTime?))
         {
             CurrencyId = currencyId;
             CurrencyName = currencyName;
@@ -115,6 +115,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "currency_id", EmitDefaultValue = true)]
         [JsonPropertyName("currency_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
         /// <summary>
@@ -124,6 +125,7 @@ namespace FireflyIIINet.Model
         /// <example>Euro</example>
         [DataMember(Name = "currency_name", EmitDefaultValue = true)]
         [JsonPropertyName("currency_name")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
         /// <summary>
@@ -133,6 +135,7 @@ namespace FireflyIIINet.Model
         /// <example>EUR</example>
         [DataMember(Name = "currency_code", EmitDefaultValue = true)]
         [JsonPropertyName("currency_code")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
         /// <summary>
@@ -266,6 +269,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "amount", EmitDefaultValue = true)]
         [JsonPropertyName("amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
         /// <summary>
@@ -275,6 +279,7 @@ namespace FireflyIIINet.Model
         /// <example>123.45</example>
         [DataMember(Name = "pc_amount", EmitDefaultValue = true)]
         [JsonPropertyName("pc_amount")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PcAmount { get; set; }
 
         /// <summary>

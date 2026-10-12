@@ -41,7 +41,7 @@ namespace FireflyIIINet.Model
         /// <param name="accountId">The ID of the account. (required).</param>
         /// <param name="name">The name of the account..</param>
         /// <param name="currentAmount">The amount saved currently..</param>
-        public PiggyBankAccountUpdate(string accountId = default(string), string name = default(string), string currentAmount = default(string))
+        public PiggyBankAccountUpdate(string accountId = default(string), string? name = default(string), string? currentAmount = default(string))
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -70,6 +70,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "name", EmitDefaultValue = false)]
         [JsonPropertyName("name")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Name { get; set; }
 
         /// <summary>
@@ -80,6 +81,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "current_amount", EmitDefaultValue = false)]
         [JsonPropertyName("current_amount")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrentAmount { get; set; }
 
         /// <summary>

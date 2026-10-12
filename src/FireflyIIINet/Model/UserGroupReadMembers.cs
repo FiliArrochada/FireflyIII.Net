@@ -39,7 +39,7 @@ namespace FireflyIIINet.Model
         /// Initializes a new instance of the <see cref="UserGroupReadMembers" /> class.
         /// </summary>
         /// <param name="roles">roles.</param>
-        public UserGroupReadMembers(List<UserGroupReadRole> roles = default(List<UserGroupReadRole>))
+        public UserGroupReadMembers(List<UserGroupReadRole>? roles = default(List<UserGroupReadRole>))
         {
             Roles = roles;
         }
@@ -104,6 +104,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "roles", EmitDefaultValue = false)]
         [JsonPropertyName("roles")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<UserGroupReadRole> Roles { get; set; }
 
         /// <summary>

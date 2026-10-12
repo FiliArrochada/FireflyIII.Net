@@ -38,7 +38,7 @@ namespace FireflyIIINet.Model
         /// <param name="webhookId">The ID of the webhook this message belongs to..</param>
         /// <param name="uuid">Long UUID string for identification of this webhook message..</param>
         /// <param name="message">The actual message that is sent or will be sent as JSON string..</param>
-        public WebhookMessage(bool sent = default(bool), bool errored = default(bool), string webhookId = default(string), string uuid = default(string), string message = default(string))
+        public WebhookMessage(bool sent = default(bool), bool errored = default(bool), string? webhookId = default(string), string? uuid = default(string), string? message = default(string))
         {
             Sent = sent;
             Errored = errored;
@@ -106,6 +106,7 @@ namespace FireflyIIINet.Model
         /// <example>5</example>
         [DataMember(Name = "webhook_id", EmitDefaultValue = true)]
         [JsonPropertyName("webhook_id")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string WebhookId { get; set; }
 
         /// <summary>
@@ -115,6 +116,7 @@ namespace FireflyIIINet.Model
         /// <example>7a344c02-5b52-46b1-90e6-a437431dcf07</example>
         [DataMember(Name = "uuid", EmitDefaultValue = true)]
         [JsonPropertyName("uuid")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Uuid { get; set; }
 
         /// <summary>
@@ -125,6 +127,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "message", EmitDefaultValue = false)]
         [JsonPropertyName("message")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Message { get; set; }
 
         /// <summary>

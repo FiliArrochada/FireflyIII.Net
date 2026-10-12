@@ -41,7 +41,7 @@ namespace FireflyIIINet.Model
         /// <param name="title">A descriptive title for the user group. (required).</param>
         /// <param name="primaryCurrencyId">Use either primary_currency_id or primary_currency_code. This will set the primary currency for the user group (&#39;financial administration&#39;)..</param>
         /// <param name="primaryCurrencyCode">Use either primary_currency_id or primary_currency_code. This will set the primary currency for the user group (&#39;financial administration&#39;)..</param>
-        public UserGroupUpdate(string title = default(string), string primaryCurrencyId = default(string), string primaryCurrencyCode = default(string))
+        public UserGroupUpdate(string title = default(string), string? primaryCurrencyId = default(string), string? primaryCurrencyCode = default(string))
         {
             // to ensure "title" is required (not null)
             if (title == null)
@@ -70,6 +70,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "primary_currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PrimaryCurrencyId { get; set; }
 
         /// <summary>
@@ -80,6 +81,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "primary_currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_code")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string PrimaryCurrencyCode { get; set; }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="message">message.</param>
         /// <param name="errors">errors.</param>
-        public ValidationErrorResponse(string message = default(string), ValidationErrorErrors errors = default(ValidationErrorErrors))
+        public ValidationErrorResponse(string? message = default(string), ValidationErrorErrors? errors = default(ValidationErrorErrors))
         {
             Message = message;
             Errors = errors;
@@ -47,6 +47,7 @@ namespace FireflyIIINet.Model
         /// <example>The given data was invalid.</example>
         [DataMember(Name = "message", EmitDefaultValue = true)]
         [JsonPropertyName("message")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Message { get; set; }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         [DataMember(Name = "errors", EmitDefaultValue = true)]
         [JsonPropertyName("errors")]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
         public ValidationErrorErrors Errors { get; set; }
 
         /// <summary>

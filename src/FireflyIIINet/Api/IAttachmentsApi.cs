@@ -31,6 +31,6 @@ namespace FireflyIIINet.Api
 
         [Post("/v1/attachments/{id}/upload")]
         [Headers("Content-Type: application/octet-stream")]
-        Task UploadAttachment(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Body] Stream body = null);
+        Task UploadAttachment(string id, [Header("X-Trace-Id")] Guid? xTraceId = null, [Body] Stream? body = null);
     }
 }
