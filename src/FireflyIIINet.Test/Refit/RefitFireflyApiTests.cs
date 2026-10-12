@@ -214,6 +214,84 @@ namespace FireflyIIINet.Test
         }
 
         [Fact]
+        public async Task ListAccount_Sends_Active_Filter_Lowercase()
+        {
+            var (api, cap) = Build<IAccountsApi>("{\"data\":[],\"meta\":{}}");
+
+            await api.ListAccount(active: false);
+
+            Assert.Equal("?active=false", Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query));
+        }
+
+        [Fact]
+        public async Task DestroyData_Sends_Unused_As_Boolean()
+        {
+            // The spec types unused as an int64 array; the server validates in:true,false.
+            var (api, cap) = Build<IDataApi>("");
+
+            await api.DestroyData(DataDestroyObject.Accounts, unused: true);
+
+            var q = Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query);
+            Assert.Equal(HttpMethod.Delete, cap.LastRequest.Method);
+            Assert.Equal("/api/v1/data/destroy", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Contains("objects=accounts", q);
+            Assert.Contains("unused=true", q);
+        }
+
+        [Fact]
+        public async Task DestroyData_Omits_Unset_Unused()
+        {
+            var (api, cap) = Build<IDataApi>("");
+
+            await api.DestroyData(DataDestroyObject.Budgets);
+
+            Assert.Equal("?objects=budgets", Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query));
+        }
+
+        [Fact]
+        public async Task GetChartBudgetOverviewWithLimits_Builds_Date_Range_And_Parses_Sets()
+        {
+            var (api, cap) = Build<IChartsApi>("[{\"label\":\"Groceries\",\"currency_id\":\"1\",\"currency_code\":\"EUR\",\"entries\":{\"spent\":\"-120.50\",\"left\":\"79.50\"}}]");
+
+            var sets = await api.GetChartBudgetOverviewWithLimits(new DateTime(2026, 10, 1), new DateTime(2026, 10, 31));
+
+            var q = Uri.UnescapeDataString(cap.LastRequest.RequestUri.Query);
+            Assert.Equal("/api/v1/chart/budget/overview-with-limits", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Contains("start=2026-10-01", q);
+            Assert.Contains("end=2026-10-31", q);
+            var set = Assert.Single(sets);
+            Assert.Equal("Groceries", set.Label);
+            Assert.Equal(2, set.Entries.Count);
+            Assert.Equal(-120.50m, set.Entries[0].Value);
+        }
+
+        [Fact]
+        public async Task GetReleaseNotes_Templates_Version_And_Parses_Body()
+        {
+            var (api, cap) = Build<IAboutApi>("{\"version\":\"6.7.8\",\"release_notes\":\"<p>Fixed</p>\",\"release_notes_markdown\":\"Fixed\"}");
+
+            var notes = await api.GetReleaseNotes("v6.7.8");
+
+            Assert.Equal("/api/v1/release-notes/v6.7.8", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Equal("6.7.8", notes.Version);
+            Assert.Equal("<p>Fixed</p>", notes.ReleaseNotesHtml);
+            Assert.Equal("Fixed", notes.ReleaseNotesMarkdown);
+        }
+
+        [Fact]
+        public async Task GetCurrentReleaseNotes_Omits_Version_And_Accepts_Null_Notes()
+        {
+            var (api, cap) = Build<IAboutApi>("{\"version\":\"6.7.8\",\"release_notes\":null,\"release_notes_markdown\":null}");
+
+            var notes = await api.GetCurrentReleaseNotes();
+
+            Assert.Equal("/api/v1/release-notes", cap.LastRequest.RequestUri.AbsolutePath);
+            Assert.Equal("6.7.8", notes.Version);
+            Assert.Null(notes.ReleaseNotesHtml);
+            Assert.Null(notes.ReleaseNotesMarkdown);
+        }
+
+        [Fact]
         public async Task BearerHandler_Attaches_Authorization()
         {
             var (api, cap) = Build<IAboutApi>("{}", token: () => "pat-123");

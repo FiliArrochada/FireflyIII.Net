@@ -7,10 +7,10 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
-- API version: 6.7.2 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
-- SDK version: 6.7.2.1 (tracks the API version; a 4th revision component denotes client-only changes)
-- Source specification: [api/firefly-iii-v6.7.2-v1.yaml](api/firefly-iii-v6.7.2-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
-- All released specifications (0.10.4 – 6.7.2): [api/](api/)
+- API version: 6.7.8 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
+- SDK version: 6.7.8 (tracks the API version; a 4th revision component denotes client-only changes)
+- Source specification: [api/firefly-iii-v6.7.8-v1.yaml](api/firefly-iii-v6.7.8-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
+- All released specifications (0.10.4 – 6.7.8): [api/](api/)
 
 > **Rule triggers and actions go beyond the specification.** The spec's `RuleTriggerKeyword`
 > enum lists 36 values, but Firefly III accepts every search operator as a rule trigger
@@ -99,6 +99,12 @@ available via `ex.Content` and can be deserialized to the spec's error models
 - Fields the spec marks both required and `nullable: true` (a piggy bank's `target_amount`, a
   recurrence's `repeat_until`, a rule action's `value`, ...) take `null` in their constructors
   and always send the key, `null` included.
+- `IDataApi.DestroyData`'s `unused` is a `bool?`: the spec types it as an int64 array, but the
+  server validates it as `true`/`false`.
+- `GET /v1/release-notes/{version}` has two methods: `GetReleaseNotes(version)`, and
+  `GetCurrentReleaseNotes()` for the server's own version (the route makes `{version}` optional).
+  The model's `release_notes` field is `ReleaseNotesHtml`, since a member cannot share the
+  `ReleaseNotes` type's name.
 - Date-only fields use the `yyyy-MM-dd` wire format via `OpenAPIDateConverter`; date-time fields
   use RFC 3339.
 - The test suite never hits the network — Refit slice tests use a capturing handler that records
@@ -120,6 +126,11 @@ dotnet test  FireflyIIINet.sln
 # Upstream publishes one branch per release, so the check scans every branch (~22 GitHub API
 # requests); set GITHUB_TOKEN or GH_TOKEN to stay clear of the 60/h anonymous limit.
 dotnet run scripts/check-spec-version.cs -- --diff
+
+# Read-only live smoke test against a real server (GETs only). Works against the public demo,
+# https://demo.firefly-iii.org (demo@firefly-iii.org / demo): create a personal access token
+# under Options > Profile > OAuth.
+FIREFLY_TOKEN=<token> dotnet run scripts/smoke-test.cs -- https://demo.firefly-iii.org
 ```
 
 A scheduled workflow (`spec-check.yml`) runs the same check weekly (without `--diff`); when

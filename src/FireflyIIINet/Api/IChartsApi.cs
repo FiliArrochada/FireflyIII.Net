@@ -17,6 +17,9 @@ namespace FireflyIIINet.Api
         [Get("/v1/chart/budget/overview")]
         Task<List<ChartDataSet>> GetChartBudgetOverview([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
 
+        [Get("/v1/chart/budget/overview-with-limits")]
+        Task<List<ChartDataSet>> GetChartBudgetOverviewWithLimits([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
         [Get("/v1/chart/category/overview")]
         Task<List<ChartDataSet>> GetChartCategoryOverview([Query(Format = "yyyy-MM-dd")] DateTime start, [Query(Format = "yyyy-MM-dd")] DateTime end, [Header("X-Trace-Id")] Guid? xTraceId = null);
 

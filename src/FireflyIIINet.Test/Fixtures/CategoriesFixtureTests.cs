@@ -11,6 +11,7 @@
  *    the previous Newtonsoft behaviour. A dedicated test asserts the values.
  */
 
+using System;
 using System.Text.Json;
 using FireflyIIINet.Client;
 using FireflyIIINet.Model;
@@ -29,6 +30,8 @@ namespace FireflyIIINet.Test.Fixtures
               "created_at": "2018-09-17T12:46:47+01:00",
               "updated_at": "2018-09-17T12:46:47+01:00",
               "name": "Lunch",
+              "color": "FF0000",
+              "last_activity": "2026-10-01T00:00:00+00:00",
               "notes": "Some example notes",
               "spent": [
                 {
@@ -103,6 +106,29 @@ namespace FireflyIIINet.Test.Fixtures
             Assert.Equal("2", single.Data.Id);
             Assert.Equal("Lunch", single.Data.Attributes.Name);
             Assert.Equal("Some example notes", single.Data.Attributes.Notes);
+        }
+
+        [Fact]
+        public void Category_Color_And_LastActivity_Deserialize()
+        {
+            // 6.7.8: color (free for apps to use) and last_activity; both may be absent.
+            var single = JsonSerializer.Deserialize<CategorySingle>(CategorySingleJson, SerializerOptions.Default);
+            var array = JsonSerializer.Deserialize<CategoryArray>(CategoryArrayJson, SerializerOptions.Default);
+
+            Assert.Equal("FF0000", single.Data.Attributes.Color);
+            Assert.Equal(new DateTimeOffset(2026, 10, 1, 0, 0, 0, TimeSpan.Zero), new DateTimeOffset(single.Data.Attributes.LastActivity.Value.ToUniversalTime()));
+            Assert.Null(array.Data[0].Attributes.Color);
+            Assert.Null(array.Data[0].Attributes.LastActivity);
+        }
+
+        [Fact]
+        public void CategoryStore_And_Update_Send_Color_Only_When_Set()
+        {
+            var withColor = JsonSerializer.Serialize(new CategoryStore("Lunch", color: "00FF00"), SerializerOptions.Default);
+            var without = JsonSerializer.Serialize(new CategoryUpdate("Lunch"), SerializerOptions.Default);
+
+            Assert.Contains("\"color\":\"00FF00\"", withColor);
+            Assert.DoesNotContain("color", without);
         }
 
         [Fact]

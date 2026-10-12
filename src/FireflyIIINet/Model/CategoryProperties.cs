@@ -41,7 +41,9 @@ namespace FireflyIIINet.Model
         /// <param name="name">name (required).</param>
         /// <param name="notes">notes.</param>
         /// <param name="objectHasCurrencySetting">This object never has its own currency setting, so this value is always false..</param>
-        public CategoryProperties(string name = default(string), string? notes = default(string), bool objectHasCurrencySetting = default(bool))
+        /// <param name="color">The color of the category in HEX format. Firefly III does not use this field, but your app might..</param>
+        /// <param name="lastActivity">Last activity of the category..</param>
+        public CategoryProperties(string name = default(string), string? notes = default(string), bool objectHasCurrencySetting = default(bool), string? color = default(string), DateTime? lastActivity = default(DateTime?))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -51,6 +53,8 @@ namespace FireflyIIINet.Model
             Name = name;
             Notes = notes;
             ObjectHasCurrencySetting = objectHasCurrencySetting;
+            Color = color;
+            LastActivity = lastActivity;
         }
 
         /// <summary>
@@ -94,6 +98,27 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The color of the category in HEX format. Firefly III does not use this field, but your app might.
+        /// </summary>
+        /// <value>The color of the category in HEX format. Firefly III does not use this field, but your app might.</value>
+        /// <example>FF0000</example>
+        [DataMember(Name = "color", EmitDefaultValue = false)]
+        [JsonPropertyName("color")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
+        public string Color { get; set; }
+
+        /// <summary>
+        /// Last activity of the category.
+        /// </summary>
+        /// <value>Last activity of the category.</value>
+        /// <example>2026-10-01T00:00:00+00:00</example>
+        [DataMember(Name = "last_activity", EmitDefaultValue = false)]
+        [JsonPropertyName("last_activity")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public DateTime? LastActivity { get; set; }
 
         /// <summary>
         /// Gets or Sets Notes
@@ -317,6 +342,8 @@ namespace FireflyIIINet.Model
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Color: ").Append(Color).Append("\n");
+            sb.Append("  LastActivity: ").Append(LastActivity).Append("\n");
             sb.Append("  Notes: ").Append(Notes).Append("\n");
             sb.Append("  ObjectHasCurrencySetting: ").Append(ObjectHasCurrencySetting).Append("\n");
             sb.Append("  PrimaryCurrencyId: ").Append(PrimaryCurrencyId).Append("\n");
@@ -376,6 +403,16 @@ namespace FireflyIIINet.Model
                 (
                     Name == input.Name ||
 					Name.Equals(input.Name)
+                ) &&
+                (
+                    Color == input.Color ||
+                    (Color != null &&
+                    Color.Equals(input.Color))
+                ) &&
+                (
+                    LastActivity == input.LastActivity ||
+                    (LastActivity != null &&
+                    LastActivity.Equals(input.LastActivity))
                 ) &&
                 (
                     Notes == input.Notes ||
@@ -460,6 +497,14 @@ namespace FireflyIIINet.Model
 				hashCode = (hashCode * 59) + CreatedAt.GetHashCode();
 				hashCode = (hashCode * 59) + UpdatedAt.GetHashCode();
 				hashCode = (hashCode * 59) + Name.GetHashCode();
+                if (Color != null)
+                {
+                    hashCode = (hashCode * 59) + Color.GetHashCode();
+                }
+                if (LastActivity != null)
+                {
+                    hashCode = (hashCode * 59) + LastActivity.GetHashCode();
+                }
                 if (Notes != null)
                 {
                     hashCode = (hashCode * 59) + Notes.GetHashCode();

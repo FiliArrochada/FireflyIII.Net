@@ -40,7 +40,8 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="name">name (required).</param>
         /// <param name="notes">notes.</param>
-        public CategoryStore(string name = default(string), string? notes = default(string))
+        /// <param name="color">The color of the category in HEX format. Firefly III does not use this field, but your app might..</param>
+        public CategoryStore(string name = default(string), string? notes = default(string), string? color = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -49,6 +50,7 @@ namespace FireflyIIINet.Model
             }
             Name = name;
             Notes = notes;
+            Color = color;
         }
 
         /// <summary>
@@ -70,6 +72,17 @@ namespace FireflyIIINet.Model
         public string Notes { get; set; }
 
         /// <summary>
+        /// The color of the category in HEX format. Firefly III does not use this field, but your app might.
+        /// </summary>
+        /// <value>The color of the category in HEX format. Firefly III does not use this field, but your app might.</value>
+        /// <example>FF0000</example>
+        [DataMember(Name = "color", EmitDefaultValue = false)]
+        [JsonPropertyName("color")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
+        public string Color { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,6 +92,7 @@ namespace FireflyIIINet.Model
             sb.Append("class CategoryStore {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Notes: ").Append(Notes).Append("\n");
+            sb.Append("  Color: ").Append(Color).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -122,6 +136,11 @@ namespace FireflyIIINet.Model
                     Notes == input.Notes ||
                     (Notes != null &&
                     Notes.Equals(input.Notes))
+                ) &&
+                (
+                    Color == input.Color ||
+                    (Color != null &&
+                    Color.Equals(input.Color))
                 );
         }
 
@@ -138,6 +157,10 @@ namespace FireflyIIINet.Model
                 if (Notes != null)
                 {
                     hashCode = (hashCode * 59) + Notes.GetHashCode();
+                }
+                if (Color != null)
+                {
+                    hashCode = (hashCode * 59) + Color.GetHashCode();
                 }
                 return hashCode;
             }

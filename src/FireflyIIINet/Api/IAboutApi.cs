@@ -22,5 +22,13 @@ namespace FireflyIIINet.Api
 
         [Get("/v1/about/user")]
         Task<UserSingle> GetCurrentUser([Header("X-Trace-Id")] Guid? xTraceId = null);
+
+        // version takes "6.7.8", "v6.7.8" or "develop-2026-10-12". The server route makes it
+        // optional ({version?}); GetCurrentReleaseNotes is that form, for the server's own version.
+        [Get("/v1/release-notes/{version}")]
+        Task<ReleaseNotes> GetReleaseNotes(string version, [Header("X-Trace-Id")] Guid? xTraceId = null);
+
+        [Get("/v1/release-notes")]
+        Task<ReleaseNotes> GetCurrentReleaseNotes([Header("X-Trace-Id")] Guid? xTraceId = null);
     }
 }

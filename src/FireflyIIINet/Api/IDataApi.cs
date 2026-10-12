@@ -13,7 +13,9 @@ namespace FireflyIIINet.Api
         Task BulkUpdateTransactions(string query);
 
         [Delete("/v1/data/destroy")]
-        Task DestroyData(DataDestroyObject objects, [Header("X-Trace-Id")] Guid? xTraceId = null);
+        // unused (6.7.7) only applies to the account object kinds. The spec types it as an int64
+        // array, but the server validates it as in:true,false and reads it with boolean().
+        Task DestroyData(DataDestroyObject objects, [Header("X-Trace-Id")] Guid? xTraceId = null, bool? unused = null);
 
         [Get("/v1/data/export/accounts")]
         Task<Stream> ExportAccounts([Header("X-Trace-Id")] Guid? xTraceId = null, ExportFileFilter? type = null);

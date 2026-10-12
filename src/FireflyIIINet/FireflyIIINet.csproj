@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.7.2.1</Version>
+    <Version>6.7.8</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>6.7.2.1, client-only changes against Firefly III API 6.7.2. Charts now deserialize: ChartDataSet.Entries/PcEntries and ChartDataSetV2.Entries/NativeEntries read the object the server sends (label to value, numbers or numeric strings, [] when empty) through ChartEntriesConverter, and ChartDataPoint/ChartDataPointV2 gained Value; before, every /v1/chart call threw. Nullable annotations: optional Refit parameters and optional model constructor parameters are nullable, and optional model properties accept null ([AllowNull]), so a nullable-enabled consumer can leave a field unset without CS8601/CS8604/CS8625. Getters keep their declared types. Required-but-nullable fields accept null instead of throwing ArgumentNullException, and send it: PiggyBankStore/PiggyBankProperties.TargetAmount (no target), RecurrenceStore.RepeatUntil (no end), RuleAction/RuleActionStore.Value, PiggyBankAccountStore.Id, TransactionSplit.SourceId/DestinationId.</PackageReleaseNotes>
+    <PackageReleaseNotes>Firefly III API 6.7.8 (6.7.4, 6.7.6 and 6.7.7 are included; upstream published no spec for 6.7.3 or 6.7.5). New: IChartsApi.GetChartBudgetOverviewWithLimits (/v1/chart/budget/overview-with-limits, 6.7.4), IAboutApi.GetReleaseNotes and GetCurrentReleaseNotes (/v1/release-notes/{version}, 6.7.8) returning the new ReleaseNotes model. New optional parameters: IAccountsApi.ListAccount active (6.7.4), IDataApi.DestroyData unused (6.7.7, a bool; the spec mis-types it as an int64 array). Categories: CategoryProperties gained Color and LastActivity, CategoryStore/CategoryUpdate gained Color (6.7.8). Constructors gained optional trailing parameters, so recompile against this version. Includes every 6.7.2.1 client fix.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
