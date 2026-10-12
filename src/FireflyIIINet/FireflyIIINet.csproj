@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.7.8</Version>
+    <Version>6.7.8.1</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Firefly III API 6.7.8 (6.7.4, 6.7.6 and 6.7.7 are included; upstream published no spec for 6.7.3 or 6.7.5). New: IChartsApi.GetChartBudgetOverviewWithLimits (/v1/chart/budget/overview-with-limits, 6.7.4), IAboutApi.GetReleaseNotes and GetCurrentReleaseNotes (/v1/release-notes/{version}, 6.7.8) returning the new ReleaseNotes model. New optional parameters: IAccountsApi.ListAccount active (6.7.4), IDataApi.DestroyData unused (6.7.7, a bool; the spec mis-types it as an int64 array). Categories: CategoryProperties gained Color and LastActivity, CategoryStore/CategoryUpdate gained Color (6.7.8). Constructors gained optional trailing parameters, so recompile against this version. Includes every 6.7.2.1 client fix.</PackageReleaseNotes>
+    <PackageReleaseNotes>6.7.8.1, client-only changes against Firefly III API 6.7.8. CategoryUpdate.Notes and CategoryUpdate.Color can now be cleared: they are three-state, as the server treats them. Never assigned (or null in the constructor) omits the key and keeps the stored value; assigning null sends null and clears it; assigning a value sets it. Before, null was never sent, so a category's notes or color could not be removed. README: servers behind Cloudflare (the public demo among them) need a User-Agent header, and the SDK does not support native AOT.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 

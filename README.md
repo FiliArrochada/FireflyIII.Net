@@ -8,7 +8,7 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
 - API version: 6.7.8 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
-- SDK version: 6.7.8 (tracks the API version; a 4th revision component denotes client-only changes)
+- SDK version: 6.7.8.1 (tracks the API version; a 4th revision component denotes client-only changes)
 - Source specification: [api/firefly-iii-v6.7.8-v1.yaml](api/firefly-iii-v6.7.8-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
 - All released specifications (0.10.4 – 6.7.8): [api/](api/)
 
@@ -77,6 +77,16 @@ foreach (var account in list.Data)
 
 A runnable end-to-end example (create + delete a transaction) lives in [src/Example/](src/Example/).
 
+> **Servers behind Cloudflare need a `User-Agent`.** `HttpClient` sends none by default, and
+> Cloudflare's bot protection answers such requests with 403 before they reach Firefly III. The
+> public demo (https://demo.firefly-iii.org) is one of them. Add one to the client:
+> `http.DefaultRequestHeaders.UserAgent.ParseAdd("MyApp/1.0");`.
+>
+> **No native AOT.** The SDK uses reflection-based System.Text.Json and Refit's reflection
+> request builder, so it does not work in an app published with native AOT, or with
+> `JsonSerializerIsReflectionEnabledByDefault` off: every response fails to deserialize.
+> A .NET 10 file-based app turns AOT on by default; add `#:property PublishAot=false`.
+
 ## Errors
 
 Refit throws `Refit.ApiException` for non-success status codes; the JSON error payload is
@@ -105,6 +115,10 @@ available via `ex.Content` and can be deserialized to the spec's error models
   `GetCurrentReleaseNotes()` for the server's own version (the route makes `{version}` optional).
   The model's `release_notes` field is `ReleaseNotesHtml`, since a member cannot share the
   `ReleaseNotes` type's name.
+- `CategoryUpdate.Notes` and `CategoryUpdate.Color` are three-state, as the server treats them:
+  never assigned (or null in the constructor) leaves the key out and the stored value unchanged;
+  assigning `null` sends `null` and clears it; assigning a value sets it. The update still needs
+  `Name`: the server fails with 500 without it, although the spec marks it optional.
 - Date-only fields use the `yyyy-MM-dd` wire format via `OpenAPIDateConverter`; date-time fields
   use RFC 3339.
 - The test suite never hits the network — Refit slice tests use a capturing handler that records

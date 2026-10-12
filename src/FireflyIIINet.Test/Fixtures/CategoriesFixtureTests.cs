@@ -132,6 +132,35 @@ namespace FireflyIIINet.Test.Fixtures
         }
 
         [Fact]
+        public void CategoryUpdate_Notes_And_Color_Are_Three_State()
+        {
+            // Verified on the live server: an omitted key keeps the stored value, an explicit
+            // null clears it.
+            var untouched = new CategoryUpdate("Lunch", notes: null, color: null);
+            var cleared = new CategoryUpdate("Lunch") { Notes = null, Color = null };
+            var set = new CategoryUpdate("Lunch", notes: "n", color: "FF0000");
+
+            Assert.Equal("{\"name\":\"Lunch\"}", JsonSerializer.Serialize(untouched, SerializerOptions.Default));
+            Assert.Equal("{\"name\":\"Lunch\",\"notes\":null,\"color\":null}", JsonSerializer.Serialize(cleared, SerializerOptions.Default));
+            Assert.Equal("{\"name\":\"Lunch\",\"notes\":\"n\",\"color\":\"FF0000\"}", JsonSerializer.Serialize(set, SerializerOptions.Default));
+        }
+
+        [Fact]
+        public void CategoryUpdate_Round_Trips_Each_State()
+        {
+            foreach (var json in new[]
+            {
+                "{\"name\":\"Lunch\"}",
+                "{\"name\":\"Lunch\",\"notes\":null,\"color\":null}",
+                "{\"name\":\"Lunch\",\"notes\":\"n\",\"color\":\"FF0000\"}",
+            })
+            {
+                var update = JsonSerializer.Deserialize<CategoryUpdate>(json, SerializerOptions.Default);
+                Assert.Equal(json, JsonSerializer.Serialize(update, SerializerOptions.Default));
+            }
+        }
+
+        [Fact]
         public void Category_Spent_And_Earned_ReadOnly_Lists_Are_Populated()
         {
             // Spent/Earned have private setters + [JsonInclude]: server-computed
