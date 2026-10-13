@@ -81,8 +81,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The link type name to use. You can also use the link_type_id field.</value>
         /// <example>Is paid by</example>
-        [DataMember(Name = "link_type_name", EmitDefaultValue = true)]
+        [DataMember(Name = "link_type_name", EmitDefaultValue = false)]
         [JsonPropertyName("link_type_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string LinkTypeName { get; set; }
 

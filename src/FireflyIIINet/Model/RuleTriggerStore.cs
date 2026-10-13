@@ -80,8 +80,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the trigger</value>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int Order { get; set; }
 
         /// <summary>

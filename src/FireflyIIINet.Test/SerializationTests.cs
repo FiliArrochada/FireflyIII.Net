@@ -138,6 +138,25 @@ namespace FireflyIIINet.Test
             Assert.Equal(new DateTime(2023, 5, 1), piggy.StartDate);
         }
 
+        [Fact]
+        public void String_Fields_Read_Numbers()
+        {
+            // An available budget's spent_in_budgets[].currency_id comes back as a number.
+            var entry = JsonSerializer.Deserialize<ArrayEntryWithCurrencyAndSum>(
+                "{\"sum\":\"-483.44\",\"currency_id\":1,\"currency_code\":\"EUR\",\"currency_decimal_places\":2}", Options);
+            Assert.Equal("1", entry.CurrencyId);
+            Assert.Equal("{\"currency_id\":\"1\"", JsonSerializer.Serialize(entry, Options).Substring(0, 18));
+        }
+
+        [Fact]
+        public void DateOnly_Fields_Deserialize_From_A_Date_Time()
+        {
+            // The server sends a recurrence's first_date as a date-time although the spec says date.
+            var recurrence = JsonSerializer.Deserialize<RecurrenceProperties>(
+                "{\"type\":\"withdrawal\",\"title\":\"Rent\",\"first_date\":\"2026-11-11T00:00:00+01:00\"}", Options);
+            Assert.Equal(new DateTime(2026, 11, 11), recurrence.FirstDate);
+        }
+
         // ---------- Read-only (server-computed) fields ----------
 
         [Fact]

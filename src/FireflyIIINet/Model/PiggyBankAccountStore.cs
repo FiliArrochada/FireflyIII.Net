@@ -49,12 +49,13 @@ namespace FireflyIIINet.Model
         }
 
         /// <summary>
-        /// The ID of the account.
+        /// The ID of the account. Sent as <c>account_id</c>: the spec names it <c>id</c>, but the
+        /// server reads (and requires) <c>account_id</c>.
         /// </summary>
         /// <value>The ID of the account.</value>
         /// <example>3</example>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
-        [JsonPropertyName("id")]
+        [DataMember(Name = "account_id", IsRequired = true, EmitDefaultValue = true)]
+        [JsonPropertyName("account_id")]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Id { get; set; }
 
@@ -74,8 +75,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The amount saved currently.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "current_amount", EmitDefaultValue = true)]
+        [DataMember(Name = "current_amount", EmitDefaultValue = false)]
         [JsonPropertyName("current_amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrentAmount { get; set; }
 

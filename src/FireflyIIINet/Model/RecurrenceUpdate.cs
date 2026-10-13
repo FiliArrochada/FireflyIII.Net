@@ -25,7 +25,7 @@ using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 namespace FireflyIIINet.Model
 {
     /// <summary>
-    /// RecurrenceUpdate
+    /// RecurrenceUpdate. The server needs Transactions on every update (422 "Need at least one transaction." without them).
     /// </summary>
     [DataContract(Name = "RecurrenceUpdate")]
     public partial class RecurrenceUpdate : IEquatable<RecurrenceUpdate>, IValidatableObject
@@ -48,7 +48,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="repetitions">repetitions.</param>
         /// <param name="transactions">transactions.</param>
-        public RecurrenceUpdate(string? title = default(string), string? description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string? notes = default(string), List<RecurrenceRepetitionUpdate>? repetitions = default(List<RecurrenceRepetitionUpdate>), List<RecurrenceTransactionUpdate>? transactions = default(List<RecurrenceTransactionUpdate>))
+        public RecurrenceUpdate(string? title = default(string), string? description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool? applyRules = default(bool?), bool? active = default(bool?), string? notes = default(string), List<RecurrenceRepetitionUpdate>? repetitions = default(List<RecurrenceRepetitionUpdate>), List<RecurrenceTransactionUpdate>? transactions = default(List<RecurrenceTransactionUpdate>))
         {
             Title = title;
             Description = description;
@@ -66,8 +66,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Title
         /// </summary>
         /// <example>Rent</example>
-        [DataMember(Name = "title", EmitDefaultValue = true)]
+        [DataMember(Name = "title", EmitDefaultValue = false)]
         [JsonPropertyName("title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
@@ -76,8 +77,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Not to be confused with the description of the actual transaction(s) being created.</value>
         /// <example>Recurring transaction for the monthly rent</example>
-        [DataMember(Name = "description", EmitDefaultValue = true)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
@@ -86,8 +88,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>First time the recurring transaction will fire.</value>
         /// <example>Mon Sep 17 01:00:00 WEST 2018</example>
-        [DataMember(Name = "first_date", EmitDefaultValue = true)]
+        [DataMember(Name = "first_date", EmitDefaultValue = false)]
         [JsonPropertyName("first_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime FirstDate { get; set; }
 
@@ -117,21 +120,24 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Whether or not to fire the rules after the creation of a transaction.</value>
         /// <example>true</example>
-        [DataMember(Name = "apply_rules", EmitDefaultValue = true)]
+        [DataMember(Name = "apply_rules", EmitDefaultValue = false)]
         [JsonPropertyName("apply_rules")]
-        public bool ApplyRules { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? ApplyRules { get; set; }
 
         /// <summary>
         /// If the recurrence is even active.
         /// </summary>
         /// <value>If the recurrence is even active.</value>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
-        /// Gets or Sets Notes
+        /// Gets or Sets Notes.
+        /// Null leaves the key out and keeps the stored notes; assign "" to clear them.
         /// </summary>
         /// <example>Some notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
@@ -143,16 +149,18 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Repetitions
         /// </summary>
-        [DataMember(Name = "repetitions", EmitDefaultValue = true)]
+        [DataMember(Name = "repetitions", EmitDefaultValue = false)]
         [JsonPropertyName("repetitions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RecurrenceRepetitionUpdate> Repetitions { get; set; }
 
         /// <summary>
         /// Gets or Sets Transactions
         /// </summary>
-        [DataMember(Name = "transactions", EmitDefaultValue = true)]
+        [DataMember(Name = "transactions", EmitDefaultValue = false)]
         [JsonPropertyName("transactions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RecurrenceTransactionUpdate> Transactions { get; set; }
 

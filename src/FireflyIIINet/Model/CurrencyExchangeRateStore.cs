@@ -97,8 +97,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The exchange rate from the base currency to the destination currency.</value>
         /// <example>2.3456</example>
-        [DataMember(Name = "rate", EmitDefaultValue = true)]
+        [DataMember(Name = "rate", EmitDefaultValue = false)]
         [JsonPropertyName("rate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Rate { get; set; }
 

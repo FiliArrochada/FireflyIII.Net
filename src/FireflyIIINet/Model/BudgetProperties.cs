@@ -271,13 +271,14 @@ namespace FireflyIIINet.Model
             return false;
         }
         /// <summary>
-        /// Gets or Sets CurrencyDecimalPlaces
+        /// Gets or Sets CurrencyDecimalPlaces. Null for a budget without a currency of its own
+        /// (<see cref="ObjectHasCurrencySetting"/> false), as are the other currency fields.
         /// </summary>
         /// <example>2</example>
         [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
         [JsonPropertyName("currency_decimal_places")]
         [JsonInclude]
-        public int CurrencyDecimalPlaces { get; private set; }
+        public int? CurrencyDecimalPlaces { get; private set; }
 
         /// <summary>
         /// Returns false as CurrencyDecimalPlaces should not be serialized given that it's read-only.

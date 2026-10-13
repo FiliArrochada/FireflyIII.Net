@@ -103,8 +103,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Description
         /// </summary>
         /// <example>First rule description</example>
-        [DataMember(Name = "description", EmitDefaultValue = true)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
@@ -122,8 +123,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Title of the rule group under which the rule must be stored. Either this field or rule_group_id is mandatory.</value>
         /// <example>New rule group</example>
-        [DataMember(Name = "rule_group_title", EmitDefaultValue = true)]
+        [DataMember(Name = "rule_group_title", EmitDefaultValue = false)]
         [JsonPropertyName("rule_group_title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string RuleGroupTitle { get; set; }
 
@@ -131,8 +133,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int Order { get; set; }
 
         /// <summary>

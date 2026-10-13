@@ -25,7 +25,7 @@ using OpenAPIDateConverter = FireflyIIINet.Client.OpenAPIDateConverter;
 namespace FireflyIIINet.Model
 {
     /// <summary>
-    /// TransactionLinkUpdate
+    /// TransactionLinkUpdate. The server needs LinkTypeId, InwardId and OutwardId on every update (it fails with 500 without them), and clears the notes unless Notes is sent again.
     /// </summary>
     [DataContract(Name = "TransactionLinkUpdate")]
     public partial class TransactionLinkUpdate : IEquatable<TransactionLinkUpdate>, IValidatableObject
@@ -52,8 +52,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The link type ID to use. Use this field OR use the link_type_name field.</value>
         /// <example>5</example>
-        [DataMember(Name = "link_type_id", EmitDefaultValue = true)]
+        [DataMember(Name = "link_type_id", EmitDefaultValue = false)]
         [JsonPropertyName("link_type_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string LinkTypeId { get; set; }
 
@@ -62,8 +63,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The link type name to use. Use this field OR use the link_type_id field.</value>
         /// <example>Is paid by</example>
-        [DataMember(Name = "link_type_name", EmitDefaultValue = true)]
+        [DataMember(Name = "link_type_name", EmitDefaultValue = false)]
         [JsonPropertyName("link_type_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string LinkTypeName { get; set; }
 
@@ -72,8 +74,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The inward transaction transaction_journal_id for the link. This becomes the &#39;is paid by&#39; transaction of the set.</value>
         /// <example>131</example>
-        [DataMember(Name = "inward_id", EmitDefaultValue = true)]
+        [DataMember(Name = "inward_id", EmitDefaultValue = false)]
         [JsonPropertyName("inward_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string InwardId { get; set; }
 
@@ -82,13 +85,16 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The outward transaction transaction_journal_id for the link. This becomes the &#39;pays for&#39; transaction of the set.</value>
         /// <example>131</example>
-        [DataMember(Name = "outward_id", EmitDefaultValue = true)]
+        [DataMember(Name = "outward_id", EmitDefaultValue = false)]
         [JsonPropertyName("outward_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string OutwardId { get; set; }
 
         /// <summary>
         /// Optional. Some notes. If you submit an empty string the current notes will be removed
+        /// Unlike the other updates, the server also removes the notes when the key is left out, which
+        /// null does: to keep the notes, send them again.
         /// </summary>
         /// <value>Optional. Some notes. If you submit an empty string the current notes will be removed</value>
         /// <example>Some example notes</example>

@@ -109,6 +109,24 @@ available via `ex.Content` and can be deserialized to the spec's error models
 - Fields the spec marks both required and `nullable: true` (a piggy bank's `target_amount`, a
   recurrence's `repeat_until`, a rule action's `value`, ...) take `null` in their constructors
   and always send the key, `null` included.
+- A request sends only what the caller set. Optional fields left unset are not sent, rather
+  than as `null` or `0001-01-01`, which the server rejects (`AccountStore` without a currency
+  failed with "The currency id must be a number."). On the `*Update` models the `bool` and
+  `int` fields are `bool?`/`int?` and are left out while null, so an update changes only
+  what was set: a rename used to send `active: false`, deactivating a budget, bill,
+  recurrence, rule group or webhook. On the `*Store` models `active` defaults to `true`, an
+  unset `order` (0) is left for the server to assign, and a recurrence repetition's
+  `weekend` defaults to `1`.
+- Some updates need more than the spec requires: `CategoryUpdate` needs `Name`,
+  `RecurrenceUpdate` needs `Transactions`, and `TransactionLinkUpdate` needs `LinkTypeId`,
+  `InwardId` and `OutwardId`. Without them the server answers 500 or 422.
+- Piggy banks follow the server where the spec differs: `PiggyBankAccountStore.Id` is sent as
+  `account_id`, and `PiggyBankStore`/`PiggyBankUpdate` have `TransactionCurrencyId` and
+  `TransactionCurrencyCode` (one of them is required on create), which the spec leaves out.
+- Responses are read as the server sends them: a `string` property also accepts a JSON
+  number (an available budget's `spent_in_budgets[].currency_id` is `1`), a date-only field
+  also accepts a date-time (a recurrence's `first_date`), and a budget without a currency of
+  its own has a null `CurrencyDecimalPlaces`.
 - `IDataApi.DestroyData`'s `unused` is a `bool?`: the spec types it as an int64 array, but the
   server validates it as `true`/`false`.
 - `GET /v1/release-notes/{version}` has two methods: `GetReleaseNotes(version)`, and
@@ -117,10 +135,14 @@ available via `ex.Content` and can be deserialized to the spec's error models
   `ReleaseNotes` type's name.
 - `CategoryUpdate.Notes` and `CategoryUpdate.Color` are three-state, as the server treats them:
   never assigned (or null in the constructor) leaves the key out and the stored value unchanged;
-  assigning `null` sends `null` and clears it; assigning a value sets it. The update still needs
-  `Name`: the server fails with 500 without it, although the spec marks it optional.
-- Date-only fields use the `yyyy-MM-dd` wire format via `OpenAPIDateConverter`; date-time fields
-  use RFC 3339.
+  assigning `null` sends `null` and clears it; assigning a value sets it.
+- The other updates (`AccountUpdate`, `BillUpdate`, `BudgetUpdate`, `BudgetLimitUpdate`,
+  `PiggyBankUpdate`, `RecurrenceUpdate`, `TransactionSplitUpdate`) leave `notes` out when
+  `Notes` is null, which keeps the stored notes; assign `""` to clear them. `TransactionLinkUpdate`
+  is the exception: the server removes a link's notes when the key is left out, so send the
+  current notes again to keep them. (Attachments could not be checked against the demo.)
+- Date-only fields are written as `yyyy-MM-dd` via `OpenAPIDateConverter`; date-time fields use
+  RFC 3339.
 - The test suite never hits the network — Refit slice tests use a capturing handler that records
   the outgoing request and returns canned JSON.
 
@@ -141,7 +163,8 @@ dotnet test  FireflyIIINet.sln
 # requests); set GITHUB_TOKEN or GH_TOKEN to stay clear of the 60/h anonymous limit.
 dotnet run scripts/check-spec-version.cs -- --diff
 
-# Read-only live smoke test against a real server (GETs only). Works against the public demo,
+# Read-only live smoke test against a real server (GETs only): the 6.7.x additions and every
+# top-level list (features the server has switched off are skipped). Works against the public demo,
 # https://demo.firefly-iii.org (demo@firefly-iii.org / demo): create a personal access token
 # under Options > Profile > OAuth.
 FIREFLY_TOKEN=<token> dotnet run scripts/smoke-test.cs -- https://demo.firefly-iii.org

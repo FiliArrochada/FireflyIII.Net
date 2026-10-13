@@ -34,8 +34,9 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets RepeatFreq
         /// </summary>
-        [DataMember(Name = "repeat_freq", EmitDefaultValue = true)]
+        [DataMember(Name = "repeat_freq", EmitDefaultValue = false)]
         [JsonPropertyName("repeat_freq")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public BillRepeatFrequency? RepeatFreq { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BillUpdate" /> class.
@@ -59,7 +60,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public BillUpdate(string? currencyId = default(string), string? currencyCode = default(string), string name = default(string), string? amountMin = default(string), string? amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency? repeatFreq = default(BillRepeatFrequency?), int skip = default(int), bool active = default(bool), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
+        public BillUpdate(string? currencyId = default(string), string? currencyCode = default(string), string name = default(string), string? amountMin = default(string), string? amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency? repeatFreq = default(BillRepeatFrequency?), int? skip = default(int?), bool? active = default(bool?), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -87,8 +88,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -97,8 +99,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
@@ -114,8 +117,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets AmountMin
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "amount_min", EmitDefaultValue = true)]
+        [DataMember(Name = "amount_min", EmitDefaultValue = false)]
         [JsonPropertyName("amount_min")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AmountMin { get; set; }
 
@@ -123,8 +127,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets AmountMax
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "amount_max", EmitDefaultValue = true)]
+        [DataMember(Name = "amount_max", EmitDefaultValue = false)]
         [JsonPropertyName("amount_max")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string AmountMax { get; set; }
 
@@ -132,8 +137,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Date
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "date", EmitDefaultValue = true)]
+        [DataMember(Name = "date", EmitDefaultValue = false)]
         [JsonPropertyName("date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Date { get; set; }
 
         /// <summary>
@@ -141,8 +147,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date after which this bill is no longer valid or applicable</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "end_date", EmitDefaultValue = true)]
+        [DataMember(Name = "end_date", EmitDefaultValue = false)]
         [JsonPropertyName("end_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -150,8 +157,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date before which the bill must be renewed (or cancelled)</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "extension_date", EmitDefaultValue = true)]
+        [DataMember(Name = "extension_date", EmitDefaultValue = false)]
         [JsonPropertyName("extension_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime ExtensionDate { get; set; }
 
         /// <summary>
@@ -159,21 +167,24 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>How often the bill must be skipped. 1 means a bi-monthly bill.</value>
         /// <example>0</example>
-        [DataMember(Name = "skip", EmitDefaultValue = true)]
+        [DataMember(Name = "skip", EmitDefaultValue = false)]
         [JsonPropertyName("skip")]
-        public int Skip { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Skip { get; set; }
 
         /// <summary>
         /// If the bill is active.
         /// </summary>
         /// <value>If the bill is active.</value>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
-        /// Gets or Sets Notes
+        /// Gets or Sets Notes.
+        /// Null leaves the key out and keeps the stored notes; assign "" to clear them.
         /// </summary>
         /// <example>Some example notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]

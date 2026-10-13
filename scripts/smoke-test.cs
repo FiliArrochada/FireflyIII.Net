@@ -6,7 +6,8 @@
  *
  * Read-only live smoke test of the SDK against a real Firefly III server: the calls whose wire
  * format the unit tests can only assume (charts, release notes, the account active filter,
- * category color/last_activity). Every call is a GET; nothing on the server is changed.
+ * category color/last_activity), and every top-level list, which deserializes the server's real
+ * data. Every call is a GET; nothing on the server is changed.
  *
  * The public demo (https://demo.firefly-iii.org, login demo@firefly-iii.org / demo) works:
  * log in, create a personal access token under Options > Profile > OAuth, and pass it in
@@ -49,11 +50,16 @@ var start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
 var end = start.AddMonths(1).AddDays(-1);
 int failures = 0;
 
-async Task Check(string name, Func<Task<string>> call)
+async Task Check(string name, Func<Task<string>> call, bool skipIfDisabled = false)
 {
     try
     {
         Console.WriteLine($"PASS {name}: {await call()}");
+    }
+    catch (ApiException ex) when (skipIfDisabled && (int)ex.StatusCode == 404 && ex.Content?.TrimStart().StartsWith("<") == true)
+    {
+        // An HTML 404 (not the API's JSON one): the server has the feature switched off.
+        Console.WriteLine($"SKIP {name}: switched off on this server");
     }
     catch (ApiException ex)
     {
@@ -114,6 +120,30 @@ await Check("GetChartBalance(1D)", async () =>
     var assets = (await accounts.ListAccount(limit: 5, type: AccountTypeFilter.Asset)).Data.Select(a => long.Parse(a.Id)).ToList();
     return Sets(await charts.GetChartBalance(start, end, period: "1D", accounts: assets));
 });
+
+// Every top-level list: each one deserializes the server's real data, which is where response
+// models drift from the spec (a budget without a currency, a recurrence's date-time first_date).
+// A feature the server has switched off (the demo: attachments, webhooks) is skipped.
+async Task List<T>(string name, Func<Task<T>> call, Func<T, int> count) => await Check(name, async () => $"{count(await call())} items", skipIfDisabled: true);
+await List("ListAttachment", () => Api<IAttachmentsApi>().ListAttachment(), r => r.Data.Count);
+await List("ListAvailableBudgets", () => Api<IAvailableBudgetsApi>().ListAvailableBudgets(), r => r.Data.Count);
+await List("ListBill", () => Api<IBillsApi>().ListBill(), r => r.Data.Count);
+await List("ListBudget", () => Api<IBudgetsApi>().ListBudget(), r => r.Data.Count);
+await List("ListBudgetLimit", () => Api<IBudgetsApi>().ListBudgetLimit(start, end), r => r.Data.Count);
+await List("ListCurrency", () => Api<ICurrenciesApi>().ListCurrency(), r => r.Data.Count);
+await List("ListCurrencyExchangeRates", () => Api<ICurrencyExchangeRatesApi>().ListCurrencyExchangeRates(), r => r.Data.Count);
+await List("ListLinkType", () => Api<ILinksApi>().ListLinkType(), r => r.Data.Count);
+await List("ListTransactionLink", () => Api<ILinksApi>().ListTransactionLink(), r => r.Data.Count);
+await List("ListObjectGroups", () => Api<IObjectGroupsApi>().ListObjectGroups(), r => r.Data.Count);
+await List("ListPiggyBank", () => Api<IPiggyBanksApi>().ListPiggyBank(), r => r.Data.Count);
+await List("ListPreference", () => Api<IPreferencesApi>().ListPreference(), r => r.Data.Count);
+await List("ListRecurrence", () => Api<IRecurrencesApi>().ListRecurrence(), r => r.Data.Count);
+await List("ListRuleGroup", () => Api<IRuleGroupsApi>().ListRuleGroup(), r => r.Data.Count);
+await List("ListRule", () => Api<IRulesApi>().ListRule(), r => r.Data.Count);
+await List("ListTag", () => Api<ITagsApi>().ListTag(), r => r.Data.Count);
+await List("ListTransaction", () => Api<ITransactionsApi>().ListTransaction(start: start, end: end), r => r.Data.Count);
+await List("ListUserGroups", () => Api<IUserGroupsApi>().ListUserGroups(), r => r.Data.Count);
+await List("ListWebhook", () => Api<IWebhooksApi>().ListWebhook(), r => r.Data.Count);
 
 Console.WriteLine(failures == 0 ? "ALL PASSED" : $"{failures} FAILED");
 return failures == 0 ? 0 : 1;

@@ -34,22 +34,25 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Triggers
         /// </summary>
-        [DataMember(Name = "triggers", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "triggers", IsRequired = true, EmitDefaultValue = false)]
         [JsonPropertyName("triggers")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public List<WebhookTrigger> Triggers { get; set; }
 
         /// <summary>
         /// Gets or Sets Responses
         /// </summary>
-        [DataMember(Name = "responses", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "responses", IsRequired = true, EmitDefaultValue = false)]
         [JsonPropertyName("responses")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public List<WebhookResponse> Responses { get; set; }
 
         /// <summary>
         /// Gets or Sets Deliveries
         /// </summary>
-        [DataMember(Name = "deliveries", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "deliveries", IsRequired = true, EmitDefaultValue = false)]
         [JsonPropertyName("deliveries")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public List<WebhookDelivery> Deliveries { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookStore" /> class.

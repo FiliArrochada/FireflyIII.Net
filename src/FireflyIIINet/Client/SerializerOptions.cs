@@ -26,6 +26,7 @@ namespace FireflyIIINet.Client
                 NumberHandling = JsonNumberHandling.AllowReadingFromString
             };
             options.Converters.Add(new StringEnumMemberConverter());
+            options.Converters.Add(new NumberAsStringConverter());
             return options;
         }
 

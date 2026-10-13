@@ -123,8 +123,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>3</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -133,8 +134,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
@@ -165,8 +167,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The budget ID for this transaction.</value>
         /// <example>4</example>
-        [DataMember(Name = "budget_id", EmitDefaultValue = true)]
+        [DataMember(Name = "budget_id", EmitDefaultValue = false)]
         [JsonPropertyName("budget_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string BudgetId { get; set; }
 
@@ -175,8 +178,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>CategoryProperties ID for this transaction.</value>
         /// <example>211</example>
-        [DataMember(Name = "category_id", EmitDefaultValue = true)]
+        [DataMember(Name = "category_id", EmitDefaultValue = false)]
         [JsonPropertyName("category_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CategoryId { get; set; }
 

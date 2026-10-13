@@ -37,7 +37,7 @@ namespace FireflyIIINet.Model
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
         /// <param name="groupTitle">Title of the transaction if it has been split in more than one piece. Empty otherwise..</param>
         /// <param name="transactions">transactions.</param>
-        public TransactionUpdate(bool applyRules = default(bool), bool fireWebhooks = true, string? groupTitle = default(string), List<TransactionSplitUpdate>? transactions = default(List<TransactionSplitUpdate>))
+        public TransactionUpdate(bool? applyRules = default(bool?), bool? fireWebhooks = default(bool?), string? groupTitle = default(string), List<TransactionSplitUpdate>? transactions = default(List<TransactionSplitUpdate>))
         {
             ApplyRules = applyRules;
             FireWebhooks = fireWebhooks;
@@ -50,18 +50,20 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Whether or not to apply rules when submitting transaction.</value>
         /// <example>false</example>
-        [DataMember(Name = "apply_rules", EmitDefaultValue = true)]
+        [DataMember(Name = "apply_rules", EmitDefaultValue = false)]
         [JsonPropertyName("apply_rules")]
-        public bool ApplyRules { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? ApplyRules { get; set; }
 
         /// <summary>
         /// Whether or not to fire the webhooks that are related to this event.
         /// </summary>
         /// <value>Whether or not to fire the webhooks that are related to this event.</value>
         /// <example>true</example>
-        [DataMember(Name = "fire_webhooks", EmitDefaultValue = true)]
+        [DataMember(Name = "fire_webhooks", EmitDefaultValue = false)]
         [JsonPropertyName("fire_webhooks")]
-        public bool FireWebhooks { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? FireWebhooks { get; set; }
 
         /// <summary>
         /// Title of the transaction if it has been split in more than one piece. Empty otherwise.
@@ -77,8 +79,9 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Transactions
         /// </summary>
-        [DataMember(Name = "transactions", EmitDefaultValue = true)]
+        [DataMember(Name = "transactions", EmitDefaultValue = false)]
         [JsonPropertyName("transactions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<TransactionSplitUpdate> Transactions { get; set; }
 

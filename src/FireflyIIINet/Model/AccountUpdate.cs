@@ -92,7 +92,7 @@ namespace FireflyIIINet.Model
         /// <param name="latitude">Latitude of the account&#39;s location, if applicable. Can be used to draw a map. If omitted, the existing location will be kept. If submitted as NULL, the current location will be removed..</param>
         /// <param name="longitude">Latitude of the account&#39;s location, if applicable. Can be used to draw a map. If omitted, the existing location will be kept. If submitted as NULL, the current location will be removed..</param>
         /// <param name="zoomLevel">Zoom level for the map, if drawn. This to set the box right. Unfortunately this is a proprietary value because each map provider has different zoom levels. If omitted, the existing location will be kept. If submitted as NULL, the current location will be removed..</param>
-        public AccountUpdate(string name = default(string), string? iban = default(string), string? bic = default(string), string? accountNumber = default(string), string? openingBalance = default(string), DateTime? openingBalanceDate = default(DateTime?), string? virtualBalance = default(string), string? currencyId = default(string), string? currencyCode = default(string), bool active = true, int order = default(int), bool includeNetWorth = true, AccountRoleProperty? accountRole = default(AccountRoleProperty?), CreditCardTypeProperty? creditCardType = default(CreditCardTypeProperty?), DateTime? monthlyPaymentDate = default(DateTime?), LiabilityTypeProperty? liabilityType = default(LiabilityTypeProperty?), string? interest = default(string), InterestPeriodProperty? interestPeriod = default(InterestPeriodProperty?), string? notes = default(string), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?))
+        public AccountUpdate(string name = default(string), string? iban = default(string), string? bic = default(string), string? accountNumber = default(string), string? openingBalance = default(string), DateTime? openingBalanceDate = default(DateTime?), string? virtualBalance = default(string), string? currencyId = default(string), string? currencyCode = default(string), bool? active = default(bool?), int? order = default(int?), bool? includeNetWorth = default(bool?), AccountRoleProperty? accountRole = default(AccountRoleProperty?), CreditCardTypeProperty? creditCardType = default(CreditCardTypeProperty?), DateTime? monthlyPaymentDate = default(DateTime?), LiabilityTypeProperty? liabilityType = default(LiabilityTypeProperty?), string? interest = default(string), InterestPeriodProperty? interestPeriod = default(InterestPeriodProperty?), string? notes = default(string), double? latitude = default(double?), double? longitude = default(double?), int? zoomLevel = default(int?))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -165,8 +165,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets OpeningBalance
         /// </summary>
         /// <example>-1012.12</example>
-        [DataMember(Name = "opening_balance", EmitDefaultValue = true)]
+        [DataMember(Name = "opening_balance", EmitDefaultValue = false)]
         [JsonPropertyName("opening_balance")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string OpeningBalance { get; set; }
 
@@ -183,8 +184,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets VirtualBalance
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "virtual_balance", EmitDefaultValue = true)]
+        [DataMember(Name = "virtual_balance", EmitDefaultValue = false)]
         [JsonPropertyName("virtual_balance")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string VirtualBalance { get; set; }
 
@@ -193,8 +195,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>12</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -203,8 +206,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
@@ -213,27 +217,30 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>If omitted, defaults to true.</value>
         /// <example>false</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
         /// Order of the account
         /// </summary>
         /// <value>Order of the account</value>
         /// <example>1</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Order { get; set; }
 
         /// <summary>
         /// If omitted, defaults to true.
         /// </summary>
         /// <value>If omitted, defaults to true.</value>
         /// <example>true</example>
-        [DataMember(Name = "include_net_worth", EmitDefaultValue = true)]
+        [DataMember(Name = "include_net_worth", EmitDefaultValue = false)]
         [JsonPropertyName("include_net_worth")]
-        public bool IncludeNetWorth { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? IncludeNetWorth { get; set; }
 
         /// <summary>
         /// Mandatory when the account_role is ccAsset. Moment at which CC payment installments are asked for by the bank.
@@ -257,7 +264,8 @@ namespace FireflyIIINet.Model
         public string Interest { get; set; }
 
         /// <summary>
-        /// Gets or Sets Notes
+        /// Gets or Sets Notes.
+        /// Null leaves the key out and keeps the stored notes; assign "" to clear them.
         /// </summary>
         /// <example>Some example notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]

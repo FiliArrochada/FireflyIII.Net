@@ -63,7 +63,7 @@ namespace FireflyIIINet.Model
         /// <param name="autoBudgetAmount">autoBudgetAmount.</param>
         /// <param name="autoBudgetPeriod">autoBudgetPeriod.</param>
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
-        public BudgetStore(string name = default(string), bool active = default(bool), string? notes = default(string), AutoBudgetType? autoBudgetType = default(AutoBudgetType?), string? autoBudgetCurrencyId = default(string), string? autoBudgetCurrencyCode = default(string), string? autoBudgetAmount = default(string), AutoBudgetPeriod? autoBudgetPeriod = default(AutoBudgetPeriod?), bool fireWebhooks = true)
+        public BudgetStore(string name = default(string), bool active = true, string? notes = default(string), AutoBudgetType? autoBudgetType = default(AutoBudgetType?), string? autoBudgetCurrencyId = default(string), string? autoBudgetCurrencyCode = default(string), string? autoBudgetAmount = default(string), AutoBudgetPeriod? autoBudgetPeriod = default(AutoBudgetPeriod?), bool fireWebhooks = true)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -101,8 +101,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public int Order { get; private set; }
 

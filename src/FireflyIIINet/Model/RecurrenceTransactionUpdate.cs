@@ -87,8 +87,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Description
         /// </summary>
         /// <example>Rent for the current month</example>
-        [DataMember(Name = "description", EmitDefaultValue = true)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
@@ -97,8 +98,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Amount of the transaction.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "amount", EmitDefaultValue = true)]
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
         [JsonPropertyName("amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
@@ -118,8 +120,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>3</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -128,8 +131,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Submit either a currency_id or a currency_code.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
@@ -149,8 +153,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The budget ID for this transaction.</value>
         /// <example>4</example>
-        [DataMember(Name = "budget_id", EmitDefaultValue = true)]
+        [DataMember(Name = "budget_id", EmitDefaultValue = false)]
         [JsonPropertyName("budget_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string BudgetId { get; set; }
 
@@ -159,8 +164,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>CategoryProperties ID for this transaction.</value>
         /// <example>211</example>
-        [DataMember(Name = "category_id", EmitDefaultValue = true)]
+        [DataMember(Name = "category_id", EmitDefaultValue = false)]
         [JsonPropertyName("category_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CategoryId { get; set; }
 
@@ -169,8 +175,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID of the source account. Submit either this or source_name.</value>
         /// <example>913</example>
-        [DataMember(Name = "source_id", EmitDefaultValue = true)]
+        [DataMember(Name = "source_id", EmitDefaultValue = false)]
         [JsonPropertyName("source_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string SourceId { get; set; }
 
@@ -179,8 +186,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID of the destination account. Submit either this or destination_name.</value>
         /// <example>258</example>
-        [DataMember(Name = "destination_id", EmitDefaultValue = true)]
+        [DataMember(Name = "destination_id", EmitDefaultValue = false)]
         [JsonPropertyName("destination_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string DestinationId { get; set; }
 

@@ -54,8 +54,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The tag</value>
         /// <example>expensive</example>
-        [DataMember(Name = "tag", EmitDefaultValue = true)]
+        [DataMember(Name = "tag", EmitDefaultValue = false)]
         [JsonPropertyName("tag")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Tag { get; set; }
 

@@ -47,8 +47,10 @@ namespace FireflyIIINet.Model
         /// <param name="order">order.</param>
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
+        /// <param name="transactionCurrencyId">The currency of the piggy bank (not in the spec; the server reads it). Use either this or transactionCurrencyCode.</param>
+        /// <param name="transactionCurrencyCode">The currency code of the piggy bank (not in the spec; the server reads it). Use either this or transactionCurrencyId.</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public PiggyBankStore(string name = default(string), List<PiggyBankAccountStore>? accounts = default(List<PiggyBankAccountStore>), string? targetAmount = default(string), string? currentAmount = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
+        public PiggyBankStore(string name = default(string), List<PiggyBankAccountStore>? accounts = default(List<PiggyBankAccountStore>), string? targetAmount = default(string), string? currentAmount = default(string), DateTime? startDate = default(DateTime?), DateTime? targetDate = default(DateTime?), int order = default(int), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string), string? transactionCurrencyId = default(string), string? transactionCurrencyCode = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -65,6 +67,8 @@ namespace FireflyIIINet.Model
             Notes = notes;
             ObjectGroupId = objectGroupId;
             ObjectGroupTitle = objectGroupTitle;
+            TransactionCurrencyId = transactionCurrencyId;
+            TransactionCurrencyCode = transactionCurrencyCode;
         }
 
         /// <summary>
@@ -79,8 +83,9 @@ namespace FireflyIIINet.Model
         /// The accounts connected to this piggy bank.
         /// </summary>
         /// <value>The accounts connected to this piggy bank.</value>
-        [DataMember(Name = "accounts", EmitDefaultValue = true)]
+        [DataMember(Name = "accounts", EmitDefaultValue = false)]
         [JsonPropertyName("accounts")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<PiggyBankAccountStore> Accounts { get; set; }
 
@@ -97,8 +102,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrentAmount
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "current_amount", EmitDefaultValue = true)]
+        [DataMember(Name = "current_amount", EmitDefaultValue = false)]
         [JsonPropertyName("current_amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrentAmount { get; set; }
 
@@ -127,16 +133,18 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int Order { get; set; }
 
         /// <summary>
         /// Gets or Sets Active
         /// </summary>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public bool Active { get; private set; }
 
@@ -181,6 +189,26 @@ namespace FireflyIIINet.Model
         public string ObjectGroupTitle { get; set; }
 
         /// <summary>
+        /// The currency of the piggy bank. Not in the spec, but the server reads it and requires this or TransactionCurrencyCode on create.
+        /// </summary>
+        /// <example>1</example>
+        [DataMember(Name = "transaction_currency_id", EmitDefaultValue = false)]
+        [JsonPropertyName("transaction_currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
+        public string TransactionCurrencyId { get; set; }
+
+        /// <summary>
+        /// The currency code of the piggy bank. Not in the spec, but the server reads it and requires this or TransactionCurrencyCode on create.
+        /// </summary>
+        /// <example>EUR</example>
+        [DataMember(Name = "transaction_currency_code", EmitDefaultValue = false)]
+        [JsonPropertyName("transaction_currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [System.Diagnostics.CodeAnalysis.AllowNull]
+        public string TransactionCurrencyCode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -199,6 +227,8 @@ namespace FireflyIIINet.Model
             sb.Append("  Notes: ").Append(Notes).Append("\n");
             sb.Append("  ObjectGroupId: ").Append(ObjectGroupId).Append("\n");
             sb.Append("  ObjectGroupTitle: ").Append(ObjectGroupTitle).Append("\n");
+            sb.Append("  TransactionCurrencyId: ").Append(TransactionCurrencyId).Append("\n");
+            sb.Append("  TransactionCurrencyCode: ").Append(TransactionCurrencyCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -284,6 +314,16 @@ namespace FireflyIIINet.Model
                     ObjectGroupTitle == input.ObjectGroupTitle ||
                     (ObjectGroupTitle != null &&
                     ObjectGroupTitle.Equals(input.ObjectGroupTitle))
+                ) &&
+                (
+                    TransactionCurrencyId == input.TransactionCurrencyId ||
+                    (TransactionCurrencyId != null &&
+                    TransactionCurrencyId.Equals(input.TransactionCurrencyId))
+                ) &&
+                (
+                    TransactionCurrencyCode == input.TransactionCurrencyCode ||
+                    (TransactionCurrencyCode != null &&
+                    TransactionCurrencyCode.Equals(input.TransactionCurrencyCode))
                 );
         }
 
@@ -324,6 +364,14 @@ namespace FireflyIIINet.Model
                 if (ObjectGroupTitle != null)
                 {
                     hashCode = (hashCode * 59) + ObjectGroupTitle.GetHashCode();
+                }
+                if (TransactionCurrencyId != null)
+                {
+                    hashCode = (hashCode * 59) + TransactionCurrencyId.GetHashCode();
+                }
+                if (TransactionCurrencyCode != null)
+                {
+                    hashCode = (hashCode * 59) + TransactionCurrencyCode.GetHashCode();
                 }
                 return hashCode;
             }

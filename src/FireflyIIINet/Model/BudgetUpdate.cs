@@ -64,7 +64,7 @@ namespace FireflyIIINet.Model
         /// <param name="autoBudgetAmount">autoBudgetAmount.</param>
         /// <param name="autoBudgetPeriod">autoBudgetPeriod.</param>
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
-        public BudgetUpdate(string name = default(string), bool active = default(bool), int order = default(int), string? notes = default(string), AutoBudgetType? autoBudgetType = default(AutoBudgetType?), string? autoBudgetCurrencyId = default(string), string? autoBudgetCurrencyCode = default(string), string? autoBudgetAmount = default(string), AutoBudgetPeriod? autoBudgetPeriod = default(AutoBudgetPeriod?), bool fireWebhooks = true)
+        public BudgetUpdate(string name = default(string), bool? active = default(bool?), int? order = default(int?), string? notes = default(string), AutoBudgetType? autoBudgetType = default(AutoBudgetType?), string? autoBudgetCurrencyId = default(string), string? autoBudgetCurrencyCode = default(string), string? autoBudgetAmount = default(string), AutoBudgetPeriod? autoBudgetPeriod = default(AutoBudgetPeriod?), bool? fireWebhooks = default(bool?))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -95,20 +95,23 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Active
         /// </summary>
         /// <example>false</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Order { get; set; }
 
         /// <summary>
-        /// Gets or Sets Notes
+        /// Gets or Sets Notes.
+        /// Null leaves the key out and keeps the stored notes; assign "" to clear them.
         /// </summary>
         /// <example>Some notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]
@@ -154,9 +157,10 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Whether or not to fire the webhooks that are related to this event.</value>
         /// <example>true</example>
-        [DataMember(Name = "fire_webhooks", EmitDefaultValue = true)]
+        [DataMember(Name = "fire_webhooks", EmitDefaultValue = false)]
         [JsonPropertyName("fire_webhooks")]
-        public bool FireWebhooks { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? FireWebhooks { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

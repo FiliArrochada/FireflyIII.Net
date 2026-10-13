@@ -59,7 +59,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="objectGroupId">The group ID of the group this object is part of. NULL if no group..</param>
         /// <param name="objectGroupTitle">The name of the group. NULL if no group..</param>
-        public BillStore(string? currencyId = default(string), string? currencyCode = default(string), string name = default(string), string amountMin = default(string), string amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency repeatFreq = default(BillRepeatFrequency), int skip = default(int), bool active = default(bool), string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
+        public BillStore(string? currencyId = default(string), string? currencyCode = default(string), string name = default(string), string amountMin = default(string), string amountMax = default(string), DateTime? date = default(DateTime?), DateTime? endDate = default(DateTime?), DateTime? extensionDate = default(DateTime?), BillRepeatFrequency repeatFreq = default(BillRepeatFrequency), int skip = default(int), bool active = true, string? notes = default(string), string? objectGroupId = default(string), string? objectGroupTitle = default(string))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -97,8 +97,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -107,8 +108,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
@@ -149,8 +151,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date after which this bill is no longer valid or applicable</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "end_date", EmitDefaultValue = true)]
+        [DataMember(Name = "end_date", EmitDefaultValue = false)]
         [JsonPropertyName("end_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -158,8 +161,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The date before which the bill must be renewed (or cancelled)</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "extension_date", EmitDefaultValue = true)]
+        [DataMember(Name = "extension_date", EmitDefaultValue = false)]
         [JsonPropertyName("extension_date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime ExtensionDate { get; set; }
 
         /// <summary>

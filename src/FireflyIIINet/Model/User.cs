@@ -75,8 +75,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [DataMember(Name = "created_at", EmitDefaultValue = false)]
         [JsonPropertyName("created_at")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
@@ -92,8 +93,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
         [JsonPropertyName("updated_at")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 

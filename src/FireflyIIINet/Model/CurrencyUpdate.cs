@@ -39,7 +39,7 @@ namespace FireflyIIINet.Model
         /// <param name="name">The currency name.</param>
         /// <param name="symbol">The currency symbol.</param>
         /// <param name="decimalPlaces">How many decimals to use when displaying this currency. Between 0 and 16..</param>
-        public CurrencyUpdate(bool enabled = default(bool), bool varDefault = default(bool), string? code = default(string), string? name = default(string), string? symbol = default(string), int decimalPlaces = default(int))
+        public CurrencyUpdate(bool? enabled = default(bool?), bool? varDefault = default(bool?), string? code = default(string), string? name = default(string), string? symbol = default(string), int? decimalPlaces = default(int?))
         {
             Enabled = enabled;
             VarDefault = varDefault;
@@ -54,26 +54,29 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>If the currency is enabled</value>
         /// <example>true</example>
-        [DataMember(Name = "enabled", EmitDefaultValue = true)]
+        [DataMember(Name = "enabled", EmitDefaultValue = false)]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Enabled { get; set; }
 
         /// <summary>
         /// If the currency must be the default for the user. You can only submit TRUE.
         /// </summary>
         /// <value>If the currency must be the default for the user. You can only submit TRUE.</value>
         /// <example>true</example>
-        [DataMember(Name = "default", EmitDefaultValue = true)]
+        [DataMember(Name = "default", EmitDefaultValue = false)]
         [JsonPropertyName("default")]
-        public bool VarDefault { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? VarDefault { get; set; }
 
         /// <summary>
         /// The currency code
         /// </summary>
         /// <value>The currency code</value>
         /// <example>AMS</example>
-        [DataMember(Name = "code", EmitDefaultValue = true)]
+        [DataMember(Name = "code", EmitDefaultValue = false)]
         [JsonPropertyName("code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Code { get; set; }
 
@@ -82,8 +85,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency name</value>
         /// <example>Ankh-Morpork dollar</example>
-        [DataMember(Name = "name", EmitDefaultValue = true)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         [JsonPropertyName("name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Name { get; set; }
 
@@ -92,8 +96,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency symbol</value>
         /// <example>AM$</example>
-        [DataMember(Name = "symbol", EmitDefaultValue = true)]
+        [DataMember(Name = "symbol", EmitDefaultValue = false)]
         [JsonPropertyName("symbol")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Symbol { get; set; }
 
@@ -102,9 +107,10 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>How many decimals to use when displaying this currency. Between 0 and 16.</value>
         /// <example>2</example>
-        [DataMember(Name = "decimal_places", EmitDefaultValue = true)]
+        [DataMember(Name = "decimal_places", EmitDefaultValue = false)]
         [JsonPropertyName("decimal_places")]
-        public int DecimalPlaces { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? DecimalPlaces { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

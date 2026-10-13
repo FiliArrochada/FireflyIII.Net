@@ -34,8 +34,9 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = true)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonPropertyName("type")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public TransactionTypeProperty? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionSplitUpdate" /> class.
@@ -87,7 +88,7 @@ namespace FireflyIIINet.Model
         /// <param name="dueDate">dueDate.</param>
         /// <param name="paymentDate">paymentDate.</param>
         /// <param name="invoiceDate">invoiceDate.</param>
-        public TransactionSplitUpdate(string? transactionJournalId = default(string), TransactionTypeProperty? type = default(TransactionTypeProperty?), DateTime? date = default(DateTime?), string? amount = default(string), string? description = default(string), int? order = default(int?), string? currencyId = default(string), string? currencyCode = default(string), string? foreignAmount = default(string), string? foreignCurrencyId = default(string), string? foreignCurrencyCode = default(string), string? budgetId = default(string), string? categoryId = default(string), string? categoryName = default(string), string? sourceId = default(string), string? sourceName = default(string), string? sourceIban = default(string), string? destinationId = default(string), string? destinationName = default(string), string? destinationIban = default(string), bool reconciled = default(bool), string? billId = default(string), string? billName = default(string), List<string>? tags = default(List<string>), string? notes = default(string), string? internalReference = default(string), string? externalId = default(string), string? externalUrl = default(string), string? sepaCc = default(string), string? sepaCtOp = default(string), string? sepaCtId = default(string), string? sepaDb = default(string), string? sepaCountry = default(string), string? sepaEp = default(string), string? sepaCi = default(string), string? sepaBatchId = default(string), DateTime? interestDate = default(DateTime?), DateTime? bookDate = default(DateTime?), DateTime? processDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paymentDate = default(DateTime?), DateTime? invoiceDate = default(DateTime?))
+        public TransactionSplitUpdate(string? transactionJournalId = default(string), TransactionTypeProperty? type = default(TransactionTypeProperty?), DateTime? date = default(DateTime?), string? amount = default(string), string? description = default(string), int? order = default(int?), string? currencyId = default(string), string? currencyCode = default(string), string? foreignAmount = default(string), string? foreignCurrencyId = default(string), string? foreignCurrencyCode = default(string), string? budgetId = default(string), string? categoryId = default(string), string? categoryName = default(string), string? sourceId = default(string), string? sourceName = default(string), string? sourceIban = default(string), string? destinationId = default(string), string? destinationName = default(string), string? destinationIban = default(string), bool? reconciled = default(bool?), string? billId = default(string), string? billName = default(string), List<string>? tags = default(List<string>), string? notes = default(string), string? internalReference = default(string), string? externalId = default(string), string? externalUrl = default(string), string? sepaCc = default(string), string? sepaCtOp = default(string), string? sepaCtId = default(string), string? sepaDb = default(string), string? sepaCountry = default(string), string? sepaEp = default(string), string? sepaCi = default(string), string? sepaBatchId = default(string), DateTime? interestDate = default(DateTime?), DateTime? bookDate = default(DateTime?), DateTime? processDate = default(DateTime?), DateTime? dueDate = default(DateTime?), DateTime? paymentDate = default(DateTime?), DateTime? invoiceDate = default(DateTime?))
         {
             TransactionJournalId = transactionJournalId;
             Type = type;
@@ -138,8 +139,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Transaction journal ID of current transaction (split).</value>
         /// <example>123</example>
-        [DataMember(Name = "transaction_journal_id", EmitDefaultValue = true)]
+        [DataMember(Name = "transaction_journal_id", EmitDefaultValue = false)]
         [JsonPropertyName("transaction_journal_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string TransactionJournalId { get; set; }
 
@@ -148,8 +150,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Date of the transaction</value>
         /// <example>2018-09-17T12:46:47+01:00</example>
-        [DataMember(Name = "date", EmitDefaultValue = true)]
+        [DataMember(Name = "date", EmitDefaultValue = false)]
         [JsonPropertyName("date")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Date { get; set; }
 
         /// <summary>
@@ -157,8 +160,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Amount of the transaction.</value>
         /// <example>123.45</example>
-        [DataMember(Name = "amount", EmitDefaultValue = true)]
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
         [JsonPropertyName("amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
@@ -167,8 +171,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Description of the transaction.</value>
         /// <example>Vegetables</example>
-        [DataMember(Name = "description", EmitDefaultValue = true)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
@@ -208,8 +213,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
         [JsonPropertyName("currency_symbol")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string CurrencySymbol { get; private set; }
 
@@ -225,8 +231,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencyName
         /// </summary>
         /// <example>Euro</example>
-        [DataMember(Name = "currency_name", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_name", EmitDefaultValue = false)]
         [JsonPropertyName("currency_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string CurrencyName { get; private set; }
 
@@ -243,8 +250,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Number of decimals used in this currency.</value>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
         [JsonPropertyName("currency_decimal_places")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public int CurrencyDecimalPlaces { get; private set; }
 
@@ -447,9 +455,10 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>If the transaction has been reconciled already. When you set this, the amount can no longer be edited by the user.</value>
         /// <example>false</example>
-        [DataMember(Name = "reconciled", EmitDefaultValue = true)]
+        [DataMember(Name = "reconciled", EmitDefaultValue = false)]
         [JsonPropertyName("reconciled")]
-        public bool Reconciled { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Reconciled { get; set; }
 
         /// <summary>
         /// Optional. Use either this or the bill_name
@@ -484,7 +493,8 @@ namespace FireflyIIINet.Model
         public List<string> Tags { get; set; }
 
         /// <summary>
-        /// Gets or Sets Notes
+        /// Gets or Sets Notes.
+        /// Null leaves the key out and keeps the stored notes; assign "" to clear them.
         /// </summary>
         /// <example>Some example notes</example>
         [DataMember(Name = "notes", EmitDefaultValue = false)]

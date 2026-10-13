@@ -47,8 +47,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Filename
         /// </summary>
         /// <example>file.pdf</example>
-        [DataMember(Name = "filename", EmitDefaultValue = true)]
+        [DataMember(Name = "filename", EmitDefaultValue = false)]
         [JsonPropertyName("filename")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Filename { get; set; }
 
@@ -56,8 +57,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Title
         /// </summary>
         /// <example>Some PDF file</example>
-        [DataMember(Name = "title", EmitDefaultValue = true)]
+        [DataMember(Name = "title", EmitDefaultValue = false)]
         [JsonPropertyName("title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 

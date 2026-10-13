@@ -37,7 +37,7 @@ namespace FireflyIIINet.Model
         /// <param name="description">description.</param>
         /// <param name="order">order.</param>
         /// <param name="active">active.</param>
-        public RuleGroupUpdate(string? title = default(string), string? description = default(string), int order = default(int), bool active = default(bool))
+        public RuleGroupUpdate(string? title = default(string), string? description = default(string), int? order = default(int?), bool? active = default(bool?))
         {
             Title = title;
             Description = description;
@@ -49,8 +49,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Title
         /// </summary>
         /// <example>Default rule group</example>
-        [DataMember(Name = "title", EmitDefaultValue = true)]
+        [DataMember(Name = "title", EmitDefaultValue = false)]
         [JsonPropertyName("title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
@@ -68,17 +69,19 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Order
         /// </summary>
         /// <example>4</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Order { get; set; }
 
         /// <summary>
         /// Gets or Sets Active
         /// </summary>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -34,8 +34,9 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Trigger
         /// </summary>
-        [DataMember(Name = "trigger", EmitDefaultValue = true)]
+        [DataMember(Name = "trigger", EmitDefaultValue = false)]
         [JsonPropertyName("trigger")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public RuleTriggerType? Trigger { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleUpdate" /> class.
@@ -50,7 +51,7 @@ namespace FireflyIIINet.Model
         /// <param name="stopProcessing">If this value is true and the rule is triggered, other rules  after this one in the group will be skipped. Default value is false. (default to false).</param>
         /// <param name="triggers">triggers.</param>
         /// <param name="actions">actions.</param>
-        public RuleUpdate(string? title = default(string), string? description = default(string), string? ruleGroupId = default(string), int order = default(int), RuleTriggerType? trigger = default(RuleTriggerType?), bool active = true, bool strict = default(bool), bool stopProcessing = false, List<RuleTriggerUpdate>? triggers = default(List<RuleTriggerUpdate>), List<RuleActionUpdate>? actions = default(List<RuleActionUpdate>))
+        public RuleUpdate(string? title = default(string), string? description = default(string), string? ruleGroupId = default(string), int? order = default(int?), RuleTriggerType? trigger = default(RuleTriggerType?), bool? active = default(bool?), bool? strict = default(bool?), bool? stopProcessing = default(bool?), List<RuleTriggerUpdate>? triggers = default(List<RuleTriggerUpdate>), List<RuleActionUpdate>? actions = default(List<RuleActionUpdate>))
         {
             Title = title;
             Description = description;
@@ -68,8 +69,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Title
         /// </summary>
         /// <example>First rule title.</example>
-        [DataMember(Name = "title", EmitDefaultValue = true)]
+        [DataMember(Name = "title", EmitDefaultValue = false)]
         [JsonPropertyName("title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 
@@ -77,8 +79,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Description
         /// </summary>
         /// <example>First rule description</example>
-        [DataMember(Name = "description", EmitDefaultValue = true)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 
@@ -87,8 +90,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>ID of the rule group under which the rule must be stored. Either this field or rule_group_title is mandatory.</value>
         /// <example>81</example>
-        [DataMember(Name = "rule_group_id", EmitDefaultValue = true)]
+        [DataMember(Name = "rule_group_id", EmitDefaultValue = false)]
         [JsonPropertyName("rule_group_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string RuleGroupId { get; set; }
 
@@ -96,50 +100,56 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Order
         /// </summary>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Order { get; set; }
 
         /// <summary>
         /// Whether or not the rule is even active. Default is true.
         /// </summary>
         /// <value>Whether or not the rule is even active. Default is true.</value>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
         /// If the rule is set to be strict, ALL triggers must hit in order for the rule to fire. Otherwise, just one is enough. Default value is true.
         /// </summary>
         /// <value>If the rule is set to be strict, ALL triggers must hit in order for the rule to fire. Otherwise, just one is enough. Default value is true.</value>
         /// <example>true</example>
-        [DataMember(Name = "strict", EmitDefaultValue = true)]
+        [DataMember(Name = "strict", EmitDefaultValue = false)]
         [JsonPropertyName("strict")]
-        public bool Strict { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Strict { get; set; }
 
         /// <summary>
         /// If this value is true and the rule is triggered, other rules  after this one in the group will be skipped. Default value is false.
         /// </summary>
         /// <value>If this value is true and the rule is triggered, other rules  after this one in the group will be skipped. Default value is false.</value>
         /// <example>false</example>
-        [DataMember(Name = "stop_processing", EmitDefaultValue = true)]
+        [DataMember(Name = "stop_processing", EmitDefaultValue = false)]
         [JsonPropertyName("stop_processing")]
-        public bool StopProcessing { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? StopProcessing { get; set; }
 
         /// <summary>
         /// Gets or Sets Triggers
         /// </summary>
-        [DataMember(Name = "triggers", EmitDefaultValue = true)]
+        [DataMember(Name = "triggers", EmitDefaultValue = false)]
         [JsonPropertyName("triggers")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RuleTriggerUpdate> Triggers { get; set; }
 
         /// <summary>
         /// Gets or Sets Actions
         /// </summary>
-        [DataMember(Name = "actions", EmitDefaultValue = true)]
+        [DataMember(Name = "actions", EmitDefaultValue = false)]
         [JsonPropertyName("actions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public List<RuleActionUpdate> Actions { get; set; }
 

@@ -66,8 +66,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -76,8 +77,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 

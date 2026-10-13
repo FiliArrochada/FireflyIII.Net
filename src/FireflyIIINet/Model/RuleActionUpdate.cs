@@ -34,8 +34,9 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = true)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonPropertyName("type")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public RuleActionKeyword? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleActionUpdate" /> class.
@@ -45,7 +46,7 @@ namespace FireflyIIINet.Model
         /// <param name="order">Order of the action.</param>
         /// <param name="active">If the action is active..</param>
         /// <param name="stopProcessing">When true, other actions will not be fired after this action has fired..</param>
-        public RuleActionUpdate(RuleActionKeyword? type = default(RuleActionKeyword?), string? value = default(string), int order = default(int), bool active = default(bool), bool stopProcessing = default(bool))
+        public RuleActionUpdate(RuleActionKeyword? type = default(RuleActionKeyword?), string? value = default(string), int? order = default(int?), bool? active = default(bool?), bool? stopProcessing = default(bool?))
         {
             Type = type;
             Value = value;
@@ -70,27 +71,30 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the action</value>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Order { get; set; }
 
         /// <summary>
         /// If the action is active.
         /// </summary>
         /// <value>If the action is active.</value>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
         /// When true, other actions will not be fired after this action has fired.
         /// </summary>
         /// <value>When true, other actions will not be fired after this action has fired.</value>
         /// <example>false</example>
-        [DataMember(Name = "stop_processing", EmitDefaultValue = true)]
+        [DataMember(Name = "stop_processing", EmitDefaultValue = false)]
         [JsonPropertyName("stop_processing")]
-        public bool StopProcessing { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? StopProcessing { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

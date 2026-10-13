@@ -47,8 +47,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Name
         /// </summary>
         /// <example>Paid</example>
-        [DataMember(Name = "name", EmitDefaultValue = true)]
+        [DataMember(Name = "name", EmitDefaultValue = false)]
         [JsonPropertyName("name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Name { get; set; }
 
@@ -56,8 +57,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Inward
         /// </summary>
         /// <example>is (partially) paid for by</example>
-        [DataMember(Name = "inward", EmitDefaultValue = true)]
+        [DataMember(Name = "inward", EmitDefaultValue = false)]
         [JsonPropertyName("inward")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Inward { get; set; }
 
@@ -65,8 +67,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Outward
         /// </summary>
         /// <example>(partially) pays for</example>
-        [DataMember(Name = "outward", EmitDefaultValue = true)]
+        [DataMember(Name = "outward", EmitDefaultValue = false)]
         [JsonPropertyName("outward")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Outward { get; set; }
 

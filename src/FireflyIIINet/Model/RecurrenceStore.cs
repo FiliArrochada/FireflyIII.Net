@@ -56,7 +56,7 @@ namespace FireflyIIINet.Model
         /// <param name="notes">notes.</param>
         /// <param name="repetitions">repetitions (required).</param>
         /// <param name="transactions">transactions (required).</param>
-        public RecurrenceStore(RecurrenceTransactionType type = default(RecurrenceTransactionType), string title = default(string), string? description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = default(bool), string? notes = default(string), List<RecurrenceRepetitionStore> repetitions = default(List<RecurrenceRepetitionStore>), List<RecurrenceTransactionStore> transactions = default(List<RecurrenceTransactionStore>))
+        public RecurrenceStore(RecurrenceTransactionType type = default(RecurrenceTransactionType), string title = default(string), string? description = default(string), DateTime? firstDate = default(DateTime?), DateTime? repeatUntil = default(DateTime?), int? nrOfRepetitions = default(int?), bool applyRules = default(bool), bool active = true, string? notes = default(string), List<RecurrenceRepetitionStore> repetitions = default(List<RecurrenceRepetitionStore>), List<RecurrenceTransactionStore> transactions = default(List<RecurrenceTransactionStore>))
         {
             Type = type;
             // to ensure "title" is required (not null)
@@ -99,8 +99,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Not to be confused with the description of the actual transaction(s) being created.</value>
         /// <example>Recurring transaction for the monthly rent</example>
-        [DataMember(Name = "description", EmitDefaultValue = true)]
+        [DataMember(Name = "description", EmitDefaultValue = false)]
         [JsonPropertyName("description")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Description { get; set; }
 

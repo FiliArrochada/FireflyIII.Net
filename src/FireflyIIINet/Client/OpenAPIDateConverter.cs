@@ -21,12 +21,18 @@ namespace FireflyIIINet.Client
         private const string DateFormat = "yyyy-MM-dd";
 
         /// <summary>
-        /// Reads a date-only value.
+        /// Reads a date-only value. Some fields the spec declares as dates come back as date-times
+        /// (a recurrence's first_date is "2026-11-11T00:00:00+01:00"); those keep the date as
+        /// written, in the server's offset.
         /// </summary>
         public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var value = reader.GetString();
-            return DateTime.ParseExact(value, DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None);
+            if (DateTime.TryParseExact(value, DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            {
+                return date;
+            }
+            return DateTimeOffset.Parse(value, CultureInfo.InvariantCulture, DateTimeStyles.None).DateTime.Date;
         }
 
         /// <summary>

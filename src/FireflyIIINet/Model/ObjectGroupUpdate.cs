@@ -40,7 +40,7 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <param name="title">title (required).</param>
         /// <param name="order">Order of the object group.</param>
-        public ObjectGroupUpdate(string title = default(string), int order = default(int))
+        public ObjectGroupUpdate(string title = default(string), int? order = default(int?))
         {
             // to ensure "title" is required (not null)
             if (title == null)
@@ -64,9 +64,10 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the object group</value>
         /// <example>1</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Order { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

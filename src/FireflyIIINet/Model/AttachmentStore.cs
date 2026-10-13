@@ -90,8 +90,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Title
         /// </summary>
         /// <example>Some PDF file</example>
-        [DataMember(Name = "title", EmitDefaultValue = true)]
+        [DataMember(Name = "title", EmitDefaultValue = false)]
         [JsonPropertyName("title")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Title { get; set; }
 

@@ -46,7 +46,7 @@ namespace FireflyIIINet.Model
         /// <param name="amount">amount.</param>
         /// <param name="notes">Some notes for this specific budget limit..</param>
         /// <param name="fireWebhooks">Whether or not to fire the webhooks that are related to this event. (default to true).</param>
-        public BudgetLimitUpdate(DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), string? amount = default(string), string? notes = default(string), bool fireWebhooks = true)
+        public BudgetLimitUpdate(DateTime? start = default(DateTime?), DateTime? end = default(DateTime?), string? currencyId = default(string), string? currencyName = default(string), string? currencyCode = default(string), string? amount = default(string), string? notes = default(string), bool? fireWebhooks = default(bool?))
         {
             Start = start ?? default(DateTime);
             End = end ?? default(DateTime);
@@ -62,8 +62,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CreatedAt
         /// </summary>
         /// <example>2025-08-01T00:00:00+00:00</example>
-        [DataMember(Name = "created_at", EmitDefaultValue = true)]
+        [DataMember(Name = "created_at", EmitDefaultValue = false)]
         [JsonPropertyName("created_at")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public DateTime CreatedAt { get; private set; }
 
@@ -79,8 +80,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets UpdatedAt
         /// </summary>
         /// <example>2025-08-01T00:00:00+00:00</example>
-        [DataMember(Name = "updated_at", EmitDefaultValue = true)]
+        [DataMember(Name = "updated_at", EmitDefaultValue = false)]
         [JsonPropertyName("updated_at")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public DateTime UpdatedAt { get; private set; }
 
@@ -97,8 +99,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Start date of the budget limit.</value>
         /// <example>2025-08-01T00:00:00+00:00</example>
-        [DataMember(Name = "start", EmitDefaultValue = true)]
+        [DataMember(Name = "start", EmitDefaultValue = false)]
         [JsonPropertyName("start")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Start { get; set; }
 
         /// <summary>
@@ -106,8 +109,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>End date of the budget limit.</value>
         /// <example>2025-08-31T23:59:59+00:00</example>
-        [DataMember(Name = "end", EmitDefaultValue = true)]
+        [DataMember(Name = "end", EmitDefaultValue = false)]
         [JsonPropertyName("end")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime End { get; set; }
 
         /// <summary>
@@ -115,8 +119,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The budget ID of the associated budget.</value>
         /// <example>23</example>
-        [DataMember(Name = "budget_id", EmitDefaultValue = true)]
+        [DataMember(Name = "budget_id", EmitDefaultValue = false)]
         [JsonPropertyName("budget_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string BudgetId { get; private set; }
 
@@ -133,8 +138,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Indicates whether the object has a currency setting. If false, the object uses the administration&#39;s primary currency.</value>
         /// <example>true</example>
-        [DataMember(Name = "object_has_currency_setting", EmitDefaultValue = true)]
+        [DataMember(Name = "object_has_currency_setting", EmitDefaultValue = false)]
         [JsonPropertyName("object_has_currency_setting")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public bool ObjectHasCurrencySetting { get; private set; }
 
@@ -151,8 +157,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency ID of the currency associated with this object.</value>
         /// <example>5</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -161,8 +168,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency name of the currency associated with this object.</value>
         /// <example>Euro</example>
-        [DataMember(Name = "currency_name", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_name", EmitDefaultValue = false)]
         [JsonPropertyName("currency_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyName { get; set; }
 
@@ -171,8 +179,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency code of the currency associated with this object.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
@@ -180,8 +189,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencySymbol
         /// </summary>
         /// <example>$</example>
-        [DataMember(Name = "currency_symbol", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_symbol", EmitDefaultValue = false)]
         [JsonPropertyName("currency_symbol")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string CurrencySymbol { get; private set; }
 
@@ -197,8 +207,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets CurrencyDecimalPlaces
         /// </summary>
         /// <example>2</example>
-        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_decimal_places", EmitDefaultValue = false)]
         [JsonPropertyName("currency_decimal_places")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public int CurrencyDecimalPlaces { get; private set; }
 
@@ -215,8 +226,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency ID of the administration&#39;s primary currency.</value>
         /// <example>5</example>
-        [DataMember(Name = "primary_currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "primary_currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string PrimaryCurrencyId { get; private set; }
 
@@ -233,8 +245,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency name of the administration&#39;s primary currency.</value>
         /// <example>Euro</example>
-        [DataMember(Name = "primary_currency_name", EmitDefaultValue = true)]
+        [DataMember(Name = "primary_currency_name", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string PrimaryCurrencyName { get; private set; }
 
@@ -251,8 +264,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency code of the administration&#39;s primary currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "primary_currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "primary_currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string PrimaryCurrencyCode { get; private set; }
 
@@ -269,8 +283,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency symbol of the administration&#39;s primary currency.</value>
         /// <example>$</example>
-        [DataMember(Name = "primary_currency_symbol", EmitDefaultValue = true)]
+        [DataMember(Name = "primary_currency_symbol", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_symbol")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public string PrimaryCurrencySymbol { get; private set; }
 
@@ -287,8 +302,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The currency decimal places of the administration&#39;s primary currency.</value>
         /// <example>2</example>
-        [DataMember(Name = "primary_currency_decimal_places", EmitDefaultValue = true)]
+        [DataMember(Name = "primary_currency_decimal_places", EmitDefaultValue = false)]
         [JsonPropertyName("primary_currency_decimal_places")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonInclude]
         public int PrimaryCurrencyDecimalPlaces { get; private set; }
 
@@ -323,8 +339,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets Amount
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "amount", EmitDefaultValue = true)]
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
         [JsonPropertyName("amount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Amount { get; set; }
 
@@ -368,6 +385,7 @@ namespace FireflyIIINet.Model
         }
         /// <summary>
         /// Some notes for this specific budget limit.
+        /// Null leaves the key out and keeps the stored notes; assign "" to clear them.
         /// </summary>
         /// <value>Some notes for this specific budget limit.</value>
         /// <example>Some example notes</example>
@@ -382,9 +400,10 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Whether or not to fire the webhooks that are related to this event.</value>
         /// <example>true</example>
-        [DataMember(Name = "fire_webhooks", EmitDefaultValue = true)]
+        [DataMember(Name = "fire_webhooks", EmitDefaultValue = false)]
         [JsonPropertyName("fire_webhooks")]
-        public bool FireWebhooks { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? FireWebhooks { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

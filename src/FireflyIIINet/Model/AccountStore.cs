@@ -186,8 +186,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Represents the opening balance, the initial amount this account holds.</value>
         /// <example>-1012.12</example>
-        [DataMember(Name = "opening_balance", EmitDefaultValue = true)]
+        [DataMember(Name = "opening_balance", EmitDefaultValue = false)]
         [JsonPropertyName("opening_balance")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string OpeningBalance { get; set; }
 
@@ -205,8 +206,9 @@ namespace FireflyIIINet.Model
         /// Gets or Sets VirtualBalance
         /// </summary>
         /// <example>123.45</example>
-        [DataMember(Name = "virtual_balance", EmitDefaultValue = true)]
+        [DataMember(Name = "virtual_balance", EmitDefaultValue = false)]
         [JsonPropertyName("virtual_balance")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string VirtualBalance { get; set; }
 
@@ -215,8 +217,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>12</example>
-        [DataMember(Name = "currency_id", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_id", EmitDefaultValue = false)]
         [JsonPropertyName("currency_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyId { get; set; }
 
@@ -225,8 +228,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Use either currency_id or currency_code. Defaults to the user&#39;s default currency.</value>
         /// <example>EUR</example>
-        [DataMember(Name = "currency_code", EmitDefaultValue = true)]
+        [DataMember(Name = "currency_code", EmitDefaultValue = false)]
         [JsonPropertyName("currency_code")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string CurrencyCode { get; set; }
 
@@ -244,8 +248,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the account</value>
         /// <example>1</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public int Order { get; set; }
 
         /// <summary>

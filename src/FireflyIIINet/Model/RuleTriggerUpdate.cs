@@ -34,8 +34,9 @@ namespace FireflyIIINet.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = true)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         [JsonPropertyName("type")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public RuleTriggerKeyword? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RuleTriggerUpdate" /> class.
@@ -45,7 +46,7 @@ namespace FireflyIIINet.Model
         /// <param name="order">Order of the trigger.</param>
         /// <param name="active">If the trigger is active..</param>
         /// <param name="stopProcessing">When true, other triggers will not be checked if this trigger was triggered..</param>
-        public RuleTriggerUpdate(RuleTriggerKeyword? type = default(RuleTriggerKeyword?), string? value = default(string), int order = default(int), bool active = default(bool), bool stopProcessing = default(bool))
+        public RuleTriggerUpdate(RuleTriggerKeyword? type = default(RuleTriggerKeyword?), string? value = default(string), int? order = default(int?), bool? active = default(bool?), bool? stopProcessing = default(bool?))
         {
             Type = type;
             Value = value;
@@ -59,8 +60,9 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>The accompanying value the trigger responds to. This value is often mandatory, but this depends on the trigger.</value>
         /// <example>tag1</example>
-        [DataMember(Name = "value", EmitDefaultValue = true)]
+        [DataMember(Name = "value", EmitDefaultValue = false)]
         [JsonPropertyName("value")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [System.Diagnostics.CodeAnalysis.AllowNull]
         public string Value { get; set; }
 
@@ -69,27 +71,30 @@ namespace FireflyIIINet.Model
         /// </summary>
         /// <value>Order of the trigger</value>
         /// <example>5</example>
-        [DataMember(Name = "order", EmitDefaultValue = true)]
+        [DataMember(Name = "order", EmitDefaultValue = false)]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int? Order { get; set; }
 
         /// <summary>
         /// If the trigger is active.
         /// </summary>
         /// <value>If the trigger is active.</value>
         /// <example>true</example>
-        [DataMember(Name = "active", EmitDefaultValue = true)]
+        [DataMember(Name = "active", EmitDefaultValue = false)]
         [JsonPropertyName("active")]
-        public bool Active { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Active { get; set; }
 
         /// <summary>
         /// When true, other triggers will not be checked if this trigger was triggered.
         /// </summary>
         /// <value>When true, other triggers will not be checked if this trigger was triggered.</value>
         /// <example>false</example>
-        [DataMember(Name = "stop_processing", EmitDefaultValue = true)]
+        [DataMember(Name = "stop_processing", EmitDefaultValue = false)]
         [JsonPropertyName("stop_processing")]
-        public bool StopProcessing { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? StopProcessing { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
