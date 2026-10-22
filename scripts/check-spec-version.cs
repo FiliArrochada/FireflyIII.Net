@@ -3,8 +3,8 @@
  * check-spec-version.cs  —  .NET 10 file-based app (run with: dotnet run scripts/check-spec-version.cs)
  *
  * Checks whether upstream has published Firefly III API specs that are not yet vendored in
- * this repo's api/ folder. Unlike MangaDex.NET's checker (which this is modeled on), the SDK
- * here deliberately pins an older API version, so "local == upstream latest" is not the
+ * this repo's api/ folder. The SDK deliberately
+ * pins an older API version, so "local == upstream latest" is not the
  * question — the useful signals are:
  *   1. which upstream-published spec files are missing from api/ (new releases to vendor), and
  *   2. how far the pinned SDK spec is behind the newest upstream v1 spec (--diff shows the
