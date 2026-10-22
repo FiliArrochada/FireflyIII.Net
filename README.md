@@ -1,6 +1,6 @@
 # FireflyIIINet - the C# library for the Firefly III API
 
-[![CI](https://github.com/filipe-silva/FireflyIII.Net/actions/workflows/ci.yml/badge.svg)](https://github.com/filipe-silva/FireflyIII.Net/actions/workflows/ci.yml)
+[![CI](https://github.com/FiliArrochada/FireflyIII.Net/actions/workflows/ci.yml/badge.svg)](https://github.com/FiliArrochada/FireflyIII.Net/actions/workflows/ci.yml)
 [![NuGet](https://img.shields.io/nuget/v/FireflyIIINet.svg)](https://www.nuget.org/packages/FireflyIIINet/)
 
 This is a .NET client for the [Firefly III](https://firefly-iii.org) personal finance manager API.

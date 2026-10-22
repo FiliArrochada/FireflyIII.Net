@@ -12,7 +12,7 @@ run-name: ${{ inputs.version && format('Release v{0} to NuGet', inputs.version) 
 #
 # Publishing uses nuget.org Trusted Publishing (OIDC) — no long-lived API key.
 # nuget.org side: create a Trusted Publishing policy under your profile with
-#   Repository Owner: filipe-silva
+#   Repository Owner: FiliArrochada
 #   Repository: FireflyIII.Net
 #   Workflow File: release-nuget.yml
 # Leave Environment blank unless you add `environment:` to the job below.

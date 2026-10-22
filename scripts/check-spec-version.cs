@@ -41,7 +41,7 @@
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-const string UserAgent = "FireflyIII.Net-spec-check/1.0 (+https://github.com/filipe-silva/FireflyIII.Net)";
+const string UserAgent = "FireflyIII.Net-spec-check/1.0 (+https://github.com/FiliArrochada/FireflyIII.Net)";
 
 string upstreamRepo = Environment.GetEnvironmentVariable("UPSTREAM_REPO") ?? "firefly-iii/api-docs";
 string? token = Environment.GetEnvironmentVariable("GITHUB_TOKEN")

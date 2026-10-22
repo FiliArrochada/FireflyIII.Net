@@ -7,8 +7,8 @@
     <AssemblyName>FireflyIIINet</AssemblyName>
     <PackageId>FireflyIIINet</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>FireflyIII.Net</Authors>
-    <Company>FireflyIII.Net</Company>
+    <Authors>FiliArrochada</Authors>
+    <Company>FiliArrochada</Company>
     <AssemblyTitle>Firefly III API Client</AssemblyTitle>
     <Description>A .NET client library for the Firefly III API.</Description>
     <RootNamespace>FireflyIIINet</RootNamespace>
@@ -19,8 +19,8 @@
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/filipe-silva/FireflyIII.Net</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/filipe-silva/FireflyIII.Net.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/FiliArrochada/FireflyIII.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/FiliArrochada/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>6.7.8.1, client-only fixes against Firefly III API 6.7.8, checked against the live demo. Requests send only what the caller set: unset optional fields are no longer sent as null or 0001-01-01, which the server rejected (StoreAccount/UpdateAccount without a currency, StoreTransactionLink without a link type name). Breaking: the bool/int fields of the *Update models are now bool?/int? and left out while null; a rename used to send active:false and deactivate the budget, bill, recurrence, rule group or webhook, and order:0 (rejected for rules). *Store models: active defaults to true (budgets, bills, rule groups and recurrences were created inactive), an unset order is left to the server, and a recurrence repetition's weekend defaults to 1. Piggy banks: PiggyBankAccountStore sends account_id (the server's name; the spec says id), and PiggyBankStore/PiggyBankUpdate gain TransactionCurrencyId/TransactionCurrencyCode, one of which the server requires; piggy banks could not be created before. Responses: string properties accept JSON numbers (ListAvailableBudgets failed), date-only fields accept date-times (every recurrence failed to read), and BudgetProperties.CurrencyDecimalPlaces is int? (a budget without its own currency failed to read). CategoryUpdate.Notes and Color are three-state: unassigned keeps the stored value, null clears it. Docs: Notes = "" clears notes on the other updates; TransactionLinkUpdate and RecurrenceUpdate need fields the spec calls optional; servers behind Cloudflare need a User-Agent; no native AOT. scripts/smoke-test.cs now also reads every top-level list.</PackageReleaseNotes>
