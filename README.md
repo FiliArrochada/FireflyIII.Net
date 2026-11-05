@@ -175,6 +175,10 @@ dotnet run scripts/check-spec-version.cs -- --diff
 # https://demo.firefly-iii.org (demo@firefly-iii.org / demo): create a personal access token
 # under Options > Profile > OAuth.
 FIREFLY_TOKEN=<token> dotnet run scripts/smoke-test.cs -- https://demo.firefly-iii.org
+
+# Live check that the server clears each field an update sends as null (ClearedFields.Clear).
+# It writes (creates, clears and deletes its own objects), so it targets the public demo only.
+FIREFLY_TOKEN=<token> dotnet run scripts/clear-check.cs
 ```
 
 A scheduled workflow (`spec-check.yml`) runs the same check weekly (without `--diff`); when

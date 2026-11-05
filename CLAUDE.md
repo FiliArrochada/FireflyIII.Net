@@ -17,3 +17,11 @@ time i do want 1 per server version".
   (6.7.8.1) is a client-only revision against that same version.
 - The owner dispatches **Release to NuGet** (`release-nuget.yml`) with the version; it pushes the
   package, then creates the `v<version>` tag and the GitHub release.
+
+## Live checks: the public demo only
+
+The unit tests never touch the network. **A check against a real server is always the public
+demo**, https://demo.firefly-iii.org (`demo@firefly-iii.org` / `demo`, token from Options >
+Profile > OAuth), never the owner's own server: the owner's standing rule. `scripts/smoke-test.cs`
+is read-only; `scripts/clear-check.cs` writes (creates, clears, deletes its own objects), so its
+URL is fixed to the demo. Record what a live check proved in the README's Notes.
