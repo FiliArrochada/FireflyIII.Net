@@ -6,6 +6,7 @@
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace FireflyIIINet.Client
 {
@@ -23,7 +24,8 @@ namespace FireflyIIINet.Client
                 WriteIndented = indented,
                 PropertyNameCaseInsensitive = true,
                 DefaultIgnoreCondition = JsonIgnoreCondition.Never,
-                NumberHandling = JsonNumberHandling.AllowReadingFromString
+                NumberHandling = JsonNumberHandling.AllowReadingFromString,
+                TypeInfoResolver = new DefaultJsonTypeInfoResolver { Modifiers = { ClearedFields.Apply } }
             };
             options.Converters.Add(new StringEnumMemberConverter());
             options.Converters.Add(new NumberAsStringConverter());

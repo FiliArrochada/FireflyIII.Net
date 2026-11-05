@@ -73,8 +73,8 @@ namespace FireflyIIINet.Model
             AmountMin = amountMin;
             AmountMax = amountMax;
             Date = date ?? default(DateTime);
-            EndDate = endDate ?? default(DateTime);
-            ExtensionDate = extensionDate ?? default(DateTime);
+            EndDate = endDate;
+            ExtensionDate = extensionDate;
             RepeatFreq = repeatFreq;
             Skip = skip;
             Active = active;
@@ -150,7 +150,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "end_date", EmitDefaultValue = false)]
         [JsonPropertyName("end_date")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         /// <summary>
         /// The date before which the bill must be renewed (or cancelled)
@@ -160,7 +160,7 @@ namespace FireflyIIINet.Model
         [DataMember(Name = "extension_date", EmitDefaultValue = false)]
         [JsonPropertyName("extension_date")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public DateTime ExtensionDate { get; set; }
+        public DateTime? ExtensionDate { get; set; }
 
         /// <summary>
         /// How often the bill must be skipped. 1 means a bi-monthly bill.
