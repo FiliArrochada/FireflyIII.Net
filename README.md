@@ -8,7 +8,7 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
 - API version: 6.7.8 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
-- SDK version: 6.7.8.1 (tracks the API version; a 4th revision component denotes client-only changes)
+- SDK version: 6.7.8.2 (tracks the API version; a 4th revision component denotes client-only changes)
 - Source specification: [api/firefly-iii-v6.7.8-v1.yaml](api/firefly-iii-v6.7.8-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
 - All released specifications (0.10.4 – 6.7.8): [api/](api/)
 
@@ -133,6 +133,13 @@ available via `ex.Content` and can be deserialized to the spec's error models
   `GetCurrentReleaseNotes()` for the server's own version (the route makes `{version}` optional).
   The model's `release_notes` field is `ReleaseNotesHtml`, since a member cannot share the
   `ReleaseNotes` type's name.
+- To remove a stored value, clear the field: `update.Clear(u => u.TargetDate)` sets it to null
+  and sends `"target_date": null`, where a null left on the model is not sent at all and the
+  server keeps what it had. It works on any nullable field of a request model (a piggy bank's
+  target, a recurrence's `repeat_until`, a tag's date and location, a bill's `end_date`, a
+  split's optional dates); a value assigned afterwards is sent instead. That the server clears
+  each of these on null has been checked against the live demo for category notes only. `RuleTriggerUpdate.Prohibited` (the "NOT" of a trigger) is sent on update too,
+  although the spec lists it on `RuleTriggerStore` only.
 - `CategoryUpdate.Notes` and `CategoryUpdate.Color` are three-state, as the server treats them:
   never assigned (or null in the constructor) leaves the key out and the stored value unchanged;
   assigning `null` sends `null` and clears it; assigning a value sets it.
