@@ -46,13 +46,15 @@ namespace FireflyIIINet.Model
         /// <param name="order">Order of the trigger.</param>
         /// <param name="active">If the trigger is active..</param>
         /// <param name="stopProcessing">When true, other triggers will not be checked if this trigger was triggered..</param>
-        public RuleTriggerUpdate(RuleTriggerKeyword? type = default(RuleTriggerKeyword?), string? value = default(string), int? order = default(int?), bool? active = default(bool?), bool? stopProcessing = default(bool?))
+        /// <param name="prohibited">When true, the trigger is negated ("NOT"); see <see cref="Prohibited"/>.</param>
+        public RuleTriggerUpdate(RuleTriggerKeyword? type = default(RuleTriggerKeyword?), string? value = default(string), int? order = default(int?), bool? active = default(bool?), bool? stopProcessing = default(bool?), bool? prohibited = default(bool?))
         {
             Type = type;
             Value = value;
             Order = order;
             Active = active;
             StopProcessing = stopProcessing;
+            Prohibited = prohibited;
         }
 
         /// <summary>
@@ -97,6 +99,18 @@ namespace FireflyIIINet.Model
         public bool? StopProcessing { get; set; }
 
         /// <summary>
+        /// When true, the trigger is negated: the rule fires when it does NOT match. The spec leaves it
+        /// out of RuleTriggerUpdate (RuleTriggerStore has it), but the server reads it on update too:
+        /// without it, an edited rule loses every "NOT" trigger.
+        /// </summary>
+        /// <value>When true, the trigger is negated.</value>
+        /// <example>false</example>
+        [DataMember(Name = "prohibited", EmitDefaultValue = false)]
+        [JsonPropertyName("prohibited")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool? Prohibited { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -109,6 +123,7 @@ namespace FireflyIIINet.Model
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("  StopProcessing: ").Append(StopProcessing).Append("\n");
+            sb.Append("  Prohibited: ").Append(Prohibited).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -163,6 +178,10 @@ namespace FireflyIIINet.Model
                 (
                     StopProcessing == input.StopProcessing ||
                     StopProcessing.Equals(input.StopProcessing)
+                ) && 
+                (
+                    Prohibited == input.Prohibited ||
+                    Prohibited.Equals(input.Prohibited)
                 );
         }
 
@@ -180,6 +199,7 @@ namespace FireflyIIINet.Model
                 hashCode = (hashCode * 59) + Order.GetHashCode();
                 hashCode = (hashCode * 59) + Active.GetHashCode();
                 hashCode = (hashCode * 59) + StopProcessing.GetHashCode();
+                hashCode = (hashCode * 59) + Prohibited.GetHashCode();
                 return hashCode;
             }
         }

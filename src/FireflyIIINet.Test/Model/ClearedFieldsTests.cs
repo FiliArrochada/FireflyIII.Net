@@ -116,5 +116,12 @@ namespace FireflyIIINet.Test.Model
             Assert.Equal(JsonValueKind.Null, body.GetProperty("target_date").ValueKind);
             Assert.False(body.TryGetProperty("target_amount", out _));
         }
+
+        [Fact]
+        public void A_rule_trigger_update_keeps_its_NOT()
+        {
+            Assert.True(Json(new RuleTriggerUpdate(type: RuleTriggerKeyword.DescriptionContains, value: "rent", prohibited: true)).GetProperty("prohibited").GetBoolean());
+            Assert.False(Json(new RuleTriggerUpdate(type: RuleTriggerKeyword.DescriptionContains, value: "rent")).TryGetProperty("prohibited", out _));
+        }
     }
 }
