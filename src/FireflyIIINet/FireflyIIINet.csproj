@@ -14,7 +14,7 @@
     <RootNamespace>FireflyIIINet</RootNamespace>
     <!-- Version tracks the Firefly III API version (Major.Minor.Patch);
          the 4th revision component is bumped for client-only changes against the same API version. -->
-    <Version>6.7.8.2</Version>
+    <Version>6.7.8.3</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FireflyIIINet.xml</DocumentationFile>
     <!-- CS1591: undocumented members (Refit interfaces); CS8073: value-type != null in generated Equals -->
     <NoWarn>$(NoWarn);CS1591;CS8073</NoWarn>
@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/FiliArrochada/FireflyIII.Net.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>6.7.8.2, client-only fixes against Firefly III API 6.7.8. Clearing a stored value: an update leaves out a null field, so the server keeps what it has; the new ClearedFields.Clear extension (update.Clear(u =&gt; u.TargetDate)) sets a field to null and sends it as null, so a piggy bank's target, a recurrence's end, a tag's date or location, a bill's end and extension dates or a split's optional dates can be removed. Breaking: BillUpdate.EndDate and ExtensionDate are DateTime? (they could never be null). RuleTriggerUpdate gains Prohibited, which the spec leaves out: an edited rule lost its NOT triggers. 6.7.8.1: requests send only what the caller set; the bool/int fields of the *Update models are bool?/int?; *Store active defaults to true; piggy banks send account_id and a currency; responses read numbers as strings, date-times as dates and a null budget CurrencyDecimalPlaces; CategoryUpdate.Notes and Color are three-state.</PackageReleaseNotes>
+    <PackageReleaseNotes>6.7.8.3, client-only fixes against Firefly III API 6.7.8, checked against a live 6.7.9. GetConfiguration no longer fails: ConfigValueFilter gains the seven configuration.* settings the server returns and the spec lists only for updates, or not at all (enable_exchange_rates, use_running_balance, enable_external_map, enable_external_rates, allow_webhooks, enable_batch_processing, valid_url_protocols), and reads an unrecognised title as Unknown instead of failing the whole list. The README now lists what the server clears on null and what needs another value: a split's foreign amount goes with "0", a bill's group with "", a credit card's payment date only with a role change; a bill's end and extension dates and a piggy bank's group cannot be removed. An update of a group with several splits needs GroupTitle. 6.7.8.2: ClearedFields.Clear (update.Clear(u =&gt; u.TargetDate)) sends a field as null so the server removes it; BillUpdate.EndDate and ExtensionDate are DateTime?; RuleTriggerUpdate gains Prohibited, which the spec leaves out. 6.7.8.1: requests send only what the caller set; the bool/int fields of the *Update models are bool?/int?; *Store active defaults to true; piggy banks send account_id and a currency; responses read numbers as strings, date-times as dates and a null budget CurrencyDecimalPlaces; CategoryUpdate.Notes and Color are three-state.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 

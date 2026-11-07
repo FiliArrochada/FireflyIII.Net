@@ -8,7 +8,7 @@ This is a .NET client for the [Firefly III](https://firefly-iii.org) personal fi
 This C# SDK is a hand-maintained client for the Firefly III API, built on Refit and System.Text.Json. It is kept in sync with the Firefly III OpenAPI specification manually — updates are applied directly to the source.
 
 - API version: 6.7.8 (v1 endpoints, plus the two v2 endpoints last documented in 6.2.21)
-- SDK version: 6.7.8.2 (tracks the API version; a 4th revision component denotes client-only changes)
+- SDK version: 6.7.8.3 (tracks the API version; a 4th revision component denotes client-only changes)
 - Source specification: [api/firefly-iii-v6.7.8-v1.yaml](api/firefly-iii-v6.7.8-v1.yaml) (upstream stopped publishing v2 specs after 6.2.21)
 - All released specifications (0.10.4 – 6.7.8): [api/](api/)
 
@@ -118,8 +118,14 @@ available via `ex.Content` and can be deserialized to the spec's error models
   unset `order` (0) is left for the server to assign, and a recurrence repetition's
   `weekend` defaults to `1`.
 - Some updates need more than the spec requires: `CategoryUpdate` needs `Name`,
-  `RecurrenceUpdate` needs `Transactions`, and `TransactionLinkUpdate` needs `LinkTypeId`,
-  `InwardId` and `OutwardId`. Without them the server answers 500 or 422.
+  `RecurrenceUpdate` needs `Transactions`, `TransactionLinkUpdate` needs `LinkTypeId`,
+  `InwardId` and `OutwardId`, and a `TransactionUpdate` of a group with more than one split
+  needs `GroupTitle`, even when the title is unchanged. Without them the server answers 500 or
+  422.
+- A category's `Color` is six hex digits without `#` (`"336699"`); the server rejects
+  `"#336699"`.
+- The server sends a group's splits in its own order, not the order they were stored in; find a
+  split by its `TransactionJournalId`, not its position.
 - Piggy banks follow the server where the spec differs: `PiggyBankAccountStore.Id` is sent as
   `account_id`, and `PiggyBankStore`/`PiggyBankUpdate` have `TransactionCurrencyId` and
   `TransactionCurrencyCode` (one of them is required on create), which the spec leaves out.
@@ -127,6 +133,11 @@ available via `ex.Content` and can be deserialized to the spec's error models
   number (an available budget's `spent_in_budgets[].currency_id` is `1`), a date-only field
   also accepts a date-time (a recurrence's `first_date`), and a budget without a currency of
   its own has a null `CurrencyDecimalPlaces`.
+- `ConfigValueFilter`, the `title` of each `GET /v1/configuration` entry, carries the editable
+  `configuration.*` settings the spec lists only on `ConfigValueUpdateFilter`, and
+  `configuration.enable_batch_processing`, which the spec lists nowhere. Without them the whole
+  list failed to deserialize. An unrecognised title reads as `Unknown`, as with rule keywords;
+  don't send it back. Checked against a live 6.7.9: all 33 settings read.
 - `IDataApi.DestroyData`'s `unused` is a `bool?`: the spec types it as an int64 array, but the
   server validates it as `true`/`false`.
 - `GET /v1/release-notes/{version}` has two methods: `GetReleaseNotes(version)`, and
@@ -135,11 +146,24 @@ available via `ex.Content` and can be deserialized to the spec's error models
   `ReleaseNotes` type's name.
 - To remove a stored value, clear the field: `update.Clear(u => u.TargetDate)` sets it to null
   and sends `"target_date": null`, where a null left on the model is not sent at all and the
-  server keeps what it had. It works on any nullable field of a request model (a piggy bank's
-  target, a recurrence's `repeat_until`, a tag's date and location, a bill's `end_date`, a
-  split's optional dates); a value assigned afterwards is sent instead. That the server clears
-  each of these on null has been checked against the live demo for category notes only. `RuleTriggerUpdate.Prohibited` (the "NOT" of a trigger) is sent on update too,
-  although the spec lists it on `RuleTriggerStore` only.
+  server keeps what it had. A value assigned afterwards is sent instead. Checked against a live
+  6.7.9 (`scripts/clear-check.cs`), the server clears on null: an account's IBAN, BIC, account
+  number and opening balance and its date; a category's notes and colour; a piggy bank's target
+  amount and date; a tag's date and location; a recurrence's `repeat_until` and
+  `nr_of_repetitions`, and its transaction's budget and category; a split's internal reference,
+  external URL and six optional dates. Some fields need something other than null:
+  - **A split's foreign amount** goes with `ForeignAmount = "0"`, which removes the foreign
+    currency too; null leaves both.
+  - **A bill's group** goes with `ObjectGroupTitle = ""` (or `ObjectGroupId = 0`); null is
+    rejected.
+  - **A credit card's `MonthlyPaymentDate`** stays while the account is a credit card; it is
+    dropped when the update also changes `AccountRole` away from `ccAsset`.
+
+  And some cannot be removed through the API at all: **a bill's `EndDate` and `ExtensionDate`**
+  (null and `""` are both rejected) and **a piggy bank's group** (an empty title is rejected,
+  `ObjectGroupId = 0` is accepted but changes nothing).
+- `RuleTriggerUpdate.Prohibited` (the "NOT" of a trigger) is sent on update too, although the
+  spec lists it on `RuleTriggerStore` only.
 - `CategoryUpdate.Notes` and `CategoryUpdate.Color` are three-state, as the server treats them:
   never assigned (or null in the constructor) leaves the key out and the stored value unchanged;
   assigning `null` sends `null` and clears it; assigning a value sets it.
@@ -177,8 +201,9 @@ dotnet run scripts/check-spec-version.cs -- --diff
 FIREFLY_TOKEN=<token> dotnet run scripts/smoke-test.cs -- https://demo.firefly-iii.org
 
 # Live check that the server clears each field an update sends as null (ClearedFields.Clear).
-# It writes (creates, clears and deletes its own objects), so it targets the public demo only.
-FIREFLY_TOKEN=<token> dotnet run scripts/clear-check.cs
+# It writes (creates, clears and deletes its own objects), so it runs against a demo server only:
+# the URL defaults to the public demo, and it refuses a token whose user's email isn't demo@...
+FIREFLY_TOKEN=<token> dotnet run scripts/clear-check.cs [-- <demo server url>]
 ```
 
 A scheduled workflow (`spec-check.yml`) runs the same check weekly (without `--diff`); when
