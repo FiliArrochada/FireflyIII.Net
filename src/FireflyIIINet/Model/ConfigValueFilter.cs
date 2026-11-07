@@ -27,6 +27,13 @@ namespace FireflyIIINet.Model
     /// <summary>
     /// Defines ConfigValueFilter
     /// </summary>
+    /// <remarks>
+    /// The members past <see cref="WebhookDeliveries"/> are settings GET /api/v1/configuration
+    /// returns that the specification lists only on <see cref="ConfigValueUpdateFilter"/> (the
+    /// editable ones), or not at all (<see cref="ConfigurationEnableBatchProcessing"/>, seen on
+    /// 6.7.9). Without them the whole list failed to deserialize. Unrecognised wire values
+    /// deserialize to <see cref="Unknown"/> rather than throwing.
+    /// </remarks>
     [JsonConverter(typeof(FireflyIIINet.Client.StringEnumMemberConverter))]
     public enum ConfigValueFilter
     {
@@ -184,7 +191,57 @@ namespace FireflyIIINet.Model
         /// Enum WebhookDeliveries for value: webhook.deliveries
         /// </summary>
         [EnumMember(Value = "webhook.deliveries")]
-        WebhookDeliveries = 26
+        WebhookDeliveries = 26,
+
+        /// <summary>
+        /// Enum ConfigurationEnableExchangeRates for value: configuration.enable_exchange_rates
+        /// </summary>
+        [EnumMember(Value = "configuration.enable_exchange_rates")]
+        ConfigurationEnableExchangeRates = 27,
+
+        /// <summary>
+        /// Enum ConfigurationUseRunningBalance for value: configuration.use_running_balance
+        /// </summary>
+        [EnumMember(Value = "configuration.use_running_balance")]
+        ConfigurationUseRunningBalance = 28,
+
+        /// <summary>
+        /// Enum ConfigurationEnableExternalMap for value: configuration.enable_external_map
+        /// </summary>
+        [EnumMember(Value = "configuration.enable_external_map")]
+        ConfigurationEnableExternalMap = 29,
+
+        /// <summary>
+        /// Enum ConfigurationEnableExternalRates for value: configuration.enable_external_rates
+        /// </summary>
+        [EnumMember(Value = "configuration.enable_external_rates")]
+        ConfigurationEnableExternalRates = 30,
+
+        /// <summary>
+        /// Enum ConfigurationAllowWebhooks for value: configuration.allow_webhooks
+        /// </summary>
+        [EnumMember(Value = "configuration.allow_webhooks")]
+        ConfigurationAllowWebhooks = 31,
+
+        /// <summary>
+        /// Enum ConfigurationEnableBatchProcessing for value: configuration.enable_batch_processing
+        /// </summary>
+        [EnumMember(Value = "configuration.enable_batch_processing")]
+        ConfigurationEnableBatchProcessing = 32,
+
+        /// <summary>
+        /// Enum ConfigurationValidUrlProtocols for value: configuration.valid_url_protocols
+        /// </summary>
+        [EnumMember(Value = "configuration.valid_url_protocols")]
+        ConfigurationValidUrlProtocols = 33,
+
+        /// <summary>
+        /// Enum Unknown: a setting this SDK does not know. The configuration list grows with the
+        /// server, faster than the specification lists it, so an unrecognised title deserializes
+        /// here instead of failing the whole response. Do not send it back to the API.
+        /// </summary>
+        [EnumMember(Value = "unknown")]
+        Unknown = 0
     }
 
 }
