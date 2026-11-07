@@ -18,10 +18,12 @@ time i do want 1 per server version".
 - The owner dispatches **Release to NuGet** (`release-nuget.yml`) with the version; it pushes the
   package, then creates the `v<version>` tag and the GitHub release.
 
-## Live checks: the public demo only
+## Live checks: a demo server only
 
-The unit tests never touch the network. **A check against a real server is always the public
-demo**, https://demo.firefly-iii.org (`demo@firefly-iii.org` / `demo`, token from Options >
-Profile > OAuth), never the owner's own server: the owner's standing rule. `scripts/smoke-test.cs`
-is read-only; `scripts/clear-check.cs` writes (creates, clears, deletes its own objects), so its
-URL is fixed to the demo. Record what a live check proved in the README's Notes.
+The unit tests never touch the network. **A check against a real server always runs against a
+demo server with invented books**, never one holding real books: the owner's standing rule. Which
+demo server, and its token, is set outside this repo and never written into it. The public demo,
+https://demo.firefly-iii.org, stays the default in the README and samples. `scripts/smoke-test.cs`
+is read-only; `scripts/clear-check.cs` writes (creates, clears, deletes its own objects), so it
+refuses any token whose user is not `demo@...`. Record what a live check proved in the README's
+Notes.

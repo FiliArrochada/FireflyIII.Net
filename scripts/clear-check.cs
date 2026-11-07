@@ -9,15 +9,18 @@
  * filled in, sends an update that clears them through the SDK, reads the object back and reports
  * each field. Then it deletes what it created.
  *
- * It writes, so it runs against the public demo only (https://demo.firefly-iii.org, login
- * demo@firefly-iii.org / demo), never a personal server: the URL is fixed below on purpose. Log
- * in, create a personal access token under Options > Profile > OAuth, and pass it in
- * FIREFLY_TOKEN. The demo resets regularly, taking the token and anything left behind with it.
+ * It writes, so it runs against a demo server only, never one holding real books. The URL is the
+ * first argument and defaults to the public demo (https://demo.firefly-iii.org, login
+ * demo@firefly-iii.org / demo). Before writing anything it asks who the token belongs to and
+ * refuses unless that user's email starts with "demo@". Log in, create a personal access token
+ * under Options > Profile > OAuth, and pass it in FIREFLY_TOKEN. A demo resets regularly, taking
+ * anything left behind with it.
  *
  * Usage:
- *   FIREFLY_TOKEN=... dotnet run scripts/clear-check.cs
+ *   FIREFLY_TOKEN=... dotnet run scripts/clear-check.cs [-- <demo server url>]
  *
- * Exit codes: 0 = every field cleared, 1 = at least one did not (or a step failed), 2 = could not start.
+ * Exit codes: 0 = every field cleared, 1 = at least one did not (or a step failed), 2 = could not
+ * start (no token, or not a demo user).
  */
 
 using System.Net.Http.Headers;
@@ -28,16 +31,16 @@ using FireflyIIINet.Client;
 using FireflyIIINet.Model;
 using Refit;
 
-const string Demo = "https://demo.firefly-iii.org";
+string server = (args.Length > 0 ? args[0] : "https://demo.firefly-iii.org").TrimEnd('/');
 
 string? token = Environment.GetEnvironmentVariable("FIREFLY_TOKEN");
 if (string.IsNullOrWhiteSpace(token))
 {
-    Console.Error.WriteLine("FIREFLY_TOKEN is not set (a personal access token for the public demo).");
+    Console.Error.WriteLine("FIREFLY_TOKEN is not set (a personal access token for the demo user).");
     return 2;
 }
 
-var http = new HttpClient { BaseAddress = new Uri(Demo + "/api/") };
+var http = new HttpClient { BaseAddress = new Uri(server + "/api/") };
 http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Trim());
 http.DefaultRequestHeaders.Accept.ParseAdd("application/json");
 // The demo sits behind Cloudflare, which answers 403 to requests without a browser-like UA.
@@ -92,6 +95,15 @@ async Task Case(string area, Func<Task> body)
     catch (Exception ex) { failures++; Console.WriteLine($"FAIL {area}: {ex.GetType().Name}: {Trunc(ex.Message)}"); }
 }
 
+// The guard that keeps this off real books: only a demo user's token may write.
+string email = (await Read("v1/about/user")).GetProperty("email").GetString() ?? "";
+if (!email.StartsWith("demo@", StringComparison.OrdinalIgnoreCase))
+{
+    Console.Error.WriteLine($"{server}: the token's user is not a demo user (email not demo@...), refusing to write there.");
+    return 2;
+}
+Console.WriteLine($"{server} as {email}");
+
 var (assetId, _) = await Create("v1/accounts", $$"""{"name":"clear-check asset {{run}}","type":"asset","account_role":"defaultAsset","currency_code":"EUR"}""");
 var (budgetId, _) = await Create("v1/budgets", $$"""{"name":"clear-check budget {{run}}"}""");
 var (categoryId, _) = await Create("v1/categories", $$"""{"name":"clear-check category {{run}}"}""");
@@ -104,7 +116,8 @@ await Case("Account", async () =>
          "monthly_payment_date":"{{later}}","currency_code":"EUR","iban":"NL02ABNA0123456789","bic":"ABNANL2A",
          "account_number":"123456","opening_balance":"100","opening_balance_date":"{{today}}"}
         """);
-    var update = new AccountUpdate(name: $"clear-check card {run}")
+    // A credit card keeps its payment date: the server drops it only when the account stops being one.
+    var update = new AccountUpdate(name: $"clear-check card {run}", accountRole: AccountRoleProperty.DefaultAsset)
         .Clear(u => u.Iban).Clear(u => u.Bic).Clear(u => u.AccountNumber).Clear(u => u.OpeningBalance)
         .Clear(u => u.OpeningBalanceDate).Clear(u => u.MonthlyPaymentDate);
     await Api<IAccountsApi>().UpdateAccount(id, update);
@@ -113,7 +126,8 @@ await Case("Account", async () =>
 
 await Case("Category", async () =>
 {
-    var (id, before) = await Create("v1/categories", $$"""{"name":"clear-check notes {{run}}","notes":"some notes","color":"#336699"}""");
+    // The server takes a colour as six hex digits, without "#".
+    var (id, before) = await Create("v1/categories", $$"""{"name":"clear-check notes {{run}}","notes":"some notes","color":"336699"}""");
     var update = new CategoryUpdate(name: $"clear-check notes {run}") { Notes = null, Color = null };
     await Api<ICategoriesApi>().UpdateCategory(id, update);
     Expect("Category", before, await Read($"v1/categories/{id}"), "notes", "color");
@@ -125,9 +139,10 @@ await Case("PiggyBank", async () =>
         {"name":"clear-check piggy {{run}}","accounts":[{"account_id":"{{assetId}}"}],"transaction_currency_code":"EUR",
          "target_amount":"500","start_date":"{{today}}","target_date":"{{later}}","object_group_title":"clear-check group {{run}}"}
         """);
-    var update = new PiggyBankUpdate().Clear(u => u.TargetAmount).Clear(u => u.TargetDate).Clear(u => u.ObjectGroupTitle);
+    // A piggy bank's group cannot be removed through the API (see the README's Notes), so it is not cleared here.
+    var update = new PiggyBankUpdate().Clear(u => u.TargetAmount).Clear(u => u.TargetDate);
     await Api<IPiggyBanksApi>().UpdatePiggyBank(id, update);
-    Expect("PiggyBank", before, await Read($"v1/piggy-banks/{id}"), "target_amount", "target_date", "object_group_title");
+    Expect("PiggyBank", before, await Read($"v1/piggy-banks/{id}"), "target_amount", "target_date");
 });
 
 await Case("Bill", async () =>
@@ -136,9 +151,11 @@ await Case("Bill", async () =>
         {"name":"clear-check bill {{run}}","amount_min":"10","amount_max":"20","date":"{{today}}","repeat_freq":"monthly",
          "currency_code":"EUR","end_date":"{{later}}","extension_date":"{{later}}","object_group_title":"clear-check group {{run}}"}
         """);
-    var update = new BillUpdate(name: $"clear-check bill {run}").Clear(u => u.EndDate).Clear(u => u.ExtensionDate).Clear(u => u.ObjectGroupTitle);
+    // A bill's end and extension dates cannot be cleared (the server rejects null and ""), and its
+    // group goes with an empty title rather than null.
+    var update = new BillUpdate(name: $"clear-check bill {run}") { ObjectGroupTitle = "" };
     await Api<IBillsApi>().UpdateBill(id, update);
-    Expect("Bill", before, await Read($"v1/bills/{id}"), "end_date", "extension_date", "object_group_title");
+    Expect("Bill", before, await Read($"v1/bills/{id}"), "object_group_title");
 });
 
 await Case("Tag", async () =>
@@ -158,17 +175,22 @@ await Case("Transaction", async () =>
            "interest_date":"{{today}}","book_date":"{{today}}","process_date":"{{today}}","due_date":"{{today}}","payment_date":"{{today}}","invoice_date":"{{today}}"},
           {"type":"withdrawal","date":"{{today}}","amount":"1.00","description":"clear-check split 2","source_id":"{{assetId}}","destination_name":"clear-check shop"}]}
         """);
-    var splits = created.GetProperty("transactions");
-    string journal = splits[0].GetProperty("transaction_journal_id").GetString()!;
-    string journal2 = splits[1].GetProperty("transaction_journal_id").GetString()!;
-    var split = new TransactionSplitUpdate { TransactionJournalId = journal }
-        .Clear(u => u.ForeignAmount).Clear(u => u.ForeignCurrencyCode).Clear(u => u.InternalReference).Clear(u => u.ExternalUrl)
+    // The server does not keep the splits in the order they were sent: find them by description.
+    static JsonElement Split(JsonElement group, string description) =>
+        group.GetProperty("transactions").EnumerateArray().First(s => s.GetProperty("description").GetString() == description);
+    var filled = Split(created, "clear-check split 1");
+    string journal = filled.GetProperty("transaction_journal_id").GetString()!;
+    string journal2 = Split(created, "clear-check split 2").GetProperty("transaction_journal_id").GetString()!;
+    // A foreign amount goes with "0", which takes the foreign currency with it; null leaves both.
+    var split = new TransactionSplitUpdate { TransactionJournalId = journal, ForeignAmount = "0" }
+        .Clear(u => u.InternalReference).Clear(u => u.ExternalUrl)
         .Clear(u => u.InterestDate).Clear(u => u.BookDate).Clear(u => u.ProcessDate).Clear(u => u.DueDate).Clear(u => u.PaymentDate).Clear(u => u.InvoiceDate);
-    var update = new TransactionUpdate(transactions: [split, new TransactionSplitUpdate { TransactionJournalId = journal2 }]).Clear(u => u.GroupTitle);
+    // A group of two splits needs its title on every update, so it is sent again and only the
+    // split fields are cleared here.
+    var update = new TransactionUpdate(transactions: [split, new TransactionSplitUpdate { TransactionJournalId = journal2 }]) { GroupTitle = $"clear-check group {run}" };
     await Api<ITransactionsApi>().UpdateTransaction(id, update);
     var after = await Read($"v1/transactions/{id}");
-    Expect("Transaction", created, after, "group_title");
-    Expect("TransactionSplit", splits[0], after.GetProperty("transactions")[0], "foreign_amount", "foreign_currency_code", "internal_reference", "external_url",
+    Expect("TransactionSplit", filled, Split(after, "clear-check split 1"), "foreign_amount", "foreign_currency_code", "internal_reference", "external_url",
         "interest_date", "book_date", "process_date", "due_date", "payment_date", "invoice_date");
 });
 
