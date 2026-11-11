@@ -16,7 +16,9 @@ run-name: ${{ inputs.version && format('Release v{0} to NuGet', inputs.version) 
 #   Repository: FireflyIII.Net
 #   Workflow File: release-nuget.yml
 # Leave Environment blank unless you add `environment:` to the job below.
-# GitHub side: the only secret needed is NUGET_USER = your nuget.org profile name (the account username, NOT your email).
+# GitHub side: NUGET_USER is the organisation variable (Settings > Secrets and variables >
+# Actions > Variables), the nuget.org username that created the policy: a name, not a secret,
+# not an email. A repository variable or secret of the same name would override it.
 # The job requests a short-lived key at run time.
 
 on:
@@ -74,7 +76,7 @@ jobs:
         id: login
         uses: NuGet/login@v1
         with:
-          user: ${{ secrets.NUGET_USER }}
+          user: ${{ vars.NUGET_USER }}
 
       - name: Push to NuGet
         # Backslash on purpose: on Windows runners, dotnet nuget push does not expand
